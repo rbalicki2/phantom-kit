@@ -1,0 +1,264 @@
+;; Goku config - 1:1 conversion of karabiner.json
+;; Run `goku` after editing to regenerate karabiner.json
+;;
+;; Modifier key legend:
+;;   ! = mandatory modifier
+;;   # = optional modifier
+;;   C = left_command, Q = right_command
+;;   T = left_control (NOT right_control - use full form for that)
+;;   O = left_option,  E = right_option
+;;   S = left_shift,   R = right_shift
+;;   W = fn
+;;
+;; ## = :optional ["any"]
+;; For right_control, use: {:key :x :modi {:mandatory [:right_control]}}
+
+{
+ :profiles {
+  :None {
+   :default false
+   :sim 50
+   :delay 80
+   :alone 150
+   :held 70
+  }
+  :Default {
+   :default false
+   :sim 50
+   :delay 80
+   :alone 150
+   :held 70
+  }
+  :Desktop {
+   :default true
+   :sim 50
+   :delay 80
+   :alone 150
+   :held 70
+  }
+ }
+
+ :devices {
+  :trackball [{:vendor_id 10730 :product_id 258 :is_pointing_device true}]
+  :logitech [{:vendor_id 1133 :product_id 45921 :is_keyboard true :is_pointing_device true}]
+ }
+
+ :simlayers {
+ }
+
+ :main [
+
+  ;; =====================================================================
+  ;; PROFILE: None
+  ;; =====================================================================
+
+  {:des "[None] Caps lock to control/escape"
+   :rules [:None
+    [:##caps_lock :left_control nil {:alone :escape}]
+   ]}
+
+  {:des "[None] Exchange numbers and symbols"
+   :rules [:None
+    [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
+    [{:key :2 :modi {:optional [:caps_lock]}} :!S2]
+    [{:key :3 :modi {:optional [:caps_lock]}} :!S3]
+    [{:key :4 :modi {:optional [:caps_lock]}} :!S4]
+    [{:key :5 :modi {:optional [:caps_lock]}} :!S5]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0]
+    [{:key :1 :modi {:mandatory [:shift] :optional [:caps_lock]}} :1]
+    [{:key :2 :modi {:mandatory [:shift] :optional [:caps_lock]}} :2]
+    [{:key :3 :modi {:mandatory [:shift] :optional [:caps_lock]}} :3]
+    [{:key :4 :modi {:mandatory [:shift] :optional [:caps_lock]}} :4]
+    [{:key :5 :modi {:mandatory [:shift] :optional [:caps_lock]}} :5]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
+   ]}
+
+  ;; =====================================================================
+  ;; PROFILE: Default
+  ;; =====================================================================
+
+  {:des "[Default] Brackets to command+bracket"
+   :rules [:Default
+    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket]
+    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket]
+    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket]
+    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket]
+   ]}
+
+  {:des "[Default] Swap backslash and pipe"
+   :rules [:Default
+    [:!Sbackslash :backslash]
+    [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
+   ]}
+
+  {:des "[Default] Left shift to open paren when alone"
+   :rules [:Default
+    [:##left_shift :left_shift nil {:alone :!S9}]
+   ]}
+
+  {:des "[Default] Right shift to close paren when alone"
+   :rules [:Default
+    [:##right_shift :right_shift nil {:alone :!S0}]
+   ]}
+
+  {:des "[Default] Caps lock to control/escape"
+   :rules [:Default
+    [:##caps_lock :left_control nil {:alone :escape}]
+   ]}
+
+  {:des "[Default] Exchange numbers and symbols"
+   :rules [:Default
+    [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
+    [{:key :2 :modi {:optional [:caps_lock]}} :!S2]
+    [{:key :3 :modi {:optional [:caps_lock]}} :!S3]
+    [{:key :4 :modi {:optional [:caps_lock]}} :!S4]
+    [{:key :5 :modi {:optional [:caps_lock]}} :!S5]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0]
+    [{:key :1 :modi {:mandatory [:shift] :optional [:caps_lock]}} :1]
+    [{:key :2 :modi {:mandatory [:shift] :optional [:caps_lock]}} :2]
+    [{:key :3 :modi {:mandatory [:shift] :optional [:caps_lock]}} :3]
+    [{:key :4 :modi {:mandatory [:shift] :optional [:caps_lock]}} :4]
+    [{:key :5 :modi {:mandatory [:shift] :optional [:caps_lock]}} :5]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
+   ]}
+
+  ;; =====================================================================
+  ;; PROFILE: Desktop (selected/active)
+  ;; =====================================================================
+
+  {:des "[Desktop] Page down/up to click/right click"
+   :rules [:Desktop
+    [:##page_down :button1]
+    [:##page_up :button2]
+   ]}
+
+  {:des "[Desktop] Right control + brackets to ctrl-tab navigation"
+   :rules [:Desktop
+    [{:key :open_bracket :modi {:mandatory [:right_control]}} :!TStab]
+    [{:key :close_bracket :modi {:mandatory [:right_control]}} :!Ttab]
+   ]}
+
+  {:des "[Desktop] Brackets to command+bracket"
+   :rules [:Desktop
+    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket]
+    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket]
+    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket]
+    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket]
+   ]}
+
+  {:des "[Desktop] Swap backslash and pipe"
+   :rules [:Desktop
+    [:!Sbackslash :backslash]
+    [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
+   ]}
+
+  {:des "[Desktop] Left shift to open paren when alone"
+   :rules [:Desktop
+    [:##left_shift :left_shift nil {:alone :!S9}]
+   ]}
+
+  {:des "[Desktop] Right shift to close paren when alone"
+   :rules [:Desktop
+    [:##right_shift :right_shift nil {:alone :!S0}]
+   ]}
+
+  {:des "[Desktop] Caps lock to control/escape"
+   :rules [:Desktop
+    [:##caps_lock :left_control nil {:alone :escape}]
+   ]}
+
+  {:des "[Desktop] Left/right arrows to backspace/delete"
+   :rules [:Desktop
+    [:##left_arrow :delete_or_backspace]
+    [:##right_arrow :delete_forward]
+   ]}
+
+  {:des "[Desktop] Right command to hyper"
+   :rules [:Desktop
+    [:##right_command {:key :left_command :modi [:left_shift :left_control :left_option]}]
+   ]}
+
+  {:des "[Desktop] Left command to open curly/bracket when alone"
+   :rules [:Desktop
+    [:left_command :left_command nil {:alone :!Sopen_bracket}]
+    [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
+   ]}
+
+  {:des "[Desktop] Right control to close curly/bracket when alone"
+   :rules [:Desktop
+    [:right_control :right_control nil {:alone :!Sclose_bracket}]
+    [{:key :right_control :modi {:mandatory [:shift]}} {:key :right_control :modi [:left_shift]} nil {:alone :close_bracket}]
+   ]}
+
+  {:des "[Desktop] Arrow navigation with right control"
+   :rules [:Desktop
+    ;; right_control + j = option + left (word left)
+    [{:key :j :modi {:mandatory [:right_control] :optional [:any]}} {:key :left_arrow :modi [:right_option]}]
+    ;; right_control + k = option + right (word right)
+    [{:key :k :modi {:mandatory [:right_control] :optional [:any]}} {:key :right_arrow :modi [:right_option]}]
+    ;; right_control + m = command + left (line start)
+    [{:key :m :modi {:mandatory [:right_control] :optional [:any]}} {:key :left_arrow :modi [:right_command]}]
+    ;; right_control + comma = command + right (line end)
+    [{:key :comma :modi {:mandatory [:right_control] :optional [:any]}} {:key :right_arrow :modi [:right_command]}]
+    ;; right_control + up = left
+    [{:key :up_arrow :modi {:mandatory [:right_control] :optional [:any]}} :left_arrow]
+    ;; right_control + down = right
+    [{:key :down_arrow :modi {:mandatory [:right_control] :optional [:any]}} :right_arrow]
+   ]}
+
+  {:des "[Desktop] Backspace to super, delete to hyper"
+   :rules [:Desktop
+    ;; Backspace = super (cmd+shift+ctrl), alone = super+7
+    [:##delete_or_backspace {:key :left_command :modi [:left_shift :left_control]} nil {:alone {:key :7 :modi [:left_command :left_shift :left_control]}}]
+    ;; Delete forward = hyper (cmd+shift+ctrl+alt)
+    [:##delete_forward {:key :left_command :modi [:left_shift :left_control :left_option]}]
+   ]}
+
+  {:des "[Desktop] Exchange numbers and symbols"
+   :rules [:Desktop
+    [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
+    [{:key :2 :modi {:optional [:caps_lock]}} :!S2]
+    [{:key :3 :modi {:optional [:caps_lock]}} :!S3]
+    [{:key :4 :modi {:optional [:caps_lock]}} :!S4]
+    [{:key :5 :modi {:optional [:caps_lock]}} :!S5]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0]
+    [{:key :1 :modi {:mandatory [:shift] :optional [:caps_lock]}} :1]
+    [{:key :2 :modi {:mandatory [:shift] :optional [:caps_lock]}} :2]
+    [{:key :3 :modi {:mandatory [:shift] :optional [:caps_lock]}} :3]
+    [{:key :4 :modi {:mandatory [:shift] :optional [:caps_lock]}} :4]
+    [{:key :5 :modi {:mandatory [:shift] :optional [:caps_lock]}} :5]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
+   ]}
+
+  {:des "[Desktop] Home to enter"
+   :rules [:Desktop
+    [:home :return_or_enter]
+   ]}
+
+ ] ;; end :main
+
+} ;; end config

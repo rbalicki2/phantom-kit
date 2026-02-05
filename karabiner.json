@@ -972,6 +972,36 @@
                         ]
                     },
                     {
+                        "description": "Left command to open curly/square bracket when pressed alone",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_gui" },
+                                "to": [{ "key_code": "left_gui" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "open_bracket",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "left_gui",
+                                    "modifiers": { "mandatory": ["shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_gui",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "open_bracket" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Right control to curly/square brackets when pressed alone",
                         "manipulators": [
                             {
