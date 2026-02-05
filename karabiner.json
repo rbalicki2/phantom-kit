@@ -954,19 +954,26 @@
                         ]
                     },
                     {
-                        "description": "command buttons to curly when pressed alone plus square brackets",
+                        "description": "Right command to hyper key",
                         "manipulators": [
                             {
-                                "from": { "key_code": "right_gui" },
-                                "to": [{ "key_code": "right_gui" }],
-                                "to_if_alone": [
+                                "from": {
+                                    "key_code": "right_gui",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
                                     {
-                                        "key_code": "open_bracket",
-                                        "modifiers": ["left_shift"]
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_shift", "left_control", "left_alt"]
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right control to curly/square brackets when pressed alone",
+                        "manipulators": [
                             {
                                 "from": { "key_code": "right_control" },
                                 "to": [{ "key_code": "right_control" }],
@@ -980,24 +987,10 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "right_gui",
-                                    "modifiers": { "mandatory": ["shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_gui",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "open_bracket" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "right_control",
                                     "modifiers": { "mandatory": ["shift"] }
                                 },
-                                "to": [{ "key_code": "right_gui" }],
+                                "to": [{ "key_code": "right_control", "modifiers": ["left_shift"] }],
                                 "to_if_alone": [{ "key_code": "close_bracket" }],
                                 "type": "basic"
                             }
