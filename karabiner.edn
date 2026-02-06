@@ -133,12 +133,6 @@
     [:##right_arrow :delete_forward]
    ]}
 
-  {:des "[Desktop] Shift+up/down to backspace/delete"
-   :rules [:Desktop
-    [:!Sup_arrow :delete_or_backspace]
-    [:!Sdown_arrow :delete_forward]
-   ]}
-
   {:des "[Desktop] Right command to close curly/bracket when alone"
    :rules [:Desktop
     [:right_command :right_command nil {:alone :!Sclose_bracket}]
