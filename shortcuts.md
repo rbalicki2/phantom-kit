@@ -6,6 +6,7 @@
 - **U** = Next tab, **I** = Previous tab
 - **N** = Spotlight, **Enter** = Switch windows
 - **Ctrl+H** = Close (Cmd+W)
+- **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
 - **Shift+H/J** = Chrome Personal tabs 1-2, **Shift+K/L** = Chrome Work tabs 1-2
 - **Shift+N/M/,/.//** = iTerm tab 2, pane 1, tmux windows 1-5

@@ -330,6 +330,10 @@
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :k :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :l :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; P = Cmd+Shift+3 (full screen screenshot)
+    [:p [:!CS3 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; Ctrl+P = Cmd+Shift+4 (selection screenshot)
+    [{:key :p :modi {:mandatory [:left_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"

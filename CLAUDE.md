@@ -74,6 +74,7 @@ The config is organized into two sections:
 ### Layer N "Nav" (right_control+N)
 - **N** = Command+Space (Spotlight)
 - **Ctrl+H** = Cmd+W (close)
+- **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
 - **Enter** = Command+` (switch windows)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)

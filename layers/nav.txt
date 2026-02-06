@@ -10,6 +10,7 @@ Shift+. = iTerm tmux window 4
 Shift+/ = iTerm tmux window 5
 N = Spotlight, Shift+N = iTerm tab 2 pane 1
 Ctrl+H = Close (Cmd+W)
+P = Screenshot full, Ctrl+P = Screenshot selection
 U/I = Next/Prev tab
 Up/Down = Left/Right half
 Enter = Switch windows
