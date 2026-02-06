@@ -138,6 +138,7 @@ The config is organized into two sections:
 - **Shift+above** = Select instead of delete (stays)
 - **H** = plus, **Shift+H** = Cmd+plus (exits)
 - **N** = equals, **Shift+N** = Cmd+equals (exits)
+- **Enter** = Cmd+Enter (exits)
 - **Y** = Enter Cmd sub-layer (see below)
 
 #### H Layer Modifier Sub-layers
