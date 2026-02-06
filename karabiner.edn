@@ -43,6 +43,11 @@
   :logitech [{:vendor_id 1133 :product_id 45921 :is_keyboard true :is_pointing_device true}]
  }
 
+ :applications {
+  :iTerm ["com.googlecode.iterm2"]
+  :Chrome ["com.google.Chrome"]
+ }
+
  :simlayers {
  }
 
@@ -148,10 +153,10 @@
     [:##page_up :button2]
    ]}
 
-  {:des "[Desktop] Right control + brackets to ctrl-tab navigation"
+  {:des "[Desktop] Right command + brackets to ctrl-tab navigation"
    :rules [:Desktop
-    [{:key :open_bracket :modi {:mandatory [:right_control]}} :!TStab]
-    [{:key :close_bracket :modi {:mandatory [:right_control]}} :!Ttab]
+    [{:key :open_bracket :modi {:mandatory [:right_command]}} :!TStab]
+    [{:key :close_bracket :modi {:mandatory [:right_command]}} :!Ttab]
    ]}
 
   {:des "[Desktop] Brackets to command+bracket"
@@ -189,9 +194,10 @@
     [:##right_arrow :delete_forward]
    ]}
 
-  {:des "[Desktop] Right command to hyper"
+  {:des "[Desktop] Right command to close curly/bracket when alone"
    :rules [:Desktop
-    [:##right_command {:key :left_command :modi [:left_shift :left_control :left_option]}]
+    [:right_command :right_command nil {:alone :!Sclose_bracket}]
+    [{:key :right_command :modi {:mandatory [:shift]}} {:key :right_command :modi [:left_shift]} nil {:alone :close_bracket}]
    ]}
 
   {:des "[Desktop] Left command to open curly/bracket when alone"
@@ -200,34 +206,29 @@
     [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
    ]}
 
-  {:des "[Desktop] Right control to close curly/bracket when alone"
-   :rules [:Desktop
-    [:right_control :right_control nil {:alone :!Sclose_bracket}]
-    [{:key :right_control :modi {:mandatory [:shift]}} {:key :right_control :modi [:left_shift]} nil {:alone :close_bracket}]
-   ]}
 
-  {:des "[Desktop] Arrow navigation with right control"
+  {:des "[Desktop] Arrow navigation with right command"
    :rules [:Desktop
-    ;; right_control + j = option + left (word left)
-    [{:key :j :modi {:mandatory [:right_control] :optional [:any]}} {:key :left_arrow :modi [:right_option]}]
-    ;; right_control + k = option + right (word right)
-    [{:key :k :modi {:mandatory [:right_control] :optional [:any]}} {:key :right_arrow :modi [:right_option]}]
-    ;; right_control + m = command + left (line start)
-    [{:key :m :modi {:mandatory [:right_control] :optional [:any]}} {:key :left_arrow :modi [:right_command]}]
-    ;; right_control + comma = command + right (line end)
-    [{:key :comma :modi {:mandatory [:right_control] :optional [:any]}} {:key :right_arrow :modi [:right_command]}]
-    ;; right_control + up = left
-    [{:key :up_arrow :modi {:mandatory [:right_control] :optional [:any]}} :left_arrow]
-    ;; right_control + down = right
-    [{:key :down_arrow :modi {:mandatory [:right_control] :optional [:any]}} :right_arrow]
+    ;; right_command + j = option + left (word left)
+    [{:key :j :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:right_option]}]
+    ;; right_command + k = option + right (word right)
+    [{:key :k :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:right_option]}]
+    ;; right_command + m = command + left (line start)
+    [{:key :m :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:left_command]}]
+    ;; right_command + comma = command + right (line end)
+    [{:key :comma :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:left_command]}]
+    ;; right_command + up = left
+    [{:key :up_arrow :modi {:mandatory [:right_command] :optional [:any]}} :left_arrow]
+    ;; right_command + down = right
+    [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow]
    ]}
 
   {:des "[Desktop] Backspace to super, delete to hyper"
    :rules [:Desktop
     ;; Backspace = super (cmd+shift+ctrl), alone = super+7
     [:##delete_or_backspace {:key :left_command :modi [:left_shift :left_control]} nil {:alone {:key :7 :modi [:left_command :left_shift :left_control]}}]
-    ;; Delete forward = hyper (cmd+shift+ctrl+alt)
-    [:##delete_forward {:key :left_command :modi [:left_shift :left_control :left_option]}]
+    ;; Delete forward = hyper, but exits layer_n when tapped alone in that layer
+    [:##delete_forward {:key :left_command :modi [:left_shift :left_control :left_option]} nil {:alone [["layer_n" 0] {:noti {:id "layer_n" :text ""}}]}]
    ]}
 
   {:des "[Desktop] Exchange numbers and symbols"
@@ -254,9 +255,113 @@
     [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
    ]}
 
+  {:des "[Desktop] Swap equals and backtick"
+   :rules [:Desktop
+    [{:key :equal_sign :modi {:optional [:caps_lock]}} :grave_accent_and_tilde]
+    [{:key :grave_accent_and_tilde :modi {:optional [:caps_lock]}} :equal_sign]
+    [{:key :equal_sign :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sgrave_accent_and_tilde]
+    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sequal_sign]
+   ]}
+
   {:des "[Desktop] Home to enter"
    :rules [:Desktop
     [:home :return_or_enter]
+   ]}
+
+  {:des "[Desktop] Single quote to control when held"
+   :rules [:Desktop
+    [:##quote :left_control nil {:alone :quote}]
+   ]}
+
+  {:des "[Desktop] Right control+H to F9 (text-to-speech)"
+   :rules [:Desktop
+    [{:key :h :modi {:mandatory [:right_control]}} :f9]
+   ]}
+
+  {:des "[Desktop] Right control+Y to Shift+F9 (toggle recording)"
+   :rules [:Desktop
+    [{:key :y :modi {:mandatory [:right_control]}} :!Sf9]
+   ]}
+
+  {:des "[Desktop] Layer N (right_control+N to enter)"
+   :rules [:Desktop
+    ;; right_control+N enters layer_n
+    [{:key :n :modi {:mandatory [:right_control]}} [["layer_n" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_n" 0]]
+    ;; escape exits layer_n
+    [:escape [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; right_control alone exits layer_n
+    [:right_control [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; Layer N shortcuts
+    [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:spacebar [:!CTOSg ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:up_arrow [:!CTOSv ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:down_arrow [:!CTOSb ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:m [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:comma [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:y [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:u [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:i [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:o [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:j [{:shell "open -a 'iTerm' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+   ]}
+
+  {:des "[Desktop] Layer M (right_control+M to enter)"
+   :rules [:Desktop
+    ;; right_control+M enters layer_m
+    [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0]]
+    ;; escape exits layer_m
+    [:escape [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; right_control alone exits layer_m
+    [:right_control [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; Layer M shortcuts
+    [:m [:!Tc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:h [:!Cc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:j [:!Cv ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+   ]}
+
+  {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"
+   :rules [:Desktop
+    ;; right_control+J enters layer_chrome (Chrome only)
+    [{:key :j :modi {:mandatory [:right_control]}} [["layer_chrome" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_chrome" 0]]
+    ;; escape exits layer
+    [:escape [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; right_control alone exits layer
+    [:right_control [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; J = Control+Shift+Tab (previous tab) - stays in layer
+    [:j :!TStab ["layer_chrome" 1]]
+    ;; K = Control+Tab (next tab) - stays in layer
+    [:k :!Ttab ["layer_chrome" 1]]
+    ;; L = Command+Shift+A
+    [:l [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; Y = Command+1
+    [:y [:!C1 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; U = Command+2
+    [:u [:!C2 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; I = Command+3
+    [:i [:!C3 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; O = Command+4
+    [:o [:!C4 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; P = Command+9
+    [:p [:!C9 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+   ]}
+
+  {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
+   :rules [:Desktop
+    ;; right_control+J sends Control+A and enters tmux layer (iTerm only)
+    [{:key :j :modi {:mandatory [:right_control]}} [:!Ta ["layer_tmux" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_tmux" 0]]
+    ;; escape exits layer
+    [:escape [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    ;; right_control alone exits layer
+    [:right_control [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    ;; Y-P → !, @, #, $, % (tmux windows 1-5) + exit
+    [:y [:!S1 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:u [:!S2 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:i [:!S3 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:o [:!S4 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:p [:!S5 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
    ]}
 
  ] ;; end :main
