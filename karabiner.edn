@@ -295,8 +295,8 @@
     [{:key :n :modi {:mandatory [:right_control]}} [["layer_n" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_n" 0]]
     ;; escape exits layer_n
     [:escape [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; right_control alone exits layer_n
-    [:right_control [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; right_control alone exits layer_n (must use :alone so Ctrl+key combos still work)
+    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+H = Cmd+W (close window/tab)
@@ -337,8 +337,8 @@
     [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0]]
     ;; escape exits layer_m
     [:escape [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; right_control alone exits layer_m
-    [:right_control [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; right_control alone exits layer_m (must use :alone so Ctrl+key combos still work)
+    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Layer M shortcuts
     [:m [:!Tc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:n [:!Tr ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
@@ -359,23 +359,23 @@
 
     ;; === Modifier sub-layer exits (must come before base layer exits) ===
     [:escape [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:right_control [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:right_control :right_control ["layer_h_cmd" 1] {:alone [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-    [:right_control [["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
+    [:right_control :right_control ["layer_h_ctrlcmd" 1] {:alone [["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-    [:right_control [["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
+    [:right_control :right_control ["layer_h_ctrl" 1] {:alone [["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-    [:right_control [["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
+    [:right_control :right_control ["layer_h_ctrlalt" 1] {:alone [["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-    [:right_control [["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
+    [:right_control :right_control ["layer_h_alt" 1] {:alone [["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-    [:right_control [["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
+    [:right_control :right_control ["layer_h_altcmd" 1] {:alone [["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     [:escape [["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-    [:right_control [["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
+    [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
 
     ;; === Base layer exits ===
     [:escape [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
-    [:right_control [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [:right_control :right_control ["layer_h" 1] {:alone [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
 
     ;; === Cmd sub-layer (Y to enter from H) ===
     ;; Pattern: entry sets layer_h=0, layer_h_X=1; letters do mod+key, exit to base
@@ -789,7 +789,7 @@
     ;; escape exits layer
     [:escape [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; right_control alone exits layer
-    [:right_control [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; H = Command+T (new tab) - exits layer
     [:h [:!Ct ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; J = Control+Shift+Tab (previous tab) - stays in layer
@@ -825,7 +825,7 @@
     ;; escape exits layer
     [:escape [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; right_control alone exits layer
-    [:right_control [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; h = "git status " (no enter)
     [:h [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+h = "git status " + enter
@@ -869,7 +869,7 @@
     ;; escape exits layer
     [:escape [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     ;; right_control alone exits layer
-    [:right_control [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Y-P → !, @, #, $, % (tmux windows 1-5) + exit
     [:y [:!S1 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:u [:!S2 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
