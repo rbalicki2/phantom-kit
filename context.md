@@ -113,6 +113,24 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 
 **Cmd sub-layer special**: page_down = Cmd+click, page_up = Cmd+right-click
 
+### Term Layer (right_control+U, iTerm only)
+Git shortcuts for terminal. Uses osascript to type text.
+- **H** = type "git status " (no enter)
+- **Shift+H** = type "git status " + enter
+- **J** = type "log" (no enter)
+- **Shift+J** = type "log" + enter
+- **K** = type "diff" (no enter)
+- **Shift+K** = type "git diff head" + enter
+- **Ctrl+K** = type "gdmb" + enter
+- **L** = type "commit" (no enter)
+- **Shift+L** = type "git commit -am 'wip'" + enter
+- **N** = type "reset" (no enter)
+- **Shift+N** = type "reset" + enter
+- **M** = type "git checkout " (no enter)
+- **Shift+M** = type "gcmp" + enter
+- **,** = type "stash" + enter
+- **Shift+,** = type "stash pop" + enter
+
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (tmux windows 1-5)
@@ -176,7 +194,7 @@ All layers can be exited by:
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag
 - All layer entries/exits write to these files
-- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, default `-`
+- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `term`, default `-`
 - RHS flag prefixes output (e.g., "RHS-Nav")
 - Uses Menlo font with fixed 8-char width
 - **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case

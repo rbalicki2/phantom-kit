@@ -24,6 +24,7 @@ case "$LAYER" in
     hCTO) NAME="H-CTO" ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
+    term) NAME="Term" ;;
     *) NAME="-" ;;
 esac
 
