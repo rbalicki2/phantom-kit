@@ -140,9 +140,9 @@
 
   {:des "[Desktop] Page down/up to click/right click"
    :rules [:Desktop
-    ;; Exclude when in H modifier sub-layers (they handle page_down/up with modifiers)
-    [:##page_down :button1 ["layer_h_cmd" 0] ["layer_h_ctrlcmd" 0] ["layer_h_ctrl" 0] ["layer_h_ctrlalt" 0] ["layer_h_alt" 0] ["layer_h_altcmd" 0] ["layer_h_hyper" 0]]
-    [:##page_up :button2 ["layer_h_cmd" 0] ["layer_h_ctrlcmd" 0] ["layer_h_ctrl" 0] ["layer_h_ctrlalt" 0] ["layer_h_alt" 0] ["layer_h_altcmd" 0] ["layer_h_hyper" 0]]
+    ;; Exclude when in Cmd sub-layer (it handles Cmd+click)
+    [:##page_down :button1 ["layer_h_cmd" 0]]
+    [:##page_up :button2 ["layer_h_cmd" 0]]
    ]}
 
   {:des "[Desktop] RHS Flag (right_control+7/8 to enter/exit) - disable LHS keys"
@@ -429,8 +429,8 @@
     [:right_arrow [:!Cright_arrow ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
     [:delete_or_backspace [:!Cdelete_or_backspace ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
     [:delete_forward [:!Cdelete_forward ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_command]} ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_command]} ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:page_down [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"} {:pkey :button1 :modi [:left_command]}] ["layer_h_cmd" 1]]
+    [:page_up [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"} {:pkey :button2 :modi [:left_command]}] ["layer_h_cmd" 1]]
 
     ;; === Ctrl+Cmd sub-layer (Ctrl+Y to enter from H) ===
     [{:key :y :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_ctrlcmd" 1] {:shell "echo hTC > /tmp/karabiner-layer"}] ["layer_h" 1]]
@@ -486,9 +486,6 @@
     [:right_arrow [:!CTright_arrow ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
     [:delete_or_backspace [:!CTdelete_or_backspace ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
     [:delete_forward [:!CTdelete_forward ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_control :left_command]} ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_control :left_command]} ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-
     ;; === Ctrl sub-layer (U to enter from H) ===
     [:u [["layer_h" 0] ["layer_h_ctrl" 1] {:shell "echo hT > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!Ta ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
@@ -543,9 +540,6 @@
     [:right_arrow [:!Tright_arrow ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
     [:delete_or_backspace [:!Tdelete_or_backspace ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
     [:delete_forward [:!Tdelete_forward ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_control]} ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_control]} ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-
     ;; === Ctrl+Alt sub-layer (Ctrl+U to enter from H) ===
     [{:key :u :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_ctrlalt" 1] {:shell "echo hTO > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!TOa ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
@@ -600,9 +594,6 @@
     [:right_arrow [:!TOright_arrow ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
     [:delete_or_backspace [:!TOdelete_or_backspace ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
     [:delete_forward [:!TOdelete_forward ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_control :left_option]} ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_control :left_option]} ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-
     ;; === Alt sub-layer (I to enter from H) ===
     [:i [["layer_h" 0] ["layer_h_alt" 1] {:shell "echo hO > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!Oa ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
@@ -657,9 +648,6 @@
     [:right_arrow [:!Oright_arrow ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
     [:delete_or_backspace [:!Odelete_or_backspace ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
     [:delete_forward [:!Odelete_forward ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_option]} ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_option]} ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-
     ;; === Alt+Cmd sub-layer (Ctrl+I to enter from H) ===
     [{:key :i :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_altcmd" 1] {:shell "echo hOC > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!OCa ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
@@ -714,9 +702,6 @@
     [:right_arrow [:!OCright_arrow ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
     [:delete_or_backspace [:!OCdelete_or_backspace ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
     [:delete_forward [:!OCdelete_forward ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_option :left_command]} ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_option :left_command]} ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-
     ;; === Hyper sub-layer (O to enter from H) - Cmd+Ctrl+Alt ===
     [:o [["layer_h" 0] ["layer_h_hyper" 1] {:shell "echo hCTO > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!CTOa ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
@@ -771,9 +756,6 @@
     [:right_arrow [:!CTOright_arrow ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
     [:delete_or_backspace [:!CTOdelete_or_backspace ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
     [:delete_forward [:!CTOdelete_forward ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-    [:page_down [{:pkey :button1 :modi [:left_control :left_option :left_command]} ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-    [:page_up [{:pkey :button2 :modi [:left_control :left_option :left_command]} ["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-
     ;; Deletion (stays in layer)
     [:j :!Odelete_or_backspace ["layer_h" 1]]  ;; delete word left
     [:k :!Odelete_forward ["layer_h" 1]]       ;; delete word right

@@ -38,6 +38,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - `:!Cbutton1` does NOT work - modifier shorthand doesn't apply to mouse buttons
 - For mouse buttons with modifiers, use explicit form: `{:pkey :button1 :modi [:left_command]}`
 - Rule ordering matters: earlier rules in the config take precedence. If a global rule (like page_down→button1) has no layer condition, it will match before layer-specific rules. Add exclusion conditions like `["layer_h_cmd" 0]` to global rules when needed.
+- Modifier+click only works reliably for Cmd modifier. Ctrl+click, Alt+click, etc. don't exit the layer properly. Only Cmd sub-layer has page_down/page_up for clicking.
 
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
@@ -107,6 +108,8 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 | I | Alt | H-O |
 | Ctrl+I | Alt+Cmd | H-OC |
 | O | Cmd+Ctrl+Alt | H-CTO |
+
+**Cmd sub-layer special**: page_down = Cmd+click, page_up = Cmd+right-click
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
