@@ -1,5 +1,11 @@
 # Karabiner/Goku Configuration Context
 
+## User Interaction Notes
+The user is using voice-to-text and may not fully think through requests before speaking. Claude should:
+- Reason about what the user is actually trying to accomplish, not just literal words
+- Ask clarifying questions if something doesn't align or seems off
+- Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
+
 ## Key Files
 - `/Users/rbalicki/code/voicemode/karabiner.edn` - Main Goku config (source of truth)
 - `/Users/rbalicki/code/voicemode/shortcuts.md` - Human-readable shortcuts reference (keep up to date)
