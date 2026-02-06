@@ -23,7 +23,8 @@
       "Bash(ls:*)",
       "Bash(git revert:*)",
       "Bash(git checkout:*)",
-      "Bash(/Users/rbalicki/code/voicemode/iterm-tmux.sh '!')"
+      "Bash(/Users/rbalicki/code/voicemode/iterm-tmux.sh '!')",
+      "Bash(git mv:*)"
     ]
   }
 }
