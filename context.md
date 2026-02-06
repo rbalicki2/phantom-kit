@@ -68,6 +68,7 @@ The config is organized into two sections:
 - **I** = Cmd+3
 - **O** = Cmd+4
 - **P** = Cmd+9
+- **N** = Cmd+K
 
 ### Layer Exit Methods
 All layers can be exited by:
@@ -97,8 +98,7 @@ All layers can be exited by:
 - Equals and backtick swapped
 - right_control+H = F9 (text-to-speech)
 - right_control+Y = Shift+F9 (toggle recording)
-- Space+N = Escape
-- Space+H = Cmd+K (Chrome only)
+- Space+Enter = Cmd+Enter
 
 ## SwiftBar Status
 - Shows current layer in menu bar

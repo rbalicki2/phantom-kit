@@ -176,10 +176,6 @@
     [:up_arrow {:key :left_arrow :modi [:left_shift]} ["space_held" 1]]
     ;; Space+Down = Shift+Right (select char right)
     [:down_arrow {:key :right_arrow :modi [:left_shift]} ["space_held" 1]]
-    ;; Space+N = Escape
-    [:n :escape ["space_held" 1]]
-    ;; Space+H = Command+K (Chrome only)
-    [:h :!Ck :Chrome ["space_held" 1]]
     ;; Space+Enter = Command+Enter
     [:return_or_enter :!Creturn_or_enter ["space_held" 1]]
    ]}
@@ -286,6 +282,8 @@
     [:o [:!C4 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; P = Command+9
     [:p [:!C9 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; N = Command+K
+    [:n [:!Ck ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
