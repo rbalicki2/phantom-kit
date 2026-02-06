@@ -304,8 +304,8 @@
     [:right_control [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; Ctrl+N = Cmd+W (close window/tab)
-    [{:key :n :modi {:mandatory [:left_control]}} [:!Cw ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; Ctrl+H = Cmd+W (close window/tab)
+    [{:key :h :modi {:mandatory [:left_control]}} [:!Cw ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:spacebar [:!CTOSg ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:up_arrow [:!CTOSv ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]

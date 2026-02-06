@@ -64,7 +64,8 @@ The config is organized into two sections:
 ## Current Layers
 
 ### Layer N "Nav" (right_control+N)
-- **N** = Command+Space (Spotlight), **Ctrl+N** = Cmd+W (close)
+- **N** = Command+Space (Spotlight)
+- **Ctrl+H** = Cmd+W (close)
 - **Enter** = Command+` (switch windows)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
