@@ -813,6 +813,8 @@
     [:n [:!Ck ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; M = Command+W (close tab) - stays in layer
     [:m :!Cw ["layer_chrome" 1]]
+    ;; Shift+M = Command+W then Shift+Tab (close tab and go to previous) - stays in layer
+    [{:key :m :modi {:mandatory [:shift]}} [:!Cw :!Stab] ["layer_chrome" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (right_control+U to enter, iTerm only) - git shortcuts"
