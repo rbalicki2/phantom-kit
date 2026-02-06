@@ -349,8 +349,6 @@
     [:i [:!Ca ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:o [:!Cf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:p [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; Comma = Escape
-    [:comma [:escape ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
    ]}
 
   {:des "[Desktop] Layer H (right_control+H to enter) - deletion/selection"
@@ -825,6 +823,11 @@
     [:i [:!S3 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:o [:!S4 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:p [:!S5 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+   ]}
+
+  {:des "[Desktop] Right control to escape when tapped alone"
+   :rules [:Desktop
+    [:##right_control :right_control nil {:alone :escape}]
    ]}
 
  ] ;; end :main

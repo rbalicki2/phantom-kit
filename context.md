@@ -87,7 +87,7 @@ The config is organized into two sections:
 - **I** = Command+A (select all)
 - **O** = Command+F (find)
 - **P** = Command+W (close)
-- **Comma** = Escape
+- **Comma** = (free)
 
 ### Layer H (right_control+H)
 - **J/K** = Delete word left/right (stays)
@@ -140,7 +140,7 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 ### Layer Exit Methods
 All layers can be exited by:
 - Pressing **escape**
-- Pressing **right_control** alone
+- Pressing **right_control** alone (also sends escape)
 - Most layer actions auto-exit (except Chrome J/K for tab cycling)
 
 **Convention**: Actions stay in layer if repeatable (delete, select, tab cycling). Actions exit layer if one-shot (open app, zoom, type symbol).
@@ -154,6 +154,7 @@ All layers can be exited by:
 - Right shift alone = )
 
 ## Desktop-Only Remaps
+- Right control alone = Escape (frees up physical escape key)
 - Page down/up = left/right click
 - Left/right arrows = backspace/delete
 - Right control + [ / ] = backspace/delete
