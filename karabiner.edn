@@ -300,7 +300,7 @@
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+H = Cmd+W (close window/tab)
-    [{:key :h :modi {:mandatory [:left_control]}} [:!Cw ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:spacebar [:!CTOSg ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:up_arrow [:!CTOSv ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
@@ -328,7 +328,7 @@
     ;; P = Cmd+Shift+3 (full screen screenshot)
     [:p [:!CS3 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+P = Cmd+Shift+4 (selection screenshot)
-    [{:key :p :modi {:mandatory [:left_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
@@ -436,7 +436,7 @@
     [:page_up [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"} {:pkey :button2 :modi [:left_command]}] ["layer_h_cmd" 1]]
 
     ;; === Ctrl+Cmd sub-layer (Ctrl+Y to enter from H) ===
-    [{:key :y :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_ctrlcmd" 1] {:shell "echo hTC > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [{:key :y :modi {:mandatory [:right_control]}} [["layer_h" 0] ["layer_h_ctrlcmd" 1] {:shell "echo hTC > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!CTa ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
     [:b [:!CTb ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
     [:c [:!CTc ["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
@@ -544,7 +544,7 @@
     [:delete_or_backspace [:!Tdelete_or_backspace ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
     [:delete_forward [:!Tdelete_forward ["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
     ;; === Ctrl+Alt sub-layer (Ctrl+U to enter from H) ===
-    [{:key :u :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_ctrlalt" 1] {:shell "echo hTO > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [{:key :u :modi {:mandatory [:right_control]}} [["layer_h" 0] ["layer_h_ctrlalt" 1] {:shell "echo hTO > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!TOa ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
     [:b [:!TOb ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
     [:c [:!TOc ["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
@@ -652,7 +652,7 @@
     [:delete_or_backspace [:!Odelete_or_backspace ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
     [:delete_forward [:!Odelete_forward ["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
     ;; === Alt+Cmd sub-layer (Ctrl+I to enter from H) ===
-    [{:key :i :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_altcmd" 1] {:shell "echo hOC > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [{:key :i :modi {:mandatory [:right_control]}} [["layer_h" 0] ["layer_h_altcmd" 1] {:shell "echo hOC > /tmp/karabiner-layer"}] ["layer_h" 1]]
     [:a [:!OCa ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
     [:b [:!OCb ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
     [:c [:!OCc ["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
@@ -829,37 +829,37 @@
     ;; h = "git status " (no enter)
     [:h [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+h = "git status " + enter
-    [{:key :h :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :h :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; j = "git log " (no enter)
     [:j [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git log \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+j = "git log" + enter
-    [{:key :j :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git log\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :j :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git log\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; k = "git diff " (no enter)
     [:k [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git diff \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Shift+k = "git diff head" + enter
     [{:key :k :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git diff head\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+k = "gdmb" + enter
-    [{:key :k :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gdmb\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :k :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gdmb\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; l = "git commit " (no enter)
     [:l [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+l = "git commit -am 'wip'" + enter
-    [{:key :l :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\''\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :l :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\''\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; n = "git reset " (no enter)
     [:n [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git reset \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+n = "git reset" + enter
-    [{:key :n :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git reset\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :n :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git reset\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; m = "git checkout " (no enter)
     [:m [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git checkout \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+m = "gcmp" + enter
-    [{:key :m :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gcmp\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :m :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gcmp\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; , = "git stash" + enter
     [:comma [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+, = "git stash pop" + enter
-    [{:key :comma :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash pop\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    [{:key :comma :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash pop\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; I = Cmd+D (split vertical)
     [:i [:!Cd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; Ctrl+I = Cmd+Shift+D (split horizontal)
-    [{:key :i :modi {:mandatory [:left_control]}} [:!CSd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    [{:key :i :modi {:mandatory [:right_control]}} [:!CSd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
