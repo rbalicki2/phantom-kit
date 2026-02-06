@@ -2,13 +2,14 @@
 
 ## Key Files
 - `/Users/rbalicki/code/voicemode/karabiner.edn` - Main Goku config (source of truth)
+- `/Users/rbalicki/code/voicemode/shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `~/.config/karabiner.edn` - Copy destination
 - `~/.config/karabiner/karabiner.json` - Generated Karabiner config
 - `/Users/rbalicki/code/voicemode/chrome-tab.sh` - Chrome profile switcher script
 - `/Users/rbalicki/code/voicemode/karabiner-layer.1s.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 
 ## Workflow After Changes
-Always keep CLAUDE.md up-to-date.
+Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
