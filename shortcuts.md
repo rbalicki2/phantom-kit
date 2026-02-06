@@ -35,7 +35,8 @@
 - **I** = Split vertical (Cmd+D), **Ctrl+I** = Split horizontal (Cmd+Shift+D)
 
 ## Tmux Layer (right_control+J, iTerm only)
-- **Y/U/I/O/P** = Tmux windows 1-5 (sends prefix + !/\@/#/$/%\)
+- **Y/U/I/O/P** = Select pane 1-5 (full tmux command)
+- **Shift+Y/U/I/O** = Select pane 6-9
 
 ## Chrome Layer (right_control+J, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
