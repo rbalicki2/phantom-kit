@@ -8,7 +8,7 @@
 - `/Users/rbalicki/code/voicemode/karabiner-layer.1s.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 
 ## Workflow After Changes
-Always keep context.md up-to-date.
+Always keep CLAUDE.md up-to-date.
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
