@@ -79,7 +79,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - For mouse buttons with modifiers, use explicit form: `{:pkey :button1 :modi [:left_command]}`
 - Rule ordering matters: earlier rules in the config take precedence. If a global rule (like page_down→button1) has no layer condition, it will match before layer-specific rules. Add exclusion conditions like `["layer_h_cmd" 0]` to global rules when needed.
 - Modifier+click only works reliably for Cmd modifier. Ctrl+click, Alt+click, etc. don't exit the layer properly. Only Cmd sub-layer has page_down/page_up for clicking.
-- **RHS layer shortcuts with Ctrl modifier must use `right_control`**, not `left_control`. The user holds right_control to stay in the layer while pressing modifier combinations.
+- **RHS layer shortcuts with Ctrl modifier must use `right_control`**, not `left_control`.
 
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
