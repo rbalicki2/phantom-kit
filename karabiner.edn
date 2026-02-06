@@ -160,44 +160,6 @@
     [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow]
    ]}
 
-  {:des "[Desktop] Space + keys for text selection"
-   :rules [:Desktop
-    ;; Spacebar sets variable when held, outputs space when tapped alone (only when not in layer_n)
-    [:spacebar ["space_held" 1] ["layer_n" 0] {:alone :spacebar :afterup ["space_held" 0]}]
-    ;; Space+J = Shift+Option+Left (select word left)
-    [:j {:key :left_arrow :modi [:left_shift :right_option]} ["space_held" 1]]
-    ;; Space+K = Shift+Option+Right (select word right)
-    [:k {:key :right_arrow :modi [:left_shift :right_option]} ["space_held" 1]]
-    ;; Space+M = Shift+Command+Left (select to line start)
-    [:m {:key :left_arrow :modi [:left_shift :left_command]} ["space_held" 1]]
-    ;; Space+Comma = Shift+Command+Right (select to line end)
-    [:comma {:key :right_arrow :modi [:left_shift :left_command]} ["space_held" 1]]
-    ;; Space+Up = Shift+Left (select char left)
-    [:up_arrow {:key :left_arrow :modi [:left_shift]} ["space_held" 1]]
-    ;; Space+Down = Shift+Right (select char right)
-    [:down_arrow {:key :right_arrow :modi [:left_shift]} ["space_held" 1]]
-    ;; Space+Enter = Command+Enter
-    [:return_or_enter :!Creturn_or_enter ["space_held" 1]]
-   ]}
-
-  {:des "[Desktop] H + keys for deletion"
-   :rules [:Desktop
-    ;; H sets variable when held, outputs h when tapped alone
-    [:h ["h_held" 1] nil {:alone :h :afterup ["h_held" 0]}]
-    ;; H+J = Option+Delete (delete word left)
-    [:j :!Odelete_or_backspace ["h_held" 1]]
-    ;; H+K = Option+Delete Forward (delete word right)
-    [:k :!Odelete_forward ["h_held" 1]]
-    ;; H+M = Command+Delete (delete to line start)
-    [:m :!Cdelete_or_backspace ["h_held" 1]]
-    ;; H+Comma = Command+Delete Forward (delete to line end)
-    [:comma :!Cdelete_forward ["h_held" 1]]
-    ;; H+Up = Delete (delete char left)
-    [:up_arrow :delete_or_backspace ["h_held" 1]]
-    ;; H+Down = Delete Forward (delete char right)
-    [:down_arrow :delete_forward ["h_held" 1]]
-   ]}
-
   {:des "[Desktop] Backspace to super, delete to hyper"
    :rules [:Desktop
     ;; Backspace = super (cmd+shift+ctrl), alone = super+7
@@ -280,6 +242,30 @@
     [:p [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; Comma = Escape
     [:comma [:escape ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+   ]}
+
+  {:des "[Desktop] Layer H (right_control+H to enter) - deletion/selection"
+   :rules [:Desktop
+    ;; right_control+H enters layer_h
+    [{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0]]
+    ;; escape exits layer_h
+    [:escape [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    ;; right_control alone exits layer_h
+    [:right_control [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    ;; Deletion (stays in layer)
+    [:j :!Odelete_or_backspace ["layer_h" 1]]  ;; delete word left
+    [:k :!Odelete_forward ["layer_h" 1]]       ;; delete word right
+    [:m :!Cdelete_or_backspace ["layer_h" 1]]  ;; delete to line start
+    [:comma :!Cdelete_forward ["layer_h" 1]]   ;; delete to line end
+    [:up_arrow :delete_or_backspace ["layer_h" 1]]  ;; delete char left
+    [:down_arrow :delete_forward ["layer_h" 1]]     ;; delete char right
+    ;; Selection with shift (stays in layer)
+    [:!Sj {:key :left_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]   ;; select word left
+    [:!Sk {:key :right_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]  ;; select word right
+    [:!Sm {:key :left_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]   ;; select to line start
+    [:!Scomma {:key :right_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]  ;; select to line end
+    [:!Sup_arrow {:key :left_arrow :modi [:left_shift]} ["layer_h" 1]]   ;; select char left
+    [:!Sdown_arrow {:key :right_arrow :modi [:left_shift]} ["layer_h" 1]]  ;; select char right
    ]}
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"
