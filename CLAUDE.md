@@ -127,6 +127,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **N** = "git reset ", **Ctrl+N** = + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
 - **,** = "git stash" + enter, **Ctrl+,** = "git stash pop" + enter
+- **I** = Cmd+D (split vertical), **Ctrl+I** = Cmd+Shift+D (split horizontal)
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry

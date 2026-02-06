@@ -30,6 +30,7 @@
 - **N** = "git reset ", **Ctrl+N** = + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
 - **Comma** = "git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
+- **I** = Split vertical (Cmd+D), **Ctrl+I** = Split horizontal (Cmd+Shift+D)
 
 ## Tmux Layer (right_control+J, iTerm only)
 - **Y/U/I/O/P** = Tmux windows 1-5 (sends prefix + !/\@/#/$/%\)

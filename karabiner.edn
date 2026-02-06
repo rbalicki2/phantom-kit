@@ -851,6 +851,10 @@
     [:comma [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+, = "git stash pop" + enter
     [{:key :comma :modi {:mandatory [:left_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash pop\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
+    ;; I = Cmd+D (split vertical)
+    [:i [:!Cd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    ;; Ctrl+I = Cmd+Shift+D (split horizontal)
+    [{:key :i :modi {:mandatory [:left_control]}} [:!CSd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
