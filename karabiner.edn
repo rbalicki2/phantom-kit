@@ -254,6 +254,8 @@
     [:n [:!Tr ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:h [:!Cc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:j [:!Cv ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; Comma = Escape
+    [:comma [:escape ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
    ]}
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"

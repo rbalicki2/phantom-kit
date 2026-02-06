@@ -51,6 +51,7 @@ The config is organized into two sections:
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
+- **Comma** = Escape
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
