@@ -169,20 +169,16 @@
     [:##delete_forward {:key :left_command :modi [:left_shift :left_control :left_option]} nil {:alone [["layer_n" 0] {:noti {:id "layer_n" :text ""}}]}]
    ]}
 
-  {:des "[Desktop] Swap equals and backtick (= and + require right_cmd)"
+  {:des "[Desktop] Swap equals and backtick"
    :rules [:Desktop
     ;; Physical equals → backtick
     [{:key :equal_sign :modi {:optional [:caps_lock]}} :grave_accent_and_tilde]
     ;; Shift + physical equals → tilde
     [{:key :equal_sign :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sgrave_accent_and_tilde]
-    ;; Physical backtick + right_cmd → equals
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:right_command] :optional [:caps_lock]}} :equal_sign]
-    ;; Shift + physical backtick + right_cmd → plus
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:right_command :shift] :optional [:caps_lock]}} :!Sequal_sign]
-    ;; Physical backtick alone → disabled
-    [{:key :grave_accent_and_tilde :modi {:optional [:caps_lock]}} :vk_none]
-    ;; Shift + physical backtick → disabled
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift] :optional [:caps_lock]}} :vk_none]
+    ;; Physical backtick → equals
+    [{:key :grave_accent_and_tilde :modi {:optional [:caps_lock]}} :equal_sign]
+    ;; Shift + physical backtick → plus
+    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sequal_sign]
    ]}
 
   {:des "[Desktop] Home to enter"
