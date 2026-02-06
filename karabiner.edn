@@ -180,6 +180,24 @@
     [:return_or_enter :!Creturn_or_enter ["space_held" 1]]
    ]}
 
+  {:des "[Desktop] H + keys for deletion"
+   :rules [:Desktop
+    ;; H sets variable when held, outputs h when tapped alone
+    [:h ["h_held" 1] nil {:alone :h :afterup ["h_held" 0]}]
+    ;; H+J = Option+Delete (delete word left)
+    [:j :!Odelete_or_backspace ["h_held" 1]]
+    ;; H+K = Option+Delete Forward (delete word right)
+    [:k :!Odelete_forward ["h_held" 1]]
+    ;; H+M = Command+Delete (delete to line start)
+    [:m :!Cdelete_or_backspace ["h_held" 1]]
+    ;; H+Comma = Command+Delete Forward (delete to line end)
+    [:comma :!Cdelete_forward ["h_held" 1]]
+    ;; H+Up = Delete (delete char left)
+    [:up_arrow :delete_or_backspace ["h_held" 1]]
+    ;; H+Down = Delete Forward (delete char right)
+    [:down_arrow :delete_forward ["h_held" 1]]
+   ]}
+
   {:des "[Desktop] Backspace to super, delete to hyper"
    :rules [:Desktop
     ;; Backspace = super (cmd+shift+ctrl), alone = super+7
