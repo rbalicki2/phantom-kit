@@ -37,6 +37,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 
 - `:!Cbutton1` does NOT work - modifier shorthand doesn't apply to mouse buttons
 - For mouse buttons with modifiers, use explicit form: `{:pkey :button1 :modi [:left_command]}`
+- Rule ordering matters: earlier rules in the config take precedence. If a global rule (like page_down→button1) has no layer condition, it will match before layer-specific rules. Add exclusion conditions like `["layer_h_cmd" 0]` to global rules when needed.
 
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
