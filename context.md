@@ -96,7 +96,7 @@ The config is organized into two sections:
 - **P** = Cmd+9
 - **N** = Cmd+K
 
-### RHS Flag (right_control+& to toggle)
+### RHS Flag (right_control+7 to toggle)
 - Independent boolean flag, combines with any layer
 - Toggles on/off (press again to exit)
 - Disables LHS keys: `=`, `g`
