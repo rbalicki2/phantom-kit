@@ -284,6 +284,11 @@
     [{:key :comma :modi {:mandatory [:shift]}} {:key :right_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]  ;; select to line end
     [{:key :up_arrow :modi {:mandatory [:shift]}} {:key :left_arrow :modi [:left_shift]} ["layer_h" 1]]   ;; select char left
     [{:key :down_arrow :modi {:mandatory [:shift]}} {:key :right_arrow :modi [:left_shift]} ["layer_h" 1]]  ;; select char right
+    ;; Plus/equals access
+    [:h :!Sequal_sign ["layer_h" 1]]  ;; plus
+    [{:key :h :modi {:mandatory [:shift]}} :!CSequal_sign ["layer_h" 1]]  ;; cmd+plus
+    [:n :equal_sign ["layer_h" 1]]  ;; equals
+    [{:key :n :modi {:mandatory [:shift]}} :!Cequal_sign ["layer_h" 1]]  ;; cmd+equals
    ]}
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"

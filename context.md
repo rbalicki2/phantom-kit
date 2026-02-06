@@ -70,6 +70,14 @@ The config is organized into two sections:
 - **P** = Command+W (close)
 - **Comma** = Escape
 
+### Layer H (right_control+H)
+- **J/K** = Delete word left/right
+- **M/Comma** = Delete to line start/end
+- **Up/Down** = Delete char left/right
+- **Shift+above** = Select instead of delete
+- **H** = plus, **Shift+H** = Cmd+plus
+- **N** = equals, **Shift+N** = Cmd+equals
+
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (tmux windows 1-5)
