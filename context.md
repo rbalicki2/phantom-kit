@@ -66,13 +66,15 @@ The config is organized into two sections:
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
-- **Y/U** = Chrome Personal tabs 1-2
-- **I/O** = Chrome Work tabs 1-2
+- **U** = Ctrl+Tab (next tab)
+- **I** = Ctrl+Shift+Tab (previous tab)
+- **H** = Open Karabiner-EventViewer
 - **J** = Open iTerm
 - **K** = Open VS Code
-- **H** = Open Karabiner-EventViewer
 - **L** = Open Signal
 - **Shift+N/M/,/.//** = iTerm tab 2, pane 1, tmux windows 1-5
+- **Shift+H/J** = Chrome Personal tabs 1-2
+- **Shift+K/L** = Chrome Work tabs 1-2
 
 ### Layer M (right_control+M)
 - **M** = Control+C (terminal copy/interrupt)

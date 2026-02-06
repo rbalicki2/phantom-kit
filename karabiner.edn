@@ -310,10 +310,9 @@
     [:down_arrow [:!CTOSb ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:m [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:comma [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [:y [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [:u [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [:i [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [:o [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; U/I = tab switching (Ctrl+Tab / Ctrl+Shift+Tab)
+    [:u [:!Ttab ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:i [:!TStab ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:j [{:shell "open -a 'iTerm' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
@@ -324,6 +323,11 @@
     [{:key :comma :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '#' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :period :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '$' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :slash :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '%%' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+HJKL for Chrome tabs
+    [{:key :h :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :j :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :k :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
