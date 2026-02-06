@@ -348,8 +348,8 @@
     [:escape [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; right_control alone exits layer
     [:right_control [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; H = Command+Tab (app switcher) - stays in layer
-    [:h :!Ctab ["layer_chrome" 1]]
+    ;; H = Command+Tab (app switcher) - exits layer
+    [:h [:!Ctab ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; J = Control+Shift+Tab (previous tab) - stays in layer
     [:j :!TStab ["layer_chrome" 1]]
     ;; K = Control+Tab (next tab) - stays in layer
