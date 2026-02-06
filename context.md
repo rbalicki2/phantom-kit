@@ -8,7 +8,16 @@
 - `/Users/rbalicki/code/voicemode/karabiner-layer.1s.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 
 ## Workflow After Changes
+After every change, Claude should:
+1. Commit locally in voicemode repo with a short message
+2. Copy karabiner.edn to ~/.config/
+3. Run goku
+4. Commit changes in ~/.config repo
+
 ```bash
+# In voicemode repo
+git add karabiner.edn && git commit -m "message"
+# Then
 cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku
 cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m "message"
 ```

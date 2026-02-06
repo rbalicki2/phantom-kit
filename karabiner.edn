@@ -162,8 +162,8 @@
 
   {:des "[Desktop] Space + keys for text selection"
    :rules [:Desktop
-    ;; Spacebar sets variable when held, outputs space when tapped alone
-    [:spacebar ["space_held" 1] nil {:alone :spacebar :afterup ["space_held" 0]}]
+    ;; Spacebar sets variable when held, outputs space when tapped alone (only when not in layer_n)
+    [:spacebar ["space_held" 1] ["layer_n" 0] {:alone :spacebar :afterup ["space_held" 0]}]
     ;; Space+J = Shift+Option+Left (select word left)
     [:j {:key :left_arrow :modi [:left_shift :right_option]} ["space_held" 1]]
     ;; Space+K = Shift+Option+Right (select word right)
