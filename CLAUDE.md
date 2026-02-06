@@ -10,6 +10,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - `/Users/rbalicki/code/voicemode/karabiner.edn` - Main Goku config (source of truth)
 - `/Users/rbalicki/code/voicemode/shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `/Users/rbalicki/code/voicemode/layers/` - Individual layer summaries for Hammerspoon overlay (keep up to date)
+- `~/.hammerspoon/init.lua` - Hammerspoon config for layer overlay
 - `~/.config/karabiner.edn` - Copy destination
 - `~/.config/karabiner/karabiner.json` - Generated Karabiner config
 - `/Users/rbalicki/code/voicemode/chrome-tab.sh` - Chrome profile switcher script
@@ -205,6 +206,13 @@ All layers can be exited by:
 - RHS flag prefixes output (e.g., "RHS-Nav")
 - Uses Menlo font with fixed 8-char width
 - **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case
+
+## Hammerspoon Layer Overlay
+- **Ctrl+Shift+Y** shows overlay with current layer's shortcuts
+- Reads `/tmp/karabiner-layer` to determine active layer
+- Displays content from `/Users/rbalicki/code/voicemode/layers/*.txt`
+- Auto-hides after 5 seconds, or click to dismiss
+- **Important**: When adding a new layer, add a corresponding `.txt` file in `layers/` and update the `layerFiles` map in `init.lua`
 
 ## Chrome Profile Switching
 `chrome-tab.sh` uses System Events AppleScript to find windows by title:

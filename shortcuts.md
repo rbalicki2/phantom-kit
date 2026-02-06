@@ -43,6 +43,7 @@
 - **N** = Cmd+K, **Comma** = Search tabs
 
 ## Global RHS (Desktop, no layer)
+- **Ctrl+Shift+Y** = Show current layer shortcuts (Hammerspoon overlay)
 - **Right Cmd + J/K** = Word left/right
 - **Right Cmd + M/Comma** = Line start/end
 - **Right Cmd + Up/Down** = Left/right arrows
