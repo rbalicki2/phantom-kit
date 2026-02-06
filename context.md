@@ -82,7 +82,7 @@ The config is organized into two sections:
 - **Y** = Enter Cmd sub-layer (see below)
 
 #### H Layer Modifier Sub-layers
-Sub-layers allow pressing modifier+letter combinations easily. Press the entry key from H layer, then any a-z sends modifier+letter and returns to H.
+Sub-layers allow pressing modifier+letter combinations easily. Press the entry key from H layer, then any a-z sends modifier+letter and exits to base layer.
 
 - **Y** → Cmd sub-layer: any a-z sends Cmd+letter (UI shows "H-Cmd")
 
