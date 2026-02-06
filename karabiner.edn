@@ -172,13 +172,13 @@
   {:des "[Desktop] Swap equals and backtick"
    :rules [:Desktop
     ;; Physical equals → backtick
-    [{:key :equal_sign :modi {:optional [:caps_lock]}} :grave_accent_and_tilde]
+    [{:key :equal_sign :modi {:optional [:any]}} :grave_accent_and_tilde]
     ;; Shift + physical equals → tilde
-    [{:key :equal_sign :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sgrave_accent_and_tilde]
+    [{:key :equal_sign :modi {:mandatory [:shift] :optional [:any]}} :!Sgrave_accent_and_tilde]
     ;; Physical backtick → equals
-    [{:key :grave_accent_and_tilde :modi {:optional [:caps_lock]}} :equal_sign]
+    [{:key :grave_accent_and_tilde :modi {:optional [:any]}} :equal_sign]
     ;; Shift + physical backtick → plus
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sequal_sign]
+    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift] :optional [:any]}} :!Sequal_sign]
    ]}
 
   {:des "[Desktop] Home to enter"
