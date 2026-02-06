@@ -123,7 +123,8 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 - **H** = Cmd+T (new tab) - exits layer
 - **J** = Ctrl+Shift+Tab (previous tab) - stays in layer
 - **K** = Ctrl+Tab (next tab) - stays in layer
-- **L** = Cmd+Shift+A - exits layer
+- **L** = Cmd+L (address bar) - exits layer
+- **Comma** = Cmd+Shift+A (search tabs) - exits layer
 - **Y** = Cmd+1
 - **U** = Cmd+2
 - **I** = Cmd+3

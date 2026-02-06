@@ -793,8 +793,10 @@
     [:j :!TStab ["layer_chrome" 1]]
     ;; K = Control+Tab (next tab) - stays in layer
     [:k :!Ttab ["layer_chrome" 1]]
-    ;; L = Command+Shift+A
-    [:l [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; L = Command+L (address bar)
+    [:l [:!Cl ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; Comma = Command+Shift+A (search tabs)
+    [:comma [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; Y = Command+1
     [:y [:!C1 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; U = Command+2
