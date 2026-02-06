@@ -120,8 +120,9 @@ All layers can be exited by:
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer`
 - All layer entries/exits write to this file
-- Cases: `n`, `m`, `tmux`, `chrome`, default `-`
+- Cases: `n`, `m`, `h`, `tmux`, `chrome`, default `-`
 - Uses Menlo font with fixed 8-char width
+- **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case
 
 ## Chrome Profile Switching
 `chrome-tab.sh` uses System Events AppleScript to find windows by title:
