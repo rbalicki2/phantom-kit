@@ -30,6 +30,13 @@ Note: Don't include Claude attribution in commit messages.
 - Ask the user to test the change before committing to more work
 - When unsure about syntax, check existing working examples in karabiner.edn first
 - If something doesn't work, the syntax is likely wrong - don't assume the approach is correct
+- **Update the "Things I've Learned" section below** when discovering what works/doesn't work
+
+## Things I've Learned
+Document syntax discoveries here to avoid repeating mistakes:
+
+- `:!Cbutton1` does NOT work - modifier shorthand doesn't apply to mouse buttons
+- For mouse buttons with modifiers, use explicit form: `{:pkey :button1 :modi [:left_command]}`
 
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)

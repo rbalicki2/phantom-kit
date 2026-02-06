@@ -428,8 +428,8 @@
     [:right_arrow [:!Cright_arrow ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
     [:delete_or_backspace [:!Cdelete_or_backspace ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
     [:delete_forward [:!Cdelete_forward ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:page_down [:!Cbutton1 ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:page_up [:!Cbutton2 ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:page_down [{:pkey :button1 :modi [:left_command]} ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:page_up [{:pkey :button2 :modi [:left_command]} ["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
 
     ;; === Ctrl+Cmd sub-layer (Ctrl+Y to enter from H) ===
     [{:key :y :modi {:mandatory [:left_control]}} [["layer_h" 0] ["layer_h_ctrlcmd" 1] {:shell "echo hTC > /tmp/karabiner-layer"}] ["layer_h" 1]]
