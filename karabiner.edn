@@ -92,6 +92,7 @@
     [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket]
     [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket]
     [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket]
+    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket]
    ]}
 
   {:des "Swap backslash and pipe"
