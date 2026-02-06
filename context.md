@@ -84,13 +84,15 @@ The config is organized into two sections:
 #### H Layer Modifier Sub-layers
 Sub-layers allow pressing modifier+letter combinations easily. Press the entry key from H layer, then any a-z sends modifier+letter and exits to base layer.
 
-- **Y** → Cmd sub-layer: any a-z sends Cmd+letter (UI shows "H-Cmd")
-
-To add more modifiers, copy the Cmd sub-layer pattern in karabiner.edn with:
-- New variable: `layer_h_X` (e.g., `layer_h_shift`)
-- Entry key (e.g., U for Shift)
-- Modifier prefix (e.g., `!S` for Shift)
-- UI code (e.g., "hS")
+| Entry Key | Modifier | UI Code |
+|-----------|----------|---------|
+| Y | Cmd | H-C |
+| Ctrl+Y | Ctrl+Cmd | H-TC |
+| U | Ctrl | H-T |
+| Ctrl+U | Ctrl+Alt | H-TO |
+| I | Alt | H-O |
+| Ctrl+I | Alt+Cmd | H-OC |
+| O | Cmd+Ctrl+Alt | H-CTO |
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
@@ -153,7 +155,7 @@ All layers can be exited by:
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag
 - All layer entries/exits write to these files
-- Layers: `n`, `m`, `h`, `hC`, `tmux`, `chrome`, default `-`
+- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, default `-`
 - RHS flag prefixes output (e.g., "RHS-Nav")
 - Uses Menlo font with fixed 8-char width
 - **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case

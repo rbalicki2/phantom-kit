@@ -15,7 +15,13 @@ case "$LAYER" in
     n) NAME="Nav" ;;
     m) NAME="M" ;;
     h) NAME="H" ;;
-    hC) NAME="H-Cmd" ;;
+    hC) NAME="H-C" ;;
+    hTC) NAME="H-TC" ;;
+    hT) NAME="H-T" ;;
+    hTO) NAME="H-TO" ;;
+    hO) NAME="H-O" ;;
+    hOC) NAME="H-OC" ;;
+    hCTO) NAME="H-CTO" ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     *) NAME="-" ;;
