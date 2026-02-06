@@ -25,6 +25,10 @@ cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m 
 ```
 Note: Don't include Claude attribution in commit messages.
 
+## Formatting Guidelines
+- Never use tables for listing layer commands - use bullets instead
+- Combine related commands onto single lines when logical (e.g., base + modifier variants)
+
 ## Testing & Syntax Verification
 **Important**: Claude has a history of not knowing exact Goku/Karabiner syntax. For any non-trivial or unfamiliar constructs:
 - Ask the user to test the change before committing to more work
