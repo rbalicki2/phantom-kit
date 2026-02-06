@@ -214,6 +214,11 @@
     [{:key :y :modi {:mandatory [:right_control]}} :!Sf9]
    ]}
 
+  {:des "[Desktop] Right control+comma to escape"
+   :rules [:Desktop
+    [{:key :comma :modi {:mandatory [:right_control]}} :escape]
+   ]}
+
   {:des "[Desktop] Layer N (right_control+N to enter)"
    :rules [:Desktop
     ;; right_control+N enters layer_n
