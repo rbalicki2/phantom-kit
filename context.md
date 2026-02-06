@@ -41,11 +41,13 @@ The config is organized into two sections:
 
 ## Current Layers
 
-### Layer N (right_control+N)
+### Layer N "Nav" (right_control+N)
 - **Enter** = Command+` (switch windows)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
+- **Shift+Up** = Backspace (stays in layer)
+- **Shift+Down** = Delete forward (stays in layer)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
 - **Y/U** = Chrome Personal tabs 1-2
