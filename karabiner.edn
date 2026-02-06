@@ -71,17 +71,18 @@
     [:4 :vk_none ["layer_rhs" 1]]
     [:5 :vk_none ["layer_rhs" 1]]
     ;; Mirror RHS numbers to LHS (f held): 6→5, 7→4, 8→3, 9→2, 0→1
-    [:6 :5 ["layer_mirror" 1]]
-    [:7 :4 ["layer_mirror" 1]]
-    [:8 :3 ["layer_mirror" 1]]
-    [:9 :2 ["layer_mirror" 1]]
-    [:0 :1 ["layer_mirror" 1]]
-    ;; Shifted versions
-    [{:key :6 :modi {:mandatory [:shift]}} :!S5 ["layer_mirror" 1]]
-    [{:key :7 :modi {:mandatory [:shift]}} :!S4 ["layer_mirror" 1]]
-    [{:key :8 :modi {:mandatory [:shift]}} :!S3 ["layer_mirror" 1]]
-    [{:key :9 :modi {:mandatory [:shift]}} :!S2 ["layer_mirror" 1]]
-    [{:key :0 :modi {:mandatory [:shift]}} :!S1 ["layer_mirror" 1]]
+    ;; Bare → shifted (symbol), Shift → bare (digit) to match swap
+    [:6 :!S5 ["layer_mirror" 1]]
+    [:7 :!S4 ["layer_mirror" 1]]
+    [:8 :!S3 ["layer_mirror" 1]]
+    [:9 :!S2 ["layer_mirror" 1]]
+    [:0 :!S1 ["layer_mirror" 1]]
+    ;; Shifted versions → bare digit
+    [{:key :6 :modi {:mandatory [:shift]}} :5 ["layer_mirror" 1]]
+    [{:key :7 :modi {:mandatory [:shift]}} :4 ["layer_mirror" 1]]
+    [{:key :8 :modi {:mandatory [:shift]}} :3 ["layer_mirror" 1]]
+    [{:key :9 :modi {:mandatory [:shift]}} :2 ["layer_mirror" 1]]
+    [{:key :0 :modi {:mandatory [:shift]}} :1 ["layer_mirror" 1]]
    ]}
 
   {:des "Exchange numbers and symbols"
