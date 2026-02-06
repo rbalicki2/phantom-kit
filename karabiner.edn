@@ -206,9 +206,9 @@
     [:##quote :left_control nil {:alone :quote}]
    ]}
 
-  {:des "[Desktop] Right control+H to F9 (text-to-speech)"
+  {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:Desktop
-    [{:key :h :modi {:mandatory [:right_control]}} :f9]
+    [{:key :6 :modi {:mandatory [:right_control]}} :f9]
    ]}
 
   {:des "[Desktop] Right control+Y to Shift+F9 (toggle recording)"

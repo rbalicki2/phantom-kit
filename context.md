@@ -97,7 +97,7 @@ All layers can be exited by:
 - Home = Enter
 - Single quote = Control (held) / quote (tapped)
 - Equals and backtick swapped
-- right_control+H = F9 (text-to-speech)
+- right_control+6 = F9 (text-to-speech)
 - right_control+Y = Shift+F9 (toggle recording)
 - Space+Enter = Cmd+Enter
 
