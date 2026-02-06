@@ -6,6 +6,29 @@ The user is using voice-to-text and may not fully think through requests before 
 - Ask clarifying questions if something doesn't align or seems off
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
 
+## On Startup
+Previous Claude sessions sometimes leave things in a broken state. At the start of a session, verify:
+
+1. **Check if karabiner.edn is in sync**:
+   ```bash
+   diff /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/karabiner.edn
+   ```
+   - If they differ, the voicemode version is the source of truth
+   - Copy and run goku: `cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku`
+
+2. **Check git status in both repos**:
+   ```bash
+   git -C /Users/rbalicki/code/voicemode status
+   git -C ~/.config status
+   ```
+   - Look for uncommitted changes that should have been committed
+   - If voicemode has uncommitted karabiner.edn changes, commit them
+   - If ~/.config has uncommitted changes, they may need to be committed or discarded
+
+3. **Check for pending tasks** in the "Pending Tasks" section below
+
+If things look messy, ask the user before making changes.
+
 ## Key Files
 - `/Users/rbalicki/code/voicemode/karabiner.edn` - Main Goku config (source of truth)
 - `/Users/rbalicki/code/voicemode/shortcuts.md` - Human-readable shortcuts reference (keep up to date)
@@ -15,6 +38,10 @@ The user is using voice-to-text and may not fully think through requests before 
 - `~/.config/karabiner/karabiner.json` - Generated Karabiner config
 - `/Users/rbalicki/code/voicemode/chrome-tab.sh` - Chrome profile switcher script
 - `/Users/rbalicki/code/voicemode/karabiner-layer.1s.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
+
+## Pending Tasks
+If work is interrupted or incomplete, document it here so future sessions can continue:
+- (none currently)
 
 ## Workflow After Changes
 Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
