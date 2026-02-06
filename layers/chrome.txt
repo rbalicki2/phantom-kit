@@ -6,8 +6,8 @@ L = Address bar
 Ctrl+H = Close tab (stays), Shift+Ctrl+H = Close + prev (stays)
 N = Cmd+K
 , = Search tabs
-Y = Tab 1
-U = Tab 2
-I = Tab 3
-O = Tab 4
+Y = Tab 1, Shift+Y = Tab 5
+U = Tab 2, Shift+U = Tab 6
+I = Tab 3, Shift+I = Tab 7
+O = Tab 4, Shift+O = Tab 8
 P = Tab 9

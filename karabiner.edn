@@ -808,6 +808,11 @@
     [:i [:!C3 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; O = Command+4
     [:o [:!C4 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; Shift+Y/U/I/O = Command+5/6/7/8
+    [{:key :y :modi {:mandatory [:shift]}} [:!C5 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [:!C6 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} [:!C7 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} [:!C8 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; P = Command+9
     [:p [:!C9 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; N = Command+K

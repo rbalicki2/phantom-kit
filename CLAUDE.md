@@ -187,10 +187,10 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **L** = Cmd+L (address bar) - exits layer
 - **Ctrl+H** = Cmd+W (close tab) - stays in layer, **Shift+Ctrl+H** = Cmd+W + Shift+Tab (close + prev) - stays
 - **Comma** = Cmd+Shift+A (search tabs) - exits layer
-- **Y** = Cmd+1
-- **U** = Cmd+2
-- **I** = Cmd+3
-- **O** = Cmd+4
+- **Y** = Cmd+1, **Shift+Y** = Cmd+5
+- **U** = Cmd+2, **Shift+U** = Cmd+6
+- **I** = Cmd+3, **Shift+I** = Cmd+7
+- **O** = Cmd+4, **Shift+O** = Cmd+8
 - **P** = Cmd+9
 - **N** = Cmd+K
 

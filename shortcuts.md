@@ -40,7 +40,7 @@
 ## Chrome Layer (right_control+J, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
-- **Y/U/I/O/P** = Cmd+1/2/3/4/9
+- **Y/U/I/O/P** = Cmd+1/2/3/4/9, **Shift+Y/U/I/O** = Cmd+5/6/7/8
 - **N** = Cmd+K, **Comma** = Search tabs
 
 ## Global RHS (Desktop, no layer)
