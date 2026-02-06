@@ -260,12 +260,12 @@
     [:up_arrow :delete_or_backspace ["layer_h" 1]]  ;; delete char left
     [:down_arrow :delete_forward ["layer_h" 1]]     ;; delete char right
     ;; Selection with shift (stays in layer)
-    [:!Sj {:key :left_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]   ;; select word left
-    [:!Sk {:key :right_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]  ;; select word right
-    [:!Sm {:key :left_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]   ;; select to line start
-    [:!Scomma {:key :right_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]  ;; select to line end
-    [:!Sup_arrow {:key :left_arrow :modi [:left_shift]} ["layer_h" 1]]   ;; select char left
-    [:!Sdown_arrow {:key :right_arrow :modi [:left_shift]} ["layer_h" 1]]  ;; select char right
+    [{:key :j :modi {:mandatory [:shift]}} {:key :left_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]   ;; select word left
+    [{:key :k :modi {:mandatory [:shift]}} {:key :right_arrow :modi [:left_shift :right_option]} ["layer_h" 1]]  ;; select word right
+    [{:key :m :modi {:mandatory [:shift]}} {:key :left_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]   ;; select to line start
+    [{:key :comma :modi {:mandatory [:shift]}} {:key :right_arrow :modi [:left_shift :left_command]} ["layer_h" 1]]  ;; select to line end
+    [{:key :up_arrow :modi {:mandatory [:shift]}} {:key :left_arrow :modi [:left_shift]} ["layer_h" 1]]   ;; select char left
+    [{:key :down_arrow :modi {:mandatory [:shift]}} {:key :right_arrow :modi [:left_shift]} ["layer_h" 1]]  ;; select char right
    ]}
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"
