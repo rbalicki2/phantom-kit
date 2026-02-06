@@ -9,6 +9,7 @@ The user is using voice-to-text and may not fully think through requests before 
 ## Key Files
 - `/Users/rbalicki/code/voicemode/karabiner.edn` - Main Goku config (source of truth)
 - `/Users/rbalicki/code/voicemode/shortcuts.md` - Human-readable shortcuts reference (keep up to date)
+- `/Users/rbalicki/code/voicemode/layers/` - Individual layer summaries for Hammerspoon overlay (keep up to date)
 - `~/.config/karabiner.edn` - Copy destination
 - `~/.config/karabiner/karabiner.json` - Generated Karabiner config
 - `/Users/rbalicki/code/voicemode/chrome-tab.sh` - Chrome profile switcher script

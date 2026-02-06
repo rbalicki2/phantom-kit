@@ -1,0 +1,13 @@
+H Layer (right_control+H)
+
+H=plus  N=equals  (Shift adds Cmd)
+J/K=Delete word left/right
+M/,=Delete to line start/end
+Up/Down=Delete char left/right
+Shift+above=Select instead of delete
+
+Sub-layers (press then a-z):
+Y=Cmd  Ctrl+Y=Ctrl+Cmd
+U=Ctrl  Ctrl+U=Ctrl+Alt
+I=Alt  Ctrl+I=Alt+Cmd
+O=Cmd+Ctrl+Alt

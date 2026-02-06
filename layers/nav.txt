@@ -1,0 +1,12 @@
+Nav Layer (right_control+N)
+
+H=EventViewer  J=iTerm  K=VSCode  L=Signal
+M=Chrome Personal  ,=Chrome Work
+U=Next tab  I=Prev tab
+N=Spotlight  Ctrl+H=Close (Cmd+W)
+Enter=Switch windows  Space=Maximize
+Up=Left half  Down=Right half
+
+Shift+H/J=Chrome Personal tabs 1-2
+Shift+K/L=Chrome Work tabs 1-2
+Shift+N/M/,/./=iTerm tab2, tmux 1-5

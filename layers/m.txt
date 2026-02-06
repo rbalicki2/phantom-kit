@@ -1,0 +1,8 @@
+M Layer (right_control+M)
+
+H=Copy  J=Paste  K=Cut  L=Undo
+M=Ctrl+C  N=Ctrl+R
+I=Select all  O=Find  P=Close
+.=Save  ,=(free)
+
+Ctrl+M=Show this overlay
