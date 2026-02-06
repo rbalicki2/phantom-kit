@@ -279,11 +279,6 @@
     [:home :return_or_enter]
    ]}
 
-  {:des "[Desktop] Single quote to control when held"
-   :rules [:Desktop
-    [:##quote :left_control nil {:alone :quote}]
-   ]}
-
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:Desktop
     [{:key :6 :modi {:mandatory [:right_control]}} :f9]
