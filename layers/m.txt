@@ -1,8 +1,13 @@
 M Layer (right_control+M)
 
-H=Copy  J=Paste  K=Cut  L=Undo
-M=Ctrl+C  N=Ctrl+R
-I=Select all  O=Find  P=Close
-.=Save  ,=(free)
-
-Ctrl+M=Show this overlay
+H = Copy
+J = Paste
+K = Cut
+L = Undo
+M = Ctrl+C (terminal interrupt)
+N = Ctrl+R (terminal search)
+I = Select all
+O = Find
+P = Close window
+. = Save
+, = (free)

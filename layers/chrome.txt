@@ -1,8 +1,13 @@
 Chrome Layer (right_control+J, Chrome only)
 
-H=New tab  L=Address bar  ,=Search tabs
-J=Prev tab (stays)  K=Next tab (stays)
-M=Close tab (stays)  Shift+M=Close+prev (stays)
-N=Cmd+K
-
-Y=Tab 1  U=Tab 2  I=Tab 3  O=Tab 4  P=Tab 9
+H = New tab
+J/K = Prev/Next tab (stays in layer)
+L = Address bar
+M = Close tab (stays), Shift+M = Close + prev tab (stays)
+N = Cmd+K
+, = Search tabs
+Y = Tab 1
+U = Tab 2
+I = Tab 3
+O = Tab 4
+P = Tab 9

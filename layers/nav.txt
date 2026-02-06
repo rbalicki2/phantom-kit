@@ -1,12 +1,16 @@
 Nav Layer (right_control+N)
 
-H=EventViewer  J=iTerm  K=VSCode  L=Signal
-M=Chrome Personal  ,=Chrome Work
-U=Next tab  I=Prev tab
-N=Spotlight  Ctrl+H=Close (Cmd+W)
-Enter=Switch windows  Space=Maximize
-Up=Left half  Down=Right half
-
-Shift+H/J=Chrome Personal tabs 1-2
-Shift+K/L=Chrome Work tabs 1-2
-Shift+N/M/,/./=iTerm tab2, tmux 1-5
+H = Karabiner-EventViewer, Shift+H = Chrome Personal tab 1
+J = iTerm, Shift+J = Chrome Personal tab 2
+K = VS Code, Shift+K = Chrome Work tab 1
+L = Signal, Shift+L = Chrome Work tab 2
+M = Chrome Personal, Shift+M = iTerm tmux window 2
+, = Chrome Work, Shift+, = iTerm tmux window 3
+Shift+. = iTerm tmux window 4
+Shift+/ = iTerm tmux window 5
+N = Spotlight, Shift+N = iTerm tab 2 pane 1
+Ctrl+H = Close (Cmd+W)
+U/I = Next/Prev tab
+Up/Down = Left/Right half
+Enter = Switch windows
+Space = Maximize

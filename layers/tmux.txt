@@ -2,8 +2,8 @@ Tmux Layer (right_control+J, iTerm only)
 
 Sends Ctrl+A (tmux prefix) on entry
 
-Y=Window 1 (!)
-U=Window 2 (@)
-I=Window 3 (#)
-O=Window 4 ($)
-P=Window 5 (%)
+Y = Window 1
+U = Window 2
+I = Window 3
+O = Window 4
+P = Window 5
