@@ -300,7 +300,7 @@
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+H = Cmd+W (close window/tab)
-    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [{:key :h :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"w\" using command down' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:spacebar [:!CTOSg ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:up_arrow [:!CTOSv ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
@@ -325,10 +325,10 @@
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :k :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :l :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Ctrl+P = selection screenshot (Cmd+Shift+4) - re-press right_control while in layer
+    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; P = Cmd+Shift+3 (full screen screenshot)
     [:p [:!CS3 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; Ctrl+P = Cmd+Shift+4 (selection screenshot)
-    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
@@ -859,7 +859,7 @@
     ;; I = Cmd+D (split vertical)
     [:i [:!Cd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; Ctrl+I = Cmd+Shift+D (split horizontal)
-    [{:key :i :modi {:mandatory [:right_control]}} [:!CSd ["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    [{:key :i :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"

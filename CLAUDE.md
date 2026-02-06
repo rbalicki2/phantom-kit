@@ -5,6 +5,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - Reason about what the user is actually trying to accomplish, not just literal words
 - Ask clarifying questions if something doesn't align or seems off
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
+- If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
 
 ## On Startup
 Previous Claude sessions sometimes leave things in a broken state. At the start of a session, verify:
@@ -41,7 +42,7 @@ If things look messy, ask the user before making changes.
 
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
-- (none currently)
+- Add "copy URL" shortcut to Chrome layer
 
 ## Workflow After Changes
 Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
@@ -80,6 +81,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - Rule ordering matters: earlier rules in the config take precedence. If a global rule (like page_down→button1) has no layer condition, it will match before layer-specific rules. Add exclusion conditions like `["layer_h_cmd" 0]` to global rules when needed.
 - Modifier+click only works reliably for Cmd modifier. Ctrl+click, Alt+click, etc. don't exit the layer properly. Only Cmd sub-layer has page_down/page_up for clicking.
 - **RHS layer shortcuts with Ctrl modifier must use `right_control`**, not `left_control`.
+- **The `{:alone :escape}` mechanism does NOT work for layer exits.** When right_control is mapped to send escape via `{:alone :escape}`, the escape event goes directly to the OS rather than being re-evaluated by Karabiner rules. Each layer needs an explicit `[:right_control [["layer_X" 0] ...] ["layer_X" 1]]` rule to exit on right_control alone.
 
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
