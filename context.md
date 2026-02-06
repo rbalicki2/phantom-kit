@@ -71,12 +71,12 @@ The config is organized into two sections:
 - **Comma** = Escape
 
 ### Layer H (right_control+H)
-- **J/K** = Delete word left/right
-- **M/Comma** = Delete to line start/end
-- **Up/Down** = Delete char left/right
-- **Shift+above** = Select instead of delete
-- **H** = plus, **Shift+H** = Cmd+plus
-- **N** = equals, **Shift+N** = Cmd+equals
+- **J/K** = Delete word left/right (stays)
+- **M/Comma** = Delete to line start/end (stays)
+- **Up/Down** = Delete char left/right (stays)
+- **Shift+above** = Select instead of delete (stays)
+- **H** = plus, **Shift+H** = Cmd+plus (exits)
+- **N** = equals, **Shift+N** = Cmd+equals (exits)
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
@@ -101,6 +101,8 @@ All layers can be exited by:
 - Pressing **escape**
 - Pressing **right_control** alone
 - Most layer actions auto-exit (except Chrome J/K for tab cycling)
+
+**Convention**: Actions stay in layer if repeatable (delete, select, tab cycling). Actions exit layer if one-shot (open app, zoom, type symbol).
 
 ## Global Remaps (All Profiles)
 - Caps Lock = Control (held) / Escape (tapped)
