@@ -115,21 +115,13 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 
 ### Term Layer (right_control+U, iTerm only)
 Git shortcuts for terminal. Uses osascript to type text.
-- **H** = type "git status " (no enter)
-- **Shift+H** = type "git status " + enter
-- **J** = type "log" (no enter)
-- **Shift+J** = type "log" + enter
-- **K** = type "diff" (no enter)
-- **Shift+K** = type "git diff head" + enter
-- **Ctrl+K** = type "gdmb" + enter
-- **L** = type "commit" (no enter)
-- **Shift+L** = type "git commit -am 'wip'" + enter
-- **N** = type "reset" (no enter)
-- **Shift+N** = type "reset" + enter
-- **M** = type "git checkout " (no enter)
-- **Shift+M** = type "gcmp" + enter
-- **,** = type "stash" + enter
-- **Shift+,** = type "stash pop" + enter
+- **H** = "git status " (no enter), **Shift+H** = + enter
+- **J** = "git log" (no enter), **Shift+J** = + enter
+- **K** = "git diff" (no enter), **Shift+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
+- **L** = "git commit" (no enter), **Shift+L** = "git commit -am 'wip'" + enter
+- **N** = "git reset" (no enter), **Shift+N** = + enter
+- **M** = "git checkout " (no enter), **Shift+M** = "gcmp" + enter
+- **,** = "git stash" + enter, **Shift+,** = "git stash pop" + enter
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
