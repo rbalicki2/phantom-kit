@@ -62,6 +62,15 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
+  {:des "RHS mode LHS number disable (must come before number swap)"
+   :rules [
+    [:1 :vk_none ["layer_rhs" 1]]
+    [:2 :vk_none ["layer_rhs" 1]]
+    [:3 :vk_none ["layer_rhs" 1]]
+    [:4 :vk_none ["layer_rhs" 1]]
+    [:5 :vk_none ["layer_rhs" 1]]
+   ]}
+
   {:des "Exchange numbers and symbols"
    :rules [
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
@@ -128,12 +137,8 @@
     ;; right_control+8 exits RHS mode
     [{:key :8 :modi {:mandatory [:right_control]}} [["layer_rhs" 0] {:shell ": > /tmp/karabiner-rhs"}] ["layer_rhs" 1]]
     ;; Disable all LHS keys when RHS flag is on (except f which is mirror modifier)
+    ;; Note: numbers 1-5 disabled earlier (before number swap rule)
     [:grave_accent_and_tilde :vk_none ["layer_rhs" 1]]
-    [:1 :vk_none ["layer_rhs" 1]]
-    [:2 :vk_none ["layer_rhs" 1]]
-    [:3 :vk_none ["layer_rhs" 1]]
-    [:4 :vk_none ["layer_rhs" 1]]
-    [:5 :vk_none ["layer_rhs" 1]]
     [:q :vk_none ["layer_rhs" 1]]
     [:w :vk_none ["layer_rhs" 1]]
     [:e :vk_none ["layer_rhs" 1]]
