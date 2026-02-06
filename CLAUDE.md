@@ -194,6 +194,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **O** = Cmd+4, **Shift+O** = Cmd+8
 - **P** = Cmd+9
 - **N** = Cmd+K
+- **Period** = Cmd+R (refresh)
 
 ### RHS Flag (right_control+7 to toggle)
 - Independent boolean flag, combines with any layer

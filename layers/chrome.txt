@@ -11,3 +11,4 @@ U = Tab 2, Shift+U = Tab 6
 I = Tab 3, Shift+I = Tab 7
 O = Tab 4, Shift+O = Tab 8
 P = Tab 9
+. = Refresh
