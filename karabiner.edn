@@ -223,6 +223,24 @@
     [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow]
    ]}
 
+  {:des "[Desktop] Space + keys for text selection"
+   :rules [:Desktop
+    ;; Spacebar sets variable when held, outputs space when tapped alone
+    [:spacebar ["space_held" 1] nil {:alone :spacebar :afterup ["space_held" 0]}]
+    ;; Space+J = Shift+Option+Left (select word left)
+    [:j {:key :left_arrow :modi [:left_shift :right_option]} ["space_held" 1]]
+    ;; Space+K = Shift+Option+Right (select word right)
+    [:k {:key :right_arrow :modi [:left_shift :right_option]} ["space_held" 1]]
+    ;; Space+M = Shift+Command+Left (select to line start)
+    [:m {:key :left_arrow :modi [:left_shift :left_command]} ["space_held" 1]]
+    ;; Space+Comma = Shift+Command+Right (select to line end)
+    [:comma {:key :right_arrow :modi [:left_shift :left_command]} ["space_held" 1]]
+    ;; Space+Up = Shift+Left (select char left)
+    [:up_arrow {:key :left_arrow :modi [:left_shift]} ["space_held" 1]]
+    ;; Space+Down = Shift+Right (select char right)
+    [:down_arrow {:key :right_arrow :modi [:left_shift]} ["space_held" 1]]
+   ]}
+
   {:des "[Desktop] Backspace to super, delete to hyper"
    :rules [:Desktop
     ;; Backspace = super (cmd+shift+ctrl), alone = super+7
