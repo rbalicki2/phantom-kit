@@ -79,6 +79,18 @@ The config is organized into two sections:
 - **Shift+above** = Select instead of delete (stays)
 - **H** = plus, **Shift+H** = Cmd+plus (exits)
 - **N** = equals, **Shift+N** = Cmd+equals (exits)
+- **Y** = Enter Cmd sub-layer (see below)
+
+#### H Layer Modifier Sub-layers
+Sub-layers allow pressing modifier+letter combinations easily. Press the entry key from H layer, then any a-z sends modifier+letter and returns to H.
+
+- **Y** → Cmd sub-layer: any a-z sends Cmd+letter (UI shows "H-Cmd")
+
+To add more modifiers, copy the Cmd sub-layer pattern in karabiner.edn with:
+- New variable: `layer_h_X` (e.g., `layer_h_shift`)
+- Entry key (e.g., U for Shift)
+- Modifier prefix (e.g., `!S` for Shift)
+- UI code (e.g., "hS")
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
@@ -141,7 +153,7 @@ All layers can be exited by:
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag
 - All layer entries/exits write to these files
-- Layers: `n`, `m`, `h`, `tmux`, `chrome`, default `-`
+- Layers: `n`, `m`, `h`, `hC`, `tmux`, `chrome`, default `-`
 - RHS flag prefixes output (e.g., "RHS-Nav")
 - Uses Menlo font with fixed 8-char width
 - **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case
