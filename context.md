@@ -25,6 +25,12 @@ cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m 
 ```
 Note: Don't include Claude attribution in commit messages.
 
+## Testing & Syntax Verification
+**Important**: Claude has a history of not knowing exact Goku/Karabiner syntax. For any non-trivial or unfamiliar constructs:
+- Ask the user to test the change before committing to more work
+- When unsure about syntax, check existing working examples in karabiner.edn first
+- If something doesn't work, the syntax is likely wrong - don't assume the approach is correct
+
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
 - User's keyboard has numbers/symbols swapped (bare 1 = !, shift+1 = 1)
