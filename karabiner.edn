@@ -180,6 +180,8 @@
     [:n :escape ["space_held" 1]]
     ;; Space+H = Command+K (Chrome only)
     [:h :!Ck :Chrome ["space_held" 1]]
+    ;; Space+Enter = Command+Enter
+    [:return_or_enter :!Creturn_or_enter ["space_held" 1]]
    ]}
 
   {:des "[Desktop] Backspace to super, delete to hyper"
