@@ -809,6 +809,8 @@
     [:p [:!C9 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; N = Command+K
     [:n [:!Ck ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; M = Command+X (cut) - stays in layer
+    [:m :!Cx ["layer_chrome" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (right_control+U to enter, iTerm only) - git shortcuts"

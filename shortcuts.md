@@ -36,6 +36,7 @@
 
 ## Chrome Layer (right_control+J, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
+- **M** = Cut (stays)
 - **Y/U/I/O/P** = Cmd+1/2/3/4/9
 - **N** = Cmd+K, **Comma** = Search tabs
 
