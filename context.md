@@ -105,6 +105,7 @@ All layers can be exited by:
 ## Desktop-Only Remaps
 - Page down/up = left/right click
 - Left/right arrows = backspace/delete
+- Right control + [ / ] = backspace/delete
 - Left command alone = {, Shift+left_command alone = [
 - Right command alone = }, Shift+right_command alone = ]
 - Right command + J/K = Option+left/right (word navigation)

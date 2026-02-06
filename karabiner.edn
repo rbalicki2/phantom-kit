@@ -127,6 +127,12 @@
     [{:key :close_bracket :modi {:mandatory [:right_command]}} :!Ttab]
    ]}
 
+  {:des "[Desktop] Right control + brackets to backspace/delete"
+   :rules [:Desktop
+    [{:key :open_bracket :modi {:mandatory [:right_control] :optional [:any]}} :delete_or_backspace]
+    [{:key :close_bracket :modi {:mandatory [:right_control] :optional [:any]}} :delete_forward]
+   ]}
+
   {:des "[Desktop] Left/right arrows to backspace/delete"
    :rules [:Desktop
     [:##left_arrow :delete_or_backspace]
