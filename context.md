@@ -46,8 +46,6 @@ The config is organized into two sections:
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
-- **Shift+Up** = Backspace (stays in layer)
-- **Shift+Down** = Delete forward (stays in layer)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
 - **Y/U** = Chrome Personal tabs 1-2
@@ -105,6 +103,7 @@ All layers can be exited by:
 ## Desktop-Only Remaps
 - Page down/up = left/right click
 - Left/right arrows = backspace/delete
+- Shift+up/down = backspace/delete
 - Left command alone = {, Shift+left_command alone = [
 - Right command alone = }, Shift+right_command alone = ]
 - Right command + J/K = Option+left/right (word navigation)

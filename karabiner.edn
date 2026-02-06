@@ -133,6 +133,12 @@
     [:##right_arrow :delete_forward]
    ]}
 
+  {:des "[Desktop] Shift+up/down to backspace/delete"
+   :rules [:Desktop
+    [:!Sup_arrow :delete_or_backspace]
+    [:!Sdown_arrow :delete_forward]
+   ]}
+
   {:des "[Desktop] Right command to close curly/bracket when alone"
    :rules [:Desktop
     [:right_command :right_command nil {:alone :!Sclose_bracket}]
@@ -218,9 +224,6 @@
     [:spacebar [:!CTOSg ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:up_arrow [:!CTOSv ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:down_arrow [:!CTOSb ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; Shift+up/down for backspace/delete (stays in layer)
-    [{:key :up_arrow :modi {:mandatory [:shift]}} :delete_or_backspace ["layer_n" 1]]
-    [{:key :down_arrow :modi {:mandatory [:shift]}} :delete_forward ["layer_n" 1]]
     [:m [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:comma [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:y [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
