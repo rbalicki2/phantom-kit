@@ -2,8 +2,8 @@ Tmux Layer (right_control+J, iTerm only)
 
 Sends Ctrl+A (tmux prefix) on entry
 
-Y = Pane 1, Shift+Y = Pane 6
-U = Pane 2, Shift+U = Pane 7
-I = Pane 3, Shift+I = Pane 8
-O = Pane 4, Shift+O = Pane 9
-P = Pane 5
+Y = ! (pane 1), Shift+Y = ^ (pane 6)
+U = @ (pane 2), Shift+U = & (pane 7)
+I = # (pane 3), Shift+I = * (pane 8)
+O = $ (pane 4), Shift+O = ( (pane 9)
+P = % (pane 5)

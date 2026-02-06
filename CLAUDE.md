@@ -176,8 +176,8 @@ Git shortcuts for terminal. Uses osascript to type text.
 
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
-- **Y/U/I/O/P** = select pane 1-5 (sends full `select-pane -t N` command)
-- **Shift+Y/U/I/O** = select pane 6-9
+- **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
+- **Shift+Y/U/I/O** = ^, &, *, ( (panes 6-9)
 - Only activates when iTerm is foreground app
 
 ### Chrome Layer (right_control+J, Chrome only)

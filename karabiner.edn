@@ -875,17 +875,17 @@
     [:escape [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     ;; right_control alone exits layer
     [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    ;; Y-P → select pane 1-5 (full tmux command)
-    [:y [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 1\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [:u [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 2\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [:i [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 3\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [:o [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 4\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [:p [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 5\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    ;; Shift+Y-O → select pane 6-9
-    [{:key :y :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 6\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 7\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 8\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"a\" using control down' -e 'tell app \"System Events\" to keystroke \":select-pane -t 9\"' -e 'tell app \"System Events\" to key code 36' && echo > /tmp/karabiner-layer"} ["layer_tmux" 0]] ["layer_tmux" 1]]
+    ;; Y-P → !, @, #, $, % (tmux panes 1-5)
+    [:y [:!S1 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:u [:!S2 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:i [:!S3 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:o [:!S4 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:p [:!S5 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    ;; Shift+Y-O → ^, &, *, ( (tmux panes 6-9)
+    [{:key :y :modi {:mandatory [:shift]}} [:!S6 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [:!S7 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} [:!S8 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} [:!S9 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
    ]}
 
   {:des "[Desktop] Right control to escape when tapped alone"
