@@ -6,12 +6,20 @@ if [ -f "/tmp/karabiner-layer" ]; then
     LAYER=$(tr -d '[:space:]' < /tmp/karabiner-layer)
 fi
 
+RHS=""
+if [ -f "/tmp/karabiner-rhs" ] && [ -s "/tmp/karabiner-rhs" ]; then
+    RHS="RHS-"
+fi
+
 case "$LAYER" in
-    n) echo "     Nav | font=Menlo trim=false" ;;
-    m) echo "       M | font=Menlo trim=false" ;;
-    h) echo "       H | font=Menlo trim=false" ;;
-    rhs) echo "    RHS- | font=Menlo trim=false" ;;
-    tmux) echo "Tmux (J) | font=Menlo trim=false" ;;
-    chrome) echo "Chrm (J) | font=Menlo trim=false" ;;
-    *) echo "       - | font=Menlo trim=false" ;;
+    n) NAME="Nav" ;;
+    m) NAME="M" ;;
+    h) NAME="H" ;;
+    tmux) NAME="Tmux" ;;
+    chrome) NAME="Chrm" ;;
+    *) NAME="-" ;;
 esac
+
+# Combine RHS prefix with layer name, right-align to 8 chars
+OUTPUT="${RHS}${NAME}"
+printf "%8s | font=Menlo trim=false\n" "$OUTPUT"

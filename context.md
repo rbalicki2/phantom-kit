@@ -96,10 +96,11 @@ The config is organized into two sections:
 - **P** = Cmd+9
 - **N** = Cmd+K
 
-### RHS Layer (right_control+& to toggle)
+### RHS Flag (right_control+& to toggle)
+- Independent boolean flag, combines with any layer
 - Toggles on/off (press again to exit)
 - Disables LHS keys: `=`, `g`
-- SwiftBar shows "RHS-"
+- SwiftBar shows "RHS-" prefix (e.g., "RHS-Nav", "RHS-M")
 
 ### Layer Exit Methods
 All layers can be exited by:
@@ -136,9 +137,10 @@ All layers can be exited by:
 
 ## SwiftBar Status
 - Shows current layer in menu bar
-- Reads from `/tmp/karabiner-layer`
-- All layer entries/exits write to this file
-- Cases: `n`, `m`, `h`, `rhs`, `tmux`, `chrome`, default `-`
+- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag
+- All layer entries/exits write to these files
+- Layers: `n`, `m`, `h`, `tmux`, `chrome`, default `-`
+- RHS flag prefixes output (e.g., "RHS-Nav")
 - Uses Menlo font with fixed 8-char width
 - **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case
 

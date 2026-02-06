@@ -337,14 +337,12 @@
     [:p [:!S5 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
    ]}
 
-  {:des "[Desktop] RHS Layer (right_control+& to toggle) - disable LHS keys"
+  {:des "[Desktop] RHS Flag (right_control+& to toggle) - disable LHS keys"
    :rules [:Desktop
-    ;; right_control+& (shift+7) toggles layer_rhs
-    [{:key :7 :modi {:mandatory [:right_control :shift]}} [["layer_rhs" 1] {:shell "echo rhs > /tmp/karabiner-layer"}] ["layer_rhs" 0]]
-    [{:key :7 :modi {:mandatory [:right_control :shift]}} [["layer_rhs" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_rhs" 1]]
-    ;; escape exits layer_rhs
-    [:escape [["layer_rhs" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_rhs" 1]]
-    ;; Disable LHS keys
+    ;; right_control+& (shift+7) toggles layer_rhs flag
+    [{:key :7 :modi {:mandatory [:right_control :shift]}} [["layer_rhs" 1] {:shell "echo 1 > /tmp/karabiner-rhs"}] ["layer_rhs" 0]]
+    [{:key :7 :modi {:mandatory [:right_control :shift]}} [["layer_rhs" 0] {:shell "echo > /tmp/karabiner-rhs"}] ["layer_rhs" 1]]
+    ;; Disable LHS keys when RHS flag is on
     [:equal_sign :vk_none ["layer_rhs" 1]]
     [:g :vk_none ["layer_rhs" 1]]
    ]}
