@@ -51,6 +51,12 @@ The config is organized into two sections:
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
+- **K** = Command+X (cut)
+- **L** = Command+Z (undo)
+- **Period** = Command+S (save)
+- **I** = Command+A (select all)
+- **O** = Command+F (find)
+- **P** = Command+W (close)
 - **Comma** = Escape
 
 ### Tmux Layer (right_control+J, iTerm only)
