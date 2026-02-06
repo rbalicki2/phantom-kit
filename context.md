@@ -54,6 +54,7 @@ The config is organized into two sections:
 - **K** = Open VS Code
 - **H** = Open Karabiner-EventViewer
 - **L** = Open Signal
+- **Shift+N/M/,/.//** = iTerm tab 2, pane 1, tmux windows 1-5
 
 ### Layer M (right_control+M)
 - **M** = Control+C (terminal copy/interrupt)

@@ -228,6 +228,12 @@
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+keys for iTerm tab 2 pane 1 + tmux windows
+    [{:key :n :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '!' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :m :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '@' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :comma :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '#' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :period :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '$' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :slash :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '%%' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
