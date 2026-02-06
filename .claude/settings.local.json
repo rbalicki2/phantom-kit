@@ -21,7 +21,8 @@
       "Bash(/bin/zsh -c 'cat')",
       "Bash(/bin/zsh:*)",
       "Bash(ls:*)",
-      "Bash(git revert:*)"
+      "Bash(git revert:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }

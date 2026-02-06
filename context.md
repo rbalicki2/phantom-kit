@@ -25,6 +25,11 @@ Note: Don't include Claude attribution in commit messages.
 - `!S` = left_shift, `!R` = right_shift
 - `##` = optional any
 
+## Config Structure
+The config is organized into two sections:
+1. **ALL PROFILES** - Rules without profile conditions (caps lock, number/symbol swap, brackets, shifts)
+2. **DESKTOP ONLY** - Rules with `:Desktop` condition (layers, navigation, app-specific behavior)
+
 ## Current Layers
 
 ### Layer N (right_control+N)
@@ -43,6 +48,7 @@ Note: Don't include Claude attribution in commit messages.
 
 ### Layer M (right_control+M)
 - **M** = Control+C (terminal copy/interrupt)
+- **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
 
@@ -53,14 +59,46 @@ Note: Don't include Claude attribution in commit messages.
 
 ### Chrome Layer (right_control+J, Chrome only)
 - Only activates when Google Chrome is foreground app
-- **J** = Ctrl+Shift+Tab (previous tab)
-- **K** = Ctrl+Tab (next tab)
-- **L** = Cmd+Shift+A
+- **H** = Cmd+T (new tab) - exits layer
+- **J** = Ctrl+Shift+Tab (previous tab) - stays in layer
+- **K** = Ctrl+Tab (next tab) - stays in layer
+- **L** = Cmd+Shift+A - exits layer
 - **Y** = Cmd+1
 - **U** = Cmd+2
 - **I** = Cmd+3
 - **O** = Cmd+4
 - **P** = Cmd+9
+
+### Layer Exit Methods
+All layers can be exited by:
+- Pressing **escape**
+- Pressing **right_control** alone
+- Most layer actions auto-exit (except Chrome J/K for tab cycling)
+
+## Global Remaps (All Profiles)
+- Caps Lock = Control (held) / Escape (tapped)
+- Numbers = Symbols, Shift+numbers = numbers
+- Brackets = Cmd+brackets (back/forward), Cmd+brackets = brackets
+- Backslash/pipe swapped
+- Left shift alone = (
+- Right shift alone = )
+
+## Desktop-Only Remaps
+- Page down/up = left/right click
+- Left/right arrows = backspace/delete
+- Left command alone = {, Shift+left_command alone = [
+- Right command alone = }, Shift+right_command alone = ]
+- Right command + J/K = Option+left/right (word navigation)
+- Right command + M/comma = Cmd+left/right (line start/end)
+- Right command + up/down = left/right arrows
+- Space + J/K/M/comma/up/down = Shift+navigation (selection)
+- Home = Enter
+- Single quote = Control (held) / quote (tapped)
+- Equals and backtick swapped
+- right_control+H = F9 (text-to-speech)
+- right_control+Y = Shift+F9 (toggle recording)
+- Space+N = Escape
+- Space+H = Cmd+K (Chrome only)
 
 ## SwiftBar Status
 - Shows current layer in menu bar
@@ -89,17 +127,9 @@ To use in rules, add `:iTerm` or `:Chrome` as a condition after the action:
 [{:key :j :modi {:mandatory [:right_control]}} [action] :Chrome ["layer_chrome" 0]]
 ```
 
-## Recent Session Work
-1. Made Tmux layer iTerm-only
-2. Created Chrome layer (right_control+J in Chrome)
-3. Both layers share right_control+J but are app-specific
-4. Added SwiftBar case for "chrome" showing "Chrm (J)"
-5. Chrome layer reordered before Tmux layer in config
-6. Removed unnecessary files: karabiner-layer.1s.zsh, kara2.json, karabiner.json
-
 ## Known Issues
 - User's Kinesis keyboard sometimes loses state (not a Karabiner issue)
 - If left_command acts like control, it's the Kinesis - unplug/replug to fix
 
 ## Desktop Profile
-The active profile is "Desktop" - all rules use `:Desktop` condition.
+The active profile is "Desktop" - Desktop-specific rules use `:Desktop` condition.

@@ -176,6 +176,10 @@
     [:up_arrow {:key :left_arrow :modi [:left_shift]} ["space_held" 1]]
     ;; Space+Down = Shift+Right (select char right)
     [:down_arrow {:key :right_arrow :modi [:left_shift]} ["space_held" 1]]
+    ;; Space+N = Escape
+    [:n :escape ["space_held" 1]]
+    ;; Space+H = Command+K (Chrome only)
+    [:h :!Ck :Chrome ["space_held" 1]]
    ]}
 
   {:des "[Desktop] Backspace to super, delete to hyper"
@@ -212,11 +216,6 @@
   {:des "[Desktop] Right control+Y to Shift+F9 (toggle recording)"
    :rules [:Desktop
     [{:key :y :modi {:mandatory [:right_control]}} :!Sf9]
-   ]}
-
-  {:des "[Desktop] Right control+comma to escape"
-   :rules [:Desktop
-    [{:key :comma :modi {:mandatory [:right_control]}} :escape]
    ]}
 
   {:des "[Desktop] Layer N (right_control+N to enter)"
