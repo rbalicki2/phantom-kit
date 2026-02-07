@@ -24,6 +24,14 @@ Two styles needed:
 
 ### Escape in Insert Mode
 - Need escape key access while in Ins layer (currently only right_control exits)
+- Candidate: Shift+Space = Escape (stays in Ins)
+
+### Mirror/Reverse Mode in Insert
+- Goal: One-handed typing with RHS only
+- Hold ' or | to activate mirror (Y→T, U→R, etc.)
+- Already have layer_mirror with mappings, just need Ins-mode trigger
+- Capital letters: ' + Shift + Y should = T (shift passes through)
+- Consider: toggle vs hold behavior
 
 ### Project-Specific Commands in VS Code
 - Shortcuts to run commands like `yarn test $currentfile`
