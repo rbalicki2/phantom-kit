@@ -435,6 +435,8 @@
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_chrome" 1]]
     ;; Shift+Ctrl+H = Command+W then Ctrl+Shift+Tab (close tab and go to previous) - stays in layer
     [{:key :h :modi {:mandatory [:right_control :shift]}} [:!Cw :!TStab] ["layer_chrome" 1]]
+    ;; M = Alt+D (dark mode)
+    [:m [:!Od ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; Period = Command+R (refresh)
     [:period [:!Cr ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
    ]}
