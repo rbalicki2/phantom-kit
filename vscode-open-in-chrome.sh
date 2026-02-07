@@ -3,7 +3,7 @@
 
 # First, copy relative path (Ctrl+Cmd+E)
 osascript -e 'tell application "System Events" to keystroke "e" using {control down, command down}'
-sleep 0.3
+sleep 0.15
 
 # Get clipboard contents
 FILEPATH=$(pbpaste)
@@ -12,21 +12,20 @@ FILEPATH=$(pbpaste)
 PROJECT=$(cat /tmp/karabiner-project 2>/dev/null)
 
 if [ "$PROJECT" = "pin" ]; then
-    PREFIX="cc"
+    PREFIX="cc "
     /Users/rbalicki/code/voicemode/chrome-tab.sh work
 else
-    PREFIX="isof"
+    PREFIX="isof "
     /Users/rbalicki/code/voicemode/chrome-tab.sh personal
 fi
 
-sleep 0.2
+sleep 0.1
 # New tab, type prefix + filepath + enter
 osascript <<EOF
 tell application "System Events"
     keystroke "t" using command down
-    delay 0.1
-    keystroke "${PREFIX}${FILEPATH}"
     delay 0.05
+    keystroke "${PREFIX}${FILEPATH}"
     key code 36
 end tell
 EOF
