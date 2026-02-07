@@ -8,6 +8,13 @@ The user is using voice-to-text and may not fully think through requests before 
 - If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
 - **When replacing an existing shortcut**, always warn the user and confirm they're aware of what's being replaced before making the change.
 
+## Git Commit Policy
+When modifying any file, always check if it's in a git repository and commit changes:
+1. After editing a file, check if it's in a git repo: `git -C "$(dirname /path/to/file)" rev-parse --git-dir 2>/dev/null`
+2. If it is a git repo, commit the change with an informative message describing what was changed
+3. Use short, descriptive commit messages (e.g., "tmuxp: use viddy instead of watch, add 5 shell windows")
+4. Don't include Claude attribution in commit messages
+
 ## On Startup
 Previous Claude sessions sometimes leave things in a broken state. At the start of a session, verify:
 
