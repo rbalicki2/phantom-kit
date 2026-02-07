@@ -1,9 +1,6 @@
 #!/bin/bash
 # Script to set up term layer: focus iTerm, correct tab, and tmux window
 
-# Bring iTerm to foreground
-open -a iTerm
-
 PROJECT=$(cat /tmp/karabiner-project 2>/dev/null)
 if [ "$PROJECT" = "pin" ]; then
     TAB=1
@@ -11,18 +8,19 @@ else
     TAB=2
 fi
 
-# Focus iTerm tab based on project
-osascript -e "tell application \"iTerm\" to tell current window to select tab $TAB"
+# Single osascript: activate iTerm, select tab, select first pane, send tmux keys
+osascript <<EOF &
+tell application "iTerm"
+    activate
+    tell current window to select tab $TAB
+    tell current window to tell current tab to select first session
+end tell
+delay 0.02
+tell application "System Events"
+    keystroke "a" using control down
+    keystroke "5" using shift down
+end tell
+EOF
 
-# Small delay to ensure tab switch completes
-sleep 0.05
-
-# Focus first (left) pane in the tab
-osascript -e 'tell application "iTerm" to tell current window to tell current tab to select first session'
-
-# Send tmux prefix (Ctrl+A) then % for window 5
-osascript -e 'tell app "System Events" to keystroke "a" using control down'
-osascript -e 'tell app "System Events" to keystroke "5" using shift down'
-
-# Update layer indicator
+# Update layer indicator immediately
 echo term > /tmp/karabiner-layer
