@@ -240,6 +240,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 
 ### VS Code Layer (right_control+J, VS Code only)
 - Only activates when VS Code is foreground app
+- **H** = Copy relative path, **Shift+H** = Copy full path
 - **J** = Cmd+D (go to definition)
 - **K** = F2 (rename)
 - **L** = Cmd+R (find references)

@@ -49,7 +49,8 @@
 - **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
 
 ## VS Code Layer (right_control+J, VS Code only)
-- **J** = Cmd+D (go to def), **K** = F2 (rename), **L** = Cmd+R (find refs)
+- **H** = Copy rel path, **Shift+H** = Copy full path
+- **J** = Go to def, **K** = Rename, **L** = Find refs
 - **I** = 2nd tab, **Shift+I** = Move next tab, **Shift+U** = Move prev tab
 - **O** = Sidebar, **P** = Terminal, **Comma** = Next error (stays), **Period** = Find next (stays)
 

@@ -1,5 +1,6 @@
 VS Code Layer (right_control+J, VS Code only)
 
+H = Copy relative path, Shift+H = Copy full path
 J = Cmd+D (go to definition)
 K = F2 (rename)
 L = Cmd+R (find references)
