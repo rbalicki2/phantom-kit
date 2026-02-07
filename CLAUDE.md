@@ -171,7 +171,7 @@ The config is organized into two sections:
 - **I** = Command+A (select all)
 - **O** = Command+F (find)
 - **P** = Command+W (close)
-- **Comma** = Toggle iso/pin mode (stays in layer)
+- **Comma** = Toggle iso/pin mode (exits layer)
 
 ### Layer H (right_control+H)
 - **J/K** = Delete word left/right (stays)
