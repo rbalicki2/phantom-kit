@@ -170,9 +170,9 @@ The layer system is modal (like vim):
 - **n** = Enter Nav layer
 - **m** = Enter Mouse layer (to be implemented)
 - **comma** = Enter Comma layer
-- **h** = Enter H layer
+- **l** = Enter H layer
 - **u** = Enter Term layer (focuses iTerm)
-- **k** = Enter Chrome/VSCode/TMUX (app-specific)
+- **h** = Enter Chrome/VSCode/TMUX (app-specific)
 - **right_control** = Send escape (stays in Normal)
 - All other letter keys disabled
 
@@ -226,7 +226,7 @@ The layer system is modal (like vim):
 - **Ctrl+H** = Command+W (close)
 - **M** = Toggle iso/pin mode (exits layer)
 
-### Layer H (h from Normal)
+### Layer H (l from Normal)
 - **J/K** = Delete word left/right (stays)
 - **M/Comma** = Delete to line start/end (stays)
 - **Up/Down** = Delete char left/right (stays)

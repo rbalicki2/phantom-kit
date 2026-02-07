@@ -11,9 +11,9 @@
 - **n** = Enter Nav layer
 - **m** = Enter Mouse layer (to be implemented)
 - **comma** = Enter Comma layer (copy/paste/find)
-- **h** = Enter H layer
+- **l** = Enter H layer
 - **u** = Enter Term layer (focuses iTerm)
-- **k** = Enter Chrome/VSCode/TMUX (app-specific)
+- **h** = Enter Chrome/VSCode/TMUX (app-specific)
 - **right_control** = Send escape (stays in Normal)
 
 ## Ins Layer (j from Normal)
@@ -42,7 +42,7 @@
 - **Ctrl+H** = Close
 - **Period** = Save, **M** = Toggle iso/pin mode
 
-## Layer H (h from Normal)
+## Layer H (l from Normal)
 - **H** = plus, **N** = equals (Shift variants add Cmd), **Ctrl+H** = Close
 - **J/K** = Delete word left/right, **M/Comma** = Delete to line start/end
 - **Up/Down** = Delete char left/right (Shift = select instead)

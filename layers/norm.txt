@@ -3,7 +3,7 @@ j → Ins (typing mode)
 n → Nav layer
 m → Mouse layer
 , → Comma layer
-h → H layer
+l → H layer
 u → Term layer
-k → Chrome/VSCode/TMUX (app-specific)
+h → Chrome/VSCode/TMUX (app-specific)
 right_ctrl → send escape
