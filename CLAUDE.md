@@ -38,7 +38,7 @@ If things look messy, ask the user before making changes.
 - `~/.config/karabiner.edn` - Copy destination
 - `~/.config/karabiner/karabiner.json` - Generated Karabiner config
 - `/Users/rbalicki/code/voicemode/chrome-tab.sh` - Chrome profile switcher script
-- `/Users/rbalicki/code/voicemode/karabiner-layer.1s.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
+- `/Users/rbalicki/code/voicemode/karabiner-layer.300ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
