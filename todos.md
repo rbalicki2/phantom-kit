@@ -25,6 +25,12 @@ Two styles needed:
 ### Escape in Insert Mode
 - Need escape key access while in Ins layer (currently only right_control exits)
 
+### Project-Specific Commands in VS Code
+- Shortcuts to run commands like `yarn test $currentfile`
+- Depends on project (yarn vs npm, test runner, etc.)
+- Could use VS Code tasks, or shell scripts that detect project type
+- Maybe extend VS Code layer with project-aware shortcuts
+
 ## RHS-Only Transition - Nice to Have
 
 ### System Controls
