@@ -24,7 +24,13 @@
       "Bash(git revert:*)",
       "Bash(git checkout:*)",
       "Bash(/Users/rbalicki/code/voicemode/iterm-tmux.sh '!')",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(pgrep:*)",
+      "Bash(git init:*)",
+      "Bash(bash:*)",
+      "Bash(python3:*)",
+      "Bash(git -C /Users/rbalicki/code/voicemode status)",
+      "Bash(git -C ~/.config status)"
     ]
   }
 }

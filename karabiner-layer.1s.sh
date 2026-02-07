@@ -25,6 +25,7 @@ case "$LAYER" in
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     term) NAME="Term" ;;
+    switch) NAME="Swtch" ;;
     *) NAME="-" ;;
 esac
 
