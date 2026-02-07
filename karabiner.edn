@@ -982,9 +982,19 @@
     [:right_control :right_control ["layer_normal" 0] {:alone [["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
-  {:des "[Desktop] Right control to escape when tapped alone"
+  {:des "[Desktop] Ins Layer (typing passthrough)"
    :rules [:Desktop
-    ;; Only triggers when already in Normal (layer_normal=1) or no layer rules matched
+    ;; Ins layer has no key mappings - all keys pass through by default
+    ;; j from Normal enters Ins layer
+    [:j [["layer_ins" 1] ["layer_normal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; right_control alone exits Ins to Normal
+    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+   ]}
+
+  {:des "[Desktop] Right control to escape when tapped alone (Task 1.5: escape in Normal)"
+   :rules [:Desktop
+    ;; This rule triggers when in Normal (layer_normal=1) - sends escape, stays in Normal
+    ;; Other layers' right_control rules have higher priority (come earlier in config)
     [:##right_control :right_control nil {:alone :escape}]
    ]}
 

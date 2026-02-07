@@ -52,20 +52,20 @@ Restructure the layer system so that:
   - Normal should be active by default on Desktop profile
   - Write `norm` to `/tmp/karabiner-layer` on entry
 
-- [ ] **Task 1.2**: Create Ins layer
+- [x] **Task 1.2**: Create Ins layer
   - Add `layer_ins` variable
   - In Ins layer, all keys pass through (no remapping)
   - Write `ins` to `/tmp/karabiner-layer` on entry
 
-- [ ] **Task 1.3**: Normal → Ins transition
+- [x] **Task 1.3**: Normal → Ins transition
   - `j` in Normal → sets `layer_ins` to 1, `layer_normal` to 0
   - Writes `ins` to `/tmp/karabiner-layer`
 
-- [ ] **Task 1.4**: Ins → Normal transition
+- [x] **Task 1.4**: Ins → Normal transition
   - `right_ctrl` in Ins → sets `layer_ins` to 0, `layer_normal` to 1
   - Writes `norm` to `/tmp/karabiner-layer`
 
-- [ ] **Task 1.5**: Escape behavior in Normal
+- [x] **Task 1.5**: Escape behavior in Normal
   - `right_ctrl` in Normal → sends escape to OS, stays in Normal
   - Does NOT exit Normal or enter Ins
 
