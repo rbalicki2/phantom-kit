@@ -8,8 +8,8 @@
 - **Ctrl+H** = Close (Cmd+W)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
-- **Shift+H/J** = Chrome Personal tabs 1-2, **Shift+K/L** = Chrome Work tabs 1-2
-- **Shift+N/M/,/.//** = iTerm tab 2, pane 1, tmux windows 1-5
+- **Shift+N/M** = iTerm tab 1/2
+- **Shift+J** = Obsidian, **Shift+K** = Finder
 
 ## Layer M (right_control+M)
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo
@@ -41,7 +41,7 @@
 ## Chrome Layer (right_control+J, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
-- **Y/U/I/O/P** = Cmd+1/2/3/4/9, **Shift+Y/U/I/O** = Cmd+5/6/7/8
+- **Y/U/I/O** = Tab 1-4, **Shift+Y/U/I/O** = Tab 5-8, **P** = Last tab
 - **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
 
 ## Global RHS (Desktop, no layer)

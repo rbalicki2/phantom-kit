@@ -121,9 +121,8 @@ The config is organized into two sections:
 - **J** = Open iTerm
 - **K** = Open VS Code
 - **L** = Open Signal
-- **Shift+N/M/,/.//** = iTerm tab 2, pane 1, tmux windows 1-5
-- **Shift+H/J** = Chrome Personal tabs 1-2
-- **Shift+K/L** = Chrome Work tabs 1-2
+- **Shift+N/M** = iTerm tab 1/2
+- **Shift+J** = Obsidian, **Shift+K** = Finder
 
 ### Layer M (right_control+M)
 - **M** = Control+C (terminal copy/interrupt)
@@ -188,11 +187,8 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **L** = Cmd+L (address bar) - exits layer
 - **Ctrl+H** = Cmd+W (close tab) - stays in layer, **Shift+Ctrl+H** = Cmd+W + Shift+Tab (close + prev) - stays
 - **Comma** = Cmd+Shift+A (search tabs) - exits layer
-- **Y** = Cmd+1, **Shift+Y** = Cmd+5
-- **U** = Cmd+2, **Shift+U** = Cmd+6
-- **I** = Cmd+3, **Shift+I** = Cmd+7
-- **O** = Cmd+4, **Shift+O** = Cmd+8
-- **P** = Cmd+9
+- **Y/U/I/O** = Tab 1-4 (via AppleScript), **Shift+Y/U/I/O** = Tab 5-8
+- **P** = Last tab
 - **N** = Cmd+K
 - **Period** = Cmd+R (refresh)
 

@@ -314,17 +314,12 @@
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; Shift+keys for iTerm tab 2 pane 1 + tmux windows
-    [{:key :n :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '!' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '@' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '#' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '$' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/iterm-tmux.sh '%%' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; Shift+HJKL for Chrome tabs
-    [{:key :h :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 1 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work 2 && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+N/M = iTerm tab 1/2
+    [{:key :n :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 1' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :m :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 2' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+J = Obsidian, Shift+K = Finder
+    [{:key :j :modi {:mandatory [:shift]}} [{:shell "open -a 'Obsidian' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :k :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Ctrl+P = selection screenshot (Cmd+Shift+4) - re-press right_control while in layer
     [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; P = Cmd+Shift+3 (full screen screenshot)
@@ -800,21 +795,18 @@
     [:l [:!Cl ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; Comma = Command+Shift+A (search tabs)
     [:comma [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Y = Command+1
-    [:y [:!C1 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; U = Command+2
-    [:u [:!C2 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; I = Command+3
-    [:i [:!C3 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; O = Command+4
-    [:o [:!C4 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Shift+Y/U/I/O = Command+5/6/7/8
-    [{:key :y :modi {:mandatory [:shift]}} [:!C5 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!C6 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!C7 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!C8 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; P = Command+9
-    [:p [:!C9 ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; Y/U/I/O = Tab 1-4 (via AppleScript)
+    [:y [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 1' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [:u [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 2' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [:i [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 3' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [:o [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 4' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    ;; Shift+Y/U/I/O = Tab 5-8 (via AppleScript)
+    [{:key :y :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 5' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 6' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 7' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 8' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    ;; P = Last tab (via AppleScript)
+    [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     ;; N = Command+K
     [:n [:!Ck ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; Ctrl+H = Command+W (close tab) - stays in layer
