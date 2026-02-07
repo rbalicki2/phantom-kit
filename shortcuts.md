@@ -8,7 +8,7 @@
 - **Ctrl+H** = Close (Cmd+W)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
-- **Shift+N/M** = iTerm tab 1/2
+- **Shift+N/M/,/.** = iTerm tab 1/2/3/4
 - **Shift+H** = App Switcher layer (J/K to cycle, Ctrl to select)
 - **Shift+J** = Obsidian, **Shift+K** = Finder
 

@@ -121,7 +121,7 @@ The config is organized into two sections:
 - **J** = Open iTerm
 - **K** = Open VS Code
 - **L** = Open Signal
-- **Shift+N/M** = iTerm tab 1/2
+- **Shift+N/M/,/.** = iTerm tab 1/2/3/4
 - **Shift+H** = Enter App Switcher layer (Cmd+Tab, holds Cmd)
 - **Shift+J** = Obsidian, **Shift+K** = Finder
 

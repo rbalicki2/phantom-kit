@@ -314,9 +314,11 @@
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; Shift+N/M = iTerm tab 1/2
+    ;; Shift+N/M/,/. = iTerm tab 1/2/3/4
     [{:key :n :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 1' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :m :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 2' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :comma :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 3' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :period :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 4' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Shift+H = Enter app switcher layer (holds Cmd, sends Tab)
     [{:key :h :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to keystroke tab' && echo switch > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_appswitcher" 1]] ["layer_n" 1]]
     ;; Shift+J = Obsidian, Shift+K = Finder
