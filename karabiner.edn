@@ -809,9 +809,9 @@
     [:j :!TStab ["layer_chrome" 1]]
     ;; K = Control+Tab (next tab) - stays in layer
     [:k :!Ttab ["layer_chrome" 1]]
-    ;; L = Command+L (address bar), Shift+L = Copy URL (via AppleScript)
+    ;; L = Command+L (address bar), Shift+L = Copy URL (Cmd+L, Cmd+C, Esc)
     [:l [:!Cl ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'set the clipboard to (URL of active tab of front window of application \"Google Chrome\")' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     ;; Comma = Command+Shift+A (search tabs)
     [:comma [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; Y = Tab 1, Shift+Y = Tab 5
