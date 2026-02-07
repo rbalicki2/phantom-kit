@@ -17,7 +17,7 @@
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo
 - **M** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all, **O** = Find, **P** = Close window
-- **Period** = Save, **Comma** = (free)
+- **Period** = Save, **Comma** = Toggle iso/pin mode
 
 ## Layer H (right_control+H)
 - **H** = plus, **N** = equals (Shift variants add Cmd)

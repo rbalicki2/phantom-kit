@@ -53,7 +53,10 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Create a Tampermonkey setup that exposes functions callable from a layer
 
 ## Workflow After Changes
-Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
+**CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
+- `CLAUDE.md` - Main reference with full details
+- `shortcuts.md` - Quick reference
+- `layers/*.txt` - Hammerspoon overlay files for each layer
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
@@ -269,6 +272,13 @@ All layers can be exited by:
 - right_control+6 = F9 (text-to-speech)
 - right_control+Y = Shift+F9 (toggle recording)
 - Space+Enter = Cmd+Enter
+
+## Iso/Pin Mode
+Toggle with M layer + Comma. Affects which iTerm tab the Term layer focuses:
+- **pin** = iTerm tab 1
+- **iso** = iTerm tab 2 (default)
+
+Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "iso-Nav", "pin-M").
 
 ## SwiftBar Status
 - Shows current layer in menu bar
