@@ -52,7 +52,8 @@
       "Bash(npm run sync)",
       "Bash(log show:*)",
       "Bash(/opt/homebrew/bin/hs:*)",
-      "Bash(killall:*)"
+      "Bash(killall:*)",
+      "WebFetch(domain:kinesis-ergo.com)"
     ]
   }
 }

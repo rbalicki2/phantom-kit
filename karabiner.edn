@@ -311,12 +311,12 @@
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:Desktop
-    [{:key :6 :modi {:mandatory [:right_control]}} :f9]
+    [{:key :6 :modi {:mandatory [:right_control]}} [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
   {:des "[Desktop] Right control+Y to Shift+F9 (toggle recording)"
    :rules [:Desktop
-    [{:key :y :modi {:mandatory [:right_control]}} :!Sf9]
+    [{:key :y :modi {:mandatory [:right_control]}} [:!Sf9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
   {:des "[Desktop] Layer N (n from Normal to enter)"

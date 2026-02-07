@@ -70,6 +70,7 @@ Two styles needed:
 - Chat interface popover accessible anywhere
 
 ### Utility Commands
+- **Split tabs in Chrome**: Way to split/tile Chrome tabs
 - **Zoom in/out**: Maybe Chrome layer, maybe global
 - **VPN connect**: Commands to connect/disconnect VPN
 - **Archive tab**: Add current tab URL/title to an Obsidian note, then close the tab
