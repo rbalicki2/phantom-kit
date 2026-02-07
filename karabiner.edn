@@ -809,18 +809,20 @@
     [:j :!TStab ["layer_chrome" 1]]
     ;; K = Control+Tab (next tab) - stays in layer
     [:k :!Ttab ["layer_chrome" 1]]
-    ;; L = Command+L (address bar)
+    ;; L = Command+L (address bar), Shift+L = Copy URL (Cmd+L, Cmd+C)
     [:l [:!Cl ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to keystroke \"l\" using command down' -e 'delay 0.1' -e 'tell application \"System Events\" to keystroke \"c\" using command down' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     ;; Comma = Command+Shift+A (search tabs)
     [:comma [:!CSa ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Y/U/I/O = Tab 1-4 (via AppleScript)
+    ;; Y = Tab 1, Shift+Y = Tab 5
     [:y [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 1' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
-    [:u [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 2' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :y :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 5' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    ;; U = gg (Vimium: go to top), Shift+U = Shift+G (Vimium: go to bottom)
+    [:u [{:shell "osascript -e 'tell application \"System Events\" to keystroke \"gg\"' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [:!Sg ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; I/O = Tab 3/4, Shift+I/O = Tab 7/8
     [:i [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 3' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     [:o [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 4' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
-    ;; Shift+Y/U/I/O = Tab 5-8 (via AppleScript)
-    [{:key :y :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 5' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 6' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     [{:key :i :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 7' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     [{:key :o :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 8' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
     ;; P = Last tab (via AppleScript)

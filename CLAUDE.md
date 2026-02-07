@@ -42,7 +42,7 @@ If things look messy, ask the user before making changes.
 
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
-- Add "copy URL" shortcut to Chrome layer
+(none)
 
 ## Workflow After Changes
 Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
@@ -195,7 +195,10 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **L** = Cmd+L (address bar) - exits layer
 - **Ctrl+H** = Cmd+W (close tab) - stays in layer, **Shift+Ctrl+H** = Cmd+W + Shift+Tab (close + prev) - stays
 - **Comma** = Cmd+Shift+A (search tabs) - exits layer
-- **Y/U/I/O** = Tab 1-4 (via AppleScript), **Shift+Y/U/I/O** = Tab 5-8
+- **L** = Address bar, **Shift+L** = Copy URL
+- **Y** = Tab 1, **Shift+Y** = Tab 5
+- **U** = gg (Vimium: top), **Shift+U** = Shift+G (Vimium: bottom)
+- **I/O** = Tab 3/4, **Shift+I/O** = Tab 7/8
 - **P** = Last tab
 - **N** = Cmd+K
 - **Period** = Cmd+R (refresh)
