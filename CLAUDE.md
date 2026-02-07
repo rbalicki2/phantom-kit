@@ -6,6 +6,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - Ask clarifying questions if something doesn't align or seems off
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
 - If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
+- **When replacing an existing shortcut**, always warn the user and confirm they're aware of what's being replaced before making the change.
 
 ## On Startup
 Previous Claude sessions sometimes leave things in a broken state. At the start of a session, verify:

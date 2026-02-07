@@ -43,8 +43,8 @@
 ## Chrome Layer (right_control+J, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
-- **Y** = Tab 1, **Shift+Y** = Tab 5, **I/O** = Tab 3/4, **Shift+I/O** = Tab 7/8, **P** = Last tab
-- **U** = gg (top), **Shift+U** = Shift+G (bottom), **Shift+L** = Copy URL
+- **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
+- **Shift+L** = Copy URL
 - **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
 
 ## Global RHS (Desktop, no layer)

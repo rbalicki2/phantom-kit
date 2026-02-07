@@ -6,9 +6,7 @@ L = Address bar, Shift+L = Copy URL
 Ctrl+H = Close tab (stays), Shift+Ctrl+H = Close + prev (stays)
 N = Cmd+K
 , = Search tabs
-Y = Tab 1, Shift+Y = Tab 5
-U = gg (top), Shift+U = G (bottom)
-I = Tab 3, Shift+I = Tab 7
-O = Tab 4, Shift+O = Tab 8
+Y/U/I/O = Tab 1/2/3/4
+Shift+Y/U/I/O = Tab 5/6/7/8
 P = Last tab
 . = Refresh
