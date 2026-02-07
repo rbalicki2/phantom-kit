@@ -181,7 +181,7 @@ Restructure the layer system so that:
   - Document Normal as default state
   - Note: Interrupted by bug fixes, partially done
 
-- [ ] **Task 7.4**: Test all flows
+- [ ] **Task 7.4**: Test all flows (USER TESTING)
   - Normal → each layer → Normal
   - Normal → Ins → Normal
   - Ins → right_ctrl → Normal → right_ctrl (sends escape)
@@ -190,8 +190,21 @@ Restructure the layer system so that:
 
 ---
 
-## Open Questions (to resolve during implementation)
+## Bug Fixes During Implementation
 
-1. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
+1. **k entering Chrome/VSCode/TMUX from Ins layer**
+   - Root cause: Goku ignores second condition when both app and variable conditions on one rule
+   - Fix: Split app-specific layer entries into separate blocks with block-level app condition
+   - Block-level `:Chrome` + per-rule `["layer_normal" 1]` generates both conditions
 
-(Default on boot: punted for now)
+2. **Unmapped keys typing in Normal mode**
+   - Root cause: No rules handling non-layer-selector keys
+   - Fix: Added explicit disable rules for all letters except j, n, m, h, u, k
+
+---
+
+## Open Questions (resolved)
+
+1. **in_any_layer variable**: Still used to track "in functional layer" state for certain rules.
+
+(Default on boot: punted - user taps right_control to enter Normal initially)
