@@ -1,5 +1,18 @@
 # Normal Mode Implementation Plan
 
+## Implementation Instructions
+
+**After completing each task:**
+1. Mark the checkbox `[x]` in this file
+2. Commit in voicemode repo with message describing current state (so user can test)
+3. Run `npm run sync`
+4. Commit in ~/.config repo
+5. If Hammerspoon files changed, commit in ~/.hammerspoon repo
+
+This ensures progress survives compaction and each task is independently testable.
+
+---
+
 ## Overview
 
 Restructure the layer system so that:
