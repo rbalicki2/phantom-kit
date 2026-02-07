@@ -26,7 +26,7 @@ case "$LAYER" in
     chrome) NAME="Chrm" ;;
     term) NAME="Term" ;;
     switch) NAME="Swtch" ;;
-    *) NAME="-" ;;
+    *) NAME="normal" ;;
 esac
 
 # Combine RHS prefix with layer name, right-align to 8 chars
