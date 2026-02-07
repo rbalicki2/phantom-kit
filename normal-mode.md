@@ -99,27 +99,27 @@ Restructure the layer system so that:
 
 ## Phase 3: Layer Exits to Normal
 
-- [ ] **Task 3.1**: Nav layer exit
+- [x] **Task 3.1**: Nav layer exit
   - `right_ctrl` and `escape` in Nav → Normal (not base)
   - Set `layer_n` to 0, `layer_normal` to 1
   - Write `norm` to `/tmp/karabiner-layer`
 
-- [ ] **Task 3.2**: M layer exit
+- [x] **Task 3.2**: M layer exit
   - Same pattern: exit to Normal
 
-- [ ] **Task 3.3**: H layer exit
+- [x] **Task 3.3**: H layer exit
   - Same pattern: exit to Normal
 
-- [ ] **Task 3.4**: Term layer exit
+- [x] **Task 3.4**: Term layer exit
   - Same pattern: exit to Normal
 
-- [ ] **Task 3.5**: Chrome layer exit
+- [x] **Task 3.5**: Chrome layer exit
   - Same pattern: exit to Normal
 
-- [ ] **Task 3.6**: VSCode layer exit
+- [x] **Task 3.6**: VSCode layer exit
   - Same pattern: exit to Normal
 
-- [ ] **Task 3.7**: TMUX layer exit
+- [x] **Task 3.7**: TMUX layer exit
   - Same pattern: exit to Normal
 
 ---

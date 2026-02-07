@@ -299,10 +299,10 @@
    :rules [:Desktop
     ;; n in Normal enters layer_n
     [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; escape exits layer_n
-    [:escape [["layer_n" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; right_control alone exits layer_n (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer_n to Normal
+    [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; right_control alone exits layer_n to Normal (must use :alone so Ctrl+key combos still work)
+    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+H = Cmd+W (close window/tab)
@@ -371,10 +371,10 @@
    :rules [:Desktop
     ;; m in Normal enters layer_m
     [:m [["layer_m" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; escape exits layer_m
-    [:escape [["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; right_control alone exits layer_m (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer_m to Normal
+    [:escape [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; right_control alone exits layer_m to Normal (must use :alone so Ctrl+key combos still work)
+    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Layer M shortcuts
     [:m [:!Tc ["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:n [:!Tr ["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
@@ -399,10 +399,10 @@
    :rules [:Desktop
     ;; k in Normal enters layer_chrome (Chrome only)
     [:k [["layer_chrome" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_normal" 1]]
-    ;; escape exits layer
-    [:escape [["layer_chrome" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; right_control alone exits layer
-    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer to Normal
+    [:escape [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; right_control alone exits layer to Normal
+    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; H = Command+T (new tab) - exits layer
     [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; J = Control+Shift+Tab (previous tab) - stays in layer, Shift+J = gg (Vimium: top)
@@ -445,10 +445,10 @@
    :rules [:Desktop
     ;; k in Normal enters layer_vscode (VS Code only)
     [:k [["layer_vscode" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] :VSCode ["layer_normal" 1]]
-    ;; escape exits layer
-    [:escape [["layer_vscode" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    ;; right_control alone exits layer
-    [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer to Normal
+    [:escape [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; right_control alone exits layer to Normal
+    [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; J = Cmd+D (go to definition)
     [:j [:!Cd ["layer_vscode" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; K = F2 (rename)
@@ -480,10 +480,10 @@
     ;; u in Normal enters layer_term (focuses iTerm)
     ;; Focuses iTerm tab 1 (pin) or 2 (iso), then tmux window 5
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
-    ;; escape exits layer
-    [:escape [["layer_term" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
-    ;; right_control alone exits layer
-    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer to Normal
+    [:escape [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    ;; right_control alone exits layer to Normal
+    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; h = "git status " (no enter)
     [:h [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0]] ["layer_term" 1]]
     ;; Ctrl+h = "git status " + enter
@@ -524,10 +524,10 @@
    :rules [:Desktop
     ;; k in Normal sends Control+A and enters tmux layer (iTerm only)
     [:k [:!Ta ["layer_tmux" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_normal" 1]]
-    ;; escape exits layer
-    [:escape [["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    ;; right_control alone exits layer
-    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; escape exits layer to Normal
+    [:escape [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    ;; right_control alone exits layer to Normal
+    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Y-P → !, @, #, $, % (tmux panes 1-5)
     [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:u [:!S2 ["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
@@ -563,9 +563,9 @@
     [:escape [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
     [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
 
-    ;; === Base layer exits ===
-    [:escape [["layer_h" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
-    [:right_control :right_control ["layer_h" 1] {:alone [["layer_h" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; === Base layer exits to Normal ===
+    [:escape [["layer_h" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [:right_control :right_control ["layer_h" 1] {:alone [["layer_h" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
 
     ;; === Cmd sub-layer (Y to enter from H) ===
     ;; Pattern: entry sets layer_h=0, layer_h_X=1; letters do mod+key, exit to base
