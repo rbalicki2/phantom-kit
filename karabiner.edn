@@ -62,6 +62,12 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
+  {:des "Disable unused LHS keys"
+   :rules [
+    [:equal_sign :vk_none]
+    [:non_us_backslash :vk_none]
+   ]}
+
   {:des "RHS mode number handling (must come before number swap)"
    :rules [
     ;; Disable LHS numbers 1-5
@@ -155,9 +161,6 @@
     ;; Note: numbers 1-5 disabled earlier (before number swap rule)
     [:grave_accent_and_tilde :vk_none ["layer_rhs" 1]]  ;; physical backtick
     [{:key :grave_accent_and_tilde :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; shift+physical backtick
-    [:equal_sign :vk_none ["layer_rhs" 1]]  ;; physical equals
-    [{:key :equal_sign :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; shift+physical equals
-    [:non_us_backslash :vk_none ["layer_rhs" 1]]  ;; § key
     [:q :vk_none ["layer_rhs" 1]]
     [:w :vk_none ["layer_rhs" 1]]
     [:e :vk_none ["layer_rhs" 1]]
