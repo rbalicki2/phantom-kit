@@ -319,7 +319,7 @@
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [:o [{:shell "open /Applications/Obsidian.app && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [:o [{:shell "open -a 'Obsidian' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Period = Finder, Shift+Period = Go to Folder, Ctrl+Period = Go to Folder + Paste
     [:period [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :period :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
