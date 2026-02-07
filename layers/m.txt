@@ -7,7 +7,7 @@ L = Undo, Shift+L = Redo
 M = Ctrl+C (terminal interrupt)
 N = Ctrl+R (terminal search)
 I = Select all
-O = Open, P = Print/Palette, Shift+P = Cmd+Shift+P
+O = Cmd+Shift+P, Shift+O = Open, P = Cmd+P
 Ctrl+H = Close
 . = Save
 , = Toggle iso/pin mode

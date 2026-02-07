@@ -174,8 +174,8 @@ The config is organized into two sections:
 - **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)
 - **I** = Command+A (select all)
-- **O** = Command+O (open)
-- **P** = Command+P (print/palette), **Shift+P** = Cmd+Shift+P
+- **O** = Cmd+Shift+P (command palette), **Shift+O** = Cmd+O (open)
+- **P** = Command+P
 - **Ctrl+H** = Command+W (close)
 - **Comma** = Toggle iso/pin mode (exits layer)
 
