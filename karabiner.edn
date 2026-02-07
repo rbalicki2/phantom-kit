@@ -864,7 +864,8 @@
   {:des "[Desktop] Term Layer (right_control+U to enter, iTerm only) - git shortcuts"
    :rules [:Desktop
     ;; right_control+U enters layer_term (iTerm only, not from other layers)
-    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] {:shell "echo term > /tmp/karabiner-layer"}] :iTerm ["layer_term" 0] ["layer_n" 0]]
+    ;; Focuses iTerm tab 1 (pin) or 2 (iso), then tmux window 5
+    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] :iTerm ["layer_term" 0] ["layer_n" 0]]
     ;; escape exits layer
     [:escape [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; right_control alone exits layer
