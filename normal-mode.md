@@ -126,11 +126,11 @@ Restructure the layer system so that:
 
 ## Phase 4: Nested Layers
 
-- [ ] **Task 4.1**: H sub-layers
+- [x] **Task 4.1**: H sub-layers
   - H-C, H-T, H-O, etc. exit directly to Normal (not back to H)
   - Simplifies the flow: no intermediate H step on exit
 
-- [ ] **Task 4.2**: Switch/WinSw layers
+- [x] **Task 4.2**: Switch/WinSw layers
   - Currently entered from Nav (Shift+H, Shift+J)
   - Exit behavior: return to Normal (not Nav)
 

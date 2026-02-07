@@ -345,12 +345,12 @@
     [:j [{:shell "osascript -e 'tell application \"System Events\" to keystroke tab'"} ] ["layer_appswitcher" 1]]
     ;; K = Shift+Tab (cycle backward in app switcher)
     [:k [{:shell "osascript -e 'tell application \"System Events\" to keystroke tab using shift down'"} ] ["layer_appswitcher" 1]]
-    ;; escape exits and releases Cmd
-    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]] ["layer_appswitcher" 1]]
-    ;; enter exits and releases Cmd
-    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]] ["layer_appswitcher" 1]]
-    ;; right_control alone exits and releases Cmd
-    [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]]}]
+    ;; escape exits to Normal and releases Cmd
+    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_appswitcher" 1]]
+    ;; enter exits to Normal and releases Cmd
+    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_appswitcher" 1]]
+    ;; right_control alone exits to Normal and releases Cmd
+    [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]]}]
    ]}
 
   {:des "[Desktop] Window Switcher Layer (from Nav Shift+J)"
@@ -359,12 +359,12 @@
     [:j [{:shell "osascript -e 'tell application \"System Events\" to key code 50'"} ] ["layer_windowswitcher" 1]]
     ;; K = Shift+` (cycle backward in window switcher)
     [:k [{:shell "osascript -e 'tell application \"System Events\" to key code 50 using shift down'"} ] ["layer_windowswitcher" 1]]
-    ;; escape exits and releases Cmd
-    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]] ["layer_windowswitcher" 1]]
-    ;; enter exits and releases Cmd
-    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]] ["layer_windowswitcher" 1]]
-    ;; right_control alone exits and releases Cmd
-    [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]]}]
+    ;; escape exits to Normal and releases Cmd
+    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_windowswitcher" 1]]
+    ;; enter exits to Normal and releases Cmd
+    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_windowswitcher" 1]]
+    ;; right_control alone exits to Normal and releases Cmd
+    [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]]}]
    ]}
 
   {:des "[Desktop] Layer M (m from Normal to enter)"
@@ -547,21 +547,21 @@
     ;; h in Normal enters layer_h
     [:h [["layer_h" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_normal" 1]]
 
-    ;; === Modifier sub-layer exits (must come before base layer exits) ===
-    [:escape [["layer_h_cmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:right_control :right_control ["layer_h_cmd" 1] {:alone [["layer_h_cmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-    [:right_control :right_control ["layer_h_ctrlcmd" 1] {:alone [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrl" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-    [:right_control :right_control ["layer_h_ctrl" 1] {:alone [["layer_h_ctrl" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrlalt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-    [:right_control :right_control ["layer_h_ctrlalt" 1] {:alone [["layer_h_ctrlalt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_alt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-    [:right_control :right_control ["layer_h_alt" 1] {:alone [["layer_h_alt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_altcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-    [:right_control :right_control ["layer_h_altcmd" 1] {:alone [["layer_h_altcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-    [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; === Modifier sub-layer exits to Normal (must come before base layer exits) ===
+    [:escape [["layer_h_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:right_control :right_control ["layer_h_cmd" 1] {:alone [["layer_h_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
+    [:right_control :right_control ["layer_h_ctrlcmd" 1] {:alone [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
+    [:right_control :right_control ["layer_h_ctrl" 1] {:alone [["layer_h_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
+    [:right_control :right_control ["layer_h_ctrlalt" 1] {:alone [["layer_h_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
+    [:right_control :right_control ["layer_h_alt" 1] {:alone [["layer_h_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
+    [:right_control :right_control ["layer_h_altcmd" 1] {:alone [["layer_h_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
+    [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
 
     ;; === Base layer exits to Normal ===
     [:escape [["layer_h" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h" 1]]
