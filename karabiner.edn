@@ -153,8 +153,11 @@
     [{:key :8 :modi {:mandatory [:right_control]}} [["layer_rhs" 0] {:shell ": > /tmp/karabiner-rhs"}] ["layer_rhs" 1]]
     ;; Disable all LHS keys when RHS flag is on (except f which is mirror modifier)
     ;; Note: numbers 1-5 disabled earlier (before number swap rule)
-    [:grave_accent_and_tilde :vk_none ["layer_rhs" 1]]  ;; = (physical backtick after swap)
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; + (shift = physical backtick)
+    [:grave_accent_and_tilde :vk_none ["layer_rhs" 1]]  ;; physical backtick
+    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; shift+physical backtick
+    [:equal_sign :vk_none ["layer_rhs" 1]]  ;; physical equals
+    [{:key :equal_sign :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; shift+physical equals
+    [:non_us_backslash :vk_none ["layer_rhs" 1]]  ;; § key
     [:q :vk_none ["layer_rhs" 1]]
     [:w :vk_none ["layer_rhs" 1]]
     [:e :vk_none ["layer_rhs" 1]]
