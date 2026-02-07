@@ -3,7 +3,7 @@
 
 # First, copy relative path (Shift+Alt+Cmd+C)
 osascript -e 'tell app "System Events" to keystroke "c" using {shift down, option down, command down}'
-sleep 0.15
+sleep 0.3
 
 # Check project mode
 PROJECT=$(cat /tmp/karabiner-project 2>/dev/null)
