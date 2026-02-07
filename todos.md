@@ -71,6 +71,7 @@ Two styles needed:
 
 ### Utility Commands
 - **Laptop/Desktop mode toggle**: Key binding on laptop to enter laptop mode, one-click binding to enter desktop mode
+  - Alternative: Karabiner can detect input device (`:devices` section) - could auto-switch based on which keyboard is being used
 - **Split tabs in Chrome**: Way to split/tile Chrome tabs
 - **Zoom in/out**: Maybe Chrome layer, maybe global
 - **VPN connect**: Commands to connect/disconnect VPN
