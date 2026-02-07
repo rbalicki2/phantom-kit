@@ -50,7 +50,8 @@
 
 ## VS Code Layer (right_control+J, VS Code only)
 - **J** = Cmd+D (go to def), **K** = F2 (rename), **L** = Cmd+R (find refs)
-- **U** = Cmd+` (terminal), **I** = Cmd+B (sidebar), **O** = Alt+B (next error, stays), **Comma** = Alt+V (find next, stays)
+- **I** = Cmd+2, **Shift+I** = Ctrl+Cmd+2, **Shift+U** = Ctrl+Cmd+1
+- **O** = Sidebar, **P** = Terminal, **Comma** = Next error (stays), **Period** = Find next (stays)
 
 ## Global RHS (Desktop, no layer)
 - **Ctrl+Shift+Y** = Show current layer shortcuts (Hammerspoon overlay)
