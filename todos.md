@@ -64,6 +64,7 @@ Two styles needed:
 
 ### Layer System
 - Nav layer should not be a typing layer, but a layer chooser layer
+- Review: screenshot commands (P, Ctrl+P) may not belong in Nav layer
 
 ### New Features
 - Chat interface popover accessible anywhere
