@@ -23,7 +23,7 @@ Previous Claude sessions sometimes leave things in a broken state. At the start 
    diff /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/karabiner.edn
    ```
    - If they differ, the voicemode version is the source of truth
-   - Copy and run goku: `cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku`
+   - Run `npm run sync` to copy and run goku
 
 2. **Check git status in both repos**:
    ```bash
@@ -43,6 +43,7 @@ If things look messy, ask the user before making changes.
 ### Voicemode Repo (`/Users/rbalicki/code/voicemode/`, git repo)
 Source of truth for Karabiner config and related scripts.
 - `karabiner.edn` - Main Goku config (source of truth, copied to ~/.config/)
+- `package.json` - Contains `npm run sync` script to copy and run goku
 - `shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `CLAUDE.md` - This file, context for Claude sessions
 - `layers/*.txt` - Individual layer summaries for Hammerspoon overlay
@@ -77,15 +78,13 @@ If work is interrupted or incomplete, document it here so future sessions can co
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
-2. Copy karabiner.edn to ~/.config/
-3. Run goku
-4. Commit changes in ~/.config repo
+2. Run `npm run sync` (copies karabiner.edn to ~/.config/ and runs goku)
+3. Commit changes in ~/.config repo
 
 ```bash
 # In voicemode repo
 git add karabiner.edn && git commit -m "message"
-# Then
-cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku
+npm run sync
 cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m "message"
 ```
 Note: Don't include Claude attribution in commit messages.

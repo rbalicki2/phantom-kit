@@ -178,5 +178,6 @@ Restructure the layer system so that:
 
 ## Open Questions (to resolve during implementation)
 
-1. **Default on boot**: How to ensure Normal is active on Karabiner start?
-2. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
+1. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
+
+(Default on boot: punted for now)
