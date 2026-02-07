@@ -36,7 +36,20 @@
       "Bash(git -C ~/.tmuxp rev-parse --git-dir)",
       "Bash(git -C ~ rev-parse --git-dir)",
       "Bash(git -C /Users/rbalicki/code/voicemode status --short)",
-      "Bash(git -C ~/.config status --short)"
+      "Bash(git -C ~/.config status --short)",
+      "Bash(git -C ~/.config add:*)",
+      "Bash(git -C ~/.config commit:*)",
+      "Bash(git -C ~/.hammerspoon add:*)",
+      "Bash(git -C ~/.hammerspoon commit:*)",
+      "Bash(terminal-notifier:*)",
+      "Bash(xxd:*)",
+      "Bash(git -C /Users/rbalicki/code/voicemode tag pre-normal-mode)",
+      "Bash(git -C ~/.config tag pre-normal-mode)",
+      "Bash(git -C ~/.hammerspoon tag pre-normal-mode)",
+      "Bash(git -C /Users/rbalicki/code/voicemode tag -l pre-normal-mode)",
+      "Bash(git -C ~/.config tag -l pre-normal-mode)",
+      "Bash(git -C ~/.hammerspoon tag -l pre-normal-mode)",
+      "Bash(npm run sync)"
     ]
   }
 }
