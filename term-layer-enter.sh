@@ -1,5 +1,8 @@
 #!/bin/bash
-# Script to set up term layer: focus correct iTerm tab and tmux window
+# Script to set up term layer: focus iTerm, correct tab, and tmux window
+
+# Bring iTerm to foreground
+open -a iTerm
 
 PROJECT=$(cat /tmp/karabiner-project 2>/dev/null)
 if [ "$PROJECT" = "pin" ]; then
