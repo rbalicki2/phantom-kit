@@ -62,11 +62,6 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "Disable unused LHS keys"
-   :rules [
-    [:##equal_sign :vk_none]
-    [:##non_us_backslash :vk_none]
-   ]}
 
   {:des "RHS mode number handling (must come before number swap)"
    :rules [
@@ -143,6 +138,12 @@
   ;; =====================================================================
   ;; DESKTOP ONLY
   ;; =====================================================================
+
+  {:des "[Desktop] Disable unused LHS keys"
+   :rules [:Desktop
+    [:##equal_sign :vk_none]
+    [:##non_us_backslash :vk_none]
+   ]}
 
   {:des "[Desktop] Page down/up to click/right click"
    :rules [:Desktop
