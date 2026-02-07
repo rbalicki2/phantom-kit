@@ -28,10 +28,11 @@ Two styles needed:
 
 ### Mirror/Reverse Mode in Insert
 - Goal: One-handed typing with RHS only
-- Hold ' or | to activate mirror (Y→T, U→R, etc.)
+- **Best candidate: Enter key** (RHS thumb, used less than Space)
+  - Hold Enter + Y = t, Hold Enter + Shift + Y = T
+  - Tap Enter = newline
 - Already have layer_mirror with mappings, just need Ins-mode trigger
-- Capital letters: ' + Shift + Y should = T (shift passes through)
-- Consider: toggle vs hold behavior
+- Capital letters: shift passes through with `:optional [:shift]`
 
 ### Project-Specific Commands in VS Code
 - Shortcuts to run commands like `yarn test $currentfile`
