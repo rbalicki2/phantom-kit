@@ -47,7 +47,7 @@ Restructure the layer system so that:
 
 ## Phase 1: Foundation
 
-- [ ] **Task 1.1**: Create Normal layer variable
+- [x] **Task 1.1**: Create Normal layer variable
   - Add `layer_normal` variable
   - Normal should be active by default on Desktop profile
   - Write `norm` to `/tmp/karabiner-layer` on entry
