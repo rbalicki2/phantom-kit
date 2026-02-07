@@ -455,8 +455,8 @@
     [:k [:f2 ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; L = Cmd+R (find references)
     [:l [:!Cr ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    ;; H = Shift+Alt+Cmd+C (copy relative path), Shift+H = Alt+Cmd+C (copy full path)
-    [:h [:!SOCc ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; H = Ctrl+Cmd+E (copy relative path), Shift+H = Alt+Cmd+C (copy full path)
+    [:h [:!TCe ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     [{:key :h :modi {:mandatory [:shift]}} [:!OCc ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; Ctrl+H = Copy rel path, open in Chrome (cc/isof prefix based on project)
     [{:key :h :modi {:mandatory [:right_control]}} [{:shell "/Users/rbalicki/code/voicemode/vscode-open-in-chrome.sh"} ["layer_vscode" 0]] ["layer_vscode" 1]]

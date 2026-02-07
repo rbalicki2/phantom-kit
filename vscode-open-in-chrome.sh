@@ -1,14 +1,8 @@
 #!/bin/bash
 # Copy relative path from VS Code and open in Chrome with prefix
 
-# First, copy relative path (Shift+Alt+Cmd+C) - target VS Code explicitly
-osascript <<'EOF'
-tell application "Visual Studio Code" to activate
-delay 0.3
-tell application "System Events"
-    keystroke "c" using {shift down, option down, command down}
-end tell
-EOF
+# First, copy relative path (Ctrl+Cmd+E)
+osascript -e 'tell application "System Events" to keystroke "e" using {control down, command down}'
 sleep 0.3
 
 # Get clipboard contents
