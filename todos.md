@@ -1,7 +1,7 @@
 # Todos
 
 ## Bugs to Fix
-- **Normal mode keys typing**: Non-layer keys (a, b, c, etc.) still type in Normal mode instead of being blocked
+- ~~**Normal mode keys typing**~~: FIXED - may have been transient state issue, resolved by earlier fixes
 - ~~**Ins mode state weirdness**~~: FIXED - added explicit escape exit (`:alone` timing was unreliable after modifier combos)
 
 ## RHS-Only Transition - Must Have
