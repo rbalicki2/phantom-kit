@@ -143,8 +143,7 @@ Restructure the layer system so that:
 ## Phase 6: RHS Flag
 
 ### Task 6.1: RHS toggle location
-- Move toggle to Normal layer (what key?)
-- Or keep as `right_ctrl+7` which would work from Ins layer
+- Keep as `right_ctrl+7` (works from Ins layer)
 
 ### Task 6.2: RHS behavior scope
 - RHS flag only affects Ins layer (disables LHS keys there)
@@ -180,5 +179,4 @@ Restructure the layer system so that:
 ## Open Questions (to resolve during implementation)
 
 1. **Default on boot**: How to ensure Normal is active on Karabiner start?
-2. **RHS toggle key in Normal**: Which key?
-3. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
+2. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
