@@ -52,6 +52,30 @@
  :simlayers {
  }
 
+ ;; Templates reduce repetition in shell commands
+ ;; Usage: [:layer "norm"] expands to {:shell "echo norm > /tmp/karabiner-layer"}
+ :templates {
+  ;; Layer indicator (writes to /tmp/karabiner-layer for SwiftBar/Hammerspoon)
+  :layer "echo %s > /tmp/karabiner-layer"
+  ;; App launching
+  :open "open -a '%s'"
+  :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer"
+  ;; Git/terminal typing (Term layer)
+  :type "osascript -e 'tell app \"System Events\" to keystroke \"%s\"'"
+  :type-norm "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' && echo norm > /tmp/karabiner-layer"
+  :type-enter "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36'"
+  :type-enter-norm "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"
+  ;; Chrome tab by index
+  :chrome-tab "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to %s' && echo norm > /tmp/karabiner-layer"
+  ;; Chrome profile switching
+  :chrome-profile "/Users/rbalicki/code/voicemode/chrome-tab.sh %s && echo norm > /tmp/karabiner-layer"
+  ;; iTerm tab selection
+  :iterm-tab "osascript -e 'tell application \"iTerm\" to tell current window to select tab %s' && echo norm > /tmp/karabiner-layer"
+  ;; System Events helpers
+  :key-down "osascript -e 'tell application \"System Events\" to key down %s'"
+  :key-up "osascript -e 'tell application \"System Events\" to key up %s'"
+ }
+
  :main [
 
   ;; =====================================================================
@@ -297,46 +321,45 @@
 
   {:des "[Desktop] Layer N (n from Normal to enter)"
    :rules [:Desktop
-    ;; n in Normal enters layer_n
-    [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; escape exits layer_n to Normal
-    [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; right_control alone exits layer_n to Normal (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; Layer N shortcuts
-    [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; Ctrl+H = Cmd+W (close window/tab)
-    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]
-    [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    [:spacebar [:!CTOSg ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    [:up_arrow [:!CTOSv ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    [:down_arrow [:!CTOSb ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    [:m [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:comma [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    ;; U/I = tab switching (stays in layer for repeated presses)
-    [:u :!TStab ["layer_n" 1]]  ;; prev tab
-    [:i :!Ttab ["layer_n" 1]]   ;; next tab
-    [:j [{:shell "open -a 'iTerm' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:k [{:shell "open -a 'Visual Studio Code' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:h [{:shell "open -a 'Karabiner-EventViewer' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:l [{:shell "open -a 'Signal' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:o [{:shell "open -a 'Obsidian' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    ;; Period = Finder, Shift+Period = Go to Folder, Ctrl+Period = Go to Folder + Paste
-    [:period [{:shell "open -a 'Finder' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    ;; Entry/exit
+    [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
+    [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
+    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
+    [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
+    ;; Shortcuts
+    [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Spotlight
+    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
+    [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Switch windows
+    ;; Window management (BTT)
+    [:spacebar [:!CTOSg ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Maximize
+    [:up_arrow [:!CTOSv ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Left half
+    [:down_arrow [:!CTOSb ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Right half
+    ;; Chrome profiles
+    [:m [[:chrome-profile "personal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:comma [[:chrome-profile "work"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    ;; Tab switching (stays in layer)
+    [:u :!TStab ["layer_n" 1]]
+    [:i :!Ttab ["layer_n" 1]]
+    ;; App launching
+    [:j [[:open-norm "iTerm"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:k [[:open-norm "Visual Studio Code"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:h [[:open-norm "Karabiner-EventViewer"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:l [[:open-norm "Signal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:o [[:open-norm "Obsidian"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:period [[:open-norm "Finder"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    ;; Finder go-to-folder (complex, no template)
     [{:key :period :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [{:key :period :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    ;; Shift+N/M/, = iTerm tab 1/2/3
-    [{:key :n :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 1' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 2' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 3' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    ;; Shift+H = Enter app switcher layer (holds Cmd, sends Tab)
+    ;; iTerm tabs
+    [{:key :n :modi {:mandatory [:shift]}} [[:iterm-tab "1"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [{:key :m :modi {:mandatory [:shift]}} [[:iterm-tab "2"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [{:key :comma :modi {:mandatory [:shift]}} [[:iterm-tab "3"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    ;; Switch layers
     [{:key :h :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to keystroke tab' && echo switch > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_appswitcher" 1] ["in_any_layer" 1]] ["layer_n" 1]]
-    ;; Shift+J = Enter window switcher layer (holds Cmd, sends `)
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to key code 50' && echo winsw > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_windowswitcher" 1] ["in_any_layer" 1]] ["layer_n" 1]]
-    ;; Ctrl+P = selection screenshot (Cmd+Shift+4) - re-press right_control while in layer
-    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    ;; P = Cmd+Shift+3 (full screen screenshot)
-    [:p [:!CS3 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; Screenshots
+    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
+    [:p [:!CS3 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Switch Layer - App Switcher (from Nav Shift+H)"
@@ -351,6 +374,8 @@
     [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_appswitcher" 1]]
     ;; right_control alone exits to Normal and releases Cmd
     [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]]}]
+    ;; Ctrl+J = global shortcut to Ins layer (releases Cmd)
+    [{:key :j :modi {:mandatory [:control]}} [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_appswitcher" 1]]
    ]}
 
   {:des "[Desktop] Window Switcher Layer (from Nav Shift+J)"
@@ -365,84 +390,74 @@
     [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_windowswitcher" 1]]
     ;; right_control alone exits to Normal and releases Cmd
     [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]]}]
+    ;; Ctrl+J = global shortcut to Ins layer (releases Cmd)
+    [{:key :j :modi {:mandatory [:control]}} [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_windowswitcher" 1]]
    ]}
 
   {:des "[Desktop] Layer M (m from Normal to enter)"
    :rules [:Desktop
-    ;; m in Normal enters layer_m
-    [:m [["layer_m" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; escape exits layer_m to Normal
-    [:escape [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; right_control alone exits layer_m to Normal (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; Layer M shortcuts
-    [:m [:!Tc ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:n [:!Tr ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:h [:!Cc ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:j [:!Cv ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:k [:!Cf ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; find
-    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; find in files
-    [:l [:!Cz ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; redo
-    [:period [:!Cs ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:i [:!Ca ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:o [:!CSp ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; Cmd+Shift+P (command palette)
-    [{:key :o :modi {:mandatory [:shift]}} [:!Co ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; Cmd+O (open)
-    [:p [:!Cp ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; Ctrl+H = Cmd+W (close)
-    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    ;; Comma toggles iso/pin mode (exits layer)
+    ;; Entry/exit
+    [:m [["layer_m" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "m"]] ["layer_normal" 1]]
+    [:escape [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]
+    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
+    [{:key :j :modi {:mandatory [:control]}} [["layer_m" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_m" 1]]
+    ;; Shortcuts
+    [:m [:!Tc ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Ctrl+C
+    [:n [:!Tr ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Ctrl+R
+    [:h [:!Cc ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Copy
+    [:j [:!Cv ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Paste
+    [:k [:!Cf ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Find
+    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Find in files
+    [:l [:!Cz ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Undo
+    [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Redo
+    [:period [:!Cs ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Save
+    [:i [:!Ca ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Select all
+    [:o [:!CSp ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Command palette
+    [{:key :o :modi {:mandatory [:shift]}} [:!Co ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Open
+    [:p [:!Cp ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Cmd+P
+    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_m" 1]]  ;; Close
+    ;; Iso/pin toggle
     [:comma [{:shell "if [ \"$(cat /tmp/karabiner-project 2>/dev/null)\" = 'pin' ]; then echo iso > /tmp/karabiner-project; else echo pin > /tmp/karabiner-project; fi && echo norm > /tmp/karabiner-layer"} ["layer_m" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_m" 1]]
    ]}
 
   {:des "[Desktop] Chrome Layer Entry (k from Normal, Chrome only)"
    :rules [:Desktop :Chrome
-    ;; k in Normal enters layer_chrome (Chrome only, block-level app condition)
-    [:k [["layer_chrome" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    [:k [["layer_chrome" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "chrome"]] ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] Chrome Layer Shortcuts"
    :rules [:Desktop
-    ;; escape exits layer to Normal
-    [:escape [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; right_control alone exits layer to Normal
-    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; H = Command+T (new tab) - exits layer
-    [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; J = Control+Shift+Tab (previous tab) - stays in layer, Shift+J = gg (Vimium: top)
-    [:j :!TStab ["layer_chrome" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to keystroke \"gg\"' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; K = Control+Tab (next tab) - stays in layer, Shift+K = Shift+G (Vimium: bottom)
-    [:k :!Ttab ["layer_chrome" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!Sg ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; L = Command+L (address bar), Shift+L = Copy URL (Cmd+L, Cmd+C, Esc)
-    [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; Comma = Command+Shift+A (search tabs)
-    [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Y = Tab 1, Shift+Y = Tab 5
-    [:y [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 1' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :y :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 5' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; U = Tab 2, Shift+U = Tab 6
-    [:u [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 2' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 6' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; I/O = Tab 3/4, Shift+I/O = Tab 7/8
-    [:i [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 3' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [:o [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 4' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 7' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to 8' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; P = Last tab (via AppleScript)
-    [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    ;; N = Command+K
-    [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Ctrl+H = Command+W (close tab) - stays in layer
-    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_chrome" 1]]
-    ;; Shift+Ctrl+H = Command+W then Ctrl+Shift+Tab (close tab and go to previous) - stays in layer
-    [{:key :h :modi {:mandatory [:right_control :shift]}} [:!Cw :!TStab] ["layer_chrome" 1]]
-    ;; M = Alt+D (dark mode)
-    [:m [:!Od ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; Period = Command+R (refresh)
-    [:period [:!Cr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    ;; Entry/exit
+    [:escape [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]
+    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
+    ;; Tab navigation (stays in layer)
+    [:j :!TStab ["layer_chrome" 1]]  ;; Prev tab
+    [:k :!Ttab ["layer_chrome" 1]]   ;; Next tab
+    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_chrome" 1]]  ;; Close tab
+    [{:key :h :modi {:mandatory [:right_control :shift]}} [:!Cw :!TStab] ["layer_chrome" 1]]  ;; Close + prev
+    ;; Tab switching by number
+    [:y [[:chrome-tab "1"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [:u [[:chrome-tab "2"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [:i [[:chrome-tab "3"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [:o [[:chrome-tab "4"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [{:key :y :modi {:mandatory [:shift]}} [[:chrome-tab "5"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [[:chrome-tab "6"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} [[:chrome-tab "7"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} [[:chrome-tab "8"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Last tab
+    ;; Actions
+    [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; New tab
+    [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Address bar
+    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Copy URL
+    [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Cmd+K
+    [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Search tabs
+    [:m [:!Od ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Dark mode
+    ;; Vimium
+    [{:key :j :modi {:mandatory [:shift]}} [[:type-norm "gg"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Top
+    [{:key :k :modi {:mandatory [:shift]}} [:!Sg ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Bottom
+    [:period [:!Cr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Refresh
+    ;; Global Ctrl+J → Ins
+    [{:key :j :modi {:mandatory [:control]}} [["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]
    ]}
 
   {:des "[Desktop] VS Code Layer Entry (k from Normal, VS Code only)"
@@ -481,77 +496,61 @@
     [:comma :!Ob ["layer_vscode" 1]]
     ;; Period = Alt+V (find next) - stays in layer
     [:period :!Ov ["layer_vscode" 1]]
+    ;; Ctrl+J = global shortcut to Ins layer
+    [{:key :j :modi {:mandatory [:control]}} [["layer_vscode" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (u from Normal to enter, focuses iTerm) - git shortcuts"
    :rules [:Desktop
-    ;; u in Normal enters layer_term (focuses iTerm)
-    ;; Focuses iTerm tab 1 (pin) or 2 (iso), then tmux window 5
+    ;; Entry/exit
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
-    ;; escape exits layer to Normal
-    [:escape [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_term" 1]]
-    ;; right_control alone exits layer to Normal
-    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; h = "git status " (no enter)
-    [:h [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+h = "git status " + enter
-    [{:key :h :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; j = "git log " (no enter)
-    [:j [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git log \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+j = "git log" + enter
-    [{:key :j :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git log\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; k = "git diff " (no enter)
-    [:k [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git diff \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Shift+k = "git diff head" + enter
-    [{:key :k :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git diff head\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+k = "gdmb" + enter
-    [{:key :k :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gdmb\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; l = "git commit -m " (no enter)
-    [:l [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -m \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+l = "git commit -am 'wip'" + enter
+    [:escape [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_term" 1]]
+    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
+    ;; Git commands: bare key = type text, Ctrl = type + enter
+    [:h [[:type-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :h :modi {:mandatory [:right_control]}} [[:type-enter-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:j [[:type-norm "git log "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :j :modi {:mandatory [:right_control]}} [[:type-enter-norm "git log"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:k [[:type-norm "git diff "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :k :modi {:mandatory [:shift]}} [[:type-enter-norm "git diff head"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-norm "gdmb"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:l [[:type-norm "git commit -m "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    ;; Ctrl+l has escaped quotes, can't use template
     [{:key :l :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\''\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; n = "git reset " (no enter)
-    [:n [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git reset \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+n = "git reset" + enter
-    [{:key :n :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git reset\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; m = "git checkout " (no enter)
-    [:m [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git checkout \"' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+m = "gcmp" + enter
-    [{:key :m :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"gcmp\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; , = "git add -A && git stash" + enter
-    [:comma [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git add -A && git stash\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+, = "git stash pop" + enter
-    [{:key :comma :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git stash pop\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; I = Cmd+D (split vertical)
-    [:i [:!Cd ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_term" 1]]
-    ;; Ctrl+I = Cmd+Shift+D (split horizontal)
+    [:n [[:type-norm "git reset "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :n :modi {:mandatory [:right_control]}} [[:type-enter-norm "git reset"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:m [[:type-norm "git checkout "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :m :modi {:mandatory [:right_control]}} [[:type-enter-norm "gcmp"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:comma [[:type-enter-norm "git add -A && git stash"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :comma :modi {:mandatory [:right_control]}} [[:type-enter-norm "git stash pop"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    ;; iTerm splits
+    [:i [:!Cd ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_term" 1]]
     [{:key :i :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer Entry (k from Normal, iTerm only)"
    :rules [:Desktop :iTerm
-    ;; k in Normal sends Control+A and enters tmux layer (iTerm only, block-level app condition)
-    [:k [:!Ta ["layer_tmux" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; k in Normal sends Control+A (tmux prefix) and enters tmux layer
+    [:k [:!Ta ["layer_tmux" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "tmux"]] ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer Shortcuts"
    :rules [:Desktop
-    ;; escape exits layer to Normal
-    [:escape [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    ;; right_control alone exits layer to Normal
-    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; Y-P → !, @, #, $, % (tmux panes 1-5)
-    [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [:u [:!S2 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [:i [:!S3 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [:o [:!S4 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [:p [:!S5 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    ;; Shift+Y-P → ^, &, *, (, ) (tmux panes 6-10)
-    [{:key :y :modi {:mandatory [:shift]}} [:!S6 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!S7 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!S8 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!S9 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!S0 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    ;; Entry/exit
+    [:escape [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
+    ;; Panes 1-5: Y/U/I/O/P → !/@ /#/$/%
+    [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:u [:!S2 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:i [:!S3 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:o [:!S4 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:p [:!S5 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    ;; Panes 6-10: Shift+Y/U/I/O/P → ^/&/*/(/)
+    [{:key :y :modi {:mandatory [:shift]}} [:!S6 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} [:!S7 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} [:!S8 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} [:!S9 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [{:key :p :modi {:mandatory [:shift]}} [:!S0 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
    ]}
 
   {:des "[Desktop] Layer H (h from Normal to enter) - deletion/selection"
