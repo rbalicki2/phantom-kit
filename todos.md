@@ -1,5 +1,9 @@
 # Todos
 
+## Bugs to Fix
+- **Normal mode keys typing**: Non-layer keys (a, b, c, etc.) still type in Normal mode instead of being blocked
+- **Ins mode state weirdness**: After j→Ins, Ctrl+M does nothing, then takes multiple right_control taps to exit (may be fixed by in_any_layer change)
+
 ## RHS-Only Transition - Must Have
 
 ### Mouse Mode (new layer)
