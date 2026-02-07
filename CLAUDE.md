@@ -96,24 +96,31 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Right_control exit rules must use `:alone` modifier** if the layer has Ctrl+key combos. Use `[:right_control :right_control ["layer_X" 1] {:alone [["layer_X" 0] ...]}]` - this passes through right_control normally (so Ctrl+key works) and only exits the layer when tapped alone.
 - **Layer entry rules MUST exclude other active layers** to prevent conflicts. When a user enters Nav layer with right_control+N and then presses Shift+J (while still holding right_control), the key combo is actually right_control+Shift+J. Without proper exclusions, this can accidentally trigger other layer entries (like TMUX's right_control+J).
 
-## Layer Entry Conflict Prevention (CRITICAL)
+## Layer Entry Conflict Prevention (in_any_layer variable)
 
 **Problem**: All layers are entered via right_control+KEY. When in one layer, the user may still be holding right_control. If they press a key that matches another layer's entry combo, they'll accidentally switch layers.
 
-**Solution**: Every layer entry rule must include `["layer_n" 0]` (and other layer exclusions) to ensure it only triggers from the base state.
+**Solution**: A single `in_any_layer` variable tracks whether ANY layer is active. All layer entries check `["in_any_layer" 0]` and set `["in_any_layer" 1]` on entry. All exits set `["in_any_layer" 0]`.
 
-**Correct pattern** (see Layer H entry for gold standard):
+**Layer entry pattern**:
 ```clojure
-[{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] ...] ["layer_h" 0] ["layer_n" 0] ["layer_m" 0] ["layer_term" 0]]
+[{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] ["in_any_layer" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0] ["in_any_layer" 0]]
+```
+
+**Layer exit pattern** (escape, right_control alone, or action exits):
+```clojure
+[:escape [["layer_h" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
 ```
 
 **Checklist when adding a new layer**:
-1. Add `["layer_n" 0]` to the entry rule (Nav is the most common source layer)
-2. Consider if other layers could conflict and add their exclusions too
-3. If the new layer uses a key that's already a shortcut in Nav (like J, K, M), definitely add Nav exclusion
+1. Add `["in_any_layer" 0]` condition to entry rule
+2. Add `["in_any_layer" 1]` to entry action
+3. Add `["in_any_layer" 0]` to all exit actions (escape, right_control alone)
 4. Update SwiftBar script with new layer case
 5. Create layers/*.txt file for Hammerspoon overlay
 6. Update layerFiles map in ~/.hammerspoon/init.lua
+
+**Note**: Individual action exits (like pressing a key that performs an action and exits) also need `["in_any_layer" 0]` to maintain consistency. If forgotten, the user can always press escape or right_control to reset.
 
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.

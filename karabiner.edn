@@ -297,12 +297,12 @@
 
   {:des "[Desktop] Layer N (right_control+N to enter)"
    :rules [:Desktop
-    ;; right_control+N enters layer_n
-    [{:key :n :modi {:mandatory [:right_control]}} [["layer_n" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_n" 0]]
+    ;; right_control+N enters layer_n (only when not in any layer)
+    [{:key :n :modi {:mandatory [:right_control]}} [["layer_n" 1] ["in_any_layer" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_n" 0] ["in_any_layer" 0]]
     ;; escape exits layer_n
-    [:escape [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    [:escape [["layer_n" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; right_control alone exits layer_n (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Layer N shortcuts
     [:n [:!Cspacebar ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; Ctrl+H = Cmd+W (close window/tab)
@@ -346,11 +346,11 @@
     ;; K = Shift+Tab (cycle backward in app switcher)
     [:k [{:shell "osascript -e 'tell application \"System Events\" to keystroke tab using shift down'"} ] ["layer_appswitcher" 1]]
     ;; escape exits and releases Cmd
-    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0]] ["layer_appswitcher" 1]]
+    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]] ["layer_appswitcher" 1]]
     ;; enter exits and releases Cmd
-    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0]] ["layer_appswitcher" 1]]
+    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]] ["layer_appswitcher" 1]]
     ;; right_control alone exits and releases Cmd
-    [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0]]}]
+    [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0]]}]
    ]}
 
   {:des "[Desktop] Window Switcher Layer (from Nav Shift+J)"
@@ -360,21 +360,21 @@
     ;; K = Shift+` (cycle backward in window switcher)
     [:k [{:shell "osascript -e 'tell application \"System Events\" to key code 50 using shift down'"} ] ["layer_windowswitcher" 1]]
     ;; escape exits and releases Cmd
-    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0]] ["layer_windowswitcher" 1]]
+    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]] ["layer_windowswitcher" 1]]
     ;; enter exits and releases Cmd
-    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0]] ["layer_windowswitcher" 1]]
+    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]] ["layer_windowswitcher" 1]]
     ;; right_control alone exits and releases Cmd
-    [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0]]}]
+    [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0]]}]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
    :rules [:Desktop
-    ;; right_control+M enters layer_m (not from other layers)
-    [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0] ["layer_n" 0]]
+    ;; right_control+M enters layer_m (only when not in any layer)
+    [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] ["in_any_layer" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0] ["in_any_layer" 0]]
     ;; escape exits layer_m
-    [:escape [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:escape [["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; right_control alone exits layer_m (must use :alone so Ctrl+key combos still work)
-    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_m" 1] {:alone [["layer_m" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Layer M shortcuts
     [:m [:!Tc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:n [:!Tr ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
@@ -397,28 +397,28 @@
 
   {:des "[Desktop] Layer H (right_control+H to enter) - deletion/selection"
    :rules [:Desktop
-    ;; right_control+H enters layer_h (only when not in another layer)
-    [{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0] ["layer_n" 0] ["layer_m" 0] ["layer_term" 0] ["layer_vscode" 0]]
+    ;; right_control+H enters layer_h (only when not in any layer)
+    [{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] ["in_any_layer" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0] ["in_any_layer" 0]]
 
     ;; === Modifier sub-layer exits (must come before base layer exits) ===
-    [:escape [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
-    [:right_control :right_control ["layer_h_cmd" 1] {:alone [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
-    [:right_control :right_control ["layer_h_ctrlcmd" 1] {:alone [["layer_h_ctrlcmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
-    [:right_control :right_control ["layer_h_ctrl" 1] {:alone [["layer_h_ctrl" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
-    [:right_control :right_control ["layer_h_ctrlalt" 1] {:alone [["layer_h_ctrlalt" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
-    [:right_control :right_control ["layer_h_alt" 1] {:alone [["layer_h_alt" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
-    [:right_control :right_control ["layer_h_altcmd" 1] {:alone [["layer_h_altcmd" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
-    [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_cmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
+    [:right_control :right_control ["layer_h_cmd" 1] {:alone [["layer_h_cmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlcmd" 1]]
+    [:right_control :right_control ["layer_h_ctrlcmd" 1] {:alone [["layer_h_ctrlcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrl" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrl" 1]]
+    [:right_control :right_control ["layer_h_ctrl" 1] {:alone [["layer_h_ctrl" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_ctrlalt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_ctrlalt" 1]]
+    [:right_control :right_control ["layer_h_ctrlalt" 1] {:alone [["layer_h_ctrlalt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_alt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_alt" 1]]
+    [:right_control :right_control ["layer_h_alt" 1] {:alone [["layer_h_alt" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_altcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_altcmd" 1]]
+    [:right_control :right_control ["layer_h_altcmd" 1] {:alone [["layer_h_altcmd" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_hyper" 1]]
+    [:right_control :right_control ["layer_h_hyper" 1] {:alone [["layer_h_hyper" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
 
     ;; === Base layer exits ===
-    [:escape [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
-    [:right_control :right_control ["layer_h" 1] {:alone [["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:escape [["layer_h" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
+    [:right_control :right_control ["layer_h" 1] {:alone [["layer_h" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
 
     ;; === Cmd sub-layer (Y to enter from H) ===
     ;; Pattern: entry sets layer_h=0, layer_h_X=1; letters do mod+key, exit to base
@@ -829,12 +829,12 @@
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"
    :rules [:Desktop
-    ;; right_control+J enters layer_chrome (Chrome only, not from other layers)
-    [{:key :j :modi {:mandatory [:right_control]}} [["layer_chrome" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_chrome" 0] ["layer_n" 0]]
+    ;; right_control+J enters layer_chrome (Chrome only, only when not in any layer)
+    [{:key :j :modi {:mandatory [:right_control]}} [["layer_chrome" 1] ["in_any_layer" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_chrome" 0] ["in_any_layer" 0]]
     ;; escape exits layer
-    [:escape [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+    [:escape [["layer_chrome" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; right_control alone exits layer
-    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; H = Command+T (new tab) - exits layer
     [:h [:!Ct ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; J = Control+Shift+Tab (previous tab) - stays in layer, Shift+J = gg (Vimium: top)
@@ -873,12 +873,12 @@
 
   {:des "[Desktop] VS Code Layer (right_control+J to enter, VS Code only)"
    :rules [:Desktop
-    ;; right_control+J enters layer_vscode (VS Code only, not from other layers)
-    [{:key :j :modi {:mandatory [:right_control]}} [["layer_vscode" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] :VSCode ["layer_vscode" 0] ["layer_n" 0]]
+    ;; right_control+J enters layer_vscode (VS Code only, only when not in any layer)
+    [{:key :j :modi {:mandatory [:right_control]}} [["layer_vscode" 1] ["in_any_layer" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] :VSCode ["layer_vscode" 0] ["in_any_layer" 0]]
     ;; escape exits layer
-    [:escape [["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    [:escape [["layer_vscode" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; right_control alone exits layer
-    [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; J = Cmd+D (go to definition)
     [:j [:!Cd ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; K = F2 (rename)
@@ -907,13 +907,13 @@
 
   {:des "[Desktop] Term Layer (right_control+U to enter, focuses iTerm) - git shortcuts"
    :rules [:Desktop
-    ;; right_control+U enters layer_term (focuses iTerm, not from other layers)
+    ;; right_control+U enters layer_term (focuses iTerm, only when not in any layer)
     ;; Focuses iTerm tab 1 (pin) or 2 (iso), then tmux window 5
-    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_term" 0] ["layer_n" 0]]
+    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_term" 0] ["in_any_layer" 0]]
     ;; escape exits layer
-    [:escape [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
+    [:escape [["layer_term" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; right_control alone exits layer
-    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; h = "git status " (no enter)
     [:h [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git status \"' && echo > /tmp/karabiner-layer"} ["layer_term" 0]] ["layer_term" 1]]
     ;; Ctrl+h = "git status " + enter
@@ -952,12 +952,12 @@
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
    :rules [:Desktop
-    ;; right_control+J sends Control+A and enters tmux layer (iTerm only, not from Nav layer)
-    [{:key :j :modi {:mandatory [:right_control]}} [:!Ta ["layer_tmux" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_tmux" 0] ["layer_n" 0]]
+    ;; right_control+J sends Control+A and enters tmux layer (iTerm only, only when not in any layer)
+    [{:key :j :modi {:mandatory [:right_control]}} [:!Ta ["layer_tmux" 1] ["in_any_layer" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_tmux" 0] ["in_any_layer" 0]]
     ;; escape exits layer
-    [:escape [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [:escape [["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     ;; right_control alone exits layer
-    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; Y-P → !, @, #, $, % (tmux panes 1-5)
     [:y [:!S1 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:u [:!S2 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
