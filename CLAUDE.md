@@ -170,7 +170,7 @@ The config is organized into two sections:
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
-- **K** = Command+X (cut)
+- **K** = Cmd+F (find), **Shift+K** = Cmd+Shift+F (find in files)
 - **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)
 - **I** = Command+A (select all)
@@ -246,6 +246,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **U** = Cmd+` (terminal toggle)
 - **I** = Cmd+B (sidebar toggle)
 - **O** = Alt+B (next error)
+- **Comma** = Alt+V
 
 ### RHS Flag (right_control+7 to toggle)
 - Independent boolean flag, combines with any layer

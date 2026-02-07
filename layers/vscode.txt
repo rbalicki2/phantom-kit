@@ -6,3 +6,4 @@ L = Cmd+R (find references)
 U = Cmd+` (terminal toggle)
 I = Cmd+B (sidebar toggle)
 O = Alt+B (next error)
+, = Alt+V

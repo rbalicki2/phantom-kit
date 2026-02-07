@@ -380,7 +380,8 @@
     [:n [:!Tr ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:h [:!Cc ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:j [:!Cv ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:k [:!Cx ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:k [:!Cf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; find
+    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; find in files
     [:l [:!Cz ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; redo
     [:period [:!Cs ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
@@ -890,6 +891,8 @@
     [:i [:!Cb ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; O = Alt+B (next error)
     [:o [:!Ob ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; Comma = Alt+V
+    [:comma [:!Ov ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (right_control+U to enter, focuses iTerm) - git shortcuts"

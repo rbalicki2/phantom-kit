@@ -2,7 +2,7 @@ M Layer (right_control+M)
 
 H = Copy
 J = Paste
-K = Cut
+K = Find, Shift+K = Find in files
 L = Undo, Shift+L = Redo
 M = Ctrl+C (terminal interrupt)
 N = Ctrl+R (terminal search)

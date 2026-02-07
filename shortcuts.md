@@ -13,7 +13,7 @@
 - **Shift+H** = App Switcher layer, **Shift+J** = Window Switcher layer
 
 ## Layer M (right_control+M)
-- **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo, **Shift+L** = Redo
+- **H** = Copy, **J** = Paste, **K** = Find, **Shift+K** = Find in files, **L** = Undo, **Shift+L** = Redo
 - **M** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all, **O** = Cmd+Shift+P, **Shift+O** = Open, **P** = Cmd+P
 - **Ctrl+H** = Close
@@ -50,7 +50,7 @@
 
 ## VS Code Layer (right_control+J, VS Code only)
 - **J** = Cmd+D (go to def), **K** = F2 (rename), **L** = Cmd+R (find refs)
-- **U** = Cmd+` (terminal), **I** = Cmd+B (sidebar), **O** = Alt+B (next error)
+- **U** = Cmd+` (terminal), **I** = Cmd+B (sidebar), **O** = Alt+B (next error), **Comma** = Alt+V
 
 ## Global RHS (Desktop, no layer)
 - **Ctrl+Shift+Y** = Show current layer shortcuts (Hammerspoon overlay)
