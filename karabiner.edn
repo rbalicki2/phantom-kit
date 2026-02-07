@@ -889,10 +889,10 @@
     [:u [:!Cgrave_accent_and_tilde ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; I = Cmd+B (sidebar toggle)
     [:i [:!Cb ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    ;; O = Alt+B (next error)
-    [:o [:!Ob ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    ;; Comma = Alt+V
-    [:comma [:!Ov ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; O = Alt+B (next error) - stays in layer
+    [:o :!Ob ["layer_vscode" 1]]
+    ;; Comma = Alt+V (find next item) - stays in layer
+    [:comma :!Ov ["layer_vscode" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (right_control+U to enter, focuses iTerm) - git shortcuts"

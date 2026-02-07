@@ -245,8 +245,8 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **L** = Cmd+R (find references)
 - **U** = Cmd+` (terminal toggle)
 - **I** = Cmd+B (sidebar toggle)
-- **O** = Alt+B (next error)
-- **Comma** = Alt+V (find next item)
+- **O** = Alt+B (next error, stays)
+- **Comma** = Alt+V (find next item, stays)
 
 ### RHS Flag (right_control+7 to toggle)
 - Independent boolean flag, combines with any layer
