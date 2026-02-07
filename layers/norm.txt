@@ -1,0 +1,8 @@
+NORMAL - Layer Selector
+j → Ins (typing mode)
+n → Nav layer
+m → M layer
+h → H layer
+u → Term layer
+k → Chrome/VSCode/TMUX (app-specific)
+right_ctrl → send escape

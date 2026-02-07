@@ -138,16 +138,16 @@ Restructure the layer system so that:
 
 ## Phase 5: Indicators
 
-- [ ] **Task 5.1**: Update SwiftBar script
+- [x] **Task 5.1**: Update SwiftBar script
   - Add case for `norm` → display "Norm"
   - Add case for `ins` → display "Ins"
   - Update `karabiner-layer.300ms.sh`
 
-- [ ] **Task 5.2**: Create Hammerspoon overlay files
+- [x] **Task 5.2**: Create Hammerspoon overlay files
   - Create `layers/norm.txt` with Normal layer shortcuts
   - Create `layers/ins.txt` (minimal - just shows it's typing mode)
 
-- [ ] **Task 5.3**: Update Hammerspoon init.lua
+- [x] **Task 5.3**: Update Hammerspoon init.lua
   - Add `norm` and `ins` to `layerFiles` map
 
 ---

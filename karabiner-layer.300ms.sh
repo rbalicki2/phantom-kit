@@ -19,6 +19,8 @@ fi
 [ -z "$PROJECT" ] && PROJECT="iso"
 
 case "$LAYER" in
+    norm) NAME="Norm" ;;
+    ins) NAME="Ins" ;;
     n) NAME="Nav" ;;
     m) NAME="M" ;;
     h) NAME="H" ;;
