@@ -121,7 +121,6 @@ Restructure the layer system so that:
 ### Task 4.2: Switch/WinSw layers
 - Currently entered from Nav (Shift+H, Shift+J)
 - Exit behavior: return to Normal (not Nav)
-- Or should they return to Nav? (Decide during implementation)
 
 ---
 
@@ -181,6 +180,5 @@ Restructure the layer system so that:
 ## Open Questions (to resolve during implementation)
 
 1. **Default on boot**: How to ensure Normal is active on Karabiner start?
-2. **Switch/WinSw exit target**: Normal or Nav?
-3. **RHS toggle key in Normal**: Which key?
-4. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
+2. **RHS toggle key in Normal**: Which key?
+3. **in_any_layer variable**: Still needed? Rename to exclude Normal/Ins?
