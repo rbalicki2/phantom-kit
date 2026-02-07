@@ -361,8 +361,8 @@
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
    :rules [:Desktop
-    ;; right_control+M enters layer_m
-    [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0]]
+    ;; right_control+M enters layer_m (not from other layers)
+    [{:key :m :modi {:mandatory [:right_control]}} [["layer_m" 1] {:shell "echo m > /tmp/karabiner-layer"}] ["layer_m" 0] ["layer_n" 0]]
     ;; escape exits layer_m
     [:escape [["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; right_control alone exits layer_m (must use :alone so Ctrl+key combos still work)
@@ -812,8 +812,8 @@
 
   {:des "[Desktop] Chrome Layer (right_control+J to enter, Chrome only)"
    :rules [:Desktop
-    ;; right_control+J enters layer_chrome (Chrome only)
-    [{:key :j :modi {:mandatory [:right_control]}} [["layer_chrome" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_chrome" 0]]
+    ;; right_control+J enters layer_chrome (Chrome only, not from other layers)
+    [{:key :j :modi {:mandatory [:right_control]}} [["layer_chrome" 1] {:shell "echo chrome > /tmp/karabiner-layer"}] :Chrome ["layer_chrome" 0] ["layer_n" 0]]
     ;; escape exits layer
     [:escape [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; right_control alone exits layer
@@ -856,8 +856,8 @@
 
   {:des "[Desktop] Term Layer (right_control+U to enter, iTerm only) - git shortcuts"
    :rules [:Desktop
-    ;; right_control+U enters layer_term (iTerm only)
-    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] {:shell "echo term > /tmp/karabiner-layer"}] :iTerm ["layer_term" 0]]
+    ;; right_control+U enters layer_term (iTerm only, not from other layers)
+    [{:key :u :modi {:mandatory [:right_control]}} [["layer_term" 1] {:shell "echo term > /tmp/karabiner-layer"}] :iTerm ["layer_term" 0] ["layer_n" 0]]
     ;; escape exits layer
     [:escape [["layer_term" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_term" 1]]
     ;; right_control alone exits layer

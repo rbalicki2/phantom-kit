@@ -84,6 +84,26 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **RHS layer shortcuts with Ctrl modifier must use `right_control`**, not `left_control`.
 - **The `{:alone :escape}` mechanism does NOT work for layer exits.** When right_control is mapped to send escape via `{:alone :escape}`, the escape event goes directly to the OS rather than being re-evaluated by Karabiner rules. Each layer needs an explicit right_control exit rule.
 - **Right_control exit rules must use `:alone` modifier** if the layer has Ctrl+key combos. Use `[:right_control :right_control ["layer_X" 1] {:alone [["layer_X" 0] ...]}]` - this passes through right_control normally (so Ctrl+key works) and only exits the layer when tapped alone.
+- **Layer entry rules MUST exclude other active layers** to prevent conflicts. When a user enters Nav layer with right_control+N and then presses Shift+J (while still holding right_control), the key combo is actually right_control+Shift+J. Without proper exclusions, this can accidentally trigger other layer entries (like TMUX's right_control+J).
+
+## Layer Entry Conflict Prevention (CRITICAL)
+
+**Problem**: All layers are entered via right_control+KEY. When in one layer, the user may still be holding right_control. If they press a key that matches another layer's entry combo, they'll accidentally switch layers.
+
+**Solution**: Every layer entry rule must include `["layer_n" 0]` (and other layer exclusions) to ensure it only triggers from the base state.
+
+**Correct pattern** (see Layer H entry for gold standard):
+```clojure
+[{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] ...] ["layer_h" 0] ["layer_n" 0] ["layer_m" 0] ["layer_term" 0]]
+```
+
+**Checklist when adding a new layer**:
+1. Add `["layer_n" 0]` to the entry rule (Nav is the most common source layer)
+2. Consider if other layers could conflict and add their exclusions too
+3. If the new layer uses a key that's already a shortcut in Nav (like J, K, M), definitely add Nav exclusion
+4. Update SwiftBar script with new layer case
+5. Create layers/*.txt file for Hammerspoon overlay
+6. Update layerFiles map in ~/.hammerspoon/init.lua
 
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
