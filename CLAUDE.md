@@ -238,6 +238,15 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **N** = Cmd+K
 - **Period** = Cmd+R (refresh)
 
+### VS Code Layer (right_control+J, VS Code only)
+- Only activates when VS Code is foreground app
+- **J** = Cmd+D (go to definition)
+- **K** = F2 (rename)
+- **L** = Cmd+R (find references)
+- **U** = Cmd+` (terminal toggle)
+- **I** = Cmd+B (sidebar toggle)
+- **O** = Alt+B (next error)
+
 ### RHS Flag (right_control+7 to toggle)
 - Independent boolean flag, combines with any layer
 - Toggles on/off (press again to exit)

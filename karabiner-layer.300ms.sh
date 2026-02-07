@@ -31,6 +31,7 @@ case "$LAYER" in
     hCTO) NAME="H-CTO" ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
+    vscode) NAME="VSC" ;;
     term) NAME="Term" ;;
     switch) NAME="Swtch" ;;
     winsw) NAME="WinSw" ;;

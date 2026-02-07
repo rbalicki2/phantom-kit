@@ -48,6 +48,10 @@
 - **Shift+L** = Copy URL
 - **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
 
+## VS Code Layer (right_control+J, VS Code only)
+- **J** = Cmd+D (go to def), **K** = F2 (rename), **L** = Cmd+R (find refs)
+- **U** = Cmd+` (terminal), **I** = Cmd+B (sidebar), **O** = Alt+B (next error)
+
 ## Global RHS (Desktop, no layer)
 - **Ctrl+Shift+Y** = Show current layer shortcuts (Hammerspoon overlay)
 - **Right Cmd + J/K** = Word left/right

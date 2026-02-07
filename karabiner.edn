@@ -46,6 +46,7 @@
  :applications {
   :iTerm ["com.googlecode.iterm2"]
   :Chrome ["com.google.Chrome"]
+  :VSCode ["com.microsoft.VSCode"]
  }
 
  :simlayers {
@@ -867,6 +868,28 @@
     [{:key :h :modi {:mandatory [:right_control :shift]}} [:!Cw :!TStab] ["layer_chrome" 1]]
     ;; Period = Command+R (refresh)
     [:period [:!Cr ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
+   ]}
+
+  {:des "[Desktop] VS Code Layer (right_control+J to enter, VS Code only)"
+   :rules [:Desktop
+    ;; right_control+J enters layer_vscode (VS Code only, not from other layers)
+    [{:key :j :modi {:mandatory [:right_control]}} [["layer_vscode" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] :VSCode ["layer_vscode" 0] ["layer_n" 0]]
+    ;; escape exits layer
+    [:escape [["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; right_control alone exits layer
+    [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
+    ;; J = Cmd+D (go to definition)
+    [:j [:!Cd ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; K = F2 (rename)
+    [:k [:f2 ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; L = Cmd+R (find references)
+    [:l [:!Cr ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; U = Cmd+` (terminal toggle)
+    [:u [:!Cgrave_accent_and_tilde ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; I = Cmd+B (sidebar toggle)
+    [:i [:!Cb ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    ;; O = Alt+B (next error)
+    [:o [:!Ob ["layer_vscode" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
    ]}
 
   {:des "[Desktop] Term Layer (right_control+U to enter, focuses iTerm) - git shortcuts"
