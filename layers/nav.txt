@@ -10,7 +10,7 @@ N = Spotlight, Shift+N = iTerm tab 1
 Shift+M/,/. = iTerm tab 2/3/4
 Ctrl+H = Close (Cmd+W)
 P = Screenshot full, Ctrl+P = Screenshot selection
-U/I = Next/Prev tab
+U/I = Prev/Next tab (stays)
 Up/Down = Left/Right half
 Enter = Switch windows
 Space = Maximize

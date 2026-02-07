@@ -143,8 +143,8 @@ The config is organized into two sections:
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
-- **U** = Ctrl+Tab (next tab)
-- **I** = Ctrl+Shift+Tab (previous tab)
+- **U** = Ctrl+Shift+Tab (previous tab, stays in layer)
+- **I** = Ctrl+Tab (next tab, stays in layer)
 - **H** = Open Karabiner-EventViewer
 - **J** = Open iTerm
 - **K** = Open VS Code

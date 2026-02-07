@@ -3,7 +3,7 @@
 ## Layer N "Nav" (right_control+N)
 - **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal
 - **M** = Chrome Personal, **Comma** = Chrome Work
-- **U** = Next tab, **I** = Previous tab
+- **U** = Previous tab (stays), **I** = Next tab (stays)
 - **N** = Spotlight, **Enter** = Switch windows
 - **Ctrl+H** = Close (Cmd+W)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
