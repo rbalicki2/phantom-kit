@@ -50,7 +50,7 @@ If things look messy, ask the user before making changes.
 
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
-(none)
+- Create a Tampermonkey setup that exposes functions callable from a layer
 
 ## Workflow After Changes
 Always keep CLAUDE.md and shortcuts.md up-to-date after any keybinding changes.
