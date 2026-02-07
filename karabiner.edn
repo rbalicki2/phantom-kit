@@ -327,7 +327,7 @@
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
     ;; Shortcuts
-    [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Spotlight
+    [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
     [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Switch windows
     ;; Window management (BTT)
