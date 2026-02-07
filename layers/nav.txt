@@ -1,6 +1,6 @@
 Nav Layer (right_control+N)
 
-H = Karabiner-EventViewer
+H = Karabiner-EventViewer, Shift+H = App Switcher
 J = iTerm, Shift+J = Obsidian
 K = VS Code, Shift+K = Finder
 L = Signal

@@ -317,6 +317,8 @@
     ;; Shift+N/M = iTerm tab 1/2
     [{:key :n :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 1' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :m :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 2' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+H = Enter app switcher layer (holds Cmd, sends Tab)
+    [{:key :h :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to keystroke tab' && echo appsw > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_appswitcher" 1]] ["layer_n" 1]]
     ;; Shift+J = Obsidian, Shift+K = Finder
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "open -a 'Obsidian' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :k :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
@@ -324,6 +326,18 @@
     [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; P = Cmd+Shift+3 (full screen screenshot)
     [:p [:!CS3 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+   ]}
+
+  {:des "[Desktop] App Switcher Layer (from Nav Shift+H)"
+   :rules [:Desktop
+    ;; J = Tab (cycle forward in app switcher, Cmd still held)
+    [:j [{:shell "osascript -e 'tell application \"System Events\" to keystroke tab'"} ] ["layer_appswitcher" 1]]
+    ;; K = Shift+Tab (cycle backward in app switcher)
+    [:k [{:shell "osascript -e 'tell application \"System Events\" to keystroke tab using shift down'"} ] ["layer_appswitcher" 1]]
+    ;; escape exits and releases Cmd
+    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0]] ["layer_appswitcher" 1]]
+    ;; right_control alone exits and releases Cmd
+    [:right_control :right_control ["layer_appswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo > /tmp/karabiner-layer"} ["layer_appswitcher" 0]]}]
    ]}
 
   {:des "[Desktop] Layer M (right_control+M to enter)"
