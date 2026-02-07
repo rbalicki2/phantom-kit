@@ -67,3 +67,8 @@ Two styles needed:
 
 ### New Features
 - Chat interface popover accessible anywhere
+
+### Utility Commands
+- **VPN connect**: Commands to connect/disconnect VPN
+- **Archive tab**: Add current tab URL/title to an Obsidian note, then close the tab
+- **Whispering restart**: Ensure Whispering is restarted and listening from correct microphone
