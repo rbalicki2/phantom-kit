@@ -3,7 +3,7 @@
 
 # First, copy relative path (Shift+Alt+Cmd+C)
 osascript -e 'tell app "System Events" to keystroke "c" using {shift down, option down, command down}'
-sleep 0.3
+sleep 0.5
 
 # Check project mode
 PROJECT=$(cat /tmp/karabiner-project 2>/dev/null)
@@ -33,6 +33,7 @@ tell application "System Events"
     keystroke "t" using command down
     delay 0.1
     keystroke "isof"
+    delay 0.1
     keystroke "v" using command down
     delay 0.05
     key code 36
