@@ -9,8 +9,9 @@
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
 - **Shift+N/M/,/.** = iTerm tab 1/2/3/4
-- **Shift+H** = App Switcher layer (J/K to cycle, Ctrl to select)
-- **Shift+J** = Obsidian, **Shift+K** = Finder
+- **Shift+H** = App Switcher layer (J/K to cycle, Enter to select)
+- **Shift+J** = Window Switcher layer (J/K to cycle, Enter to select)
+- **Shift+K** = Finder
 
 ## Layer M (right_control+M)
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo

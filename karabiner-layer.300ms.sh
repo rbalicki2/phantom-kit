@@ -26,6 +26,7 @@ case "$LAYER" in
     chrome) NAME="Chrm" ;;
     term) NAME="Term" ;;
     switch) NAME="Swtch" ;;
+    winsw) NAME="WinSw" ;;
     *) NAME="normal" ;;
 esac
 
