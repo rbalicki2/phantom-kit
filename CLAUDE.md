@@ -212,7 +212,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 ### Tmux Layer (right_control+J, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
-- **Shift+Y/U/I/O** = ^, &, *, ( (panes 6-9)
+- **Shift+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
 - Only activates when iTerm is foreground app
 
 ### Chrome Layer (right_control+J, Chrome only)

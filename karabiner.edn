@@ -912,11 +912,12 @@
     [:i [:!S3 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:o [:!S4 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [:p [:!S5 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
-    ;; Shift+Y-O → ^, &, *, ( (tmux panes 6-9)
+    ;; Shift+Y-P → ^, &, *, (, ) (tmux panes 6-10)
     [{:key :y :modi {:mandatory [:shift]}} [:!S6 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [{:key :u :modi {:mandatory [:shift]}} [:!S7 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [{:key :i :modi {:mandatory [:shift]}} [:!S8 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     [{:key :o :modi {:mandatory [:shift]}} [:!S9 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
+    [{:key :p :modi {:mandatory [:shift]}} [:!S0 ["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
    ]}
 
   {:des "[Desktop] Right control to escape when tapped alone"
