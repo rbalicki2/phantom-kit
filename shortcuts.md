@@ -1,17 +1,16 @@
 # Keyboard Shortcuts Reference
 
 ## Layer N "Nav" (right_control+N)
-- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal
+- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **O** = Obsidian
 - **M** = Chrome Personal, **Comma** = Chrome Work
 - **U** = Previous tab (stays), **I** = Next tab (stays)
 - **N** = Spotlight, **Enter** = Switch windows
 - **Ctrl+H** = Close (Cmd+W)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
-- **Shift+N/M/,/.** = iTerm tab 1/2/3/4
-- **Shift+H** = App Switcher layer (J/K to cycle, Enter to select)
-- **Shift+J** = Window Switcher layer (J/K to cycle, Enter to select)
-- **Shift+K** = Finder, **Ctrl+K** = Finder Go to Folder
+- **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
+- **Shift+N/M/,** = iTerm tab 1/2/3
+- **Shift+H** = App Switcher layer, **Shift+J** = Window Switcher layer
 
 ## Layer M (right_control+M)
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo

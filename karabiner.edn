@@ -319,19 +319,19 @@
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:l [{:shell "open -a 'Signal' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; Shift+N/M/,/. = iTerm tab 1/2/3/4
+    [:o [{:shell "open -a 'Obsidian' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Period = Finder, Shift+Period = Go to Folder, Ctrl+Period = Go to Folder + Paste
+    [:period [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :period :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    [{:key :period :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Shift+N/M/, = iTerm tab 1/2/3
     [{:key :n :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 1' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :m :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 2' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [{:key :comma :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 3' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"iTerm\" to tell current window to select tab 4' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Shift+H = Enter app switcher layer (holds Cmd, sends Tab)
     [{:key :h :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to keystroke tab' && echo switch > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_appswitcher" 1]] ["layer_n" 1]]
     ;; Shift+J = Enter window switcher layer (holds Cmd, sends `)
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to key code 50' && echo winsw > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_windowswitcher" 1]] ["layer_n" 1]]
-    ;; Shift+K = Finder
-    [{:key :k :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; Ctrl+K = Finder with Go to Folder dialog (Cmd+Shift+G)
-    [{:key :k :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Ctrl+P = selection screenshot (Cmd+Shift+4) - re-press right_control while in layer
     [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; P = Cmd+Shift+3 (full screen screenshot)

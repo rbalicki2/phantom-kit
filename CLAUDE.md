@@ -152,9 +152,11 @@ The config is organized into two sections:
 - **J** = Open iTerm
 - **K** = Open VS Code
 - **L** = Open Signal
-- **Shift+N/M/,/.** = iTerm tab 1/2/3/4
+- **O** = Open Obsidian
+- **Period** = Finder, **Shift+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
+- **Shift+N/M/,** = iTerm tab 1/2/3
 - **Shift+H** = Enter App Switcher layer (Cmd+Tab, holds Cmd)
-- **Shift+J** = Obsidian, **Shift+K** = Finder, **Ctrl+K** = Finder Go to Folder
+- **Shift+J** = Enter Window Switcher layer (Cmd+`, holds Cmd)
 
 ### Switch Layer (from Nav Shift+H)
 - Opens with Cmd held down and app switcher visible
