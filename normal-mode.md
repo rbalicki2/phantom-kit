@@ -73,23 +73,23 @@ Restructure the layer system so that:
 
 ## Phase 2: Layer Entries from Normal
 
-- [ ] **Task 2.1**: Nav layer entry
+- [x] **Task 2.1**: Nav layer entry
   - `n` in Normal → enter Nav layer (set `layer_n` to 1, `layer_normal` to 0)
   - Remove old `right_ctrl+n` entry rule
 
-- [ ] **Task 2.2**: M layer entry
+- [x] **Task 2.2**: M layer entry
   - `m` in Normal → enter M layer
   - Remove old `right_ctrl+m` entry rule
 
-- [ ] **Task 2.3**: H layer entry
+- [x] **Task 2.3**: H layer entry
   - `h` in Normal → enter H layer
   - Remove old `right_ctrl+h` entry rule
 
-- [ ] **Task 2.4**: Term layer entry
+- [x] **Task 2.4**: Term layer entry
   - `u` in Normal → enter Term layer (focuses iTerm)
   - Remove old `right_ctrl+u` entry rule
 
-- [ ] **Task 2.5**: Chrome/VSCode/TMUX layer entry
+- [x] **Task 2.5**: Chrome/VSCode/TMUX layer entry
   - `k` in Normal → enter Chrome layer (if Chrome focused)
   - `k` in Normal → enter VSCode layer (if VSCode focused)
   - `k` in Normal → enter TMUX layer (if iTerm focused)
