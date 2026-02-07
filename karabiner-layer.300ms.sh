@@ -40,4 +40,5 @@ esac
 
 # Combine mode, RHS prefix, and layer name
 OUTPUT="${PROJECT}-${RHS}${NAME}"
-printf "%s | font=Menlo trim=false\n" "$OUTPUT"
+# Pad to 16 chars minimum width for consistent menu bar space
+printf "%-16s | font=Menlo trim=false\n" "$OUTPUT"
