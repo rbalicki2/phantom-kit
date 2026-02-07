@@ -30,7 +30,13 @@
       "Bash(bash:*)",
       "Bash(python3:*)",
       "Bash(git -C /Users/rbalicki/code/voicemode status)",
-      "Bash(git -C ~/.config status)"
+      "Bash(git -C ~/.config status)",
+      "Bash(/Users/rbalicki/code/voicemode/karabiner-layer.300ms.sh:*)",
+      "Bash(hs:*)",
+      "Bash(git -C ~/.tmuxp rev-parse --git-dir)",
+      "Bash(git -C ~ rev-parse --git-dir)",
+      "Bash(git -C /Users/rbalicki/code/voicemode status --short)",
+      "Bash(git -C ~/.config status --short)"
     ]
   }
 }
