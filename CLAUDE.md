@@ -112,6 +112,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Right_control exit rules must use `:alone` modifier** if the layer has Ctrl+key combos. Use `[:right_control :right_control ["layer_X" 1] {:alone [["layer_X" 0] ...]}]` - this passes through right_control normally (so Ctrl+key works) and only exits the layer when tapped alone.
 - **Layer entry rules MUST exclude other active layers** to prevent conflicts. When a user enters Nav layer with right_control+N and then presses Shift+J (while still holding right_control), the key combo is actually right_control+Shift+J. Without proper exclusions, this can accidentally trigger other layer entries (like TMUX's right_control+J).
 - **Goku only supports ONE condition per rule.** Multiple conditions at the end of a rule like `["layer_h" 0] ["in_any_layer" 0]` will only use the first one. The `:conditions` key syntax also doesn't work. Use rule ordering instead (see "Layer Entry Conflict Prevention" section).
+- **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 
 ## Layer Entry Conflict Prevention (Rule Ordering)
 
@@ -157,7 +158,28 @@ The config is organized into two sections:
 
 ## Current Layers
 
-### Layer N "Nav" (right_control+N)
+### Modal System
+The layer system is modal (like vim):
+- **Normal** = Default layer (layer selector). Active keys: j, n, m, h, u, k. All other keys disabled.
+- **Ins** = Typing mode (all keys pass through)
+- Other layers entered from Normal with single keys
+- All layers exit to Normal with `right_control` or `escape`
+
+### Normal Layer (default)
+- **j** = Enter Ins (typing mode)
+- **n** = Enter Nav layer
+- **m** = Enter M layer
+- **h** = Enter H layer
+- **u** = Enter Term layer (focuses iTerm)
+- **k** = Enter Chrome/VSCode/TMUX (app-specific)
+- **right_control** = Send escape (stays in Normal)
+- All other letter keys disabled
+
+### Ins Layer (j from Normal)
+- All keys type normally (passthrough)
+- **right_control** = Return to Normal
+
+### Layer N "Nav" (n from Normal)
 - **N** = Command+Space (Spotlight)
 - **Ctrl+H** = Cmd+W (close)
 - **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
@@ -186,7 +208,7 @@ The config is organized into two sections:
 - **Enter**, **right_control**, or **escape** = Select app and exit (releases Cmd)
 - SwiftBar shows "Swtch"
 
-### Layer M (right_control+M)
+### Layer M (m from Normal)
 - **M** = Control+C (terminal copy/interrupt)
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
@@ -200,7 +222,7 @@ The config is organized into two sections:
 - **Ctrl+H** = Command+W (close)
 - **Comma** = Toggle iso/pin mode (exits layer)
 
-### Layer H (right_control+H)
+### Layer H (h from Normal)
 - **J/K** = Delete word left/right (stays)
 - **M/Comma** = Delete to line start/end (stays)
 - **Up/Down** = Delete char left/right (stays)
@@ -226,7 +248,7 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 
 **Cmd sub-layer special**: page_down = Cmd+click, page_up = Cmd+right-click
 
-### Term Layer (right_control+U, focuses iTerm)
+### Term Layer (u from Normal, focuses iTerm)
 Git shortcuts for terminal. Uses osascript to type text.
 - **H** = "git status ", **Ctrl+H** = + enter
 - **J** = "git log ", **Ctrl+J** = + enter
@@ -237,13 +259,13 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **,** = "git add -A && git stash" + enter, **Ctrl+,** = "git stash pop" + enter
 - **I** = Cmd+D (split vertical), **Ctrl+I** = Cmd+Shift+D (split horizontal)
 
-### Tmux Layer (right_control+K, iTerm only)
+### Tmux Layer (k from Normal, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
 - **Shift+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
 - Only activates when iTerm is foreground app
 
-### Chrome Layer (right_control+K, Chrome only)
+### Chrome Layer (k from Normal, Chrome only)
 - Only activates when Google Chrome is foreground app
 - **H** = Cmd+T (new tab) - exits layer
 - **J** = Ctrl+Shift+Tab (previous tab) - stays in layer
@@ -259,7 +281,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **N** = Cmd+K
 - **Period** = Cmd+R (refresh)
 
-### VS Code Layer (right_control+K, VS Code only)
+### VS Code Layer (k from Normal, VS Code only)
 - Only activates when VS Code is foreground app
 - **H** = Copy relative path, **Shift+H** = Copy full path
 - **Ctrl+H** = Copy rel path + open in Chrome (cc/isof prefix based on project)
@@ -280,9 +302,9 @@ Git shortcuts for terminal. Uses osascript to type text.
 - SwiftBar shows "RHS-" prefix (e.g., "RHS-Nav", "RHS-M")
 
 ### Layer Exit Methods
-All layers can be exited by:
+All layers exit to Normal (not to Ins/typing mode) by:
 - Pressing **escape**
-- Pressing **right_control** alone (also sends escape)
+- Pressing **right_control** alone
 - Most layer actions auto-exit (except Chrome J/K for tab cycling)
 
 **Convention**: Actions stay in layer if repeatable (delete, select, tab cycling). Actions exit layer if one-shot (open app, zoom, type symbol).
@@ -323,7 +345,7 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
-- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `term`, default `base`
+- Layers: `norm`, `ins`, `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `vscode`, `term`, `switch`, `winsw`
 - Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case
