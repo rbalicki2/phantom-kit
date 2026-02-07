@@ -243,8 +243,8 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **J** = Cmd+D (go to definition)
 - **K** = F2 (rename)
 - **L** = Cmd+R (find references)
-- **I** = Cmd+2, **Shift+I** = Ctrl+Cmd+2
-- **Shift+U** = Ctrl+Cmd+1
+- **I** = Cmd+2 (create 2nd tab), **Shift+I** = Ctrl+Cmd+2 (move to next tab)
+- **Shift+U** = Ctrl+Cmd+1 (move to prev tab)
 - **O** = Cmd+B (sidebar toggle)
 - **P** = Cmd+` (terminal toggle)
 - **Comma** = Alt+B (next error, stays)

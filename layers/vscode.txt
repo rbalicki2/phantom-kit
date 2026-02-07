@@ -3,8 +3,8 @@ VS Code Layer (right_control+J, VS Code only)
 J = Cmd+D (go to definition)
 K = F2 (rename)
 L = Cmd+R (find references)
-I = Cmd+2, Shift+I = Ctrl+Cmd+2
-Shift+U = Ctrl+Cmd+1
+I = Create 2nd tab, Shift+I = Move to next tab
+Shift+U = Move to prev tab
 O = Cmd+B (sidebar toggle)
 P = Cmd+` (terminal toggle)
 , = Next error (stays)
