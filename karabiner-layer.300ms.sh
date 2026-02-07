@@ -12,11 +12,11 @@ if [ -f "/tmp/karabiner-rhs" ] && [ -s "/tmp/karabiner-rhs" ]; then
 fi
 
 # Read mode (iso/pin), default to iso
-MODE="iso"
-if [ -f "/tmp/karabiner-mode" ]; then
-    MODE=$(tr -d '[:space:]' < /tmp/karabiner-mode)
+PROJECT="iso"
+if [ -f "/tmp/karabiner-project" ]; then
+    PROJECT=$(tr -d '[:space:]' < /tmp/karabiner-project)
 fi
-[ -z "$MODE" ] && MODE="iso"
+[ -z "$PROJECT" ] && PROJECT="iso"
 
 case "$LAYER" in
     n) NAME="Nav" ;;
@@ -38,5 +38,5 @@ case "$LAYER" in
 esac
 
 # Combine mode, RHS prefix, and layer name
-OUTPUT="${MODE}-${RHS}${NAME}"
+OUTPUT="${PROJECT}-${RHS}${NAME}"
 printf "%s | font=Menlo trim=false\n" "$OUTPUT"

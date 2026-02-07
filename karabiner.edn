@@ -384,7 +384,7 @@
     [:o [:!Cf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:p [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; Comma toggles iso/pin mode (exits layer)
-    [:comma [{:shell "if [ \"$(cat /tmp/karabiner-mode 2>/dev/null)\" = 'pin' ]; then echo iso > /tmp/karabiner-mode; else echo pin > /tmp/karabiner-mode; fi && echo > /tmp/karabiner-layer"} ["layer_m" 0]] ["layer_m" 1]]
+    [:comma [{:shell "if [ \"$(cat /tmp/karabiner-project 2>/dev/null)\" = 'pin' ]; then echo iso > /tmp/karabiner-project; else echo pin > /tmp/karabiner-project; fi && echo > /tmp/karabiner-layer"} ["layer_m" 0]] ["layer_m" 1]]
    ]}
 
   {:des "[Desktop] Layer H (right_control+H to enter) - deletion/selection"

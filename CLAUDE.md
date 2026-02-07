@@ -272,7 +272,7 @@ All layers can be exited by:
 
 ## SwiftBar Status
 - Shows current layer in menu bar
-- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-mode` for iso/pin mode
+- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
 - Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `term`, default `base`
 - Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
