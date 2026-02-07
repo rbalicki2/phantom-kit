@@ -900,8 +900,8 @@
 
   {:des "[Desktop] Tmux Layer (right_control+J to enter, iTerm only)"
    :rules [:Desktop
-    ;; right_control+J sends Control+A and enters tmux layer (iTerm only)
-    [{:key :j :modi {:mandatory [:right_control]}} [:!Ta ["layer_tmux" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_tmux" 0]]
+    ;; right_control+J sends Control+A and enters tmux layer (iTerm only, not from Nav layer)
+    [{:key :j :modi {:mandatory [:right_control]}} [:!Ta ["layer_tmux" 1] {:shell "echo tmux > /tmp/karabiner-layer"}] :iTerm ["layer_tmux" 0] ["layer_n" 0]]
     ;; escape exits layer
     [:escape [["layer_tmux" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_tmux" 1]]
     ;; right_control alone exits layer
