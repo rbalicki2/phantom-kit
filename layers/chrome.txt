@@ -1,7 +1,7 @@
 Chrome Layer (right_control+J, Chrome only)
 
 H = New tab
-J/K = Prev/Next tab (stays in layer)
+J/K = Prev/Next tab (stays in layer), Shift+J/K = gg/G (top/bottom)
 L = Address bar, Shift+L = Copy URL
 Ctrl+H = Close tab (stays), Shift+Ctrl+H = Close + prev (stays)
 N = Cmd+K

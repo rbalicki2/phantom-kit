@@ -820,10 +820,12 @@
     [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}]}]
     ;; H = Command+T (new tab) - exits layer
     [:h [:!Ct ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
-    ;; J = Control+Shift+Tab (previous tab) - stays in layer
+    ;; J = Control+Shift+Tab (previous tab) - stays in layer, Shift+J = gg (Vimium: top)
     [:j :!TStab ["layer_chrome" 1]]
-    ;; K = Control+Tab (next tab) - stays in layer
+    [{:key :j :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to keystroke \"gg\"' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
+    ;; K = Control+Tab (next tab) - stays in layer, Shift+K = Shift+G (Vimium: bottom)
     [:k :!Ttab ["layer_chrome" 1]]
+    [{:key :k :modi {:mandatory [:shift]}} [:!Sg ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     ;; L = Command+L (address bar), Shift+L = Copy URL (Cmd+L, Cmd+C, Esc)
     [:l [:!Cl ["layer_chrome" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_chrome" 1]]
     [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo > /tmp/karabiner-layer"} ["layer_chrome" 0]] ["layer_chrome" 1]]
