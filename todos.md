@@ -70,6 +70,7 @@ Two styles needed:
 - Chat interface popover accessible anywhere
 
 ### Utility Commands
+- **Laptop/Desktop mode toggle**: Key binding on laptop to enter laptop mode, one-click binding to enter desktop mode
 - **Split tabs in Chrome**: Way to split/tile Chrome tabs
 - **Zoom in/out**: Maybe Chrome layer, maybe global
 - **VPN connect**: Commands to connect/disconnect VPN
