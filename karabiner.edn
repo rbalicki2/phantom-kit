@@ -398,7 +398,7 @@
   {:des "[Desktop] Layer H (right_control+H to enter) - deletion/selection"
    :rules [:Desktop
     ;; right_control+H enters layer_h (only when not in another layer)
-    [{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0] ["layer_n" 0] ["layer_m" 0] ["layer_term" 0]]
+    [{:key :h :modi {:mandatory [:right_control]}} [["layer_h" 1] {:shell "echo h > /tmp/karabiner-layer"}] ["layer_h" 0] ["layer_n" 0] ["layer_m" 0] ["layer_term" 0] ["layer_vscode" 0]]
 
     ;; === Modifier sub-layer exits (must come before base layer exits) ===
     [:escape [["layer_h_cmd" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h_cmd" 1]]
