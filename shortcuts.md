@@ -33,7 +33,7 @@
 - **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
 - **N** = "git reset ", **Ctrl+N** = "grhh" + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
-- **Comma** = "git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
+- **Comma** = "git add -A && git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
 - **I** = Split vertical (Cmd+D), **Ctrl+I** = Split horizontal (Cmd+Shift+D)
 
 ## Tmux Layer (right_control+J, iTerm only)

@@ -209,7 +209,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
 - **N** = "git reset ", **Ctrl+N** = "grhh" + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
-- **,** = "git stash" + enter, **Ctrl+,** = "git stash pop" + enter
+- **,** = "git add -A && git stash" + enter, **Ctrl+,** = "git stash pop" + enter
 - **I** = Cmd+D (split vertical), **Ctrl+I** = Cmd+Shift+D (split horizontal)
 
 ### Tmux Layer (right_control+J, iTerm only)
