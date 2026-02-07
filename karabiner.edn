@@ -384,7 +384,9 @@
     [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; redo
     [:period [:!Cs ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:i [:!Ca ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:o [:!Cf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:o [:!Co ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [:p [:!Cp ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [{:key :p :modi {:mandatory [:shift]}} [:!CSp ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; Ctrl+H = Cmd+W (close)
     [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; Comma toggles iso/pin mode (exits layer)

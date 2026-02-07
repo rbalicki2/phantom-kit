@@ -15,7 +15,8 @@
 ## Layer M (right_control+M)
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo, **Shift+L** = Redo
 - **M** = Ctrl+C, **N** = Ctrl+R
-- **I** = Select all, **O** = Find, **Ctrl+H** = Close
+- **I** = Select all, **O** = Open, **P** = Print/Palette, **Shift+P** = Cmd+Shift+P
+- **Ctrl+H** = Close
 - **Period** = Save, **Comma** = Toggle iso/pin mode
 
 ## Layer H (right_control+H)
