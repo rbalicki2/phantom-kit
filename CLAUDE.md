@@ -171,7 +171,7 @@ The config is organized into two sections:
 - **I** = Command+A (select all)
 - **O** = Command+F (find)
 - **P** = Command+W (close)
-- **Comma** = (free)
+- **Comma** = Toggle iso/pin mode (stays in layer)
 
 ### Layer H (right_control+H)
 - **J/K** = Delete word left/right (stays)
@@ -272,12 +272,12 @@ All layers can be exited by:
 
 ## SwiftBar Status
 - Shows current layer in menu bar
-- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag
+- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-mode` for iso/pin mode
 - All layer entries/exits write to these files
-- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `term`, default `-`
-- RHS flag prefixes output (e.g., "RHS-Nav")
-- Uses Menlo font with fixed 8-char width
-- **Important**: When adding a new layer, update `karabiner-layer.1s.sh` to handle the new case
+- Layers: `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `term`, default `base`
+- Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
+- Uses Menlo font
+- **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case
 
 ## Hammerspoon Layer Overlay
 - **Ctrl+Shift+Y** shows overlay with current layer's shortcuts

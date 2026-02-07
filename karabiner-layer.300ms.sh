@@ -11,6 +11,13 @@ if [ -f "/tmp/karabiner-rhs" ] && [ -s "/tmp/karabiner-rhs" ]; then
     RHS="RHS-"
 fi
 
+# Read mode (iso/pin), default to iso
+MODE="iso"
+if [ -f "/tmp/karabiner-mode" ]; then
+    MODE=$(tr -d '[:space:]' < /tmp/karabiner-mode)
+fi
+[ -z "$MODE" ] && MODE="iso"
+
 case "$LAYER" in
     n) NAME="Nav" ;;
     m) NAME="M" ;;
@@ -27,9 +34,9 @@ case "$LAYER" in
     term) NAME="Term" ;;
     switch) NAME="Swtch" ;;
     winsw) NAME="WinSw" ;;
-    *) NAME="normal" ;;
+    *) NAME="Base" ;;
 esac
 
-# Combine RHS prefix with layer name, right-align to 8 chars
-OUTPUT="${RHS}${NAME}"
-printf "%8s | font=Menlo trim=false\n" "$OUTPUT"
+# Combine mode, RHS prefix, and layer name
+OUTPUT="${MODE}-${RHS}${NAME}"
+printf "%s | font=Menlo trim=false\n" "$OUTPUT"
