@@ -140,6 +140,22 @@ Document syntax discoveries here to avoid repeating mistakes:
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
 
+### Right Thumb Cluster (6 keys)
+```
++------+------+
+| Ctrl | Cmd  |
++------+------+
+| PgUp | PgDn |
++------+------+
+| Enter| Space|
++------+------+
+```
+- **Ctrl** = right_control (used for layer exits, modifier combos)
+- **Cmd** = right_command (used for word/line navigation)
+- **Page Up/Down** = mapped to left/right click
+- **Enter** = return_or_enter
+- **Space** = spacebar
+
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
 - User's keyboard has numbers/symbols swapped (bare 1 = !, shift+1 = 1)
