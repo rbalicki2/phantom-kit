@@ -11,7 +11,7 @@
 - **Shift+N/M/,/.** = iTerm tab 1/2/3/4
 - **Shift+H** = App Switcher layer (J/K to cycle, Enter to select)
 - **Shift+J** = Window Switcher layer (J/K to cycle, Enter to select)
-- **Shift+K** = Finder
+- **Shift+K** = Finder, **Ctrl+K** = Finder Go to Folder
 
 ## Layer M (right_control+M)
 - **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo

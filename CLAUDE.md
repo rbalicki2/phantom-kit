@@ -154,7 +154,7 @@ The config is organized into two sections:
 - **L** = Open Signal
 - **Shift+N/M/,/.** = iTerm tab 1/2/3/4
 - **Shift+H** = Enter App Switcher layer (Cmd+Tab, holds Cmd)
-- **Shift+J** = Obsidian, **Shift+K** = Finder
+- **Shift+J** = Obsidian, **Shift+K** = Finder, **Ctrl+K** = Finder Go to Folder
 
 ### Switch Layer (from Nav Shift+H)
 - Opens with Cmd held down and app switcher visible

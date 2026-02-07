@@ -2,7 +2,7 @@ Nav Layer (right_control+N)
 
 H = Karabiner-EventViewer, Shift+H = App Switcher
 J = iTerm, Shift+J = Window Switcher
-K = VS Code, Shift+K = Finder
+K = VS Code, Shift+K = Finder, Ctrl+K = Finder Go to Folder
 L = Signal
 M = Chrome Personal
 , = Chrome Work

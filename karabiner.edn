@@ -330,6 +330,8 @@
     [{:key :j :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\" to key down command' -e 'tell application \"System Events\" to key code 50' && echo winsw > /tmp/karabiner-layer"} ["layer_n" 0] ["layer_windowswitcher" 1]] ["layer_n" 1]]
     ;; Shift+K = Finder
     [{:key :k :modi {:mandatory [:shift]}} [{:shell "open -a 'Finder' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
+    ;; Ctrl+K = Finder with Go to Folder dialog (Cmd+Shift+G)
+    [{:key :k :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     ;; Ctrl+P = selection screenshot (Cmd+Shift+4) - re-press right_control while in layer
     [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     ;; P = Cmd+Shift+3 (full screen screenshot)
