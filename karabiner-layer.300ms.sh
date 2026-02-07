@@ -22,7 +22,8 @@ case "$LAYER" in
     norm) NAME="Norm" ;;
     ins) NAME="Ins" ;;
     n) NAME="Nav" ;;
-    m) NAME="M" ;;
+    mouse) NAME="Mouse" ;;
+    comma) NAME="," ;;
     h) NAME="H" ;;
     hC) NAME="H-C" ;;
     hTC) NAME="H-TC" ;;

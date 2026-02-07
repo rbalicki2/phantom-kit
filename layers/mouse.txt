@@ -1,0 +1,5 @@
+Mouse Layer (m from Normal)
+
+[To be implemented]
+- Vimium-style hints
+- Grid-style positioning

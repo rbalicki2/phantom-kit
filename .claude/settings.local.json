@@ -49,7 +49,10 @@
       "Bash(git -C /Users/rbalicki/code/voicemode tag -l pre-normal-mode)",
       "Bash(git -C ~/.config tag -l pre-normal-mode)",
       "Bash(git -C ~/.hammerspoon tag -l pre-normal-mode)",
-      "Bash(npm run sync)"
+      "Bash(npm run sync)",
+      "Bash(log show:*)",
+      "Bash(/opt/homebrew/bin/hs:*)",
+      "Bash(killall:*)"
     ]
   }
 }

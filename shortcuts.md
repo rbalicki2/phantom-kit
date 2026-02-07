@@ -9,7 +9,8 @@
 ## Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter M layer
+- **m** = Enter Mouse layer (to be implemented)
+- **comma** = Enter Comma layer (copy/paste/find)
 - **h** = Enter H layer
 - **u** = Enter Term layer (focuses iTerm)
 - **k** = Enter Chrome/VSCode/TMUX (app-specific)
@@ -31,12 +32,15 @@
 - **Shift+N/M/,** = iTerm tab 1/2/3
 - **Shift+H** = App Switcher layer, **Shift+J** = Window Switcher layer
 
-## Layer M (m from Normal)
+## Mouse Layer (m from Normal)
+- *To be implemented: vimium-style hints + grid positioning*
+
+## Comma Layer (comma from Normal)
 - **H** = Copy, **J** = Paste, **K** = Find, **Shift+K** = Find in files, **L** = Undo, **Shift+L** = Redo
-- **M** = Ctrl+C, **N** = Ctrl+R
+- **Comma** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all, **O** = Cmd+Shift+P, **Shift+O** = Open, **P** = Cmd+P
 - **Ctrl+H** = Close
-- **Period** = Save, **Comma** = Toggle iso/pin mode
+- **Period** = Save, **M** = Toggle iso/pin mode
 
 ## Layer H (h from Normal)
 - **H** = plus, **N** = equals (Shift variants add Cmd), **Ctrl+H** = Close

@@ -22,6 +22,9 @@ Two styles needed:
 - Scroll left/right (for horizontal scroll)
 - Could use Karabiner mouse_key scroll or Hammerspoon
 
+### Escape in Insert Mode
+- Need escape key access while in Ins layer (currently only right_control exits)
+
 ## RHS-Only Transition - Nice to Have
 
 ### System Controls

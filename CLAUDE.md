@@ -168,7 +168,8 @@ The layer system is modal (like vim):
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter M layer
+- **m** = Enter Mouse layer (to be implemented)
+- **comma** = Enter Comma layer
 - **h** = Enter H layer
 - **u** = Enter Term layer (focuses iTerm)
 - **k** = Enter Chrome/VSCode/TMUX (app-specific)
@@ -208,8 +209,11 @@ The layer system is modal (like vim):
 - **Enter**, **right_control**, or **escape** = Select app and exit (releases Cmd)
 - SwiftBar shows "Swtch"
 
-### Layer M (m from Normal)
-- **M** = Control+C (terminal copy/interrupt)
+### Mouse Layer (m from Normal)
+- *To be implemented: vimium-style hints + grid positioning*
+
+### Comma Layer (comma from Normal)
+- **Comma** = Control+C (terminal copy/interrupt)
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
@@ -220,7 +224,7 @@ The layer system is modal (like vim):
 - **O** = Cmd+Shift+P (command palette), **Shift+O** = Cmd+O (open)
 - **P** = Command+P
 - **Ctrl+H** = Command+W (close)
-- **Comma** = Toggle iso/pin mode (exits layer)
+- **M** = Toggle iso/pin mode (exits layer)
 
 ### Layer H (h from Normal)
 - **J/K** = Delete word left/right (stays)
@@ -345,7 +349,7 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
-- Layers: `norm`, `ins`, `n`, `m`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `vscode`, `term`, `switch`, `winsw`
+- Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `vscode`, `term`, `switch`, `winsw`
 - Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case

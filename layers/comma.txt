@@ -1,13 +1,13 @@
-M Layer (right_control+M)
+Comma Layer (comma from Normal)
 
 H = Copy
 J = Paste
 K = Find, Shift+K = Find in files
 L = Undo, Shift+L = Redo
-M = Ctrl+C (terminal interrupt)
+, = Ctrl+C (terminal interrupt)
 N = Ctrl+R (terminal search)
 I = Select all
 O = Cmd+Shift+P, Shift+O = Open, P = Cmd+P
 Ctrl+H = Close
 . = Save
-, = Toggle iso/pin mode
+M = Toggle iso/pin mode
