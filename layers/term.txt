@@ -1,4 +1,4 @@
-Term Layer (right_control+U, iTerm only)
+Term Layer (right_control+U, focuses iTerm)
 
 H = "git status ", Ctrl+H = +enter
 J = "git log ", Ctrl+J = +enter

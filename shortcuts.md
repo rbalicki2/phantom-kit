@@ -26,7 +26,7 @@
 - **Y** = Cmd sub-layer, **U** = Ctrl sub-layer, **I** = Alt sub-layer, **O** = Cmd+Ctrl+Alt sub-layer
 - **Ctrl+Y/U/I** = Combined modifier sub-layers (Ctrl+Cmd, Ctrl+Alt, Alt+Cmd)
 
-## Term Layer (right_control+U, iTerm only)
+## Term Layer (right_control+U, focuses iTerm)
 - **H** = "git status ", **Ctrl+H** = + enter
 - **J** = "git log ", **Ctrl+J** = + enter
 - **K** = "git diff ", **Shift+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
