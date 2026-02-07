@@ -2,6 +2,7 @@ H Layer (right_control+H)
 
 H = plus, Shift+H = Cmd+plus
 N = equals, Shift+N = Cmd+equals
+Ctrl+H = Close
 J/K = Delete word left/right
 M/, = Delete to line start/end
 Up/Down = Delete char left/right

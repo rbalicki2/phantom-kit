@@ -3,11 +3,11 @@ M Layer (right_control+M)
 H = Copy
 J = Paste
 K = Cut
-L = Undo
+L = Undo, Shift+L = Redo
 M = Ctrl+C (terminal interrupt)
 N = Ctrl+R (terminal search)
 I = Select all
 O = Find
-P = Close window
+Ctrl+H = Close
 . = Save
 , = Toggle iso/pin mode

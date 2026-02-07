@@ -381,10 +381,12 @@
     [:j [:!Cv ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:k [:!Cx ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:l [:!Cz ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]  ;; redo
     [:period [:!Cs ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:i [:!Ca ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     [:o [:!Cf ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
-    [:p [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
+    ;; Ctrl+H = Cmd+W (close)
+    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_m" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_m" 1]]
     ;; Comma toggles iso/pin mode (exits layer)
     [:comma [{:shell "if [ \"$(cat /tmp/karabiner-project 2>/dev/null)\" = 'pin' ]; then echo iso > /tmp/karabiner-project; else echo pin > /tmp/karabiner-project; fi && echo > /tmp/karabiner-layer"} ["layer_m" 0]] ["layer_m" 1]]
    ]}
@@ -815,6 +817,8 @@
     [{:key :h :modi {:mandatory [:shift]}} [:!CSequal_sign ["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]  ;; cmd+plus
     [:n [:equal_sign ["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]  ;; equals
     [{:key :n :modi {:mandatory [:shift]}} [:!Cequal_sign ["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]  ;; cmd+equals
+    ;; Ctrl+H = Cmd+W (close, exits layer)
+    [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
     ;; Enter = Cmd+Enter (exits layer)
     [:return_or_enter [:!Creturn_or_enter ["layer_h" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_h" 1]]
    ]}

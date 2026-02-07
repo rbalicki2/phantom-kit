@@ -171,11 +171,11 @@ The config is organized into two sections:
 - **H** = Command+C (GUI copy)
 - **J** = Command+V (paste)
 - **K** = Command+X (cut)
-- **L** = Command+Z (undo)
+- **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)
 - **I** = Command+A (select all)
 - **O** = Command+F (find)
-- **P** = Command+W (close)
+- **Ctrl+H** = Command+W (close)
 - **Comma** = Toggle iso/pin mode (exits layer)
 
 ### Layer H (right_control+H)
@@ -185,6 +185,7 @@ The config is organized into two sections:
 - **Shift+above** = Select instead of delete (stays)
 - **H** = plus, **Shift+H** = Cmd+plus (exits)
 - **N** = equals, **Shift+N** = Cmd+equals (exits)
+- **Ctrl+H** = Cmd+W (close, exits)
 - **Enter** = Cmd+Enter (exits)
 - **Y** = Enter Cmd sub-layer (see below)
 

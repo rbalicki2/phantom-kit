@@ -13,13 +13,13 @@
 - **Shift+H** = App Switcher layer, **Shift+J** = Window Switcher layer
 
 ## Layer M (right_control+M)
-- **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo
+- **H** = Copy, **J** = Paste, **K** = Cut, **L** = Undo, **Shift+L** = Redo
 - **M** = Ctrl+C, **N** = Ctrl+R
-- **I** = Select all, **O** = Find, **P** = Close window
+- **I** = Select all, **O** = Find, **Ctrl+H** = Close
 - **Period** = Save, **Comma** = Toggle iso/pin mode
 
 ## Layer H (right_control+H)
-- **H** = plus, **N** = equals (Shift variants add Cmd)
+- **H** = plus, **N** = equals (Shift variants add Cmd), **Ctrl+H** = Close
 - **J/K** = Delete word left/right, **M/Comma** = Delete to line start/end
 - **Up/Down** = Delete char left/right (Shift = select instead)
 - **Y** = Cmd sub-layer, **U** = Ctrl sub-layer, **I** = Alt sub-layer, **O** = Cmd+Ctrl+Alt sub-layer
