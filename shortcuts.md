@@ -30,7 +30,7 @@
 - **H** = "git status ", **Ctrl+H** = + enter
 - **J** = "git log ", **Ctrl+J** = + enter
 - **K** = "git diff ", **Shift+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
-- **L** = "git commit ", **Ctrl+L** = "git commit -am 'wip'" + enter
+- **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
 - **N** = "git reset ", **Ctrl+N** = "grhh" + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
 - **Comma** = "git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
