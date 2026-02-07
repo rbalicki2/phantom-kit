@@ -47,7 +47,7 @@ Source of truth for Karabiner config and related scripts.
 - `shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `CLAUDE.md` - This file, context for Claude sessions
 - `layers/*.txt` - Individual layer summaries for Hammerspoon overlay
-  - `nav.txt`, `m.txt`, `h.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `switch.txt`, `winsw.txt`
+  - `norm.txt`, `ins.txt`, `nav.txt`, `m.txt`, `h.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `switch.txt`, `winsw.txt`
 - `chrome-tab.sh` - Chrome profile switcher script (AppleScript)
 - `vscode-open-in-chrome.sh` - Opens VS Code file path in Chrome (used by VS Code layer Ctrl+H)
 - `karabiner-layer.300ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
@@ -115,7 +115,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 
 ## Layer Entry Conflict Prevention (Rule Ordering)
 
-**Problem**: All layers are entered via right_control+KEY. When in one layer, the user may still be holding right_control. If they press a key that matches another layer's entry combo, they'll accidentally switch layers.
+**Context**: Layers are entered from Normal layer with single keys. Within layers, Ctrl+KEY combos exist. Rule ordering ensures in-layer Ctrl+KEY rules take precedence.
 
 **Why in_any_layer doesn't work**: Goku only supports ONE condition per rule. Multiple conditions listed at the end of a rule are ignored (only the first is used). This is a fundamental goku limitation.
 
@@ -123,13 +123,12 @@ Document syntax discoveries here to avoid repeating mistakes:
 
 **How it works**:
 - In-layer rules have condition `["layer_X" 1]` (only match when IN that layer)
-- Layer entry rules have condition `["layer_X" 0]` (only match when NOT in that layer)
+- Layer entry rules have condition `["layer_normal" 1]` (only match when in Normal layer)
 - When rules are ordered correctly, in-layer rules match first and consume the keypress
 
-**Example**: VS Code layer has Ctrl+H. H layer is entered with right_control+H.
+**Example**: VS Code layer has Ctrl+H. If user holds right_control while in VS Code and presses H:
 - VS Code Ctrl+H rule: `[{:key :h :modi {:mandatory [:right_control]}} [action] ["layer_vscode" 1]]`
-- H layer entry rule: `[{:key :h :modi {:mandatory [:right_control]}} [...] ["layer_h" 0]]`
-- If VS Code block comes BEFORE H layer block in karabiner.edn, the VS Code rule matches first when in VS Code layer.
+- This matches first because VS Code rules come before Normal layer rules
 
 **Checklist when adding a new layer**:
 1. If the layer has Ctrl+KEY shortcuts that conflict with other layer entries, place its rule block BEFORE those layer entry blocks in the config
