@@ -4,7 +4,7 @@
 # First, copy relative path (Shift+Alt+Cmd+C) - target VS Code explicitly
 osascript <<'EOF'
 tell application "Visual Studio Code" to activate
-delay 0.1
+delay 0.3
 tell application "System Events"
     keystroke "c" using {shift down, option down, command down}
 end tell
