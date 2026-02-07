@@ -36,11 +36,11 @@
 - **Comma** = "git add -A && git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
 - **I** = Split vertical (Cmd+D), **Ctrl+I** = Split horizontal (Cmd+Shift+D)
 
-## Tmux Layer (right_control+J, iTerm only)
+## Tmux Layer (right_control+K, iTerm only)
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
 - **Shift+Y/U/I/O** = ^, &, *, ( (panes 6-9)
 
-## Chrome Layer (right_control+J, Chrome only)
+## Chrome Layer (right_control+K, Chrome only)
 - **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
 - **Shift+J** = gg (top), **Shift+K** = Shift+G (bottom)
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
@@ -48,7 +48,7 @@
 - **Shift+L** = Copy URL
 - **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
 
-## VS Code Layer (right_control+J, VS Code only)
+## VS Code Layer (right_control+K, VS Code only)
 - **H** = Copy rel path, **Shift+H** = Copy full path, **Ctrl+H** = Open in Chrome
 - **J** = Go to def, **K** = Rename, **L** = Find refs
 - **I** = 2nd tab, **Shift+I** = Move next tab, **Shift+U** = Move prev tab

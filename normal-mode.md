@@ -37,7 +37,7 @@ Restructure the layer system so that:
 
 ## Phase 0: Prefactoring
 
-- [ ] **Task 0.1**: Change Chrome/VSCode/TMUX entry to Ctrl+K
+- [x] **Task 0.1**: Change Chrome/VSCode/TMUX entry to Ctrl+K
   - Currently these layers are entered with `right_ctrl+j`
   - Change to `right_ctrl+k` to free up `j` for Ins layer entry
   - Update karabiner.edn, run goku, test

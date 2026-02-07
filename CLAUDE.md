@@ -238,13 +238,13 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **,** = "git add -A && git stash" + enter, **Ctrl+,** = "git stash pop" + enter
 - **I** = Cmd+D (split vertical), **Ctrl+I** = Cmd+Shift+D (split horizontal)
 
-### Tmux Layer (right_control+J, iTerm only)
+### Tmux Layer (right_control+K, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
 - **Shift+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
 - Only activates when iTerm is foreground app
 
-### Chrome Layer (right_control+J, Chrome only)
+### Chrome Layer (right_control+K, Chrome only)
 - Only activates when Google Chrome is foreground app
 - **H** = Cmd+T (new tab) - exits layer
 - **J** = Ctrl+Shift+Tab (previous tab) - stays in layer
@@ -260,7 +260,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **N** = Cmd+K
 - **Period** = Cmd+R (refresh)
 
-### VS Code Layer (right_control+J, VS Code only)
+### VS Code Layer (right_control+K, VS Code only)
 - Only activates when VS Code is foreground app
 - **H** = Copy relative path, **Shift+H** = Copy full path
 - **Ctrl+H** = Copy rel path + open in Chrome (cc/isof prefix based on project)
