@@ -312,9 +312,9 @@
     [:down_arrow [:!CTOSb ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
     [:m [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:comma [{:shell "/Users/rbalicki/code/voicemode/chrome-tab.sh work && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
-    ;; U/I = tab switching (Ctrl+Tab / Ctrl+Shift+Tab)
-    [:u [:!Ttab ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
-    [:i [:!TStab ["layer_n" 0] {:shell "echo > /tmp/karabiner-layer"}] ["layer_n" 1]]
+    ;; U/I = tab switching (stays in layer for repeated presses)
+    [:u :!TStab ["layer_n" 1]]  ;; prev tab
+    [:i :!Ttab ["layer_n" 1]]   ;; next tab
     [:j [{:shell "open -a 'iTerm' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:k [{:shell "open -a 'Visual Studio Code' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
     [:h [{:shell "open -a 'Karabiner-EventViewer' && echo > /tmp/karabiner-layer"} ["layer_n" 0]] ["layer_n" 1]]
