@@ -995,11 +995,21 @@
     [:return_or_enter [:!Creturn_or_enter ["layer_h" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_h" 1]]
    ]}
 
+  {:des "[Desktop] Ins Layer (typing passthrough) - MUST come before Normal layer rules"
+   :rules [:Desktop
+    ;; Ins layer has no key mappings - all keys pass through by default
+    ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
+    [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
+    [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
+    ;; right_control alone exits Ins to Normal
+    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+   ]}
+
   {:des "[Desktop] Normal Layer (default state, layer selector)"
    :rules [:Desktop
     ;; From base state (all layers off), right_control alone enters Normal
     ;; Note: Default on boot is punted - user needs to tap right_control to enter Normal initially
-    ;; This rule comes AFTER all layer exit handlers so they take precedence
     [:right_control :right_control ["layer_normal" 0] {:alone [["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
@@ -1032,17 +1042,6 @@
     [:period :vk_none ["layer_normal" 1]]
     [:semicolon :vk_none ["layer_normal" 1]]
     [:slash :vk_none ["layer_normal" 1]]
-   ]}
-
-  {:des "[Desktop] Ins Layer (typing passthrough)"
-   :rules [:Desktop
-    ;; Ins layer has no key mappings - all keys pass through by default
-    ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
-    [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
-    [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
-    ;; right_control alone exits Ins to Normal
-    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
   {:des "[Desktop] Right control to escape when tapped alone (Task 1.5: escape in Normal)"
