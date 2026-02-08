@@ -53,7 +53,8 @@
       "Bash(log show:*)",
       "Bash(/opt/homebrew/bin/hs:*)",
       "Bash(killall:*)",
-      "WebFetch(domain:kinesis-ergo.com)"
+      "WebFetch(domain:kinesis-ergo.com)",
+      "Bash(git tag:*)"
     ]
   }
 }

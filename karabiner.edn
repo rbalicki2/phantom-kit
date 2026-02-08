@@ -111,6 +111,21 @@
     [{:key :0 :modi {:mandatory [:shift]}} :1 ["layer_mirror" 1]]
    ]}
 
+  {:des "Mirror mode numbers (must come before number swap)"
+   :rules [
+    ;; These rules match first when mirror_mode is active, preventing number swap
+    [:6 :!S5 ["mirror_mode" 1]]
+    [:7 :!S4 ["mirror_mode" 1]]
+    [:8 :!S3 ["mirror_mode" 1]]
+    [:9 :!S2 ["mirror_mode" 1]]
+    [:0 :!S1 ["mirror_mode" 1]]
+    [{:key :6 :modi {:mandatory [:shift]}} :5 ["mirror_mode" 1]]
+    [{:key :7 :modi {:mandatory [:shift]}} :4 ["mirror_mode" 1]]
+    [{:key :8 :modi {:mandatory [:shift]}} :3 ["mirror_mode" 1]]
+    [{:key :9 :modi {:mandatory [:shift]}} :2 ["mirror_mode" 1]]
+    [{:key :0 :modi {:mandatory [:shift]}} :1 ["mirror_mode" 1]]
+   ]}
+
   {:des "Exchange numbers and symbols"
    :rules [
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
@@ -118,21 +133,21 @@
     [{:key :3 :modi {:optional [:caps_lock]}} :!S3]
     [{:key :4 :modi {:optional [:caps_lock]}} :!S4]
     [{:key :5 :modi {:optional [:caps_lock]}} :!S5]
-    [{:key :6 :modi {:optional [:caps_lock]}} :!S6]
-    [{:key :7 :modi {:optional [:caps_lock]}} :!S7]
-    [{:key :8 :modi {:optional [:caps_lock]}} :!S8]
-    [{:key :9 :modi {:optional [:caps_lock]}} :!S9]
-    [{:key :0 :modi {:optional [:caps_lock]}} :!S0]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["layer_normal" 0]]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["layer_normal" 0]]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["layer_normal" 0]]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["layer_normal" 0]]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["layer_normal" 0]]
     [{:key :1 :modi {:mandatory [:shift] :optional [:caps_lock]}} :1]
     [{:key :2 :modi {:mandatory [:shift] :optional [:caps_lock]}} :2]
     [{:key :3 :modi {:mandatory [:shift] :optional [:caps_lock]}} :3]
     [{:key :4 :modi {:mandatory [:shift] :optional [:caps_lock]}} :4]
     [{:key :5 :modi {:mandatory [:shift] :optional [:caps_lock]}} :5]
-    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6]
-    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7]
-    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8]
-    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9]
-    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["layer_normal" 0]]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["layer_normal" 0]]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["layer_normal" 0]]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["layer_normal" 0]]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_normal" 0]]
    ]}
 
   {:des "Brackets to command+bracket"
@@ -146,18 +161,18 @@
 
   {:des "Swap backslash and pipe"
    :rules [
-    [:!Sbackslash :backslash]
-    [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
+    [:!Sbackslash :backslash ["layer_normal" 0]]
+    [{:key :backslash :modi {:mandatory []}} :!Sbackslash ["layer_normal" 0]]
    ]}
 
   {:des "Left shift to open paren when alone"
    :rules [
-    [:##left_shift :left_shift nil {:alone :!S9}]
+    [:##left_shift :left_shift ["layer_normal" 0] {:alone :!S9}]
    ]}
 
   {:des "Right shift to close paren when alone"
    :rules [
-    [:##right_shift :right_shift nil {:alone :!S0}]
+    [:##right_shift :right_shift ["layer_normal" 0] {:alone :!S0}]
    ]}
 
   ;; =====================================================================
@@ -1006,9 +1021,11 @@
     [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
     ;; right_control alone exits Ins to Normal
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    ;; apostrophe: tap alone = escape to Normal, hold = mirror mode (## catches shift+quote too)
+    [:##quote ["mirror_mode" 1] ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] :afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] Mirror mode letter mappings (RHS → LHS) - no trigger currently, mappings kept for future use"
+  {:des "[Desktop] Mirror mode letter mappings (RHS → LHS) - triggered by holding ' in Ins mode"
    :rules [:Desktop
     ;; Top row: Y U I O P → T R E W Q
     [:y :t ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
@@ -1092,10 +1109,65 @@
     [:x :vk_none ["layer_normal" 1]]
     [:y :vk_none ["layer_normal" 1]]
     [:z :vk_none ["layer_normal" 1]]
-    ;; Also disable period, semicolon, slash (not layer selectors)
-    [:period :vk_none ["layer_normal" 1]]
-    [:semicolon :vk_none ["layer_normal" 1]]
-    [:slash :vk_none ["layer_normal" 1]]
+    ;; Also disable period, semicolon, slash (not layer selectors) - ## catches shift variants
+    [:##period :vk_none ["layer_normal" 1]]
+    [:##semicolon :vk_none ["layer_normal" 1]]
+    [:##slash :vk_none ["layer_normal" 1]]
+    ;; Disable quote, numbers 6-0, backslash, hyphen (with any modifiers)
+    [:##quote :vk_none ["layer_normal" 1]]
+    [:##6 :vk_none ["layer_normal" 1]]
+    [:##7 :vk_none ["layer_normal" 1]]
+    [:##8 :vk_none ["layer_normal" 1]]
+    [:##9 :vk_none ["layer_normal" 1]]
+    [:##0 :vk_none ["layer_normal" 1]]
+    [:##backslash :vk_none ["layer_normal" 1]]
+    [:##hyphen :vk_none ["layer_normal" 1]]
+    ;; Shift+comma disabled (bare comma is layer entry key)
+    [:!Scomma :vk_none ["layer_normal" 1]]
+   ]}
+
+  {:des "[Desktop] Block unmapped keys in all working layers (in_any_layer=1)"
+   :rules [:Desktop
+    ;; When in a layer (Nav, Chrome, Mouse, etc.), block all letter keys
+    ;; Specific layer mappings come earlier in config and take precedence
+    [:##a :vk_none ["in_any_layer" 1]]
+    [:##b :vk_none ["in_any_layer" 1]]
+    [:##c :vk_none ["in_any_layer" 1]]
+    [:##d :vk_none ["in_any_layer" 1]]
+    [:##e :vk_none ["in_any_layer" 1]]
+    [:##f :vk_none ["in_any_layer" 1]]
+    [:##g :vk_none ["in_any_layer" 1]]
+    [:##h :vk_none ["in_any_layer" 1]]
+    [:##i :vk_none ["in_any_layer" 1]]
+    [:##j :vk_none ["in_any_layer" 1]]
+    [:##k :vk_none ["in_any_layer" 1]]
+    [:##l :vk_none ["in_any_layer" 1]]
+    [:##m :vk_none ["in_any_layer" 1]]
+    [:##n :vk_none ["in_any_layer" 1]]
+    [:##o :vk_none ["in_any_layer" 1]]
+    [:##p :vk_none ["in_any_layer" 1]]
+    [:##q :vk_none ["in_any_layer" 1]]
+    [:##r :vk_none ["in_any_layer" 1]]
+    [:##s :vk_none ["in_any_layer" 1]]
+    [:##t :vk_none ["in_any_layer" 1]]
+    [:##u :vk_none ["in_any_layer" 1]]
+    [:##v :vk_none ["in_any_layer" 1]]
+    [:##w :vk_none ["in_any_layer" 1]]
+    [:##x :vk_none ["in_any_layer" 1]]
+    [:##y :vk_none ["in_any_layer" 1]]
+    [:##z :vk_none ["in_any_layer" 1]]
+    [:##period :vk_none ["in_any_layer" 1]]
+    [:##semicolon :vk_none ["in_any_layer" 1]]
+    [:##slash :vk_none ["in_any_layer" 1]]
+    [:##comma :vk_none ["in_any_layer" 1]]
+    [:##quote :vk_none ["in_any_layer" 1]]
+    [:##6 :vk_none ["in_any_layer" 1]]
+    [:##7 :vk_none ["in_any_layer" 1]]
+    [:##8 :vk_none ["in_any_layer" 1]]
+    [:##9 :vk_none ["in_any_layer" 1]]
+    [:##0 :vk_none ["in_any_layer" 1]]
+    [:##backslash :vk_none ["in_any_layer" 1]]
+    [:##hyphen :vk_none ["in_any_layer" 1]]
    ]}
 
   {:des "[Desktop] Right control to escape when tapped alone (Task 1.5: escape in Normal)"

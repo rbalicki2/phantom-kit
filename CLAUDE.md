@@ -69,6 +69,7 @@ Destination for generated configs.
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
 - Create a Tampermonkey setup that exposes functions callable from a layer
+- MenubarFlag wifi notifier
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
