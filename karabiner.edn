@@ -1006,10 +1006,10 @@
     [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
     ;; right_control alone exits Ins to Normal
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; Double-tap space test: second tap sends caret (must come before first tap rule)
-    [:spacebar :!S6 ["layer_ins" 1] ["space_tapped" 1]]
-    ;; First tap: send space, set variable, delayed clear
-    [:spacebar [:spacebar ["space_tapped" 1]] ["layer_ins" 1] ["space_tapped" 0] {:delayed {:invoked [["space_tapped" 0]]}}]
+    ;; Double-tap space test: second tap within window sends caret
+    [:spacebar [:!S6 ["space_tapped" 0]] ["layer_ins" 1] ["space_tapped" 1]]
+    ;; First tap: set variable, send space only if alone (released without second tap)
+    [:spacebar [["space_tapped" 1]] ["layer_ins" 1] ["space_tapped" 0] {:alone [:spacebar ["space_tapped" 0]] :params {:alone 300}}]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
