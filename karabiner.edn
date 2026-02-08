@@ -1124,6 +1124,7 @@
     [:##hyphen :vk_none ["layer_normal" 1]]
     ;; Shift+comma disabled (bare comma is layer entry key)
     [:!Scomma :vk_none ["layer_normal" 1]]
+    [:##spacebar :vk_none ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] Block unmapped keys in all working layers (in_any_layer=1)"
