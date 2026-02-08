@@ -1168,6 +1168,7 @@
     [:##0 :vk_none ["in_any_layer" 1]]
     [:##backslash :vk_none ["in_any_layer" 1]]
     [:##hyphen :vk_none ["in_any_layer" 1]]
+    [:##spacebar :vk_none ["in_any_layer" 1]]
    ]}
 
   {:des "[Desktop] Right control to escape when tapped alone (Task 1.5: escape in Normal)"
