@@ -3,6 +3,7 @@
 ## Bugs to Fix
 - ~~**Normal mode keys typing**~~: FIXED - may have been transient state issue, resolved by earlier fixes
 - ~~**Ins mode state weirdness**~~: FIXED - added explicit escape exit (`:alone` timing was unreliable after modifier combos)
+- **Normal layer entry bugs**: Something off with entering Normal layer - needs investigation
 
 ## RHS-Only Transition - Must Have
 
