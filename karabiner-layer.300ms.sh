@@ -19,26 +19,26 @@ fi
 [ -z "$PROJECT" ] && PROJECT="iso"
 
 case "$LAYER" in
-    norm) NAME="🏠Norm" ;;
-    ins) NAME="✏️Ins" ;;
-    n) NAME="🧭Nav" ;;
-    mouse) NAME="🖱️Mouse" ;;
-    comma) NAME="⌨️," ;;
-    l) NAME="🔧L" ;;
-    lC) NAME="🔧L-C" ;;
-    lTC) NAME="🔧L-TC" ;;
-    lT) NAME="🔧L-T" ;;
-    lTO) NAME="🔧L-TO" ;;
-    lO) NAME="🔧L-O" ;;
-    lOC) NAME="🔧L-OC" ;;
-    lCTO) NAME="🔧L-CTO" ;;
-    tmux) NAME="📺Tmux" ;;
-    chrome) NAME="🌐Chrm" ;;
-    vscode) NAME="💻VSC" ;;
-    term) NAME="📟Term" ;;
-    switch) NAME="🔀Swtch" ;;
-    winsw) NAME="🪟WinSw" ;;
-    *) NAME="❓Base" ;;
+    norm) NAME="Norm🏠" ;;
+    ins) NAME="Ins✏️" ;;
+    n) NAME="Nav🧭" ;;
+    mouse) NAME="Mouse🖱️" ;;
+    comma) NAME=",⌨️" ;;
+    l) NAME="L🔧" ;;
+    lC) NAME="L-C" ;;
+    lTC) NAME="L-TC" ;;
+    lT) NAME="L-T" ;;
+    lTO) NAME="L-TO" ;;
+    lO) NAME="L-O" ;;
+    lOC) NAME="L-OC" ;;
+    lCTO) NAME="L-CTO" ;;
+    tmux) NAME="Tmux📺" ;;
+    chrome) NAME="Chrm🌐" ;;
+    vscode) NAME="VSC💻" ;;
+    term) NAME="Term📟" ;;
+    switch) NAME="Swtch🔀" ;;
+    winsw) NAME="WinSw🪟" ;;
+    *) NAME="Base" ;;
 esac
 
 # Combine mode, RHS prefix, and layer name
