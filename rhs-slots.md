@@ -45,4 +45,4 @@
 ## Needs to Fill
 
 ; : | \ < > ? } ] ~ ` + = , . / ' " - _
-left right tab esc
+[ { tab esc
