@@ -7,41 +7,47 @@
 | 8     | *      | 8      |        |        | #      | 3         |
 | 9     | (      | 9      |        |        | @      | 2         |
 | 0     | )      | 0      |        |        | !      | 1         |
-| -     | _      | -      |        |        | XXX    | XXX       |
+| -     | _      | -      |        |        |        |           |
 |-------|--------|--------|--------|--------|--------|-----------|
-| y     | y      | XXX    |        |        | t      | T         |
-| u     | u      | XXX    |        |        | r      | R         |
-| i     | i      | XXX    |        |        | e      | E         |
-| o     | o      | XXX    |        |        | w      | W         |
-| p     | p      | XXX    |        |        | q      | Q         |
-| \     | \      | \|     |        |        | XXX    | XXX       |
+| y     | y      |        |        |        |        |           |
+| u     | u      |        |        |        |        |           |
+| i     | i      |        |        |        |        |           |
+| o     | o      |        |        |        |        |           |
+| p     | p      |        |        |        |        |           |
+| \     | \      |        |        |        |        |           |
 |-------|--------|--------|--------|--------|--------|-----------|
-| h     | h      | XXX    |        |        | g      | G         |
-| j     | j      | XXX    |        |        | f      | F         |
-| k     | k      | XXX    |        |        | d      | D         |
-| l     | l      | XXX    |        |        | s      | S         |
-| ;     | ;      | :      |        |        | a      | A         |
-| '     | mirror | XXX    | XXX    | XXX    | XXX    | XXX       |
+| h     | h      |        |        |        |        |           |
+| j     | j      |        |        |        |        |           |
+| k     | k      |        |        |        |        |           |
+| l     | l      |        |        |        |        |           |
+| ;     | ;      |        |        |        |        |           |
+| '     | shift  |        |        |        |        |           |
 |-------|--------|--------|--------|--------|--------|-----------|
-| n     | n      | XXX    |        |        | b      | B         |
-| m     | m      | XXX    |        |        | v      | V         |
-| ,     | ,      | <      |        |        | c      | C         |
-| .     | .      | >      |        |        | x      | X         |
-| /     | /      | ?      |        |        | z      | Z         |
-| rshift|        | XXX    |        |        | XXX    | XXX       |
+| n     | n      |        |        |        |        |           |
+| m     | m      |        |        |        |        |           |
+| ,     | ,      |        |        |        |        |           |
+| .     | .      |        |        |        |        |           |
+| /     | /      |        |        |        |        |           |
+| rshift| mirror |        |        |        |        |           |
 |-------|--------|--------|--------|--------|--------|-----------|
-| up    |        |        |        |        | XXX    | XXX       |
-| down  |        |        |        |        | XXX    | XXX       |
-| [     | [      | {      |        |        | XXX    | XXX       |
-| ]     | ]      | }      |        |        | XXX    | XXX       |
+| up    |        |        |        |        |        |           |
+| down  |        |        |        |        |        |           |
+| [     | [      |        |        |        |        |           |
+| ]     | ]      |        |        |        |        |           |
 |-------|--------|--------|--------|--------|--------|-----------|
-| pgup  |        |        |        |        | XXX    | XXX       |
-| pgdn  |        |        |        |        | XXX    | XXX       |
-| enter |        |        |        |        | XXX    | XXX       |
-| space |        |        | XXX    | XXX    | XXX    | XXX       |
-| rcmd  |        |        | XXX    |        | XXX    | XXX       |
-| rctrl |        |        |        | XXX    | XXX    | XXX       |
+| pgup  |        |        |        |        |        |           |
+| pgdn  |        |        |        |        |        |           |
+| enter |        |        |        |        |        |           |
+| space |        |        |        |        |        |           |
+| rcmd  |        |        |        |        |        |           |
+| rctrl |        |        |        |        |        |           |
 
 ## Needs to Fill
 
-caps, escape, tab, backtick, tilde, up, down, left, right, backspace, delete, word left, word right, line start, line end, click, rclick, enter
+**Letters**: A-Z (capitals via quote), a-z mirrored (t r e w q, g f d s a, b v c x z), A-Z mirrored
+
+**Symbols**: : | < > ? { } ~ ` + =
+
+**Navigation**: caps, escape, tab, up, down, left, right, backspace, delete, word left, word right, line start, line end
+
+**Actions**: click, rclick, enter
