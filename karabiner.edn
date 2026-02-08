@@ -150,27 +150,19 @@
     [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
    ]}
 
-  {:des "Left shift to open paren when alone (disabled in Ins mode)"
+  {:des "Left shift to open paren when alone"
    :rules [
-    [:##left_shift :vk_none ["layer_ins" 1]]
     [:##left_shift :left_shift nil {:alone :!S9}]
    ]}
 
-  {:des "Right shift to close paren when alone (disabled in Ins mode)"
+  {:des "Right shift to close paren when alone"
    :rules [
-    [:##right_shift :vk_none ["layer_ins" 1]]
     [:##right_shift :right_shift nil {:alone :!S0}]
    ]}
 
   ;; =====================================================================
   ;; DESKTOP ONLY
   ;; =====================================================================
-
-  {:des "[Desktop] Ins mode: Page Up = Shift, Page Down disabled (MUST come before global click rules)"
-   :rules [:Desktop
-    [:page_up :left_shift ["layer_ins" 1]]
-    [:page_down :vk_none ["layer_ins" 1]]
-   ]}
 
   {:des "[Desktop] Disable unused LHS keys"
    :rules [:Desktop
