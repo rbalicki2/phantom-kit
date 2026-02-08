@@ -154,9 +154,10 @@
    :rules [
     [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_any_layer" 1]]
     [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["in_any_layer" 1]]
-    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket]
-    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket]
-    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket]
+    ;; Cmd+bracket → bare bracket (only in working layers, blocked in Normal)
+    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
+    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_any_layer" 1]]
+    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
    ]}
 
   {:des "Swap backslash and pipe"
@@ -1203,13 +1204,14 @@
     [:##backslash :vk_none ["layer_normal" 1]]
     [:##hyphen :vk_none ["layer_normal" 1]]
     ;; Shift+layer-entry-keys disabled (bare key enters layer, shift should do nothing)
-    [:!Su :vk_none ["layer_normal" 1]]
-    [:!Sh :vk_none ["layer_normal" 1]]
-    [:!Sj :vk_none ["layer_normal" 1]]
-    [:!Sl :vk_none ["layer_normal" 1]]
-    [:!Sn :vk_none ["layer_normal" 1]]
-    [:!Sm :vk_none ["layer_normal" 1]]
-    [:!Scomma :vk_none ["layer_normal" 1]]
+    ;; Use explicit {:modi {:mandatory [:shift]}} to match EITHER left or right shift
+    [{:key :u :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :h :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :j :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :n :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :m :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
+    [{:key :comma :modi {:mandatory [:shift]}} :vk_none ["layer_normal" 1]]
     [:##spacebar :vk_none ["layer_normal" 1]]
     [:##page_down :vk_none ["layer_normal" 1]]
     [:##page_up :vk_none ["layer_normal" 1]]
