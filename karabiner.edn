@@ -1131,6 +1131,8 @@
 
   {:des "[Desktop] Block unmapped keys in all working layers (in_any_layer=1)"
    :rules [:Desktop
+    ;; Pass through Ctrl+Shift+Y for Hammerspoon layer overlay
+    [:!TSy :!TSy ["in_any_layer" 1]]
     ;; When in a layer (Nav, Chrome, Mouse, etc.), block all letter keys
     ;; Specific layer mappings come earlier in config and take precedence
     [:##a :vk_none ["in_any_layer" 1]]
