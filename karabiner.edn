@@ -111,6 +111,16 @@
     [{:key :0 :modi {:mandatory [:shift]}} :1 ["layer_mirror" 1]]
    ]}
 
+  {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
+   :rules [
+    ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
+    [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+   ]}
+
   {:des "Mirror mode numbers (must come before number swap)"
    :rules [
     ;; LHS numbers in mirror_mode: output digit (shift is consumed, not passed through)
@@ -125,16 +135,6 @@
     [:8 :!S3 ["mirror_mode" 1]]
     [:9 :!S2 ["mirror_mode" 1]]
     [:0 :!S1 ["mirror_mode" 1]]
-   ]}
-
-  {:des "Shift+mirror oneshot numbers (must come before number swap)"
-   :rules [
-    ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
-    [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
    ]}
 
   {:des "Exchange numbers and symbols"
