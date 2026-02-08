@@ -70,6 +70,7 @@ Destination for generated configs.
 If work is interrupted or incomplete, document it here so future sessions can continue:
 - Create a Tampermonkey setup that exposes functions callable from a layer
 - MenubarFlag wifi notifier
+- Enable quote (') to send escape when pressed alone in Ins mode
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
