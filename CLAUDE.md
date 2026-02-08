@@ -114,6 +114,26 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Goku only supports ONE condition per rule.** Multiple conditions at the end of a rule like `["layer_h" 0] ["in_any_layer" 0]` will only use the first one. The `:conditions` key syntax also doesn't work. Use rule ordering instead (see "Layer Entry Conflict Prevention" section).
 - **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 
+## Karabiner Rule Precedence
+
+Karabiner evaluates rules **in order** and uses the **first matching rule**. A rule "matches" when:
+1. The input key/modifier matches the rule's `from` clause
+2. ALL conditions on the rule are satisfied
+
+**Two ways to control precedence:**
+
+1. **Rule ordering**: Place more specific rules earlier in the config. Earlier rules are checked first.
+   - Example: Put `mirror_mode` number rules before global number-swap rules
+
+2. **Conditions**: Add conditions to exclude certain states.
+   - Example: Add `["mirror_mode" 0]` to number-swap rules so they don't match when mirror_mode is active
+
+**Which to use:**
+- **Rule ordering** works when rules are in the same file/section and you control the order
+- **Conditions** are necessary when rules are in different sections or you can't reorder them (e.g., global rules in "ALL PROFILES" that need to yield to layer-specific rules in "DESKTOP ONLY")
+
+**Important**: Karabiner does NOT re-process output keys. When a rule sends `:!S5` (Shift+5), that goes directly to the app - it won't be caught by other Karabiner rules. This prevents infinite loops but also means output transformations only happen once.
+
 ## Layer Entry Conflict Prevention (Rule Ordering)
 
 **Context**: Layers are entered from Normal layer with single keys. Within layers, Ctrl+KEY combos exist. Rule ordering ensures in-layer Ctrl+KEY rules take precedence.
