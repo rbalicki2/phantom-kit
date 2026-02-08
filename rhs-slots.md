@@ -1,33 +1,33 @@
 # RHS Slots Grid (Ins Mode)
 
-| key      | bare     | quk(sh)  | shk(mir) | sh+mir   | rcmd     | rctrl    | sh+cmd   | sh+ctrl  |
+| key      | bare     | shk(mir) | sh+mir   | quk(sh)  | rcmd     | rctrl    | sh+cmd   | sh+ctrl  |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| 6        | ^        | 6        | %        | 5        |          |          |          |          |
-| 7        | &        | 7        | $        | 4        |          |          |          |          |
-| 8        | *        | 8        | #        | 3        |          |          |          |          |
-| 9        | (        | 9        | @        | 2        |          |          |          |          |
-| 0        | )        | 0        | !        | 1        |          |          |          |          |
+| 6        | ^        | %        | 5        | 6        |          |          |          |          |
+| 7        | &        | $        | 4        | 7        |          |          |          |          |
+| 8        | *        | #        | 3        | 8        |          |          |          |          |
+| 9        | (        | @        | 2        | 9        |          |          |          |          |
+| 0        | )        | !        | 1        | 0        |          |          |          |          |
 | -        |          |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| y        | y        | XXX      | t        | XXX      |          |          | XXX      |          |
-| u        | u        | XXX      | r        | XXX      |          |          | XXX      |          |
-| i        | i        | XXX      | e        | XXX      |          |          | XXX      |          |
-| o        | o        | XXX      | w        | XXX      |          |          | XXX      |          |
-| p        | p        | XXX      | q        | XXX      |          |          | XXX      |          |
-| \        | tab      | sh+tab   |          |          |          |          |          |          |
+| y        | y        | t        | XXX      | XXX      |          |          | XXX      |          |
+| u        | u        | r        | XXX      | XXX      |          |          | XXX      |          |
+| i        | i        | e        | XXX      | XXX      |          |          | XXX      |          |
+| o        | o        | w        | XXX      | XXX      |          |          | XXX      |          |
+| p        | p        | q        | XXX      | XXX      |          |          | XXX      |          |
+| \        | tab      |          |          | sh+tab   |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| h        | h        | XXX      | g        | XXX      |          |          | XXX      |          |
-| j        | j        | XXX      | f        | XXX      | wd←      | →ins     | XXX      |          |
-| k        | k        | XXX      | d        | XXX      | wd→      |          | XXX      |          |
-| l        | l        | XXX      | s        | XXX      |          |          | XXX      |          |
-| ;        | ;        | :        | a        | XXX      |          |          |          |          |
+| h        | h        | g        | XXX      | XXX      |          |          | XXX      |          |
+| j        | j        | f        | XXX      | XXX      | wd←      | →ins     | XXX      |          |
+| k        | k        | d        | XXX      | XXX      | wd→      |          | XXX      |          |
+| l        | l        | s        | XXX      | XXX      |          |          | XXX      |          |
+| ;        | ;        | a        | XXX      | :        |          |          |          |          |
 | '        | shift    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| n        | n        | XXX      | b        | XXX      |          |          | XXX      |          |
-| m        | m        | XXX      | v        | XXX      | ln←      |          | XXX      |          |
-| ,        | ,        |          | c        | XXX      | ln→      |          |          |          |
-| .        | .        |          | x        | XXX      |          |          |          |          |
-| /        |          |          | z        | XXX      |          |          |          |          |
+| n        | n        | b        | XXX      | XXX      |          |          | XXX      |          |
+| m        | m        | v        | XXX      | XXX      | ln←      |          | XXX      |          |
+| ,        | ,        | c        | XXX      |          | ln→      |          |          |          |
+| .        | .        | x        | XXX      |          |          |          |          |          |
+| /        |          | z        | XXX      |          |          |          |          |          |
 | rshift   | mirror   | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | up       | up       |          |          |          | ←        |          |          |          |
@@ -38,7 +38,7 @@
 | pgup     |          |          |          |          |          |          |          |          |
 | pgdn     |          |          |          |          |          |          |          |          |
 | enter    | enter    |          |          |          |          |          |          |          |
-| space    | space    | sp+sh    |          |          |          |          |          |          |
+| space    | space    |          |          | sp+sh    |          |          |          |          |
 | rcmd     | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 | rctrl    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 
