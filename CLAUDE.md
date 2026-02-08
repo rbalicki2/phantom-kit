@@ -247,7 +247,7 @@ Holding Shift in Ins mode enters mirror mode. RHS keys output their LHS mirror e
 
 **LHS numbers** in mirror mode: output digit (1→1, 2→2, etc.) since Shift is consumed
 
-**Arrows**: up→backspace, down→delete
+**Brackets**: [→backspace, ]→delete
 
 #### Shift+Quote (shift_mirror_oneshot)
 Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a oneshot that persists until a key is typed, even after releasing Shift+Quote.
