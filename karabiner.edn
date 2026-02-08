@@ -150,13 +150,15 @@
     [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
    ]}
 
-  {:des "Left shift to open paren when alone"
+  {:des "Left shift to open paren when alone (disabled in Ins mode)"
    :rules [
+    [:##left_shift :vk_none ["layer_ins" 1]]
     [:##left_shift :left_shift nil {:alone :!S9}]
    ]}
 
-  {:des "Right shift to close paren when alone"
+  {:des "Right shift to close paren when alone (disabled in Ins mode)"
    :rules [
+    [:##right_shift :vk_none ["layer_ins" 1]]
     [:##right_shift :right_shift nil {:alone :!S0}]
    ]}
 
@@ -1010,11 +1012,11 @@
 
   {:des "[Desktop] Double-tap space test (global for now)"
    :rules [:Desktop
-    ;; Second tap when variable is 1: send caret, reset
-    [:spacebar [:!S6 ["space_tapped" 0]] ["space_tapped" 1]]
+    ;; Second tap when variable is 1: backspace (delete space from canceled), then caret, reset
+    [:spacebar [:delete_or_backspace :!S6 ["space_tapped" 0]] ["space_tapped" 1]]
     ;; First tap: set variable, delayed action sends space after timeout
-    ;; canceled just resets variable (otherwise double-tap sends space+caret)
-    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [["space_tapped" 0]]} :params {:delay 200}}]
+    ;; canceled also sends space (so space+letter works fast)
+    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [:spacebar ["space_tapped" 0]]} :params {:delay 200}}]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
