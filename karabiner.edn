@@ -1071,6 +1071,12 @@
     [:comma [:!Sc ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:period [:!Sx ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:slash [:!Sz ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    ;; Numbers: output digit at mirrored position (bare key = digit in output)
+    [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
    ]}
 
   {:des "[Desktop] Mirror mode SHIFTED (mirror_mode=2) - must come before shift_oneshot"
