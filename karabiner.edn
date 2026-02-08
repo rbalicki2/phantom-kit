@@ -179,10 +179,27 @@
   ;; DESKTOP ONLY
   ;; =====================================================================
 
-  {:des "[Desktop] Disable unused LHS keys"
+  {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:Desktop
     [:##grave_accent_and_tilde :vk_none]  ;; physical backtick
     [:##non_us_backslash :vk_none]  ;; § key
+    [:##left_arrow :vk_none]
+    [:##right_arrow :vk_none]
+    [:##q :vk_none]
+    [:##w :vk_none]
+    [:##e :vk_none]
+    [:##r :vk_none]
+    [:##t :vk_none]
+    [:##a :vk_none]
+    [:##s :vk_none]
+    [:##d :vk_none]
+    [:##f :vk_none]
+    [:##g :vk_none]
+    [:##z :vk_none]
+    [:##x :vk_none]
+    [:##c :vk_none]
+    [:##v :vk_none]
+    [:##b :vk_none]
    ]}
 
   {:des "[Desktop] Page down/up to click/right click"
@@ -1177,13 +1194,7 @@
     [:##spacebar :vk_none ["in_any_layer" 1]]
    ]}
 
-  {:des "[Desktop] Right control to escape when tapped alone (Task 1.5: escape in Normal)"
-   :rules [:Desktop
-    ;; This rule triggers when in Normal (layer_normal=1) - sends escape, stays in Normal
-    ;; Other layers' right_control rules have higher priority (come earlier in config)
-    [:##right_control :right_control nil {:alone :escape}]
-   ]}
-
+  
  ] ;; end :main
 
 } ;; end config
