@@ -1059,9 +1059,8 @@
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
-    ;; \ = tab, Shift+\ = Shift+tab in Ins mode
-    [:backslash :tab ["layer_ins" 1]]
-    [:!Sbackslash :!Stab ["layer_ins" 1]]
+    ;; In mirror mode (shift held), backslash = shift+tab
+    [:backslash :!Stab ["mirror_mode" 1]]
    ]}
 
   {:des "[Desktop] Shift+Mirror oneshot (Shift+Quote then letter = Shift+mirrored letter)"
