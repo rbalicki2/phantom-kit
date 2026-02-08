@@ -19,6 +19,7 @@
 | k     | k      | XXX    |        |        | d      | D         |
 | l     | l      | XXX    |        |        | s      | S         |
 | ;     | ;      | :      |        |        | a      | A         |
+| '     | mirror | XXX    | XXX    | XXX    | XXX    | XXX       |
 |-------|--------|--------|--------|--------|--------|-----------|
 | n     | n      | XXX    |        |        | b      | B         |
 | m     | m      | XXX    |        |        | v      | V         |
@@ -32,6 +33,7 @@
 | space |        |        | XXX    | XXX    | XXX    | XXX       |
 | rcmd  |        |        | XXX    |        | XXX    | XXX       |
 | rctrl |        |        |        | XXX    | XXX    | XXX       |
+| rshift|        | XXX    |        |        | XXX    | XXX       |
 
 ## Needs to Fill
 
