@@ -1040,9 +1040,9 @@
     [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
     ;; apostrophe: hold = shift
     [:quote :left_shift ["layer_ins" 1]]
-    ;; shift keys: hold = mirror mode
-    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; shift keys: hold = mirror mode (pass through shift so it's still a modifier)
+    [:left_shift [:left_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [:right_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     ;; [ = backspace, ] = delete
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
