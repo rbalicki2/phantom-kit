@@ -1,4 +1,4 @@
-H Layer (l from Normal)
+L Layer (l from Normal)
 
 H = plus, Shift+H = Cmd+plus
 N = equals, Shift+N = Cmd+equals
