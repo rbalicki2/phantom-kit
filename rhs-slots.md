@@ -2,42 +2,42 @@
 
 | key   | bare   | rcmd       | rctrl  | space          | mirror | shift+mir |
 |-------|--------|------------|--------|----------------|--------|-----------|
-| y     | y      |            |        |                | x      | x         |
-| u     | u      |            |        |                | x      | x         |
-| i     | i      |            |        |                | x      | x         |
-| o     | o      |            |        |                | x      | x         |
-| p     | p      |            |        |                | x      | x         |
-| h     | h      |            |        |                | a      | A         |
-| j     | j      | word left  |        | sel word left  | s      | S         |
+| y     | y      |            |        |                | t      | T         |
+| u     | u      |            |        |                | r      | R         |
+| i     | i      |            |        |                | e      | E         |
+| o     | o      |            |        |                | w      | W         |
+| p     | p      |            |        |                | q      | Q         |
+| h     | h      |            |        |                | g      | G         |
+| j     | j      | word left  |        | sel word left  | f      | F         |
 | k     | k      | word right |        | sel word right | d      | D         |
-| l     | l      |            |        |                | f      | F         |
-| n     | n      |            |        |                | z      | Z         |
-| m     | m      | line start |        | sel line start | x      | x         |
+| l     | l      |            |        |                | s      | S         |
+| n     | n      |            |        |                | b      | B         |
+| m     | m      | line start |        | sel line start | v      | V         |
 | ,     | ,      | line end   |        | sel line end   | c      | C         |
-| ;     | ;      |            |        |                | x      | x         |
-| '     | mirror |            |        |                | x      | x         |
-| .     | .      |            |        |                | v      | V         |
-| /     | /      |            |        |                | b      | B         |
-| [     | [      |            |        |                | x      | x         |
-| ]     | ]      |            |        |                | x      | x         |
-| \     | \      |            |        |                | x      | x         |
+| ;     | ;      |            |        |                | a      | A         |
+| '     | mirror | XXX        | XXX    | XXX            | XXX    | XXX       |
+| .     | .      |            |        |                | x      | X         |
+| /     | /      |            |        |                | z      | Z         |
+| [     | [      |            |        |                | XXX    | XXX       |
+| ]     | ]      |            |        |                | XXX    | XXX       |
+| \     | \      |            |        |                | XXX    | XXX       |
 | 6     | ^      |            |        |                | %      | 5         |
 | 7     | &      |            |        |                | $      | 4         |
 | 8     | *      |            |        |                | #      | 3         |
 | 9     | (      |            |        |                | @      | 2         |
 | 0     | )      |            |        |                | !      | 1         |
-| -     | _      |            |        |                | x      | x         |
-| =     | +      |            |        |                | x      | x         |
-| up    | up     | left       |        | sel left       | x      | x         |
-| down  | down   | right      |        | sel right      | x      | x         |
-| left  | bksp   |            |        |                | x      | x         |
-| right | del    |            |        |                | x      | x         |
-| pgdn  | click  |            |        |                | x      | x         |
-| pgup  | rclick |            |        |                | x      | x         |
-| enter | enter  |            |        | cmd+enter      | x      | x         |
-| space | space  | x          | x      | x              | x      | x         |
-| rcmd  | }      | x          |        |                | x      | x         |
-| rctrl | →norm  |            | x      |                | x      | x         |
+| -     | _      |            |        |                | XXX    | XXX       |
+| =     | +      |            |        |                | XXX    | XXX       |
+| up    | up     | left       |        | sel left       | XXX    | XXX       |
+| down  | down   | right      |        | sel right      | XXX    | XXX       |
+| left  | bksp   |            |        |                | XXX    | XXX       |
+| right | del    |            |        |                | XXX    | XXX       |
+| pgdn  | click  |            |        |                | XXX    | XXX       |
+| pgup  | rclick |            |        |                | XXX    | XXX       |
+| enter | enter  |            |        | cmd+enter      | XXX    | XXX       |
+| space | space  | XXX        | XXX    | XXX            | XXX    | XXX       |
+| rcmd  | }      | XXX        |        |                | XXX    | XXX       |
+| rctrl | →norm  |            | XXX    |                | XXX    | XXX       |
 
 ## Needs to Fill
 
