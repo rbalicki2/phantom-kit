@@ -77,6 +77,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - `CLAUDE.md` - Main reference with full details
 - `shortcuts.md` - Quick reference
 - `layers/*.txt` - Hammerspoon overlay files for each layer
+- `rhs-slots.md` - RHS key slot grid for Ins mode (tracks what each key+modifier combo does)
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message

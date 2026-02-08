@@ -315,12 +315,10 @@
     [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow]
    ]}
 
-  {:des "[Desktop] Backspace to super, delete to hyper"
+  {:des "[Desktop] Disable backspace and delete keys"
    :rules [:Desktop
-    ;; Backspace = super (cmd+shift+ctrl), alone = super+7
-    [:##delete_or_backspace {:key :left_command :modi [:left_shift :left_control]} nil {:alone {:key :7 :modi [:left_command :left_shift :left_control]}}]
-    ;; Delete forward = hyper, but exits layer_n when tapped alone in that layer
-    [:##delete_forward {:key :left_command :modi [:left_shift :left_control :left_option]} nil {:alone [["layer_n" 0] {:noti {:id "layer_n" :text ""}}]}]
+    [:##delete_or_backspace :vk_none]
+    [:##delete_forward :vk_none]
    ]}
 
   {:des "[Desktop] Physical equals to backtick"
@@ -1047,6 +1045,9 @@
     ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
     [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; Shift+up = backspace, Shift+down = delete
+    [{:key :up_arrow :modi {:mandatory [:shift]}} :delete_or_backspace ["layer_ins" 1]]
+    [{:key :down_arrow :modi {:mandatory [:shift]}} :delete_forward ["layer_ins" 1]]
     ;; [ = backspace, ] = delete
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
