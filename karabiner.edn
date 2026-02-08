@@ -1043,8 +1043,8 @@
     [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
-    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:left_shift [:left_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [:right_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     ;; Shift+up = backspace, Shift+down = delete
     [{:key :up_arrow :modi {:mandatory [:shift]}} :delete_or_backspace ["layer_ins" 1]]
     [{:key :down_arrow :modi {:mandatory [:shift]}} :delete_forward ["layer_ins" 1]]
