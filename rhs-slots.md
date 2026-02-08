@@ -26,6 +26,7 @@
 | ,     | ,      | <      |        |        | c      | C         |
 | .     | .      | >      |        |        | x      | X         |
 | /     | /      | ?      |        |        | z      | Z         |
+| rshift|        | XXX    |        |        | XXX    | XXX       |
 |-------|--------|--------|--------|--------|--------|-----------|
 | pgup  |        |        |        |        | XXX    | XXX       |
 | pgdn  |        |        |        |        | XXX    | XXX       |
@@ -33,7 +34,6 @@
 | space |        |        | XXX    | XXX    | XXX    | XXX       |
 | rcmd  |        |        | XXX    |        | XXX    | XXX       |
 | rctrl |        |        |        | XXX    | XXX    | XXX       |
-| rshift|        | XXX    |        |        | XXX    | XXX       |
 
 ## Needs to Fill
 
