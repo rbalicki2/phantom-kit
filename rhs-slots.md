@@ -28,4 +28,4 @@
 
 ## Needs to Fill
 
-escape, tab, backtick, tilde
+caps, escape, tab, backtick, tilde, up, down, left, right, backspace, delete, word left, word right, line start, line end, click, rclick, enter
