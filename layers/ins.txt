@@ -1,3 +1,5 @@
 INS - Typing Mode
 All keys type normally
 right_ctrl → Normal
+' (hold) → Shift
+Shift (hold) → Mirror

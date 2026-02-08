@@ -229,6 +229,8 @@ The layer system is modal (like vim):
 ### Ins Layer (j from Normal)
 - All keys type normally (passthrough)
 - **right_control** = Return to Normal
+- **Quote (')** = Shift when held, quote when tapped alone
+- **Shift** = Mirror mode when held (RHS keys → LHS keys)
 
 ### Layer N "Nav" (n from Normal)
 - **N** = Command+Space (Spotlight)

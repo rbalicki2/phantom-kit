@@ -19,6 +19,8 @@
 ## Ins Layer (j from Normal)
 - All keys type normally
 - **right_control** = Return to Normal
+- **Quote (')** = Shift when held, quote when tapped alone
+- **Shift** = Mirror mode (RHS → LHS keys)
 
 ## Layer N "Nav" (n from Normal)
 - **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **O** = Obsidian
