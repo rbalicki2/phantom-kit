@@ -150,15 +150,13 @@
     [{:key :backslash :modi {:mandatory []}} :!Sbackslash]
    ]}
 
-  {:des "Left shift to open paren when alone (disabled in Ins mode)"
+  {:des "Left shift to open paren when alone"
    :rules [
-    [:##left_shift :vk_none ["layer_ins" 1]]
     [:##left_shift :left_shift nil {:alone :!S9}]
    ]}
 
-  {:des "Right shift to close paren when alone (disabled in Ins mode)"
+  {:des "Right shift to close paren when alone"
    :rules [
-    [:##right_shift :vk_none ["layer_ins" 1]]
     [:##right_shift :right_shift nil {:alone :!S0}]
    ]}
 
@@ -1010,12 +1008,51 @@
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
-  {:des "[Desktop] Double-tap space test (global for now)"
+  {:des "[Desktop] Double-tap space → mirror mode"
    :rules [:Desktop
-    ;; Second tap when variable is 1: caret, reset (will have leading space from canceled)
-    [:spacebar [:!S6 ["space_tapped" 0]] ["space_tapped" 1]]
-    ;; First tap: set variable, canceled sends space (so typing works), invoked also sends space
+    ;; Second tap when space_tapped is 1: enter mirror mode
+    [:spacebar [["mirror_mode" 1] ["space_tapped" 0]] ["space_tapped" 1]]
+    ;; First tap: set variable, canceled/invoked sends space
     [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [:spacebar ["space_tapped" 0]]} :params {:delay 200}}]
+   ]}
+
+  {:des "[Desktop] Mirror mode letter mappings (RHS → LHS)"
+   :rules [:Desktop
+    ;; Top row: Y U I O P → T R E W Q
+    [:y :t ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sy :!St ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:u :r ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Su :!Sr ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:i :e ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Si :!Se ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:o :w ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!So :!Sw ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:p :q ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sp :!Sq ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    ;; Home row: H J K L ; → G F D S A
+    [:h :g ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sh :!Sg ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:j :f ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sj :!Sf ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:k :d ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sk :!Sd ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:l :s ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sl :!Ss ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:semicolon :a ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Ssemicolon :!Sa ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    ;; Bottom row: N M , . / → B V C X Z
+    [:n :b ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sn :!Sb ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:m :v ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sm :!Sv ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:comma :c ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Scomma :!Sc ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:period :x ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Speriod :!Sx ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:slash :z ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    [:!Sslash :!Sz ["mirror_mode" 1] {:alone [["mirror_mode" 0]]}]
+    ;; Escape exits mirror mode without typing
+    [:escape ["mirror_mode" 0] ["mirror_mode" 1]]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
