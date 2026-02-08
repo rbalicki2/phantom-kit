@@ -20,7 +20,7 @@
 | j     | j      | J      |        |        | f      | F         |
 | k     | k      | K      |        |        | d      | D         |
 | l     | l      | L      |        |        | s      | S         |
-| ;     | ;      |        |        |        | a      | A         |
+| ;     |        |        |        |        | a      | A         |
 | '     | shift  | XXX    | XXX    | XXX    | XXX    | XXX       |
 |-------|--------|--------|--------|--------|--------|-----------|
 | n     | n      | N      |        |        | b      | B         |
@@ -44,8 +44,4 @@
 
 ## Needs to Fill
 
-**Symbols**: : | < > ? { } ~ ` + =
-
-**Navigation**: caps, escape, tab, up, down, left, right, backspace, delete, word left, word right, line start, line end
-
-**Actions**: click, rclick, enter
+; : | < > ? { } ~ ` + =
