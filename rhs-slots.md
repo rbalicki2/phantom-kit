@@ -1,37 +1,37 @@
 # RHS Slots Grid (Ins Mode)
 
-| key      | bare     | quk(sh)  | rcmd     | rctrl    | sh+cmd   | shk(mir) | sh+mir   |
+| key      | bare     | quk(sh)  | shk(mir) | sh+mir   | rcmd     | rctrl    | sh+cmd   |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| 6        | ^        | 6        |          |          |          | %        | 5        |
-| 7        | &        | 7        |          |          |          | $        | 4        |
-| 8        | *        | 8        |          |          |          | #        | 3        |
-| 9        | (        | 9        |          |          |          | @        | 2        |
-| 0        | )        | 0        |          |          |          | !        | 1        |
+| 6        | ^        | 6        | %        | 5        |          |          |          |
+| 7        | &        | 7        | $        | 4        |          |          |          |
+| 8        | *        | 8        | #        | 3        |          |          |          |
+| 9        | (        | 9        | @        | 2        |          |          |          |
+| 0        | )        | 0        | !        | 1        |          |          |          |
 | -        |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| y        | y        | XXX      |          |          | XXX      | t        | XXX      |
-| u        | u        | XXX      |          |          | XXX      | r        | XXX      |
-| i        | i        | XXX      |          |          | XXX      | e        | XXX      |
-| o        | o        | XXX      |          |          | XXX      | w        | XXX      |
-| p        | p        | XXX      |          |          | XXX      | q        | XXX      |
+| y        | y        | XXX      | t        | XXX      |          |          | XXX      |
+| u        | u        | XXX      | r        | XXX      |          |          | XXX      |
+| i        | i        | XXX      | e        | XXX      |          |          | XXX      |
+| o        | o        | XXX      | w        | XXX      |          |          | XXX      |
+| p        | p        | XXX      | q        | XXX      |          |          | XXX      |
 | \        | tab      | sh+tab   |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| h        | h        | XXX      |          |          | XXX      | g        | XXX      |
-| j        | j        | XXX      | wd←      | XXX      | XXX      | f        | XXX      |
-| k        | k        | XXX      | wd→      |          | XXX      | d        | XXX      |
-| l        | l        | XXX      |          |          | XXX      | s        | XXX      |
-| ;        | ;        | :        |          |          |          | a        | XXX      |
+| h        | h        | XXX      | g        | XXX      |          |          | XXX      |
+| j        | j        | XXX      | f        | XXX      | wd←      | XXX      | XXX      |
+| k        | k        | XXX      | d        | XXX      | wd→      |          | XXX      |
+| l        | l        | XXX      | s        | XXX      |          |          | XXX      |
+| ;        | ;        | :        | a        | XXX      |          |          |          |
 | '        | shift    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| n        | n        | XXX      |          |          | XXX      | b        | XXX      |
-| m        | m        | XXX      | ln←      |          | XXX      | v        | XXX      |
-| ,        | ,        |          | ln→      |          |          | c        | XXX      |
-| .        | .        |          |          |          |          | x        | XXX      |
-| /        |          |          |          |          |          | z        | XXX      |
+| n        | n        | XXX      | b        | XXX      |          |          | XXX      |
+| m        | m        | XXX      | v        | XXX      | ln←      |          | XXX      |
+| ,        | ,        |          | c        | XXX      | ln→      |          |          |
+| .        | .        |          | x        | XXX      |          |          |          |
+| /        |          |          | z        | XXX      |          |          |          |
 | rshift   | mirror   | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| up       | up       |          | ←        |          |          |          |          |
-| down     | down     |          | →        |          |          |          |          |
+| up       | up       |          |          |          | ←        |          |          |
+| down     | down     |          |          |          | →        |          |          |
 | [        | bksp     |          |          |          |          |          |          |
 | ]        | del      |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|
