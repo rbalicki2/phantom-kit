@@ -373,7 +373,8 @@ All layers exit to Normal (not to Ins/typing mode) by:
 - Right shift alone = )
 
 ## Desktop-Only Remaps
-- Right control alone = Escape (frees up physical escape key)
+- LHS letter keys (q,w,e,r,t,a,s,d,f,g,z,x,c,v,b) = disabled (no-op)
+- Left/right arrows = disabled (no-op)
 - Page down/up = left/right click
 - Right control + [ / ] = backspace/delete
 - Left command alone = {, Shift+left_command alone = [
