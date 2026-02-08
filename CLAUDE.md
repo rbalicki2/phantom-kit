@@ -315,9 +315,8 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **Comma** = Alt+B (next error, stays)
 - **Period** = Alt+V (find next, stays)
 
-### RHS Flag (right_control+7 to toggle)
+### RHS Flag (right_control+7 to enter, right_control+8 to exit)
 - Independent boolean flag, combines with any layer
-- Toggles on/off (press again to exit)
 - Disables LHS keys: `=`, `+`, `g`
 - SwiftBar shows "RHS-" prefix (e.g., "RHS-Nav", "RHS-M")
 
