@@ -1013,8 +1013,8 @@
     ;; Second tap when variable is 1: send caret, reset
     [:spacebar [:!S6 ["space_tapped" 0]] ["space_tapped" 1]]
     ;; First tap: set variable, delayed action sends space after timeout
-    ;; canceled (another key pressed) also sends space immediately
-    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [:spacebar ["space_tapped" 0]]} :params {:delay 200}}]
+    ;; canceled just resets variable (otherwise double-tap sends space+caret)
+    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [["space_tapped" 0]]} :params {:delay 200}}]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
