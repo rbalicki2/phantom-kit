@@ -1034,15 +1034,18 @@
     ;; right_control alone exits Ins to Normal
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
-    ;; Must come BEFORE plain quote rule (## allows shift modifier)
-    [:##quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
-    ;; Space while mirror_mode active = space + oneshot shift mode (## allows shift modifier)
-    [:##spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
+    ;; Must come BEFORE plain quote rule
+    [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
+    ;; Space while mirror_mode active = space + oneshot shift mode
+    [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
     ;; apostrophe: hold = shift
     [:quote :left_shift ["layer_ins" 1]]
-    ;; shift keys: hold = mirror mode (pass through shift so it's still a modifier)
-    [:left_shift [:left_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    [:right_shift [:right_shift ["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; shift keys: if shift_oneshot=1, set mirror_mode=2 (shifted mirror)
+    [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
+    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     ;; [ = backspace, ] = delete
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
@@ -1070,26 +1073,26 @@
     [:slash [:!Sz ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
    ]}
 
-  {:des "[Desktop] Mirror mode SHIFTED (Shift held + mirror_mode) - must come before shift_oneshot"
+  {:des "[Desktop] Mirror mode SHIFTED (mirror_mode=2) - must come before shift_oneshot"
    :rules [:Desktop
-    ;; Top row: Shift+Y U I O P → Shift+T R E W Q
-    [{:key :y :modi {:mandatory [:shift]}} :!St ["mirror_mode" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} :!Sr ["mirror_mode" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} :!Se ["mirror_mode" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} :!Sw ["mirror_mode" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} :!Sq ["mirror_mode" 1]]
-    ;; Home row: Shift+H J K L ; → Shift+G F D S A
-    [{:key :h :modi {:mandatory [:shift]}} :!Sg ["mirror_mode" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} :!Sf ["mirror_mode" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} :!Sd ["mirror_mode" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} :!Ss ["mirror_mode" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} :!Sa ["mirror_mode" 1]]
-    ;; Bottom row: Shift+N M , . / → Shift+B V C X Z
-    [{:key :n :modi {:mandatory [:shift]}} :!Sb ["mirror_mode" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} :!Sv ["mirror_mode" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} :!Sc ["mirror_mode" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} :!Sx ["mirror_mode" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} :!Sz ["mirror_mode" 1]]
+    ;; Top row: Y U I O P → Shift+T R E W Q
+    [:y :!St ["mirror_mode" 2]]
+    [:u :!Sr ["mirror_mode" 2]]
+    [:i :!Se ["mirror_mode" 2]]
+    [:o :!Sw ["mirror_mode" 2]]
+    [:p :!Sq ["mirror_mode" 2]]
+    ;; Home row: H J K L ; → Shift+G F D S A
+    [:h :!Sg ["mirror_mode" 2]]
+    [:j :!Sf ["mirror_mode" 2]]
+    [:k :!Sd ["mirror_mode" 2]]
+    [:l :!Ss ["mirror_mode" 2]]
+    [:semicolon :!Sa ["mirror_mode" 2]]
+    ;; Bottom row: N M , . / → Shift+B V C X Z
+    [:n :!Sb ["mirror_mode" 2]]
+    [:m :!Sv ["mirror_mode" 2]]
+    [:comma :!Sc ["mirror_mode" 2]]
+    [:period :!Sx ["mirror_mode" 2]]
+    [:slash :!Sz ["mirror_mode" 2]]
    ]}
 
   {:des "[Desktop] Shift oneshot (Shift+Space then release, letter = Shift+letter)"
