@@ -44,4 +44,5 @@
 
 ## Needs to Fill
 
-; : | \ < > ? { } [ ] ~ ` + = , . /
+; : | \ < > ? { } [ ] ~ ` + = , . / ' "
+up down left right backspace delete tab esc
