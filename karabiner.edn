@@ -167,12 +167,12 @@
 
   {:des "Left shift to open paren when alone"
    :rules [
-    [:##left_shift :left_shift ["layer_normal" 0] {:alone :!S9}]
+    [:##left_shift :left_shift ["in_any_layer" 1] {:alone :!S9}]
    ]}
 
   {:des "Right shift to close paren when alone"
    :rules [
-    [:##right_shift :right_shift ["layer_normal" 0] {:alone :!S0}]
+    [:##right_shift :right_shift ["in_any_layer" 1] {:alone :!S0}]
    ]}
 
   ;; =====================================================================
