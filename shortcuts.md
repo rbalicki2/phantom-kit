@@ -36,7 +36,7 @@
 - *To be implemented: vimium-style hints + grid positioning*
 
 ## Comma Layer (comma from Normal)
-- **H** = Copy, **J** = Paste, **K** = Find, **Shift+K** = Find in files, **L** = Undo, **Shift+L** = Redo
+- **H** = Copy, **J** = Paste, **K** = Find (→Ins), **Shift+K** = Find in files (→Ins), **L** = Undo, **Shift+L** = Redo
 - **Comma** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all, **O** = Cmd+Shift+P, **Shift+O** = Open, **P** = Cmd+P
 - **Ctrl+H** = Close
@@ -64,12 +64,12 @@
 - **Shift+Y/U/I/O** = ^, &, *, ( (panes 6-9)
 
 ## Chrome Layer (k from Normal, Chrome only)
-- **H** = New tab, **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar
+- **H** = New tab (→Ins), **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar (→Ins)
 - **Shift+J** = gg (top), **Shift+K** = Shift+G (bottom)
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
 - **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
 - **Shift+L** = Copy URL
-- **N** = Cmd+K, **Comma** = Search tabs, **Period** = Refresh
+- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh
 
 ## VS Code Layer (k from Normal, VS Code only)
 - **H** = Copy rel path, **Shift+H** = Copy full path, **Ctrl+H** = Open in Chrome

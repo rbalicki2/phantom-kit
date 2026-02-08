@@ -2,7 +2,7 @@ Comma Layer (comma from Normal)
 
 H = Copy
 J = Paste
-K = Find, Shift+K = Find in files
+K = Find →Ins, Shift+K = Find in files →Ins
 L = Undo, Shift+L = Redo
 , = Ctrl+C (terminal interrupt)
 N = Ctrl+R (terminal search)
