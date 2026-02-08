@@ -157,6 +157,18 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 3. Create `layers/*.txt` file for Hammerspoon overlay
 4. Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
+## Layer Exit Modes: Normal vs Ins
+
+When a layer action exits, decide whether to go to **Normal** or **Ins** mode:
+
+- **→ Ins mode**: Action opens a text field where user will type (address bar, search, find dialog, Spotlight)
+- **→ Normal mode**: Action doesn't require typing (tab switch, close, refresh, undo, copy/paste)
+
+**Examples that should exit to Ins:**
+- Chrome: new tab, address bar, search tabs, Cmd+K
+- Comma: find (Cmd+F), find in files
+- Nav: Spotlight (Cmd+Space)
+
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
 

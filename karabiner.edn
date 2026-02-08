@@ -416,8 +416,8 @@
     [:n [:!Tr ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Ctrl+R
     [:h [:!Cc ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Copy
     [:j [:!Cv ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Paste
-    [:k [:!Cf ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Find
-    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Find in files
+    [:k [:!Cf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Find → Ins
+    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Find in files → Ins
     [:l [:!Cz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Undo
     [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Redo
     [:period [:!Cs ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Save
@@ -456,11 +456,11 @@
     [{:key :o :modi {:mandatory [:shift]}} [[:chrome-tab "8"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
     [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Last tab
     ;; Actions
-    [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; New tab
-    [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Address bar
+    [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; New tab → Ins
+    [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Address bar → Ins
     [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Copy URL
-    [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Cmd+K
-    [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Search tabs
+    [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Cmd+K → Ins
+    [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Search tabs → Ins
     [:m [:!Od ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Dark mode
     ;; Vimium
     [{:key :j :modi {:mandatory [:shift]}} [[:type-norm "gg"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Top
