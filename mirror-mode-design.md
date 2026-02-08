@@ -9,23 +9,7 @@ Enable full RHS-only typing in Insert mode, including access to all LHS letters,
 
 **Trigger**: Space held in combination with another key
 
-| Input | Output |
-|-------|--------|
-| Space + Y | T |
-| Space + U | R |
-| Space + I | E |
-| Space + O | W |
-| Space + P | Q |
-| Space + H | G |
-| Space + J | F |
-| Space + K | D |
-| Space + L | S |
-| Space + ; | A |
-| Space + N | B |
-| Space + M | V |
-| Space + , | C |
-| Space + . | X |
-| Space + / | Z |
+RHS letter keys mirror to their LHS equivalents (Y→T, U→R, H→G, J→F, etc.)
 
 **Shift behavior** (Option A - simple):
 - Shift+Space + Y = Shift+T (capital T)
