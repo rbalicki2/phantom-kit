@@ -25,6 +25,13 @@
 | ,     | ,      | <      |        |        | c      | C         |
 | .     | .      | >      |        |        | x      | X         |
 | /     | /      | ?      |        |        | z      | Z         |
+|-------|--------|--------|--------|--------|--------|-----------|
+| pgup  |        |        |        |        | XXX    | XXX       |
+| pgdn  |        |        |        |        | XXX    | XXX       |
+| enter |        |        |        |        | XXX    | XXX       |
+| space |        |        | XXX    | XXX    | XXX    | XXX       |
+| rcmd  |        |        | XXX    |        | XXX    | XXX       |
+| rctrl |        |        |        | XXX    | XXX    | XXX       |
 
 ## Needs to Fill
 
