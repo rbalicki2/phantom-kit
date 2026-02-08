@@ -1006,8 +1006,9 @@
     [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
     ;; right_control alone exits Ins to Normal
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; Space only types when tapped alone (prep for mirror mode)
-    [:spacebar :vk_none ["layer_ins" 1] {:alone :spacebar}]
+    ;; Space is no-op, Shift+Space types space (testing for mirror mode)
+    [:spacebar :vk_none ["layer_ins" 1]]
+    [:!Sspacebar :spacebar ["layer_ins" 1]]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
