@@ -84,7 +84,7 @@
 - **Right Cmd + Up/Down** = Left/right arrows
 - **Page down/up** = Left/right click
 
-## RHS Flag (right_control+7)
-- Toggle on/off, combines with any layer
+## RHS Flag (right_control+7 enter, right_control+8 exit)
+- Combines with any layer
 - Disables LHS keys (only matters in Ins layer)
 - SwiftBar shows "RHS-" prefix
