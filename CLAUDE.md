@@ -232,7 +232,33 @@ The layer system is modal (like vim):
 - All keys type normally (passthrough)
 - **right_control** = Return to Normal
 - **Quote (')** = Shift when held, quote when tapped alone
-- **Shift** = Mirror mode when held (RHS keys → LHS keys)
+- **Shift** = Mirror mode when held (see below)
+
+#### Mirror Mode (Shift held in Ins)
+Holding Shift in Ins mode enters mirror mode. RHS keys output their LHS mirror equivalents.
+
+**Letters**: RHS letter → LHS letter (lowercase, since Shift is consumed entering mirror mode)
+- y→t, u→r, i→e, o→w, p→q
+- h→g, j→f, k→d, l→s, ;→a
+- n→b, m→v, ,→c, .→x, /→z
+
+**Numbers**: RHS number → LHS symbol (symbol because Shift is consumed, and user's keyboard has number/symbol swap)
+- 6→%, 7→$, 8→#, 9→@, 0→!
+
+**LHS numbers** in mirror mode: output digit (1→1, 2→2, etc.) since Shift is consumed
+
+**Arrows**: up→backspace, down→delete
+
+#### Shift+Quote (shift_mirror_oneshot)
+Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a oneshot that persists until a key is typed, even after releasing Shift+Quote.
+
+**Letters**: outputs Shift+mirrored letter (uppercase)
+- y→T, u→R, i→E, o→W, p→Q
+- h→G, j→F, k→D, l→S, ;→A
+- n→B, m→V, ,→C, .→X, /→Z
+
+**Numbers**: outputs digit at mirrored position
+- 6→5, 7→4, 8→3, 9→2, 0→1
 
 ### Layer N "Nav" (n from Normal)
 - **N** = Command+Space (Spotlight)

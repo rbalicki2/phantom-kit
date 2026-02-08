@@ -127,6 +127,16 @@
     [:0 :!S1 ["mirror_mode" 1]]
    ]}
 
+  {:des "Shift+mirror oneshot numbers (must come before number swap)"
+   :rules [
+    ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
+    [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+   ]}
+
   {:des "Exchange numbers and symbols"
    :rules [
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
@@ -1071,12 +1081,7 @@
     [:comma [:!Sc ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:period [:!Sx ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:slash [:!Sz ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    ;; Numbers: output digit at mirrored position (bare key = digit in output)
-    [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-    [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+    ;; Numbers are handled in global section (before number swap rules)
    ]}
 
   {:des "[Desktop] Mirror mode SHIFTED (mirror_mode=2) - must come before shift_oneshot"
