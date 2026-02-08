@@ -38,7 +38,7 @@
 | pgup  |        |        |        |        |        |         |          |             |        |           |
 | pgdn  |        |        |        |        |        |         |          |             |        |           |
 | enter | enter  |        |        |        |        |         |          |             |        |           |
-| space | space  | SP+SH  |        |        |        |         |          |             |        |           |
+| space | space  | sp+sh  |        |        |        |         |          |             |        |           |
 | rcmd  | XXX    | XXX    | XXX    | XXX    | XXX    | XXX     | XXX      | XXX         | XXX    | XXX       |
 | rctrl | XXX    | XXX    | XXX    | XXX    | XXX    | XXX     | XXX      | XXX         | XXX    | XXX       |
 
