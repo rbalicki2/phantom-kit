@@ -9,22 +9,22 @@
 | 0        | )        | !        | 0        | 1        |          |          |          |          |
 | -        |          |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| y        | y        | t        | XXX      | XXX      |          |          | XXX      |          |
-| u        | u        | r        | XXX      | XXX      |          |          | XXX      |          |
-| i        | i        | e        | XXX      | XXX      |          |          | XXX      |          |
-| o        | o        | w        | XXX      | XXX      |          |          | XXX      |          |
-| p        | p        | q        | XXX      | XXX      |          |          | XXX      |          |
+| y        | y        | t        | XXX      | XXX      |          |          |          |          |
+| u        | u        | r        | XXX      | XXX      |          |          |          |          |
+| i        | i        | e        | XXX      | XXX      |          |          |          |          |
+| o        | o        | w        | XXX      | XXX      |          |          |          |          |
+| p        | p        | q        | XXX      | XXX      |          |          |          |          |
 | \        | tab      |          | sh+tab   |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| h        | h        | g        | XXX      | XXX      |          |          | XXX      |          |
-| j        | j        | f        | XXX      | XXX      | wd←      | →ins     | XXX      |          |
-| k        | k        | d        | XXX      | XXX      | wd→      |          | XXX      |          |
-| l        | l        | s        | XXX      | XXX      |          |          | XXX      |          |
+| h        | h        | g        | XXX      | XXX      |          |          |          |          |
+| j        | j        | f        | XXX      | XXX      | wd←      | →ins     |          |          |
+| k        | k        | d        | XXX      | XXX      | wd→      |          |          |          |
+| l        | l        | s        | XXX      | XXX      |          |          |          |          |
 | ;        | ;        | a        | :        | XXX      |          |          |          |          |
 | '        | shift    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| n        | n        | b        | XXX      | XXX      |          |          | XXX      |          |
-| m        | m        | v        | XXX      | XXX      | ln←      |          | XXX      |          |
+| n        | n        | b        | XXX      | XXX      |          |          |          |          |
+| m        | m        | v        | XXX      | XXX      | ln←      |          |          |          |
 | ,        | ,        | c        |          | XXX      | ln→      |          |          |          |
 | .        | .        | x        |          | XXX      |          |          |          |          |
 | /        |          | z        |          | XXX      |          |          |          |          |
