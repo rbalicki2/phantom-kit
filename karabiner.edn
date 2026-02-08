@@ -268,12 +268,7 @@
     [{:key :close_bracket :modi {:mandatory [:right_control] :optional [:any]}} {:key :delete_forward :modi []}]
    ]}
 
-  {:des "[Desktop] Left/right arrows to backspace/delete"
-   :rules [:Desktop
-    [:##left_arrow :delete_or_backspace]
-    [:##right_arrow :delete_forward]
-   ]}
-
+  
   {:des "[Desktop] Right command to close curly/bracket when alone"
    :rules [:Desktop
     [:right_command :right_command nil {:alone :!Sclose_bracket}]
