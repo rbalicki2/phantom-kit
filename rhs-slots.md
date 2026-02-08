@@ -44,19 +44,4 @@
 
 ## Needs to Fill
 
-### TOP
-- up arrow
-- down arrow
-- backspace
-- delete (forward)
-- word delete left
-- word delete right
-- escape
-
-### MID
-- tab
-- backtick
-
-### LOWER
-- tilde
-- ! @ # $ %
+word delete left, word delete right, escape, tab, backtick, tilde
