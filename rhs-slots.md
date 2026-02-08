@@ -1,6 +1,6 @@
 # RHS Slots Grid (Ins Mode)
 
-| key      | bare     | shift    | rcmd     | rctrl    | sh+cmd   | mirror   | sh+mir   |
+| key      | bare     | quk(sh)  | rcmd     | rctrl    | sh+cmd   | shk(mir) | sh+mir   |
 |----------|----------|----------|----------|----------|----------|----------|----------|
 | 6        | ^        | 6        |          |          |          | %        | 5        |
 | 7        | &        | 7        |          |          |          | $        | 4        |
