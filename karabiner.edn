@@ -1030,12 +1030,14 @@
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
     [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
     ;; escape exits Ins to Normal (explicit, reliable)
-    [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
+    [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
     ;; right_control alone exits Ins to Normal
-    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
     ;; Must come BEFORE plain quote rule
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
+    ;; Space while mirror_mode active = space + oneshot shift mode
+    [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
     ;; apostrophe: hold = shift
     [:quote :left_shift ["layer_ins" 1]]
     ;; shift keys: hold = mirror mode
@@ -1066,6 +1068,28 @@
     [:comma [:!Sc ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:period [:!Sx ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:slash [:!Sz ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
+   ]}
+
+  {:des "[Desktop] Shift oneshot (Shift+Space then letter = Shift+letter, not mirrored)"
+   :rules [:Desktop
+    ;; Top row
+    [:y [:!Sy ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:u [:!Su ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:i [:!Si ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:o [:!So ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:p [:!Sp ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    ;; Home row
+    [:h [:!Sh ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:j [:!Sj ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:k [:!Sk ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:l [:!Sl ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:semicolon [:!Ssemicolon ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    ;; Bottom row
+    [:n [:!Sn ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:m [:!Sm ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:comma [:!Scomma ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:period [:!Speriod ["shift_oneshot" 0]] ["shift_oneshot" 1]]
+    [:slash [:!Sslash ["shift_oneshot" 0]] ["shift_oneshot" 1]]
    ]}
 
   {:des "[Desktop] Mirror mode letter mappings (RHS → LHS) - triggered by holding Shift in Ins mode"
