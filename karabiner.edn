@@ -1026,6 +1026,9 @@
     ;; shift keys: hold = mirror mode
     [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; [ = backspace, ] = delete
+    [:open_bracket :delete_or_backspace ["layer_ins" 1]]
+    [:close_bracket :delete_forward ["layer_ins" 1]]
    ]}
 
   {:des "[Desktop] Mirror mode letter mappings (RHS → LHS) - triggered by holding Shift in Ins mode"
