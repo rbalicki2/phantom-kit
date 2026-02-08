@@ -1037,6 +1037,10 @@
     ;; Ins layer has no key mappings - all keys pass through by default
     ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
     [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Y from Normal = Shift+F9 (TTS toggle) + enter Ins
+    [:y [:!Sf9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; 6 from Normal = F9 (TTS) + enter Ins
+    [:6 [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
     [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
     ;; escape exits Ins to Normal (explicit, reliable)
