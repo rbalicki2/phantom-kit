@@ -39,8 +39,8 @@
 | pgdn  |        |        |        |        |        |         |          |             |        |           |
 | enter |        |        |        |        |        |         |          |             |        |           |
 | space |        | SP+SH  |        |        |        |         |          |             |        |           |
-| rcmd  |        |        | XXX    |        | XXX    |         | XXX      | XXX         |        |           |
-| rctrl |        |        |        | XXX    |        | XXX     | XXX      | XXX         |        |           |
+| rcmd  | XXX    | XXX    | XXX    | XXX    | XXX    | XXX     | XXX      | XXX         | XXX    | XXX       |
+| rctrl | XXX    | XXX    | XXX    | XXX    | XXX    | XXX     | XXX      | XXX         | XXX    | XXX       |
 
 ## Needs to Fill
 
