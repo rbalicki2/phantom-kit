@@ -1036,8 +1036,8 @@
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
     ;; Must come BEFORE plain quote rule
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
-    ;; Space while mirror_mode active = space + oneshot shift+mirror mode
-    [:spacebar [:spacebar ["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
+    ;; Space while mirror_mode active = space + oneshot shift mode (mirror comes from next shift press)
+    [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
     ;; apostrophe: hold = shift
     [:quote :left_shift ["layer_ins" 1]]
     ;; shift keys: hold = mirror mode (pass through shift so it's still a modifier)
