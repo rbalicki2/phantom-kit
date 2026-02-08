@@ -1012,11 +1012,11 @@
 
   {:des "[Desktop] Double-tap space test (global for now)"
    :rules [:Desktop
-    ;; Second tap when variable is 1: backspace (delete space from canceled), then caret, reset
-    [:spacebar [:delete_or_backspace :!S6 ["space_tapped" 0]] ["space_tapped" 1]]
+    ;; Second tap when variable is 1: just caret, reset
+    [:spacebar [:!S6 ["space_tapped" 0]] ["space_tapped" 1]]
     ;; First tap: set variable, delayed action sends space after timeout
-    ;; canceled also sends space (so space+letter works fast)
-    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [:spacebar ["space_tapped" 0]]} :params {:delay 200}}]
+    ;; canceled just resets (space+letter has 200ms delay, but double-tap is clean)
+    [:spacebar ["space_tapped" 1] ["space_tapped" 0] {:delayed {:invoked [:spacebar ["space_tapped" 0]] :canceled [["space_tapped" 0]]} :params {:delay 200}}]
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
