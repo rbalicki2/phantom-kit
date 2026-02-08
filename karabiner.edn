@@ -150,10 +150,10 @@
     [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_normal" 0]]
    ]}
 
-  {:des "Brackets to command+bracket"
+  {:des "Brackets to command+bracket (only in working layers)"
    :rules [
-    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["layer_ins" 0]]
-    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["layer_ins" 0]]
+    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_any_layer" 1]]
+    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["in_any_layer" 1]]
     [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket]
     [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket]
     [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket]
@@ -1202,7 +1202,13 @@
     [:##0 :vk_none ["layer_normal" 1]]
     [:##backslash :vk_none ["layer_normal" 1]]
     [:##hyphen :vk_none ["layer_normal" 1]]
-    ;; Shift+comma disabled (bare comma is layer entry key)
+    ;; Shift+layer-entry-keys disabled (bare key enters layer, shift should do nothing)
+    [:!Su :vk_none ["layer_normal" 1]]
+    [:!Sh :vk_none ["layer_normal" 1]]
+    [:!Sj :vk_none ["layer_normal" 1]]
+    [:!Sl :vk_none ["layer_normal" 1]]
+    [:!Sn :vk_none ["layer_normal" 1]]
+    [:!Sm :vk_none ["layer_normal" 1]]
     [:!Scomma :vk_none ["layer_normal" 1]]
     [:##spacebar :vk_none ["layer_normal" 1]]
     [:##page_down :vk_none ["layer_normal" 1]]
