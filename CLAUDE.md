@@ -194,6 +194,8 @@ This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS)
 
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
+- **"SHK"** = shift key (user's voice shorthand, even though shift enters mirror mode in Ins)
+- **"QUK"** = quote key (')
 - User's keyboard has numbers/symbols swapped (bare 1 = !, shift+1 = 1)
 
 ## Goku Modifier Legend
@@ -232,6 +234,7 @@ The layer system is modal (like vim):
 - All keys type normally (passthrough)
 - **right_control** = Return to Normal
 - **Quote (')** = Shift when held, quote when tapped alone
+- **[** = Backspace, **]** = Delete
 - **Shift** = Mirror mode when held (see below)
 
 #### Mirror Mode (Shift held in Ins)
@@ -246,8 +249,6 @@ Holding Shift in Ins mode enters mirror mode. RHS keys output their LHS mirror e
 - 6→%, 7→$, 8→#, 9→@, 0→!
 
 **LHS numbers** in mirror mode: output digit (1→1, 2→2, etc.) since Shift is consumed
-
-**Brackets**: [→backspace, ]→delete
 
 #### Shift+Quote (shift_mirror_oneshot)
 Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a oneshot that persists until a key is typed, even after releasing Shift+Quote.
