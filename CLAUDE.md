@@ -75,7 +75,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Reconsider closing behavior from Nav mode
 - Browser extension: Add current page to extension override for blocking
 - Clipboard manager
-- Reconsider Shift+Enter as escape key (bad choice)
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
@@ -262,9 +261,6 @@ The layer system is modal (like vim):
 - **Ins** = Typing mode (all keys pass through)
 - Other layers entered from Normal with single keys
 - All layers exit to Normal with `right_control` or `escape`
-
-### Global Shortcuts (work in all modes including Normal)
-- **Shift+Enter** = Escape
 
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)

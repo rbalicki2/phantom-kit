@@ -114,12 +114,6 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "Shift+Enter = Escape (external keyboards, all layers)"
-   :rules [:!apple_internal
-    ;; Match either shift key
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} :escape]
-   ]}
-
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
    :rules [:!apple_internal
     ;; Pass through to Hammerspoon - must come before any right_control+Y rules
