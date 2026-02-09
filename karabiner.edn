@@ -114,6 +114,11 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
+  {:des "F12 = Escape (global)"
+   :rules [
+    [:f12 :escape]
+   ]}
+
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
    :rules [:!apple_internal
     ;; Pass through to Hammerspoon - must come before any right_control+Y rules
