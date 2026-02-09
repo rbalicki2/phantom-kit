@@ -1,5 +1,6 @@
 Mouse Layer (m from Normal)
 
-M → warpd grid mode
+M → warpd grid mode (--oneshot)
+Ctrl+J → Ins mode
 right_ctrl → Normal
 escape → Normal
