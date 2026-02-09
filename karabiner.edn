@@ -116,7 +116,8 @@
 
   {:des "Shift+Enter = Escape (external keyboards, all layers)"
    :rules [:!apple_internal
-    [:!Sreturn_or_enter :escape]
+    ;; Match either shift key
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} :escape]
    ]}
 
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
