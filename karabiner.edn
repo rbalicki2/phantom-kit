@@ -487,8 +487,6 @@
     [:##period :period ["layer_mouse" 1]]
     ;; Y = grid_exit (switches from grid to normal mode in warpd)
     [:##y :y ["layer_mouse" 1]]
-    ;; P = toggle drag mode
-    [:##p :p ["layer_mouse" 1]]
     ;; N/H = oneshot click (warpd handles click + exits, then user presses right_control)
     [:##n :n ["layer_mouse" 1]]
     [:##h :h ["layer_mouse" 1]]
