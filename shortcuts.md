@@ -38,10 +38,11 @@
 - **Right_control** = Cancel (escape) + exit to Normal
 
 ## Mouse Layer (Shift+M from Normal)
-- Grid mode with warpd
-- Grid keys: U I O J K L M , .
-- **N** = Left click + exit, **H** = Right click + exit
-- **Right_control** = Escape + exit to Normal
+- Grid mode with warpd: U I O J K L M , . to position
+- **Y** = Exit grid → normal mode (for fine tuning)
+- Normal mode: **I/J/K/L** = up/left/down/right
+- **N** = Left click, **H** = Right click (warpd exits after click)
+- **Right_control** = Exit to Normal
 
 ## Layer I (I from Normal - Window Management)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half

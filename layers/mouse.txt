@@ -1,7 +1,7 @@
 Mouse Layer 🐭 (Shift+M from Normal - starts warpd grid)
 
-Grid navigation: U/I/O, J/K/L, M/,/.
-N = left click (exits)
-H = right click (exits)
-right_ctrl = escape + Normal
-escape = Normal
+Grid: U/I/O, J/K/L, M/,/. to position
+Y = exit grid → normal mode (fine tuning)
+Normal: I/J/K/L = up/left/down/right
+N = left click, H = right click
+right_ctrl = exit to Normal
