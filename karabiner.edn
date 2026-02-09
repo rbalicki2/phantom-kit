@@ -171,8 +171,11 @@
     [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
    ]}
 
-  {:des "Backslash = tab in Ins mode (must come before swap rule)"
+  {:des "Backslash in Ins mode (must come before swap rule)"
    :rules [
+    ;; mirror_mode (shift held) = shift+tab, must come before bare tab rule
+    [:backslash :!Stab ["mirror_mode" 1]]
+    ;; bare = tab
     [:backslash :tab ["layer_ins" 1]]
    ]}
 
@@ -1068,8 +1071,6 @@
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
-    ;; In mirror mode (shift held), backslash = shift+tab
-    [:backslash :!Stab ["mirror_mode" 1]]
     ;; In mirror mode (shift held), enter = escape
     [:return_or_enter :escape ["mirror_mode" 1]]
    ]}
