@@ -44,5 +44,7 @@
 
 ## Needs to Fill
 
-| < > ? } ] ~ ` + = ' "
+Characters that cannot currently be typed at all (no slot in the grid above):
+
+\ | < > ? } ] ~ ` + = ' "
 [ {
