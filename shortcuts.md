@@ -41,7 +41,7 @@
 - Grid mode with warpd
 - Grid keys: U I O J K L M , .
 - **N** = Left click + exit, **H** = Right click + exit
-- **Y** = Cancel + exit to Normal
+- **Right_control** = Escape + exit to Normal
 
 ## Layer I (I from Normal - Window Management)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half

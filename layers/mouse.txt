@@ -3,6 +3,5 @@ Mouse Layer 🐭 (Shift+M from Normal - starts warpd grid)
 Grid navigation: U/I/O, J/K/L, M/,/.
 N = left click (exits)
 H = right click (exits)
-Y = cancel (exits)
-right_ctrl = Normal
+right_ctrl = escape + Normal
 escape = Normal
