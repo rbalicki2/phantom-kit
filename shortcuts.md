@@ -35,6 +35,11 @@
 ## Mouse Layer (M from Normal)
 - Grid mode with warpd
 
+## Label Mode (Shift+M from Normal - Homerow)
+- Labels: U I O P J K L ; N M , . /
+- **Y** = Cancel (escape) + exit to Normal
+- **H** = Cancel (escape) + exit to Ins
+
 ## Layer I (I from Normal - Window Management)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
 - **Enter** = Switch windows (Cmd+`)

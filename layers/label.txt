@@ -1,6 +1,7 @@
 Label Mode (Shift+M from Normal - Homerow)
 
-Labels: u i o p h j k l ; n m , . /
+Labels: u i o p j k l ; n m , . /
 Y = Cancel (escape) + exit to Normal
+H = Cancel (escape) + exit to Ins
 
 Type label characters to click elements
