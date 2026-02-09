@@ -114,6 +114,10 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
+  {:des "Shift+Enter = Escape (external keyboards, all layers)"
+   :rules [:!apple_internal
+    [:!Sreturn_or_enter :escape]
+   ]}
 
   {:des "RHS mode number handling (must come before number swap)"
    :rules [
@@ -225,11 +229,6 @@
   ;; =====================================================================
   ;; DESKTOP ONLY
   ;; =====================================================================
-
-  {:des "[Desktop] Shift+Enter = Escape (global)"
-   :rules [:!apple_internal
-    [:!Sreturn_or_enter :escape]
-   ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:!apple_internal
