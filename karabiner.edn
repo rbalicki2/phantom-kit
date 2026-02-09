@@ -15,21 +15,7 @@
 
 {
  :profiles {
-  :None {
-   :default false
-   :sim 50
-   :delay 80
-   :alone 150
-   :held 70
-  }
   :Default {
-   :default false
-   :sim 50
-   :delay 80
-   :alone 150
-   :held 70
-  }
-  :Desktop {
    :default true
    :sim 50
    :delay 80
@@ -38,7 +24,10 @@
   }
  }
 
+ ;; Device definitions for conditional rules
+ ;; :apple_internal = MacBook built-in keyboard (rules with :!apple_internal apply to external keyboards only)
  :devices {
+  :apple_internal [{:vendor_id 1452 :product_id 835 :is_keyboard true}]
   :trackball [{:vendor_id 10730 :product_id 258 :is_pointing_device true}]
   :logitech [{:vendor_id 1133 :product_id 45921 :is_keyboard true :is_pointing_device true}]
  }
@@ -221,12 +210,12 @@
   ;; =====================================================================
 
   {:des "[Desktop] Shift+Enter = Escape (global)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:!Sreturn_or_enter :escape]
    ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:##grave_accent_and_tilde :vk_none]  ;; physical backtick
     [:##non_us_backslash :vk_none]  ;; § key
     [:##left_arrow :vk_none]
@@ -249,14 +238,14 @@
    ]}
 
   {:des "[Desktop] Page down/up to click/right click"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Exclude when in Cmd sub-layer (it handles Cmd+click)
     [:##page_down :button1 ["layer_l_cmd" 0]]
     [:##page_up :button2 ["layer_l_cmd" 0]]
    ]}
 
   {:des "[Desktop] RHS Flag (right_control+7/8 to enter/exit) - disable LHS keys"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; right_control+7 enters RHS mode
     [{:key :7 :modi {:mandatory [:right_control]}} [["layer_rhs" 1] {:shell "echo 1 > /tmp/karabiner-rhs"}] ["layer_rhs" 0]]
     ;; right_control+8 exits RHS mode
@@ -320,32 +309,32 @@
    ]}
 
   {:des "[Desktop] Right command + brackets to ctrl-tab navigation"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [{:key :open_bracket :modi {:mandatory [:right_command]}} :!TStab]
     [{:key :close_bracket :modi {:mandatory [:right_command]}} :!Ttab]
    ]}
 
   {:des "[Desktop] Right control + brackets to backspace/delete"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [{:key :open_bracket :modi {:mandatory [:right_control] :optional [:any]}} {:key :delete_or_backspace :modi []}]
     [{:key :close_bracket :modi {:mandatory [:right_control] :optional [:any]}} {:key :delete_forward :modi []}]
    ]}
 
   
   {:des "[Desktop] Right command to close curly/bracket when alone"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:right_command :right_command nil {:alone :!Sclose_bracket}]
     [{:key :right_command :modi {:mandatory [:shift]}} {:key :right_command :modi [:left_shift]} nil {:alone :close_bracket}]
    ]}
 
   {:des "[Desktop] Left command to open curly/bracket when alone"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:left_command :left_command nil {:alone :!Sopen_bracket}]
     [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
    ]}
 
   {:des "[Desktop] rcmd+H chord (delete) - Ins mode only"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; rcmd+H sets rcmd_h_mode=1, resets on release (shell ":" prevents key passthrough)
     [{:key :h :modi {:mandatory [:right_command]}} [{:shell ":"} ["rcmd_h_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_h_mode" 0]]}]
     ;; While rcmd_h_mode=1:
@@ -358,7 +347,7 @@
    ]}
 
   {:des "[Desktop] rcmd+N chord (select) - Ins mode only"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; rcmd+N sets rcmd_n_mode=1, resets on release (shell ":" prevents key passthrough)
     [{:key :n :modi {:mandatory [:right_command]}} [{:shell ":"} ["rcmd_n_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_n_mode" 0]]}]
     ;; While rcmd_n_mode=1:
@@ -371,7 +360,7 @@
    ]}
 
   {:des "[Desktop] Arrow navigation with right command (Ins mode only)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; right_command + j = option + left (word left)
     [{:key :j :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:right_option]} ["layer_ins" 1]]
     ;; right_command + k = option + right (word right)
@@ -387,13 +376,13 @@
    ]}
 
   {:des "[Desktop] Disable backspace and delete keys"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:##delete_or_backspace :vk_none]
     [:##delete_forward :vk_none]
    ]}
 
   {:des "[Desktop] Physical equals to backtick"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Physical backtick is disabled globally
     ;; Physical equals → backtick
     [{:key :equal_sign :modi {:optional [:any]}} :grave_accent_and_tilde]
@@ -402,22 +391,22 @@
    ]}
 
   {:des "[Desktop] Home to enter"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [:home :return_or_enter]
    ]}
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [{:key :6 :modi {:mandatory [:right_control]}} [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
   {:des "[Desktop] Right control+Y to Shift+F9 (toggle recording)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     [{:key :y :modi {:mandatory [:right_control]}} [:!Sf9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
   {:des "[Desktop] Layer N (n from Normal to enter)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
     [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
@@ -460,7 +449,7 @@
    ]}
 
   {:des "[Desktop] Mouse Layer (m from Normal to enter) - BLANK, to be implemented"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:m [["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "mouse"]] ["layer_normal" 1]]
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
@@ -470,7 +459,7 @@
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:comma [["layer_comma" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "comma"]] ["layer_normal" 1]]
     [:escape [["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]
@@ -496,12 +485,12 @@
    ]}
 
   {:des "[Desktop] Chrome Layer Entry (h from Normal, Chrome only)"
-   :rules [:Desktop :Chrome
+   :rules [:!apple_internal :Chrome
     [:h [["layer_chrome" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "chrome"]] ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] Chrome Layer Shortcuts"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:escape [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]
     [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
@@ -536,13 +525,13 @@
    ]}
 
   {:des "[Desktop] VS Code Layer Entry (h from Normal, VS Code only)"
-   :rules [:Desktop :VSCode
+   :rules [:!apple_internal :VSCode
     ;; h in Normal enters layer_vscode (VS Code only, block-level app condition)
     [:h [["layer_vscode" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] VS Code Layer Shortcuts"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; escape exits layer to Normal
     [:escape [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; right_control alone exits layer to Normal
@@ -576,7 +565,7 @@
    ]}
 
   {:des "[Desktop] Term Layer (u from Normal to enter, focuses iTerm) - git shortcuts"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
     [:escape [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_term" 1]]
@@ -604,13 +593,13 @@
    ]}
 
   {:des "[Desktop] Tmux Layer Entry (h from Normal, iTerm only)"
-   :rules [:Desktop :iTerm
+   :rules [:!apple_internal :iTerm
     ;; h in Normal sends Control+A (tmux prefix) and enters tmux layer
     [:h [:!Ta ["layer_tmux" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "tmux"]] ["layer_normal" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer Shortcuts"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Entry/exit
     [:escape [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
@@ -629,7 +618,7 @@
    ]}
 
   {:des "[Desktop] Layer H (l from Normal to enter) - deletion/selection"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; l in Normal enters layer_l
     [:l [["layer_l" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo l > /tmp/karabiner-layer"}] ["layer_normal" 1]]
 
@@ -1159,7 +1148,7 @@
    ]}
 
   {:des "[Desktop] Ins Layer (typing passthrough) - MUST come before Normal layer rules"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Ins layer has no key mappings - all keys pass through by default
     ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
     [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
@@ -1202,7 +1191,7 @@
    ]}
 
   {:des "[Desktop] Shift+Mirror oneshot (Shift+Quote then letter = Shift+mirrored letter)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Top row: Y U I O P → Shift+T R E W Q
     [:y [:!St ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:u [:!Sr ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
@@ -1225,7 +1214,7 @@
    ]}
 
   {:des "[Desktop] Mirror mode SHIFTED (mirror_mode=2) - must come before shift_oneshot"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Top row: Y U I O P → Shift+T R E W Q
     [:y :!St ["mirror_mode" 2]]
     [:u :!Sr ["mirror_mode" 2]]
@@ -1247,7 +1236,7 @@
    ]}
 
   {:des "[Desktop] Shift oneshot (Shift+Space then release, letter = Shift+letter)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Top row
     [:y [:!Sy ["shift_oneshot" 0]] ["shift_oneshot" 1]]
     [:u [:!Su ["shift_oneshot" 0]] ["shift_oneshot" 1]]
@@ -1269,7 +1258,7 @@
    ]}
 
   {:des "[Desktop] Mirror mode UNSHIFTED (mirror_mode without shift held)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Top row: Y U I O P → T R E W Q
     [:y :t ["mirror_mode" 1]]
     [:u :r ["mirror_mode" 1]]
@@ -1306,14 +1295,14 @@
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; From base state (all layers off), right_control alone enters Normal
     ;; Note: Default on boot is punted - user needs to tap right_control to enter Normal initially
     [:right_control :right_control ["layer_normal" 0] {:alone [["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
   {:des "[Desktop] Normal Layer - Disable unmapped keys"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; In Normal mode, only layer selector keys should work
     ;; Disable all other letter keys to prevent accidental typing (## catches shift variants)
     ;; Active keys: j (Ins), n (Nav), m (Mouse), l (H), u (Term), h (app-specific), comma (Comma layer)
@@ -1368,7 +1357,7 @@
    ]}
 
   {:des "[Desktop] Block unmapped keys in all working layers (in_any_layer=1)"
-   :rules [:Desktop
+   :rules [:!apple_internal
     ;; Pass through Ctrl+Shift+Y for Hammerspoon layer overlay (any ctrl+shift)
     [{:key :y :modi {:mandatory [:control :shift]}} :!TSy ["in_any_layer" 1]]
     ;; When in a layer (Nav, Chrome, Mouse, etc.), block all letter keys
