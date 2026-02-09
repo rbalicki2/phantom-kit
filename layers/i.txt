@@ -1,6 +1,7 @@
-Layer I (i from Normal - Window Management)
+Layer I (I from Normal - Window Management)
 
 Space = Maximize
 Up = Left half, Down = Right half
 Enter = Switch windows (Cmd+`)
 P = Screenshot full, Ctrl+P = Screenshot selection
+Y = Restart Whispering
