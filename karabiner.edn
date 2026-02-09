@@ -483,8 +483,8 @@
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_mouse" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_mouse" 1]]
-    ;; M = start warpd grid mode
-    [:m [{:shell "warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
+    ;; M = test if shell works, then start warpd
+    [:m [{:shell "echo test > /tmp/warpd-test && /usr/local/bin/warpd --grid"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"
@@ -496,7 +496,7 @@
     [{:key :j :modi {:mandatory [:control]}} [["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]
     ;; Shortcuts
     [:comma [:!Tc ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Ctrl+C
-    [:n [:!Tr ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Ctrl+R
+    [:n [:!Tr ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Ctrl+R → Ins
     [:h [:!Cc ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Copy
     [:j [:!Cv ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Paste
     [:k [:!Cf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Find → Ins
