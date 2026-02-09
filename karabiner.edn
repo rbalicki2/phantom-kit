@@ -476,14 +476,15 @@
     [:p [:!CS3 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
    ]}
 
-  {:des "[Desktop] Mouse Layer (m from Normal to enter) - BLANK, to be implemented"
+  {:des "[Desktop] Mouse Layer (m from Normal to enter)"
    :rules [:!apple_internal
     ;; Entry/exit
     [:m [["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "mouse"]] ["layer_normal" 1]]
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_mouse" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_mouse" 1]]
-    ;; Mouse shortcuts will go here
+    ;; M = start warpd grid mode
+    [:m [{:shell "warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"

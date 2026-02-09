@@ -1,5 +1,5 @@
 Mouse Layer (m from Normal)
 
-[To be implemented]
-- Vimium-style hints
-- Grid-style positioning
+M → warpd grid mode
+right_ctrl → Normal
+escape → Normal
