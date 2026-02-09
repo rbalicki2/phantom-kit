@@ -27,23 +27,18 @@
 | m        | m        | v        | XXX      | XXX      | ln←      |          |          |          |
 | ,        | ,        | c        | <        | XXX      | ln→      |          |          |          |
 | .        | .        | x        | >        | XXX      |          |          |          |          |
-| /        | /        | z        |          | XXX      |          |          |          |          |
+| /        | /        | z        | ?        | XXX      |          |          |          |          |
 | rshift   | mirror   | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| up       | up       | {        | [        |          | ←        |          |          |          |
-| down     | down     | }        | ]        |          | →        |          |          |          |
-| [        | bksp     | '        |          | "        |          |          |          |          |
-| ]        | del      | \|       |          | ~        |          |          |          |          |
+| up       | up       | {        | [        | \        | ←        |          |          |          |
+| down     | down     | }        | ]        | `        | →        |          |          |          |
+| [        | bksp     | '        | "        |          |          |          |          |          |
+| ]        | del      | \|       | ~        |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| pgup     | lclick   |          |          |          |          | \        |          |          |
-| pgdn     | rclick   |          |          |          |          | `        |          |          |
+| pgup     | lclick   |          |          |          |          |          |          |          |
+| pgdn     | rclick   |          |          |          |          |          |          |          |
 | enter    | enter    |          |          |          |          |          |          |          |
 | space    | space    | sp+sh    |          |          |          |          |          |          |
 | rcmd     | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 | rctrl    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 
-## Needs to Fill
-
-Characters that cannot currently be typed at all (no slot in the grid above):
-
-?

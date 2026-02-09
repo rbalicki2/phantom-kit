@@ -76,6 +76,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Browser extension: Add current page to extension override for blocking
 - Clipboard manager
 - Move resize/maximize/backtick out of Nav layer
+- Admin layer: restart Hammerspoon, reload Karabiner, etc.
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
@@ -283,6 +284,10 @@ The layer system is modal (like vim):
 - **Shift+Up** = `{`, **Shift+Down** = `}`
 - **Quote+Up** = `[`, **Quote+Down** = `]`
 - **Quote+,** = `<`, **Quote+.** = `>`
+- **Quote+/** = `?`
+- **Shift+[** = `'`, **Shift+]** = `|`
+- **Quote+[** = `"`, **Quote+]** = `~`
+- **Shift+Quote+Up** = `\`, **Shift+Quote+Down** = `` ` ``
 - **Shift** = Mirror mode when held (see below)
 
 #### Mirror Mode (Shift held in Ins)
@@ -349,7 +354,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Comma** = Control+C (terminal copy/interrupt)
 - **N** = Control+R (terminal reverse search)
 - **H** = Command+C (GUI copy)
-- **J** = Command+V (paste)
+- **J** = Command+V (paste) - exits to Ins
 - **K** = Cmd+F (find), **Shift+K** = Cmd+Shift+F (find in files)
 - **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)

@@ -38,7 +38,7 @@
 - *To be implemented: vimium-style hints + grid positioning*
 
 ## Comma Layer (comma from Normal)
-- **H** = Copy, **J** = Paste, **K** = Find (→Ins), **Shift+K** = Find in files (→Ins), **L** = Undo, **Shift+L** = Redo
+- **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Shift+K** = Find in files (→Ins), **L** = Undo, **Shift+L** = Redo
 - **Comma** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all, **O** = Cmd+Shift+P, **Shift+O** = Open, **P** = Cmd+P
 - **Ctrl+H** = Close

@@ -1,7 +1,7 @@
 Comma Layer (comma from Normal)
 
 H = Copy
-J = Paste
+J = Paste →Ins
 K = Find →Ins, Shift+K = Find in files →Ins
 L = Undo, Shift+L = Redo
 , = Ctrl+C → Ins
