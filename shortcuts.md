@@ -23,7 +23,7 @@
 - **Shift** = Mirror mode (RHS → LHS keys)
 
 ## Layer N "Nav" (n from Normal)
-- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **O** = Obsidian
+- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Shift+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
 - **M** = Chrome Personal, **Comma** = Chrome Work
 - **U** = Previous tab (stays), **I** = Next tab (stays)
 - **N** = Spotlight, **Enter** = Switch windows

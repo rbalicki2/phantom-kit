@@ -339,7 +339,7 @@ Hold rcmd+N then press a navigation key to select:
 - **H** = Open Karabiner-EventViewer
 - **J** = Open iTerm
 - **K** = Open VS Code
-- **L** = Open Signal
+- **L** = Open Signal, **Shift+L** = Open Messages, **Ctrl+L** = Open WhatsApp
 - **O** = Open Obsidian
 - **Period** = Finder, **Shift+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
 - **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)

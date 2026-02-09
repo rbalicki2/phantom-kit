@@ -458,6 +458,8 @@
     [:k [[:open-norm "Visual Studio Code"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:h [[:open-norm "Karabiner-EventViewer"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:l [[:open-norm "Signal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} [[:open-norm "Messages"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [{:key :l :modi {:mandatory [:right_control]}} [[:open-norm "WhatsApp"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:o [[:open-norm "Obsidian"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:period [[:open-norm "Finder"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     ;; Finder go-to-folder (complex, no template)

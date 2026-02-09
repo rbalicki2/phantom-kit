@@ -1,7 +1,8 @@
 Nav Layer (n from Normal)
 
 H = Karabiner-EventViewer
-J = iTerm, K = VS Code, L = Signal, O = Obsidian
+J = iTerm, K = VS Code, L = Signal, Shift+L = Messages, Ctrl+L = WhatsApp
+O = Obsidian
 M = Chrome Personal, , = Chrome Work
 . = Finder, Shift+. = Go to Folder, Ctrl+. = Go to Folder + Paste
 N = Spotlight, Enter = Switch windows
