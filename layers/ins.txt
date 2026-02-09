@@ -3,6 +3,16 @@ All keys type normally
 right_ctrl → Normal
 ' (hold) → Shift
 Shift (hold) → Mirror
+
+Brackets:
 Shift+Up/Down → { }
 Quote+Up/Down → [ ]
 Quote+,/. → < >
+Shift+[ → ', Shift+] → |
+Shift+Quote+[ → ", Shift+Quote+] → ~
+
+Symbols:
+Shift+hyphen → _
+Quote+hyphen → =
+Shift+Quote+hyphen → +
+Ctrl+PageDown → `, Ctrl+PageUp → \
