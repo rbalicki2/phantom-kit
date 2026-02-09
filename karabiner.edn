@@ -485,9 +485,9 @@
     [:##m :m ["layer_mouse" 1]]
     [:##comma :comma ["layer_mouse" 1]]
     [:##period :period ["layer_mouse" 1]]
-    ;; Click keys - pkill warpd, then send mouse button via Karabiner
-    [:n [:button1 ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
-    [:h [:button2 ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    ;; Click keys - escape closes warpd, then click via swift tool
+    [:n [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "/Users/rbalicki/code/voicemode/click; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    [:h [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "/Users/rbalicki/code/voicemode/rclick; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
     ;; Standard exits - right_control sends escape to close warpd
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}]}]
