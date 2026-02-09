@@ -219,6 +219,9 @@ The layer system is modal (like vim):
 - Other layers entered from Normal with single keys
 - All layers exit to Normal with `right_control` or `escape`
 
+### Global Shortcuts (work in all modes including Normal)
+- **Shift+Enter** = Escape
+
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
