@@ -22,6 +22,13 @@
    :alone 150
    :held 70
   }
+  :None {
+   :default false
+   :sim 50
+   :delay 80
+   :alone 150
+   :held 70
+  }
  }
 
  ;; Device definitions for conditional rules
