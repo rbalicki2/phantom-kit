@@ -71,6 +71,9 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Create a Tampermonkey setup that exposes functions callable from a layer
 - MenubarFlag wifi notifier
 - Enable quote (') to send escape when pressed alone in Ins mode
+- Chrome layer: Add refresh shortcut
+- Reconsider closing behavior from Nav mode
+- Browser extension: Add current page to extension override for blocking
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
