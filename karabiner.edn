@@ -125,6 +125,9 @@
     ;; Need both left and right control variants
     [{:key :y :modi {:mandatory [:left_control :shift]}} :!TSy]
     [{:key :y :modi {:mandatory [:right_control :shift]}} :!TSy]
+    ;; In mirror_mode, shift is consumed (not passed through), so just check for ctrl
+    [{:key :y :modi {:mandatory [:right_control]}} :!TSy ["mirror_mode" 1]]
+    [{:key :y :modi {:mandatory [:left_control]}} :!TSy ["mirror_mode" 1]]
    ]}
 
   {:des "RHS mode number handling (must come before number swap)"
