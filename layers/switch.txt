@@ -1,7 +1,0 @@
-Switch Layer (from Nav Shift+H)
-
-Cmd is held down, app switcher visible
-
-J = Tab (next app)
-K = Shift+Tab (prev app)
-Enter, Ctrl, or Esc = Select and exit

@@ -1,13 +1,12 @@
-Nav Layer (right_control+N)
+Nav Layer (n from Normal)
 
-H = Karabiner-EventViewer, Shift+H = App Switcher
+H = Karabiner-EventViewer
 J = iTerm, K = VS Code, L = Signal, O = Obsidian
 M = Chrome Personal, , = Chrome Work
 . = Finder, Shift+. = Go to Folder, Ctrl+. = Go to Folder + Paste
 N = Spotlight, Enter = Switch windows
 Ctrl+H = Close (Cmd+W)
 P = Screenshot full, Ctrl+P = Screenshot selection
-U/I = Prev/Next tab (stays)
 Up/Down = Left/Right half, Space = Maximize
 Shift+J/K = Back/Forward (stays)
 Shift+M/, = Prev/Next tab (stays)

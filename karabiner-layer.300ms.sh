@@ -36,7 +36,6 @@ case "$LAYER" in
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;
     term) NAME="Term" ;;
-    switch) NAME="Swtch" ;;
     *) NAME="Base" ;;
 esac
 

@@ -47,7 +47,7 @@ Source of truth for Karabiner config and related scripts.
 - `shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `CLAUDE.md` - This file, context for Claude sessions
 - `layers/*.txt` - Individual layer summaries for Hammerspoon overlay
-  - `norm.txt`, `ins.txt`, `nav.txt`, `m.txt`, `h.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `switch.txt`
+  - `norm.txt`, `ins.txt`, `nav.txt`, `mouse.txt`, `l.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `comma.txt`
 - `chrome-tab.sh` - Chrome profile switcher script (AppleScript)
 - `vscode-open-in-chrome.sh` - Opens VS Code file path in Chrome (used by VS Code layer Ctrl+H)
 - `karabiner-layer.300ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
@@ -288,8 +288,6 @@ Hold rcmd+N then press a navigation key to select:
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
-- **U** = Ctrl+Shift+Tab (previous tab, stays in layer)
-- **I** = Ctrl+Tab (next tab, stays in layer)
 - **H** = Open Karabiner-EventViewer
 - **J** = Open iTerm
 - **K** = Open VS Code
@@ -299,15 +297,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)
 - **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
-- **Shift+H** = Enter App Switcher layer (Cmd+Tab, holds Cmd)
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
-
-### Switch Layer (from Nav Shift+H)
-- Opens with Cmd held down and app switcher visible
-- **J** = Tab (cycle forward)
-- **K** = Shift+Tab (cycle backward)
-- **Enter**, **right_control**, or **escape** = Select app and exit (releases Cmd)
-- SwiftBar shows "Swtch"
 
 ### Mouse Layer (m from Normal)
 - *To be implemented: vimium-style hints + grid positioning*
@@ -444,7 +434,7 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
-- Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `h`, `hC`, `hTC`, `hT`, `hTO`, `hO`, `hOC`, `hCTO`, `tmux`, `chrome`, `vscode`, `term`, `switch`
+- Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
 - Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case

@@ -32,7 +32,6 @@
 - **Up/Down** = Left/right half, **Space** = Maximize
 - **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
 - **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
-- **Shift+H** = App Switcher layer
 - Releasing Shift exits to Normal
 
 ## Mouse Layer (m from Normal)
