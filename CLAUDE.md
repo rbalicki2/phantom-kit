@@ -268,7 +268,7 @@ The layer system is modal (like vim):
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Mouse layer
+- **m** = Enter Mouse layer, **Shift+M** = Homerow Search
 - **i** = Enter Layer I (window management)
 - **comma** = Enter Comma layer
 - **l** = Enter L layer
