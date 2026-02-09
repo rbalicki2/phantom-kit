@@ -4,7 +4,7 @@ H = Copy
 J = Paste
 K = Find →Ins, Shift+K = Find in files →Ins
 L = Undo, Shift+L = Redo
-, = Ctrl+C (terminal interrupt)
+, = Ins mode
 N = Ctrl+R (terminal search)
 I = Select all
 O = Cmd+Shift+P, Shift+O = Open, P = Cmd+P
