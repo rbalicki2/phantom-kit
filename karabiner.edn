@@ -318,20 +318,30 @@
     [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
    ]}
 
-  {:des "[Desktop] rcmd+H chord (delete word) - Ins mode only"
+  {:des "[Desktop] rcmd+H chord (delete) - Ins mode only"
    :rules [:Desktop
     ;; rcmd+H sets rcmd_h_mode=1, resets on release (vk_none suppresses keypress)
     [{:key :h :modi {:mandatory [:right_command]}} [:vk_none ["rcmd_h_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_h_mode" 0]]}]
-    ;; While rcmd_h_mode=1, rcmd+J = delete word left (Option+Delete)
-    [{:key :j :modi {:mandatory [:right_command]}} :!Odelete_or_backspace ["rcmd_h_mode" 1]]
+    ;; While rcmd_h_mode=1:
+    [{:key :j :modi {:mandatory [:right_command]}} :!Odelete_or_backspace ["rcmd_h_mode" 1]]      ;; J = del word left
+    [{:key :k :modi {:mandatory [:right_command]}} :!Odelete_forward ["rcmd_h_mode" 1]]          ;; K = del word right
+    [{:key :m :modi {:mandatory [:right_command]}} :!Cdelete_or_backspace ["rcmd_h_mode" 1]]     ;; M = del to line start
+    [{:key :comma :modi {:mandatory [:right_command]}} :!Tk ["rcmd_h_mode" 1]]                   ;; , = del to line end
+    [{:key :up_arrow :modi {:mandatory [:right_command]}} :delete_or_backspace ["rcmd_h_mode" 1]] ;; up = del char left
+    [{:key :down_arrow :modi {:mandatory [:right_command]}} :delete_forward ["rcmd_h_mode" 1]]   ;; down = del char right
    ]}
 
-  {:des "[Desktop] rcmd+N chord (select word) - Ins mode only"
+  {:des "[Desktop] rcmd+N chord (select) - Ins mode only"
    :rules [:Desktop
     ;; rcmd+N sets rcmd_n_mode=1, resets on release (vk_none suppresses keypress)
     [{:key :n :modi {:mandatory [:right_command]}} [:vk_none ["rcmd_n_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_n_mode" 0]]}]
-    ;; While rcmd_n_mode=1, rcmd+J = select word left (Shift+Option+Left)
-    [{:key :j :modi {:mandatory [:right_command]}} :!SOleft_arrow ["rcmd_n_mode" 1]]
+    ;; While rcmd_n_mode=1:
+    [{:key :j :modi {:mandatory [:right_command]}} :!SOleft_arrow ["rcmd_n_mode" 1]]             ;; J = sel word left
+    [{:key :k :modi {:mandatory [:right_command]}} :!SOright_arrow ["rcmd_n_mode" 1]]            ;; K = sel word right
+    [{:key :m :modi {:mandatory [:right_command]}} :!SCleft_arrow ["rcmd_n_mode" 1]]             ;; M = sel to line start
+    [{:key :comma :modi {:mandatory [:right_command]}} :!SCright_arrow ["rcmd_n_mode" 1]]        ;; , = sel to line end
+    [{:key :up_arrow :modi {:mandatory [:right_command]}} :!Sleft_arrow ["rcmd_n_mode" 1]]       ;; up = sel char left
+    [{:key :down_arrow :modi {:mandatory [:right_command]}} :!Sright_arrow ["rcmd_n_mode" 1]]    ;; down = sel char right
    ]}
 
   {:des "[Desktop] Arrow navigation with right command (Ins mode only)"
