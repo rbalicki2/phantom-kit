@@ -262,6 +262,18 @@ Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a o
 **Numbers**: outputs digit at mirrored position
 - 6→5, 7→4, 8→3, 9→2, 0→1
 
+#### rcmd+H Chord (Delete Mode)
+Hold rcmd+H then press a navigation key to delete:
+- **J** = delete word left, **K** = delete word right
+- **M** = delete to line start, **,** = delete to line end
+- **up** = delete char left, **down** = delete char right
+
+#### rcmd+N Chord (Select Mode)
+Hold rcmd+N then press a navigation key to select:
+- **J** = select word left, **K** = select word right
+- **M** = select to line start, **,** = select to line end
+- **up** = select char left, **down** = select char right
+
 ### Layer N "Nav" (n from Normal)
 - **N** = Command+Space (Spotlight)
 - **Ctrl+H** = Cmd+W (close)
@@ -309,10 +321,6 @@ Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a o
 - **M** = Toggle iso/pin mode (exits layer)
 
 ### Layer L (l from Normal)
-- **J/K** = Delete word left/right (stays)
-- **M/Comma** = Delete to line start/end (stays)
-- **Up/Down** = Delete char left/right (stays)
-- **Shift+above** = Select instead of delete (stays)
 - **H** = plus, **Shift+H** = Cmd+plus (exits)
 - **N** = equals, **Shift+N** = Cmd+equals (exits)
 - **Ctrl+H** = Cmd+W (close, exits)
