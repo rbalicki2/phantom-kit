@@ -23,6 +23,20 @@
 - **Quote (')** = Shift when held, quote when tapped alone
 - **Shift** = Mirror mode (RHS → LHS keys)
 
+### Brackets
+- **Shift+Up/Down** = `{` `}`
+- **Quote+Up/Down** = `[` `]`
+- **Quote+,/.** = `<` `>`
+- **Shift+[** = `'`, **Shift+]** = `|`
+- **Quote+[** = `"`, **Quote+]** = `~`
+
+### Symbols
+- **Shift+Hyphen** = `_`
+- **Quote+Hyphen** = `=`
+- **Shift+Quote+Hyphen** = `+`
+- **Shift+Quote+Up** = `\`, **Shift+Quote+Down** = `` ` ``
+- **Quote+/** = `?`
+
 ## Layer N "Nav" (N from Normal)
 - **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Shift+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
 - **M** = Chrome Personal, **Comma** = Chrome Work
