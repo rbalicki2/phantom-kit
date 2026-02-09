@@ -6,7 +6,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - Ask clarifying questions if something doesn't align or seems off
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
 - If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
-- **When replacing an existing shortcut**, always warn the user and confirm they're aware of what's being replaced before making the change.
+- **CRITICAL: NEVER remove or replace an existing shortcut without explicit permission.** If implementing a new feature requires removing/changing an existing shortcut, STOP and ask the user first. Don't assume "remove the old ones" means all related shortcuts - clarify exactly which ones.
 
 ## Git Commit Policy
 When modifying any file, always check if it's in a git repository and commit changes:
@@ -76,8 +76,10 @@ If work is interrupted or incomplete, document it here so future sessions can co
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
 - `CLAUDE.md` - Main reference with full details
 - `shortcuts.md` - Quick reference
-- `layers/*.txt` - Hammerspoon overlay files for each layer
+- `layers/*.txt` - **MUST update when ANY layer shortcut changes** (Hammerspoon overlay files)
 - `rhs-slots.md` - RHS key slot grid for Ins mode (tracks what each key+modifier combo does)
+
+**Overlay files (`layers/*.txt`)**: These are shown to the user via Ctrl+Shift+Y overlay. If you change shortcuts in a layer, you MUST update the corresponding `.txt` file or the overlay will be wrong.
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
