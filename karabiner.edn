@@ -473,8 +473,8 @@
    :rules [:!apple_internal
     ;; M from Normal = start warpd grid mode, enter mouse layer
     [:m [{:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf --oneshot & echo mouse > /tmp/karabiner-layer"} ["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1]] ["layer_normal" 1]]
-    ;; Shift+M from Normal = Homerow Search (via Hammerspoon hotkey)
-    [{:key :m :modi {:mandatory [:shift]}} :!CTOo ["layer_normal" 1]]
+    ;; Shift+M from Normal = Homerow Search (Cmd+Opt+Shift+O)
+    [{:key :m :modi {:mandatory [:shift]}} :!COSo ["layer_normal" 1]]
     ;; Grid navigation keys - pass through to warpd
     [:##u :u ["layer_mouse" 1]]
     [:##i :i ["layer_mouse" 1]]
