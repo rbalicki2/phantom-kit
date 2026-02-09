@@ -1,7 +1,4 @@
-Mouse Layer 🐭 (from Normal)
-
-M = warpd grid mode
-Shift+M = warpd hint mode
+Mouse Layer 🐭 (m from Normal - starts warpd grid)
 
 Grid navigation: U/I/O, J/K/L, M/,/.
 N = left click (exits)
