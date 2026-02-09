@@ -240,6 +240,8 @@ The layer system is modal (like vim):
 - **right_control** = Return to Normal
 - **Quote (')** = Shift when held, quote when tapped alone
 - **[** = Backspace, **]** = Delete
+- **Shift+Up** = `{`, **Shift+Down** = `}`
+- **Quote+Up** = `[`, **Quote+Down** = `]`
 - **Shift** = Mirror mode when held (see below)
 
 #### Mirror Mode (Shift held in Ins)

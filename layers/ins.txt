@@ -3,3 +3,5 @@ All keys type normally
 right_ctrl → Normal
 ' (hold) → Shift
 Shift (hold) → Mirror
+Shift+Up/Down → { }
+Quote+Up/Down → [ ]

@@ -30,15 +30,15 @@
 | /        | /        | z        |          | XXX      |          |          |          |          |
 | rshift   | mirror   | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| up       | up       |          |          |          | ←        |          |          |          |
-| down     | down     |          |          |          | →        |          |          |          |
+| up       | up       | {        | [        |          | ←        |          |          |          |
+| down     | down     | }        | ]        |          | →        |          |          |          |
 | [        | bksp     |          |          |          |          |          |          |          |
 | ]        | del      |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | pgup     |          |          |          |          |          |          |          |          |
 | pgdn     |          |          |          |          |          |          |          |          |
 | enter    | enter    | escape   |          |          |          |          |          |          |
-| space    | space    |          | sp+sh    |          |          |          |          |          |
+| space    | space    | sp+sh    |          |          |          |          |          |          |
 | rcmd     | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 | rctrl    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
 
@@ -46,5 +46,4 @@
 
 Characters that cannot currently be typed at all (no slot in the grid above):
 
-\ | < > ? } ] ~ ` + = ' "
-[ {
+\ | < > ? ~ ` + = ' "

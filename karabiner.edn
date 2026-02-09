@@ -1045,8 +1045,14 @@
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
     ;; Space while mirror_mode active = space + oneshot shift mode
     [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
-    ;; apostrophe: hold = shift
-    [:quote :left_shift ["layer_ins" 1]]
+    ;; apostrophe: hold = shift, also track quote_held for bracket shortcuts
+    [:quote [:left_shift ["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
+    ;; Quote + Up/Down = square brackets
+    [:up_arrow :open_bracket ["quote_held" 1]]
+    [:down_arrow :close_bracket ["quote_held" 1]]
+    ;; Shift + Up/Down = curly braces (quote_held rules above take precedence)
+    [:up_arrow :!Sopen_bracket ["mirror_mode" 1]]
+    [:down_arrow :!Sclose_bracket ["mirror_mode" 1]]
     ;; shift keys: if shift_oneshot=1, set mirror_mode=2 (shifted mirror)
     [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
