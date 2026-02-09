@@ -60,7 +60,17 @@
       "Bash(git -C /Users/rbalicki/code/voicemode log --oneline -10)",
       "Bash(git -C /Users/rbalicki/code/voicemode diff HEAD~1 karabiner.edn)",
       "Bash(git -C /Users/rbalicki/code/voicemode checkout HEAD~1 -- karabiner.edn)",
-      "Bash(git -C /Users/rbalicki/code/voicemode diff karabiner.edn)"
+      "Bash(git -C /Users/rbalicki/code/voicemode diff karabiner.edn)",
+      "Bash(git -C /Users/rbalicki/code/voicemode diff layers/ins.txt rhs-slots.md)",
+      "Bash(jq:*)",
+      "Bash(ioreg:*)",
+      "Bash(warpd:*)",
+      "Bash(/usr/local/bin/warpd:*)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(echo:*)",
+      "Bash(pkill:*)"
     ]
   }
 }

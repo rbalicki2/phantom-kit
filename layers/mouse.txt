@@ -1,6 +1,8 @@
-Mouse Layer (m from Normal)
+Mouse Layer 🐭 (m from Normal - starts warpd grid)
 
-M → warpd grid mode (--oneshot)
-Ctrl+J → Ins mode
-right_ctrl → Normal
-escape → Normal
+Grid navigation: U/I/O, J/K/L, M/,/.
+N = left click (exits)
+H = right click (exits)
+Y = cancel (exits)
+right_ctrl = Normal
+escape = Normal

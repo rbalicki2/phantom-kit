@@ -22,8 +22,7 @@ case "$LAYER" in
     norm) NAME="Norm🟢" ;;
     ins) NAME="Ins✍️" ;;
     n) NAME="Nav🚲" ;;
-    mouse) NAME="Mouse🐭" ;;
-    grid) NAME="Grid🔲" ;;
+    mouse) NAME="🐭" ;;
     comma) NAME="," ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;
