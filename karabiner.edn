@@ -475,10 +475,12 @@
     [:p [:!CS3 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
    ]}
 
-  {:des "[Desktop] Mouse Layer (m from Normal - starts warpd grid)"
+  {:des "[Desktop] Mouse Layer (m from Normal - starts warpd grid, Shift+M for hint)"
    :rules [:!apple_internal
     ;; M from Normal = start warpd grid mode, enter mouse layer
     [:m [{:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf --oneshot & echo mouse > /tmp/karabiner-layer"} ["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1]] ["layer_normal" 1]]
+    ;; Shift+M from Normal = start warpd hint mode, enter mouse layer
+    [{:key :m :modi {:mandatory [:shift]}} [{:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --hint -c /Users/rbalicki/code/voicemode/warpd.conf --oneshot & echo mouse > /tmp/karabiner-layer"} ["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1]] ["layer_normal" 1]]
     ;; Grid navigation keys - pass through to warpd
     [:##u :u ["layer_mouse" 1]]
     [:##i :i ["layer_mouse" 1]]
