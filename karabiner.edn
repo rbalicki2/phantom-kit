@@ -114,11 +114,6 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "F12 to Cmd+Shift+G (Go to Folder)"
-   :rules [
-    [:f12 :!CSg]
-   ]}
-
   {:des "Shift+Enter = Escape (external keyboards, all layers)"
    :rules [:!apple_internal
     ;; Match either shift key
