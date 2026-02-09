@@ -75,6 +75,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Reconsider closing behavior from Nav mode
 - Browser extension: Add current page to extension override for blocking
 - Clipboard manager
+- Move resize/maximize/backtick out of Nav layer
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
