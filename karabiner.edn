@@ -477,8 +477,8 @@
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_mouse" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_mouse" 1]]
-    ;; M = start warpd grid mode
-    [:m [{:shell "/bin/bash -c '/usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf --oneshot' &"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_mouse" 1]]
+    ;; M = start warpd grid mode (single shell cmd - Karabiner only runs one)
+    [:m [{:shell "/usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf --oneshot & echo norm > /tmp/karabiner-layer"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_mouse" 1]]
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"

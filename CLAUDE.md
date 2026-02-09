@@ -124,6 +124,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Goku only supports ONE condition per rule.** Multiple conditions at the end of a rule like `["layer_h" 0] ["in_any_layer" 0]` will only use the first one. The `:conditions` key syntax also doesn't work. Use rule ordering instead (see "Layer Entry Conflict Prevention" section).
 - **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
+- **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
 
 ## Layer Variable System (CRITICAL)
 
