@@ -96,6 +96,16 @@
   ;; =====================================================================
 
   ;; =====================================================================
+  ;; NONE PROFILE - Empty escape hatch (dummy rule to make Goku create it)
+  ;; =====================================================================
+
+  {:des "None profile placeholder"
+   :rules [:None
+    ;; Map an unused key to itself so Goku creates this profile
+    [:non_us_backslash :non_us_backslash]
+   ]}
+
+  ;; =====================================================================
   ;; ALL PROFILES - Common rules (no profile condition)
   ;; =====================================================================
 

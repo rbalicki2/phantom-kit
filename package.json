@@ -1,6 +1,6 @@
 {
   "name": "voicemode",
   "scripts": {
-    "sync": "cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku && jq 'if (.profiles | map(.name) | index(\"None\")) then . else .profiles += [{\"complex_modifications\": {\"rules\": []}, \"name\": \"None\", \"selected\": false}] end' ~/.config/karabiner/karabiner.json > /tmp/karabiner-temp.json && mv /tmp/karabiner-temp.json ~/.config/karabiner/karabiner.json && osascript -e 'display notification \"Done syncing\" with title \"Karabiner\"'"
+    "sync": "cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku && osascript -e 'display notification \"Done syncing\" with title \"Karabiner\"'"
   }
 }
