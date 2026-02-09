@@ -315,20 +315,20 @@
     [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
    ]}
 
-  {:des "[Desktop] Arrow navigation with right command"
+  {:des "[Desktop] Arrow navigation with right command (Ins mode only)"
    :rules [:Desktop
     ;; right_command + j = option + left (word left)
-    [{:key :j :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:right_option]}]
+    [{:key :j :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:right_option]} ["layer_ins" 1]]
     ;; right_command + k = option + right (word right)
-    [{:key :k :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:right_option]}]
+    [{:key :k :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:right_option]} ["layer_ins" 1]]
     ;; right_command + m = command + left (line start)
-    [{:key :m :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:left_command]}]
+    [{:key :m :modi {:mandatory [:right_command] :optional [:any]}} {:key :left_arrow :modi [:left_command]} ["layer_ins" 1]]
     ;; right_command + comma = command + right (line end)
-    [{:key :comma :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:left_command]}]
+    [{:key :comma :modi {:mandatory [:right_command] :optional [:any]}} {:key :right_arrow :modi [:left_command]} ["layer_ins" 1]]
     ;; right_command + up = left
-    [{:key :up_arrow :modi {:mandatory [:right_command] :optional [:any]}} :left_arrow]
+    [{:key :up_arrow :modi {:mandatory [:right_command] :optional [:any]}} :left_arrow ["layer_ins" 1]]
     ;; right_command + down = right
-    [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow]
+    [{:key :down_arrow :modi {:mandatory [:right_command] :optional [:any]}} :right_arrow ["layer_ins" 1]]
    ]}
 
   {:des "[Desktop] Disable backspace and delete keys"
