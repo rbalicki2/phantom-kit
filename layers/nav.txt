@@ -4,10 +4,9 @@ H = Karabiner-EventViewer
 J = iTerm, K = VS Code, L = Signal, O = Obsidian
 M = Chrome Personal, , = Chrome Work
 . = Finder, Shift+. = Go to Folder, Ctrl+. = Go to Folder + Paste
-N = Spotlight, Enter = Switch windows
+N = Spotlight
 Ctrl+H = Close (Cmd+W)
 P = Screenshot full, Ctrl+P = Screenshot selection
-Up/Down = Left/Right half, Space = Maximize
 Shift+J/K = Back/Forward (stays)
 Shift+M/, = Prev/Next tab (stays)
 Shift+Up/Down = App switch fwd/back (stays)
