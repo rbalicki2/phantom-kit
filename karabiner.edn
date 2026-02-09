@@ -535,7 +535,7 @@
     [:p [:!CS3 ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Full screen
     [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Selection
     ;; Restart apps
-    [:y [{:shell "/usr/bin/pkill -9 -i whispering; sleep 0.5; /usr/bin/open -a Whispering"} ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Restart Whispering
+    [:y [{:shell "/usr/bin/pkill -9 -i whispering; sleep 0.5; /usr/bin/open -a Whispering; echo norm > /tmp/karabiner-layer"} ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_i" 1]]  ;; Restart Whispering
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"
