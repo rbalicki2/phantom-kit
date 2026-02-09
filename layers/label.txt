@@ -1,4 +1,4 @@
-Label Mode (Shift+M from Normal - Homerow)
+Label Mode (M from Normal - Homerow)
 
 Labels: u i o p j k l ; n m , . /
 Y = Cancel (escape) + exit to Normal

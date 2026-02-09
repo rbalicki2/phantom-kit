@@ -9,7 +9,7 @@
 ## Normal Layer (default)
 - **J** = Enter Ins (typing mode)
 - **N** = Enter Nav layer
-- **M** = Enter Mouse layer, **Shift+M** = Enter Label Mode (Homerow)
+- **M** = Enter Label Mode (Homerow), **Shift+M** = Enter Mouse layer (warpd grid)
 - **I** = Enter Layer I (window management)
 - **Comma** = Enter Comma layer (copy/paste/find)
 - **L** = Enter L layer
@@ -32,13 +32,16 @@
 - **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
 - Releasing Shift exits to Normal
 
-## Mouse Layer (M from Normal)
-- Grid mode with warpd
-
-## Label Mode (Shift+M from Normal - Homerow)
+## Label Mode (M from Normal - Homerow)
 - Labels: U I O P J K L ; N M , . /
 - **Y** = Cancel (escape) + exit to Normal
 - **H** = Cancel (escape) + exit to Ins
+
+## Mouse Layer (Shift+M from Normal)
+- Grid mode with warpd
+- Grid keys: U I O J K L M , .
+- **N** = Left click + exit, **H** = Right click + exit
+- **Y** = Cancel + exit to Normal
 
 ## Layer I (I from Normal - Window Management)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
