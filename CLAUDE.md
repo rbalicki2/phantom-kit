@@ -294,9 +294,9 @@ Hold rcmd+N then press a navigation key to select:
 - **L** = Open Signal
 - **O** = Open Obsidian
 - **Period** = Finder, **Shift+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward)
-- **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab)
-- **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back)
+- **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)
+- **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
+- **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Shift+H** = Enter App Switcher layer (Cmd+Tab, holds Cmd)
 
 ### Switch Layer (from Nav Shift+H)
