@@ -2,11 +2,8 @@ L Layer (l from Normal)
 
 H = plus, Shift+H = Cmd+plus
 N = equals, Shift+N = Cmd+equals
-Ctrl+H = Close
-J/K = Delete word left/right
-M/, = Delete to line start/end
-Up/Down = Delete char left/right
-Shift+above = Select instead of delete
+Ctrl+H = Close (Cmd+W)
+Enter = Cmd+Enter
 
 Sub-layers (press, then a-z sends modifier+letter):
 Y = Cmd, Ctrl+Y = Ctrl+Cmd
