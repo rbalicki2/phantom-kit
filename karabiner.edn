@@ -119,6 +119,12 @@
     [:!Sreturn_or_enter :escape]
    ]}
 
+  {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
+   :rules [:!apple_internal
+    ;; Pass through to Hammerspoon - must come before any right_control+Y rules
+    [{:key :y :modi {:mandatory [:control :shift]}} :!TSy]
+   ]}
+
   {:des "RHS mode number handling (must come before number swap)"
    :rules [
     ;; Disable LHS numbers 1-5
@@ -1374,8 +1380,6 @@
 
   {:des "[Desktop] Block unmapped keys in all working layers (in_any_layer=1)"
    :rules [:!apple_internal
-    ;; Pass through Ctrl+Shift+Y for Hammerspoon layer overlay (any ctrl+shift)
-    [{:key :y :modi {:mandatory [:control :shift]}} :!TSy ["in_any_layer" 1]]
     ;; When in a layer (Nav, Chrome, Mouse, etc.), block all letter keys
     ;; Specific layer mappings come earlier in config and take precedence
     [:##a :vk_none ["in_any_layer" 1]]
