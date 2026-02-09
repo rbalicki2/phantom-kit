@@ -320,16 +320,16 @@
 
   {:des "[Desktop] rcmd+H chord (delete word) - Ins mode only"
    :rules [:Desktop
-    ;; rcmd+H sets rcmd_h_mode=1, resets on release
-    [{:key :h :modi {:mandatory [:right_command]}} [["rcmd_h_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_h_mode" 0]]}]
+    ;; rcmd+H sets rcmd_h_mode=1, resets on release (vk_none suppresses keypress)
+    [{:key :h :modi {:mandatory [:right_command]}} [:vk_none ["rcmd_h_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_h_mode" 0]]}]
     ;; While rcmd_h_mode=1, rcmd+J = delete word left (Option+Delete)
     [{:key :j :modi {:mandatory [:right_command]}} :!Odelete_or_backspace ["rcmd_h_mode" 1]]
    ]}
 
   {:des "[Desktop] rcmd+N chord (select word) - Ins mode only"
    :rules [:Desktop
-    ;; rcmd+N sets rcmd_n_mode=1, resets on release
-    [{:key :n :modi {:mandatory [:right_command]}} [["rcmd_n_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_n_mode" 0]]}]
+    ;; rcmd+N sets rcmd_n_mode=1, resets on release (vk_none suppresses keypress)
+    [{:key :n :modi {:mandatory [:right_command]}} [:vk_none ["rcmd_n_mode" 1]] ["layer_ins" 1] {:afterup [["rcmd_n_mode" 0]]}]
     ;; While rcmd_n_mode=1, rcmd+J = select word left (Shift+Option+Left)
     [{:key :j :modi {:mandatory [:right_command]}} :!SOleft_arrow ["rcmd_n_mode" 1]]
    ]}
