@@ -120,6 +120,43 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 
+## Layer Variable System (CRITICAL)
+
+The modal system uses THREE key variables that must be set correctly for every layer transition:
+
+| State | `layer_normal` | `in_any_layer` | Behavior |
+|-------|----------------|----------------|----------|
+| Normal | 1 | 0 | Layer selector keys only, most keys disabled |
+| Ins | 0 | 0 | All keys pass through (typing mode) |
+| Modal layers | 0 | 1 | Keys remapped/disabled per layer rules |
+
+**Why both variables exist**: `in_any_layer` distinguishes Ins mode (where keys type normally) from modal layers (where keys are disabled/remapped). This enables rules like `[:##a :vk_none ["in_any_layer" 1]]` to disable 'a' in modal layers but NOT in Ins mode.
+
+### Required Variable Sets for Layer Transitions
+
+**Normal → Ins**:
+```clojure
+["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0]
+```
+
+**Normal → Modal layer (Nav, L, etc.)**:
+```clojure
+["layer_X" 1] ["layer_normal" 0] ["in_any_layer" 1]
+```
+
+**Any layer → Normal**:
+```clojure
+["layer_X" 0] ["in_any_layer" 0] ["layer_normal" 1]
+```
+
+**Checklist when adding layer transitions**:
+1. ✅ Clear the current layer variable: `["layer_X" 0]`
+2. ✅ Set `in_any_layer` appropriately (0 for Normal/Ins, 1 for modal)
+3. ✅ Set `layer_normal` (1 for Normal, 0 otherwise)
+4. ✅ Write layer name to `/tmp/karabiner-layer` for SwiftBar
+
+**Note**: Goku templates only work for shell commands, not variable manipulation. These variable sets must be written out explicitly in every transition.
+
 ## Karabiner Rule Precedence
 
 Karabiner evaluates rules **in order** and uses the **first matching rule**. A rule "matches" when:
@@ -242,6 +279,7 @@ The layer system is modal (like vim):
 - **[** = Backspace, **]** = Delete
 - **Shift+Up** = `{`, **Shift+Down** = `}`
 - **Quote+Up** = `[`, **Quote+Down** = `]`
+- **Quote+,** = `<`, **Quote+.** = `>`
 - **Shift** = Mirror mode when held (see below)
 
 #### Mirror Mode (Shift held in Ins)

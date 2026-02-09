@@ -79,6 +79,27 @@
  :main [
 
   ;; =====================================================================
+  ;; LAYER VARIABLE SYSTEM - READ BEFORE ADDING TRANSITIONS
+  ;; =====================================================================
+  ;;
+  ;; Three states controlled by layer_normal and in_any_layer:
+  ;;   Normal:       layer_normal=1, in_any_layer=0  (layer selector)
+  ;;   Ins:          layer_normal=0, in_any_layer=0  (typing passthrough)
+  ;;   Modal layers: layer_normal=0, in_any_layer=1  (keys remapped/disabled)
+  ;;
+  ;; REQUIRED for Normal → Ins:
+  ;;   ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0]
+  ;;
+  ;; REQUIRED for Normal → Modal (Nav, L, etc.):
+  ;;   ["layer_X" 1] ["layer_normal" 0] ["in_any_layer" 1]
+  ;;
+  ;; REQUIRED for Any → Normal:
+  ;;   ["layer_X" 0] ["in_any_layer" 0] ["layer_normal" 1]
+  ;;
+  ;; ALWAYS write layer name to /tmp/karabiner-layer for SwiftBar
+  ;; =====================================================================
+
+  ;; =====================================================================
   ;; ALL PROFILES - Common rules (no profile condition)
   ;; =====================================================================
 
