@@ -24,6 +24,7 @@ case "$LAYER" in
     n) NAME="Nav🚲" ;;
     mouse) NAME="🐭" ;;
     i) NAME="I-Win" ;;
+    label) NAME="🔎🐭" ;;
     comma) NAME="," ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;

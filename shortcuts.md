@@ -9,7 +9,7 @@
 ## Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Mouse layer, **Shift+M** = Homerow Search
+- **m** = Enter Mouse layer, **Shift+M** = Enter Label Mode (Homerow)
 - **i** = Enter Layer I (window management)
 - **comma** = Enter Comma layer (copy/paste/find)
 - **l** = Enter L layer
