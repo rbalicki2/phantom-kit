@@ -3,13 +3,14 @@
 ## Modal System Overview
 - **Normal** = Default layer (layer selector) - entered with right_control from Ins
 - **Ins** = Typing mode (all keys pass through) - entered with `j` from Normal
-- Other layers entered from Normal with single keys: `n`, `m`, `h`, `u`, `k`
+- Other layers entered from Normal with single keys: `n`, `m`, `i`, `h`, `u`, `k`
 - All layers exit to Normal with `right_control` or `escape`
 
 ## Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Mouse layer (to be implemented)
+- **m** = Enter Mouse layer
+- **i** = Enter Layer I (window management)
 - **comma** = Enter Comma layer (copy/paste/find)
 - **l** = Enter L layer
 - **u** = Enter Term layer (focuses iTerm)
@@ -25,17 +26,19 @@
 ## Layer N "Nav" (n from Normal)
 - **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Shift+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
 - **M** = Chrome Personal, **Comma** = Chrome Work
-- **U** = Previous tab (stays), **I** = Next tab (stays)
-- **N** = Spotlight, **Enter** = Switch windows
+- **N** = Spotlight
 - **Ctrl+H** = Close (Cmd+W)
-- **P** = Screenshot full, **Ctrl+P** = Screenshot selection
-- **Up/Down** = Left/right half, **Space** = Maximize
 - **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
 - **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
 - Releasing Shift exits to Normal
 
 ## Mouse Layer (m from Normal)
-- *To be implemented: vimium-style hints + grid positioning*
+- Grid mode with warpd
+
+## Layer I (i from Normal - Window Management)
+- **Space** = Maximize, **Up** = Left half, **Down** = Right half
+- **Enter** = Switch windows (Cmd+`)
+- **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 
 ## Comma Layer (comma from Normal)
 - **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Shift+K** = Find in files (→Ins), **L** = Undo, **Shift+L** = Redo

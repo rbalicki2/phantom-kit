@@ -445,11 +445,6 @@
     ;; Shortcuts
     [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
-    [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Switch windows
-    ;; Window management (BTT)
-    [:spacebar [:!CTOSg ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Maximize
-    [:up_arrow [:!CTOSv ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Left half
-    [:down_arrow [:!CTOSb ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]  ;; Right half
     ;; Chrome profiles
     [:m [[:chrome-profile "personal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:comma [[:chrome-profile "work"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
@@ -472,9 +467,6 @@
     [{:key :comma :modi {:mandatory [:shift]}} :!Ttab ["layer_n" 1]]  ;; Next tab
     [{:key :up_arrow :modi {:mandatory [:shift]}} :!Ctab ["layer_n" 1]]  ;; App switch fwd
     [{:key :down_arrow :modi {:mandatory [:shift]}} :!CStab ["layer_n" 1]]  ;; App switch back
-    ;; Screenshots
-    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
-    [:p [:!CS3 ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Mouse Layer (m from Normal - starts warpd grid)"
@@ -499,6 +491,23 @@
     ;; Standard exits - pkill warpd instead of escape
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}]}]
+   ]}
+
+  {:des "[Desktop] Layer I (i from Normal - window management)"
+   :rules [:!apple_internal
+    ;; Entry/exit
+    [:i [["layer_i" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo i > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    [:escape [["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]
+    [:right_control :right_control ["layer_i" 1] {:alone [["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    ;; Window management (BTT)
+    [:spacebar [:!CTOSg ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Maximize
+    [:up_arrow [:!CTOSv ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Left half
+    [:down_arrow [:!CTOSb ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Right half
+    ;; Switch windows
+    [:return_or_enter [:!Cgrave_accent_and_tilde ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]
+    ;; Screenshots
+    [:p [:!CS3 ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Full screen
+    [{:key :p :modi {:mandatory [:right_control]}} [:!CS4 ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Selection
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"
@@ -1370,7 +1379,6 @@
     [:##e :vk_none ["layer_normal" 1]]
     [:##f :vk_none ["layer_normal" 1]]
     [:##g :vk_none ["layer_normal" 1]]
-    [:##i :vk_none ["layer_normal" 1]]
     [:##k :vk_none ["layer_normal" 1]]
     [:##o :vk_none ["layer_normal" 1]]
     [:##p :vk_none ["layer_normal" 1]]

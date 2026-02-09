@@ -268,7 +268,8 @@ The layer system is modal (like vim):
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Mouse layer (to be implemented)
+- **m** = Enter Mouse layer
+- **i** = Enter Layer I (window management)
 - **comma** = Enter Comma layer
 - **l** = Enter L layer
 - **u** = Enter Term layer (focuses iTerm)
@@ -329,11 +330,6 @@ Hold rcmd+N then press a navigation key to select:
 ### Layer N "Nav" (n from Normal)
 - **N** = Command+Space (Spotlight)
 - **Ctrl+H** = Cmd+W (close)
-- **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
-- **Enter** = Command+` (switch windows)
-- **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
-- **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
-- **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
 - **M** = Chrome Personal profile
 - **Comma** = Chrome Work profile
 - **H** = Open Karabiner-EventViewer
@@ -346,6 +342,13 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
+
+### Layer I (i from Normal - Window Management)
+- **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
+- **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
+- **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
+- **Enter** = Command+` (switch windows)
+- **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
 
 ### Mouse Layer (m from Normal)
 - *To be implemented: vimium-style hints + grid positioning*
