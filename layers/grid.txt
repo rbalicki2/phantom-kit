@@ -1,0 +1,8 @@
+Grid Layer (M from Mouse)
+
+Grid navigation: U/I/O, J/K/L, M/,/.
+H = right click (exits)
+N = left click (exits)
+Y = cancel/escape (exits)
+right_ctrl = Normal
+escape = Normal

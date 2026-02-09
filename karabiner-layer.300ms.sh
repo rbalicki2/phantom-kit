@@ -23,6 +23,7 @@ case "$LAYER" in
     ins) NAME="Ins✍️" ;;
     n) NAME="Nav🚲" ;;
     mouse) NAME="Mouse🐭" ;;
+    grid) NAME="Grid🔲" ;;
     comma) NAME="," ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;
