@@ -12,3 +12,4 @@ Up/Down = Left/Right half, Space = Maximize
 Shift+J/K = Back/Forward (stays)
 Shift+M/, = Prev/Next tab (stays)
 Shift+Up/Down = App switch fwd/back (stays)
+Releasing Shift exits to Normal

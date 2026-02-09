@@ -37,7 +37,6 @@ case "$LAYER" in
     vscode) NAME="VSC" ;;
     term) NAME="Term" ;;
     switch) NAME="Swtch" ;;
-    winsw) NAME="WinSw" ;;
     *) NAME="Base" ;;
 esac
 

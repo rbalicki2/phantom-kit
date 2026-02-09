@@ -31,8 +31,9 @@
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 - **Up/Down** = Left/right half, **Space** = Maximize
 - **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Shift+N/M/,** = iTerm tab 1/2/3
-- **Shift+H** = App Switcher layer, **Shift+J** = Window Switcher layer
+- **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
+- **Shift+H** = App Switcher layer
+- Releasing Shift exits to Normal
 
 ## Mouse Layer (m from Normal)
 - *To be implemented: vimium-style hints + grid positioning*

@@ -402,6 +402,9 @@
     [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
+    ;; Shift release exits to Normal
+    [:left_shift :left_shift ["layer_n" 1] {:afterup [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:right_shift :right_shift ["layer_n" 1] {:afterup [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Shortcuts
     [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
@@ -456,21 +459,6 @@
     [{:key :j :modi {:mandatory [:control]}} [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"} ["layer_appswitcher" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_appswitcher" 1]]
    ]}
 
-  {:des "[Desktop] Window Switcher Layer (from Nav Shift+J)"
-   :rules [:Desktop
-    ;; J = ` (cycle forward in window switcher, Cmd still held)
-    [:j [{:shell "osascript -e 'tell application \"System Events\" to key code 50'"} ] ["layer_windowswitcher" 1]]
-    ;; K = Shift+` (cycle backward in window switcher)
-    [:k [{:shell "osascript -e 'tell application \"System Events\" to key code 50 using shift down'"} ] ["layer_windowswitcher" 1]]
-    ;; escape exits to Normal and releases Cmd
-    [:escape [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_windowswitcher" 1]]
-    ;; enter exits to Normal and releases Cmd
-    [:return_or_enter [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_windowswitcher" 1]]
-    ;; right_control alone exits to Normal and releases Cmd
-    [:right_control :right_control ["layer_windowswitcher" 1] {:alone [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_normal" 1]]}]
-    ;; Ctrl+J = global shortcut to Ins layer (releases Cmd)
-    [{:key :j :modi {:mandatory [:control]}} [{:shell "osascript -e 'tell application \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"} ["layer_windowswitcher" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_windowswitcher" 1]]
-   ]}
 
   {:des "[Desktop] Mouse Layer (m from Normal to enter) - BLANK, to be implemented"
    :rules [:Desktop

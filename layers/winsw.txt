@@ -1,7 +1,0 @@
-Window Switcher Layer (from Nav Shift+J)
-
-J = Next window (Cmd+` held)
-K = Previous window (Cmd+Shift+` held)
-Enter = Select and exit
-Escape/Ctrl = Exit
-
