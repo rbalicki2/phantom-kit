@@ -2,5 +2,5 @@ Mouse Layer (Shift+M from Normal - starts warpd grid)
 
 Grid: U/I/O, J/K/L, M/,/. to position
 N = left click, H = right click
-Y = escape + exit to Normal
+Y = kill warpd + exit to Normal
 right_ctrl = exit to Normal (no escape)
