@@ -80,6 +80,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 - Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
 - Deep link replacer: copy URL and view/transform it for other contexts
+- Brightness and media controls: layer shortcuts for screen brightness, volume, play/pause, next/prev track
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
