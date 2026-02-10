@@ -1,24 +1,43 @@
-# Function Key Behavior
+# Function Key Behavior (Kinesis Advantage 2)
 
-## Current macOS Function Key Behavior
+## Right Hand Fn Layer
 
-The `fn` (function/globe) key on Mac has special system-level behavior:
+When Function key is held, RHS keys produce F-keys:
 
-- **Tap**: Opens emoji picker / character viewer
-- **Hold + letter**: Insert special characters (e.g., fn+e = é options)
-- **Hold + number row**: F1-F12 keys (on keyboards where top row defaults to media keys)
-- **Hold + arrow keys**: Page Up/Down, Home/End
-- **Hold + Delete**: Forward delete
-- **Double-tap**: Dictation (if enabled in System Preferences)
+### Top Row (Standard F-Keys)
+- `-` → F13
+- `=` → F14
+- `Y` → F15
+- `U` → F16
+- `I` → F17
+- `O` → F18
+- `P` → F19
 
-## Karabiner Notes
+### Middle Row
+- `\` → F20
+- `]` → F21
+- `H` → F22
+- `J` → F23
+- `K` → F24
+- `L` → Alt+F1
+- `;` → Alt+F2
 
-- Function key (`fn`) is tricky to remap in Karabiner
-- It's handled at a lower level than most keys
-- Some fn behaviors are hardcoded in macOS and can't be overridden
+### Bottom Row (Alt Combinations)
+- `'` → Alt+F3
+- `N` → Alt+F4
+- `M` → Alt+F5
+- `,` → Alt+F6
+- `.` → Alt+F7
+- `/` → Alt+F8
+
+### Navigation and Brackets
+- `Up` → Alt+F9
+- `Down` → Alt+F10
+- `[` → Alt+F11
+- `]` → Alt+F12
 
 ## Planned Changes
 
 See pending task: "Remap: Quote → Shift, Shift → Function"
 
-The goal is to make Shift key act as Function key, freeing up Quote to be the primary Shift.
+Goal: Shift key acts as Function key, Quote becomes primary Shift.
