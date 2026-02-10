@@ -1347,8 +1347,8 @@
     [:##semicolon :vk_none ["layer_normal" 1]]
     [:##slash :vk_none ["layer_normal" 1]]
     ;; Disable numbers 6-0, backslash, hyphen (with any modifiers)
-    ;; Quote alone = escape to OS
-    [:quote :escape ["layer_normal" 1]]
+    ;; Quote alone = escape to OS (on key up, not down)
+    [:quote :vk_none ["layer_normal" 1] {:alone :escape}]
     [:##6 :vk_none ["layer_normal" 1]]
     [:##7 :vk_none ["layer_normal" 1]]
     [:##8 :vk_none ["layer_normal" 1]]
@@ -1404,7 +1404,7 @@
     [:##semicolon :vk_none ["in_any_layer" 1]]
     [:##slash :vk_none ["in_any_layer" 1]]
     [:##comma :vk_none ["in_any_layer" 1]]
-    [:quote :escape ["in_any_layer" 1]]  ;; quote alone = escape to OS (not re-evaluated by layer exit rules)
+    [:quote :vk_none ["in_any_layer" 1] {:alone :escape}]  ;; quote alone = escape to OS (on key up)
     [:##6 :vk_none ["in_any_layer" 1]]
     [:##7 :vk_none ["in_any_layer" 1]]
     [:##8 :vk_none ["in_any_layer" 1]]
