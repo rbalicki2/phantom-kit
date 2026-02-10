@@ -21,7 +21,7 @@
 - All keys type normally
 - **Right_control** = Return to Normal
 - **Quote (')** = Shift when held, quote when tapped alone
-- **Shift** = Mirror mode (RHS → LHS keys)
+- **Shift** = Mirror mode (right-hand keys output left-hand equivalents)
 
 ### Brackets
 - **Shift+Up/Down** = `{` `}`
@@ -105,14 +105,9 @@
 - **I** = 2nd tab, **Shift+I** = Move next tab, **Shift+U** = Move prev tab
 - **O** = Sidebar, **P** = Terminal, **Comma** = Next error (stays), **Period** = Find next (stays)
 
-## Global RHS (Desktop, no layer)
+## Global Shortcuts (Desktop, no layer)
 - **Ctrl+Shift+Y** = Show current layer shortcuts (Hammerspoon overlay)
 - **Right Cmd + J/K** = Word left/right
 - **Right Cmd + M/Comma** = Line start/end
 - **Right Cmd + Up/Down** = Left/right arrows
 - **Page down/up** = Left/right click
-
-## RHS Flag (right_control+7 enter, right_control+8 exit)
-- Combines with any layer
-- Disables LHS keys (only matters in Ins layer)
-- SwiftBar shows "RHS-" prefix

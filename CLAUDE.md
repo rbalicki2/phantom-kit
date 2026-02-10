@@ -63,7 +63,6 @@ Destination for generated configs.
 
 ### Temp Files (runtime state, not in git)
 - `/tmp/karabiner-layer` - Current layer code (read by SwiftBar and Hammerspoon)
-- `/tmp/karabiner-rhs` - RHS flag state
 - `/tmp/karabiner-project` - iso/pin mode state
 
 ## Pending Tasks
@@ -436,11 +435,6 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **Comma** = Alt+B (next error, stays)
 - **Period** = Alt+V (find next, stays)
 
-### RHS Flag (right_control+7 to enter, right_control+8 to exit)
-- Independent boolean flag, combines with any layer
-- Disables LHS keys: `=`, `+`, `g`
-- SwiftBar shows "RHS-" prefix (e.g., "RHS-Nav", "RHS-M")
-
 ### Layer Exit Methods
 All layers exit to Normal (not to Ins/typing mode) by:
 - Pressing **escape**
@@ -483,10 +477,10 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 
 ## SwiftBar Status
 - Shows current layer in menu bar
-- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-rhs` for RHS flag, `/tmp/karabiner-project` for iso/pin mode
+- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
 - Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
-- Format: `{mode}-{RHS-}{layer}` (e.g., "iso-base", "pin-Nav", "iso-RHS-M")
+- Format: `{mode}-{layer}` (e.g., "iso-Norm🟢", "pin-Nav🚲")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case
 

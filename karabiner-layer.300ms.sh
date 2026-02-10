@@ -6,11 +6,6 @@ if [ -f "/tmp/karabiner-layer" ]; then
     LAYER=$(tr -d '[:space:]' < /tmp/karabiner-layer)
 fi
 
-RHS=""
-if [ -f "/tmp/karabiner-rhs" ] && [ -s "/tmp/karabiner-rhs" ]; then
-    RHS="RHS-"
-fi
-
 # Read mode (iso/pin), default to iso
 PROJECT="iso"
 if [ -f "/tmp/karabiner-project" ]; then
@@ -23,7 +18,7 @@ case "$LAYER" in
     ins) NAME="Ins✍️" ;;
     n) NAME="Nav🚲" ;;
     mouse) NAME="🐭" ;;
-    i) NAME="I-Win" ;;
+    i) NAME="Admin🤓" ;;
     label) NAME="🔎🐭" ;;
     comma) NAME="," ;;
     l) NAME="L" ;;
@@ -41,7 +36,7 @@ case "$LAYER" in
     *) NAME="Base" ;;
 esac
 
-# Combine mode, RHS prefix, and layer name
-OUTPUT="${PROJECT}-${RHS}${NAME}"
+# Combine mode and layer name
+OUTPUT="${PROJECT}-${NAME}"
 # Pad to 16 chars minimum width for consistent menu bar space
 printf "%-16s | font=Menlo trim=false\n" "$OUTPUT"

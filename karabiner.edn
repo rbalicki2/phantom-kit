@@ -130,29 +130,6 @@
     [{:key :y :modi {:mandatory [:left_control]}} :!TSy ["mirror_mode" 1]]
    ]}
 
-  {:des "RHS mode number handling (must come before number swap)"
-   :rules [
-    ;; Disable LHS numbers 1-5
-    [:1 :vk_none ["layer_rhs" 1]]
-    [:2 :vk_none ["layer_rhs" 1]]
-    [:3 :vk_none ["layer_rhs" 1]]
-    [:4 :vk_none ["layer_rhs" 1]]
-    [:5 :vk_none ["layer_rhs" 1]]
-    ;; Mirror RHS numbers to LHS (f held): 6→5, 7→4, 8→3, 9→2, 0→1
-    ;; Bare → shifted (symbol), Shift → bare (digit) to match swap
-    [:6 :!S5 ["layer_mirror" 1]]
-    [:7 :!S4 ["layer_mirror" 1]]
-    [:8 :!S3 ["layer_mirror" 1]]
-    [:9 :!S2 ["layer_mirror" 1]]
-    [:0 :!S1 ["layer_mirror" 1]]
-    ;; Shifted versions → bare digit
-    [{:key :6 :modi {:mandatory [:shift]}} :5 ["layer_mirror" 1]]
-    [{:key :7 :modi {:mandatory [:shift]}} :4 ["layer_mirror" 1]]
-    [{:key :8 :modi {:mandatory [:shift]}} :3 ["layer_mirror" 1]]
-    [{:key :9 :modi {:mandatory [:shift]}} :2 ["layer_mirror" 1]]
-    [{:key :0 :modi {:mandatory [:shift]}} :1 ["layer_mirror" 1]]
-   ]}
-
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
    :rules [
     ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
@@ -269,70 +246,6 @@
     ;; Exclude when in Cmd sub-layer (it handles Cmd+click)
     [:##page_down :button1 ["layer_l_cmd" 0]]
     [:##page_up :button2 ["layer_l_cmd" 0]]
-   ]}
-
-  {:des "[Desktop] RHS Flag (right_control+7/8 to enter/exit) - disable LHS keys"
-   :rules [:!apple_internal
-    ;; right_control+7 enters RHS mode
-    [{:key :7 :modi {:mandatory [:right_control]}} [["layer_rhs" 1] {:shell "echo 1 > /tmp/karabiner-rhs"}] ["layer_rhs" 0]]
-    ;; right_control+8 exits RHS mode
-    [{:key :8 :modi {:mandatory [:right_control]}} [["layer_rhs" 0] {:shell ": > /tmp/karabiner-rhs"}] ["layer_rhs" 1]]
-    ;; Disable all LHS keys when RHS flag is on (except f which is mirror modifier)
-    ;; Note: numbers 1-5 disabled earlier (before number swap rule)
-    [:grave_accent_and_tilde :vk_none ["layer_rhs" 1]]  ;; physical backtick
-    [{:key :grave_accent_and_tilde :modi {:mandatory [:shift]}} :vk_none ["layer_rhs" 1]]  ;; shift+physical backtick
-    [:q :vk_none ["layer_rhs" 1]]
-    [:w :vk_none ["layer_rhs" 1]]
-    [:e :vk_none ["layer_rhs" 1]]
-    [:r :vk_none ["layer_rhs" 1]]
-    [:t :vk_none ["layer_rhs" 1]]
-    [:a :vk_none ["layer_rhs" 1]]
-    [:s :vk_none ["layer_rhs" 1]]
-    [:d :vk_none ["layer_rhs" 1]]
-    [:g :vk_none ["layer_rhs" 1]]
-    [:z :vk_none ["layer_rhs" 1]]
-    [:x :vk_none ["layer_rhs" 1]]
-    [:c :vk_none ["layer_rhs" 1]]
-    [:v :vk_none ["layer_rhs" 1]]
-    [:b :vk_none ["layer_rhs" 1]]
-    ;; f held in RHS mode enables mirroring
-    [:f ["layer_mirror" 1] ["layer_rhs" 1] {:afterup ["layer_mirror" 0]}]
-    ;; Mirror mappings (f held): RHS key → LHS equivalent
-    ;; Top row: y→t, u→r, i→e, o→w, p→q
-    [:y :t ["layer_mirror" 1]]
-    [:u :r ["layer_mirror" 1]]
-    [:i :e ["layer_mirror" 1]]
-    [:o :w ["layer_mirror" 1]]
-    [:p :q ["layer_mirror" 1]]
-    ;; Home row: h→g, j→f, k→d, l→s, ;→a
-    [:h :g ["layer_mirror" 1]]
-    [:j :f ["layer_mirror" 1]]
-    [:k :d ["layer_mirror" 1]]
-    [:l :s ["layer_mirror" 1]]
-    [:semicolon :a ["layer_mirror" 1]]
-    ;; Bottom row: n→b, m→v, ,→c, .→x, /→z
-    [:n :b ["layer_mirror" 1]]
-    [:m :v ["layer_mirror" 1]]
-    [:comma :c ["layer_mirror" 1]]
-    [:period :x ["layer_mirror" 1]]
-    [:slash :z ["layer_mirror" 1]]
-    ;; Note: number mirrors moved to ALL PROFILES section (before number swap)
-    ;; Shifted versions (for letters, shift passes through automatically)
-    [{:key :y :modi {:mandatory [:shift]}} :!St ["layer_mirror" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} :!Sr ["layer_mirror" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} :!Se ["layer_mirror" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} :!Sw ["layer_mirror" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} :!Sq ["layer_mirror" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} :!Sg ["layer_mirror" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} :!Sf ["layer_mirror" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} :!Sd ["layer_mirror" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} :!Ss ["layer_mirror" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} :!Sa ["layer_mirror" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} :!Sb ["layer_mirror" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} :!Sv ["layer_mirror" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} :!Sc ["layer_mirror" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} :!Sx ["layer_mirror" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} :!Sz ["layer_mirror" 1]]
    ]}
 
   {:des "[Desktop] Right command + brackets to ctrl-tab navigation"
