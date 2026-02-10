@@ -1183,9 +1183,14 @@
     ;; shift keys: if shift_oneshot=1, set mirror_mode=2 (shifted mirror)
     [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
-    ;; shift keys: default, set mirror_mode=1 AND pass through shift
-    [:left_shift [["mirror_mode" 1] :left_shift] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    [:right_shift [["mirror_mode" 1] :right_shift] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
+    ;; NOTE: Do NOT pass through shift here - mirror mode relies on shift being consumed
+    ;; so RHS letters output lowercase LHS equivalents. Specific keys that need Shift+key
+    ;; (like Shift+Enter) must have explicit rules.
+    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    ;; Shift+Enter = Shift+Enter (explicit since shift is consumed for mirror mode)
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} :!Sreturn_or_enter ["mirror_mode" 1]]
     ;; Shift+Quote + bracket/hyphen/arrows (must be before backspace rules)
     [:open_bracket [:!Squote ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; [ → "
     [:close_bracket [:!Sgrave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; ] → ~

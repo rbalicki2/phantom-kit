@@ -135,6 +135,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
+- **Mirror mode relies on shift being CONSUMED, not passed through.** The shift key rules set `mirror_mode=1` WITHOUT outputting shift, so RHS letters produce lowercase LHS equivalents. If you pass through shift (e.g., `[:left_shift [["mirror_mode" 1] :left_shift] ...]`), mirror mode breaks and keys just get shifted normally. For keys that need Shift+key in mirror mode (like Shift+Enter), add explicit rules with `["mirror_mode" 1]` condition.
 
 ## Layer Variable System (CRITICAL)
 
