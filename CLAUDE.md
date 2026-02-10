@@ -76,6 +76,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Browser extension: Add current page to extension override for blocking
 - Move resize/maximize/backtick out of Nav layer
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
+- More accessible Cmd+Enter
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
