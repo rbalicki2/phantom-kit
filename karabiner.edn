@@ -1164,18 +1164,18 @@
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
     ;; Space while mirror_mode active = space + oneshot shift mode
     [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
-    ;; apostrophe: hold = shift, also track quote_held
-    [:quote [["quote_held" 1] :left_shift] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
-    ;; Quote + brackets = double quote / tilde (optional shift since quote outputs shift)
-    [{:key :open_bracket :modi {:optional [:shift]}} :!Squote ["quote_held" 1]]
-    [{:key :close_bracket :modi {:optional [:shift]}} :!Sgrave_accent_and_tilde ["quote_held" 1]]
-    ;; Quote + Up/Down = square brackets (need optional shift since quote outputs shift)
-    [{:key :up_arrow :modi {:optional [:shift]}} :open_bracket ["quote_held" 1]]
-    [{:key :down_arrow :modi {:optional [:shift]}} :close_bracket ["quote_held" 1]]
+    ;; apostrophe: hold = set quote_held (no shift output to avoid mirror_mode conflict)
+    [:quote [["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
+    ;; Quote + brackets = double quote / tilde
+    [:open_bracket :!Squote ["quote_held" 1]]
+    [:close_bracket :!Sgrave_accent_and_tilde ["quote_held" 1]]
+    ;; Quote + Up/Down = square brackets
+    [:up_arrow :open_bracket ["quote_held" 1]]
+    [:down_arrow :close_bracket ["quote_held" 1]]
     [:comma :!Scomma ["quote_held" 1]]
     [:period :!Speriod ["quote_held" 1]]
     ;; Quote + hyphen = equals
-    [{:key :hyphen :modi {:optional [:shift]}} :equal_sign ["quote_held" 1]]
+    [:hyphen :equal_sign ["quote_held" 1]]
     ;; Shift + Up/Down = curly braces (quote_held rules above take precedence)
     [:up_arrow :!Sopen_bracket ["mirror_mode" 1]]
     [:down_arrow :!Sclose_bracket ["mirror_mode" 1]]
