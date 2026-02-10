@@ -69,7 +69,6 @@ Destination for generated configs.
 If work is interrupted or incomplete, document it here so future sessions can continue:
 - Create a Tampermonkey setup that exposes functions callable from a layer
 - MenubarFlag wifi notifier
-- Enable quote (') to send escape when pressed alone in Ins mode
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
 - More accessible Cmd+Enter
