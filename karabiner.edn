@@ -1160,8 +1160,8 @@
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
     ;; Space while mirror_mode active = space + oneshot shift mode
     [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
-    ;; apostrophe: hold = shift, tap alone = escape, also track quote_held for bracket shortcuts
-    [:quote [["quote_held" 1] :left_shift] ["layer_ins" 1] {:alone :escape :afterup [["quote_held" 0]]}]
+    ;; apostrophe: hold = shift, also track quote_held for bracket shortcuts
+    [:quote [["quote_held" 1] :left_shift] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
     ;; Quote + brackets = double quote / tilde (optional shift since quote outputs shift)
     [{:key :open_bracket :modi {:optional [:shift]}} :!Squote ["quote_held" 1]]
     [{:key :close_bracket :modi {:optional [:shift]}} :!Sgrave_accent_and_tilde ["quote_held" 1]]
@@ -1401,7 +1401,7 @@
     [:##semicolon :vk_none ["in_any_layer" 1]]
     [:##slash :vk_none ["in_any_layer" 1]]
     [:##comma :vk_none ["in_any_layer" 1]]
-    [:##quote :escape ["in_any_layer" 1]]  ;; quote = escape in all modal layers
+    [:##quote :vk_none ["in_any_layer" 1]]
     [:##6 :vk_none ["in_any_layer" 1]]
     [:##7 :vk_none ["in_any_layer" 1]]
     [:##8 :vk_none ["in_any_layer" 1]]

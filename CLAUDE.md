@@ -7,6 +7,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
 - If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
 - **CRITICAL: NEVER remove or replace an existing shortcut without explicit permission.** If implementing a new feature requires removing/changing an existing shortcut, STOP and ask the user first. Don't assume "remove the old ones" means all related shortcuts - clarify exactly which ones.
+- **NEVER make shortcuts exit to Normal mode without explicit permission.** The user does not like escape/quote/other keys automatically exiting to Normal. Always ask before adding any "exit to Normal" behavior to a shortcut.
 
 ## Git Commit Policy
 When modifying any file, always check if it's in a git repository and commit changes:
