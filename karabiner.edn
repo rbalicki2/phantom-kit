@@ -380,6 +380,8 @@
     [{:key :comma :modi {:mandatory [:shift]}} :!Ttab ["layer_n" 1]]  ;; Next tab
     [{:key :up_arrow :modi {:mandatory [:shift]}} :!Ctab ["layer_n" 1]]  ;; App switch fwd
     [{:key :down_arrow :modi {:mandatory [:shift]}} :!CStab ["layer_n" 1]]  ;; App switch back
+    ;; Enter = Cmd+Enter
+    [:return_or_enter [:!Creturn_or_enter ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
    ]}
 
   {:des "[Desktop] Mouse Layer (Shift+M from Normal - starts warpd grid)"

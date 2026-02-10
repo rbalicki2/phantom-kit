@@ -44,6 +44,7 @@
 - **Ctrl+H** = Close (Cmd+W)
 - **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
 - **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
+- **Enter** = Cmd+Enter
 - Releasing Shift exits to Normal
 
 ## Label Mode (M from Normal - Homerow)

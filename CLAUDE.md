@@ -72,7 +72,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - MenubarFlag wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
-- More accessible Cmd+Enter
 - "Explain This" shortcut: L or Comma layer chord that grabs selection and pipes to local LLM CLI with steel-man/critique prompt
 - Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 - Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
@@ -352,6 +351,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)
 - **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
+- **Enter** = Cmd+Enter
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
 
 ### Admin Layer ⚙️ (i from Normal)
