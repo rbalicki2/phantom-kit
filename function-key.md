@@ -6,7 +6,7 @@ When Function key is held, RHS keys produce F-keys:
 
 ### Top Row (Standard F-Keys)
 - `-` → F13
-- `=` → F14
+- Hotkey 3 → F14
 - `Y` → F15
 - `U` → F16
 - `I` → F17
@@ -15,7 +15,7 @@ When Function key is held, RHS keys produce F-keys:
 
 ### Middle Row
 - `\` → F20
-- `]` → F21
+- Hotkey 4 → F21
 - `H` → F22
 - `J` → F23
 - `K` → F24
