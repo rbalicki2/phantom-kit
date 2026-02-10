@@ -9,6 +9,26 @@ The user is using voice-to-text and may not fully think through requests before 
 - **CRITICAL: NEVER remove or replace an existing shortcut without explicit permission.** If implementing a new feature requires removing/changing an existing shortcut, STOP and ask the user first. Don't assume "remove the old ones" means all related shortcuts - clarify exactly which ones.
 - **NEVER make shortcuts exit to Normal mode without explicit permission.** The user does not like escape/quote/other keys automatically exiting to Normal. Always ask before adding any "exit to Normal" behavior to a shortcut.
 
+## ⚠️ CRITICAL: DO NOT BREAK EXISTING FUNCTIONALITY ⚠️
+
+**There are NO unit tests for this config. Every change risks breaking something the user relies on.**
+
+Claude has REPEATEDLY broken core functionality by making "simple fixes" without fully understanding the implications:
+- Removing shift output from Quote broke ALL capitalization
+- Moving rules around broke square brackets
+- "Fixing" one layer broke unrelated layers due to rule ordering
+
+**Before making ANY change:**
+1. TRACE through exactly what will happen with the change
+2. Consider ALL places the affected keys/variables are used
+3. If unsure about syntax or behavior, check existing working examples FIRST
+4. For complex changes, make ONE small change, sync, and verify before continuing
+5. DO NOT chain multiple "fixes" without testing each one
+
+**The Quote key is particularly fragile** - it interacts with quote_held, mirror_mode, and shift_mirror_oneshot. Triple-check any changes to Quote behavior.
+
+When in doubt, ASK before changing. A broken keyboard config is extremely frustrating to debug.
+
 ## Git Commit Policy
 When modifying any file, always check if it's in a git repository and commit changes:
 1. After editing a file, check if it's in a git repo: `git -C "$(dirname /path/to/file)" rev-parse --git-dir 2>/dev/null`
