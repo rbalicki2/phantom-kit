@@ -74,9 +74,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Chrome layer: Add refresh shortcut
 - Reconsider closing behavior from Nav mode
 - Browser extension: Add current page to extension override for blocking
-- Clipboard manager
 - Move resize/maximize/backtick out of Nav layer
-- Admin layer: restart Hammerspoon, reload Karabiner, etc.
+- Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
