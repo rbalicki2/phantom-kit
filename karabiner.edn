@@ -156,6 +156,16 @@
     [:0 :!S1 ["mirror_mode" 1]]
    ]}
 
+  {:des "Quote + numbers (must come before number swap)"
+   :rules [
+    ;; Quote+number outputs the digit (shifted because user has number/symbol swap)
+    [:6 :!S6 ["quote_held" 1]]
+    [:7 :!S7 ["quote_held" 1]]
+    [:8 :!S8 ["quote_held" 1]]
+    [:9 :!S9 ["quote_held" 1]]
+    [:0 :!S0 ["quote_held" 1]]
+   ]}
+
   {:des "Exchange numbers and symbols"
    :rules [
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
@@ -1190,12 +1200,7 @@
     [:l :!Sl ["quote_held" 1]]
     [:n :!Sn ["quote_held" 1]]
     [:m :!Sm ["quote_held" 1]]
-    ;; Quote + numbers = shifted numbers (produces digits due to user's number/symbol swap)
-    [:6 :!S6 ["quote_held" 1]]
-    [:7 :!S7 ["quote_held" 1]]
-    [:8 :!S8 ["quote_held" 1]]
-    [:9 :!S9 ["quote_held" 1]]
-    [:0 :!S0 ["quote_held" 1]]
+    ;; Quote + numbers are in ALL PROFILES section (before number swap rules)
     ;; Quote + space/enter
     [:spacebar :!Sspacebar ["quote_held" 1]]
     [:return_or_enter :!Sreturn_or_enter ["quote_held" 1]]
