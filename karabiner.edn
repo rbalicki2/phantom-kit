@@ -403,8 +403,8 @@
     ;; N/H = oneshot click (warpd handles click + exits, then user presses right_control)
     [:##n :n ["layer_mouse" 1]]
     [:##h :h ["layer_mouse" 1]]
-    ;; Y = escape (close warpd) + exit to Normal
-    [:y [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    ;; Y = kill warpd + exit to Normal (no escape sent to app)
+    [:y [{:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"} ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_mouse" 1]]
     ;; Standard exits
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
     [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}]}]
