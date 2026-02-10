@@ -243,6 +243,8 @@
 
   {:des "[Desktop] Page down/up to click/right click"
    :rules [:!apple_internal
+    ;; TEMPORARY: Cmd+PageUp = escape
+    [{:key :page_up :modi {:mandatory [:command]}} :escape]
     ;; Exclude when in Cmd sub-layer (it handles Cmd+click)
     [:##page_down :button1 ["layer_l_cmd" 0]]
     [:##page_up :button2 ["layer_l_cmd" 0]]
