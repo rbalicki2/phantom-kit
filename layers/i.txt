@@ -1,4 +1,4 @@
-Admin Layer ⚙️ (I from Normal)
+Admin Layer (I from Normal)
 
 Space = Maximize
 Up = Left half, Down = Right half

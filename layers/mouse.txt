@@ -1,4 +1,4 @@
-Mouse Layer 🐭 (Shift+M from Normal - starts warpd grid)
+Mouse Layer (Shift+M from Normal - starts warpd grid)
 
 Grid: U/I/O, J/K/L, M/,/. to position
 Y = exit grid → normal mode (fine tuning)
