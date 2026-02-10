@@ -1174,6 +1174,12 @@
     [:period :!Speriod ["quote_held" 1]]
     ;; Quote + hyphen = equals
     [{:key :hyphen :modi {:optional [:shift]}} :equal_sign ["quote_held" 1]]
+    ;; Shift+Quote + bracket/hyphen/arrows (must come BEFORE mirror_mode rules)
+    [:open_bracket [:!Squote ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; [ → "
+    [:close_bracket [:!Sgrave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; ] → ~
+    [:hyphen [:!Sequal_sign ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; - → +
+    [:up_arrow [:backslash ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Up → \
+    [:down_arrow [:grave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Down → `
     ;; Shift + Up/Down = curly braces (quote_held rules above take precedence)
     [:up_arrow :!Sopen_bracket ["mirror_mode" 1]]
     [:down_arrow :!Sclose_bracket ["mirror_mode" 1]]
@@ -1193,12 +1199,6 @@
     [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     ;; Shift+Enter = Shift+Enter (explicit since shift is consumed for mirror mode)
     [{:key :return_or_enter :modi {:mandatory [:shift]}} :!Sreturn_or_enter ["mirror_mode" 1]]
-    ;; Shift+Quote + bracket/hyphen/arrows (must be before backspace rules)
-    [:open_bracket [:!Squote ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; [ → "
-    [:close_bracket [:!Sgrave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; ] → ~
-    [:hyphen [:!Sequal_sign ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; - → +
-    [:up_arrow [:backslash ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Up → \
-    [:down_arrow [:grave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Down → `
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
