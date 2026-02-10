@@ -2,7 +2,7 @@ NORMAL - Layer Selector
 j → Ins (typing mode)
 n → Nav layer
 m → Label Mode (Homerow), Shift+M → Mouse layer
-i → Layer I (window mgmt)
+i → Admin layer 🤓
 , → Comma layer
 l → L layer
 u → Term layer

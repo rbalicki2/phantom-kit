@@ -268,7 +268,7 @@ The layer system is modal (like vim):
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
 - **m** = Enter Mouse layer, **Shift+M** = Enter Label Mode (Homerow Search)
-- **i** = Enter Layer I (window management)
+- **i** = Enter Admin layer 🤓
 - **comma** = Enter Comma layer
 - **l** = Enter L layer
 - **u** = Enter Term layer (focuses iTerm)
@@ -342,7 +342,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
 
-### Layer I (i from Normal - Window Management)
+### Admin Layer 🤓 (i from Normal)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
