@@ -85,6 +85,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Chrome layer: move tabs left/right
+- Admin layer: LLM blurb paste (conversation preferences text)
+- Fix Shift+Quote+[ not producing double quote when held simultaneously
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
