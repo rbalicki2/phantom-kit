@@ -86,6 +86,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - OSA scripts layer: shortcuts to run common AppleScripts (e.g., close VPN connection success tabs, clear notification center, dismiss dialogs)
 - Whispering restart: open/restart Whispering in background without foregrounding
 - USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
+- Cmd+Q accessible: need a way to quit applications from a layer
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
