@@ -351,7 +351,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)
 - **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
-- **Enter** = Cmd+Enter
+- **Enter** = Cmd+Enter (exits to Ins)
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
 
 ### Admin Layer ⚙️ (i from Normal)
