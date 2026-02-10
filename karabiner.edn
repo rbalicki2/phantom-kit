@@ -114,9 +114,9 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "F12 = Escape (global)"
+  {:des "Alt+F12 = Escape (global)"
    :rules [
-    [:f12 :escape]
+    [:!Of12 :escape]
    ]}
 
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
@@ -158,12 +158,12 @@
 
   {:des "Quote + numbers (must come before number swap)"
    :rules [
-    ;; Quote+number outputs the digit (shifted because user has number/symbol swap)
-    [:6 :!S6 ["quote_held" 1]]
-    [:7 :!S7 ["quote_held" 1]]
-    [:8 :!S8 ["quote_held" 1]]
-    [:9 :!S9 ["quote_held" 1]]
-    [:0 :!S0 ["quote_held" 1]]
+    ;; Quote+number outputs the digit (bare number, bypasses number swap)
+    [:6 :6 ["quote_held" 1]]
+    [:7 :7 ["quote_held" 1]]
+    [:8 :8 ["quote_held" 1]]
+    [:9 :9 ["quote_held" 1]]
+    [:0 :0 ["quote_held" 1]]
    ]}
 
   {:des "Exchange numbers and symbols"
