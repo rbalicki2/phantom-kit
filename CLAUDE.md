@@ -89,10 +89,10 @@ Destination for generated configs.
 ## Pending Tasks
 If work is interrupted or incomplete, document it here so future sessions can continue:
 - Create a Tampermonkey setup that exposes functions callable from a layer
-- MenubarFlag wifi notifier
+- MenubarFlag
+- Wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
-- "Explain This" shortcut: L or Comma layer chord that grabs selection and pipes to local LLM CLI with steel-man/critique prompt
 - Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 - Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
 - Deep link replacer: copy URL and view/transform it for other contexts
@@ -109,7 +109,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Fix Shift+Quote+[ not producing double quote when held simultaneously
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
-- Label mode Y: find way to dismiss Homerow without sending escape to app
 - Make function shift work
 - Remap: Quote → Shift, Shift → Function
 
