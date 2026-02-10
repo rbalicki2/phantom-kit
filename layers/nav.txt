@@ -10,5 +10,5 @@ Ctrl+H = Close (Cmd+W)
 Shift+J/K = Back/Forward (stays)
 Shift+M/, = Prev/Next tab (stays)
 Shift+Up/Down = App switch fwd/back (stays)
-Enter = Cmd+Enter
+Enter = Cmd+Enter (→Ins)
 Releasing Shift exits to Normal
