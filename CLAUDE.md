@@ -82,6 +82,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Deep link replacer: copy URL and view/transform it for other contexts
 - Brightness and media controls: layer shortcuts for screen brightness, volume, play/pause, next/prev track
 - Caffeine toggle: shortcut to prevent/allow Mac sleep
+- Homerow Cmd+click: figure out how to trigger Cmd+click from Label Mode (for opening links in new tabs, multi-select, etc.)
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
