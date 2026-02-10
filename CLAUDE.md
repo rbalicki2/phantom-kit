@@ -431,7 +431,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **I/O** = Tab 3/4, **Shift+I/O** = Tab 7/8
 - **P** = Last tab
 - **N** = Cmd+K
-- **Period** = Cmd+R (refresh)
+- **Period** = Cmd+R (refresh), **Shift+Period** = Cmd+Shift+R (hard refresh)
 
 ### VS Code Layer (k from Normal, VS Code only)
 - Only activates when VS Code is foreground app

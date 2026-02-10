@@ -97,7 +97,7 @@
 - **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
 - **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
 - **Shift+L** = Copy URL
-- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh
+- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh, **Shift+Period** = Hard refresh
 
 ## VS Code Layer (H from Normal, VS Code only)
 - **H** = Copy rel path, **Shift+H** = Copy full path, **Ctrl+H** = Open in Chrome

@@ -512,6 +512,7 @@
     [{:key :j :modi {:mandatory [:shift]}} [[:type-norm "gg"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Top
     [{:key :k :modi {:mandatory [:shift]}} [:!Sg ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Bottom
     [:period [:!Cr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Refresh
+    [{:key :period :modi {:mandatory [:shift]}} [:!CSr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Hard refresh
     ;; Global Ctrl+J → Ins
     [{:key :j :modi {:mandatory [:control]}} [["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]
    ]}
