@@ -400,14 +400,14 @@
     [:##m :m ["layer_mouse" 1]]
     [:##comma :comma ["layer_mouse" 1]]
     [:##period :period ["layer_mouse" 1]]
-    ;; Y = grid_exit (switches from grid to normal mode in warpd)
-    [:##y :y ["layer_mouse" 1]]
     ;; N/H = oneshot click (warpd handles click + exits, then user presses right_control)
     [:##n :n ["layer_mouse" 1]]
     [:##h :h ["layer_mouse" 1]]
-    ;; Standard exits - right_control sends escape to close warpd
+    ;; Y = escape (close warpd) + exit to Normal
+    [:y [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    ;; Standard exits
     [:escape [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
-    [:right_control :right_control ["layer_mouse" 1] {:alone [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_mouse" 1] {:alone [["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "pkill -9 warpd 2>/dev/null; echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
   {:des "[Desktop] Label Mode (M from Normal - Homerow labels)"
@@ -428,9 +428,11 @@
     [:##slash :slash ["layer_label" 1]]
     ;; H = escape + exit to Ins
     [:h [:escape ["layer_label" 0] ["in_any_layer" 0] ["layer_normal" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_label" 1]]
-    ;; Standard exits - right_control sends escape to dismiss Homerow
+    ;; Y = escape (dismiss Homerow) + exit to Normal
+    [:y [:escape ["layer_label" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_label" 1]]
+    ;; Standard exits
     [:escape [["layer_label" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_label" 1]]
-    [:right_control :right_control ["layer_label" 1] {:alone [:escape ["layer_label" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["layer_label" 1] {:alone [["layer_label" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
@@ -1162,8 +1164,8 @@
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
     ;; Space while mirror_mode active = space + oneshot shift mode
     [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
-    ;; apostrophe: hold = shift, tap alone = escape (to OS, not re-evaluated), also track quote_held
-    [:quote [["quote_held" 1] :left_shift] ["layer_ins" 1] {:alone :escape :afterup [["quote_held" 0]]}]
+    ;; apostrophe: hold = shift, also track quote_held
+    [:quote [["quote_held" 1] :left_shift] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
     ;; Quote + brackets = double quote / tilde (optional shift since quote outputs shift)
     [{:key :open_bracket :modi {:optional [:shift]}} :!Squote ["quote_held" 1]]
     [{:key :close_bracket :modi {:optional [:shift]}} :!Sgrave_accent_and_tilde ["quote_held" 1]]
@@ -1346,9 +1348,8 @@
     [:##period :vk_none ["layer_normal" 1]]
     [:##semicolon :vk_none ["layer_normal" 1]]
     [:##slash :vk_none ["layer_normal" 1]]
-    ;; Disable numbers 6-0, backslash, hyphen (with any modifiers)
-    ;; Quote alone = escape to OS (on key up, not down)
-    [:quote :vk_none ["layer_normal" 1] {:alone :escape}]
+    ;; Disable numbers 6-0, backslash, hyphen, quote (with any modifiers)
+    [:##quote :vk_none ["layer_normal" 1]]
     [:##6 :vk_none ["layer_normal" 1]]
     [:##7 :vk_none ["layer_normal" 1]]
     [:##8 :vk_none ["layer_normal" 1]]
@@ -1404,7 +1405,7 @@
     [:##semicolon :vk_none ["in_any_layer" 1]]
     [:##slash :vk_none ["in_any_layer" 1]]
     [:##comma :vk_none ["in_any_layer" 1]]
-    [:quote :vk_none ["in_any_layer" 1] {:alone :escape}]  ;; quote alone = escape to OS (on key up)
+    [:##quote :vk_none ["in_any_layer" 1]]
     [:##6 :vk_none ["in_any_layer" 1]]
     [:##7 :vk_none ["in_any_layer" 1]]
     [:##8 :vk_none ["in_any_layer" 1]]
