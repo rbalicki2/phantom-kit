@@ -111,6 +111,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - LLM transform layer: cut selection → apply LLM transformation → paste result
 - Make function shift work
 - Remap: Quote → Shift, Shift → Function
+- Scrolling
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
