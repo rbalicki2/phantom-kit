@@ -18,7 +18,7 @@ case "$LAYER" in
     ins) NAME="Ins✍️" ;;
     n) NAME="Nav🚲" ;;
     mouse) NAME="🐭" ;;
-    i) NAME="Admin🤓" ;;
+    i) NAME="Admin⚙️" ;;
     label) NAME="🔎🐭" ;;
     comma) NAME="," ;;
     l) NAME="L" ;;

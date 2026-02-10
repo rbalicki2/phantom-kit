@@ -10,7 +10,7 @@
 - **J** = Enter Ins (typing mode)
 - **N** = Enter Nav layer
 - **M** = Enter Label Mode (Homerow), **Shift+M** = Enter Mouse layer (warpd grid)
-- **I** = Enter Admin layer 🤓
+- **I** = Enter Admin layer ⚙️
 - **Comma** = Enter Comma layer (copy/paste/find)
 - **L** = Enter L layer
 - **U** = Enter Term layer (focuses iTerm)
@@ -58,7 +58,7 @@
 - **N** = Left click, **H** = Right click (warpd exits after click)
 - **Right_control** = Exit to Normal
 
-## Admin Layer 🤓 (I from Normal)
+## Admin Layer ⚙️ (I from Normal)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
 - **Enter** = Switch windows (Cmd+`)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection

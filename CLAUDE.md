@@ -86,6 +86,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 
 **Overlay files (`layers/*.txt`)**: These are shown to the user via Ctrl+Shift+Y overlay. If you change shortcuts in a layer, you MUST update the corresponding `.txt` file or the overlay will be wrong.
 
+**Consistency**: SwiftBar (`karabiner-layer.300ms.sh`) and Hammerspoon overlay (`layers/*.txt`) should use the same names and emojis for layers.
+
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
 2. Run `npm run sync` (copies karabiner.edn to ~/.config/ and runs goku)
@@ -268,7 +270,7 @@ The layer system is modal (like vim):
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
 - **m** = Enter Mouse layer, **Shift+M** = Enter Label Mode (Homerow Search)
-- **i** = Enter Admin layer 🤓
+- **i** = Enter Admin layer ⚙️
 - **comma** = Enter Comma layer
 - **l** = Enter L layer
 - **u** = Enter Term layer (focuses iTerm)
@@ -342,7 +344,7 @@ Hold rcmd+N then press a navigation key to select:
 - **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
 
-### Admin Layer 🤓 (i from Normal)
+### Admin Layer ⚙️ (i from Normal)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)
 - **Up** = Left half (BTT: Ctrl+Opt+Shift+Cmd+V)
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
