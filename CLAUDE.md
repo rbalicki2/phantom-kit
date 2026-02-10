@@ -84,6 +84,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
+- Chrome layer: move tabs left/right
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
