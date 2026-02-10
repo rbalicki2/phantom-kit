@@ -1176,8 +1176,31 @@
     [:down_arrow :close_bracket ["quote_held" 1]]
     [:comma :!Scomma ["quote_held" 1]]
     [:period :!Speriod ["quote_held" 1]]
+    [:semicolon :!Ssemicolon ["quote_held" 1]]  ;; colon
+    [:slash :!Sslash ["quote_held" 1]]  ;; ?
     ;; Quote + hyphen = equals
     [:hyphen :equal_sign ["quote_held" 1]]
+    ;; Quote + letters = capitals (RHS keys)
+    [:y :!Sy ["quote_held" 1]]
+    [:u :!Su ["quote_held" 1]]
+    [:i :!Si ["quote_held" 1]]
+    [:o :!So ["quote_held" 1]]
+    [:p :!Sp ["quote_held" 1]]
+    [:h :!Sh ["quote_held" 1]]
+    [:j :!Sj ["quote_held" 1]]
+    [:k :!Sk ["quote_held" 1]]
+    [:l :!Sl ["quote_held" 1]]
+    [:n :!Sn ["quote_held" 1]]
+    [:m :!Sm ["quote_held" 1]]
+    ;; Quote + numbers = shifted numbers (produces digits due to user's number/symbol swap)
+    [:6 :!S6 ["quote_held" 1]]
+    [:7 :!S7 ["quote_held" 1]]
+    [:8 :!S8 ["quote_held" 1]]
+    [:9 :!S9 ["quote_held" 1]]
+    [:0 :!S0 ["quote_held" 1]]
+    ;; Quote + space/enter
+    [:spacebar :!Sspacebar ["quote_held" 1]]
+    [:return_or_enter :!Sreturn_or_enter ["quote_held" 1]]
     ;; Shift + Up/Down = curly braces (quote_held rules above take precedence)
     [:up_arrow :!Sopen_bracket ["mirror_mode" 1]]
     [:down_arrow :!Sclose_bracket ["mirror_mode" 1]]
