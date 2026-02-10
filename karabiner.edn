@@ -1401,7 +1401,7 @@
     [:##semicolon :vk_none ["in_any_layer" 1]]
     [:##slash :vk_none ["in_any_layer" 1]]
     [:##comma :vk_none ["in_any_layer" 1]]
-    [:##quote :vk_none ["in_any_layer" 1]]
+    [:##quote :escape ["in_any_layer" 1]]  ;; quote = escape in all modal layers
     [:##6 :vk_none ["in_any_layer" 1]]
     [:##7 :vk_none ["in_any_layer" 1]]
     [:##8 :vk_none ["in_any_layer" 1]]
