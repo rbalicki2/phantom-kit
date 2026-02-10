@@ -76,6 +76,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Move resize/maximize/backtick out of Nav layer
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
 - More accessible Cmd+Enter
+- "Explain This" shortcut: L or Comma layer chord that grabs selection and pipes to local LLM CLI with steel-man/critique prompt
+- Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
