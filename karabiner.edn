@@ -151,6 +151,16 @@
     [:0 :!S1 ["mirror_mode" 1]]
    ]}
 
+  {:des "Shift+number in mirror_mode (must come before quote_held rules)"
+   :rules [
+    ;; Fn+Shift+number → mirrored digit
+    [{:key :6 :modi {:mandatory [:shift]}} :5 ["mirror_mode" 1]]
+    [{:key :7 :modi {:mandatory [:shift]}} :4 ["mirror_mode" 1]]
+    [{:key :8 :modi {:mandatory [:shift]}} :3 ["mirror_mode" 1]]
+    [{:key :9 :modi {:mandatory [:shift]}} :2 ["mirror_mode" 1]]
+    [{:key :0 :modi {:mandatory [:shift]}} :1 ["mirror_mode" 1]]
+   ]}
+
   {:des "Quote + numbers (must come before number swap)"
    :rules [
     ;; Quote+number outputs the digit (bare number, bypasses number swap)
@@ -1173,9 +1183,9 @@
     ;; Shift+space/enter
     [:spacebar :!Sspacebar ["quote_held" 1]]
     [:return_or_enter :!Sreturn_or_enter ["quote_held" 1]]
-    ;; shift keys: set quote_held (for Shift+key = shifted/symbol output)
-    [:left_shift [["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
-    [:right_shift [["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
+    ;; shift keys: set quote_held AND pass through shift (so other rules see shift held)
+    [:left_shift [:left_shift ["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
+    [:right_shift [:right_shift ["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
@@ -1288,19 +1298,7 @@
     [:comma :c ["mirror_mode" 1]]
     [:period :x ["mirror_mode" 1]]
     [:slash :z ["mirror_mode" 1]]
-    ;; Numbers: 6→5, 7→4, 8→3, 9→2, 0→1 (accounting for symbol/number swap)
-    ;; Bare key (symbol): ^→%, &→$, *→#, (→@, )→!
-    [:6 :!S5 ["mirror_mode" 1]]
-    [:7 :!S4 ["mirror_mode" 1]]
-    [:8 :!S3 ["mirror_mode" 1]]
-    [:9 :!S2 ["mirror_mode" 1]]
-    [:0 :!S1 ["mirror_mode" 1]]
-    ;; Shift+key (number): 6→5, 7→4, 8→3, 9→2, 0→1
-    [{:key :6 :modi {:mandatory [:shift]}} :5 ["mirror_mode" 1]]
-    [{:key :7 :modi {:mandatory [:shift]}} :4 ["mirror_mode" 1]]
-    [{:key :8 :modi {:mandatory [:shift]}} :3 ["mirror_mode" 1]]
-    [{:key :9 :modi {:mandatory [:shift]}} :2 ["mirror_mode" 1]]
-    [{:key :0 :modi {:mandatory [:shift]}} :1 ["mirror_mode" 1]]
+    ;; Numbers handled in ALL PROFILES section (before number swap rules)
     ;; Escape exits mirror mode without typing
     [:escape ["mirror_mode" 0] ["mirror_mode" 1]]
    ]}
