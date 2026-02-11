@@ -3,8 +3,10 @@
     "allow": [
       "Edit(~/.config/**)",
       "Edit(~/.hammerspoon/**)",
+      "Edit(~/code/swiftbar/**)",
       "Write(~/.config/**)",
       "Write(~/.hammerspoon/**)",
+      "Write(~/code/swiftbar/**)",
       "Bash(sqlite3:*)",
       "Bash(python3 -c \"\nimport json\n\nwith open\\(''karabiner.json'', ''r''\\) as f:\n    data = json.load\\(f\\)\n\n# Find the One-Handed profile\nfor profile in data[''profiles'']:\n    if profile[''name''] == ''One-Handed'':\n        # Find the ''command buttons to curly'' rule\n        for rule in profile[''complex_modifications''][''rules'']:\n            if ''command buttons to curly'' in rule[''description'']:\n                # Remove the right_control manipulators\n                rule[''manipulators''] = [\n                    m for m in rule[''manipulators'']\n                    if m[''from''].get\\(''key_code''\\) != ''right_control''\n                ]\n                break\n        break\n\nwith open\\(''karabiner.json'', ''w''\\) as f:\n    json.dump\\(data, f, indent=4\\)\n\nprint\\(''Done - removed right_control mappings from One-Handed profile''\\)\n\")",
       "Bash(goku --help:*)",
