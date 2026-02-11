@@ -255,6 +255,8 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner.
 
+**Avoid F13 and F14:** These open macOS System Settings even with modifiers. Never use them in layouts.
+
 ## Keyboard Context
 This config is designed for a **Kinesis Advantage 360** with right-hand-side (RHS) layers. **This is a ONE-HANDED (right hand only) keyboard setup on Desktop profile.** The user only presses right-hand keys. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard.
 
