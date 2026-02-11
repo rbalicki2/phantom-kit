@@ -114,6 +114,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Make function shift work
 - Remap: Quote → Shift, Shift → Function
 - Scrolling
+- Slack/messaging: quick way to message people on Slack or other messaging apps
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
