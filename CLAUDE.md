@@ -71,7 +71,7 @@ Source of truth for Karabiner config and related scripts.
 - `shortcuts.md` - Human-readable shortcuts reference (keep up to date)
 - `CLAUDE.md` - This file, context for Claude sessions
 - `layers/*.txt` - Individual layer summaries for Hammerspoon overlay
-  - `norm.txt`, `ins.txt`, `nav.txt`, `mouse.txt`, `l.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `comma.txt`
+  - `norm.txt`, `ins.txt`, `nav.txt`, `l.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `comma.txt`, `label.txt`, `i.txt`
 - `chrome-tab.sh` - Chrome profile switcher script (AppleScript)
 - `vscode-open-in-chrome.sh` - Opens VS Code file path in Chrome (used by VS Code layer Ctrl+H)
 - `karabiner-layer.100ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
@@ -287,7 +287,7 @@ The layer system is modal (like vim):
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Mouse layer, **Shift+M** = Enter Label Mode (Homerow Search)
+- **m** = Enter Label Mode (Homerow Search)
 - **i** = Enter Admin layer ⚙️
 - **comma** = Enter Comma layer
 - **l** = Enter L layer
@@ -372,8 +372,6 @@ Hold rcmd+N then press a navigation key to select:
 - **Y** = Restart Whispering
 - **L** = LLM blurb paste (exits to Ins)
 
-### Mouse Layer (m from Normal)
-- *To be implemented: vimium-style hints + grid positioning*
 
 ### Comma Layer (comma from Normal)
 - **Comma** = Control+C (terminal copy/interrupt)
@@ -502,7 +500,7 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 - Shows current layer in menu bar
 - Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-project` for iso/pin mode
 - All layer entries/exits write to these files
-- Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
+- Layers: `norm`, `ins`, `n`, `label`, `i`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
 - Format: `{mode}-{layer}` (e.g., "iso-Norm🟢", "pin-Nav🚲")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.100ms.sh` to handle the new case
