@@ -1376,6 +1376,7 @@
     [:f10 :!S2 ["layer_ins" 1]]  ;; Fn+9 (F10) → @
     [:f11 :!S1 ["layer_ins" 1]]  ;; Fn+0 (F11) → !
     ;; Symbols (matching mirror_mode behavior)
+    [:f6 :!Stab ["layer_ins" 1]]  ;; Fn+backslash (F6) → Shift+Tab
     [:f12 :!Shyphen ["layer_ins" 1]]  ;; Fn+hyphen (F12) → _ (underscore)
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
     [:!Of10 :!Sclose_bracket ["layer_ins" 1]]  ;; Fn+Down → }
