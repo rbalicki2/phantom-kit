@@ -30,6 +30,13 @@ When Function key is held, RHS keys produce F-keys:
 - `.` → Alt+F7
 - `/` → Alt+F8
 
+### Numbers (default Kinesis behavior)
+- `6` → F6
+- `7` → F7
+- `8` → F8
+- `9` → F9
+- `0` → F10
+
 ### Navigation and Brackets
 - `Up` → Alt+F9
 - `Down` → Alt+F10
