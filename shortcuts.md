@@ -38,14 +38,13 @@
 - **Quote+/** = `?`
 
 ## Layer N "Nav" (N from Normal)
-- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Shift+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
+- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
 - **M** = Chrome Personal, **Comma** = Chrome Work
 - **N** = Spotlight
 - **Ctrl+H** = Close (Cmd+W)
-- **Period** = Finder, **Shift+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Shift+J/K** = Back/Forward, **Shift+M/,** = Prev/Next tab, **Shift+Up/Down** = App switch
+- **Period** = Finder, **Fn+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
+- **Fn+J/K** = Back/Forward, **Fn+M/,** = Prev/Next tab, **Fn+Up/Down** = App switch
 - **Enter** = Cmd+Enter
-- Releasing Shift exits to Normal
 
 ## Label Mode (M from Normal - Homerow)
 - Labels: U I O P J K L ; N M , . /

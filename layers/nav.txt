@@ -1,14 +1,13 @@
 Nav Layer (n from Normal)
 
 H = Karabiner-EventViewer
-J = iTerm, K = VS Code, L = Signal, Shift+L = Messages, Ctrl+L = WhatsApp
+J = iTerm, K = VS Code, L = Signal, Fn+L = Messages, Ctrl+L = WhatsApp
 O = Obsidian
 M = Chrome Personal, , = Chrome Work
-. = Finder, Shift+. = Go to Folder, Ctrl+. = Go to Folder + Paste
+. = Finder, Fn+. = Go to Folder, Ctrl+. = Go to Folder + Paste
 N = Spotlight
 Ctrl+H = Close (Cmd+W)
-Shift+J/K = Back/Forward (stays)
-Shift+M/, = Prev/Next tab (stays)
-Shift+Up/Down = App switch fwd/back (stays)
-Enter = Cmd+Enter (→Ins)
-Releasing Shift exits to Normal
+Fn+J/K = Back/Forward (stays)
+Fn+M/, = Prev/Next tab (stays)
+Fn+Up/Down = App switch fwd/back (stays)
+Enter = Cmd+Enter (->Ins)
