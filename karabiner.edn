@@ -114,9 +114,9 @@
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "Alt+F12 = Escape (global)"
+  {:des "Cmd+PageUp = Escape (global)"
    :rules [
-    [:!Of12 :escape]
+    [:!Cpage_up :escape]
    ]}
 
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
