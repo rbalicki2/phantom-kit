@@ -18,7 +18,6 @@ case "$LAYER" in
     ins) NAME="Ins" ;;
     n) NAME="Nav" ;;
     i) NAME="Admin" ;;
-    label) NAME="Label" ;;
     comma) NAME="Comma" ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;

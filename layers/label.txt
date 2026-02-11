@@ -1,8 +1,0 @@
-Label Mode (M from Normal - Homerow)
-
-Labels: u i o p j k l ; n m , . /
-H = escape + exit to Ins
-Y = escape + exit to Normal
-right_ctrl = exit to Normal (no escape)
-
-Type label characters to click elements
