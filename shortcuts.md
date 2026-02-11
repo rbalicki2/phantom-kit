@@ -20,22 +20,21 @@
 ## Ins Layer (J from Normal)
 - All keys type normally
 - **Right_control** = Return to Normal
-- **Quote (')** = Shift when held
-- **Shift** = Mirror mode (right-hand keys output left-hand equivalents)
+- **[** = Backspace, **]** = Delete
 
 ### Brackets
-- **Shift+Up/Down** = `{` `}`
-- **Quote+Up/Down** = `[` `]`
-- **Quote+,/.** = `<` `>`
-- **Shift+[** = `'`, **Shift+]** = `|`
-- **Quote+[** = `"`, **Quote+]** = `~`
+- **Shift+Up/Down** = `[` `]`
+- **Fn+Up/Down** = `{` `}`
+- **Fn+]** = `~`
 
-### Symbols
-- **Shift+Hyphen** = `_`
-- **Quote+Hyphen** = `=`
-- **Shift+Quote+Hyphen** = `+`
-- **Shift+Quote+Up** = `\`, **Shift+Quote+Down** = `` ` ``
-- **Quote+/** = `?`
+### Mirrored Letters (Fn+key)
+- Fn+Y→t, Fn+U→r, Fn+I→e, Fn+O→w, Fn+P→q
+- Fn+H→g, Fn+J→f, Fn+K→d, Fn+L→s, Fn+;→a
+- Fn+N→b, Fn+M→v, Fn+,→c, Fn+.→x, Fn+/→z
+
+### Oneshots
+- **Fn+Space** = Space + shift oneshot (next letter capital)
+- **Fn+]** = Capital mirrored letter oneshot (next Fn+letter uppercase)
 
 ## Layer N "Nav" (N from Normal)
 - **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
