@@ -10,6 +10,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - If something can be verified mechanically (e.g., checking if a file exists, diffing configs, checking generated JSON), **ALWAYS do that instead of asking the user to verify**. Never say "try it and let me know" when you can just check the result yourself with a bash command.
 - **CRITICAL: NEVER remove or replace an existing shortcut without explicit permission.** If implementing a new feature requires removing/changing an existing shortcut, STOP and ask the user first. Don't assume "remove the old ones" means all related shortcuts - clarify exactly which ones.
 - **NEVER make shortcuts exit to Normal mode without explicit permission.** The user does not like escape/quote/other keys automatically exiting to Normal. Always ask before adding any "exit to Normal" behavior to a shortcut.
+- **URL fetching is restricted by security policies.** If you need documentation from a URL, ask the user to provide the relevant content instead of trying to fetch it.
 
 ## ⚠️ CRITICAL: DO NOT BREAK EXISTING FUNCTIONALITY ⚠️
 

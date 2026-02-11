@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Read(/tmp/**)",
       "Read(~/.config/**)",
       "Read(~/.hammerspoon/**)",
       "Read(~/code/swiftbar/**)",
@@ -90,7 +91,8 @@
       "Bash(/Users/rbalicki/code/voicemode/click)",
       "Bash(git -C /Users/rbalicki/code/voicemode add CLAUDE.md)",
       "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add Whispering background restart to pending tasks\")",
-      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add USB device commands to pending tasks\")"
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add USB device commands to pending tasks\")",
+      "Bash(cat:*)"
     ]
   }
 }
