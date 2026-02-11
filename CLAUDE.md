@@ -4,6 +4,7 @@ This system is called **Overmind** (a reference to Starcraft).
 
 ## User Interaction Notes
 The user is using voice-to-text and may not fully think through requests before speaking. Claude should:
+- Dictated letters are always uppercase, but use judgment for actual case (usually lowercase for filenames, code, etc.)
 - Reason about what the user is actually trying to accomplish, not just literal words
 - Ask clarifying questions if something doesn't align or seems off
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab" for previous tab in Chrome)
