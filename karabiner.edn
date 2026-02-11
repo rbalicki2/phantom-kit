@@ -356,10 +356,10 @@
     [{:key :y :modi {:mandatory [:right_control]}} :!TOSf19 ["layer_l" 0]]
    ]}
 
-  {:des "[Desktop] Wispr Flow shortcuts (right_control + U/I/O/P)"
+  {:des "[Desktop] Wispr Flow shortcuts"
    :rules [:!apple_internal
-    ;; right_control+U → Ctrl+Alt+Shift+F17 (ptt)
-    [{:key :u :modi {:mandatory [:right_control]}} :!TOSf17]
+    ;; Global U → Ctrl+Alt+Shift+F17 (ptt) - works from any layer
+    [:u :!TOSf17]
     ;; right_control+I → Ctrl+Alt+Shift+F18 (lens)
     [{:key :i :modi {:mandatory [:right_control]}} :!TOSf18]
     ;; right_control+O → Ctrl+Alt+Shift+F19 (hands-free)
