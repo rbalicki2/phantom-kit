@@ -203,6 +203,18 @@
     [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["layer_ins" 1]]
     [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["layer_ins" 1]]
     [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["layer_ins" 1]]
+    ;; Shift+number → digit (like laptop)
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["layer_ins" 1]]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["layer_ins" 1]]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["layer_ins" 1]]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["layer_ins" 1]]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_ins" 1]]
+   ]}
+
+  {:des "Shift+up/down = curly braces (Desktop Ins mode)"
+   :rules [:!apple_internal
+    [{:key :up_arrow :modi {:mandatory [:shift]}} :!Sopen_bracket ["layer_ins" 1]]
+    [{:key :down_arrow :modi {:mandatory [:shift]}} :!Sclose_bracket ["layer_ins" 1]]
    ]}
 
   {:des "Brackets to command+bracket (only in working layers)"
@@ -212,7 +224,9 @@
     ;; Cmd+bracket → bare bracket (only in working layers, blocked in Normal)
     [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
     [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_any_layer" 1]]
-    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
+    ;; Shift+brackets per rhs-slots: Shift+[ = ', Shift+] = |
+    [{:key :open_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :quote ["layer_ins" 1]]
+    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sbackslash ["layer_ins" 1]]
    ]}
 
   {:des "Backslash in Ins mode (must come before swap rule)"
