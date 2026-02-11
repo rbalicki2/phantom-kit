@@ -1327,12 +1327,12 @@
     [:!Of10 [:grave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+Down → `
     [:!Of11 [:!Squote ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+[ → "
     [:!Of12 [:!Sgrave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+] → ~
-    ;; Fn+numbers in shift_mirror_oneshot → mirrored digit
-    [:f6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+6 → 5
-    [:f7 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+7 → 4
-    [:f8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+8 → 3
-    [:f9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+9 → 2
-    [:f10 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+0 → 1
+    ;; Fn+numbers in shift_mirror_oneshot → mirrored digit (Kinesis Fn+N sends F(N+1))
+    [:f7 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+6 (F7) → 5
+    [:f8 [:4 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+7 (F8) → 4
+    [:f9 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+8 (F9) → 3
+    [:f10 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+9 (F10) → 2
+    [:f11 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+0 (F11) → 1
     ;; Top row: Fn+Y/U/I/O/P → t/r/e/w/q
     [:f15 :t ["layer_ins" 1]]  ;; Fn+Y
     [:f16 :r ["layer_ins" 1]]  ;; Fn+U
@@ -1351,12 +1351,12 @@
     [:!Of6 :c ["layer_ins" 1]]  ;; Fn+,
     [:!Of7 :x ["layer_ins" 1]]  ;; Fn+.
     [:!Of8 :z ["layer_ins" 1]]  ;; Fn+/
-    ;; Fn+numbers → mirrored symbols (%, $, #, @, !)
-    [:f6 :!S5 ["layer_ins" 1]]  ;; Fn+6 → %
-    [:f7 :!S4 ["layer_ins" 1]]  ;; Fn+7 → $
-    [:f8 :!S3 ["layer_ins" 1]]  ;; Fn+8 → #
-    [:f9 :!S2 ["layer_ins" 1]]  ;; Fn+9 → @
-    [:f10 :!S1 ["layer_ins" 1]]  ;; Fn+0 → !
+    ;; Fn+numbers → mirrored symbols (Kinesis Fn+N sends F(N+1))
+    [:f7 :!S5 ["layer_ins" 1]]  ;; Fn+6 (F7) → %
+    [:f8 :!S4 ["layer_ins" 1]]  ;; Fn+7 (F8) → $
+    [:f9 :!S3 ["layer_ins" 1]]  ;; Fn+8 (F9) → #
+    [:f10 :!S2 ["layer_ins" 1]]  ;; Fn+9 (F10) → @
+    [:f11 :!S1 ["layer_ins" 1]]  ;; Fn+0 (F11) → !
     ;; Symbols (matching mirror_mode behavior)
     [:f13 :!Shyphen ["layer_ins" 1]]  ;; Fn+hyphen → _ (underscore)
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
