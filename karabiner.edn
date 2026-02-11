@@ -161,16 +161,6 @@
     [{:key :0 :modi {:mandatory [:shift]}} :1 ["mirror_mode" 1]]
    ]}
 
-  {:des "Quote + numbers (must come before number swap)"
-   :rules [
-    ;; Quote+number outputs the digit (bare number, bypasses number swap)
-    [:6 :6 ["quote_held" 1]]
-    [:7 :7 ["quote_held" 1]]
-    [:8 :8 ["quote_held" 1]]
-    [:9 :9 ["quote_held" 1]]
-    [:0 :0 ["quote_held" 1]]
-   ]}
-
   {:des "Exchange numbers and symbols (laptop only)"
    :rules [:apple_internal
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
@@ -224,9 +214,7 @@
     ;; Cmd+bracket → bare bracket (only in working layers, blocked in Normal)
     [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_any_layer" 1]]
     [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_any_layer" 1]]
-    ;; Shift+brackets per rhs-slots: Shift+[ = ', Shift+] = |
-    [{:key :open_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :quote ["layer_ins" 1]]
-    [{:key :close_bracket :modi {:mandatory [:shift] :optional [:caps_lock]}} :!Sbackslash ["layer_ins" 1]]
+    ;; Shift+brackets have no special mapping (pass through naturally)
    ]}
 
   {:des "Backslash in Ins mode (must come before swap rule)"
@@ -1150,21 +1138,7 @@
     [:!Of18 [:spacebar ["shift_oneshot" 1]] ["layer_ins" 1]]
     ;; Fn+Enter (Alt+F17) = Shift+Enter
     [:!Of17 :!Sreturn_or_enter ["layer_ins" 1]]
-    ;; Quote held = quote_held (Quote → Shift behavior)
-    [:quote [["quote_held" 1]] ["layer_ins" 1] {:alone :quote :afterup [["quote_held" 0]]}]
-    ;; Quote + brackets = double quote / tilde
-    [:open_bracket :!Squote ["quote_held" 1]]
-    [:close_bracket :!Sgrave_accent_and_tilde ["quote_held" 1]]
-    ;; Quote + Up/Down = square brackets
-    [:up_arrow :open_bracket ["quote_held" 1]]
-    [:down_arrow :close_bracket ["quote_held" 1]]
-    [:comma :!Scomma ["quote_held" 1]]
-    [:period :!Speriod ["quote_held" 1]]
-    [:semicolon :!Ssemicolon ["quote_held" 1]]  ;; colon
-    [:slash :!Sslash ["quote_held" 1]]  ;; ?
-    ;; Quote + hyphen = equals
-    [:hyphen :equal_sign ["quote_held" 1]]
-    ;; Shift+letter in mirror_mode → Shift+mirrored letter (MUST come before quote_held rules)
+    ;; Shift+letter in mirror_mode → Shift+mirrored letter
     [{:key :y :modi {:mandatory [:shift]}} :!St ["mirror_mode" 1]]
     [{:key :u :modi {:mandatory [:shift]}} :!Sr ["mirror_mode" 1]]
     [{:key :i :modi {:mandatory [:shift]}} :!Se ["mirror_mode" 1]]
@@ -1180,24 +1154,6 @@
     [{:key :comma :modi {:mandatory [:shift]}} :!Sc ["mirror_mode" 1]]
     [{:key :period :modi {:mandatory [:shift]}} :!Sx ["mirror_mode" 1]]
     [{:key :slash :modi {:mandatory [:shift]}} :!Sz ["mirror_mode" 1]]
-    ;; Quote + letters = capitals (RHS keys) - only when NOT in mirror_mode
-    [:y :!Sy ["quote_held" 1]]
-    [:u :!Su ["quote_held" 1]]
-    [:i :!Si ["quote_held" 1]]
-    [:o :!So ["quote_held" 1]]
-    [:p :!Sp ["quote_held" 1]]
-    [:h :!Sh ["quote_held" 1]]
-    [:j :!Sj ["quote_held" 1]]
-    [:k :!Sk ["quote_held" 1]]
-    [:l :!Sl ["quote_held" 1]]
-    [:n :!Sn ["quote_held" 1]]
-    [:m :!Sm ["quote_held" 1]]
-    ;; Quote + numbers are in ALL PROFILES section (before number swap rules)
-    ;; Shift+space/enter
-    [:spacebar :!Sspacebar ["quote_held" 1]]
-    [:return_or_enter :!Sreturn_or_enter ["quote_held" 1]]
-    ;; shift keys pass through naturally (no rule needed - OS handles shift)
-    ;; This allows mirror_mode rules with {:modi {:mandatory [:shift]}} to see shift held
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
@@ -1376,7 +1332,7 @@
     ;; F12 (Fn+hyphen) passes through naturally
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
     [:!Of10 :!Sclose_bracket ["layer_ins" 1]]  ;; Fn+Down → }
-    [:!Of11 :quote ["layer_ins" 1]]  ;; Fn+[ → ' (single quote)
+    ;; Fn+[ unmapped (passes through as backspace via base [ = backspace rule)
     [:!Of12 :!Sgrave_accent_and_tilde ["layer_ins" 1]]  ;; Fn+] → ~ (tilde)
    ]}
 

@@ -1,44 +1,47 @@
 # RHS Slots Grid (Ins Mode)
 
-| key      | bare     | shk      | quk      | shk+quk  | rcmd     | rctrl    | sh+cmd   | sh+ctrl  |
+| key      | bare     | shift    | fn       | shift+fn | rcmd     | rctrl    | sh+cmd   | sh+ctrl  |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| 6        | ^        | %        | 6        | 5        |          | tts      |          |          |
-| 7        | &        | $        | 7        | 4        |          |          |          |          |
-| 8        | *        | #        | 8        | 3        |          |          |          |          |
-| 9        | (        | @        | 9        | 2        |          |          |          |          |
-| 0        | )        | !        | 0        | 1        |          |          |          |          |
-| -        | -        | _        | =        | +        |          |          |          |          |
+| 6        | ^        | 6        | %        | 5        |          | tts      |          |          |
+| 7        | &        | 7        | $        | 4        |          |          |          |          |
+| 8        | *        | 8        | #        | 3        |          |          |          |          |
+| 9        | (        | 9        | @        | 2        |          |          |          |          |
+| 0        | )        | 0        | !        | 1        |          |          |          |          |
+| -        | -        |          | _        |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| y        | y        | t        | XXX      | XXX      |          | tts      |          | overlay  |
-| u        | u        | r        | XXX      | XXX      |          |          |          |          |
-| i        | i        | e        | XXX      | XXX      |          |          |          |          |
-| o        | o        | w        | XXX      | XXX      |          |          |          |          |
-| p        | p        | q        | XXX      | XXX      |          |          |          |          |
-| \        | tab      | sh+tab   |          |          |          |          |          |          |
+| y        | y        | Y        | t        | T        |          | tts      |          | overlay  |
+| u        | u        | U        | r        | R        |          |          |          |          |
+| i        | i        | I        | e        | E        |          |          |          |          |
+| o        | o        | O        | w        | W        |          |          |          |          |
+| p        | p        | P        | q        | Q        |          |          |          |          |
+| \        | tab      | \|       | sh+tab   |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| h        | h        | g        | XXX      | XXX      | del mode |          |          |          |
-| j        | j        | f        | XXX      | XXX      | wd←      | →ins     |          |          |
-| k        | k        | d        | XXX      | XXX      | wd→      |          |          |          |
-| l        | l        | s        | XXX      | XXX      |          |          |          |          |
-| ;        | ;        | a        | :        | XXX      |          |          |          |          |
-| '        | shift    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
+| h        | h        | H        | g        | G        | del mode |          |          |          |
+| j        | j        | J        | f        | F        | wd←      | →ins     |          |          |
+| k        | k        | K        | d        | D        | wd→      |          |          |          |
+| l        | l        | L        | s        | S        |          |          |          |          |
+| ;        | ;        | :        | a        | A        |          |          |          |          |
+| '        | quote_held|         |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| n        | n        | b        | XXX      | XXX      | sel mode |          |          |          |
-| m        | m        | v        | XXX      | XXX      | ln←      |          |          |          |
-| ,        | ,        | c        | <        | XXX      | ln→      |          |          |          |
-| .        | .        | x        | >        | XXX      |          |          |          |          |
-| /        | /        | z        | ?        | XXX      |          |          |          |          |
-| rshift   | mirror   | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
+| n        | n        | N        | b        | B        | sel mode |          |          |          |
+| m        | m        | M        | v        | V        | ln←      |          |          |          |
+| ,        | ,        | <        | c        | C        | ln→      |          |          |          |
+| .        | .        | >        | x        | X        |          |          |          |          |
+| /        | /        | ?        | z        | Z        |          |          |          |          |
+| rshift   | shift    |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| up       | up       | {        | [        | \        | ←        |          |          |          |
-| down     | down     | }        | ]        | `        | →        |          |          |          |
-| [        | bksp     | '        | "        |          |          |          |          |          |
-| ]        | del      | \|       | ~        |          |          |          |          |          |
+| up       | up       | [        | {        |          | ←        |          |          |          |
+| down     | down     | ]        | }        |          | →        |          |          |          |
+| [        | bksp     |          |          |          |          |          |          |          |
+| ]        | del      |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | pgup     | lclick   |          |          |          |          |          |          |          |
 | pgdn     | rclick   |          |          |          |          |          |          |          |
 | enter    | enter    |          |          |          |          |          |          |          |
-| space    | space    | sp+sh    |          |          |          |          |          |          |
-| rcmd     | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
-| rctrl    | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      | XXX      |
+| space    | space    |          | sp+sh    |          |          |          |          |          |
+| rcmd     | modifier |          |          |          |          |          |          |          |
+| rctrl    | →norm    |          |          |          |          |          |          |          |
+
+## Unavailable Symbols
+These symbols currently have no RHS slot: backslash, backtick, tilde
 
