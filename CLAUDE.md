@@ -127,6 +127,7 @@ Note: Don't include Claude attribution in commit messages.
 
 ## Testing & Syntax Verification
 **Important**: Claude has a history of not knowing exact Goku/Karabiner syntax. For any non-trivial or unfamiliar constructs:
+- **Prioritize testable changes over documentation updates.** If a change needs both code and docs, flash/sync the code first so the user can test, then update docs.
 - Ask the user to test the change before committing to more work
 - When unsure about syntax, check existing working examples in karabiner.edn first
 - If something doesn't work, the syntax is likely wrong - don't assume the approach is correct

@@ -1,7 +1,15 @@
 <base>
-{rctr}{hk4}>{escape}
+# Base hotkeys
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
+
+# Modifier+hotkey combos (for future Karabiner mapping)
+{rctr}{hk3}>{-lalt}{f21}{+lalt}
+{rctr}{hk4}>{-lalt}{f22}{+lalt}
+{rsft}{hk3}>{-lalt}{f23}{+lalt}
+{rsft}{hk4}>{-lalt}{f24}{+lalt}
+{rcmd}{hk3}>{-lsft}{-lalt}{f21}{+lalt}{+lsft}
+{rcmd}{hk4}>{-lsft}{-lalt}{f22}{+lalt}{+lsft}
 
 <keypad>
 
