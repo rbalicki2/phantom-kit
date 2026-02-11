@@ -43,6 +43,14 @@ When Function key is held, RHS keys produce F-keys:
 - `[` → Alt+F11
 - `]` → Alt+F12
 
+### Right Thumb Cluster
+- `RightWin (Cmd)` → Alt+F13
+- `RightCtrl` → Alt+F14
+- `PageUp` → Alt+F15
+- `PageDown` → Alt+F16
+- `Enter` → Alt+F17
+- `Space` → Alt+F18
+
 ## Planned Changes
 
 See pending task: "Remap: Quote → Shift, Shift → Function"
