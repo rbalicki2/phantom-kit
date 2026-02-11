@@ -14,12 +14,12 @@ fi
 [ -z "$PROJECT" ] && PROJECT="iso"
 
 case "$LAYER" in
-    norm) NAME="Norm🟢" ;;
-    ins) NAME="Ins✍️" ;;
-    n) NAME="Nav🚲" ;;
-    i) NAME="Admin⚙️" ;;
-    label) NAME="🔎🐭" ;;
-    comma) NAME="," ;;
+    norm) NAME="Norm" ;;
+    ins) NAME="Ins" ;;
+    n) NAME="Nav" ;;
+    i) NAME="Admin" ;;
+    label) NAME="Label" ;;
+    comma) NAME="Comma" ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;
     lTC) NAME="L-TC" ;;
