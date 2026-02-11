@@ -355,11 +355,11 @@
              [:layer "n"]]]
    ]}
 
-  {:des "[Desktop] Layer N (n or hk4 from Normal to enter)"
+  {:des "[Desktop] Layer N (hk4 from Normal to enter, N = escape in Normal)"
    :rules [:!apple_internal
-    ;; Entry/exit
-    [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
-    ;; hk4 (Alt+F20) also enters Nav from Normal
+    ;; N in Normal = escape (stays in Normal)
+    [:n :escape ["layer_normal" 1]]
+    ;; hk4 (Alt+F20) enters Nav from Normal
     [:!Of20 [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
