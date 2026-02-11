@@ -1232,21 +1232,41 @@
     [:slash [:!Sslash ["shift_oneshot" 0]] ["shift_oneshot" 1]]
    ]}
 
-  {:des "[Desktop] Mirror mode UNSHIFTED (mirror_mode without shift held)"
+  {:des "[Desktop] Mirror mode (mirror_mode=1)"
    :rules [:!apple_internal
-    ;; Top row: Y U I O P → T R E W Q
+    ;; Shift+letter in mirror_mode → Shift+mirrored letter (must come before bare letter rules)
+    ;; Top row: Shift+Y U I O P → Shift+T R E W Q
+    [{:key :y :modi {:mandatory [:shift]}} :!St ["mirror_mode" 1]]
+    [{:key :u :modi {:mandatory [:shift]}} :!Sr ["mirror_mode" 1]]
+    [{:key :i :modi {:mandatory [:shift]}} :!Se ["mirror_mode" 1]]
+    [{:key :o :modi {:mandatory [:shift]}} :!Sw ["mirror_mode" 1]]
+    [{:key :p :modi {:mandatory [:shift]}} :!Sq ["mirror_mode" 1]]
+    ;; Home row: Shift+H J K L ; → Shift+G F D S A
+    [{:key :h :modi {:mandatory [:shift]}} :!Sg ["mirror_mode" 1]]
+    [{:key :j :modi {:mandatory [:shift]}} :!Sf ["mirror_mode" 1]]
+    [{:key :k :modi {:mandatory [:shift]}} :!Sd ["mirror_mode" 1]]
+    [{:key :l :modi {:mandatory [:shift]}} :!Ss ["mirror_mode" 1]]
+    [{:key :semicolon :modi {:mandatory [:shift]}} :!Sa ["mirror_mode" 1]]
+    ;; Bottom row: Shift+N M , . / → Shift+B V C X Z
+    [{:key :n :modi {:mandatory [:shift]}} :!Sb ["mirror_mode" 1]]
+    [{:key :m :modi {:mandatory [:shift]}} :!Sv ["mirror_mode" 1]]
+    [{:key :comma :modi {:mandatory [:shift]}} :!Sc ["mirror_mode" 1]]
+    [{:key :period :modi {:mandatory [:shift]}} :!Sx ["mirror_mode" 1]]
+    [{:key :slash :modi {:mandatory [:shift]}} :!Sz ["mirror_mode" 1]]
+    ;; Bare letter in mirror_mode → mirrored letter (lowercase)
+    ;; Top row: Y U I O P → t r e w q
     [:y :t ["mirror_mode" 1]]
     [:u :r ["mirror_mode" 1]]
     [:i :e ["mirror_mode" 1]]
     [:o :w ["mirror_mode" 1]]
     [:p :q ["mirror_mode" 1]]
-    ;; Home row: H J K L ; → G F D S A
+    ;; Home row: H J K L ; → g f d s a
     [:h :g ["mirror_mode" 1]]
     [:j :f ["mirror_mode" 1]]
     [:k :d ["mirror_mode" 1]]
     [:l :s ["mirror_mode" 1]]
     [:semicolon :a ["mirror_mode" 1]]
-    ;; Bottom row: N M , . / → B V C X Z
+    ;; Bottom row: N M , . / → b v c x z
     [:n :b ["mirror_mode" 1]]
     [:m :v ["mirror_mode" 1]]
     [:comma :c ["mirror_mode" 1]]
