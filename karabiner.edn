@@ -243,10 +243,16 @@
   ;; DESKTOP ONLY
   ;; =====================================================================
 
-  {:des "[Desktop] Function key = Mirror mode (like Shift)"
+  {:des "[Desktop] Function key = Mirror mode"
    :rules [:!apple_internal
     ;; fn held = mirror_mode
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+   ]}
+
+  {:des "[Desktop] Shift key = Mirror mode (Shift → Function)"
+   :rules [:!apple_internal
+    ;; right_shift held = mirror_mode (same as Fn)
+    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
@@ -1140,7 +1146,8 @@
     [:!Of18 [:spacebar ["shift_oneshot" 1]] ["layer_ins" 1]]
     ;; Fn+Enter (Alt+F17) = Shift+Enter
     [:!Of17 :!Sreturn_or_enter ["layer_ins" 1]]
-    ;; Quote passes through naturally (no special behavior)
+    ;; Quote held = quote_held (Quote → Shift behavior)
+    [:quote [["quote_held" 1]] ["layer_ins" 1] {:alone :quote :afterup [["quote_held" 0]]}]
     ;; Quote + brackets = double quote / tilde
     [:open_bracket :!Squote ["quote_held" 1]]
     [:close_bracket :!Sgrave_accent_and_tilde ["quote_held" 1]]
