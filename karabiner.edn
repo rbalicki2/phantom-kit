@@ -125,9 +125,9 @@
     [:hyphen :escape]
    ]}
 
-  {:des "TEMPORARY: F21 (Fn+hk4) = Ctrl+Shift+Y for overlay"
+  {:des "TEMPORARY: F21 (Fn+hk4) = show overlay"
    :rules [
-    [:f21 :!TSy]
+    [:f21 {:shell "hs -c 'showLayerOverlay()'"}]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
