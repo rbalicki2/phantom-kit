@@ -249,12 +249,6 @@
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] Shift key = Mirror mode (Shift → Function)"
-   :rules [:!apple_internal
-    ;; right_shift held = mirror_mode (same as Fn)
-    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-   ]}
-
   {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:!apple_internal
     [:##grave_accent_and_tilde :vk_none]  ;; physical backtick
