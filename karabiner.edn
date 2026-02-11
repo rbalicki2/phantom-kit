@@ -260,8 +260,9 @@
   {:des "[Desktop] Page down/up to click/right click"
    :rules [:!apple_internal
     ;; Exclude when in Cmd sub-layer (it handles Cmd+click)
-    [:##page_down :button1 ["layer_l_cmd" 0]]
-    [:##page_up :button2 ["layer_l_cmd" 0]]
+    ;; No ## so Cmd+PageUp can still trigger escape rule
+    [:page_down :button1 ["layer_l_cmd" 0]]
+    [:page_up :button2 ["layer_l_cmd" 0]]
    ]}
 
   {:des "[Desktop] Right command + brackets to ctrl-tab navigation"
