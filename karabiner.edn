@@ -211,10 +211,10 @@
     [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_ins" 1]]
    ]}
 
-  {:des "Shift+up/down = curly braces (Desktop Ins mode)"
+  {:des "Shift+up/down = square brackets (Desktop Ins mode)"
    :rules [:!apple_internal
-    [{:key :up_arrow :modi {:mandatory [:shift]}} :!Sopen_bracket ["layer_ins" 1]]
-    [{:key :down_arrow :modi {:mandatory [:shift]}} :!Sclose_bracket ["layer_ins" 1]]
+    [{:key :up_arrow :modi {:mandatory [:shift]}} :open_bracket ["layer_ins" 1]]
+    [{:key :down_arrow :modi {:mandatory [:shift]}} :close_bracket ["layer_ins" 1]]
    ]}
 
   {:des "Brackets to command+bracket (only in working layers)"
