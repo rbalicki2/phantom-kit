@@ -336,6 +336,11 @@
    ]}
 
 
+  {:des "[Desktop] Right control+N to Escape (all layers)"
+   :rules [:!apple_internal
+    [{:key :n :modi {:mandatory [:right_control]}} :escape]
+   ]}
+
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:!apple_internal
     [{:key :6 :modi {:mandatory [:right_control]}} [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
