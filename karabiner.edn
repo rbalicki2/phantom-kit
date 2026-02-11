@@ -125,9 +125,9 @@
     [:hyphen :escape]
    ]}
 
-  {:des "F14 = Layer overlay (Fn+hotkey3)"
+  {:des "Alt+F20 = Layer overlay (Fn+hotkey3)"
    :rules [
-    [:f14 {:shell "hs -c 'showLayerOverlay()'"}]
+    [:!Of20 {:shell "hs -c 'showLayerOverlay()'"}]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"

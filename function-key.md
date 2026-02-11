@@ -5,7 +5,7 @@
 When Function key is held, RHS keys produce F-keys:
 
 ### Top Row (Standard F-Keys)
-- Hotkey 3 → F14 **(Layer overlay trigger)**
+- Hotkey 3 → Alt+F20 **(Layer overlay trigger)**
 - `Y` → F15
 - `U` → F16
 - `I` → F17
@@ -43,13 +43,13 @@ When Function key is held, RHS keys produce F-keys:
 - `]` → Alt+F12
 
 ### Right Thumb Cluster
-- `PageUp` → Alt+F15
-- `PageDown` → Alt+F16
-- `Enter` → Alt+F17
-- `Space` → Alt+F18
+- `PageUp` → Alt+F16
+- `PageDown` → Alt+F17
+- `Enter` → Alt+F18
+- `Space` → Alt+F20
 
 ## Notes
 
-- F21-F24 are seen by Karabiner-EventViewer but Goku syntax (`:f21`) doesn't support them in `from` clause, and Hammerspoon doesn't recognize them as key names
+- F21-F24 are seen by Karabiner-EventViewer but Goku syntax (`:f21`) doesn't support them in `from` clause when mapping to itself, and Hammerspoon doesn't recognize them as key names. However, `:f21` → something else DOES work.
 - F1-F20 work in both Karabiner and Hammerspoon
 - Alt+F combinations work as modifiers in Karabiner (`:!Of1` etc.)

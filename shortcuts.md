@@ -100,7 +100,7 @@
 - **O** = Sidebar, **P** = Terminal, **Comma** = Next error (stays), **Period** = Find next (stays)
 
 ## Global Shortcuts (Desktop, no layer)
-- **Fn+Hotkey3** = Show current layer shortcuts (Hammerspoon overlay, F14)
+- **Fn+Hotkey3** = Show current layer shortcuts (Hammerspoon overlay, Alt+F20)
 - **Right Cmd + J/K** = Word left/right
 - **Right Cmd + M/Comma** = Line start/end
 - **Right Cmd + Up/Down** = Left/right arrows
