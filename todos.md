@@ -18,6 +18,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Fix Shift+Quote+[ not producing double quote when held simultaneously
+- Clean up karabiner.edn: audit which rules belong in ALL PROFILES vs DESKTOP ONLY sections
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
 - Make function shift work

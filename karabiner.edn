@@ -278,18 +278,6 @@
    ]}
 
   
-  {:des "[Desktop] Right command to close curly/bracket when alone"
-   :rules [:!apple_internal
-    [:right_command :right_command nil {:alone :!Sclose_bracket}]
-    [{:key :right_command :modi {:mandatory [:shift]}} {:key :right_command :modi [:left_shift]} nil {:alone :close_bracket}]
-   ]}
-
-  {:des "[Desktop] Left command to open curly/bracket when alone"
-   :rules [:!apple_internal
-    [:left_command :left_command nil {:alone :!Sopen_bracket}]
-    [:!Sleft_command {:key :left_command :modi [:left_shift]} nil {:alone :open_bracket}]
-   ]}
-
   {:des "[Desktop] rcmd+H chord (delete) - Ins mode only"
    :rules [:!apple_internal
     ;; rcmd+H sets rcmd_h_mode=1, resets on release (shell ":" prevents key passthrough)
@@ -347,10 +335,6 @@
     [{:key :equal_sign :modi {:mandatory [:shift] :optional [:any]}} :!Sgrave_accent_and_tilde]
    ]}
 
-  {:des "[Desktop] Home to enter"
-   :rules [:!apple_internal
-    [:home :return_or_enter]
-   ]}
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:!apple_internal
