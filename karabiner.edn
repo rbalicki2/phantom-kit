@@ -120,11 +120,6 @@
     [:!Qpage_up :escape]
    ]}
 
-  {:des "TEMPORARY: Hyphen = Escape (global)"
-   :rules [
-    [:hyphen :escape]
-   ]}
-
   {:des "TEMPORARY: F21 (Fn+hk4) = show overlay"
    :rules [
     [:f21 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
