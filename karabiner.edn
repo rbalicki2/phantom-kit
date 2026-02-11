@@ -237,11 +237,7 @@
     [:backslash :tab ["layer_ins" 1]]
    ]}
 
-  {:des "Swap backslash and pipe"
-   :rules [
-    [:!Sbackslash :backslash ["layer_normal" 0]]
-    [{:key :backslash :modi {:mandatory []}} :!Sbackslash ["layer_normal" 0]]
-   ]}
+  ;; Backslash/pipe pass through naturally (no swap)
 
   {:des "Left shift to open paren when alone (laptop only)"
    :rules [:apple_internal
@@ -1376,8 +1372,8 @@
     [:f10 :!S2 ["layer_ins" 1]]  ;; Fn+9 (F10) → @
     [:f11 :!S1 ["layer_ins" 1]]  ;; Fn+0 (F11) → !
     ;; Symbols (matching mirror_mode behavior)
-    [:f6 :!Stab ["layer_ins" 1]]  ;; Fn+backslash (F6) → Shift+Tab
-    [:f12 :!Shyphen ["layer_ins" 1]]  ;; Fn+hyphen (F12) → _ (underscore)
+    [:f20 :!Stab ["layer_ins" 1]]  ;; Fn+backslash (F20) → Shift+Tab
+    ;; F12 (Fn+hyphen) passes through naturally
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
     [:!Of10 :!Sclose_bracket ["layer_ins" 1]]  ;; Fn+Down → }
     [:!Of11 :quote ["layer_ins" 1]]  ;; Fn+[ → ' (single quote)
