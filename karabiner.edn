@@ -185,6 +185,22 @@
     [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
    ]}
 
+  {:des "Exchange numbers and symbols (Desktop RHS 6-0, Ins mode only)"
+   :rules [:!apple_internal
+    ;; Bare number → symbol (only in Ins mode where typing happens)
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["layer_ins" 1]]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["layer_ins" 1]]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["layer_ins" 1]]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["layer_ins" 1]]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["layer_ins" 1]]
+    ;; Shift+number → digit (only in Ins mode)
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["layer_ins" 1]]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["layer_ins" 1]]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["layer_ins" 1]]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["layer_ins" 1]]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_ins" 1]]
+   ]}
+
   {:des "Brackets to command+bracket (only in working layers)"
    :rules [
     [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_any_layer" 1]]
