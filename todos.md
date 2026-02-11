@@ -24,3 +24,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Remap: Quote → Shift, Shift → Function
 - Scrolling
 - Slack/messaging: quick way to message people on Slack or other messaging apps
+- Snippet library: quick access to commonly used text snippets
