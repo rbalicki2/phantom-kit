@@ -234,11 +234,6 @@
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] Ctrl+hk4 (Ctrl+Alt+F22) = escape"
-   :rules [:!apple_internal
-    [{:key :f22 :modi {:mandatory [:right_control :left_option]}} :escape]
-   ]}
-
   {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:!apple_internal
     [:##grave_accent_and_tilde :vk_none]  ;; physical backtick

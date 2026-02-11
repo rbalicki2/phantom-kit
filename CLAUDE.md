@@ -79,6 +79,7 @@ Source of truth for Karabiner config and related scripts.
 - `llm-blurb.txt` - LLM conversation preferences text (pasted by Admin layer L)
 - `todos.md` - Pending tasks and feature ideas
 - `kinesis-layout1.txt` - Kinesis Advantage 360 firmware layout (copy to /Volumes/ADV360/layouts/)
+- `kinesis-keycodes.txt` - Kinesis key codes reference (from Appendix A of programming guide)
 - `Adv360-SmartSet-Direct-Programming-Guide-Version-8-8-25.pdf` - Kinesis programming reference
 
 ### Config Repo (`~/.config/`, git repo)
@@ -254,9 +255,11 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **Note:** The drive is only mounted when the keyboard is in programming mode. If `/Volumes/ADV360` doesn't exist, the keyboard isn't connected as a drive.
 
-**Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner. Modifier+key triggers use syntax like `{rctr}{hk4}>{escape}`.
+**Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner. Modifier+key triggers use syntax like `{rctr}{hk4}>{esc}`.
 
-**Kinesis key codes:** Modifiers are abbreviated: `rctr` (right ctrl), `lctr` (left ctrl), `ralt`, `lalt`, `rsft`, `lsft`, `rcmd`, `lcmd`. Check the PDF (Appendix A) for exact key names - don't guess.
+**Key codes reference:** Always consult `kinesis-keycodes.txt` for valid key names. Do NOT guess key codes - look them up in that file first.
+
+**Kinesis key codes:** See `kinesis-keycodes.txt` for all valid key names including modifiers (`rctr`, `lctr`, `ralt`, `lalt`, `rsft`, `lsft`, `rcmd`, `lcmd`) and special keys (`esc`, `enter`, `space`, etc.).
 
 **Kinesis Fn layer sends left Alt:** The `{-lalt}` syntax sends left_option. This is an exception to the usual right-modifier rule. In Karabiner rules matching Fn+key combos, use `!O` (left_option) not `!E` (right_option).
 
