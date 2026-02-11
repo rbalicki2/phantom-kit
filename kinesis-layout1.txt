@@ -1,4 +1,5 @@
 <base>
+{rctr}{hk4}>{escape}
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
 

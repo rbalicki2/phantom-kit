@@ -253,7 +253,9 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **Note:** The drive is only mounted when the keyboard is in programming mode. If `/Volumes/ADV360` doesn't exist, the keyboard isn't connected as a drive.
 
-**Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner.
+**Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner. Modifier+key triggers use syntax like `{rctr}{hk4}>{escape}`.
+
+**Kinesis key codes:** Modifiers are abbreviated: `rctr` (right ctrl), `lctr` (left ctrl), `ralt`, `lalt`, `rsft`, `lsft`, `rcmd`, `lcmd`. Check the PDF (Appendix A) for exact key names - don't guess.
 
 **Kinesis Fn layer sends left Alt:** The `{-lalt}` syntax sends left_option. This is an exception to the usual right-modifier rule. In Karabiner rules matching Fn+key combos, use `!O` (left_option) not `!E` (right_option).
 
