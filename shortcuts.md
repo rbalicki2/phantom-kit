@@ -64,11 +64,12 @@
 - **Period** = Save, **M** = Toggle iso/pin mode
 
 ## Layer L (L from Normal)
-- **H** = plus, **N** = equals (Shift variants add Cmd), **Ctrl+H** = Close
+- **H** = plus, **N** = equals (Fn variants add Cmd), **Ctrl+H** = Close
 - **J/K** = Delete word left/right, **M/Comma** = Delete to line start/end
 - **Up/Down** = Delete char left/right (Shift = select instead)
 - **Y** = Cmd sub-layer, **U** = Ctrl sub-layer, **I** = Alt sub-layer, **O** = Cmd+Ctrl+Alt sub-layer
 - **Ctrl+Y/U/I** = Combined modifier sub-layers (Ctrl+Cmd, Ctrl+Alt, Alt+Cmd)
+- In sub-layers: **Fn+key** = modifier+mirrored LHS letter
 
 ## Term Layer (U from Normal, focuses iTerm)
 - **H** = "git status ", **Ctrl+H** = + enter

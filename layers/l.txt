@@ -1,7 +1,7 @@
 L Layer (l from Normal)
 
-H = plus, Shift+H = Cmd+plus
-N = equals, Shift+N = Cmd+equals
+H = plus, Fn+H = Cmd+plus
+N = equals, Fn+N = Cmd+equals
 Ctrl+H = Close (Cmd+W)
 Enter = Cmd+Enter
 
@@ -10,3 +10,4 @@ Y = Cmd, Ctrl+Y = Ctrl+Cmd
 U = Ctrl, Ctrl+U = Ctrl+Alt
 I = Alt, Ctrl+I = Alt+Cmd
 O = Cmd+Ctrl+Alt
+Fn+key = modifier+mirrored LHS letter
