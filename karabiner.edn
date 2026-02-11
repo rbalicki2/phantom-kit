@@ -351,21 +351,21 @@
     [{:key :6 :modi {:mandatory [:right_control]}} [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
-  {:des "[Desktop] Right control+Y to Ctrl+Alt+Cmd+F19 (Wispr hands-free)"
+  {:des "[Desktop] Right control+Y to Ctrl+Alt+Shift+F19 (Wispr hands-free)"
    :rules [:!apple_internal
-    [{:key :y :modi {:mandatory [:right_control]}} :!TOCf19 ["layer_l" 0]]
+    [{:key :y :modi {:mandatory [:right_control]}} :!TOSf19 ["layer_l" 0]]
    ]}
 
   {:des "[Desktop] Wispr Flow shortcuts (right_control + U/I/O/P)"
    :rules [:!apple_internal
-    ;; right_control+U → Ctrl+Alt+Cmd+F17 (ptt)
-    [{:key :u :modi {:mandatory [:right_control]}} :!TOCf17]
-    ;; right_control+I → Ctrl+Alt+Cmd+F18 (lens)
-    [{:key :i :modi {:mandatory [:right_control]}} :!TOCf18]
-    ;; right_control+O → Ctrl+Alt+Cmd+F19 (hands-free)
-    [{:key :o :modi {:mandatory [:right_control]}} :!TOCf19]
-    ;; right_control+P → Ctrl+Alt+Cmd+F20 (paste_last_text)
-    [{:key :p :modi {:mandatory [:right_control]}} :!TOCf20]
+    ;; right_control+U → Ctrl+Alt+Shift+F17 (ptt)
+    [{:key :u :modi {:mandatory [:right_control]}} :!TOSf17]
+    ;; right_control+I → Ctrl+Alt+Shift+F18 (lens)
+    [{:key :i :modi {:mandatory [:right_control]}} :!TOSf18]
+    ;; right_control+O → Ctrl+Alt+Shift+F19 (hands-free)
+    [{:key :o :modi {:mandatory [:right_control]}} :!TOSf19]
+    ;; right_control+P → Ctrl+Alt+Shift+F20 (paste_last_text)
+    [{:key :p :modi {:mandatory [:right_control]}} :!TOSf20]
    ]}
 
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
