@@ -125,17 +125,6 @@
     [:h :escape]
    ]}
 
-  {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
-   :rules [:!apple_internal
-    ;; Pass through to Hammerspoon - must come before any right_control+Y rules
-    ;; Need both left and right control variants
-    [{:key :y :modi {:mandatory [:left_control :shift]}} :!TSy]
-    [{:key :y :modi {:mandatory [:right_control :shift]}} :!TSy]
-    ;; In mirror_mode, shift is consumed (not passed through), so just check for ctrl
-    [{:key :y :modi {:mandatory [:right_control]}} :!TSy ["mirror_mode" 1]]
-    [{:key :y :modi {:mandatory [:left_control]}} :!TSy ["mirror_mode" 1]]
-   ]}
-
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
    :rules [
     ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
