@@ -353,8 +353,6 @@
 
   {:des "[Desktop] Wispr Flow shortcuts"
    :rules [:!apple_internal
-    ;; Global U → Ctrl+Alt+Shift+F17 (ptt) - works from any layer
-    [:u :!TOSf17]
     ;; right_control+Y → Ctrl+Alt+Shift+F19 (hands-free) - fires on key up to avoid modifier conflict
     [{:key :y :modi {:mandatory [:right_control]}} nil ["layer_l" 0] {:afterup [:!TOSf19]}]
     ;; right_control+I → Ctrl+Alt+Shift+F18 (lens) - fires on key up
