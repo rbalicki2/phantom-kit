@@ -74,6 +74,7 @@ Source of truth for Karabiner config and related scripts.
 - `chrome-tab.sh` - Chrome profile switcher script (AppleScript)
 - `vscode-open-in-chrome.sh` - Opens VS Code file path in Chrome (used by VS Code layer Ctrl+H)
 - `karabiner-layer.300ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
+- `llm-blurb.txt` - LLM conversation preferences text (pasted by Admin layer L)
 
 ### Config Repo (`~/.config/`, git repo)
 Destination for generated configs.
@@ -107,7 +108,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Chrome layer: move tabs left/right
-- Admin layer: LLM blurb paste (conversation preferences text)
 - Fix Shift+Quote+[ not producing double quote when held simultaneously
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
@@ -391,6 +391,8 @@ Hold rcmd+N then press a navigation key to select:
 - **Down** = Right half (BTT: Ctrl+Opt+Shift+Cmd+B)
 - **Enter** = Command+` (switch windows)
 - **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
+- **Y** = Restart Whispering
+- **L** = LLM blurb paste (exits to Ins)
 
 ### Mouse Layer (m from Normal)
 - *To be implemented: vimium-style hints + grid positioning*
