@@ -54,22 +54,14 @@
   ;; Layer indicator (writes to /tmp/karabiner-layer for SwiftBar/Hammerspoon)
   :layer "echo %s > /tmp/karabiner-layer"
   ;; App launching
-  :open "open -a '%s'"
   :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer"
   ;; Git/terminal typing (Term layer)
-  :type "osascript -e 'tell app \"System Events\" to keystroke \"%s\"'"
   :type-norm "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' && echo norm > /tmp/karabiner-layer"
-  :type-enter "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36'"
   :type-enter-norm "osascript -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"
   ;; Chrome tab by index
   :chrome-tab "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to %s' && echo norm > /tmp/karabiner-layer"
   ;; Chrome profile switching
   :chrome-profile "/Users/rbalicki/code/voicemode/chrome-tab.sh %s && echo norm > /tmp/karabiner-layer"
-  ;; iTerm tab selection
-  :iterm-tab "osascript -e 'tell application \"iTerm\" to tell current window to select tab %s' && echo norm > /tmp/karabiner-layer"
-  ;; System Events helpers
-  :key-down "osascript -e 'tell application \"System Events\" to key down %s'"
-  :key-up "osascript -e 'tell application \"System Events\" to key up %s'"
  }
 
  :main [

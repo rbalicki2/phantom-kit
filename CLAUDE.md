@@ -29,7 +29,7 @@ Claude has REPEATEDLY broken core functionality by making "simple fixes" without
 4. For complex changes, make ONE small change, sync, and verify before continuing
 5. DO NOT chain multiple "fixes" without testing each one
 
-**The Quote key is particularly fragile** - it interacts with quote_held, mirror_mode, and shift_mirror_oneshot. Triple-check any changes to Quote behavior.
+**The Quote key** now just outputs quote when tapped - it's no longer complex. The shift_mirror_oneshot variable is used for Fn+] uppercase mirrored letters.
 
 When in doubt, ASK before changing. A broken keyboard config is extremely frustrating to debug.
 
@@ -149,7 +149,6 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Block-level conditions combine with per-rule conditions.** To have both app AND variable conditions, put the app condition in `:rules [:Desktop :Chrome ...]` and the variable condition on the rule itself. This generates a conditions array with both.
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
-- **Mirror mode relies on shift being CONSUMED, not passed through.** The shift key rules set `mirror_mode=1` WITHOUT outputting shift, so RHS letters produce lowercase LHS equivalents. If you pass through shift (e.g., `[:left_shift [["mirror_mode" 1] :left_shift] ...]`), mirror mode breaks and keys just get shifted normally. For keys that need Shift+key in mirror mode (like Shift+Enter), add explicit rules with `["mirror_mode" 1]` condition.
 
 ## Layer Variable System (CRITICAL)
 
@@ -197,10 +196,10 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 **Two ways to control precedence:**
 
 1. **Rule ordering**: Place more specific rules earlier in the config. Earlier rules are checked first.
-   - Example: Put `mirror_mode` number rules before global number-swap rules
+   - Example: Put `shift_mirror_oneshot` number rules before global number-swap rules
 
 2. **Conditions**: Add conditions to exclude certain states.
-   - Example: Add `["mirror_mode" 0]` to number-swap rules so they don't match when mirror_mode is active
+   - Example: Add `["shift_mirror_oneshot" 0]` to number-swap rules so they don't match when oneshot is active
 
 **Which to use:**
 - **Rule ordering** works when rules are in the same file/section and you control the order
@@ -279,7 +278,7 @@ This config is designed for a **Kinesis Advantage 360** with right-hand-side (RH
 **Important implications:**
 - If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first
 - When adding modifier rules (Cmd, Ctrl, etc.), use **right_command** (`!Q`) and **right_control** - never assume left modifiers
-- The user accesses left-hand letters via mirror mode (Shift held in Ins layer)
+- The user accesses left-hand letters via Fn+letter (Fn+J → f, Fn+K → d, etc.)
 
 ### Right Thumb Cluster (6 keys)
 ```
@@ -299,7 +298,7 @@ This config is designed for a **Kinesis Advantage 360** with right-hand-side (RH
 
 ## Terminology
 - **"hyper"** = right_control (NOT actual hyper key)
-- **"SHK"** = shift key (user's voice shorthand, even though shift enters mirror mode in Ins)
+- **"SHK"** = shift key (user's voice shorthand)
 - **"QUK"** = quote key (')
 - User's keyboard has numbers/symbols swapped (bare 1 = !, shift+1 = 1)
 
@@ -339,42 +338,30 @@ The layer system is modal (like vim):
 ### Ins Layer (j from Normal)
 - All keys type normally (passthrough)
 - **right_control** = Return to Normal
-- **Quote (')** = Shift when held
 - **[** = Backspace, **]** = Delete
-- **Shift+Up** = `{`, **Shift+Down** = `}`
-- **Quote+Up** = `[`, **Quote+Down** = `]`
-- **Quote+,** = `<`, **Quote+.** = `>`
-- **Quote+/** = `?`
-- **Shift+[** = `'`, **Shift+]** = `|`
-- **Quote+[** = `"`, **Quote+]** = `~`
-- **Shift+Quote+Up** = `\`, **Shift+Quote+Down** = `` ` ``
-- **Shift** = Mirror mode when held (see below)
+- **Shift+Up** = `[`, **Shift+Down** = `]`
+- **Fn+Up** = `{`, **Fn+Down** = `}`
+- **Fn+]** = `~` (tilde)
 - **Fn+Space** = Space + shift oneshot (next letter capitalized)
 - **Fn+Enter** = Shift+Enter
 
-#### Mirror Mode (Shift held in Ins)
-Holding Shift in Ins mode enters mirror mode. RHS keys output their LHS mirror equivalents.
+#### Fn+Letter (Mirrored Letters)
+Fn+letter outputs the mirrored LHS letter (lowercase):
+- Fn+Y→t, Fn+U→r, Fn+I→e, Fn+O→w, Fn+P→q
+- Fn+H→g, Fn+J→f, Fn+K→d, Fn+L→s, Fn+;→a
+- Fn+N→b, Fn+M→v, Fn+,→c, Fn+.→x, Fn+/→z
 
-**Letters**: RHS letter → LHS letter (lowercase, since Shift is consumed entering mirror mode)
-- y→t, u→r, i→e, o→w, p→q
-- h→g, j→f, k→d, l→s, ;→a
-- n→b, m→v, ,→c, .→x, /→z
+#### Fn+Number (Mirrored Symbols)
+Fn+number outputs the mirrored LHS symbol:
+- Fn+6→%, Fn+7→$, Fn+8→#, Fn+9→@, Fn+0→!
 
-**Numbers**: RHS number → LHS symbol (symbol because Shift is consumed, and user's keyboard has number/symbol swap)
-- 6→%, 7→$, 8→#, 9→@, 0→!
+#### Fn+] (shift_mirror_oneshot)
+Pressing Fn+] enters shift_mirror_oneshot mode. The next letter typed outputs the uppercase mirrored letter:
+- Y→T, U→R, I→E, O→W, P→Q
+- H→G, J→F, K→D, L→S, ;→A
+- N→B, M→V, ,→C, .→X, /→Z
 
-**LHS numbers** in mirror mode: output digit (1→1, 2→2, etc.) since Shift is consumed
-
-#### Shift+Quote (shift_mirror_oneshot)
-Pressing Quote while holding Shift enters shift_mirror_oneshot mode. This is a oneshot that persists until a key is typed, even after releasing Shift+Quote.
-
-**Letters**: outputs Shift+mirrored letter (uppercase)
-- y→T, u→R, i→E, o→W, p→Q
-- h→G, j→F, k→D, l→S, ;→A
-- n→B, m→V, ,→C, .→X, /→Z
-
-**Numbers**: outputs digit at mirrored position
-- 6→5, 7→4, 8→3, 9→2, 0→1
+Numbers output mirrored digit: 6→5, 7→4, 8→3, 9→2, 0→1
 
 #### rcmd+H Chord (Delete Mode)
 Hold rcmd+H then press a navigation key to delete:
