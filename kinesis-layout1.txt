@@ -3,6 +3,14 @@
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
 
+# Shift keys (passthrough in base layer)
+{rsft}>{rsft}
+{lsft}>{lsft}
+
+# Fn+Shift combos (in base layer using rfn)
+{rfn}{rsft}>{-lsft}{-lalt}{f15}{+lalt}{+lsft}
+{rfn}{lsft}>{-lsft}{-lalt}{f16}{+lalt}{+lsft}
+
 # Modifier+hotkey combos (for future Karabiner mapping)
 {rctr}{hk3}>{-lalt}{f21}{+lalt}
 {rctr}{hk4}>{-lalt}{f22}{+lalt}
@@ -52,6 +60,10 @@
 {pgdn}>{-lalt}{f16}{+lalt}
 {ent}>{-lalt}{f17}{+lalt}
 {spc}>{-lalt}{f18}{+lalt}
+
+# Shift keys in Fn layer (send Shift+Alt+F-key for Karabiner detection)
+{rsft}>{-lsft}{-lalt}{f15}{+lalt}{+lsft}
+{lsft}>{-lsft}{-lalt}{f16}{+lalt}{+lsft}
 
 <function2>
 
