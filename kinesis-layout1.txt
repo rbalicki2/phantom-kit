@@ -3,11 +3,6 @@
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
 
-# Fn+L and Fn+Shift combos (in base layer using rfn)
-{rfn}{l}>{-lalt}{f1}{+lalt}
-{rfn}{rsft}>{-lsft}{-lalt}{f15}{+lalt}{+lsft}
-{rfn}{rsft}{l}>{-lsft}{-lalt}{f1}{+lalt}{+lsft}
-
 # Modifier+hotkey combos (for future Karabiner mapping)
 {rctr}{hk3}>{-lalt}{f21}{+lalt}
 {rctr}{hk4}>{-lalt}{f22}{+lalt}
