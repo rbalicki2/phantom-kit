@@ -3,10 +3,6 @@
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
 
-# Shift keys (passthrough in base layer)
-{rsft}>{rsft}
-{lsft}>{lsft}
-
 # Fn+Shift combos (in base layer using rfn)
 {rfn}{rsft}>{-lsft}{-lalt}{f15}{+lalt}{+lsft}
 {rfn}{lsft}>{-lsft}{-lalt}{f16}{+lalt}{+lsft}
@@ -39,6 +35,7 @@
 {j}>{f23}
 {k}>{f24}
 {l}>{-lalt}{f1}{+lalt}
+{rsft}{l}>{-lsft}{-lalt}{f1}{+lalt}{+lsft}
 {scol}>{-lalt}{f2}{+lalt}
 {apos}>{-lalt}{f3}{+lalt}
 
