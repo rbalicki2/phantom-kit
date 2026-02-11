@@ -21,7 +21,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Verify: Shift+equals → tilde still works after shift refactor
 - Verify: Left shift alone = (, right shift alone = ) still works (laptop only)
 - Verify: Shift+command alone → square brackets still works (laptop only)
-- Verify: Tmux panes 6-10 (Shift+Y/U/I/O/P) still work after shift refactor
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
 - Scrolling
