@@ -125,12 +125,12 @@
     [:f21 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
    ]}
 
-  {:des "TEMPORARY: Whisper Flow shortcuts"
+  {:des "TEMPORARY: Wispr Flow shortcuts"
    :rules [
-    [:u :!TOf22]
-    [:i :!TOf23]
-    [:o :!TOf24]
-    [:p :!TOf20]
+    [:u :!Tf22]
+    [:i :!Tf23]
+    [:o :!Tf24]
+    [:p :!Tf20]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
