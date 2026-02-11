@@ -371,7 +371,6 @@
    :rules [:!apple_internal
     ;; Entry/exit
     [:n [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
-    [:escape [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_n" 1]]
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
     ;; Shortcuts
@@ -413,7 +412,6 @@
    :rules [:!apple_internal
     ;; Entry/exit
     [:i [["layer_i" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo i > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    [:escape [["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]
     [:right_control :right_control ["layer_i" 1] {:alone [["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Window management (BTT)
     [:spacebar [:!CTOSg ["layer_i" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_i" 1]]  ;; Maximize
@@ -434,7 +432,6 @@
    :rules [:!apple_internal
     ;; Entry/exit
     [:comma [["layer_comma" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "comma"]] ["layer_normal" 1]]
-    [:escape [["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]
     [:right_control :right_control ["layer_comma" 1] {:alone [["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]
     ;; Shortcuts
@@ -464,7 +461,6 @@
   {:des "[Desktop] Chrome Layer Shortcuts"
    :rules [:!apple_internal
     ;; Entry/exit
-    [:escape [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]
     [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     ;; Tab navigation (stays in layer)
     [:j :!TStab ["layer_chrome" 1]]  ;; Prev tab
@@ -505,8 +501,6 @@
 
   {:des "[Desktop] VS Code Layer Shortcuts"
    :rules [:!apple_internal
-    ;; escape exits layer to Normal
-    [:escape [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; right_control alone exits layer to Normal
     [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; J = Cmd+D (go to definition)
@@ -541,7 +535,6 @@
    :rules [:!apple_internal
     ;; Entry/exit
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
-    [:escape [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_term" 1]]
     [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     ;; Git commands: bare key = type text, Ctrl = type + enter
     [:h [[:type-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
@@ -574,7 +567,6 @@
   {:des "[Desktop] Tmux Layer Shortcuts"
    :rules [:!apple_internal
     ;; Entry/exit
-    [:escape [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:right_control :right_control ["layer_tmux" 1] {:alone [["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     ;; Panes 1-5: Y/U/I/O/P → !/@ /#/$/%
     [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
@@ -596,23 +588,15 @@
     [:l [["layer_l" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo l > /tmp/karabiner-layer"}] ["layer_normal" 1]]
 
     ;; === Modifier sub-layer exits to Normal (must come before base layer exits) ===
-    [:escape [["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
     [:right_control :right_control ["layer_l_cmd" 1] {:alone [["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
     [:right_control :right_control ["layer_l_ctrlcmd" 1] {:alone [["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
     [:right_control :right_control ["layer_l_ctrl" 1] {:alone [["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
     [:right_control :right_control ["layer_l_ctrlalt" 1] {:alone [["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
     [:right_control :right_control ["layer_l_alt" 1] {:alone [["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
     [:right_control :right_control ["layer_l_altcmd" 1] {:alone [["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    [:escape [["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
     [:right_control :right_control ["layer_l_hyper" 1] {:alone [["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
 
     ;; === Base layer exits to Normal ===
-    [:escape [["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]
     [:right_control :right_control ["layer_l" 1] {:alone [["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
 
     ;; === Cmd sub-layer (Y to enter from H) ===
@@ -1131,8 +1115,6 @@
     [:6 [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
     [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
-    ;; escape exits Ins to Normal (explicit, reliable)
-    [:escape [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_ins" 1]]
     ;; right_control alone exits Ins to Normal
     [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
