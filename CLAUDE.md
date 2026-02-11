@@ -79,6 +79,7 @@ Source of truth for Karabiner config and related scripts.
 - `llm-blurb.txt` - LLM conversation preferences text (pasted by Admin layer L)
 - `todos.md` - Pending tasks and feature ideas
 - `kinesis-layout1.txt` - Kinesis Advantage 360 firmware layout (copy to /Volumes/ADV360/layouts/)
+- `Adv360-SmartSet-Direct-Programming-Guide-Version-8-8-25.pdf` - Kinesis programming reference
 
 ### Config Repo (`~/.config/`, git repo)
 Destination for generated configs.
