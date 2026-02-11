@@ -426,21 +426,19 @@ Git shortcuts for terminal. Uses osascript to type text.
 - **Shift+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
 - Only activates when iTerm is foreground app
 
-### Chrome Layer (k from Normal, Chrome only)
+### Chrome Layer (h from Normal, Chrome only)
 - Only activates when Google Chrome is foreground app
-- **H** = Cmd+T (new tab) - exits layer
-- **J** = Ctrl+Shift+Tab (previous tab) - stays in layer
-- **K** = Ctrl+Tab (next tab) - stays in layer
-- **L** = Cmd+L (address bar) - exits layer
-- **Ctrl+H** = Cmd+W (close tab) - stays in layer, **Shift+Ctrl+H** = Cmd+W + Shift+Tab (close + prev) - stays
-- **Comma** = Cmd+Shift+A (search tabs) - exits layer
-- **L** = Address bar, **Shift+L** = Copy URL
-- **Y** = Tab 1, **Shift+Y** = Tab 5
-- **U** = gg (Vimium: top), **Shift+U** = Shift+G (Vimium: bottom)
-- **I/O** = Tab 3/4, **Shift+I/O** = Tab 7/8
+- **H** = Cmd+T (new tab) - exits to Ins
+- **J** = Ctrl+Shift+Tab (prev tab) - stays, **K** = Ctrl+Tab (next tab) - stays
+- **Shift+J** = Move tab left - stays, **Shift+K** = Move tab right - stays
+- **Ctrl+H** = Cmd+W (close tab) - stays, **Shift+Ctrl+H** = Close + prev tab - stays
+- **L** = Address bar - exits to Ins, **Shift+L** = Copy URL
+- **Comma** = Cmd+Shift+A (search tabs) - exits to Ins
+- **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8
 - **P** = Last tab
-- **N** = Cmd+K
-- **Period** = Cmd+R (refresh), **Shift+Period** = Cmd+Shift+R (hard refresh)
+- **N** = Cmd+K - exits to Ins
+- **M** = Dark mode (Alt+D)
+- **Period** = Refresh, **Shift+Period** = Hard refresh
 
 ### VS Code Layer (k from Normal, VS Code only)
 - Only activates when VS Code is foreground app
