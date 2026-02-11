@@ -1,7 +1,7 @@
-Nav Layer (n from Normal)
+Nav Layer (hk4 from Normal)
 
-H = Karabiner-EventViewer
-J = iTerm, K = VS Code, L = Signal, Fn+L = Messages, Ctrl+L = WhatsApp
+H = iTerm, J = VS Code, K = Karabiner-EventViewer
+L = Signal, Fn+L = Messages, Ctrl+L = WhatsApp
 O = Obsidian
 M = Chrome Personal, , = Chrome Work
 . = Finder, Fn+. = Go to Folder, Ctrl+. = Go to Folder + Paste
