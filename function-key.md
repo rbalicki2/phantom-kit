@@ -5,7 +5,7 @@
 When Function key is held, RHS keys produce F-keys:
 
 ### Top Row (Standard F-Keys)
-- `-` → F13
+- `-` → F12 (config says F13 but lies)
 - Hotkey 3 → F14
 - `Y` → F15
 - `U` → F16
