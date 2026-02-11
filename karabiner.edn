@@ -125,9 +125,10 @@
     [:hyphen :escape]
    ]}
 
-  {:des "Alt+F20 → Ctrl+Shift+Y for layer overlay (Fn+hotkey3)"
+  {:des "Alt+F20 → Ctrl+Shift+Y for layer overlay (Fn+hotkey3, not from Normal)"
    :rules [
-    [:!Of20 :!TSy]
+    ;; Only show overlay when NOT in Normal (hk4 from Normal enters Nav instead)
+    [:!Of20 :!TSy ["layer_normal" 0]]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
