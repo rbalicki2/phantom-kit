@@ -77,6 +77,7 @@ Source of truth for Karabiner config and related scripts.
 - `karabiner-layer.100ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 - `llm-blurb.txt` - LLM conversation preferences text (pasted by Admin layer L)
 - `todos.md` - Pending tasks and feature ideas
+- `kinesis-layout1.txt` - Kinesis Advantage 360 firmware layout (copy to /Volumes/ADV360/layouts/)
 
 ### Config Repo (`~/.config/`, git repo)
 Destination for generated configs.
@@ -238,8 +239,19 @@ When a layer action exits, decide whether to go to **Normal** or **Ins** mode:
 - Comma: find (Cmd+F), find in files
 - Nav: Spotlight (Cmd+Space)
 
+## Kinesis Advantage 360 Layout
+
+The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth in voicemode repo).
+
+**To update the layout:**
+1. Edit `kinesis-layout1.txt` in this repo
+2. Copy it to the Kinesis drive: `cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout1.txt`
+3. Eject the drive and the keyboard will reload the layout
+
+**Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner.
+
 ## Keyboard Context
-This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. **This is a ONE-HANDED (right hand only) keyboard setup on Desktop profile.** The user only presses right-hand keys. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard.
+This config is designed for a **Kinesis Advantage 360** with right-hand-side (RHS) layers. **This is a ONE-HANDED (right hand only) keyboard setup on Desktop profile.** The user only presses right-hand keys. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard.
 
 **Important implications:**
 - If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first

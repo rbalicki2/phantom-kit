@@ -1,0 +1,48 @@
+<base>
+{hk4}>{f21}
+
+<keypad>
+
+<function1>
+# --- Right Hand Fn Layer (Macro Syntax) ---
+
+# Top Row & Hotkeys (Standard F-Keys)
+{hk3}>{-lalt}{f20}{+lalt}
+{y}>{f15}
+{u}>{f16}
+{i}>{f17}
+{o}>{f18}
+{p}>{f19}
+{bsls}>{f20}
+
+# Middle Row & Hotkey
+{hk4}>{f21}
+{h}>{f22}
+{j}>{f23}
+{k}>{f24}
+{l}>{-lalt}{f1}{+lalt}
+{scol}>{-lalt}{f2}{+lalt}
+{apos}>{-lalt}{f3}{+lalt}
+
+# Bottom Row (Alt Combinations)
+{n}>{-lalt}{f4}{+lalt}
+{m}>{-lalt}{f5}{+lalt}
+{comm}>{-lalt}{f6}{+lalt}
+{perd}>{-lalt}{f7}{+lalt}
+{fsls}>{-lalt}{f8}{+lalt}
+
+# Navigation and Brackets
+{up}>{-lalt}{f9}{+lalt}
+{down}>{-lalt}{f10}{+lalt}
+{obrk}>{-lalt}{f11}{+lalt}
+{cbrk}>{-lalt}{f12}{+lalt}
+
+# Thumbs
+{pgup}>{-lalt}{f16}{+lalt}
+{pgdn}>{-lalt}{f17}{+lalt}
+{ent}>{-lalt}{f18}{+lalt}
+{spc}>{-lalt}{f20}{+lalt}
+
+<function2>
+
+<function3>
