@@ -125,6 +125,11 @@
     [:hyphen :escape]
    ]}
 
+  {:des "TEMPORARY: F21 (Fn+hk4) = Ctrl+Shift+Y for overlay"
+   :rules [
+    [:f21 :!TSy]
+   ]}
+
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
    :rules [
     ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
