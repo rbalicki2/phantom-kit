@@ -1183,9 +1183,8 @@
     ;; Shift+space/enter
     [:spacebar :!Sspacebar ["quote_held" 1]]
     [:return_or_enter :!Sreturn_or_enter ["quote_held" 1]]
-    ;; shift keys: set quote_held AND pass through shift (so other rules see shift held)
-    [:left_shift [:left_shift ["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
-    [:right_shift [:right_shift ["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
+    ;; shift keys pass through naturally (no rule needed - OS handles shift)
+    ;; This allows mirror_mode rules with {:modi {:mandatory [:shift]}} to see shift held
     ;; [ = backspace, ] = delete in Ins mode
     [:open_bracket :delete_or_backspace ["layer_ins" 1]]
     [:close_bracket :delete_forward ["layer_ins" 1]]
