@@ -3,9 +3,9 @@ Nav Layer (hk4 from Normal)
 H = iTerm, J = VS Code, K = Karabiner-EventViewer
 L = Signal, Fn+L = Messages, Ctrl+L = WhatsApp
 O = Obsidian
-M = Chrome Personal, , = Chrome Work
-. = Finder, Fn+. = Go to Folder, Ctrl+. = Go to Folder + Paste
-N = Spotlight
+N = Chrome Personal, M = Chrome Work
+. = Spotlight
+, = Finder, Fn+, = Go to Folder, Ctrl+, = Go to Folder + Paste
 Ctrl+H = Close (Cmd+W)
 Fn+J/K = Back/Forward (stays)
 Fn+M/, = Prev/Next tab (stays)
