@@ -125,9 +125,9 @@
     [:hyphen :escape]
    ]}
 
-  {:des "Alt+F20 = Layer overlay (Fn+hotkey3)"
+  {:des "Alt+F20 → Ctrl+Shift+Y for layer overlay (Fn+hotkey3)"
    :rules [
-    [:!Of20 {:shell "hs -c 'showLayerOverlay()'"}]
+    [:!Of20 :!TSy]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
