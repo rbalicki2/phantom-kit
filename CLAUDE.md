@@ -1,5 +1,7 @@
 # Karabiner/Goku Configuration Context
 
+This system is called **Overmind** (a reference to Starcraft).
+
 ## User Interaction Notes
 The user is using voice-to-text and may not fully think through requests before speaking. Claude should:
 - Reason about what the user is actually trying to accomplish, not just literal words
