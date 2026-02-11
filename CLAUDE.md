@@ -299,7 +299,7 @@ The layer system is modal (like vim):
 ### Ins Layer (j from Normal)
 - All keys type normally (passthrough)
 - **right_control** = Return to Normal
-- **Quote (')** = Shift when held, quote when tapped alone
+- **Quote (')** = Shift when held
 - **[** = Backspace, **]** = Delete
 - **Shift+Up** = `{`, **Shift+Down** = `}`
 - **Quote+Up** = `[`, **Quote+Down** = `]`

@@ -20,7 +20,7 @@
 ## Ins Layer (J from Normal)
 - All keys type normally
 - **Right_control** = Return to Normal
-- **Quote (')** = Shift when held, quote when tapped alone
+- **Quote (')** = Shift when held
 - **Shift** = Mirror mode (right-hand keys output left-hand equivalents)
 
 ### Brackets
