@@ -1,6 +1,8 @@
 {
   "permissions": {
     "allow": [
+      "Read(/Volumes/ADV360/**)",
+      "Write(/Volumes/ADV360/**)",
       "Read(/tmp/**)",
       "Read(~/.config/**)",
       "Read(~/.hammerspoon/**)",
@@ -93,7 +95,20 @@
       "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add Whispering background restart to pending tasks\")",
       "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add USB device commands to pending tasks\")",
       "Bash(cat:*)",
-      "Bash(/Users/rbalicki/code/voicemode/karabiner-layer.100ms.sh)"
+      "Bash(/Users/rbalicki/code/voicemode/karabiner-layer.100ms.sh)",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add note about dictated letters being uppercase\")",
+      "Bash(xargs:*)",
+      "Bash(git -C /Users/rbalicki/code/voicemode add kinesis-layout1.txt)",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add hk3/hk4 to base layer as Alt+F13/F14\")",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Add note about checking if Kinesis drive is mounted\")",
+      "Bash(test:*)",
+      "Bash(git -C /Users/rbalicki/code/voicemode add kinesis-layout1.txt CLAUDE.md)",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Change hk3 to Alt+F21, avoid F15 too\")",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Remap thumbs and hk3/4 to Alt+F15-20 sequence\")",
+      "Bash(pdftotext:*)",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Map right Fn key to F15 in base mode\")",
+      "Bash(git -C /Users/rbalicki/code/voicemode add kinesis-layout1.txt .claude/settings.local.json)",
+      "Bash(git -C /Users/rbalicki/code/voicemode commit -m \"Remove rfn mapping \\(doesn''t work\\), add ADV360 permissions\")"
     ]
   }
 }
