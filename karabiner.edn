@@ -120,9 +120,9 @@
     [:!Qpage_up :escape]
    ]}
 
-  {:des "TEMPORARY: H = Escape (global)"
+  {:des "TEMPORARY: Hyphen = Escape (global)"
    :rules [
-    [:h :escape]
+    [:hyphen :escape]
    ]}
 
   {:des "F14 = Layer overlay (Fn+hotkey3)"
