@@ -10,7 +10,6 @@
 {rsft}{hk4}>{-lalt}{f24}{+lalt}
 {rcmd}{hk3}>{-lalt}{f21}{+lalt}
 {rcmd}{hk4}>{-lalt}{f21}{+lalt}
-{rcmd}{u}>{i}
 
 <keypad>
 
