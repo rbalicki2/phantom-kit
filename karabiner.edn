@@ -1303,6 +1303,24 @@
 
   {:des "[Desktop] Function+key = Mirror (Fn sends F-keys via Kinesis hardware)"
    :rules [:!apple_internal
+    ;; Fn+Quote → enter shift_mirror_oneshot mode (for uppercase mirrored letters)
+    [:!Of3 [["shift_mirror_oneshot" 1]] ["layer_ins" 1]]
+    ;; Fn+letter in shift_mirror_oneshot → uppercase mirrored letter (must be before regular Fn+letter rules)
+    [:f15 [:!St ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+Y → T
+    [:f16 [:!Sr ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+U → R
+    [:f17 [:!Se ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+I → E
+    [:f18 [:!Sw ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+O → W
+    [:f19 [:!Sq ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+P → Q
+    [:f22 [:!Sg ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+H → G
+    [:f23 [:!Sf ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+J → F
+    [:f24 [:!Sd ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+K → D
+    [:!Of1 [:!Ss ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+L → S
+    [:!Of2 [:!Sa ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+; → A
+    [:!Of4 [:!Sb ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+N → B
+    [:!Of5 [:!Sv ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+M → V
+    [:!Of6 [:!Sc ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+, → C
+    [:!Of7 [:!Sx ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+. → X
+    [:!Of8 [:!Sz ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; Fn+/ → Z
     ;; Top row: Fn+Y/U/I/O/P → t/r/e/w/q
     [:f15 :t ["layer_ins" 1]]  ;; Fn+Y
     [:f16 :r ["layer_ins" 1]]  ;; Fn+U
@@ -1321,8 +1339,6 @@
     [:!Of6 :c ["layer_ins" 1]]  ;; Fn+,
     [:!Of7 :x ["layer_ins" 1]]  ;; Fn+.
     [:!Of8 :z ["layer_ins" 1]]  ;; Fn+/
-    ;; Fn+Quote → enter shift_mirror_oneshot mode (for uppercase mirrored letters)
-    [:!Of3 [["shift_mirror_oneshot" 1]] ["layer_ins" 1]]
     ;; Symbols (matching mirror_mode behavior)
     [:f13 :!Shyphen ["layer_ins" 1]]  ;; Fn+hyphen → _ (underscore)
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
