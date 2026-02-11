@@ -120,6 +120,11 @@
     [:!Qpage_up :escape]
    ]}
 
+  {:des "TEMPORARY: H = Escape (global)"
+   :rules [
+    [:h :escape]
+   ]}
+
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
    :rules [:!apple_internal
     ;; Pass through to Hammerspoon - must come before any right_control+Y rules
