@@ -1,6 +1,9 @@
 {
   "permissions": {
     "allow": [
+      "Read(~/.config/**)",
+      "Read(~/.hammerspoon/**)",
+      "Read(~/code/swiftbar/**)",
       "Edit(~/.config/**)",
       "Edit(~/.hammerspoon/**)",
       "Edit(~/code/swiftbar/**)",
