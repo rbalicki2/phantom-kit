@@ -437,13 +437,13 @@
     [:h [:!Cc ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Copy
     [:j [:!Cv ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Paste → Ins
     [:k [:!Cf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Find → Ins
-    [{:key :k :modi {:mandatory [:shift]}} [:!CSf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Find in files → Ins
+    [:f24 [:!CSf ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Fn+K: Find in files → Ins
     [:l [:!Cz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Undo
-    [{:key :l :modi {:mandatory [:shift]}} [:!CSz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Redo
+    [:!Of1 [:!CSz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Fn+L: Redo
     [:period [:!Cs ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Save
     [:i [:!Ca ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Select all
     [:o [:!CSp ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Command palette
-    [{:key :o :modi {:mandatory [:shift]}} [:!Co ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Open
+    [:f18 [:!Co ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Fn+O: Open
     [:p [:!Cp ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Cmd+P
     [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Close
     ;; Iso/pin toggle (moved to m key since comma is now entry key)
@@ -464,29 +464,29 @@
     [:j :!TStab ["layer_chrome" 1]]  ;; Prev tab
     [:k :!Ttab ["layer_chrome" 1]]   ;; Next tab
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_chrome" 1]]  ;; Close tab
-    [{:key :h :modi {:mandatory [:right_control :shift]}} [:!Cw :!TStab] ["layer_chrome" 1]]  ;; Close + prev
+    [{:key :f22 :modi {:mandatory [:right_control]}} [:!Cw :!TStab] ["layer_chrome" 1]]  ;; Ctrl+Fn+H: Close + prev
     ;; Tab switching by number
     [:y [[:chrome-tab "1"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
     [:u [[:chrome-tab "2"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
     [:i [[:chrome-tab "3"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
     [:o [[:chrome-tab "4"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :y :modi {:mandatory [:shift]}} [[:chrome-tab "5"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [[:chrome-tab "6"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [[:chrome-tab "7"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [[:chrome-tab "8"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
+    [:f15 [[:chrome-tab "5"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+Y: Tab 5
+    [:f16 [[:chrome-tab "6"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+U: Tab 6
+    [:f17 [[:chrome-tab "7"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+I: Tab 7
+    [:f18 [[:chrome-tab "8"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+O: Tab 8
     [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Last tab
     ;; Actions
     [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; New tab → Ins
     [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Address bar → Ins
-    [{:key :l :modi {:mandatory [:shift]}} [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Copy URL
+    [:!Of1 [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+L: Copy URL
     [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Cmd+K → Ins
     [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Search tabs → Ins
     [:m [:!Od ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Dark mode
     ;; Move tabs (stays in layer for repeating)
-    [{:key :j :modi {:mandatory [:shift]}} :!TSpage_up ["layer_chrome" 1]]  ;; Move tab left
-    [{:key :k :modi {:mandatory [:shift]}} :!TSpage_down ["layer_chrome" 1]]  ;; Move tab right
+    [:f23 :!TSpage_up ["layer_chrome" 1]]  ;; Fn+J: Move tab left
+    [:f24 :!TSpage_down ["layer_chrome" 1]]  ;; Fn+K: Move tab right
     [:period [:!Cr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Refresh
-    [{:key :period :modi {:mandatory [:shift]}} [:!CSr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Hard refresh
+    [:!Of7 [:!CSr ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Fn+Period: Hard refresh
     ;; Global Ctrl+J → Ins
     [{:key :j :modi {:mandatory [:control]}} [["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]
    ]}
@@ -511,14 +511,14 @@
     [:l [:!Cr ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; H = Ctrl+Cmd+E (copy relative path), Shift+H = Alt+Cmd+C (copy full path)
     [:h [:!TCe ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!OCc ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    [:f22 [:!OCc ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]  ;; Fn+H: copy full path
     ;; Ctrl+H = Copy rel path, open in Chrome (cc/isof prefix based on project)
     [{:key :h :modi {:mandatory [:right_control]}} [{:shell "/Users/rbalicki/code/voicemode/vscode-open-in-chrome.sh"} ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_vscode" 1]]
-    ;; I = Cmd+2, Shift+I = Ctrl+Cmd+2
+    ;; I = Cmd+2, Fn+I = Ctrl+Cmd+2
     [:i [:!C2 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!TC2 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
-    ;; Shift+U = Ctrl+Cmd+1
-    [{:key :u :modi {:mandatory [:shift]}} [:!TC1 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    [:f17 [:!TC2 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]  ;; Fn+I: move to next tab
+    ;; Fn+U = Ctrl+Cmd+1
+    [:f16 [:!TC1 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]  ;; Fn+U: move to prev tab
     ;; O = Cmd+B (sidebar toggle, was I)
     [:o [:!Cb ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; P = Cmd+` (terminal toggle, was U)
@@ -543,7 +543,7 @@
     [:j [[:type-norm "git log "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
     [{:key :j :modi {:mandatory [:right_control]}} [[:type-enter-norm "git log"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
     [:k [[:type-norm "git diff "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [[:type-enter-norm "git diff head"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:f24 [[:type-enter-norm "git diff head"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+K: git diff head
     [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-norm "gdmb"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
     [:l [[:type-norm "git commit -m "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
     ;; Ctrl+l has escaped quotes, can't use template
@@ -612,22 +612,22 @@
     ;; === Cmd sub-layer (Y to enter from H) ===
     ;; Pattern: entry sets layer_l=0, layer_l_X=1; letters do mod+key, exit to base
     [:y [["layer_l" 0] ["layer_l_cmd" 1] {:shell "echo lC > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Cmd+mirrored (must come before plain rules)
-    [{:key :y :modi {:mandatory [:shift]}} [:!Ct ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!Cr ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!Ce ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!Cw ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!Cq ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!Cg ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!Cf ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!Cd ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!Cs ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!Ca ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!Cb ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!Cv ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!Cc ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!Cx ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!Cz ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    ;; Fn+RHS = Cmd+mirrored (must come before plain rules)
+    [:f15 [:!Ct ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f16 [:!Cr ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f17 [:!Ce ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f18 [:!Cw ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f19 [:!Cq ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f22 [:!Cg ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f23 [:!Cf ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:f24 [:!Cd ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of1 [:!Cs ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of2 [:!Ca ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of4 [:!Cb ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of5 [:!Cv ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of6 [:!Cc ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of7 [:!Cx ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
+    [:!Of8 [:!Cz ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
     [:a [:!Ca ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
     [:b [:!Cb ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
     [:c [:!Cc ["layer_l_cmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_cmd" 1]]
@@ -685,22 +685,22 @@
 
     ;; === Ctrl+Cmd sub-layer (Ctrl+Y to enter from H) ===
     [{:key :y :modi {:mandatory [:right_control]}} [["layer_l" 0] ["layer_l_ctrlcmd" 1] {:shell "echo lTC > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Ctrl+Cmd+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!CTt ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!CTr ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!CTe ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!CTw ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!CTq ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!CTg ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!CTf ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!CTd ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!CTs ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!CTa ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!CTb ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!CTv ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!CTc ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!CTx ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!CTz ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    ;; Fn+RHS = Ctrl+Cmd+mirrored
+    [:f15 [:!CTt ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f16 [:!CTr ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f17 [:!CTe ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f18 [:!CTw ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f19 [:!CTq ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f22 [:!CTg ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f23 [:!CTf ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:f24 [:!CTd ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of1 [:!CTs ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of2 [:!CTa ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of4 [:!CTb ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of5 [:!CTv ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of6 [:!CTc ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of7 [:!CTx ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
+    [:!Of8 [:!CTz ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
     [:a [:!CTa ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
     [:b [:!CTb ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
     [:c [:!CTc ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
@@ -755,22 +755,22 @@
     [:delete_forward [:!CTdelete_forward ["layer_l_ctrlcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlcmd" 1]]
     ;; === Ctrl sub-layer (U to enter from H) ===
     [:u [["layer_l" 0] ["layer_l_ctrl" 1] {:shell "echo lT > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Ctrl+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!Tt ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!Tr ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!Te ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!Tw ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!Tq ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!Tg ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!Tf ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!Td ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!Ts ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!Ta ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!Tb ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!Tv ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!Tc ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!Tx ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!Tz ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    ;; Fn+RHS = Ctrl+mirrored
+    [:f15 [:!Tt ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f16 [:!Tr ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f17 [:!Te ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f18 [:!Tw ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f19 [:!Tq ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f22 [:!Tg ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f23 [:!Tf ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:f24 [:!Td ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of1 [:!Ts ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of2 [:!Ta ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of4 [:!Tb ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of5 [:!Tv ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of6 [:!Tc ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of7 [:!Tx ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
+    [:!Of8 [:!Tz ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
     [:a [:!Ta ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
     [:b [:!Tb ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
     [:c [:!Tc ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
@@ -825,22 +825,22 @@
     [:delete_forward [:!Tdelete_forward ["layer_l_ctrl" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrl" 1]]
     ;; === Ctrl+Alt sub-layer (Ctrl+U to enter from H) ===
     [{:key :u :modi {:mandatory [:right_control]}} [["layer_l" 0] ["layer_l_ctrlalt" 1] {:shell "echo lTO > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Ctrl+Alt+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!TOt ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!TOr ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!TOe ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!TOw ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!TOq ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!TOg ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!TOf ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!TOd ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!TOs ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!TOa ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!TOb ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!TOv ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!TOc ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!TOx ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!TOz ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    ;; Fn+RHS = Ctrl+Alt+mirrored
+    [:f15 [:!TOt ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f16 [:!TOr ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f17 [:!TOe ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f18 [:!TOw ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f19 [:!TOq ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f22 [:!TOg ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f23 [:!TOf ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:f24 [:!TOd ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of1 [:!TOs ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of2 [:!TOa ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of4 [:!TOb ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of5 [:!TOv ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of6 [:!TOc ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of7 [:!TOx ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
+    [:!Of8 [:!TOz ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
     [:a [:!TOa ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
     [:b [:!TOb ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
     [:c [:!TOc ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
@@ -895,22 +895,22 @@
     [:delete_forward [:!TOdelete_forward ["layer_l_ctrlalt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_ctrlalt" 1]]
     ;; === Alt sub-layer (I to enter from H) ===
     [:i [["layer_l" 0] ["layer_l_alt" 1] {:shell "echo lO > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Alt+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!Ot ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!Or ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!Oe ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!Ow ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!Oq ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!Og ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!Of ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!Od ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!Os ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!Oa ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!Ob ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!Ov ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!Oc ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!Ox ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!Oz ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    ;; Fn+RHS = Alt+mirrored
+    [:f15 [:!Ot ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f16 [:!Or ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f17 [:!Oe ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f18 [:!Ow ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f19 [:!Oq ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f22 [:!Og ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f23 [:!Of ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:f24 [:!Od ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of1 [:!Os ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of2 [:!Oa ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of4 [:!Ob ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of5 [:!Ov ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of6 [:!Oc ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of7 [:!Ox ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
+    [:!Of8 [:!Oz ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
     [:a [:!Oa ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
     [:b [:!Ob ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
     [:c [:!Oc ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
@@ -965,22 +965,22 @@
     [:delete_forward [:!Odelete_forward ["layer_l_alt" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_alt" 1]]
     ;; === Alt+Cmd sub-layer (Ctrl+I to enter from H) ===
     [{:key :i :modi {:mandatory [:right_control]}} [["layer_l" 0] ["layer_l_altcmd" 1] {:shell "echo lOC > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Alt+Cmd+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!OCt ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!OCr ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!OCe ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!OCw ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!OCq ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!OCg ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!OCf ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!OCd ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!OCs ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!OCa ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!OCb ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!OCv ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!OCc ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!OCx ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!OCz ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    ;; Fn+RHS = Alt+Cmd+mirrored
+    [:f15 [:!OCt ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f16 [:!OCr ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f17 [:!OCe ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f18 [:!OCw ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f19 [:!OCq ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f22 [:!OCg ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f23 [:!OCf ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:f24 [:!OCd ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of1 [:!OCs ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of2 [:!OCa ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of4 [:!OCb ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of5 [:!OCv ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of6 [:!OCc ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of7 [:!OCx ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
+    [:!Of8 [:!OCz ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
     [:a [:!OCa ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
     [:b [:!OCb ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
     [:c [:!OCc ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
@@ -1035,22 +1035,22 @@
     [:delete_forward [:!OCdelete_forward ["layer_l_altcmd" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_altcmd" 1]]
     ;; === Hyper sub-layer (O to enter from H) - Cmd+Ctrl+Alt ===
     [:o [["layer_l" 0] ["layer_l_hyper" 1] {:shell "echo lCTO > /tmp/karabiner-layer"}] ["layer_l" 1]]
-    ;; Shift+RHS = Hyper+mirrored
-    [{:key :y :modi {:mandatory [:shift]}} [:!CTOt ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} [:!CTOr ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} [:!CTOe ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} [:!CTOw ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} [:!CTOq ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :h :modi {:mandatory [:shift]}} [:!CTOg ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} [:!CTOf ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} [:!CTOd ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} [:!CTOs ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} [:!CTOa ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :n :modi {:mandatory [:shift]}} [:!CTOb ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} [:!CTOv ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} [:!CTOc ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} [:!CTOx ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} [:!CTOz ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    ;; Fn+RHS = Hyper+mirrored
+    [:f15 [:!CTOt ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f16 [:!CTOr ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f17 [:!CTOe ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f18 [:!CTOw ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f19 [:!CTOq ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f22 [:!CTOg ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f23 [:!CTOf ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:f24 [:!CTOd ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of1 [:!CTOs ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of2 [:!CTOa ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of4 [:!CTOb ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of5 [:!CTOv ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of6 [:!CTOc ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of7 [:!CTOx ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
+    [:!Of8 [:!CTOz ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
     [:a [:!CTOa ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
     [:b [:!CTOb ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
     [:c [:!CTOc ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
@@ -1105,9 +1105,9 @@
     [:delete_forward [:!CTOdelete_forward ["layer_l_hyper" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l_hyper" 1]]
     ;; Plus/equals access (exits layer)
     [:h [:!Sequal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; plus
-    [{:key :h :modi {:mandatory [:shift]}} [:!CSequal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; cmd+plus
+    [:f22 [:!CSequal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; Fn+H: cmd+plus
     [:n [:equal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; equals
-    [{:key :n :modi {:mandatory [:shift]}} [:!Cequal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; cmd+equals
+    [:!Of4 [:!Cequal_sign ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]  ;; Fn+N: cmd+equals
     ;; Ctrl+H = Cmd+W (close, exits layer)
     [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]
     ;; Enter = Cmd+Enter (exits layer)
