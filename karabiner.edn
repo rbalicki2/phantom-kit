@@ -362,6 +362,15 @@
     [{:key :y :modi {:mandatory [:right_control]}} [:!Sf9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_l" 0]]
    ]}
 
+  {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
+   :rules [:!apple_internal
+    ;; Ctrl+hk4 enters Nav, clearing other layers
+    [:!Of22 [["layer_ins" 0] ["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1]
+             ["layer_i" 0] ["layer_comma" 0] ["layer_l" 0] ["layer_term" 0]
+             ["layer_chrome" 0] ["layer_vscode" 0] ["layer_tmux" 0]
+             [:layer "n"]]]
+   ]}
+
   {:des "[Desktop] Layer N (n or hk4 from Normal to enter)"
    :rules [:!apple_internal
     ;; Entry/exit
