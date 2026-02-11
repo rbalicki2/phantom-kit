@@ -234,9 +234,17 @@
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] Ctrl+hk4 (Ctrl+Alt+F20) = escape (no layer exit)"
+  {:des "[Desktop] F20 = escape + set flag (for Ctrl+hk4)"
    :rules [:!apple_internal
-    [{:key :f20 :modi {:mandatory [:right_control :left_option]}} :escape]
+    ;; F20 sets flag to prevent right_control from exiting layer
+    [:f20 [:escape ["f20_pressed" 1]]]
+   ]}
+
+  {:des "[Desktop] right_control with f20 flag - just clear, no exit"
+   :rules [:!apple_internal
+    ;; If f20_pressed=1, right_control just passes through and clears flag on release
+    ;; This rule must come BEFORE layer-specific right_control rules
+    [:right_control {:to [:right_control] :to_after_key_up [["f20_pressed" 0]]} ["f20_pressed" 1]]
    ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
