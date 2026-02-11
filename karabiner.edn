@@ -125,7 +125,7 @@
     [:f21 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
    ]}
 
-  {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
+  {:des "Shift+mirror oneshot numbers (must come before number swap)"
    :rules [
     ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
     [:6 [:5 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
@@ -133,32 +133,6 @@
     [:8 [:3 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:9 [:2 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
     [:0 [:1 ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]
-   ]}
-
-  {:des "Mirror mode numbers (must come before number swap)"
-   :rules [
-    ;; LHS numbers in mirror_mode: output digit (shift is consumed, not passed through)
-    [:1 :1 ["mirror_mode" 1]]
-    [:2 :2 ["mirror_mode" 1]]
-    [:3 :3 ["mirror_mode" 1]]
-    [:4 :4 ["mirror_mode" 1]]
-    [:5 :5 ["mirror_mode" 1]]
-    ;; RHS numbers in mirror_mode: mirror to LHS position, output symbol
-    [:6 :!S5 ["mirror_mode" 1]]
-    [:7 :!S4 ["mirror_mode" 1]]
-    [:8 :!S3 ["mirror_mode" 1]]
-    [:9 :!S2 ["mirror_mode" 1]]
-    [:0 :!S1 ["mirror_mode" 1]]
-   ]}
-
-  {:des "Shift+number in mirror_mode (must come before quote_held rules)"
-   :rules [
-    ;; Fn+Shift+number → mirrored digit
-    [{:key :6 :modi {:mandatory [:shift]}} :5 ["mirror_mode" 1]]
-    [{:key :7 :modi {:mandatory [:shift]}} :4 ["mirror_mode" 1]]
-    [{:key :8 :modi {:mandatory [:shift]}} :3 ["mirror_mode" 1]]
-    [{:key :9 :modi {:mandatory [:shift]}} :2 ["mirror_mode" 1]]
-    [{:key :0 :modi {:mandatory [:shift]}} :1 ["mirror_mode" 1]]
    ]}
 
   {:des "Exchange numbers and symbols (laptop only)"
@@ -217,11 +191,9 @@
     ;; Shift+brackets have no special mapping (pass through naturally)
    ]}
 
-  {:des "Backslash in Ins mode (must come before swap rule)"
+  {:des "Backslash in Ins mode"
    :rules [
-    ;; mirror_mode (shift held) = shift+tab, must come before bare tab rule
-    [:backslash :!Stab ["mirror_mode" 1]]
-    ;; bare = tab
+    ;; backslash = tab in Ins mode
     [:backslash :tab ["layer_ins" 1]]
    ]}
 
@@ -240,12 +212,6 @@
   ;; =====================================================================
   ;; DESKTOP ONLY
   ;; =====================================================================
-
-  {:des "[Desktop] Function key = Mirror mode"
-   :rules [:!apple_internal
-    ;; fn held = mirror_mode
-    [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-   ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:!apple_internal
@@ -1166,28 +1132,6 @@
     ;; Numbers are handled in global section (before number swap rules)
    ]}
 
-  {:des "[Desktop] Mirror mode SHIFTED (mirror_mode=2) - must come before shift_oneshot"
-   :rules [:!apple_internal
-    ;; Top row: Y U I O P → Shift+T R E W Q
-    [:y :!St ["mirror_mode" 2]]
-    [:u :!Sr ["mirror_mode" 2]]
-    [:i :!Se ["mirror_mode" 2]]
-    [:o :!Sw ["mirror_mode" 2]]
-    [:p :!Sq ["mirror_mode" 2]]
-    ;; Home row: H J K L ; → Shift+G F D S A
-    [:h :!Sg ["mirror_mode" 2]]
-    [:j :!Sf ["mirror_mode" 2]]
-    [:k :!Sd ["mirror_mode" 2]]
-    [:l :!Ss ["mirror_mode" 2]]
-    [:semicolon :!Sa ["mirror_mode" 2]]
-    ;; Bottom row: N M , . / → Shift+B V C X Z
-    [:n :!Sb ["mirror_mode" 2]]
-    [:m :!Sv ["mirror_mode" 2]]
-    [:comma :!Sc ["mirror_mode" 2]]
-    [:period :!Sx ["mirror_mode" 2]]
-    [:slash :!Sz ["mirror_mode" 2]]
-   ]}
-
   {:des "[Desktop] Shift oneshot (Fn+Space then letter = Shift+letter)"
    :rules [:!apple_internal
     ;; Top row
@@ -1208,51 +1152,6 @@
     [:comma [:!Scomma ["shift_oneshot" 0]] ["shift_oneshot" 1]]
     [:period [:!Speriod ["shift_oneshot" 0]] ["shift_oneshot" 1]]
     [:slash [:!Sslash ["shift_oneshot" 0]] ["shift_oneshot" 1]]
-   ]}
-
-  {:des "[Desktop] Mirror mode (mirror_mode=1)"
-   :rules [:!apple_internal
-    ;; Shift+letter in mirror_mode → Shift+mirrored letter (must come before bare letter rules)
-    ;; Top row: Shift+Y U I O P → Shift+T R E W Q
-    [{:key :y :modi {:mandatory [:shift]}} :!St ["mirror_mode" 1]]
-    [{:key :u :modi {:mandatory [:shift]}} :!Sr ["mirror_mode" 1]]
-    [{:key :i :modi {:mandatory [:shift]}} :!Se ["mirror_mode" 1]]
-    [{:key :o :modi {:mandatory [:shift]}} :!Sw ["mirror_mode" 1]]
-    [{:key :p :modi {:mandatory [:shift]}} :!Sq ["mirror_mode" 1]]
-    ;; Home row: Shift+H J K L ; → Shift+G F D S A
-    [{:key :h :modi {:mandatory [:shift]}} :!Sg ["mirror_mode" 1]]
-    [{:key :j :modi {:mandatory [:shift]}} :!Sf ["mirror_mode" 1]]
-    [{:key :k :modi {:mandatory [:shift]}} :!Sd ["mirror_mode" 1]]
-    [{:key :l :modi {:mandatory [:shift]}} :!Ss ["mirror_mode" 1]]
-    [{:key :semicolon :modi {:mandatory [:shift]}} :!Sa ["mirror_mode" 1]]
-    ;; Bottom row: Shift+N M , . / → Shift+B V C X Z
-    [{:key :n :modi {:mandatory [:shift]}} :!Sb ["mirror_mode" 1]]
-    [{:key :m :modi {:mandatory [:shift]}} :!Sv ["mirror_mode" 1]]
-    [{:key :comma :modi {:mandatory [:shift]}} :!Sc ["mirror_mode" 1]]
-    [{:key :period :modi {:mandatory [:shift]}} :!Sx ["mirror_mode" 1]]
-    [{:key :slash :modi {:mandatory [:shift]}} :!Sz ["mirror_mode" 1]]
-    ;; Bare letter in mirror_mode → mirrored letter (lowercase)
-    ;; Top row: Y U I O P → t r e w q
-    [:y :t ["mirror_mode" 1]]
-    [:u :r ["mirror_mode" 1]]
-    [:i :e ["mirror_mode" 1]]
-    [:o :w ["mirror_mode" 1]]
-    [:p :q ["mirror_mode" 1]]
-    ;; Home row: H J K L ; → g f d s a
-    [:h :g ["mirror_mode" 1]]
-    [:j :f ["mirror_mode" 1]]
-    [:k :d ["mirror_mode" 1]]
-    [:l :s ["mirror_mode" 1]]
-    [:semicolon :a ["mirror_mode" 1]]
-    ;; Bottom row: N M , . / → b v c x z
-    [:n :b ["mirror_mode" 1]]
-    [:m :v ["mirror_mode" 1]]
-    [:comma :c ["mirror_mode" 1]]
-    [:period :x ["mirror_mode" 1]]
-    [:slash :z ["mirror_mode" 1]]
-    ;; Numbers handled in ALL PROFILES section (before number swap rules)
-    ;; Escape exits mirror mode without typing
-    [:escape ["mirror_mode" 0] ["mirror_mode" 1]]
    ]}
 
   {:des "[Desktop] Function+key = Mirror (Fn sends F-keys via Kinesis hardware)"
@@ -1311,7 +1210,7 @@
     [:f9 :!S3 ["layer_ins" 1]]  ;; Fn+8 (F9) → #
     [:f10 :!S2 ["layer_ins" 1]]  ;; Fn+9 (F10) → @
     [:f11 :!S1 ["layer_ins" 1]]  ;; Fn+0 (F11) → !
-    ;; Symbols (matching mirror_mode behavior)
+    ;; Symbols
     [:f20 :!Stab ["layer_ins" 1]]  ;; Fn+backslash (F20) → Shift+Tab
     ;; F12 (Fn+hyphen) passes through naturally
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {

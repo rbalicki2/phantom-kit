@@ -269,6 +269,8 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **Kinesis Fn layer sends left Alt:** The `{-lalt}` syntax sends left_option. This is an exception to the usual right-modifier rule. In Karabiner rules matching Fn+key combos, use `!O` (left_option) not `!E` (right_option).
 
+**Fn key is NOT detectable:** The Kinesis Fn key is handled entirely at firmware level. It does NOT send any keycode to the computer. You cannot detect "Fn held" or "Fn alone" in Karabiner - only Fn+key combinations (which send F-keys or Alt+F-keys per the layout file).
+
 **Avoid F13 and F14:** These open macOS System Settings even with modifiers. Never use them in layouts.
 
 ## Keyboard Context
