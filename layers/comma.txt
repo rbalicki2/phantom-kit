@@ -2,12 +2,12 @@ Comma Layer (comma from Normal)
 
 H = Copy
 J = Paste →Ins
-K = Find →Ins, Shift+K = Find in files →Ins
-L = Undo, Shift+L = Redo
+K = Find →Ins, Fn+K = Find in files →Ins
+L = Undo, Fn+L = Redo
 , = Ctrl+C → Ins
 N = Ctrl+R (terminal search)
 I = Select all
-O = Cmd+Shift+P, Shift+O = Open, P = Cmd+P
+O = Cmd+Shift+P, Fn+O = Open, P = Cmd+P
 Ctrl+H = Close
 . = Save
 M = Toggle iso/pin mode

@@ -1,12 +1,12 @@
 VS Code Layer (right_control+J, VS Code only)
 
-H = Copy relative path, Shift+H = Copy full path
+H = Copy relative path, Fn+H = Copy full path
 Ctrl+H = Copy rel path + open in Chrome (cc/isof)
 J = Cmd+D (go to definition)
 K = F2 (rename)
 L = Cmd+R (find references)
-I = Create 2nd tab, Shift+I = Move to next tab
-Shift+U = Move to prev tab
+I = Create 2nd tab, Fn+I = Move to next tab
+Fn+U = Move to prev tab
 O = Cmd+B (sidebar toggle)
 P = Cmd+` (terminal toggle)
 , = Next error (stays)
