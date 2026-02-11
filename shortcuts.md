@@ -57,9 +57,9 @@
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
 
 ## Comma Layer (Comma from Normal)
-- **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Shift+K** = Find in files (→Ins), **L** = Undo, **Shift+L** = Redo
+- **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Fn+K** = Find in files (→Ins), **L** = Undo, **Fn+L** = Redo
 - **Comma** = Ctrl+C, **N** = Ctrl+R
-- **I** = Select all, **O** = Cmd+Shift+P, **Shift+O** = Open, **P** = Cmd+P
+- **I** = Select all, **O** = Cmd+Shift+P, **Fn+O** = Open, **P** = Cmd+P
 - **Ctrl+H** = Close
 - **Period** = Save, **M** = Toggle iso/pin mode
 
@@ -74,7 +74,7 @@
 ## Term Layer (U from Normal, focuses iTerm)
 - **H** = "git status ", **Ctrl+H** = + enter
 - **J** = "git log ", **Ctrl+J** = + enter
-- **K** = "git diff ", **Shift+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
+- **K** = "git diff ", **Fn+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
 - **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
 - **N** = "git reset ", **Ctrl+N** = "grhh" + enter
 - **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
@@ -87,16 +87,16 @@
 
 ## Chrome Layer (H from Normal, Chrome only)
 - **H** = New tab (→Ins), **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar (→Ins)
-- **Shift+J** = gg (top), **Shift+K** = Shift+G (bottom)
-- **Ctrl+H** = Close tab (stays), **Shift+Ctrl+H** = Close tab + prev tab (stays)
-- **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
-- **Shift+L** = Copy URL
-- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh, **Shift+Period** = Hard refresh
+- **Fn+J** = gg (top), **Fn+K** = Shift+G (bottom)
+- **Ctrl+H** = Close tab (stays), **Ctrl+Fn+H** = Close tab + prev tab (stays)
+- **Y/U/I/O** = Tab 1/2/3/4, **Fn+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
+- **Fn+L** = Copy URL
+- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh, **Fn+Period** = Hard refresh
 
 ## VS Code Layer (H from Normal, VS Code only)
-- **H** = Copy rel path, **Shift+H** = Copy full path, **Ctrl+H** = Open in Chrome
+- **H** = Copy rel path, **Fn+H** = Copy full path, **Ctrl+H** = Open in Chrome
 - **J** = Go to def, **K** = Rename, **L** = Find refs
-- **I** = 2nd tab, **Shift+I** = Move next tab, **Shift+U** = Move prev tab
+- **I** = 2nd tab, **Fn+I** = Move next tab, **Fn+U** = Move prev tab
 - **O** = Sidebar, **P** = Terminal, **Comma** = Next error (stays), **Period** = Find next (stays)
 
 ## Global Shortcuts (Desktop, no layer)
