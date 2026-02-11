@@ -1111,6 +1111,14 @@
     [:return_or_enter [:!Creturn_or_enter ["layer_l" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_l" 1]]
    ]}
 
+  {:des "[Desktop] Shift in mirror_mode → upgrade to mirror_mode=2 (shifted mirror)"
+   :rules [:!apple_internal ["mirror_mode" 1]
+    ;; When Fn is held (mirror_mode=1) and Shift is pressed, upgrade to mirror_mode=2
+    ;; On Shift release, downgrade back to mirror_mode=1 (Fn still held)
+    [:left_shift [["mirror_mode" 2]] {:afterup [["mirror_mode" 1]]}]
+    [:right_shift [["mirror_mode" 2]] {:afterup [["mirror_mode" 1]]}]
+   ]}
+
   {:des "[Desktop] Ins Layer (typing passthrough) - MUST come before Normal layer rules"
    :rules [:!apple_internal
     ;; Ins layer has no key mappings - all keys pass through by default
