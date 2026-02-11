@@ -1303,9 +1303,25 @@
 
   {:des "[Desktop] Function+key = Mirror (Fn sends F-keys via Kinesis hardware)"
    :rules [:!apple_internal
-    ;; Fn+L (Alt+F1) → 's' (mirror of L)
-    [:!Of1 :s ["layer_ins" 1]]
-    ;; Fn+Quote (Alt+F3) → enter shift_mirror_oneshot mode
+    ;; Top row: Fn+Y/U/I/O/P → t/r/e/w/q
+    [:f15 :t ["layer_ins" 1]]  ;; Fn+Y
+    [:f16 :r ["layer_ins" 1]]  ;; Fn+U
+    [:f17 :e ["layer_ins" 1]]  ;; Fn+I
+    [:f18 :w ["layer_ins" 1]]  ;; Fn+O
+    [:f19 :q ["layer_ins" 1]]  ;; Fn+P
+    ;; Middle row: Fn+H/J/K/L/; → g/f/d/s/a
+    [:f22 :g ["layer_ins" 1]]  ;; Fn+H
+    [:f23 :f ["layer_ins" 1]]  ;; Fn+J
+    [:f24 :d ["layer_ins" 1]]  ;; Fn+K
+    [:!Of1 :s ["layer_ins" 1]]  ;; Fn+L
+    [:!Of2 :a ["layer_ins" 1]]  ;; Fn+;
+    ;; Bottom row: Fn+N/M/,/./slash → b/v/c/x/z
+    [:!Of4 :b ["layer_ins" 1]]  ;; Fn+N
+    [:!Of5 :v ["layer_ins" 1]]  ;; Fn+M
+    [:!Of6 :c ["layer_ins" 1]]  ;; Fn+,
+    [:!Of7 :x ["layer_ins" 1]]  ;; Fn+.
+    [:!Of8 :z ["layer_ins" 1]]  ;; Fn+/
+    ;; Fn+Quote → enter shift_mirror_oneshot mode (for uppercase mirrored letters)
     [:!Of3 [["shift_mirror_oneshot" 1]] ["layer_ins" 1]]
    ]}
 
