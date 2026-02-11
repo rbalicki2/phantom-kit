@@ -325,8 +325,8 @@
     [{:key :i :modi {:mandatory [:right_control]}} nil nil {:afterup [:!TOSf18]}]
     ;; right_control+O → Ctrl+Alt+Shift+F19 (hands-free) - fires on key up
     [{:key :o :modi {:mandatory [:right_control]}} nil nil {:afterup [:!TOSf19]}]
-    ;; right_control+P → Ctrl+Alt+Shift+F20 (paste_last_text) - fires on key up
-    [{:key :p :modi {:mandatory [:right_control]}} nil nil {:afterup [:!TOSf20]}]
+    ;; right_control+P → Ctrl+Alt+Shift+F20 (paste_last_text) - fires on key up (not in Admin layer)
+    [{:key :p :modi {:mandatory [:right_control]}} nil ["layer_i" 0] {:afterup [:!TOSf20]}]
    ]}
 
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
