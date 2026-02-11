@@ -247,8 +247,11 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **To update the layout:**
 1. Edit `kinesis-layout1.txt` in this repo
-2. Copy it to the Kinesis drive: `cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout1.txt`
-3. Eject the drive and the keyboard will reload the layout
+2. Check if the Kinesis drive is mounted: `test -d /Volumes/ADV360 && echo "mounted"`
+3. If mounted, copy: `cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout1.txt`
+4. Eject the drive and the keyboard will reload the layout
+
+**Note:** The drive is only mounted when the keyboard is in programming mode. If `/Volumes/ADV360` doesn't exist, the keyboard isn't connected as a drive.
 
 **Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner.
 
