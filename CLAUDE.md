@@ -333,6 +333,8 @@ The layer system is modal (like vim):
 - **Quote+[** = `"`, **Quote+]** = `~`
 - **Shift+Quote+Up** = `\`, **Shift+Quote+Down** = `` ` ``
 - **Shift** = Mirror mode when held (see below)
+- **Fn+Space** = Space + shift oneshot (next letter capitalized)
+- **Fn+Enter** = Shift+Enter
 
 #### Mirror Mode (Shift held in Ins)
 Holding Shift in Ins mode enters mirror mode. RHS keys output their LHS mirror equivalents.

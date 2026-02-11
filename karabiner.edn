@@ -1133,8 +1133,10 @@
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
     ;; Must come BEFORE plain quote rule
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
-    ;; Space while mirror_mode active = space + oneshot shift mode
-    [:spacebar [:spacebar ["shift_oneshot" 1]] ["mirror_mode" 1]]
+    ;; Fn+Space (Alt+F18) = space + oneshot shift mode
+    [:!Ef18 [:spacebar ["shift_oneshot" 1]] ["layer_ins" 1]]
+    ;; Fn+Enter (Alt+F17) = Shift+Enter
+    [:!Ef17 :!Sreturn_or_enter ["layer_ins" 1]]
     ;; apostrophe: hold = set quote_held (no shift output to avoid mirror_mode conflict)
     [:quote [["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
     ;; Quote + brackets = double quote / tilde
@@ -1178,12 +1180,10 @@
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
     ;; NOTE: Do NOT pass through shift here - mirror mode relies on shift being consumed
-    ;; so RHS letters output lowercase LHS equivalents. Specific keys that need Shift+key
-    ;; (like Shift+Enter) must have explicit rules.
+    ;; so RHS letters output lowercase LHS equivalents. Use Fn+key for Shift combos (see above).
     [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    ;; Shift+Enter = Shift+Enter (explicit since shift is consumed for mirror mode)
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} :!Sreturn_or_enter ["mirror_mode" 1]]
+    ;; Shift+Enter now uses Fn+Enter (Alt+F17) - see rule above
     ;; Shift+Quote + bracket/hyphen/arrows (must be before backspace rules)
     [:open_bracket [:!Squote ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; [ → "
     [:close_bracket [:!Sgrave_accent_and_tilde ["shift_mirror_oneshot" 0]] ["shift_mirror_oneshot" 1]]  ;; ] → ~

@@ -3,6 +3,8 @@ All keys type normally
 right_ctrl → Normal
 ' (hold) → Shift
 Shift (hold) → Mirror
+Fn+Space → Shift oneshot
+Fn+Enter → Shift+Enter
 
 Brackets:
 Shift+Up/Down → { }
