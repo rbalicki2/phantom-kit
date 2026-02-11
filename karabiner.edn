@@ -234,9 +234,9 @@
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] Ctrl+hk4 (Alt+F22) = escape"
+  {:des "[Desktop] Ctrl+hk4 (Alt+F22) = escape (bypasses layer exit)"
    :rules [:!apple_internal
-    [:!Of22 :escape]
+    [:!Of22 {:shell "osascript -e 'tell application \"System Events\" to key code 53'"}]
    ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"

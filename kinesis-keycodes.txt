@@ -1,0 +1,55 @@
+# Kinesis Advantage 360 Key Codes (from Appendix A)
+
+## Toggles
+[caps] - Caps Lock On/Off
+[nmlk] - Num Lock On/Off
+[sclk] - Scroll Lock On/Off
+
+## Layer Tokens
+[layd] - Base layer
+[layk] - Keypad layer
+[lay1] - Fn layer
+[lay2] - Fn2 layer
+[lay]  - Fn3 layer
+
+## Left Side Keys
+EQL, 1, 2, 3, 4, 5, KP
+TAB, Q, W, E, R, T, HK1
+ESC, A, S, D, F, G, HK2
+LSHF, Z, X, C, V, B
+LFN, GRAV, CAPS, LEFT, RIGHT
+
+## Right Side Keys
+6, 7, 8, 9, 0, HYPH
+HK3, Y, U, I, O, P, BSLS
+HK4, H, J, K, L, SCOL, APOS
+N, M, COMM, PERD, FSLS, RSHF
+UP, DOWN, OBRK, CBRK, RFN
+
+## Left Thumb Cluster
+LCTR, LALT
+BSPC, DEL
+HOME, END
+
+## Right Thumb Cluster
+RWIN, RCTR
+PGUP, PGDN
+ENT, SPC
+
+## Indicators
+IND1, IND2, IND3, IND4, IND5
+
+## Foot Pedal
+ped
+
+## Common Modifier Prefixes (for macros)
+{-lalt} / {+lalt} - Left Alt press/release
+{-lctrl} / {+lctrl} or {-lctr} / {+lctr} - Left Ctrl
+{-lsft} / {+lsft} or {-lshf} / {+lshf} - Left Shift
+{-rctr} / {+rctr} - Right Ctrl
+{-rsft} / {+rsft} or {-rshf} / {+rshf} - Right Shift
+{-rcmd} / {+rcmd} or {-rwin} / {+rwin} - Right Cmd/Win
+
+## Notes
+- Key codes are case-insensitive in macro syntax
+- Use lowercase in macros: {hk3}, {rctr}, {esc}, etc.
