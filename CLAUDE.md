@@ -255,6 +255,8 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 
 **Layout file format:** Uses Kinesis macro syntax where `{key}>{output}` maps Fn+key to output. Keys in `<function1>` section are Fn layer mappings. The current config maps RHS keys to F-keys (some with Alt modifier) for use with Karabiner.
 
+**Kinesis Fn layer sends left Alt:** The `{-lalt}` syntax sends left_option. This is an exception to the usual right-modifier rule. In Karabiner rules matching Fn+key combos, use `!O` (left_option) not `!E` (right_option).
+
 **Avoid F13 and F14:** These open macOS System Settings even with modifiers. Never use them in layouts.
 
 ## Keyboard Context
