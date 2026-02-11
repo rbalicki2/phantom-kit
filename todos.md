@@ -3,7 +3,6 @@
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
 - Create a Tampermonkey setup that exposes functions callable from a layer
-- MenubarFlag
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
