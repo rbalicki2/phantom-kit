@@ -74,7 +74,7 @@ Source of truth for Karabiner config and related scripts.
   - `norm.txt`, `ins.txt`, `nav.txt`, `mouse.txt`, `l.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `comma.txt`
 - `chrome-tab.sh` - Chrome profile switcher script (AppleScript)
 - `vscode-open-in-chrome.sh` - Opens VS Code file path in Chrome (used by VS Code layer Ctrl+H)
-- `karabiner-layer.300ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
+- `karabiner-layer.100ms.sh` - SwiftBar plugin (symlinked to ~/code/swiftbar/)
 - `llm-blurb.txt` - LLM conversation preferences text (pasted by Admin layer L)
 - `todos.md` - Pending tasks and feature ideas
 
@@ -103,7 +103,7 @@ See `todos.md` for the list of pending tasks.
 
 **Overlay files (`layers/*.txt`)**: These are shown to the user via Ctrl+Shift+Y overlay. If you change shortcuts in a layer, you MUST update the corresponding `.txt` file or the overlay will be wrong.
 
-**Consistency**: SwiftBar (`karabiner-layer.300ms.sh`) and Hammerspoon overlay (`layers/*.txt`) should use the same names and emojis for layers.
+**Consistency**: SwiftBar (`karabiner-layer.100ms.sh`) and Hammerspoon overlay (`layers/*.txt`) should use the same names and emojis for layers.
 
 After every change, Claude should:
 1. Commit locally in voicemode repo with a short message
@@ -222,7 +222,7 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 
 **Checklist when adding a new layer**:
 1. If the layer has Ctrl+KEY shortcuts that conflict with other layer entries, place its rule block BEFORE those layer entry blocks in the config
-2. Update SwiftBar script (`karabiner-layer.300ms.sh`) with new layer case
+2. Update SwiftBar script (`karabiner-layer.100ms.sh`) with new layer case
 3. Create `layers/*.txt` file for Hammerspoon overlay
 4. Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
@@ -505,7 +505,7 @@ Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "i
 - Layers: `norm`, `ins`, `n`, `mouse`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
 - Format: `{mode}-{layer}` (e.g., "iso-Norm🟢", "pin-Nav🚲")
 - Uses Menlo font
-- **Important**: When adding a new layer, update `karabiner-layer.300ms.sh` to handle the new case
+- **Important**: When adding a new layer, update `karabiner-layer.100ms.sh` to handle the new case
 
 ## Hammerspoon Layer Overlay
 - **Ctrl+Shift+Y** shows overlay with current layer's shortcuts
