@@ -1,80 +1,28 @@
-# Todos
+# Pending Tasks
 
-## Bugs to Fix
-- ~~**Normal mode keys typing**~~: FIXED - may have been transient state issue, resolved by earlier fixes
-- ~~**Ins mode state weirdness**~~: FIXED - added explicit escape exit (`:alone` timing was unreliable after modifier combos)
-- **Normal layer entry bugs**: Something off with entering Normal layer - needs investigation
+If work is interrupted or incomplete, document it here so future sessions can continue:
 
-## RHS-Only Transition - Must Have
-
-### Mouse Mode (new layer)
-Two styles needed:
-- **Vimium-style hints**: Show letter labels on clickable elements, type to click
-  - Could use Vimium in Chrome, but need system-wide solution
-  - Options: Shortcat, Homerow, or custom Hammerspoon
-- **Grid-style positioning**: Ternary search to narrow down cursor position
-  - User's idea: uiop for quadrants, narrow down, up=click, down=right-click
-  - Options: warpd, Hammerspoon custom, or Karabiner mouse_key
-
-### Media Controls
-- Play/pause
-- Volume up/down/mute
-- Next/prev track
-- Could add to existing layer (Nav?) or new layer
-
-### Scroll Controls
-- Scroll up/down (page and line)
-- Scroll left/right (for horizontal scroll)
-- Could use Karabiner mouse_key scroll or Hammerspoon
-
-### Escape in Insert Mode
-- Need escape key access while in Ins layer (currently only right_control exits)
-- Candidate: Shift+Space = Escape (stays in Ins)
-
-### Mirror/Reverse Mode in Insert
-- Goal: One-handed typing with RHS only
-- **Best candidate: Enter key** (RHS thumb, used less than Space)
-  - Hold Enter + Y = t, Hold Enter + Shift + Y = T
-  - Tap Enter = newline
-- Already have layer_mirror with mappings, just need Ins-mode trigger
-- Capital letters: shift passes through with `:optional [:shift]`
-
-### Project-Specific Commands in VS Code
-- Shortcuts to run commands like `yarn test $currentfile`
-- Depends on project (yarn vs npm, test runner, etc.)
-- Could use VS Code tasks, or shell scripts that detect project type
-- Maybe extend VS Code layer with project-aware shortcuts
-
-## RHS-Only Transition - Nice to Have
-
-### System Controls
-- Brightness up/down
-- Sleep/lock screen
-
-### Tab Key Access
-- Tab is on LHS - need RHS equivalent for indentation
-- Shift+Tab too
-
-### Function Keys
-- F1-F12 access if needed (some apps use these)
-
-## Existing Todos
-
-### From CLAUDE.md
 - Create a Tampermonkey setup that exposes functions callable from a layer
-
-### Layer System
-- Nav layer should not be a typing layer, but a layer chooser layer
-- Review: screenshot commands (P, Ctrl+P) may not belong in Nav layer
-
-### New Features
-- Chat interface popover accessible anywhere
-
-### Utility Commands
-- **Laptop/Desktop mode toggle**: Key binding on laptop to enter laptop mode, one-click binding to enter desktop mode
-  - Alternative: Karabiner can detect input device (`:devices` section) - could auto-switch based on which keyboard is being used
-- **Split tabs in Chrome**: Way to split/tile Chrome tabs
-- **Zoom in/out**: Maybe Chrome layer, maybe global
-- **VPN connect**: Commands to connect/disconnect VPN
-- **Archive tab**: Add current tab URL/title to an Obsidian note, then close the tab
-- **Whispering restart**: Ensure Whispering is restarted and listening from correct microphone
+- MenubarFlag
+- Wifi notifier
+- Browser extension: Add current page to extension override for blocking
+- Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
+- Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
+- Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
+- Deep link replacer: copy URL and view/transform it for other contexts
+- Brightness and media controls: layer shortcuts for screen brightness, volume, play/pause, next/prev track
+- Caffeine toggle: shortcut to prevent/allow Mac sleep
+- Homerow Cmd+click: figure out how to trigger Cmd+click from Label Mode (for opening links in new tabs, multi-select, etc.)
+- OSA scripts layer: shortcuts to run common AppleScripts (e.g., close VPN connection success tabs, clear notification center, dismiss dialogs)
+- Whispering restart: open/restart Whispering in background without foregrounding
+- USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
+- Cmd+Q accessible: need a way to quit applications from a layer
+- Copy paste tool: investigate clipboard manager/paste transformation tools
+- Chrome layer: move tabs left/right
+- Fix Shift+Quote+[ not producing double quote when held simultaneously
+- Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
+- LLM transform layer: cut selection → apply LLM transformation → paste result
+- Make function shift work
+- Remap: Quote → Shift, Shift → Function
+- Scrolling
+- Slack/messaging: quick way to message people on Slack or other messaging apps
