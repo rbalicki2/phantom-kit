@@ -127,7 +127,7 @@
 
   {:des "TEMPORARY: F21 (Fn+hk4) = show overlay"
    :rules [
-    [:f21 {:shell "hs -c 'showLayerOverlay()'"}]
+    [:f21 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before mirror_mode and number swap)"
