@@ -45,9 +45,9 @@ ped
 ## Common Modifier Prefixes (for macros)
 {-lalt} / {+lalt} - Left Alt press/release
 {-lctrl} / {+lctrl} or {-lctr} / {+lctr} - Left Ctrl
-{-lsft} / {+lsft} or {-lshf} / {+lshf} - Left Shift
+{-lshf} / {+lshf} - Left Shift (NOT lsft)
 {-rctr} / {+rctr} - Right Ctrl
-{-rsft} / {+rsft} or {-rshf} / {+rshf} - Right Shift
+{-rshf} / {+rshf} - Right Shift (NOT rsft)
 {-rcmd} / {+rcmd} or {-rwin} / {+rwin} - Right Cmd/Win
 
 ## Notes
