@@ -161,28 +161,28 @@
     [:0 :0 ["quote_held" 1]]
    ]}
 
-  {:des "Exchange numbers and symbols"
-   :rules [
+  {:des "Exchange numbers and symbols (laptop only)"
+   :rules [:apple_internal
     [{:key :1 :modi {:optional [:caps_lock]}} :!S1]
     [{:key :2 :modi {:optional [:caps_lock]}} :!S2]
     [{:key :3 :modi {:optional [:caps_lock]}} :!S3]
     [{:key :4 :modi {:optional [:caps_lock]}} :!S4]
     [{:key :5 :modi {:optional [:caps_lock]}} :!S5]
-    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["layer_normal" 0]]
-    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["layer_normal" 0]]
-    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["layer_normal" 0]]
-    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["layer_normal" 0]]
-    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["layer_normal" 0]]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0]
     [{:key :1 :modi {:mandatory [:shift] :optional [:caps_lock]}} :1]
     [{:key :2 :modi {:mandatory [:shift] :optional [:caps_lock]}} :2]
     [{:key :3 :modi {:mandatory [:shift] :optional [:caps_lock]}} :3]
     [{:key :4 :modi {:mandatory [:shift] :optional [:caps_lock]}} :4]
     [{:key :5 :modi {:mandatory [:shift] :optional [:caps_lock]}} :5]
-    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["layer_normal" 0]]
-    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["layer_normal" 0]]
-    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["layer_normal" 0]]
-    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["layer_normal" 0]]
-    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["layer_normal" 0]]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0]
    ]}
 
   {:des "Brackets to command+bracket (only in working layers)"
@@ -366,13 +366,13 @@
     ;; Shortcuts
     [:n [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
     [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
+    ;; App launching
+    [:h [[:open-norm "iTerm"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:j [[:open-norm "Visual Studio Code"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:k [[:open-norm "Karabiner-EventViewer"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     ;; Chrome profiles
     [:m [[:chrome-profile "personal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:comma [[:chrome-profile "work"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    ;; App launching
-    [:j [[:open-norm "iTerm"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:k [[:open-norm "Visual Studio Code"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:h [[:open-norm "Karabiner-EventViewer"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:l [[:open-norm "Signal"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:!Of1 [[:open-norm "Messages"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Fn+L
     [{:key :l :modi {:mandatory [:right_control]}} [[:open-norm "WhatsApp"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
