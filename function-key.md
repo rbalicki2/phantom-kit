@@ -5,7 +5,7 @@
 When Function key is held, RHS keys produce F-keys:
 
 ### Top Row (Standard F-Keys)
-- `-` → F12 (config says F13 but lies)
+- `-` → F12 (config says F13 but actually sends F12)
 - Hotkey 3 → F14
 - `Y` → F15
 - `U` → F16
@@ -44,8 +44,6 @@ When Function key is held, RHS keys produce F-keys:
 - `]` → Alt+F12
 
 ### Right Thumb Cluster
-- `RightWin (Cmd)` → Alt+F13
-- `RightCtrl` → Alt+F14
 - `PageUp` → Alt+F15
 - `PageDown` → Alt+F16
 - `Enter` → Alt+F17
