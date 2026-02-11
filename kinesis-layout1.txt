@@ -3,8 +3,9 @@
 {hk3}>{-lalt}{f19}{+lalt}
 {hk4}>{-lalt}{f20}{+lalt}
 
-# Fn+Shift combo (in base layer using rfn)
+# Fn+Shift combos (in base layer using rfn)
 {rfn}{rsft}>{-lsft}{-lalt}{f15}{+lalt}{+lsft}
+{rfn}{rsft}{l}>{-lsft}{-lalt}{f1}{+lalt}{+lsft}
 
 # Explicit L handling in base layer
 {l}>{l}
