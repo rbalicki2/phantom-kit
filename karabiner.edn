@@ -1178,12 +1178,14 @@
     ;; shift keys: if shift_oneshot=1, set mirror_mode=2 (shifted mirror)
     [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
-    ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
+    ;; shift keys: default, set mirror_mode=1 (lowercase mirror) AND quote_held=1 (capitalization)
+    ;; During transition: quote_held rules take precedence for letters (capitalization)
+    ;; Eventually mirror_mode will be removed from shift (Fn will handle mirroring)
     ;; NOTE: Do NOT pass through shift here - mirror mode relies on shift being consumed
     ;; so RHS letters output lowercase LHS equivalents. Specific keys that need Shift+key
     ;; (like Shift+Enter) must have explicit rules.
-    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
-    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:left_shift [["mirror_mode" 1] ["quote_held" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0] ["quote_held" 0]]}]
+    [:right_shift [["mirror_mode" 1] ["quote_held" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0] ["quote_held" 0]]}]
     ;; Shift+Enter = Shift+Enter (explicit since shift is consumed for mirror mode)
     [{:key :return_or_enter :modi {:mandatory [:shift]}} :!Sreturn_or_enter ["mirror_mode" 1]]
     ;; Shift+Quote + bracket/hyphen/arrows (must be before backspace rules)
