@@ -1,6 +1,6 @@
 <base>
-{hk3}>{-lalt}{f21}{+lalt}
-{hk4}>{-lalt}{f19}{+lalt}
+{hk3}>{-lalt}{f19}{+lalt}
+{hk4}>{-lalt}{f20}{+lalt}
 
 <keypad>
 
@@ -39,10 +39,10 @@
 {cbrk}>{-lalt}{f12}{+lalt}
 
 # Thumbs
-{pgup}>{-lalt}{f16}{+lalt}
-{pgdn}>{-lalt}{f17}{+lalt}
-{ent}>{-lalt}{f18}{+lalt}
-{spc}>{-lalt}{f20}{+lalt}
+{pgup}>{-lalt}{f15}{+lalt}
+{pgdn}>{-lalt}{f16}{+lalt}
+{ent}>{-lalt}{f17}{+lalt}
+{spc}>{-lalt}{f18}{+lalt}
 
 <function2>
 
