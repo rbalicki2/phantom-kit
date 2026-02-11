@@ -1178,14 +1178,12 @@
     ;; shift keys: if shift_oneshot=1, set mirror_mode=2 (shifted mirror)
     [:left_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
     [:right_shift [["mirror_mode" 2] ["shift_oneshot" 0]] ["shift_oneshot" 1] {:afterup [["mirror_mode" 0]]}]
-    ;; shift keys: default, set mirror_mode=1 (lowercase mirror) AND quote_held=1 (capitalization)
-    ;; During transition: quote_held rules take precedence for letters (capitalization)
-    ;; Eventually mirror_mode will be removed from shift (Fn will handle mirroring)
+    ;; shift keys: default, set mirror_mode=1 (lowercase mirror)
     ;; NOTE: Do NOT pass through shift here - mirror mode relies on shift being consumed
     ;; so RHS letters output lowercase LHS equivalents. Specific keys that need Shift+key
     ;; (like Shift+Enter) must have explicit rules.
-    [:left_shift [["mirror_mode" 1] ["quote_held" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0] ["quote_held" 0]]}]
-    [:right_shift [["mirror_mode" 1] ["quote_held" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0] ["quote_held" 0]]}]
+    [:left_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
+    [:right_shift [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
     ;; Shift+Enter = Shift+Enter (explicit since shift is consumed for mirror mode)
     [{:key :return_or_enter :modi {:mandatory [:shift]}} :!Sreturn_or_enter ["mirror_mode" 1]]
     ;; Shift+Quote + bracket/hyphen/arrows (must be before backspace rules)
@@ -1325,6 +1323,12 @@
     [:!Of8 :z ["layer_ins" 1]]  ;; Fn+/
     ;; Fn+Quote → enter shift_mirror_oneshot mode (for uppercase mirrored letters)
     [:!Of3 [["shift_mirror_oneshot" 1]] ["layer_ins" 1]]
+    ;; Symbols (matching mirror_mode behavior)
+    [:f13 :!Shyphen ["layer_ins" 1]]  ;; Fn+hyphen → _ (underscore)
+    [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
+    [:!Of10 :!Sclose_bracket ["layer_ins" 1]]  ;; Fn+Down → }
+    [:!Of11 :quote ["layer_ins" 1]]  ;; Fn+[ → ' (single quote)
+    ;; Note: Fn+] is unmapped at Kinesis hardware level, can't be mapped
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
