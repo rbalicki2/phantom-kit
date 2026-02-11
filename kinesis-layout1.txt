@@ -1,5 +1,5 @@
 <base>
-{hk3}>{-lalt}{f15}{+lalt}
+{hk3}>{-lalt}{f21}{+lalt}
 {hk4}>{-lalt}{f19}{+lalt}
 
 <keypad>
