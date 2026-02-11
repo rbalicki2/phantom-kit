@@ -117,6 +117,7 @@
   {:des "Cmd+PageUp = Escape (global)"
    :rules [
     [:!Cpage_up :escape]
+    [:!Qpage_up :escape]
    ]}
 
   {:des "Ctrl+Shift+Y passthrough for Hammerspoon overlay (all layers)"
