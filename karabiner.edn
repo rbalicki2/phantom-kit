@@ -234,18 +234,14 @@
     [:fn [["mirror_mode" 1]] ["layer_ins" 1] {:afterup [["mirror_mode" 0]]}]
    ]}
 
-  {:des "[Desktop] F20 = escape + set flag (for Ctrl+hk4)"
+  {:des "[Desktop] F20 = escape + restore previous layer (for Ctrl+hk4)"
    :rules [:!apple_internal
-    ;; F20 sets flag to prevent right_control from exiting layer
-    [:f20 [:escape ["f20_pressed" 1]]]
+    ;; F20 in Normal with was_in_ins=1: send escape and restore Ins
+    [:f20 [:escape ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] ["was_in_ins" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["was_in_ins" 1]]
+    ;; F20 otherwise: just send escape
+    [:f20 :escape]
    ]}
 
-  {:des "[Desktop] right_control with f20 flag - just clear, no exit"
-   :rules [:!apple_internal
-    ;; If f20_pressed=1, right_control just passes through and clears flag on release
-    ;; This rule must come BEFORE layer-specific right_control rules
-    [:right_control {:to [:right_control] :to_after_key_up [["f20_pressed" 0]]} ["f20_pressed" 1]]
-   ]}
 
   {:des "[Desktop] Disable LHS keys and arrows"
    :rules [:!apple_internal
@@ -1116,15 +1112,16 @@
    :rules [:!apple_internal
     ;; Ins layer has no key mappings - all keys pass through by default
     ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
-    [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Also clears was_in_ins flag
+    [:j [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] ["was_in_ins" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; Y from Normal = Shift+F9 (TTS toggle) + enter Ins
     [:y [:!Sf9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; 6 from Normal = F9 (TTS) + enter Ins
     [:6 [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
     [{:key :j :modi {:mandatory [:control]}} :vk_none ["layer_ins" 1]]
-    ;; right_control alone exits Ins to Normal
-    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    ;; right_control alone exits Ins to Normal AND sets was_in_ins flag
+    [:right_control :right_control ["layer_ins" 1] {:alone [["layer_ins" 0] ["layer_normal" 1] ["in_any_layer" 0] ["shift_mirror_oneshot" 0] ["shift_oneshot" 0] ["was_in_ins" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Quote while mirror_mode active (shift held) = oneshot shift+mirror mode
     ;; Must come BEFORE plain quote rule
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
