@@ -314,7 +314,7 @@ The layer system is modal (like vim):
 - **Normal** = Default layer (layer selector). Active keys: j, n, m, h, u, k. All other keys disabled.
 - **Ins** = Typing mode (all keys pass through)
 - Other layers entered from Normal with single keys
-- All layers exit to Normal with `right_control` or `escape`
+- All layers exit to Normal with `right_control` alone (escape does NOT exit layers)
 
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
@@ -490,8 +490,7 @@ Git shortcuts for terminal. Uses osascript to type text.
 
 ### Layer Exit Methods
 All layers exit to Normal (not to Ins/typing mode) by:
-- Pressing **escape**
-- Pressing **right_control** alone
+- Pressing **right_control** alone (escape does NOT exit layers)
 - Most layer actions auto-exit (except Chrome J/K for tab cycling)
 
 **Convention**: Actions stay in layer if repeatable (delete, select, tab cycling). Actions exit layer if one-shot (open app, zoom, type symbol).
