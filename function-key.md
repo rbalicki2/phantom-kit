@@ -34,7 +34,7 @@ When Function key is held, RHS keys produce F-keys:
 - `Up` → Alt+F9
 - `Down` → Alt+F10
 - `[` → Alt+F11
-- `]` → (unmapped)
+- `]` → Alt+F12
 
 ## Planned Changes
 

@@ -1328,7 +1328,7 @@
     [:!Of9 :!Sopen_bracket ["layer_ins" 1]]  ;; Fn+Up → {
     [:!Of10 :!Sclose_bracket ["layer_ins" 1]]  ;; Fn+Down → }
     [:!Of11 :quote ["layer_ins" 1]]  ;; Fn+[ → ' (single quote)
-    ;; Note: Fn+] is unmapped at Kinesis hardware level, can't be mapped
+    [:!Of12 :!Sgrave_accent_and_tilde ["layer_ins" 1]]  ;; Fn+] → ~ (tilde)
    ]}
 
   {:des "[Desktop] Normal Layer (default state, layer selector)"
