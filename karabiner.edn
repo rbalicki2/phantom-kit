@@ -1134,9 +1134,9 @@
     ;; Must come BEFORE plain quote rule
     [:quote [["shift_mirror_oneshot" 1]] ["mirror_mode" 1]]
     ;; Fn+Space (Alt+F18) = space + oneshot shift mode
-    [:!Ef18 [:spacebar ["shift_oneshot" 1]] ["layer_ins" 1]]
+    [:!Of18 [:spacebar ["shift_oneshot" 1]] ["layer_ins" 1]]
     ;; Fn+Enter (Alt+F17) = Shift+Enter
-    [:!Ef17 :!Sreturn_or_enter ["layer_ins" 1]]
+    [:!Of17 :!Sreturn_or_enter ["layer_ins" 1]]
     ;; apostrophe: hold = set quote_held (no shift output to avoid mirror_mode conflict)
     [:quote [["quote_held" 1]] ["layer_ins" 1] {:afterup [["quote_held" 0]]}]
     ;; Quote + brackets = double quote / tilde
