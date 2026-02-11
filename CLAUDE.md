@@ -239,7 +239,12 @@ When a layer action exits, decide whether to go to **Normal** or **Ins** mode:
 - Nav: Spotlight (Cmd+Space)
 
 ## Keyboard Context
-This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard. If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first.
+This config is designed for a **Kinesis Advantage 2** with right-hand-side (RHS) layers. **This is a ONE-HANDED (right hand only) keyboard setup on Desktop profile.** The user only presses right-hand keys. All layer keys (H, J, K, L, M, N, comma, etc.) are on the right side of the keyboard.
+
+**Important implications:**
+- If you find yourself setting up anything that requires left-hand-side keys, you are likely making a mistake - confirm with the user first
+- When adding modifier rules (Cmd, Ctrl, etc.), use **right_command** (`!Q`) and **right_control** - never assume left modifiers
+- The user accesses left-hand letters via mirror mode (Shift held in Ins layer)
 
 ### Right Thumb Cluster (6 keys)
 ```
