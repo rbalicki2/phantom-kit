@@ -7,7 +7,7 @@ L = Undo, Fn+L = Redo
 , = Ctrl+C → Ins
 N = Ctrl+R (terminal search)
 I = Select all
-O = Cmd+Shift+P, Fn+O = Open, P = Cmd+P
+O = Cmd+Shift+P →Ins, Fn+O = Open, P = Cmd+P
 Ctrl+H = Close
 . = Save
 M = Toggle iso/pin mode

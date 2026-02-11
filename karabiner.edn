@@ -418,7 +418,7 @@
     [:!Of1 [:!CSz ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Fn+L: Redo
     [:period [:!Cs ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Save
     [:i [:!Ca ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Select all
-    [:o [:!CSp ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Command palette
+    [:o [:!CSp ["layer_comma" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_comma" 1]]  ;; Command palette → Ins
     [:f18 [:!Co ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Fn+O: Open
     [:p [:!Cp ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Cmd+P
     [{:key :h :modi {:mandatory [:right_control]}} [:!Cw ["layer_comma" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_comma" 1]]  ;; Close
