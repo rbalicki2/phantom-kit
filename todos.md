@@ -26,8 +26,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Verify: Tmux panes 6-10 (Shift+Y/U/I/O/P) still work after shift refactor
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
-- Make function shift work
-- Remap: Quote → Shift, Shift → Function
+- Confirm RHS slot grid (rhs-slots.md) is accurate after Quote→Shift, Shift→Function refactor
 - Scrolling
 - Slack/messaging: quick way to message people on Slack or other messaging apps
 - Snippet library: quick access to commonly used text snippets
