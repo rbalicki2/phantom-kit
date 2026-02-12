@@ -417,7 +417,7 @@ Hold rcmd+N then press a navigation key to select:
 - **K** = Cmd+F (find), **Shift+K** = Cmd+Shift+F (find in files)
 - **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)
-- **I** = Command+A (select all)
+- **I** = Command+A (select all) - exits to Ins
 - **O** = Cmd+Shift+P (command palette), **Shift+O** = Cmd+O (open)
 - **P** = Command+P
 - **Ctrl+H** = Command+W (close)
