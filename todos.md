@@ -40,5 +40,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Admin layer: full reset (CLI reload + hardware reset) and document all required permissions (~/.config, etc.)
 - LLM transform layer: cut selection → apply LLM transformation → paste result
 - Scrolling
+- Hammerspoon border indicator bug: borders don't update correctly when screens are resized or when switching between monitors
 - Slack/messaging: quick way to message people on Slack or other messaging apps
 - Snippet library: quick access to commonly used text snippets
