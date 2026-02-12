@@ -1,0 +1,5 @@
+MOUSE 🐭 - Click Mode
+Type labels to select target, then:
+Space → Click (Enter)
+Fn+Space → Cmd+Click
+right_ctrl → Cancel (Escape)

@@ -3,13 +3,13 @@
 ## Modal System Overview
 - **Normal** = Default layer (layer selector) - entered with right_control from Ins
 - **Ins** = Typing mode (all keys pass through) - entered with `j` from Normal
-- Other layers entered from Normal with single keys: `n`, `m`, `i`, `h`, `u`, `k`
+- Other layers entered from Normal with single keys: `n`, `m`, `i`, `h`, `u`, `l`, `comma`
 - All layers exit to Normal with `right_control` or `escape`
 
 ## Normal Layer (default)
 - **J** = Enter Ins (typing mode)
 - **N** = Enter Nav layer
-- **M** = Enter Label Mode (Homerow)
+- **M** = Enter Mouse Mode 🐭 (Homerow click)
 - **I** = Enter Admin layer ⚙️
 - **Comma** = Enter Comma layer (copy/paste/find)
 - **L** = Enter L layer
@@ -20,8 +20,7 @@
 ## Ins Layer (J from Normal)
 - All keys type normally
 - **Right_control** = Return to Normal
-- **Ctrl+M** = Homerow (stays in Ins)
-- **Ctrl+Shift+M** = Cmd+Homerow (cmd+click, stays in Ins)
+- **Ctrl+M** = Enter Mouse Mode 🐭 (exits to Ins after click)
 - **[** = Backspace, **]** = Delete
 
 ### Brackets
@@ -46,10 +45,11 @@
 - **Fn+J/K** = Back/Forward, **Fn+M/,** = Prev/Next tab, **Fn+Up/Down** = App switch
 - **Enter** = Cmd+Enter
 
-## Label Mode (M from Normal - Homerow)
-- Labels: U I O P J K L ; N M , . /
-- **H** = Cancel (escape) + exit to Ins
-- **Right_control** = Cancel (escape) + exit to Normal
+## Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)
+- Type labels to select target, then:
+- **Space** = Click (Enter) → exits to Ins
+- **Fn+Space** = Cmd+Click (Cmd+Enter) → exits to Ins
+- **Right_control** = Cancel (Escape) → exits to Normal
 
 ## Admin Layer ⚙️ (I from Normal)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half

@@ -369,24 +369,18 @@
     [:return_or_enter [:!Creturn_or_enter ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
 
-  {:des "[Desktop] Homerow (M from Normal)"
+  {:des "[Desktop] Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)"
    :rules [:!apple_internal
-    ;; M from Normal = trigger Homerow + enter Ins mode
-    [:m [:!COSo ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-   ]}
-
-  {:des "[Desktop] Homerow from Ins (Ctrl+M)"
-   :rules [:!apple_internal
-    ;; Ctrl+M from Ins = trigger Homerow, stay in Ins
-    [{:key :m :modi {:mandatory [:right_control]}} :!COSo ["layer_ins" 1]]
-   ]}
-
-  {:des "[Desktop] Cmd+Homerow (Ctrl+Shift+M)"
-   :rules [:!apple_internal
-    ;; Ctrl+Shift+M from Normal = cmd+Homerow via Hammerspoon, stay in Normal
-    [{:key :m :modi {:mandatory [:right_control :shift]}} {:shell "hs -c 'startModifierHomerow(\"cmd\")'"} ["layer_normal" 1]]
-    ;; Ctrl+Shift+M from Ins = cmd+Homerow via Hammerspoon, stay in Ins
-    [{:key :m :modi {:mandatory [:right_control :shift]}} {:shell "hs -c 'startModifierHomerow(\"cmd\")'"} ["layer_ins" 1]]
+    ;; M from Normal = enter Mouse mode + trigger Homerow
+    [:m [["layer_mouse" 1] ["layer_normal" 0] ["in_any_layer" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Ctrl+M from Ins = enter Mouse mode + trigger Homerow
+    [{:key :m :modi {:mandatory [:right_control]}} [["layer_mouse" 1] ["layer_ins" 0] ["in_any_layer" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["layer_ins" 1]]
+    ;; Exit: right_control = escape + exit to Normal
+    [:right_control [:escape ["layer_mouse" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    ;; Space = Enter (normal click) → exit to Ins
+    [:spacebar [:return_or_enter ["layer_mouse" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+    ;; Fn+Space = Cmd+Enter (cmd+click) → exit to Ins
+    [:!Of18 [:!Creturn_or_enter ["layer_mouse" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"

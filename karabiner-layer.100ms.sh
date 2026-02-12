@@ -31,6 +31,7 @@ case "$LAYER" in
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;
     term) NAME="Term" ;;
+    mouse) NAME="Mouse" ;;
     *) NAME="Base" ;;
 esac
 
