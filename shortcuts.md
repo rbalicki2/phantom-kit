@@ -20,6 +20,7 @@
 ## Ins Layer (J from Normal)
 - All keys type normally
 - **Right_control** = Return to Normal
+- **Ctrl+M** = Homerow (stays in Ins)
 - **[** = Backspace, **]** = Delete
 
 ### Brackets

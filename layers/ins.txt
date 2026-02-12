@@ -1,6 +1,7 @@
 INS - Typing Mode
 All keys type normally
 right_ctrl → Normal
+Ctrl+M → Homerow (stays in Ins)
 [ → Backspace, ] → Delete
 
 Brackets:
