@@ -66,7 +66,7 @@
 ## Comma Layer (Comma from Normal)
 - **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Fn+K** = Find in files (→Ins), **L** = Undo, **Fn+L** = Redo
 - **Comma** = Ctrl+C, **N** = Ctrl+R
-- **I** = Select all, **O** = Cmd+Shift+P, **Fn+O** = Open, **P** = Cmd+P
+- **I** = Select all (→Ins), **O** = Cmd+Shift+P (→Ins), **Fn+O** = Open (→Ins), **P** = Cmd+P (→Ins)
 - **Ctrl+H** = Close
 - **Period** = Save, **M** = Toggle iso/pin mode
 
