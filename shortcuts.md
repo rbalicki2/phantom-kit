@@ -47,9 +47,12 @@
 
 ## Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)
 - Type labels to select target, then:
-- **Space** = Click (Enter) → exits to Ins
-- **Fn+Space** = Cmd+Click (Cmd+Enter) → exits to Ins
-- **Right_control** = Cancel (Escape) → exits to Normal
+- **Space** = Click (Enter)
+- **Shift+Space** = Right-click (Shift+Enter)
+- **Fn+Space** = Cmd+Click (open in new tab)
+- **Fn+Shift+Space** = Cmd+Shift+Click (new tab + focus)
+- **Right_control** = Cancel (Escape)
+- Returns to origin layer (Normal or Ins)
 
 ## Admin Layer ⚙️ (I from Normal)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
