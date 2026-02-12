@@ -1,6 +1,6 @@
 Chrome Layer (right_control+J, Chrome only)
 
-H = New tab →Ins
+H = New tab →Ins, Shift+H = Reopen closed tab
 J/K = Prev/Next tab (stays), Ctrl+H = Close (stays), Ctrl+Fn+H = Close+prev (stays)
 Fn+J/K = Move tab left/right (stays)
 L = Address bar →Ins, Fn+L = Copy URL
