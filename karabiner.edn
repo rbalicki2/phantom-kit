@@ -381,12 +381,12 @@
     [{:key :m :modi {:mandatory [:right_control]}} :!COSo ["layer_ins" 1]]
    ]}
 
-  {:des "[Desktop] Shift+Homerow (Ctrl+Shift+M)"
+  {:des "[Desktop] Cmd+Homerow (Ctrl+Shift+M)"
    :rules [:!apple_internal
-    ;; Ctrl+Shift+M from Normal = shift+Homerow via Hammerspoon, exit to Ins
-    [{:key :m :modi {:mandatory [:right_control :shift]}} [["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "hs -c 'startModifierHomerow(\"shift\")' & echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
-    ;; Ctrl+Shift+M from Ins = shift+Homerow via Hammerspoon, stay in Ins
-    [{:key :m :modi {:mandatory [:right_control :shift]}} {:shell "hs -c 'startModifierHomerow(\"shift\")'"} ["layer_ins" 1]]
+    ;; Ctrl+Shift+M from Normal = cmd+Homerow via Hammerspoon, stay in Normal
+    [{:key :m :modi {:mandatory [:right_control :shift]}} {:shell "hs -c 'startModifierHomerow(\"cmd\")'"} ["layer_normal" 1]]
+    ;; Ctrl+Shift+M from Ins = cmd+Homerow via Hammerspoon, stay in Ins
+    [{:key :m :modi {:mandatory [:right_control :shift]}} {:shell "hs -c 'startModifierHomerow(\"cmd\")'"} ["layer_ins" 1]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
