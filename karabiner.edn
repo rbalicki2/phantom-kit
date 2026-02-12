@@ -375,6 +375,12 @@
     [:m [:!COSo ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_normal" 1]]
    ]}
 
+  {:des "[Desktop] Homerow from Ins (Ctrl+M)"
+   :rules [:!apple_internal
+    ;; Ctrl+M from Ins = trigger Homerow, stay in Ins
+    [{:key :m :modi {:mandatory [:right_control]}} :!COSo ["layer_ins" 1]]
+   ]}
+
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
    :rules [:!apple_internal
     ;; Entry/exit
