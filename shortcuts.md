@@ -21,6 +21,7 @@
 - All keys type normally
 - **Right_control** = Return to Normal
 - **Ctrl+M** = Homerow (stays in Ins)
+- **Ctrl+Shift+M** = Shift+Homerow (shift+click, stays in Ins)
 - **[** = Backspace, **]** = Delete
 
 ### Brackets
