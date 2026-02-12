@@ -11,7 +11,23 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Deep link replacer: copy URL and view/transform it for other contexts
 - Brightness and media controls: layer shortcuts for screen brightness, volume, play/pause, next/prev track
 - Caffeine toggle: shortcut to prevent/allow Mac sleep
-- Homerow Cmd+click: figure out how to trigger Cmd+click from Homerow (for opening links in new tabs, multi-select, etc.)
+- Homerow modifier+click (Shift, Cmd, etc.): Use Hammerspoon to enable modifier+click via Homerow
+  - Goal: Press Shift+M (or similar) to activate Homerow with shift held, so clicking a label does shift+click
+  - Problem: Karabiner can't detect when Homerow finishes; Hammerspoon keyStrokes bypass Karabiner
+  - Solution: Hammerspoon handles everything directly (no Karabiner communication needed)
+  - Implementation steps:
+    1. Karabiner shortcut (e.g., Shift+M from a layer) runs a shell command to signal Hammerspoon
+    2. Hammerspoon receives signal, stores which modifier to apply (shift, cmd, etc.)
+    3. Hammerspoon activates Homerow via `hs.application.launchOrFocus("Homerow")` + AppleScript
+    4. Hammerspoon polls Homerow window count every 100ms: `hs.application.find("Homerow"):allWindows()`
+    5. When window count drops (Homerow closed), Hammerspoon:
+       a. Posts modifier key-down event: `hs.eventtap.event.newKeyEvent({"shift"}, nil, true):post()`
+       b. Posts click event (Homerow already clicked, so maybe not needed?)
+       c. Posts modifier key-up event to release
+    6. Alternative: Hammerspoon could hold the modifier key down BEFORE activating Homerow, then release after
+  - Key insight: Hammerspoon's events go directly to apps, bypassing Karabiner (tested: E→F remap didn't work)
+  - Files to modify: ~/.hammerspoon/init.lua, karabiner.edn (shell command trigger)
+  - Test command for Homerow window detection: `hs -c 'return #hs.application.find("Homerow"):allWindows()'`
 - OSA scripts layer: shortcuts to run common AppleScripts (e.g., close VPN connection success tabs, clear notification center, dismiss dialogs)
 - Whispering restart: open/restart Whispering in background without foregrounding
 - USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
