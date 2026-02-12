@@ -95,6 +95,12 @@ Destination for generated configs.
 - `/tmp/karabiner-layer` - Current layer code (read by SwiftBar and Hammerspoon)
 - `/tmp/karabiner-project` - iso/pin mode state
 
+### Wispr Flow (voice-to-text app)
+- `~/Library/Application Support/Wispr Flow/config.json` - Shortcuts and preferences
+  - `shortcuts` object maps key codes to actions (ptt, lens, popo)
+  - `splitKeybinds` array has same shortcuts in different format
+  - Restart Wispr Flow after editing for changes to take effect
+
 ## Pending Tasks
 See `todos.md` for the list of pending tasks.
 
