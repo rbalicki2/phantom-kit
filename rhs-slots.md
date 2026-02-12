@@ -33,7 +33,7 @@
 | up       | up       | {        | [        |          | ←        |          |          |          |
 | down     | down     | }        | ]        |          | →        |          |          |          |
 | [        | bksp     |          |          |          |          |          |          |          |
-| ]        | del      | ~        |          |          |          |          |          |          |
+| ]        | del      |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | pgup     | lclick   |          |          |          |          |          |          |          |
 | pgdn     | rclick   |          |          |          |          |          |          |          |
@@ -43,4 +43,4 @@
 | rctrl    | →norm    |          |          |          |          |          |          |          |
 
 ## Unavailable Symbols
-These symbols currently have no RHS slot: backslash, backtick
+These symbols currently have no RHS slot: backslash, backtick, tilde

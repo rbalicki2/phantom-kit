@@ -25,7 +25,6 @@
 ### Brackets
 - **Shift+Up/Down** = `[` `]`
 - **Fn+Up/Down** = `{` `}`
-- **Fn+]** = `~`
 
 ### Mirrored Letters (Fn+key)
 - Fn+Y→t, Fn+U→r, Fn+I→e, Fn+O→w, Fn+P→q

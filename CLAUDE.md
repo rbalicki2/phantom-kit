@@ -341,7 +341,6 @@ The layer system is modal (like vim):
 - **[** = Backspace, **]** = Delete
 - **Shift+Up** = `[`, **Shift+Down** = `]`
 - **Fn+Up** = `{`, **Fn+Down** = `}`
-- **Fn+]** = `~` (tilde)
 - **Fn+Space** = Space + shift oneshot (next letter capitalized)
 - **Fn+Enter** = Shift+Enter
 
