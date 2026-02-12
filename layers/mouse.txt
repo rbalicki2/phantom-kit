@@ -4,6 +4,7 @@ Type labels/grid keys to select target, then:
 Space         Click
 Shift+Space   Right-click
 Enter         Double-click
+Shift+Enter   Shift+Click (extend selection)
 Fn+Space      Cmd+Click
 Fn+Enter      Cmd+Shift+Click
 right_ctrl    Cancel

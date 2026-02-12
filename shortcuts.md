@@ -52,6 +52,7 @@
 - **Space** = Click
 - **Shift+Space** = Right-click
 - **Enter** = Double-click
+- **Shift+Enter** = Shift+Click (extend selection)
 - **Fn+Space** = Cmd+Click
 - **Fn+Enter** = Cmd+Shift+Click
 - **Right_control** = Cancel
