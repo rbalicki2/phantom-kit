@@ -319,12 +319,8 @@
 
   {:des "[Desktop] Wispr Flow shortcuts"
    :rules [:!apple_internal
-    ;; right_control+Y → Ctrl+Alt+Shift+F19 (hands-free) - fires on key up to avoid modifier conflict
-    [{:key :y :modi {:mandatory [:right_control]}} nil ["layer_l" 0] {:afterup [:!TOSf19]}]
-    ;; right_control+I → Ctrl+Alt+Shift+F18 (lens) - fires on key up
-    [{:key :i :modi {:mandatory [:right_control]}} nil nil {:afterup [:!TOSf18]}]
-    ;; right_control+O → Ctrl+Alt+Shift+F19 (hands-free) - fires on key up
-    [{:key :o :modi {:mandatory [:right_control]}} nil nil {:afterup [:!TOSf19]}]
+    ;; right_control+Y → Ctrl+Alt+Shift+F17 (ptt) - fires on key up to avoid modifier conflict
+    [{:key :y :modi {:mandatory [:right_control]}} nil ["layer_l" 0] {:afterup [:!TOSf17]}]
    ]}
 
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"

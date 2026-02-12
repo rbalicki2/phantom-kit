@@ -7,7 +7,7 @@
 | 8        | *        | #        | 8        | 3        |          |          |          |          |
 | 9        | (        | @        | 9        | 2        |          |          |          |          |
 | 0        | )        | !        | 0        | 1        |          |          |          |          |
-| -        | -        |          |          |          |          |          |          |          |
+| -        | -        |          | _        |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | y        | y        | t        | Y        | T        |          | tts      |          | overlay  |
 | u        | u        | r        | U        | R        |          |          |          |          |
@@ -43,4 +43,4 @@
 | rctrl    | →norm    |          |          |          |          |          |          |          |
 
 ## Unavailable Symbols
-These symbols currently have no RHS slot: backslash, backtick, tilde, underscore
+These symbols currently have no RHS slot: backslash, backtick, tilde
