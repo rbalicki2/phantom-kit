@@ -317,6 +317,12 @@
     [{:key :6 :modi {:mandatory [:right_control]}} [:f9 ["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}]]
    ]}
 
+  {:des "[Desktop] Wispr Flow shortcut"
+   :rules [:!apple_internal
+    ;; right_control+Y → Ctrl+Alt+Shift+F19 (popo)
+    [{:key :y :modi {:mandatory [:right_control]}} nil ["layer_l" 0] {:afterup [:!TOSf19]}]
+   ]}
+
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
    :rules [:!apple_internal
     ;; Ctrl+hk4 enters Nav, clearing other layers
