@@ -50,7 +50,6 @@
 - **Space** = Click
 - **Shift+Space** = Right-click
 - **Fn+Space** = Cmd+Click
-- **Fn+Shift+Space** = Cmd+Shift+Click
 - **Right_control** = Cancel
 - Returns to origin layer (Normal or Ins)
 

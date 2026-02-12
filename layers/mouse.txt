@@ -3,7 +3,6 @@ Type labels to select target, then:
 Space         Click
 Shift+Space   Right-click
 Fn+Space      Cmd+Click
-Fn+Shift+Spc  Cmd+Shift+Click
 right_ctrl    Cancel
 
 Returns to origin layer (Normal or Ins)
