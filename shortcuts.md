@@ -9,7 +9,8 @@
 ## Normal Layer (default)
 - **J** = Enter Ins (typing mode)
 - **N** = Enter Nav layer
-- **M** = Enter Mouse Mode 🐭 (Homerow click)
+- **M** = Enter Mouse Mode 🐭 (Homerow labels)
+- **Fn+M** = Enter Mouse Mode 🐭 (warpd grid)
 - **I** = Enter Admin layer ⚙️
 - **Comma** = Enter Comma layer (copy/paste/find)
 - **L** = Enter L layer
@@ -45,11 +46,14 @@
 - **Fn+J/K** = Back/Forward, **Fn+M/,** = Prev/Next tab, **Fn+Up/Down** = App switch
 - **Enter** = Cmd+Enter
 
-## Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)
-- Type labels to select target, then:
+## Mouse Mode 🐭 (M/Fn+M from Normal, Ctrl+M from Ins)
+- **M** = Homerow labels, **Fn+M** = warpd grid
+- Type labels/grid keys to select target, then:
 - **Space** = Click
 - **Shift+Space** = Right-click
+- **Enter** = Double-click
 - **Fn+Space** = Cmd+Click
+- **Fn+Enter** = Cmd+Shift+Click
 - **Right_control** = Cancel
 - Returns to origin layer (Normal or Ins)
 

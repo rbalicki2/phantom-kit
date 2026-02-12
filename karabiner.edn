@@ -369,11 +369,13 @@
     [:return_or_enter [:!Creturn_or_enter ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
 
-  {:des "[Desktop] Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)"
+  {:des "[Desktop] Mouse Mode 🐭 (M/Fn+M from Normal, Ctrl+M from Ins)"
    :rules [:!apple_internal
     ;; === ENTRY ===
     ;; M from Normal: enter Mouse mode, set mouse_from_ins=0, trigger Homerow
     [:m [["layer_mouse" 1] ["mouse_from_ins" 0] ["layer_normal" 0] ["in_any_layer" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Fn+M (Alt+F5) from Normal: enter Mouse mode, set mouse_from_ins=0, start warpd grid
+    [:!Of5 [["layer_mouse" 1] ["mouse_from_ins" 0] ["layer_normal" 0] ["in_any_layer" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo mouse > /tmp/karabiner-layer"}] ["layer_normal" 1]]
     ;; Ctrl+M from Ins: enter Mouse mode, set mouse_from_ins=1, trigger Homerow
     [{:key :m :modi {:mandatory [:right_control]}} [["layer_mouse" 1] ["mouse_from_ins" 1] ["layer_ins" 0] ["in_any_layer" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["layer_ins" 1]]
 
@@ -397,16 +399,26 @@
     [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
 
+    ;; Enter = Double-click (two Enter keypresses)
+    [:return_or_enter [:return_or_enter :return_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:return_or_enter [:return_or_enter :return_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+
+    ;; Fn+Enter (Alt+F17) = Cmd+Shift+Click
+    [:!Of17 [:!CSreturn_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:!Of17 [:!CSreturn_or_enter ["layer_mouse" 0] ["mouse_from_ins" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_mouse" 1]]
+
     ;; === PASSTHROUGH ===
-    ;; Label keys for Homerow selection
+    ;; Label keys for Homerow selection and warpd grid
+    [:y :y ["layer_mouse" 1]]  ;; warpd grid_exit
     [:u :u ["layer_mouse" 1]]
     [:i :i ["layer_mouse" 1]]
     [:o :o ["layer_mouse" 1]]
     [:p :p ["layer_mouse" 1]]
+    [:h :h ["layer_mouse" 1]]  ;; warpd click
     [:j :j ["layer_mouse" 1]]
     [:k :k ["layer_mouse" 1]]
     [:l :l ["layer_mouse" 1]]
-    [:n :n ["layer_mouse" 1]]
+    [:n :n ["layer_mouse" 1]]  ;; warpd click
     [:m :m ["layer_mouse" 1]]
     [:comma :comma ["layer_mouse" 1]]
     [:period :period ["layer_mouse" 1]]
