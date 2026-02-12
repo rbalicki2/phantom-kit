@@ -1,9 +1,9 @@
 MOUSE - Click Mode
 Type labels to select target, then:
-Space         Click (Enter)
-Shift+Space   Right-click (Shift+Enter)
-Fn+Space      Cmd+Click (new tab)
-Fn+Shift+Spc  Cmd+Shift+Click (new tab + focus)
-right_ctrl    Cancel (Escape)
+Space         Click
+Shift+Space   Right-click
+Fn+Space      Cmd+Click
+Fn+Shift+Spc  Cmd+Shift+Click
+right_ctrl    Cancel
 
 Returns to origin layer (Normal or Ins)

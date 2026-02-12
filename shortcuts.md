@@ -47,11 +47,11 @@
 
 ## Mouse Mode 🐭 (M from Normal, Ctrl+M from Ins)
 - Type labels to select target, then:
-- **Space** = Click (Enter)
-- **Shift+Space** = Right-click (Shift+Enter)
-- **Fn+Space** = Cmd+Click (open in new tab)
-- **Fn+Shift+Space** = Cmd+Shift+Click (new tab + focus)
-- **Right_control** = Cancel (Escape)
+- **Space** = Click
+- **Shift+Space** = Right-click
+- **Fn+Space** = Cmd+Click
+- **Fn+Shift+Space** = Cmd+Shift+Click
+- **Right_control** = Cancel
 - Returns to origin layer (Normal or Ins)
 
 ## Admin Layer ⚙️ (I from Normal)
