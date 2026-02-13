@@ -6,8 +6,8 @@
 # Modifier+hotkey combos (for future Karabiner mapping)
 {rctr}{hk3}>{-lalt}{f21}{+lalt}
 {rctr}{hk4}>{-lalt}{f22}{+lalt}
-{rsft}{hk3}>{-lalt}{f23}{+lalt}
-{rsft}{hk4}>{-lalt}{f24}{+lalt}
+{rshf}{hk3}>{-lalt}{f23}{+lalt}
+{rshf}{hk4}>{-lalt}{f24}{+lalt}
 {rwin}{hk3}>{-lshf}{-lalt}{f21}{+lalt}{+lshf}
 {rwin}{hk4}>{-lshf}{-lalt}{f22}{+lalt}{+lshf}
 

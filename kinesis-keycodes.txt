@@ -1,5 +1,11 @@
 # Kinesis Advantage 360 Key Codes (from Appendix A)
 
+## ⚠️ COMMON MISTAKES - READ FIRST ⚠️
+- Right Shift = `rshf` (NOT rsft)
+- Left Shift = `lshf` (NOT lsft)
+- Right Ctrl = `rctr` (NOT rctrl)
+- Left Ctrl = `lctr` (NOT lctrl)
+
 ## Toggles
 [caps] - Caps Lock On/Off
 [nmlk] - Num Lock On/Off
