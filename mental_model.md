@@ -62,6 +62,8 @@ Every state transition in karabiner.edn MUST explicitly set ALL variables to the
 
 Additionally, all state transitions should clear ALL external state (see External State Awareness table). This follows the "prefer no-ops" principle—clearing state that's already clean is harmless.
 
+**Exception**: Don't clear external state that the target mode depends on. For example, Grid mode relies on warpd running, so transitions within Grid mode (navigation keys) must not kill warpd. App/window switcher relies on Cmd being held, so J/K cycling must not release Cmd.
+
 Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` and also clear external state (pkill warpd, dismissHomerow, release Cmd, etc.) even if we "know" some are already correct.
 
 ## Global Shortcuts
