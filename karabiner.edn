@@ -101,9 +101,8 @@
     [:f21 [["mode" 2] ["in_modal" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["mode" 0]]
    ]}
 
-  {:des "Shift+mirror oneshot numbers (must come before number swap)"
-   :rules [
-    ;; RHS numbers in shift_mirror_oneshot: mirror to LHS position, output digit
+  {:des "Shift+mirror oneshot numbers (desktop only, must come before number swap)"
+   :rules [:!apple_internal
     [:6 [:5 ["submode" 0]] ["submode" 1]]
     [:7 [:4 ["submode" 0]] ["submode" 1]]
     [:8 [:3 ["submode" 0]] ["submode" 1]]
@@ -157,19 +156,16 @@
     [{:key :down_arrow :modi {:mandatory [:shift]}} :close_bracket ["mode" 1]]
    ]}
 
-  {:des "Brackets to command+bracket (only in working layers)"
-   :rules [
+  {:des "Brackets to command+bracket (desktop only, in working layers)"
+   :rules [:!apple_internal
     [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_modal" 1]]
     [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["in_modal" 1]]
-    ;; Cmd+bracket → bare bracket (only in working layers, blocked in Normal)
     [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_modal" 1]]
     [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_modal" 1]]
-    ;; Shift+brackets have no special mapping (pass through naturally)
    ]}
 
-  {:des "Backslash in Ins mode"
-   :rules [
-    ;; backslash = tab in Ins mode
+  {:des "Backslash = tab (desktop only, Ins mode)"
+   :rules [:!apple_internal
     [:backslash :tab ["mode" 1]]
    ]}
 
