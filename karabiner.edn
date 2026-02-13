@@ -581,6 +581,7 @@
     [:!Of1 [:!CSz ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Fn+L: Redo
     [:period [:!Cs ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Save
     [:i [:!Ca ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Select all → Ins
+    [{:key :i :modi {:mandatory [:shift]}} [:!Ca :!Cc ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Shift+I: Select all + Copy → Normal
     [:o [:!CSp ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Command palette → Ins
     [:f18 [:!Co ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Fn+O: Open → Ins
     [:p [:!Cp ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Cmd+P → Ins
