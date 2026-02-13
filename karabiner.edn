@@ -496,37 +496,33 @@
     ;; Fn+M (Alt+F5) from Normal: enter Grid mode, start warpd grid
     [:!Of5 [["mode" 28] ["in_modal" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}] ["mode" 0]]
 
-    ;; === EXIT ===
-    ;; Cancel: kill warpd via shell (don't send escape - it reaches underlying app)
+    ;; === EXIT (no click) ===
+    ;; All exits: kill warpd, set mode to Normal
     [:right_control [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-    ;; Ctrl+N and Ctrl+J also exit
     [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
     [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    [:up_arrow [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    [:y [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Up = Hover exit (move mouse without clicking)
-    [:up_arrow [["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; === CLICK ACTIONS ===
+    ;; Kill warpd first (mouse stays where warpd put it), then trigger our own click
+    ;; Space = left click
+    [:spacebar [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'hs.eventtap.leftClick(hs.mouse.absolutePosition())' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Y = Exit grid without click (warpd grid_exit)
-    [:y [:y ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Shift+Space = right click
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'hs.eventtap.rightClick(hs.mouse.absolutePosition())' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; === CLICK ACTIONS (matching Label mode) ===
-    ;; Space = n (left click via warpd)
-    [:spacebar [:n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Enter = double click
+    [:return_or_enter [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'local p=hs.mouse.absolutePosition(); hs.eventtap.leftClick(p); hs.eventtap.leftClick(p)' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Shift+Space = h (right click via warpd)
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:h ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Shift+Enter = shift+click
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'hs.eventtap.leftClick(hs.mouse.absolutePosition(), {shift=true})' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Enter = n n (double-click via warpd)
-    [:return_or_enter [:n :n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Fn+Space = cmd+click
+    [:!Of18 [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'hs.eventtap.leftClick(hs.mouse.absolutePosition(), {cmd=true})' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Shift+Enter = Shift+n (shift+click)
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-
-    ;; Fn+Space = Cmd+n (cmd+click)
-    [:!Of18 [:!Cn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-
-    ;; Fn+Enter = Cmd+Shift+n (cmd+shift+click)
-    [:!Of17 [:!CSn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Fn+Enter = cmd+shift+click
+    [:!Of17 [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'hs.eventtap.leftClick(hs.mouse.absolutePosition(), {cmd=true, shift=true})' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; === PASSTHROUGH ===
     ;; Grid navigation keys for warpd (H and N disabled - use Space/Enter instead)
@@ -539,6 +535,7 @@
     [:m :m ["mode" 28]]
     [:comma :comma ["mode" 28]]
     [:period :period ["mode" 28]]
+    ;; Block bare h and n (use Space/Enter for clicking, not direct keys)
     [:h :vk_none ["mode" 28]]
     [:n :vk_none ["mode" 28]]
    ]}

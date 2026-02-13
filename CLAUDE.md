@@ -316,6 +316,29 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 
 **No maintenance needed** for new layers - the panic button simply resets the 3 variables to their Normal state.
 
+## Grid Mode (warpd) Design
+
+Grid mode uses warpd to move the mouse pointer via keyboard. **Important**: We do NOT use warpd's built-in click functionality. Instead:
+
+1. warpd moves the mouse to the target location as you navigate the grid
+2. When you want to click, we **kill warpd first** (pkill warpd), leaving the mouse where warpd positioned it
+3. Then we trigger our own click via Hammerspoon (`hs.eventtap.leftClick`, `hs.eventtap.rightClick`, etc.)
+
+**Why this design:**
+- warpd's oneshot_buttons config is unreliable/confusing
+- By killing warpd and clicking ourselves, we have full control over click modifiers (Cmd+click, Shift+click, etc.)
+- The mouse position is preserved after warpd exits
+
+**Grid mode keys:**
+- Navigation: u,i,o,j,k,l,m,comma,period (passed through to warpd)
+- Exit without click: right_control, Ctrl+N, Ctrl+J, Up, Y
+- Left click: Space
+- Right click: Shift+Space
+- Double click: Enter
+- Shift+click: Shift+Enter
+- Cmd+click: Fn+Space
+- Cmd+Shift+click: Fn+Enter
+
 ## Layer Exit Modes: Normal vs Ins
 
 When a layer action exits, decide whether to go to **Normal** or **Ins** mode:
