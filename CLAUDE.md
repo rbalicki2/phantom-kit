@@ -192,6 +192,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Goku requires numeric variable values.** String values like `["mode" "norm"]` don't work - Goku requires integers like `["mode" 0]`. This is a Goku limitation, not Karabiner.
 - **Rules need a key output to work.** A rule with only variable sets and shell commands but no key output won't trigger. Use `:vk_none` as a no-op output: `[:right_control [:vk_none ["mode" 0] {:shell "..."}] ["mode" 28]]`
 - **Global shortcut rules need `in_modal` conditions.** Global rules (like Ctrl+N→escape) with no mode condition will fire BEFORE layer-specific rules that define the same shortcut, because rules are processed in file order and global rules typically come before layer definitions. Add `["in_modal" 0]` to global shortcut rules so they don't intercept shortcuts from modal layers.
+- **Bare key rules match any modifiers by default.** A rule like `[:n :escape]` matches N with ANY modifiers held (Ctrl+N, Shift+N, etc.). To match ONLY bare N (no modifiers), use `{:key :n :modi {:optional [:caps_lock]}}`. The `:optional [:caps_lock]` restricts the rule to only match with caps_lock optionally held.
 
 ## State Machine (3 Variables)
 
