@@ -2,6 +2,7 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
+- Create mental_model.md: concise source of truth for how layers/modes should behave (karabiner.edn is too verbose to be a good reference). Should document each layer's purpose, entry/exit, and key bindings in a scannable format.
 - Create a Tampermonkey setup that exposes functions callable from a layer
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
@@ -34,6 +35,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Clean up karabiner.edn: audit which rules belong in ALL PROFILES vs DESKTOP ONLY sections
 - Audit vk_none: search for rules with only variable sets/shell commands and no key output - these need `:vk_none` to work
+- Document reserved keys: create a map of special global key bindings that are reserved (e.g., Hyper+F20 for Label mode dummy output, Ctrl+Alt+Shift+F19 for Wispr popo, etc.) so they don't get accidentally reused
 - Verify: Shift+equals → tilde still works after shift refactor
 - Verify: Left shift alone = (, right shift alone = ) still works (laptop only)
 - Verify: Shift+command alone → square brackets still works (laptop only)
