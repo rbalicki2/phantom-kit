@@ -581,10 +581,9 @@
     [:period [[:type-ins "git add "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
     [:!Of7 [[:type-enter-ins "git add -A"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+.
     ;; GitHub CLI
-    [:y [[:type-ins "gh pr create "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
-    ;; iTerm splits (exit to Ins)
-    [:i [:!Cd ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_term" 1]]
-    [:f17 [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo ins > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+I
+    [:y [[:type-enter-ins "gh pr create"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
+    ;; git push
+    [:i [[:type-enter-ins "git push --no-verify"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
    ]}
 
   {:des "[Desktop] Tmux Layer Entry (h from Normal, iTerm only)"
@@ -609,6 +608,9 @@
     [:f17 [:!S8 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f18 [:!S9 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f19 [:!S0 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    ;; iTerm splits
+    [:h [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
+    [:j [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split horizontal
    ]}
 
   {:des "[Desktop] Layer H (l from Normal to enter) - deletion/selection"
