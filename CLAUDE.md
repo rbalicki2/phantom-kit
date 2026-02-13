@@ -128,6 +128,37 @@ cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m 
 ```
 Note: Don't include Claude attribution in commit messages.
 
+## Pre-Commit Checklist
+
+Before committing changes to `karabiner.edn`, verify these common gotchas:
+
+### Shell Commands
+- [ ] **Only ONE `{:shell ...}` per rule** - If a rule has multiple `{:shell ...}` blocks, only the LAST one executes. Combine with `&&`: `{:shell "cmd1 && cmd2 && cmd3"}`
+- [ ] For osascript, use multiple `-e` flags in ONE shell: `{:shell "osascript -e '...' -e '...'"}`
+
+### Layer Variables
+- [ ] Layer transitions set ALL THREE variables correctly:
+  - `["layer_X" 0/1]` - the specific layer
+  - `["in_any_layer" 0/1]` - 0 for Normal/Ins, 1 for modal layers
+  - `["layer_normal" 0/1]` - 1 for Normal, 0 otherwise
+- [ ] Layer exits write to `/tmp/karabiner-layer` for SwiftBar
+
+### New Layers
+- [ ] Update PANIC BUTTON rule to clear new layer variable
+- [ ] Add case to `karabiner-layer.100ms.sh` SwiftBar script
+- [ ] Create `layers/*.txt` file for Hammerspoon overlay
+- [ ] Update `layerFiles` map in `~/.hammerspoon/init.lua`
+
+### Modifiers
+- [ ] RHS shortcuts use `right_control` not `left_control`
+- [ ] Shift matching uses `{:key :x :modi {:mandatory [:shift]}}` to match EITHER shift (not `!S` which is left-only)
+- [ ] Mouse buttons with modifiers use explicit form: `{:pkey :button1 :modi [:left_command]}`
+
+### Rule Ordering
+- [ ] In-layer Ctrl+KEY rules come BEFORE layer entry rules they might conflict with
+- [ ] More specific rules come before general rules
+- [ ] `shift_mirror_oneshot` rules come before global number-swap rules
+
 ## Formatting Guidelines
 - Never use tables for listing layer commands - use bullets instead
 - Combine related commands onto single lines when logical (e.g., base + modifier variants)
