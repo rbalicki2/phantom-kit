@@ -397,8 +397,9 @@
 
   {:des "[Desktop] Layer N (Nav) - N from Normal = escape, Ctrl+hk4 enters from any layer"
    :rules [:!apple_internal
-    ;; N in Normal = escape (stays in Normal)
-    [:n :escape ["mode" 0]]
+    ;; N in Normal = escape (stays in Normal) - only bare N, not Ctrl+N
+    ;; Using {:optional [:caps_lock]} ensures only bare N matches (not Ctrl+N, Shift+N, etc.)
+    [{:key :n :modi {:optional [:caps_lock]}} :escape ["mode" 0]]
     ;; Entry via Ctrl+hk4 is handled separately
     [:right_control :right_control ["mode" 2] {:alone [["in_modal" 0] ["mode" 0] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 2]]
