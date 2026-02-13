@@ -373,9 +373,9 @@
       {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"}] ["mode" 12]]
    ]}
 
-  {:des "[Desktop] Right control+N to Escape (all layers)"
+  {:des "[Desktop] Right control+N to Escape (from Normal/Ins only)"
    :rules [:!apple_internal
-    [{:key :n :modi {:mandatory [:right_control]}} :escape]
+    [{:key :n :modi {:mandatory [:right_control]}} :escape ["in_modal" 0]]
    ]}
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
@@ -437,11 +437,11 @@
     ;; Cancel: right_control exits and dismisses Homerow (sends escape to Homerow app only)
     [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
-    ;; Ctrl+N and Ctrl+J also exit (hyper+F20 is dummy key nothing listens to)
-    [{:key :n :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :n :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
-    [{:key :j :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :j :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Ctrl+N and Ctrl+J also exit
+    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
