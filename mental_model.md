@@ -2,6 +2,43 @@
 
 Focus: State transitions, invariants, and behaviors that must be preserved.
 
+## Principles
+
+### Prefer No-ops Over Conditional Behavior
+
+When cleaning up state, always perform the cleanup unconditionally rather than checking if it's needed. For example, `pkill warpd` is safe even if warpd isn't running. This simplifies logic and prevents bugs from missed edge cases.
+
+### Every Transition = Panic + Desired State
+
+Conceptually, every state transition should behave as if it:
+1. Calls panic (clears ALL state—both Karabiner variables and external state)
+2. Sets the exact state we want
+
+This isn't literally implementable (shell can't set Karabiner variables), but it's the mental model. The result: transitions are self-contained and don't rely on "current state is probably X".
+
+### Centralize State in Karabiner
+
+**Goal**: Manage as much state as possible within Karabiner, minimizing external dependencies.
+
+**Example**: The Kinesis keyboard has native layer support, but we don't use it for mode switching. Instead, all Fn+key combos send F-keys that Karabiner interprets. The keyboard layers exist but behave identically—Karabiner is the single source of truth for mode.
+
+### External State Awareness
+
+Be extra wary of state that lives outside Karabiner variables:
+
+| External State | Where | Cleanup |
+|----------------|-------|---------|
+| Cmd held down | macOS (app/window switcher) | `osascript 'key up command'` |
+| warpd process | System process | `pkill warpd` |
+| Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
+| Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
+| Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
+| Held modifiers | macOS | Panic releases all |
+| /tmp/karabiner-layer | Filesystem | Write correct value |
+| Frontmost app | macOS | Can't control, but affects H key behavior |
+
+Any state transition that could leave external state dirty must clean it up explicitly.
+
 ## State Variables
 
 Four variables track all state:
