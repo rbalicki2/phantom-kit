@@ -11,13 +11,13 @@ Four variables track all state:
 | `mode` | 0-28 | Current layer |
 | `in_modal` | 0/1 | Whether in a modal layer |
 | `submode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
-| `mouse_from_ins` | 0/1 | Return destination for Label mode (0=Normal, 1=Ins). Future: rename to `return_to_layer` |
+| `mouse_from_ins` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins). Future: rename to `return_to_layer` |
 
 ### Invariants
 
 1. **in_modal = (mode >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
 2. **submode = -1 when mode != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
-3. **mouse_from_ins only matters when mode = 13** — Controls Label mode return destination.
+3. **mouse_from_ins = -1 when mode != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
 
 ### Explicit State Transitions
 
@@ -127,4 +127,5 @@ While in switcher:
 - [ ] Rename `mouse_from_ins` to `return_to_layer` (generic return destination)
 - [ ] Bug: Ctrl+J should set submode=0 when entering Ins (currently doesn't)
 - [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
+- [ ] Implement mouse_from_ins=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
