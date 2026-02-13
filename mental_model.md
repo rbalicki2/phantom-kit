@@ -129,4 +129,4 @@ While in switcher:
 - [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
 - [ ] Implement mouse_from_ins=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
-- [ ] Add Ctrl+N to all modal layers (not truly global—each layer needs specific cleanup: dismiss Homerow, kill warpd, release Cmd, etc.)
+- [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
