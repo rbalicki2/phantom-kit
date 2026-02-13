@@ -2,7 +2,7 @@ VS Code Layer (right_control+J, VS Code only)
 
 H = Copy relative path, Fn+H = Copy full path
 Ctrl+H = Copy rel path + open in Chrome (cc/isof)
-J = Cmd+D (go to definition)
+J = Cmd+D (go to definition), Fn+J = Cmd+. (quick fix)
 K = F2 (rename)
 L = Cmd+R (find references)
 I = Create 2nd tab, Fn+I = Move to next tab

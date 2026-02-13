@@ -46,4 +46,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Claude co-worker: send messages via text-to-speech to a background Claude session
 - H modes (Chrome, VS Code, TMUX): add consistent navigation shortcuts like J, K, comma across all app-specific layers
 - gcmp alias: remove --no-verify from Term layer and add it to the gcmp alias in bash_profile instead
+- VS Code layer: explore executing commands by name instead of keyboard shortcuts (e.g., via CLI or extension)
 - Snippet library: quick access to commonly used text snippets
