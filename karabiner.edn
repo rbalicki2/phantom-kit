@@ -119,9 +119,9 @@
 
   {:des "Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON - reset all state"
    ;; NOTE: When adding new layers or state variables, update this rule!
+   ;; IMPORTANT: Only ONE shell command runs per rule, so combine all shell ops into one!
    :rules [
-    [:!SOf19 [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-              ;; Clear all layer variables
+    [:!SOf19 [;; Clear all layer variables
               ["layer_ins" 0] ["layer_n" 0] ["layer_i" 0] ["layer_comma" 0]
               ["layer_l" 0] ["layer_term" 0] ["layer_chrome" 0] ["layer_vscode" 0]
               ["layer_tmux" 0] ["layer_inapp" 0] ["layer_appswitcher" 0] ["layer_windowswitcher" 0]
@@ -137,7 +137,8 @@
               ["rcmd_h_mode" 0] ["rcmd_n_mode" 0]
               ;; Set normal mode
               ["in_any_layer" 0] ["layer_normal" 1]
-              {:shell "echo norm > /tmp/karabiner-layer"}]]
+              ;; Combined shell: release Command, write layer file, write test file
+              {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
 
   {:des "Fn+hk4 (F21) = enter Nav layer from Normal"
