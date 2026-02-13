@@ -3,7 +3,7 @@
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
 - Create mental_model.md: concise source of truth for how layers/modes should behave (karabiner.edn is too verbose to be a good reference). Should document each layer's purpose, entry/exit, and key bindings in a scannable format.
-- Create a Tampermonkey setup that exposes functions callable from a layer
+- URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
@@ -26,7 +26,16 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - LLM transform layer: cut selection → apply LLM transformation → paste result
 - Hammerspoon border indicator bug: borders don't update correctly when screens are resized or when switching between monitors
 - Slack/messaging: quick way to message people on Slack or other messaging apps
-- Claude co-worker: send messages via text-to-speech to a background Claude session
+- Claude co-worker: send messages via text-to-speech to a background Claude session; also Claude Code shortcuts (send selection to session, paste last response, trigger specific prompts)
 - Term layer --no-verify: remove from gcmp, git commit -m, and git commit -am 'wip', add to bash aliases instead
 - VS Code layer: explore executing commands by name instead of keyboard shortcuts (e.g., via CLI or extension)
 - Snippet library: quick access to commonly used text snippets
+- Grid mode drag: integrate warpd's drag mode (v) for drag-and-drop operations without physical mouse
+- Git-aware border colors: change Hammerspoon border color based on git status (green=clean, red=uncommitted, yellow=unpushed)
+- Project-based layer configs: different shortcut sets for different repos, auto-detect via pwd or .git
+- Macro recording: record sequence of layer actions, save as named macro, replay with one key via Hammerspoon
+- Window arrangement presets: one key to arrange windows for "coding", "research", "communication" layouts
+- Session restore: save all Chrome tabs, iTerm sessions, VS Code windows as a "workspace", restore later
+- Dismiss all notifications: shortcut to clear macOS notification center
+- Debug logging: log layer changes, key presses, and actions to file for debugging issues
+- Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
