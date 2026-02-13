@@ -2,6 +2,7 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
+- Push voicemode repo to a remote repository
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
