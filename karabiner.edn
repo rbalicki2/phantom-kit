@@ -148,7 +148,7 @@
    ;; IMPORTANT: Only ONE shell command runs per rule, so combine all shell ops into one!
    :rules [
     [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0]
-              {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
+              {:shell "osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
 
   {:des "Fn+hk4 (F21) = enter Nav layer from Normal"
@@ -676,11 +676,9 @@
 
   {:des "[Desktop] In-App Nav - Stay-in-layer shortcuts"
    :rules [:!apple_internal
-    ;; Scrolling (J/K = down/up, Shift+J/K = scroll wheel, Fn+J/K = end/home) - STAY in layer
-    [:j :down_arrow ["mode" 10]]
-    [:k :up_arrow ["mode" 10]]
-    [{:key :j :modi {:mandatory [:shift]}} {:shell "hs -c 'scroll(-5)'"} ["mode" 10]]  ;; Shift+J = Scroll down
-    [{:key :k :modi {:mandatory [:shift]}} {:shell "hs -c 'scroll(5)'"} ["mode" 10]]     ;; Shift+K = Scroll up
+    ;; Scrolling (J/K = scroll with repeat, Fn+J/K = end/home) - STAY in layer
+    [:j [{:shell "/opt/homebrew/bin/hs -c 'scrollStart(-30)'"}] ["mode" 10] {:afterup [{:shell "/opt/homebrew/bin/hs -c 'scrollStop()'"}]}]  ;; J = Scroll down (hold to repeat)
+    [:k [{:shell "/opt/homebrew/bin/hs -c 'scrollStart(30)'"}] ["mode" 10] {:afterup [{:shell "/opt/homebrew/bin/hs -c 'scrollStop()'"}]}]   ;; K = Scroll up (hold to repeat)
     [:f23 :end ["mode" 10]]  ;; Fn+J = End
     [:f24 :home ["mode" 10]]  ;; Fn+K = Home
     ;; Back/Forward (U/I) - STAY in layer
