@@ -45,6 +45,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Nav layer split: separate navigation within the app (back/forward, tabs) from navigating to other apps (open Chrome, iTerm, etc.)
 - Claude co-worker: send messages via text-to-speech to a background Claude session
 - H modes (Chrome, VS Code, TMUX): add consistent navigation shortcuts like J, K, comma across all app-specific layers
-- gcmp alias: remove --no-verify from Term layer and add it to the gcmp alias in bash_profile instead
+- Term layer --no-verify: remove from gcmp and git commit -am 'wip', add to bash aliases instead
 - VS Code layer: explore executing commands by name instead of keyboard shortcuts (e.g., via CLI or extension)
 - Snippet library: quick access to commonly used text snippets
