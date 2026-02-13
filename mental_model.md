@@ -159,10 +159,14 @@ While in switcher:
 - [ ] Implement return_to_layer=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
-- [ ] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
+- [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 
 ## Potential Bugs
 
 - [ ] Ctrl+J should set submode=0 when entering Ins (currently doesn't)
 - [ ] Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets submode=3/4)
+- [ ] App/Window switcher exit via right_ctrl: Does it release the held Cmd key? Ctrl+N and Enter release Cmd, but right_ctrl alone might not.
+- [ ] Grid mode doesn't set return_to_layer=0 on entry: Works by accident since Label mode entry sets it, but violates "explicit state" principle.
+- [ ] Scroll timer / hover mode not cleared on most exits: Only panic clears them. If you exit InApp (which has scroll) via right_ctrl, is scrollStop() called?
+- [ ] Oneshot submodes (1, 2) might not clear on non-letter keys: What if you press a number, symbol, or modifier after entering oneshot? Does it clear or persist incorrectly?
