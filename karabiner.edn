@@ -112,9 +112,14 @@
     [:!Qpage_up :escape]
    ]}
 
-  {:des "TEMPORARY: F21 (Fn+hk4) = show overlay"
+  {:des "hk3 (Alt+F19) = show overlay"
    :rules [
-    [:f21 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
+    [:!Of19 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
+   ]}
+
+  {:des "Fn+hk4 (F21) = enter Nav layer from Normal"
+   :rules [:!apple_internal
+    [:f21 [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["layer_normal" 1]]
    ]}
 
   {:des "Shift+mirror oneshot numbers (must come before number swap)"
