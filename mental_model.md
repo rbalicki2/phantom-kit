@@ -34,8 +34,7 @@ Be extra wary of state that lives outside Karabiner variables:
 | Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
-
-Note: Frontmost app affects behavior (e.g., H key enters different layers) but we don't modify it.
+| Frontmost app | macOS | Can't clear programmatically |
 
 Any state transition that could leave external state dirty must clean it up explicitly. Panic mode clears all external state listed above.
 
