@@ -383,21 +383,20 @@ Hold rcmd+N then press a navigation key to select:
 - **up** = select char left, **down** = select char right
 
 ### Layer N "Nav" (n from Normal)
-- **N** = Command+Space (Spotlight)
+- **Y** = Command+Space (Spotlight) - exits to Ins
 - **Ctrl+H** = Cmd+W (close)
-- **M** = Chrome Personal profile
-- **Comma** = Chrome Work profile
-- **H** = Open Karabiner-EventViewer
-- **J** = Open iTerm
-- **K** = Open VS Code
-- **L** = Open Signal, **Shift+L** = Open Messages, **Ctrl+L** = Open WhatsApp
+- **N** = Chrome Personal profile
+- **M** = Chrome Work profile
+- **H** = Open iTerm
+- **J** = Open VS Code
+- **K** = Open Karabiner-EventViewer
+- **L** = Open Signal, **Fn+L** = Open Messages, **Ctrl+L** = Open WhatsApp
 - **O** = Open Obsidian
-- **Period** = Finder, **Shift+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Shift+J** = Cmd+[ (back), **Shift+K** = Cmd+] (forward) (stays)
-- **Shift+M** = Ctrl+Shift+Tab (prev tab), **Shift+,** = Ctrl+Tab (next tab) (stays)
-- **Shift+Up** = Cmd+Tab (app switch fwd), **Shift+Down** = Cmd+Shift+Tab (app switch back) (stays)
+- **Period** = Finder, **Fn+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
+- **Fn+J** = Cmd+[ (back), **Fn+K** = Cmd+] (forward) (stays)
+- **Fn+M** = Ctrl+Shift+Tab (prev tab), **Fn+,** = Ctrl+Tab (next tab) (stays)
+- **Fn+Up** = Cmd+Tab (app switch fwd), **Fn+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Enter** = Cmd+Enter (exits to Ins)
-- **Releasing Shift** = Exits to Normal (for quick Shift+nav combos)
 
 ### Admin Layer ⚙️ (i from Normal)
 - **Space** = Maximize (BTT: Ctrl+Opt+Shift+Cmd+G)

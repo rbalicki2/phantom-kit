@@ -38,13 +38,13 @@
 - **Fn+]** = Capital mirrored letter oneshot (next Fn+letter uppercase)
 
 ## Layer N "Nav" (N from Normal)
-- **H** = Karabiner-EventViewer, **J** = iTerm, **K** = VS Code, **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
-- **M** = Chrome Personal, **Comma** = Chrome Work
-- **N** = Spotlight
+- **H** = iTerm, **J** = VS Code, **K** = Karabiner-EventViewer, **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
+- **N** = Chrome Personal, **M** = Chrome Work
+- **Y** = Spotlight (→Ins)
 - **Ctrl+H** = Close (Cmd+W)
 - **Period** = Finder, **Fn+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
 - **Fn+J/K** = Back/Forward, **Fn+M/,** = Prev/Next tab, **Fn+Up/Down** = App switch
-- **Enter** = Cmd+Enter
+- **Enter** = Cmd+Enter (→Ins)
 
 ## Mouse Mode 🐭 (M/Fn+M from Normal, Ctrl+M from Ins)
 - **M** = Homerow labels, **Fn+M** = warpd grid
