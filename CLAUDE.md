@@ -433,13 +433,14 @@ Hold rcmd+N then press a navigation key to select:
 - **P** = Cmd+Shift+3 (screenshot full), **Ctrl+P** = Cmd+Shift+4 (screenshot selection)
 - **Y** = Restart Whispering
 - **L** = LLM blurb paste (exits to Ins)
+- **M** = Move window to next screen
 
 
 ### Comma Layer (comma from Normal)
 - **Comma** = Control+C (terminal copy/interrupt)
 - **N** = Control+R (terminal reverse search)
-- **H** = Command+C (GUI copy)
-- **J** = Command+V (paste) - exits to Ins
+- **H** = Command+C (GUI copy), **Fn+H** = Select all + Copy
+- **J** = Command+V (paste) - exits to Ins, **Fn+J** = Select all + Paste - exits to Ins
 - **K** = Cmd+F (find), **Shift+K** = Cmd+Shift+F (find in files)
 - **L** = Command+Z (undo), **Shift+L** = Redo
 - **Period** = Command+S (save)

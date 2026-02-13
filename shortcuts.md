@@ -60,9 +60,12 @@
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
 - **Enter** = Switch windows (Cmd+`)
 - **P** = Screenshot full, **Ctrl+P** = Screenshot selection
+- **Y** = Restart Whispering, **L** = LLM blurb paste (→Ins)
+- **M** = Move window to next screen
 
 ## Comma Layer (Comma from Normal)
-- **H** = Copy, **J** = Paste (→Ins), **K** = Find (→Ins), **Fn+K** = Find in files (→Ins), **L** = Undo, **Fn+L** = Redo
+- **H** = Copy, **Fn+H** = Select all + Copy, **J** = Paste (→Ins), **Fn+J** = Select all + Paste (→Ins)
+- **K** = Find (→Ins), **Fn+K** = Find in files (→Ins), **L** = Undo, **Fn+L** = Redo
 - **Comma** = Ctrl+C, **N** = Ctrl+R
 - **I** = Select all (→Ins), **O** = Cmd+Shift+P (→Ins), **Fn+O** = Open (→Ins), **P** = Cmd+P (→Ins)
 - **Ctrl+H** = Close
