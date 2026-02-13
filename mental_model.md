@@ -28,12 +28,13 @@ Be extra wary of state that lives outside Karabiner variables:
 
 | External State | Where | Cleanup |
 |----------------|-------|---------|
-| Cmd held down | macOS (app/window switcher) | `osascript 'key up command'` |
+| Held modifier keys | macOS | `osascript 'key up command/shift/option/control'` |
 | warpd process | System process | `pkill warpd` |
 | Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
-| Held modifiers | macOS | Panic releases all |
+
+Held modifiers include Cmd, Shift, Option, Control. The app/window switcher holds Cmd; other modes may hold other modifiers.
 
 Note: Frontmost app affects behavior (e.g., H key enters different layers) but we don't modify it.
 
