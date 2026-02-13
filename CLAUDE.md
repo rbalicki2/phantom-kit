@@ -191,6 +191,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Karabiner shell commands don't have /opt/homebrew/bin in PATH.** Use full path `/opt/homebrew/bin/hs` instead of just `hs` when calling Hammerspoon CLI from Karabiner shell commands.
 - **Goku requires numeric variable values.** String values like `["mode" "norm"]` don't work - Goku requires integers like `["mode" 0]`. This is a Goku limitation, not Karabiner.
 - **Rules need a key output to work.** A rule with only variable sets and shell commands but no key output won't trigger. Use `:vk_none` as a no-op output: `[:right_control [:vk_none ["mode" 0] {:shell "..."}] ["mode" 28]]`
+- **Global shortcut rules need `in_modal` conditions.** Global rules (like Ctrl+N→escape) with no mode condition will fire BEFORE layer-specific rules that define the same shortcut, because rules are processed in file order and global rules typically come before layer definitions. Add `["in_modal" 0]` to global shortcut rules so they don't intercept shortcuts from modal layers.
 
 ## State Machine (3 Variables)
 
