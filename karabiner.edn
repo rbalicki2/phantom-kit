@@ -761,6 +761,8 @@
     [:l [:!Cl ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 10]]
     ;; O = Cmd+O (open) - EXIT to Ins
     [:o [:!Co ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 10]]
+    ;; Enter = Cmd+Enter - EXIT to Ins
+    [:return_or_enter [:!Creturn_or_enter ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 10]]
    ]}
 
   {:des "[Desktop] In-App Nav - Chrome-specific"
