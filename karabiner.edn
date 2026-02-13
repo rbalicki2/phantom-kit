@@ -148,7 +148,7 @@
    ;; Also kills warpd and dismisses Homerow labels
    ;; IMPORTANT: Only ONE shell command runs per rule, so combine all shell ops into one!
    :rules [
-    [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0] ["mouse_from_ins" 0]
+    [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0] ["return_to_layer" 0]
               {:shell "pkill warpd 2>/dev/null; osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop(); dismissHomerow()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
 
@@ -427,49 +427,49 @@
    :rules [:!apple_internal
     ;; === ENTRY ===
     ;; M from Normal: enter Label mode, trigger Homerow
-    [:m [["mode" 13] ["mouse_from_ins" 0] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 0]]
+    [:m [["mode" 13] ["return_to_layer" 0] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 0]]
     ;; Ctrl+M from Ins: enter Label mode, trigger Homerow
-    [{:key :m :modi {:mandatory [:right_control]}} [["mode" 13] ["mouse_from_ins" 1] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 1]]
+    [{:key :m :modi {:mandatory [:right_control]}} [["mode" 13] ["return_to_layer" 1] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 1]]
 
     ;; === EXIT (return to origin) ===
-    ;; Uses rule ordering: mouse_from_ins=1 rules first (exit to Ins), then fallback (exit to Normal)
+    ;; Uses rule ordering: return_to_layer=1 rules first (exit to Ins), then fallback (exit to Normal)
 
     ;; Cancel: right_control exits and dismisses Homerow (sends escape to Homerow app only)
-    [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:right_control [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:right_control [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
     ;; Ctrl+N and Ctrl+J also exit
-    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
-    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Up = Hover exit (move mouse without clicking)
-    [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:up_arrow [["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:up_arrow [["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Space = Click (left click via Homerow)
-    [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:spacebar [:return_or_enter ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:spacebar [:return_or_enter ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Fn+Space = Cmd+click (via Hammerspoon)
-    [:!Of18 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:!Of18 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:!Of18 [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:!Of18 [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Shift+Space = Shift+click (via Hammerspoon)
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Shift+Enter = Cmd+Shift+click (via Hammerspoon)
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Enter = Right-click (ctrl+click via Hammerspoon)
-    [:return_or_enter [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:return_or_enter [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:return_or_enter [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:return_or_enter [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Fn+Enter = Double-click (via Hammerspoon)
-    [:!Of17 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:!Of17 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [:!Of17 [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo ins > /tmp/karabiner-layer"}] ["return_to_layer" 1]]
+    [:!Of17 [:vk_none ["return_to_layer" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; === PASSTHROUGH ===
     ;; Label keys for Homerow selection

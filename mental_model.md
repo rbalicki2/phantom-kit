@@ -47,13 +47,13 @@ Four variables track all state:
 | `mode` | 0-28 | Current layer |
 | `in_modal` | 0/1 | Whether in a modal layer |
 | `submode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
-| `mouse_from_ins` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins). Future: rename to `return_to_layer` |
+| `return_to_layer` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins) |
 
 ### Invariants
 
 1. **in_modal = (mode >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
 2. **submode = -1 when mode != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
-3. **mouse_from_ins = -1 when mode != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
+3. **return_to_layer = -1 when mode != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
 
 ### Explicit State Transitions
 
@@ -63,7 +63,7 @@ Additionally, all state transitions should clear ALL external state (see Externa
 
 **Exception**: Don't clear external state that the target mode depends on. For example, Grid mode relies on warpd running, so transitions within Grid mode (navigation keys) must not kill warpd. App/window switcher relies on Cmd being held, so J/K cycling must not release Cmd.
 
-Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` and also clear external state (pkill warpd, dismissHomerow, release Cmd, etc.) even if we "know" some are already correct.
+Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and also clear external state (pkill warpd, dismissHomerow, release Cmd, etc.) even if we "know" some are already correct.
 
 ## Global Shortcuts
 
@@ -71,12 +71,12 @@ These work from ANY modal layer (mode >= 2):
 
 | Shortcut | State Change |
 |----------|--------------|
-| right_ctrl alone | mode=0, in_modal=0, submode=-1, mouse_from_ins=-1 |
-| Ctrl+J | mode=1, in_modal=0, submode=0, mouse_from_ins=-1 |
-| Panic | mode=0, in_modal=0, submode=-1, mouse_from_ins=-1 |
+| right_ctrl alone | mode=0, in_modal=0, submode=-1, return_to_layer=-1 |
+| Ctrl+J | mode=1, in_modal=0, submode=0, return_to_layer=-1 |
+| Panic | mode=0, in_modal=0, submode=-1, return_to_layer=-1 |
 
 **Ctrl+N** is NOT global. It exists only in:
-- Label mode (mode=13) — exits based on mouse_from_ins
+- Label mode (mode=13) — exits based on return_to_layer
 - Grid mode (mode=28) — exits to Normal
 - App/Window switcher (modes 11, 12) — cancels and exits to Normal
 
@@ -86,11 +86,11 @@ When an action completes, the destination depends on action type:
 
 **→ Normal (mode=0)**: Non-typing actions
 - Copy, close, undo/redo, window management
-- Mouse clicks when mouse_from_ins=0
+- Mouse clicks when return_to_layer=0
 
 **→ Ins (mode=1)**: Text-input actions
 - Paste, find, address bar, new tab/file, command palette
-- Mouse clicks when mouse_from_ins=1
+- Mouse clicks when return_to_layer=1
 
 **Stay in layer**: Repeatable actions
 - Tab switching, scrolling, back/forward
@@ -99,9 +99,9 @@ When an action completes, the destination depends on action type:
 
 ### Label Mode (mode=13)
 
-Entry determines return destination via mouse_from_ins:
-- M from Normal → mouse_from_ins=0 → clicks return to Normal
-- Ctrl+M from Ins → mouse_from_ins=1 → clicks return to Ins
+Entry determines return destination via return_to_layer:
+- M from Normal → return_to_layer=0 → clicks return to Normal
+- Ctrl+M from Ins → return_to_layer=1 → clicks return to Ins
 
 ### Grid Mode (mode=28)
 
@@ -146,10 +146,10 @@ While in switcher:
 
 ## Mental Model Todos
 
-- [ ] Rename `mouse_from_ins` to `return_to_layer` (generic return destination)
+- [ ] Set return_to_layer when entering Normal (0) or Ins (1) so it's always correct for Label mode
 - [ ] Bug: Ctrl+J should set submode=0 when entering Ins (currently doesn't)
 - [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
-- [ ] Implement mouse_from_ins=-1 when mode != 13 (if Karabiner supports negative values)
+- [ ] Implement return_to_layer=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
