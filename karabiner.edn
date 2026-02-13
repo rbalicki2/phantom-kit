@@ -535,9 +535,9 @@
     [:m :m ["mode" 28]]
     [:comma :comma ["mode" 28]]
     [:period :period ["mode" 28]]
-    ;; Block bare h and n (use Space/Enter for clicking, not direct keys)
+    ;; N = enter warpd normal mode (fine-grained IJKL movement), H blocked
+    [:n :n ["mode" 28]]
     [:h :vk_none ["mode" 28]]
-    [:n :vk_none ["mode" 28]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
