@@ -34,10 +34,10 @@ Be extra wary of state that lives outside Karabiner variables:
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
 | Held modifiers | macOS | Panic releases all |
-| /tmp/karabiner-layer | Filesystem | Write correct value |
-| Frontmost app | macOS | Can't control, but affects H key behavior |
 
-Any state transition that could leave external state dirty must clean it up explicitly.
+Note: Frontmost app affects behavior (e.g., H key enters different layers) but we don't modify it.
+
+Any state transition that could leave external state dirty must clean it up explicitly. Panic mode clears all external state listed above.
 
 ## State Variables
 
@@ -58,7 +58,7 @@ Four variables track all state:
 
 ### Explicit State Transitions
 
-Every state transition in karabiner.edn MUST explicitly set ALL relevant variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
+Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
 
 Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` even if we "know" some are already correct.
 
@@ -76,26 +76,6 @@ These work from ANY modal layer (mode >= 2):
 - Label mode (mode=13) — exits based on mouse_from_ins
 - Grid mode (mode=28) — exits to Normal
 - App/Window switcher (modes 11, 12) — cancels and exits to Normal
-
-## Layer Entry
-
-| Layer | Mode | Entry Key | From State |
-|-------|------|-----------|------------|
-| Normal | 0 | right_ctrl alone, Panic | mode >= 2 |
-| Ins | 1 | J | mode = 0 |
-| Ins | 1 | Ctrl+J | mode >= 2 |
-| Nav | 2 | N | mode = 0 |
-| Chrome | 3 | H | mode = 0, Chrome focused |
-| VSCode | 4 | H | mode = 0, VSCode focused |
-| TMUX | 5 | H | mode = 0, iTerm focused |
-| Comma | 6 | , | mode = 0 |
-| L | 7 | L | mode = 0 |
-| Term | 8 | U | mode = 0 |
-| Admin | 9 | I | mode = 0 |
-| InApp | 10 | HK4 | mode = 0 or mode = 1 |
-| Label | 13 | M | mode = 0 (sets mouse_from_ins=0) |
-| Label | 13 | Ctrl+M | mode = 1 (sets mouse_from_ins=1) |
-| Grid | 28 | Fn+M | mode = 0 |
 
 ## Layer Exit Behavior
 
@@ -124,29 +104,31 @@ Entry determines return destination via mouse_from_ins:
 
 Only entered from Normal. Always returns to Normal.
 
-### Click Keys (Both Modes)
+### Click Handling
 
-| Key | Action |
-|-----|--------|
-| Space | Left click |
-| Fn+Space | Cmd+click |
-| Shift+Space | Shift+click |
-| Enter | Right-click |
-| Fn+Enter | Double-click |
-| Shift+Enter | Cmd+Shift+click |
-| Up | Hover (position only, no click) |
+Both mouse modes use the same click keys (Space variants for left-click, Enter variants for right-click). The key insight is **hover mode**: pressing Up positions the cursor without clicking, then waits for a follow-up click key. This allows peeking at a target before committing to a click action.
 
 ## Ins Mode Submodes
 
-When mode=1, submode modifies the next keypress:
+When mode=1, submode overlays additional behavior without leaving Ins mode.
 
-| submode | Name | Trigger | Effect | Clears After |
-|---------|------|---------|--------|--------------|
-| 0 | Normal | (default) | Keys pass through | — |
-| 1 | shift_mirror_oneshot | Fn+] | Next mirrored letter → uppercase | One letter |
-| 2 | shift_oneshot | Fn+Space | Next letter → uppercase | One letter |
-| 3 | rcmd_h_mode | rcmd+H held | J/K/M/, → delete word/line | Chord complete |
-| 4 | rcmd_n_mode | rcmd+N held | J/K/M/, → select word/line | Chord complete |
+### Oneshot Submodes (1, 2)
+
+These affect the **next letter only**, then clear. Implementation: every letter key in Ins mode has rules that check submode. When submode=1 or 2, the rule outputs Shift+letter (or Shift+mirrored letter) and sets submode=0.
+
+- **submode=1 (shift_mirror_oneshot)**: Fn+] triggers. Next mirrored letter outputs uppercase.
+- **submode=2 (shift_oneshot)**: Fn+Space triggers. Next letter outputs uppercase.
+
+### Chord Submodes (3, 4)
+
+These are held modes for delete/select word/line operations:
+
+- **submode=3 (rcmd_h_mode)**: Hold rcmd+H, then J/K/M/, to delete word/line
+- **submode=4 (rcmd_n_mode)**: Hold rcmd+N, then J/K/M/, to select word/line
+
+**Why not separate layers?** These could be modes 29, 30, but they're tightly coupled to Ins mode—you're still typing, just with a modifier chord active. Using submode keeps them as overlays rather than full mode switches.
+
+**Interaction with oneshot**: The chord submodes (3, 4) set submode, which clears any active oneshot. However, plain Cmd+H/N (without rcmd) doesn't clear oneshot—this inconsistency is a bug.
 
 ## App/Window Switcher (modes 11, 12)
 
@@ -167,3 +149,4 @@ While in switcher:
 - [ ] Implement mouse_from_ins=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
+- [ ] Bug: Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets submode=3/4)
