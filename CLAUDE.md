@@ -235,6 +235,20 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 2. Update SwiftBar script (`karabiner-layer.100ms.sh`) with new layer case
 3. Create `layers/*.txt` file for Hammerspoon overlay
 4. Update `layerFiles` map in `~/.hammerspoon/init.lua`
+5. **Update the PANIC BUTTON rule** to clear the new layer variable
+
+## Panic Button (Fn+HK3)
+
+**Fn+HK3** (Shift+Alt+F19) is a global emergency reset that clears ALL state and returns to Normal mode. Use it when the keyboard gets into a stuck or unexpected state.
+
+**What it does:**
+- Releases any held modifiers (like Cmd from app/window switcher)
+- Clears all layer variables (sets them to 0)
+- Clears oneshot/mode variables (`shift_mirror_oneshot`, `shift_oneshot`, `rcmd_h_mode`, `rcmd_n_mode`)
+- Sets `layer_normal=1`, `in_any_layer=0`
+- Writes "norm" to `/tmp/karabiner-layer`
+
+**⚠️ MAINTENANCE REQUIRED**: When adding new layers or state variables, you MUST update the panic button rule in `karabiner.edn` (search for "PANIC BUTTON") to clear the new variable. The rule has a comment listing all variables it clears.
 
 ## Layer Exit Modes: Normal vs Ins
 

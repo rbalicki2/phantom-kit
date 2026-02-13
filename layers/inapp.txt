@@ -17,7 +17,7 @@ iTerm: N = Split pane (Cmd+D), Fn+N = New tab (Cmd+T)
 
 Default: H = Cmd+K, Fn+H = Cmd+P, N = Cmd+N, Fn+N = Cmd+Shift+N
 
-Down = App switcher (J/K to cycle, Enter to select)
-Up = Window switcher (J/K to cycle, Enter to select)
+Up = App switcher (J/K to cycle, Enter to select)
+Down = Window switcher (J/K to cycle, Enter to select)
 
 right_control = Exit to Normal, Ctrl+J = Exit to Ins

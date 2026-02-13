@@ -17,7 +17,7 @@
 # --- Right Hand Fn Layer (Macro Syntax) ---
 
 # Top Row & Hotkeys (Standard F-Keys)
-{hk3}>{-lalt}{f20}{+lalt}
+{hk3}>{-lshf}{-lalt}{f19}{+lalt}{+lshf}
 {y}>{f15}
 {u}>{f16}
 {i}>{f17}
