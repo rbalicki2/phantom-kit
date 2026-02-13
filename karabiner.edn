@@ -434,9 +434,14 @@
     ;; === EXIT (return to origin) ===
     ;; Uses rule ordering: mouse_from_ins=1 rules first (exit to Ins), then fallback (exit to Normal)
 
-    ;; Cancel: right_control exits and dismisses Homerow via AppleScript
-    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "osascript -e 'tell application \"Homerow\" to quit search' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "osascript -e 'tell application \"Homerow\" to quit search' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Cancel: right_control exits and dismisses Homerow (sends escape to Homerow app only)
+    [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:right_control [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Ctrl+N and Ctrl+J also exit (hyper+F20 is dummy key nothing listens to)
+    [{:key :n :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :n :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:!CTOSf20 ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]

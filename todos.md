@@ -33,6 +33,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Clean up karabiner.edn: audit which rules belong in ALL PROFILES vs DESKTOP ONLY sections
+- Audit vk_none: search for rules with only variable sets/shell commands and no key output - these need `:vk_none` to work
 - Verify: Shift+equals → tilde still works after shift refactor
 - Verify: Left shift alone = (, right shift alone = ) still works (laptop only)
 - Verify: Shift+command alone → square brackets still works (laptop only)
