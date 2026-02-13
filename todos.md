@@ -29,7 +29,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Files to modify: ~/.hammerspoon/init.lua, karabiner.edn (shell command trigger)
   - Test command for Homerow window detection: `hs -c 'return #hs.application.find("Homerow"):allWindows()'`
 - OSA scripts layer: shortcuts to run common AppleScripts (e.g., close VPN connection success tabs, clear notification center, dismiss dialogs)
-- Whispering restart: open/restart Whispering in background without foregrounding
 - USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
@@ -42,9 +41,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Scrolling
 - Hammerspoon border indicator bug: borders don't update correctly when screens are resized or when switching between monitors
 - Slack/messaging: quick way to message people on Slack or other messaging apps
-- Nav layer split: separate navigation within the app (back/forward, tabs) from navigating to other apps (open Chrome, iTerm, etc.)
 - Claude co-worker: send messages via text-to-speech to a background Claude session
-- H modes (Chrome, VS Code, TMUX): add consistent navigation shortcuts like J, K, comma across all app-specific layers
 - Term layer --no-verify: remove from gcmp, git commit -m, and git commit -am 'wip', add to bash aliases instead
 - VS Code layer: explore executing commands by name instead of keyboard shortcuts (e.g., via CLI or extension)
 - Snippet library: quick access to commonly used text snippets
