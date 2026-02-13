@@ -155,8 +155,8 @@ While in switcher:
 ## Mental Model Todos
 
 - [ ] Set return_to_layer when entering Normal (0) or Ins (1) so it's always correct for Label mode
-- [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
-- [ ] Implement return_to_layer=-1 when mode != 13 (if Karabiner supports negative values)
+- [ ] Implement submode=-1 when mode != 1 (confirmed: Karabiner supports negative values)
+- [ ] Implement return_to_layer=-1 when mode != 13 (confirmed: Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
