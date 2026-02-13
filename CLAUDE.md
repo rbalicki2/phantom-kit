@@ -395,7 +395,6 @@ Hold rcmd+N then press a navigation key to select:
 
 ### Layer N "Nav" (n from Normal)
 - **Y** = Command+Space (Spotlight) - exits to Ins
-- **Ctrl+H** = Cmd+W (close)
 - **N** = Chrome Personal profile
 - **M** = Chrome Work profile
 - **H** = Open iTerm
@@ -404,9 +403,6 @@ Hold rcmd+N then press a navigation key to select:
 - **L** = Open Signal, **Fn+L** = Open Messages, **Ctrl+L** = Open WhatsApp
 - **O** = Open Obsidian
 - **Period** = Finder, **Fn+Period** = Finder Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Fn+J** = Cmd+[ (back), **Fn+K** = Cmd+] (forward) (stays)
-- **Fn+M** = Ctrl+Shift+Tab (prev tab), **Fn+,** = Ctrl+Tab (next tab) (stays)
-- **Fn+Up** = Cmd+Tab (app switch fwd), **Fn+Down** = Cmd+Shift+Tab (app switch back) (stays)
 - **Enter** = Cmd+Enter (exits to Ins)
 
 ### Admin Layer ⚙️ (i from Normal)
@@ -477,17 +473,12 @@ Git shortcuts for terminal. Uses osascript to type text. All shortcuts exit to I
 
 ### Chrome Layer (h from Normal, Chrome only)
 - Only activates when Google Chrome is foreground app
-- **H** = Cmd+T (new tab) - exits to Ins
-- **J** = Ctrl+Shift+Tab (prev tab) - stays, **K** = Ctrl+Tab (next tab) - stays
-- **Shift+J** = Move tab left - stays, **Shift+K** = Move tab right - stays
-- **Ctrl+H** = Cmd+W (close tab) - stays, **Shift+Ctrl+H** = Close + prev tab - stays
-- **L** = Address bar - exits to Ins, **Shift+L** = Copy URL
-- **Comma** = Cmd+Shift+A (search tabs) - exits to Ins
-- **Y/U/I/O** = Tab 1/2/3/4, **Shift+Y/U/I/O** = Tab 5/6/7/8
+- **Y/U/I/O** = Tab 1/2/3/4, **Fn+Y/U/I/O** = Tab 5/6/7/8
 - **P** = Last tab
-- **N** = Cmd+K - exits to Ins
+- **Fn+L** = Copy URL
 - **M** = Dark mode (Alt+D)
-- **Period** = Refresh, **Shift+Period** = Hard refresh
+- **Fn+J/K** = Move tab left/right - stays
+- **Period** = Refresh, **Fn+Period** = Hard refresh
 
 ### VS Code Layer (k from Normal, VS Code only)
 - Only activates when VS Code is foreground app
