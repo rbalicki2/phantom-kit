@@ -735,11 +735,13 @@
   {:des "[Desktop] In-App Nav - App/Window Switcher Sub-modes"
    :rules [:!apple_internal
     ;; Up = Enter app switcher (hold Cmd, press Tab)
+    ;; IMPORTANT: Must clear layer_inapp so in-app rules don't match while in app switcher
     [:up_arrow [{:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke tab'"}
-                  ["layer_appswitcher" 1]] ["layer_inapp" 1]]
+                  ["layer_inapp" 0] ["layer_appswitcher" 1]] ["layer_inapp" 1]]
     ;; Down = Enter window switcher (hold Cmd, press `)
+    ;; IMPORTANT: Must clear layer_inapp so in-app rules don't match while in window switcher
     [:down_arrow [{:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke \"`\"'"}
-                ["layer_windowswitcher" 1]] ["layer_inapp" 1]]
+                ["layer_inapp" 0] ["layer_windowswitcher" 1]] ["layer_inapp" 1]]
     ;; === App Switcher sub-mode ===
     ;; J = Tab (next app)
     [:j {:shell "osascript -e 'tell app \"System Events\" to keystroke tab'"} ["layer_appswitcher" 1]]
