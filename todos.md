@@ -2,7 +2,6 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
-- Create mental_model.md: concise source of truth for how layers/modes should behave (karabiner.edn is too verbose to be a good reference). Should document each layer's purpose, entry/exit, and key bindings in a scannable format.
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking

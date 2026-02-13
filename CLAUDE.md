@@ -73,6 +73,7 @@ Source of truth for Karabiner config and related scripts.
 - `karabiner.edn` - Main Goku config (source of truth, copied to ~/.config/)
 - `package.json` - Contains `npm run sync` script to copy and run goku
 - `shortcuts.md` - Human-readable shortcuts reference (keep up to date)
+- `mental_model.md` - Concise source of truth for layer behaviors (keep up to date)
 - `CLAUDE.md` - This file, context for Claude sessions
 - `layers/*.txt` - Individual layer summaries for Hammerspoon overlay
   - `norm.txt`, `ins.txt`, `nav.txt`, `l.txt`, `term.txt`, `tmux.txt`, `chrome.txt`, `vscode.txt`, `comma.txt`, `i.txt`
@@ -109,6 +110,7 @@ See `todos.md` for the list of pending tasks.
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
+- `mental_model.md` - **Primary reference** for layer behaviors (keep this current!)
 - `CLAUDE.md` - Main reference with full details
 - `shortcuts.md` - Quick reference
 - `layers/*.txt` - **MUST update when ANY layer shortcut changes** (Hammerspoon overlay files)
