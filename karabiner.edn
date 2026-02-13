@@ -524,7 +524,7 @@
     [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickCmdShift()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; === PASSTHROUGH ===
-    ;; Grid navigation keys for warpd (H and N disabled - use Space/Enter instead)
+    ;; Grid navigation keys for warpd
     [:u :u ["mode" 28]]
     [:i :i ["mode" 28]]
     [:o :o ["mode" 28]]
@@ -534,10 +534,14 @@
     [:m :m ["mode" 28]]
     [:comma :comma ["mode" 28]]
     [:period :period ["mode" 28]]
-    ;; N = enter warpd normal mode (fine IJKL), H and Y blocked
+    ;; N = enter warpd normal mode (fine IJKL)
     [:n :n ["mode" 28]]
-    [:h :vk_none ["mode" 28]]
+    ;; Block all other RHS keys
     [:y :vk_none ["mode" 28]]
+    [:p :vk_none ["mode" 28]]
+    [:h :vk_none ["mode" 28]]
+    [:semicolon :vk_none ["mode" 28]]
+    [:slash :vk_none ["mode" 28]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
