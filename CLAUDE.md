@@ -12,6 +12,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - **CRITICAL: NEVER remove or replace an existing shortcut without explicit permission.** If implementing a new feature requires removing/changing an existing shortcut, STOP and ask the user first. Don't assume "remove the old ones" means all related shortcuts - clarify exactly which ones.
 - **NEVER make shortcuts exit to Normal mode without explicit permission.** The user does not like escape/quote/other keys automatically exiting to Normal. Always ask before adding any "exit to Normal" behavior to a shortcut.
 - **URL fetching is restricted by security policies.** If you need documentation from a URL, ask the user to provide the relevant content instead of trying to fetch it.
+- **Race conditions in messages:** The user may send messages that refer to a past state due to timing/latency. If a message seems to refer to something already addressed or changed, it may have been sent before the user saw the latest changes.
 
 ## ⚠️ CRITICAL: DO NOT BREAK EXISTING FUNCTIONALITY ⚠️
 
@@ -188,6 +189,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
 - **Karabiner shell commands don't have /opt/homebrew/bin in PATH.** Use full path `/opt/homebrew/bin/hs` instead of just `hs` when calling Hammerspoon CLI from Karabiner shell commands.
 - **Goku requires numeric variable values.** String values like `["mode" "norm"]` don't work - Goku requires integers like `["mode" 0]`. This is a Goku limitation, not Karabiner.
+- **Rules need a key output to work.** A rule with only variable sets and shell commands but no key output won't trigger. Use `:vk_none` as a no-op output: `[:right_control [:vk_none ["mode" 0] {:shell "..."}] ["mode" 28]]`
 
 ## State Machine (3 Variables)
 

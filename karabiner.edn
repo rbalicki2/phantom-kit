@@ -434,9 +434,9 @@
     ;; === EXIT (return to origin) ===
     ;; Uses rule ordering: mouse_from_ins=1 rules first (exit to Ins), then fallback (exit to Normal)
 
-    ;; Cancel: right_control exits without sending escape
-    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Cancel: right_control exits and dismisses Homerow via AppleScript
+    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "osascript -e 'tell application \"Homerow\" to quit search' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "osascript -e 'tell application \"Homerow\" to quit search' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
@@ -492,11 +492,11 @@
     [:!Of5 [["mode" 28] ["in_modal" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}] ["mode" 0]]
 
     ;; === EXIT ===
-    ;; Cancel: right_control exits without sending escape, kill warpd
-    [:right_control [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Cancel: kill warpd via shell (don't send escape - it reaches underlying app)
+    [:right_control [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
     ;; Ctrl+N and Ctrl+J also exit
-    [{:key :n :modi {:mandatory [:right_control]}} [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-    [{:key :j :modi {:mandatory [:right_control]}} [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
