@@ -59,7 +59,7 @@ Four variables track all state:
 
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. Always set them in the same order every time. No implicit state. This prioritizes correctness and future refactors over brevity.
 
-Additionally, all state transitions should clear ALL external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `skip` or `keep`:
+Additionally, all state transitions should clear ALL external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `skip` or `keep`. Flags must always appear in this exact order:
 ```
 cleanup-external-state.sh \
   --warpd skip \
@@ -69,7 +69,7 @@ cleanup-external-state.sh \
   --held-modifiers skip
 ```
 
-Every call must specify every flag. This makes assumptions explicit—if entering Grid mode needs warpd running, you write `--warpd keep` rather than silently omitting it. The script validates that all flags are present.
+Every call must specify every flag, in the same order. This makes assumptions explicit and diffs readable—if entering Grid mode needs warpd running, you write `--warpd keep` rather than silently omitting it. The script validates that all flags are present and in the correct order.
 
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`). App/window switcher relies on Cmd being held (`--held-modifiers keep`).
 
