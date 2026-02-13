@@ -69,8 +69,6 @@ cleanup-external-state.sh \
   --held-modifiers skip
 ```
 
-Every call must specify every flag, in the same order. This makes assumptions explicit and diffs readable—if entering Grid mode needs warpd running, you write `--warpd keep` rather than silently omitting it. The script validates that all flags are present and in the correct order.
-
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`). App/window switcher relies on Cmd being held (`--held-modifiers keep`).
 
 Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `skip`.
