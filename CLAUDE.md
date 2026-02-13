@@ -14,6 +14,7 @@ The user is using voice-to-text and may not fully think through requests before 
 - **URL fetching is restricted by security policies.** If you need documentation from a URL, ask the user to provide the relevant content instead of trying to fetch it.
 - **Race conditions in messages:** The user may send messages that refer to a past state due to timing/latency. If a message seems to refer to something already addressed or changed, it may have been sent before the user saw the latest changes.
 - **Hammerspoon functions should be simple and stateless.** Complex logic, conditionals, and state tracking in Hammerspoon functions can lead to subtle bugs and race conditions. When possible, keep Hammerspoon functions minimal and push complexity to Karabiner rules or use dummy keys that only target apps listen for.
+- **Before adding a new variable, explicitly check with the user.** New variables add complexity to the data model. Always try to solve the problem with existing variables first, and reason about how to keep the state model as simple as possible. If a new variable seems necessary, explain why and get user approval.
 
 ## ⚠️ CRITICAL: DO NOT BREAK EXISTING FUNCTIONALITY ⚠️
 
