@@ -8,4 +8,5 @@ L = "git commit -m ", Fn+L = "git commit -am 'wip'"+enter
 N = "git reset ", Fn+N = "grhh"+enter
 M = "git checkout ", Fn+M = "gcmp"+enter
 , = "git add -A && git stash"+enter, Fn+, = "git stash pop"+enter
+. = "git add ", Fn+. = "git add -A"+enter
 I = Split vertical, Fn+I = Split horizontal
