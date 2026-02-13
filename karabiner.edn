@@ -339,24 +339,20 @@
    :rules [:!apple_internal
     ;; Ctrl+N in app switcher = release Cmd, exit to Normal
     [{:key :n :modi {:mandatory [:right_control]}}
-     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-      ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-      {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+     [["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
     ;; Ctrl+N in window switcher = release Cmd, exit to Normal
     [{:key :n :modi {:mandatory [:right_control]}}
-     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-      ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-      {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+     [["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
     ;; Ctrl+J in app switcher = release Cmd, exit to Ins
     [{:key :j :modi {:mandatory [:right_control]}}
-     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-      ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
-      {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+     [["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
+      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
     ;; Ctrl+J in window switcher = release Cmd, exit to Ins
     [{:key :j :modi {:mandatory [:right_control]}}
-     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-      ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
-      {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+     [["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
+      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
    ]}
 
   {:des "[Desktop] Right control+N to Escape (all layers)"
@@ -768,28 +764,24 @@
     ;; K = Shift+Tab (prev app)
     [:k {:shell "osascript -e 'tell app \"System Events\" to keystroke tab using shift down'"} ["layer_appswitcher" 1]]
     ;; Enter = Select and exit switcher, press Enter, return to Normal
-    [:return_or_enter [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-                       :return_or_enter
+    [:return_or_enter [:return_or_enter
                        ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-                       {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+                       {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
     ;; right_control = Cancel and exit switcher
-    [:right_control [{:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53'"}
-                     ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-                     {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+    [:right_control [["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                     {:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53' && echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
     ;; === Window Switcher sub-mode ===
     ;; J = ` (next window)
     [:j {:shell "osascript -e 'tell app \"System Events\" to keystroke \"`\"'"} ["layer_windowswitcher" 1]]
     ;; K = Shift+` (prev window)
     [:k {:shell "osascript -e 'tell app \"System Events\" to keystroke \"`\" using shift down'"} ["layer_windowswitcher" 1]]
     ;; Enter = Select and exit switcher, press Enter
-    [:return_or_enter [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
-                       :return_or_enter
+    [:return_or_enter [:return_or_enter
                        ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-                       {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+                       {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
     ;; right_control = Cancel and exit switcher
-    [:right_control [{:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53'"}
-                     ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
-                     {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+    [:right_control [["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                     {:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53' && echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
     ;; === Disable all other keys in app switcher ===
     [:##a :vk_none ["layer_appswitcher" 1]]
     [:##b :vk_none ["layer_appswitcher" 1]]
