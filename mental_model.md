@@ -59,19 +59,19 @@ Four variables track all state:
 
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. Always set them in the same order every time. No implicit state. This prioritizes correctness and future refactors over brevity.
 
-Additionally, all state transitions should clear ALL external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `skip` or `keep`. Flags must always appear in this exact order:
+Additionally, all state transitions should clear ALL external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `reset` or `keep`. Flags must always appear in this exact order:
 ```
 cleanup-external-state.sh \
-  --warpd skip \
-  --homerow skip \
-  --scroll-timer skip \
-  --hover-mode skip \
-  --held-modifiers skip
+  --warpd reset \
+  --homerow reset \
+  --scroll-timer reset \
+  --hover-mode reset \
+  --held-modifiers reset
 ```
 
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`). App/window switcher relies on Cmd being held (`--held-modifiers keep`).
 
-Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `skip`.
+Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
 ## Global Shortcuts
 
@@ -159,7 +159,7 @@ While in switcher:
 - [ ] Implement return_to_layer=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
-- [ ] Create cleanup-external-state.sh script that clears all external state, with flags to skip specific cleanups (e.g., `--skip-warpd`). Call from Karabiner shell commands instead of inline chained commands.
+- [ ] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 
 ## Potential Bugs
