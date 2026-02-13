@@ -560,26 +560,25 @@
     ;; Entry/exit
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
     [:right_control :right_control ["layer_term" 1] {:alone [["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
-    ;; Git commands: bare key = type text, Ctrl = type + enter
+    ;; Git commands: bare key = type text, Fn = type + enter
     [:h [[:type-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :h :modi {:mandatory [:right_control]}} [[:type-enter-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:f22 [[:type-enter-norm "git status "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+H
     [:j [[:type-norm "git log "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :j :modi {:mandatory [:right_control]}} [[:type-enter-norm "git log"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:f23 [[:type-enter-norm "git log"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+J
     [:k [[:type-norm "git diff "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
     [:f24 [[:type-enter-norm "git diff head"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+K: git diff head
-    [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-norm "gdmb"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-norm "gdmb"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Ctrl+K stays
     [:l [[:type-norm "git commit -m "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    ;; Ctrl+l has escaped quotes, can't use template
-    [{:key :l :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\''\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:!Of1 [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\''\"' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+L
     [:n [[:type-norm "git reset "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :n :modi {:mandatory [:right_control]}} [[:type-enter-norm "git reset"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:!Of4 [[:type-enter-norm "grhh"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+N
     [:m [[:type-norm "git checkout "] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :m :modi {:mandatory [:right_control]}} [[:type-enter-norm "gcmp"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:!Of5 [[:type-enter-norm "gcmp"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+M
     [:comma [[:type-enter-norm "git add -A && git stash"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
-    [{:key :comma :modi {:mandatory [:right_control]}} [[:type-enter-norm "git stash pop"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:!Of6 [[:type-enter-norm "git stash pop"] ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+Comma
     ;; iTerm splits
     [:i [:!Cd ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_term" 1]]
-    [{:key :i :modi {:mandatory [:right_control]}} [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]
+    [:f17 [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_term" 1]]  ;; Fn+I
    ]}
 
   {:des "[Desktop] Tmux Layer Entry (h from Normal, iTerm only)"
