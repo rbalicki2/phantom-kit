@@ -353,11 +353,11 @@
     [:!Of1 [[:open-norm "Messages"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Fn+L
     [{:key :l :modi {:mandatory [:right_control]}} [[:open-norm "WhatsApp"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:o [[:open-norm "Obsidian"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:period [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
+    [:y [:!Cspacebar ["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]  ;; Spotlight → Ins mode
     ;; Finder
-    [:comma [[:open-norm "Finder"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
-    [:!Of6 [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Fn+Comma: Go to Folder
-    [{:key :comma :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Ctrl+Comma: Go to Folder + Paste
+    [:period [[:open-norm "Finder"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
+    [:!Of7 [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Fn+Period: Go to Folder
+    [{:key :period :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Ctrl+Period: Go to Folder + Paste
     ;; Fn+navigation shortcuts (stay in layer)
     [:f23 :!Copen_bracket ["layer_n" 1]]  ;; Fn+J: Back
     [:f24 :!Cclose_bracket ["layer_n" 1]]  ;; Fn+K: Forward
