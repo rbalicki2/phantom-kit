@@ -10,14 +10,20 @@ Four variables track all state:
 |----------|-------|---------|
 | `mode` | 0-28 | Current layer |
 | `in_modal` | 0/1 | Whether in a modal layer |
-| `submode` | 0-4 | Overlay state within Ins mode |
-| `mouse_from_ins` | 0/1 | Whether Label mode was entered from Ins |
+| `submode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
+| `mouse_from_ins` | 0/1 | Return destination for Label mode (0=Normal, 1=Ins). Future: rename to `return_to_layer` |
 
 ### Invariants
 
 1. **in_modal = (mode >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
-2. **submode = 0 when mode != 1** — Submodes only exist within Ins mode.
+2. **submode = -1 when mode != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
 3. **mouse_from_ins only matters when mode = 13** — Controls Label mode return destination.
+
+### Explicit State Transitions
+
+Every state transition in karabiner.edn MUST explicitly set ALL relevant variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
+
+Example: Entering Normal should set `mode=0, in_modal=0, submode=0` even if we "know" in_modal is already 0.
 
 ## Global Shortcuts
 
@@ -26,10 +32,13 @@ These work from ANY modal layer (mode >= 2):
 | Shortcut | State Change |
 |----------|--------------|
 | right_ctrl alone | mode=0, in_modal=0, submode=0 |
-| Ctrl+J | mode=1, in_modal=0 |
+| Ctrl+J | mode=1, in_modal=0, submode=0 |
 | Panic | mode=0, in_modal=0, submode=0, mouse_from_ins=0 |
 
-Note: Ctrl+N is NOT global. It only exits specific layers (Label, Grid, App/Window switcher).
+**Ctrl+N** is NOT global. It exists only in:
+- Label mode (mode=13) — exits based on mouse_from_ins
+- Grid mode (mode=28) — exits to Normal
+- App/Window switcher (modes 11, 12) — cancels and exits to Normal
 
 ## Layer Entry
 
@@ -112,3 +121,10 @@ While in switcher:
 - J/K cycles through apps/windows
 - Enter selects and exits (releases Cmd, returns to Normal)
 - Ctrl+N exits without selecting (releases Cmd, returns to Normal)
+
+## Mental Model Todos
+
+- [ ] Rename `mouse_from_ins` to `return_to_layer` (generic return destination)
+- [ ] Bug: Ctrl+J should set submode=0 when entering Ins (currently doesn't)
+- [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
+- [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
