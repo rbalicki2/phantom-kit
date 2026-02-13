@@ -3,6 +3,7 @@ M = Homerow labels, Fn+M = warpd grid
 Type labels/grid keys to select target, then:
 Space         Click
 Shift+Space   Right-click
+Up            Hover (move mouse, no click)
 Enter         Double-click
 Shift+Enter   Shift+Click (extend selection)
 Fn+Space      Cmd+Click

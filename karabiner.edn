@@ -148,7 +148,7 @@
    ;; IMPORTANT: Only ONE shell command runs per rule, so combine all shell ops into one!
    :rules [
     [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0]
-              {:shell "osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
+              {:shell "osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
 
   {:des "Fn+hk4 (F21) = enter Nav layer from Normal"
@@ -440,6 +440,10 @@
     ;; Cancel: right_control = Escape
     [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+
+    ;; Up = Hover exit (move mouse without clicking) - Hammerspoon enables hover then sends Enter
+    [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Space = Enter (left click)
     [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
