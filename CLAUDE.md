@@ -427,7 +427,7 @@ The layer system is modal (like vim):
 ### Normal Layer (default)
 - **j** = Enter Ins (typing mode)
 - **n** = Enter Nav layer
-- **m** = Enter Label Mode (Homerow Search)
+- **m** = Enter Label Mode
 - **i** = Enter Admin layer ⚙️
 - **comma** = Enter Comma layer
 - **l** = Enter L layer

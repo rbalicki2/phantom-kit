@@ -1,4 +1,4 @@
-LABEL - Homerow Click Mode
+LABEL MODE
 M from Normal, Ctrl+M from Ins
 Type labels to select target, then:
 Space         Click

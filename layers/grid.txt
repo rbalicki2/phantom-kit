@@ -1,9 +1,13 @@
-GRID - warpd Grid Mode
+GRID MODE
 Fn+M from Normal
-Use grid keys to narrow selection, then:
-N             Left click
-H             Right click
+Navigate grid (u,i,o,j,k,l,m,comma,period), then:
+Space         Click
+Shift+Space   Right-click
 Up            Hover (move mouse, no click)
+Enter         Double-click
+Shift+Enter   Shift+Click
+Fn+Space      Cmd+Click
+Fn+Enter      Cmd+Shift+Click
 right_ctrl    Cancel
 
 Returns to Normal layer
