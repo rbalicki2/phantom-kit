@@ -386,9 +386,8 @@
   {:des "[Desktop] Wispr Flow shortcut"
    :rules [:!apple_internal
     ;; right_control+Y → Ctrl+Alt+Shift+F19 (popo) → exit to Ins
-    ;; right_control+Y triggers Wispr Flow, exits to Ins. Not available from L layer (mode 7).
-    [{:key :y :modi {:mandatory [:right_control]}} [["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 0] {:afterup [:!TOSf19]}]
-    [{:key :y :modi {:mandatory [:right_control]}} [["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 1] {:afterup [:!TOSf19]}]
+    ;; Global shortcut - works from any mode
+    [{:key :y :modi {:mandatory [:right_control]}} [["mode" 1] ["in_modal" 0] ["submode" 0] {:shell "echo ins > /tmp/karabiner-layer"}] {:afterup [:!TOSf19]}]
    ]}
 
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
@@ -688,6 +687,8 @@
     ;; Tabs (M/Comma = prev/next, Y = close, Fn+Y = reopen) - STAY in layer
     [:m :!TStab ["mode" 10]]   ;; Prev tab
     [:comma :!Ttab ["mode" 10]]  ;; Next tab
+    [:!Of5 :!TSpage_up ["mode" 10]]   ;; Fn+M = Move tab left
+    [:!Of6 :!TSpage_down ["mode" 10]]  ;; Fn+, = Move tab right
     [:y :!Cw ["mode" 10]]  ;; Close tab
     [{:key :y :modi {:mandatory [:shift]}} [:!Cw :!TStab] ["mode" 10]]  ;; Shift+Y = Close + prev tab
     [:f15 :!CSt ["mode" 10]]  ;; Fn+Y = Reopen closed tab
