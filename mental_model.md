@@ -4,88 +4,82 @@ Focus: State transitions, invariants, and behaviors that must be preserved.
 
 ## State Variables
 
-Three variables track all state:
-- `mode` (0-28): Current layer
-- `in_modal` (0/1): 1 when mode >= 2 (modal layers)
-- `submode` (0-4): Overlay state within Ins mode only
+Four variables track all state:
 
-**Invariant**: `in_modal` must equal `(mode >= 2 ? 1 : 0)`. If these get out of sync, behavior breaks.
+| Variable | Range | Purpose |
+|----------|-------|---------|
+| `mode` | 0-28 | Current layer |
+| `in_modal` | 0/1 | Whether in a modal layer |
+| `submode` | 0-4 | Overlay state within Ins mode |
+| `mouse_from_ins` | 0/1 | Whether Label mode was entered from Ins |
 
-## Global Shortcuts (Work From Any Layer)
+### Invariants
 
-These MUST work regardless of current mode:
+1. **in_modal = (mode >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
+2. **submode = 0 when mode != 1** — Submodes only exist within Ins mode.
+3. **mouse_from_ins only matters when mode = 13** — Controls Label mode return destination.
 
-| Shortcut | Action | Notes |
-|----------|--------|-------|
-| **right_ctrl alone** | Exit to Normal | Primary escape from any modal layer |
-| **Ctrl+J** | Exit to Ins | Quick return to typing mode |
-| **Ctrl+N** | Exit to Normal + Escape | Global escape fallback |
-| **Ctrl+Y** | Toggle recording (Wispr) | Works everywhere except Admin layer |
-| **Panic (Fn+HK3)** | Full reset | Clears ALL state, kills warpd, releases modifiers |
+## Global Shortcuts
 
-**Panic Button (Shift+Alt+F19)**: Emergency reset. Sets `mode=0`, `in_modal=0`, `submode=0`, kills warpd, dismisses Homerow, releases held modifiers. Use when keyboard gets stuck.
+These work from ANY modal layer (mode >= 2):
 
-## Layer Categories
+| Shortcut | State Change |
+|----------|--------------|
+| right_ctrl alone | mode=0, in_modal=0, submode=0 |
+| Ctrl+J | mode=1, in_modal=0 |
+| Panic | mode=0, in_modal=0, submode=0, mouse_from_ins=0 |
 
-### Non-Modal (in_modal=0)
-- **Normal (0)**: Layer selector, most keys disabled
-- **Ins (1)**: Typing mode, keys pass through
+Note: Ctrl+N is NOT global. It only exits specific layers (Label, Grid, App/Window switcher).
 
-### Modal (in_modal=1)
-All others. Must exit via right_ctrl or action that changes mode.
+## Layer Entry
 
-## State Transitions
+| Layer | Mode | Entry Key | From State |
+|-------|------|-----------|------------|
+| Normal | 0 | right_ctrl alone, Panic | mode >= 2 |
+| Ins | 1 | J | mode = 0 |
+| Ins | 1 | Ctrl+J | mode >= 2 |
+| Nav | 2 | N | mode = 0 |
+| Chrome | 3 | H | mode = 0, Chrome focused |
+| VSCode | 4 | H | mode = 0, VSCode focused |
+| TMUX | 5 | H | mode = 0, iTerm focused |
+| Comma | 6 | , | mode = 0 |
+| L | 7 | L | mode = 0 |
+| Term | 8 | U | mode = 0 |
+| Admin | 9 | I | mode = 0 |
+| InApp | 10 | HK4 | mode = 0 or mode = 1 |
+| Label | 13 | M | mode = 0 (sets mouse_from_ins=0) |
+| Label | 13 | Ctrl+M | mode = 1 (sets mouse_from_ins=1) |
+| Grid | 28 | Fn+M | mode = 0 |
 
-### Entry to Normal (mode=0)
-- right_ctrl alone from any modal layer
-- Ctrl+N from anywhere
-- Panic button
-- Actions that explicitly exit to Normal (e.g., copy operations)
+## Layer Exit Behavior
 
-### Entry to Ins (mode=1)
-- J from Normal
-- Ctrl+J from any modal layer
-- Actions that open text input (address bar, search, new tab, etc.)
+When an action completes, the destination depends on action type:
 
-### Entry to Modal Layers
-All from Normal unless noted:
-- **Nav (2)**: N
-- **Chrome/VSCode/TMUX (3/4/5)**: H (app-dependent)
-- **Comma (6)**: ,
-- **L (7)**: L
-- **Term (8)**: U (also focuses iTerm)
-- **Admin (9)**: I
-- **InApp (10)**: Fn+HK4 (also from Ins)
-- **Label (13)**: M from Normal, Ctrl+M from Ins
-- **Grid (28)**: Fn+M from Normal only
+**→ Normal (mode=0)**: Non-typing actions
+- Copy, close, undo/redo, window management
+- Mouse clicks when mouse_from_ins=0
 
-### Exit Behavior Rules
+**→ Ins (mode=1)**: Text-input actions
+- Paste, find, address bar, new tab/file, command palette
+- Mouse clicks when mouse_from_ins=1
 
-**Exit to Normal**: Actions that don't require typing
-- Copy, close, window management, undo/redo
+**Stay in layer**: Repeatable actions
+- Tab switching, scrolling, back/forward
 
-**Exit to Ins**: Actions that open text input
-- Address bar, search, find, new tab/file, command palette
-- Paste (cursor in text field after)
+## Mouse Modes
 
-**Stay in Layer**: Repeatable actions
-- Tab switching, scrolling, delete operations
+### Label Mode (mode=13)
 
-## Mouse Modes (Label & Grid)
+Entry determines return destination via mouse_from_ins:
+- M from Normal → mouse_from_ins=0 → clicks return to Normal
+- Ctrl+M from Ins → mouse_from_ins=1 → clicks return to Ins
 
-### Entry
-- **Label**: M from Normal (returns to Normal), Ctrl+M from Ins (returns to Ins)
-- **Grid**: Fn+M from Normal only
+### Grid Mode (mode=28)
 
-`mouse_from_ins` variable tracks origin for Label mode return.
+Only entered from Normal. Always returns to Normal.
 
-### Click Handling
-1. User selects target (labels or grid navigation)
-2. User presses click key (Space, Enter, etc.)
-3. **Grid**: Kill warpd first (mouse stays positioned), then Hammerspoon clicks
-4. **Label**: Hammerspoon intercepts Homerow's click, performs our click instead
+### Click Keys (Both Modes)
 
-### Click Actions (Both Modes)
 | Key | Action |
 |-----|--------|
 | Space | Left click |
@@ -94,43 +88,27 @@ All from Normal unless noted:
 | Enter | Right-click |
 | Fn+Enter | Double-click |
 | Shift+Enter | Cmd+Shift+click |
-| Up | Hover (position mouse, no click) |
-
-Hammerspoon functions: `clickLeft()`, `clickRight()`, `clickDouble()`, `clickShift()`, `clickCmd()`, `clickCmdShift()`, `labelRightClick()`, `labelDoubleClick()`, etc.
-
-## Files That Must Stay In Sync
-
-When changing shortcuts, update ALL of these:
-
-| File | Purpose | Update When |
-|------|---------|-------------|
-| `karabiner.edn` | Source of truth for rules | Any shortcut change |
-| `mental_model.md` | State transitions & invariants | Any state-changing behavior |
-| `layers/*.txt` | Hammerspoon overlay content | Layer shortcut changes |
-| `~/.hammerspoon/init.lua` | Click handlers, overlays | Mouse/click behavior changes |
-| `warpd.conf` | Grid mode settings | Grid navigation changes |
-| `kinesis-layout1.txt` | Kinesis Fn layer mappings | F-key assignments |
-| `/tmp/karabiner-layer` | Current layer (runtime) | Layer entry/exit rules |
-
-### Kinesis Layout
-The Kinesis Advantage 360 Fn layer maps keys to F-keys:
-- Managed via `kinesis-layout1.txt`
-- Copy to `/Volumes/ADV360/layouts/` when keyboard is in programming mode
-- `npm run kinesis` copies to all 9 layout slots
-
-Key mappings:
-- Fn+HK3 → Shift+Alt+F19 (panic)
-- Fn+HK4 → F21
-- Bare HK3 → Alt+F19
-- Bare HK4 → Alt+F20 (enters InApp)
+| Up | Hover (position only, no click) |
 
 ## Ins Mode Submodes
 
-Within Ins (mode=1), `submode` tracks overlays:
-- 0: Normal typing
-- 1: shift_mirror_oneshot (Fn+], next mirrored letter uppercase)
-- 2: shift_oneshot (Fn+Space, next letter capitalized)
-- 3: rcmd_h_mode (delete chord)
-- 4: rcmd_n_mode (select chord)
+When mode=1, submode modifies the next keypress:
 
-Submodes auto-clear after one keypress.
+| submode | Name | Trigger | Effect | Clears After |
+|---------|------|---------|--------|--------------|
+| 0 | Normal | (default) | Keys pass through | — |
+| 1 | shift_mirror_oneshot | Fn+] | Next mirrored letter → uppercase | One letter |
+| 2 | shift_oneshot | Fn+Space | Next letter → uppercase | One letter |
+| 3 | rcmd_h_mode | rcmd+H held | J/K/M/, → delete word/line | Chord complete |
+| 4 | rcmd_n_mode | rcmd+N held | J/K/M/, → select word/line | Chord complete |
+
+## App/Window Switcher (modes 11, 12)
+
+Entry from InApp layer (mode=10):
+- Up → mode=11 (App switcher), holds Cmd
+- Down → mode=12 (Window switcher), holds Cmd
+
+While in switcher:
+- J/K cycles through apps/windows
+- Enter selects and exits (releases Cmd, returns to Normal)
+- Ctrl+N exits without selecting (releases Cmd, returns to Normal)
