@@ -38,13 +38,5 @@ esac
 
 # Combine mode and layer name
 OUTPUT="${PROJECT}-${NAME}"
-
-# Set color based on layer
-case "$LAYER" in
-    ins) COLOR="green" ;;
-    norm) COLOR="yellow" ;;
-    *) COLOR="purple" ;;
-esac
-
 # Pad to 16 chars minimum width for consistent menu bar space
-printf "%-16s | font=Menlo trim=false color=%s\n" "$OUTPUT" "$COLOR"
+printf "%-16s | font=Menlo trim=false\n" "$OUTPUT"
