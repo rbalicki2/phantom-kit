@@ -29,12 +29,13 @@ Be extra wary of state that lives outside Karabiner variables:
 | External State | Where | Cleanup |
 |----------------|-------|---------|
 | Held modifier keys | macOS | `osascript 'key up command/shift/option/control'` |
+| Physically depressed keys | Keyboard/macOS | Can't clear programmatically |
 | warpd process | System process | `pkill warpd` |
 | Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
 
-Held modifiers include Cmd, Shift, Option, Control. The app/window switcher holds Cmd; other modes may hold other modifiers.
+Held modifiers include Cmd, Shift, Option, Control. The app/window switcher holds Cmd; other modes may hold other modifiers. Physically depressed keys can cause key repeat or affect chord behavior.
 
 Note: Frontmost app affects behavior (e.g., H key enters different layers) but we don't modify it.
 
