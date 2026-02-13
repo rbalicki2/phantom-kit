@@ -35,8 +35,6 @@ Be extra wary of state that lives outside Karabiner variables:
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
 
-Held modifiers include Cmd, Shift, Option, Control. The app/window switcher holds Cmd; other modes may hold other modifiers. Physically depressed keys can cause key repeat or affect chord behavior.
-
 Note: Frontmost app affects behavior (e.g., H key enters different layers) but we don't modify it.
 
 Any state transition that could leave external state dirty must clean it up explicitly. Panic mode clears all external state listed above.
