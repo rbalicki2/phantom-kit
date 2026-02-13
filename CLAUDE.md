@@ -255,12 +255,9 @@ The keyboard firmware layout is stored in `kinesis-layout1.txt` (source of truth
 **To update the layout:**
 1. Edit `kinesis-layout1.txt` in this repo
 2. Check if the Kinesis drive is mounted: `test -d /Volumes/ADV360 && echo "mounted"`
-3. If mounted, copy to ALL FOUR layout slots (user sometimes ends up in other layers):
+3. If mounted, copy to ALL NINE layout slots (user sometimes ends up in other layers):
    ```bash
-   cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout1.txt
-   cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout2.txt
-   cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout3.txt
-   cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout4.txt
+   for i in 1 2 3 4 5 6 7 8 9; do cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout${i}.txt; done
    ```
 4. Eject the drive and the keyboard will reload the layout
 
