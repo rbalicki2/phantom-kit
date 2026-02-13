@@ -577,6 +577,9 @@
     [:!Of5 [[:type-enter-ins "gcmp --no-verify"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+M
     [:comma [[:type-enter-ins "git add -A && git stash"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
     [:!Of6 [[:type-enter-ins "git stash pop"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+Comma
+    ;; git add
+    [:period [[:type-ins "git add "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
+    [:!Of7 [[:type-enter-ins "git add -A"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+.
     ;; iTerm splits (exit to Ins)
     [:i [:!Cd ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_term" 1]]
     [:f17 [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"d\" using {command down, shift down}' && echo ins > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+I
