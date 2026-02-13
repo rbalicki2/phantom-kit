@@ -388,8 +388,6 @@
     ;; Entry via Ctrl+hk4 is handled separately
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
-    ;; Shortcuts
-    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_n" 1]]  ;; Close (stays)
     ;; App launching
     [:h [[:open-norm "iTerm"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:j [[:open-norm "Visual Studio Code"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
@@ -406,13 +404,6 @@
     [:period [[:open-norm "Finder"] ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]
     [:!Of7 [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Fn+Period: Go to Folder
     [{:key :period :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_n" 1]]  ;; Ctrl+Period: Go to Folder + Paste
-    ;; Fn+navigation shortcuts (stay in layer)
-    [:f23 :!Copen_bracket ["layer_n" 1]]  ;; Fn+J: Back
-    [:f24 :!Cclose_bracket ["layer_n" 1]]  ;; Fn+K: Forward
-    [:!Of5 :!TStab ["layer_n" 1]]  ;; Fn+M: Prev tab
-    [:!Of6 :!Ttab ["layer_n" 1]]  ;; Fn+Comma: Next tab
-    [:!Of9 :!Ctab ["layer_n" 1]]  ;; Fn+Up: App switch fwd
-    [:!Of10 :!CStab ["layer_n" 1]]  ;; Fn+Down: App switch back
     ;; Enter = Cmd+Enter (exits to Ins)
     [:return_or_enter [:!Creturn_or_enter ["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_n" 1]]
    ]}
@@ -533,12 +524,6 @@
    :rules [:!apple_internal
     ;; Entry/exit
     [:right_control :right_control ["layer_chrome" 1] {:alone [["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
-    ;; Tab navigation (stays in layer)
-    [:j :!TStab ["layer_chrome" 1]]  ;; Prev tab
-    [:k :!Ttab ["layer_chrome" 1]]   ;; Next tab
-    [{:key :h :modi {:mandatory [:right_control]}} :!Cw ["layer_chrome" 1]]  ;; Close tab
-    [{:key :f22 :modi {:mandatory [:right_control]}} [:!Cw :!TStab] ["layer_chrome" 1]]  ;; Ctrl+Fn+H: Close + prev
-    [{:key :h :modi {:mandatory [:shift]}} [:!CSt ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Shift+H: Reopen closed tab
     ;; Tab switching by number
     [:y [[:chrome-tab "1"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
     [:u [[:chrome-tab "2"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]
@@ -549,12 +534,8 @@
     [:f17 [[:chrome-tab "7"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+I: Tab 7
     [:f18 [[:chrome-tab "8"] ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+O: Tab 8
     [:p [{:shell "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to (count tabs of front window)' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Last tab
-    ;; Actions
-    [:h [:!Ct ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; New tab → Ins
-    [:l [:!Cl ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Address bar → Ins
+    ;; Chrome-specific actions
     [:!Of1 [{:shell "osascript -e 'tell application \"System Events\"' -e 'keystroke \"l\" using command down' -e 'delay 0.1' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'key code 53' -e 'end tell' && echo norm > /tmp/karabiner-layer"} ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1]] ["layer_chrome" 1]]  ;; Fn+L: Copy URL
-    [:n [:!Ck ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Cmd+K → Ins
-    [:comma [:!CSa ["layer_chrome" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_chrome" 1]]  ;; Search tabs → Ins
     [:m [:!Od ["layer_chrome" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_chrome" 1]]  ;; Dark mode
     ;; Move tabs (stays in layer for repeating)
     [:f23 :!TSpage_up ["layer_chrome" 1]]  ;; Fn+J: Move tab left
