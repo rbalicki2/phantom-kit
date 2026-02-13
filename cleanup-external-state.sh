@@ -49,26 +49,26 @@ SCROLL_TIMER="$6"
 HOVER_MODE="$8"
 HELD_MODIFIERS="${10}"
 
-# Execute cleanups
+# Execute cleanups (all run in background for non-blocking behavior)
 if [ "$WARPD" = "reset" ]; then
-    pkill warpd 2>/dev/null || true
+    (pkill warpd 2>/dev/null || true) &
 fi
 
 if [ "$HOMEROW" = "reset" ]; then
-    /opt/homebrew/bin/hs -c 'dismissHomerow()' 2>/dev/null || true
+    (/opt/homebrew/bin/hs -c 'dismissHomerow()' 2>/dev/null || true) &
 fi
 
 if [ "$SCROLL_TIMER" = "reset" ]; then
-    /opt/homebrew/bin/hs -c 'scrollStop()' 2>/dev/null || true
+    (/opt/homebrew/bin/hs -c 'scrollStop()' 2>/dev/null || true) &
 fi
 
 if [ "$HOVER_MODE" = "reset" ]; then
-    /opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true
+    (/opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true) &
 fi
 
 if [ "$HELD_MODIFIERS" = "reset" ]; then
-    osascript -e 'tell application "System Events" to key up command' \
-              -e 'tell application "System Events" to key up shift' \
-              -e 'tell application "System Events" to key up option' \
-              -e 'tell application "System Events" to key up control' 2>/dev/null || true
+    (osascript -e 'tell application "System Events" to key up command' \
+               -e 'tell application "System Events" to key up shift' \
+               -e 'tell application "System Events" to key up option' \
+               -e 'tell application "System Events" to key up control' 2>/dev/null || true) &
 fi
