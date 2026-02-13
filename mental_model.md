@@ -134,22 +134,3 @@ Within Ins (mode=1), `submode` tracks overlays:
 - 4: rcmd_n_mode (select chord)
 
 Submodes auto-clear after one keypress.
-
-## Common Mistakes to Avoid
-
-1. **Forgetting in_modal**: When adding layer transitions, set BOTH `mode` AND `in_modal`
-2. **Wrong exit target**: Text-input actions → Ins, non-typing actions → Normal
-3. **Shell command format**: Only ONE `{:shell ...}` per rule works; combine with `&&`
-4. **Layer file mismatch**: Overlay shows wrong shortcuts if `layers/*.txt` not updated
-5. **Kinesis not copied**: Changes to kinesis-layout1.txt need `npm run kinesis`
-6. **Panic button scope**: When adding layers, panic button auto-clears via the 3 variables
-
-## Testing Checklist
-
-After changes:
-1. `npm run sync` - copies and compiles
-2. `npm run warpd` - tests warpd config
-3. `npm run hs` - reloads Hammerspoon
-4. Test: right_ctrl exits from new layer
-5. Test: Ctrl+J goes to Ins from new layer
-6. Test: Panic button resets state
