@@ -6,6 +6,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
+- Admin layer: remove Restart Whispering shortcut (Y) - outdated, now using Wispr Flow
 - Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 - Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
 - Deep link replacer: copy URL and view/transform it for other contexts

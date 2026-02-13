@@ -563,7 +563,7 @@
     ;; LLM blurb paste
     [:l [{:shell "/usr/bin/pbcopy < /Users/rbalicki/code/voicemode/llm-blurb.txt && echo ins > /tmp/karabiner-layer"} :!Cv ["in_modal" 0] ["mode" 1]] ["mode" 9]]
     ;; Move window to next screen
-    [:m [{:shell "/usr/local/bin/hs -c 'moveToNextScreen()' && echo norm > /tmp/karabiner-layer"} ["in_modal" 0] ["mode" 0]] ["mode" 9]]
+    [:m [{:shell "/opt/homebrew/bin/hs -c 'moveToNextScreen()' && echo norm > /tmp/karabiner-layer"} ["in_modal" 0] ["mode" 0]] ["mode" 9]]
    ]}
 
   {:des "[Desktop] Comma Layer (comma from Normal to enter)"
