@@ -67,53 +67,6 @@
  :main [
 
   ;; =====================================================================
-  ;; STATE MACHINE - 3 VARIABLES ONLY
-  ;; =====================================================================
-  ;;
-  ;; Variables:
-  ;;   mode     - Current layer (0=Normal, 1=Ins, 2+=modal layers)
-  ;;   in_modal - Is mode >= 2? (0=no, 1=yes) - for "block all keys" rules
-  ;;   submode  - Overlay state within a mode (0=none, 1-4=oneshot/chord modes)
-  ;;
-  ;; Mode values:
-  ;;   0  = Normal (layer selector, most keys disabled)
-  ;;   1  = Ins (typing passthrough)
-  ;;   2  = Nav
-  ;;   3  = Chrome
-  ;;   4  = VSCode
-  ;;   5  = TMUX
-  ;;   6  = Comma
-  ;;   7  = L (base)
-  ;;   8  = Term
-  ;;   9  = Admin
-  ;;   10 = InApp
-  ;;   11 = AppSwitcher
-  ;;   12 = WindowSwitcher
-  ;;   13 = Mouse
-  ;;   14 = L-Cmd, 15 = L-Cmd-Shift
-  ;;   16 = L-Ctrl, 17 = L-Ctrl-Shift
-  ;;   18 = L-CtrlCmd, 19 = L-CtrlCmd-Shift
-  ;;   20 = L-CtrlAlt, 21 = L-CtrlAlt-Shift
-  ;;   22 = L-Alt, 23 = L-Alt-Shift
-  ;;   24 = L-AltCmd, 25 = L-AltCmd-Shift
-  ;;   26 = L-Hyper, 27 = L-Hyper-Shift
-  ;;
-  ;; Submode values (overlay on mode=1 Ins):
-  ;;   0 = None
-  ;;   1 = shift_mirror_oneshot
-  ;;   2 = shift_oneshot
-  ;;   3 = rcmd_h_mode (delete chord)
-  ;;   4 = rcmd_n_mode (select chord)
-  ;;
-  ;; Transitions:
-  ;;   → Normal: ["mode" 0] ["in_modal" 0] ["submode" 0]
-  ;;   → Ins:    ["mode" 1] ["in_modal" 0] ["submode" 0]
-  ;;   → Modal:  ["mode" N] ["in_modal" 1]
-  ;;
-  ;; ALWAYS write layer name to /tmp/karabiner-layer for SwiftBar
-  ;; =====================================================================
-
-  ;; =====================================================================
   ;; NONE PROFILE - Empty escape hatch (dummy rule to make Goku create it)
   ;; =====================================================================
 
@@ -127,27 +80,18 @@
   ;; ALL PROFILES - Common rules (no profile condition)
   ;; =====================================================================
 
-  {:des "Caps lock to control/escape"
-   :rules [
+  {:des "Caps lock to control/escape (laptop only)"
+   :rules [:apple_internal
     [:##caps_lock :left_control nil {:alone :escape}]
    ]}
 
-  {:des "Cmd+PageUp = Escape (global)"
-   :rules [
-    [:!Cpage_up :escape]
-    [:!Qpage_up :escape]
-   ]}
-
-  {:des "hk3 (Alt+F19) = show overlay"
-   :rules [
+  {:des "hk3 (Alt+F19) = show overlay (desktop only)"
+   :rules [:!apple_internal
     [:!Of19 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
    ]}
 
-  {:des "Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON - reset all state"
-   ;; Resets to Normal mode (mode=0, in_modal=0, submode=0)
-   ;; Also kills warpd and dismisses Homerow labels
-   ;; IMPORTANT: Only ONE shell command runs per rule, so combine all shell ops into one!
-   :rules [
+  {:des "Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON (desktop only)"
+   :rules [:!apple_internal
     [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0] ["return_to_layer" 0]
               {:shell "pkill warpd 2>/dev/null; osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop(); dismissHomerow()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
