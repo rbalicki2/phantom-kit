@@ -32,6 +32,7 @@ case "$LAYER" in
     vscode) NAME="VSC" ;;
     term) NAME="Git" ;;
     mouse) NAME="Mouse" ;;
+    inapp) NAME="InApp" ;;
     *) NAME="Base" ;;
 esac
 

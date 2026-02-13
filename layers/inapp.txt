@@ -1,0 +1,23 @@
+In-App Nav (hk4 from Normal or Ins)
+
+J/K = Scroll down/up (stays), Fn+J/K = End/Home (stays)
+U/I = Back/Forward (stays)
+M/, = Prev/Next tab (stays)
+Y = Close tab (stays), Fn+Y = Reopen closed tab (stays)
+L = Address bar / Go to line (Cmd+L) -> Ins
+O = Open (Cmd+O) -> Ins
+
+Chrome: H = Cmd+K, Fn+H = Tab search (Cmd+Shift+A), Shift+H = History
+Chrome: N = New tab (Cmd+T), Fn+N = New window (Cmd+N)
+
+VS Code: H = Command palette (Cmd+Shift+P), Fn+H = Quick open (Cmd+P)
+VS Code: N = New file (Cmd+N), Fn+N = New window (Cmd+Shift+N)
+
+iTerm: N = Split pane (Cmd+D), Fn+N = New tab (Cmd+T)
+
+Default: H = Cmd+K, Fn+H = Cmd+P, N = Cmd+N, Fn+N = Cmd+Shift+N
+
+Down = App switcher (J/K to cycle, Enter to select)
+Up = Window switcher (J/K to cycle, Enter to select)
+
+right_control = Exit to Normal, Ctrl+J = Exit to Ins

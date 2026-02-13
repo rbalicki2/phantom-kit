@@ -329,15 +329,15 @@
     [:!Of22 [["layer_ins" 0] ["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1]
              ["layer_i" 0] ["layer_comma" 0] ["layer_l" 0] ["layer_term" 0]
              ["layer_chrome" 0] ["layer_vscode" 0] ["layer_tmux" 0]
+             ["layer_inapp" 0] ["layer_appswitcher" 0] ["layer_windowswitcher" 0]
              [:layer "n"]]]
    ]}
 
-  {:des "[Desktop] Layer N (hk4 from Normal to enter, N = escape in Normal)"
+  {:des "[Desktop] Layer N (Nav) - N from Normal = escape, Ctrl+hk4 enters from any layer"
    :rules [:!apple_internal
     ;; N in Normal = escape (stays in Normal)
     [:n :escape ["layer_normal" 1]]
-    ;; hk4 (Alt+F20) enters Nav from Normal
-    [:!Of20 [["layer_n" 1] ["layer_normal" 0] ["in_any_layer" 1] [:layer "n"]] ["layer_normal" 1]]
+    ;; Entry via Ctrl+hk4 is handled separately
     [:right_control :right_control ["layer_n" 1] {:alone [["layer_n" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]]}]
     [{:key :j :modi {:mandatory [:control]}} [["layer_n" 0] ["in_any_layer" 0] ["layer_ins" 1] [:layer "ins"]] ["layer_n" 1]]
     ;; Shortcuts
@@ -611,6 +611,130 @@
     ;; iTerm splits
     [:l [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
     [:!Of1 [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Fn+L: Split horizontal
+   ]}
+
+  ;; =====================================================================
+  ;; IN-APP NAV LAYER (hk4 = Alt+F20 from Normal or Ins)
+  ;; Cross-app navigation: scroll, tabs, back/forward, with app-specific behavior
+  ;; =====================================================================
+
+  {:des "[Desktop] In-App Nav Layer - Entry and Exit"
+   :rules [:!apple_internal
+    ;; Entry from Normal (hk4 = Alt+F20)
+    [:!Of20 [["layer_inapp" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "echo inapp > /tmp/karabiner-layer"}] ["layer_normal" 1]]
+    ;; Entry from Ins (hk4 = Alt+F20)
+    [:!Of20 [["layer_inapp" 1] ["layer_ins" 0] ["in_any_layer" 1] {:shell "echo inapp > /tmp/karabiner-layer"}] ["layer_ins" 1]]
+    ;; right_control alone exits to Normal
+    [:right_control :right_control ["layer_inapp" 1] {:alone [["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    ;; Ctrl+J exits to Ins (global shortcut)
+    [{:key :j :modi {:mandatory [:control]}} [["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - Stay-in-layer shortcuts"
+   :rules [:!apple_internal
+    ;; Scrolling (J/K = down/up, Fn+J/K = end/home) - STAY in layer
+    [:j :down_arrow ["layer_inapp" 1]]
+    [:k :up_arrow ["layer_inapp" 1]]
+    [:f23 :end ["layer_inapp" 1]]  ;; Fn+J = End
+    [:f24 :home ["layer_inapp" 1]]  ;; Fn+K = Home
+    ;; Back/Forward (U/I) - STAY in layer
+    [:u :!Copen_bracket ["layer_inapp" 1]]   ;; Back
+    [:i :!Cclose_bracket ["layer_inapp" 1]]  ;; Forward
+    ;; Tabs (M/Comma = prev/next, Y = close, Fn+Y = reopen) - STAY in layer
+    [:m :!TStab ["layer_inapp" 1]]   ;; Prev tab
+    [:comma :!Ttab ["layer_inapp" 1]]  ;; Next tab
+    [:y :!Cw ["layer_inapp" 1]]  ;; Close tab
+    [:f15 :!CSt ["layer_inapp" 1]]  ;; Fn+Y = Reopen closed tab
+   ]}
+
+  {:des "[Desktop] In-App Nav - Exit-layer shortcuts (non-app-specific)"
+   :rules [:!apple_internal
+    ;; L = Cmd+L (address bar / go to line) - EXIT to Ins
+    [:l [:!Cl ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; O = Cmd+O (open) - EXIT to Ins
+    [:o [:!Co ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - Chrome-specific"
+   :rules [:!apple_internal :Chrome
+    ;; H = Cmd+K (command palette) - EXIT to Ins
+    [:h [:!Ck ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+H = Cmd+Shift+A (tab search) - EXIT to Ins
+    [:f22 [:!CSa ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Shift+H = Cmd+Y (history) - EXIT to Normal
+    [{:key :h :modi {:mandatory [:shift]}} [:!Cy ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; N = Cmd+T (new tab) - EXIT to Ins
+    [:n [:!Ct ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+N = Cmd+N (new window) - EXIT to Ins
+    [:!Of4 [:!Cn ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - VS Code-specific"
+   :rules [:!apple_internal :VSCode
+    ;; H = Cmd+Shift+P (command palette) - EXIT to Ins
+    [:h [:!CSp ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+H = Cmd+P (quick open) - EXIT to Ins
+    [:f22 [:!Cp ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; N = Cmd+N (new file) - EXIT to Ins
+    [:n [:!Cn ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+N = Cmd+Shift+N (new window) - EXIT to Ins
+    [:!Of4 [:!CSn ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - iTerm-specific"
+   :rules [:!apple_internal :iTerm
+    ;; N = Cmd+D (split pane vertical) - EXIT to Ins
+    [:n [:!Cd ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+N = Cmd+T (new tab) - EXIT to Ins
+    [:!Of4 [:!Ct ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - Default (fallback for other apps)"
+   :rules [:!apple_internal
+    ;; H = Cmd+K (common command palette) - EXIT to Ins
+    [:h [:!Ck ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+H = Cmd+P (common quick open) - EXIT to Ins
+    [:f22 [:!Cp ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; N = Cmd+N (new) - EXIT to Ins
+    [:n [:!Cn ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+    ;; Fn+N = Cmd+Shift+N (new window) - EXIT to Ins
+    [:!Of4 [:!CSn ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_inapp" 1]]
+   ]}
+
+  {:des "[Desktop] In-App Nav - App/Window Switcher Sub-modes"
+   :rules [:!apple_internal
+    ;; Down = Enter app switcher (hold Cmd, press Tab)
+    [:down_arrow [{:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke tab'"}
+                  ["layer_appswitcher" 1]] ["layer_inapp" 1]]
+    ;; Up = Enter window switcher (hold Cmd, press `)
+    [:up_arrow [{:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke \"`\"'"}
+                ["layer_windowswitcher" 1]] ["layer_inapp" 1]]
+    ;; === App Switcher sub-mode ===
+    ;; J = Tab (next app)
+    [:j {:shell "osascript -e 'tell app \"System Events\" to keystroke tab'"} ["layer_appswitcher" 1]]
+    ;; K = Shift+Tab (prev app)
+    [:k {:shell "osascript -e 'tell app \"System Events\" to keystroke tab using shift down'"} ["layer_appswitcher" 1]]
+    ;; Enter = Select and exit switcher, return to Normal
+    [:return_or_enter [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+                       ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                       {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+    ;; right_control = Cancel and exit switcher
+    [:right_control [{:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53'"}
+                     ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                     {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+    ;; === Window Switcher sub-mode ===
+    ;; J = ` (next window)
+    [:j {:shell "osascript -e 'tell app \"System Events\" to keystroke \"`\"'"} ["layer_windowswitcher" 1]]
+    ;; K = Shift+` (prev window)
+    [:k {:shell "osascript -e 'tell app \"System Events\" to keystroke \"`\" using shift down'"} ["layer_windowswitcher" 1]]
+    ;; Enter = Select and exit switcher
+    [:return_or_enter [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+                       ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                       {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+    ;; right_control = Cancel and exit switcher
+    [:right_control [{:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53'"}
+                     ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+                     {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
    ]}
 
   {:des "[Desktop] Layer H (l from Normal to enter) - deletion/selection"
