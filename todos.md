@@ -43,4 +43,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Hammerspoon border indicator bug: borders don't update correctly when screens are resized or when switching between monitors
 - Slack/messaging: quick way to message people on Slack or other messaging apps
 - Nav layer split: separate navigation within the app (back/forward, tabs) from navigating to other apps (open Chrome, iTerm, etc.)
+- Claude co-worker: send messages via text-to-speech to a background Claude session
 - Snippet library: quick access to commonly used text snippets
