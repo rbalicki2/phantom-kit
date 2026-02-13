@@ -731,6 +731,8 @@
     [:right_control :right_control ["mode" 10] {:alone [["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
     ;; Ctrl+J exits to Ins (global shortcut)
     [{:key :j :modi {:mandatory [:control]}} [["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 10]]
+    ;; HK4 (F21) goes to Nav layer
+    [:f21 [["mode" 2] ["in_modal" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["mode" 10]]
    ]}
 
   {:des "[Desktop] In-App Nav - Stay-in-layer shortcuts"

@@ -21,3 +21,4 @@ Up = App switcher (J/K to cycle, Enter to select)
 Down = Window switcher (J/K to cycle, Enter to select)
 
 right_control = Exit to Normal, Ctrl+J = Exit to Ins
+HK4 = Go to Nav layer
