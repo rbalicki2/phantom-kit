@@ -434,9 +434,9 @@
     ;; === EXIT (return to origin) ===
     ;; Uses rule ordering: mouse_from_ins=1 rules first (exit to Ins), then fallback (exit to Normal)
 
-    ;; Cancel: right_control = Escape
-    [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Cancel: right_control exits without sending escape
+    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:right_control [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
@@ -492,8 +492,11 @@
     [:!Of5 [["mode" 28] ["in_modal" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}] ["mode" 0]]
 
     ;; === EXIT ===
-    ;; Cancel: right_control = Escape, kill warpd
-    [:right_control [:escape ["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Cancel: right_control exits without sending escape, kill warpd
+    [:right_control [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Ctrl+N and Ctrl+J also exit
+    [{:key :n :modi {:mandatory [:right_control]}} [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    [{:key :j :modi {:mandatory [:right_control]}} [["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
@@ -501,14 +504,27 @@
     ;; Y = Exit grid without click (warpd grid_exit)
     [:y [:y ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; H = Right click (warpd), exit
-    [:h [:h ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; === CLICK ACTIONS (matching Label mode) ===
+    ;; Space = n (left click via warpd)
+    [:spacebar [:n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; N = Left click (warpd), exit
-    [:n [:n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Shift+Space = h (right click via warpd)
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:h ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Enter = n n (double-click via warpd)
+    [:return_or_enter [:n :n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Shift+Enter = Shift+n (shift+click)
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Fn+Space = Cmd+n (cmd+click)
+    [:!Of18 [:!Cn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Fn+Enter = Cmd+Shift+n (cmd+shift+click)
+    [:!Of17 [:!CSn ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; === PASSTHROUGH ===
-    ;; Grid navigation keys for warpd
+    ;; Grid navigation keys for warpd (H and N disabled - use Space/Enter instead)
     [:u :u ["mode" 28]]
     [:i :i ["mode" 28]]
     [:o :o ["mode" 28]]
@@ -518,6 +534,8 @@
     [:m :m ["mode" 28]]
     [:comma :comma ["mode" 28]]
     [:period :period ["mode" 28]]
+    [:h :vk_none ["mode" 28]]
+    [:n :vk_none ["mode" 28]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
