@@ -386,8 +386,8 @@
   {:des "[Desktop] Wispr Flow shortcut"
    :rules [:!apple_internal
     ;; right_control+Y → Ctrl+Alt+Shift+F19 (popo) → exit to Ins
-    ;; Global shortcut - works from any mode
-    [{:key :y :modi {:mandatory [:right_control]}} [["mode" 1] ["in_modal" 0] ["submode" 0] {:shell "echo ins > /tmp/karabiner-layer"}] {:afterup [:!TOSf19]}]
+    ;; Global shortcut - works from any mode (nil condition)
+    [{:key :y :modi {:mandatory [:right_control]}} [["mode" 1] ["in_modal" 0] ["submode" 0] {:shell "echo ins > /tmp/karabiner-layer"}] nil {:afterup [:!TOSf19]}]
    ]}
 
   {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
