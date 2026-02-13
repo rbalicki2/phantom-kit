@@ -449,7 +449,7 @@ Git shortcuts for terminal. Uses osascript to type text. All shortcuts exit to I
 - **H** = "git status ", **Fn+H** = + enter
 - **J** = "git log ", **Fn+J** = + enter
 - **K** = "git diff ", **Fn+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
-- **L** = "git commit -m ", **Fn+L** = "git commit -am 'wip'" + enter
+- **L** = "git commit --no-verify -m ", **Fn+L** = "git commit -am 'wip' --no-verify" + enter
 - **N** = "git reset ", **Fn+N** = "grhh" + enter
 - **M** = "git checkout ", **Fn+M** = "gcmp" + enter
 - **,** = "git add -A && git stash" + enter, **Fn+,** = "git stash pop" + enter
