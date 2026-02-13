@@ -1,10 +1,10 @@
-Term Layer (right_control+U, focuses iTerm)
+Term Layer (U from Normal, focuses iTerm)
 
-H = "git status ", Ctrl+H = +enter
-J = "git log ", Ctrl+J = +enter
+H = "git status ", Fn+H = +enter
+J = "git log ", Fn+J = +enter
 K = "git diff ", Fn+K = "git diff head"+enter, Ctrl+K = "gdmb"+enter
-L = "git commit -m ", Ctrl+L = "git commit -am 'wip'"+enter
-N = "git reset ", Ctrl+N = "grhh"+enter
-M = "git checkout ", Ctrl+M = "gcmp"+enter
-, = "git add -A && git stash"+enter, Ctrl+, = "git stash pop"+enter
-I = Split vertical, Ctrl+I = Split horizontal
+L = "git commit -m ", Fn+L = "git commit -am 'wip'"+enter
+N = "git reset ", Fn+N = "grhh"+enter
+M = "git checkout ", Fn+M = "gcmp"+enter
+, = "git add -A && git stash"+enter, Fn+, = "git stash pop"+enter
+I = Split vertical, Fn+I = Split horizontal

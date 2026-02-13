@@ -446,14 +446,14 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 
 ### Term Layer (u from Normal, focuses iTerm)
 Git shortcuts for terminal. Uses osascript to type text.
-- **H** = "git status ", **Ctrl+H** = + enter
-- **J** = "git log ", **Ctrl+J** = + enter
-- **K** = "git diff ", **Shift+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
-- **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
-- **N** = "git reset ", **Ctrl+N** = "grhh" + enter
-- **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
-- **,** = "git add -A && git stash" + enter, **Ctrl+,** = "git stash pop" + enter
-- **I** = Cmd+D (split vertical), **Ctrl+I** = Cmd+Shift+D (split horizontal)
+- **H** = "git status ", **Fn+H** = + enter
+- **J** = "git log ", **Fn+J** = + enter
+- **K** = "git diff ", **Fn+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
+- **L** = "git commit -m ", **Fn+L** = "git commit -am 'wip'" + enter
+- **N** = "git reset ", **Fn+N** = "grhh" + enter
+- **M** = "git checkout ", **Fn+M** = "gcmp" + enter
+- **,** = "git add -A && git stash" + enter, **Fn+,** = "git stash pop" + enter
+- **I** = Cmd+D (split vertical), **Fn+I** = Cmd+Shift+D (split horizontal)
 
 ### Tmux Layer (k from Normal, iTerm only)
 - Sends Control+A (tmux prefix) on entry

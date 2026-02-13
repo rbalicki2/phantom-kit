@@ -79,14 +79,14 @@
 - In sub-layers: **Fn+key** = modifier+mirrored LHS letter
 
 ## Term Layer (U from Normal, focuses iTerm)
-- **H** = "git status ", **Ctrl+H** = + enter
-- **J** = "git log ", **Ctrl+J** = + enter
+- **H** = "git status ", **Fn+H** = + enter
+- **J** = "git log ", **Fn+J** = + enter
 - **K** = "git diff ", **Fn+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
-- **L** = "git commit -m ", **Ctrl+L** = "git commit -am 'wip'" + enter
-- **N** = "git reset ", **Ctrl+N** = "grhh" + enter
-- **M** = "git checkout ", **Ctrl+M** = "gcmp" + enter
-- **Comma** = "git add -A && git stash" + enter, **Ctrl+Comma** = "git stash pop" + enter
-- **I** = Split vertical (Cmd+D), **Ctrl+I** = Split horizontal (Cmd+Shift+D)
+- **L** = "git commit -m ", **Fn+L** = "git commit -am 'wip'" + enter
+- **N** = "git reset ", **Fn+N** = "grhh" + enter
+- **M** = "git checkout ", **Fn+M** = "gcmp" + enter
+- **Comma** = "git add -A && git stash" + enter, **Fn+Comma** = "git stash pop" + enter
+- **I** = Split vertical (Cmd+D), **Fn+I** = Split horizontal (Cmd+Shift+D)
 
 ## Tmux Layer (H from Normal, iTerm only)
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
