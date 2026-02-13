@@ -502,7 +502,6 @@
     [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
     [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
     [:up_arrow [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-    [:y [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; === CLICK ACTIONS ===
     ;; Kill warpd first (mouse stays where warpd put it), then trigger our own click
@@ -535,9 +534,10 @@
     [:m :m ["mode" 28]]
     [:comma :comma ["mode" 28]]
     [:period :period ["mode" 28]]
-    ;; N = enter warpd normal mode (fine IJKL), H blocked
+    ;; N = enter warpd normal mode (fine IJKL), H and Y blocked
     [:n :n ["mode" 28]]
     [:h :vk_none ["mode" 28]]
+    [:y :vk_none ["mode" 28]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"
