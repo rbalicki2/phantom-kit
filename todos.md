@@ -39,3 +39,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Debug logging: log layer changes, key presses, and actions to file for debugging issues
 - Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
 - Audit layer exit targets: verify all layers exit to correct mode (Ins for text-input actions, Normal for non-typing). Especially Comma layer paste, find, select all.
+- Caps Lock support: add a way to toggle actual caps lock (currently mapped to Control/Escape)
