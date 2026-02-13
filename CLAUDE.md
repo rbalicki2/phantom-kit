@@ -454,13 +454,14 @@ Git shortcuts for terminal. Uses osascript to type text. All shortcuts exit to I
 - **M** = "git checkout ", **Fn+M** = "gcmp" + enter
 - **,** = "git add -A && git stash" + enter, **Fn+,** = "git stash pop" + enter
 - **.** = "git add ", **Fn+.** = "git add -A" + enter
-- **Y** = "gh pr create "
-- **I** = Cmd+D (split vertical), **Fn+I** = Cmd+Shift+D (split horizontal)
+- **Y** = "gh pr create" + enter
+- **I** = "git push --no-verify" + enter
 
-### Tmux Layer (k from Normal, iTerm only)
+### Tmux Layer (h from Normal, iTerm only)
 - Sends Control+A (tmux prefix) on entry
 - **Y/U/I/O/P** = !, @, #, $, % (panes 1-5)
-- **Shift+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
+- **Fn+Y/U/I/O/P** = ^, &, *, (, ) (panes 6-10)
+- **H** = Split vertical (Cmd+D), **J** = Split horizontal (Cmd+Shift+D)
 - Only activates when iTerm is foreground app
 
 ### Chrome Layer (h from Normal, Chrome only)

@@ -3,4 +3,6 @@ Tmux Layer (right_control+J, iTerm only)
 Sends Ctrl+A (tmux prefix) on entry
 
 Y/U/I/O/P = Tabs 1-5
-Shift+Y/U/I/O/P = Tabs 6-10
+Fn+Y/U/I/O/P = Tabs 6-10
+H = Split vertical (Cmd+D)
+J = Split horizontal (Cmd+Shift+D)
