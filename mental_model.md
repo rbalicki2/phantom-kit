@@ -60,7 +60,9 @@ Four variables track all state:
 
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
 
-Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` even if we "know" some are already correct.
+Additionally, all state transitions should clear ALL external state (see External State Awareness table). This follows the "prefer no-ops" principle—clearing state that's already clean is harmless.
+
+Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` and also clear external state (pkill warpd, dismissHomerow, release Cmd, etc.) even if we "know" some are already correct.
 
 ## Global Shortcuts
 
@@ -148,5 +150,6 @@ While in switcher:
 - [ ] Implement submode=-1 when mode != 1 (if Karabiner supports negative values)
 - [ ] Implement mouse_from_ins=-1 when mode != 13 (if Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
+- [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 - [ ] Bug: Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets submode=3/4)
