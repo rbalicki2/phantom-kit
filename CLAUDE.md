@@ -187,42 +187,73 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
 
-## Layer Variable System (CRITICAL)
+## State Machine (3 Variables)
 
-The modal system uses THREE key variables that must be set correctly for every layer transition:
+The modal system uses THREE variables. This eliminates "illegal states" where multiple layers could theoretically be active.
 
-| State | `layer_normal` | `in_any_layer` | Behavior |
-|-------|----------------|----------------|----------|
-| Normal | 1 | 0 | Layer selector keys only, most keys disabled |
-| Ins | 0 | 0 | All keys pass through (typing mode) |
-| Modal layers | 0 | 1 | Keys remapped/disabled per layer rules |
+**Variables:**
+- `mode` - Current layer (0-27)
+- `in_modal` - Is mode >= 2? (0=no, 1=yes) - for blocking rules
+- `submode` - Overlay state within Ins mode (0-4)
 
-**Why both variables exist**: `in_any_layer` distinguishes Ins mode (where keys type normally) from modal layers (where keys are disabled/remapped). This enables rules like `[:##a :vk_none ["in_any_layer" 1]]` to disable 'a' in modal layers but NOT in Ins mode.
+**Mode values:**
+| Mode | Layer | Mode | Layer |
+|------|-------|------|-------|
+| 0 | Normal | 14 | L-Cmd |
+| 1 | Ins | 15 | L-Cmd-Shift |
+| 2 | Nav | 16 | L-Ctrl |
+| 3 | Chrome | 17 | L-Ctrl-Shift |
+| 4 | VSCode | 18 | L-CtrlCmd |
+| 5 | TMUX | 19 | L-CtrlCmd-Shift |
+| 6 | Comma | 20 | L-CtrlAlt |
+| 7 | L (base) | 21 | L-CtrlAlt-Shift |
+| 8 | Term | 22 | L-Alt |
+| 9 | Admin | 23 | L-Alt-Shift |
+| 10 | InApp | 24 | L-AltCmd |
+| 11 | AppSwitcher | 25 | L-AltCmd-Shift |
+| 12 | WindowSwitcher | 26 | L-Hyper |
+| 13 | Mouse | 27 | L-Hyper-Shift |
 
-### Required Variable Sets for Layer Transitions
+**Submode values** (overlay on mode=1 Ins):
+- 0 = None
+- 1 = shift_mirror_oneshot (Fn+] for uppercase mirrored)
+- 2 = shift_oneshot (Fn+Space for next letter capitalized)
+- 3 = rcmd_h_mode (delete chord: rcmd+H then J/K/M/,)
+- 4 = rcmd_n_mode (select chord: rcmd+N then J/K/M/,)
 
-**Normal → Ins**:
-```clojure
-["layer_ins" 1] ["layer_normal" 0] ["in_any_layer" 0]
-```
+**in_modal**: Set to 1 when mode >= 2 (modal layers), 0 when mode is 0 or 1. Used for blocking rules like `[:##a :vk_none ["in_modal" 1]]`.
 
-**Normal → Modal layer (Nav, L, etc.)**:
-```clojure
-["layer_X" 1] ["layer_normal" 0] ["in_any_layer" 1]
-```
+### Layer Transitions
 
-**Any layer → Normal**:
-```clojure
-["layer_X" 0] ["in_any_layer" 0] ["layer_normal" 1]
-```
+**→ Normal**: `["mode" 0] ["in_modal" 0] ["submode" 0]`
+**→ Ins**: `["mode" 1] ["in_modal" 0]`
+**→ Modal layer N**: `["mode" N] ["in_modal" 1]`
 
 **Checklist when adding layer transitions**:
-1. ✅ Clear the current layer variable: `["layer_X" 0]`
-2. ✅ Set `in_any_layer` appropriately (0 for Normal/Ins, 1 for modal)
-3. ✅ Set `layer_normal` (1 for Normal, 0 otherwise)
-4. ✅ Write layer name to `/tmp/karabiner-layer` for SwiftBar
+1. ✅ Set `mode` to the new layer number
+2. ✅ Set `in_modal` appropriately (0 for Normal/Ins, 1 for modal)
+3. ✅ Write layer name to `/tmp/karabiner-layer` for SwiftBar
 
-**Note**: Goku templates only work for shell commands, not variable manipulation. These variable sets must be written out explicitly in every transition.
+### Handling "Not in mode N" (Exclusion)
+
+Karabiner can only check equality (`mode == N`), not inequality (`mode != N`). Two patterns:
+
+**1. Rule ordering** - specific rules BEFORE generic rules:
+```clojure
+;; L-Cmd specific (comes first, matches mode 14)
+[:page_down [Cmd+click...] ["mode" 14]]
+;; Generic (comes after, matches when above doesn't)
+[:page_down :button1]
+```
+
+**2. Explicit positive conditions** - list modes where rule applies:
+```clojure
+;; Works from Normal and Ins only
+[{...} [...] ["mode" 0]]
+[{...} [...] ["mode" 1]]
+```
+
+**Note**: With single-mode, mutual exclusion is automatic. Can't be in mode 14 AND mode 22.
 
 ## Karabiner Rule Precedence
 
@@ -248,25 +279,23 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 
 **Context**: Layers are entered from Normal layer with single keys. Within layers, Ctrl+KEY combos exist. Rule ordering ensures in-layer Ctrl+KEY rules take precedence.
 
-**Why in_any_layer doesn't work**: Goku only supports ONE condition per rule. Multiple conditions listed at the end of a rule are ignored (only the first is used). This is a fundamental goku limitation.
-
 **Solution**: Rule ordering. Karabiner evaluates rules in order and uses the first match. Place in-layer rules BEFORE layer entry rules they might conflict with.
 
 **How it works**:
-- In-layer rules have condition `["layer_X" 1]` (only match when IN that layer)
-- Layer entry rules have condition `["layer_normal" 1]` (only match when in Normal layer)
+- In-layer rules have condition `["mode" N]` (only match when IN that mode)
+- Layer entry rules have condition `["mode" 0]` (only match when in Normal mode)
 - When rules are ordered correctly, in-layer rules match first and consume the keypress
 
 **Example**: VS Code layer has Ctrl+H. If user holds right_control while in VS Code and presses H:
-- VS Code Ctrl+H rule: `[{:key :h :modi {:mandatory [:right_control]}} [action] ["layer_vscode" 1]]`
+- VS Code Ctrl+H rule: `[{:key :h :modi {:mandatory [:right_control]}} [action] ["mode" 4]]`
 - This matches first because VS Code rules come before Normal layer rules
 
 **Checklist when adding a new layer**:
-1. If the layer has Ctrl+KEY shortcuts that conflict with other layer entries, place its rule block BEFORE those layer entry blocks in the config
-2. Update SwiftBar script (`karabiner-layer.100ms.sh`) with new layer case
-3. Create `layers/*.txt` file for Hammerspoon overlay
-4. Update `layerFiles` map in `~/.hammerspoon/init.lua`
-5. **Update the PANIC BUTTON rule** to clear the new layer variable
+1. Pick the next available mode number (see State Machine section)
+2. If the layer has Ctrl+KEY shortcuts that conflict with other layer entries, place its rule block BEFORE those layer entry blocks
+3. Update SwiftBar script (`karabiner-layer.100ms.sh`) with new layer case
+4. Create `layers/*.txt` file for Hammerspoon overlay
+5. Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
 ## Panic Button (Fn+HK3)
 
@@ -274,12 +303,10 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 
 **What it does:**
 - Releases any held modifiers (like Cmd from app/window switcher)
-- Clears all layer variables (sets them to 0)
-- Clears oneshot/mode variables (`shift_mirror_oneshot`, `shift_oneshot`, `rcmd_h_mode`, `rcmd_n_mode`)
-- Sets `layer_normal=1`, `in_any_layer=0`
+- Sets `mode=0`, `in_modal=0`, `submode=0`
 - Writes "norm" to `/tmp/karabiner-layer`
 
-**⚠️ MAINTENANCE REQUIRED**: When adding new layers or state variables, you MUST update the panic button rule in `karabiner.edn` (search for "PANIC BUTTON") to clear the new variable. The rule has a comment listing all variables it clears.
+**No maintenance needed** for new layers - the panic button simply resets the 3 variables to their Normal state.
 
 ## Layer Exit Modes: Normal vs Ins
 
