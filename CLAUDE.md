@@ -2,6 +2,15 @@
 
 This system is called **Phantom Kit**.
 
+## ⚠️ IMPORTANT: Read mental_model.md First
+
+**`mental_model.md` is the most important document for understanding this system.** It describes:
+- State variables and invariants
+- Principles (prefer no-ops, panic+state model, centralize in Karabiner, external state)
+- How state transitions should work
+
+This file (CLAUDE.md) contains implementation details, specific shortcuts, and syntax reference. But for understanding *how the system works*, always refer to mental_model.md first.
+
 ## User Interaction Notes
 The user is using voice-to-text and may not fully think through requests before speaking. Claude should:
 - Dictated letters are always uppercase, but use judgment for actual case (usually lowercase for filenames, code, etc.)
@@ -110,8 +119,8 @@ See `todos.md` for the list of pending tasks.
 
 ## Workflow After Changes
 **CRITICAL**: Keep ALL documentation up-to-date after any keybinding changes:
-- `mental_model.md` - **Primary reference** for layer behaviors (keep this current!)
-- `CLAUDE.md` - Main reference with full details
+- `mental_model.md` - **THE source of truth** for state transitions and invariants
+- `CLAUDE.md` - Implementation details and specific shortcuts
 - `shortcuts.md` - Quick reference
 - `layers/*.txt` - **MUST update when ANY layer shortcut changes** (Hammerspoon overlay files)
 - `rhs-slots.md` - RHS key slot grid for Ins mode (tracks what each key+modifier combo does)
@@ -142,14 +151,11 @@ Before committing changes to `karabiner.edn`, verify these common gotchas:
 - [ ] For osascript, use multiple `-e` flags in ONE shell: `{:shell "osascript -e '...' -e '...'"}`
 
 ### Layer Variables
-- [ ] Layer transitions set ALL THREE variables correctly:
-  - `["layer_X" 0/1]` - the specific layer
-  - `["in_any_layer" 0/1]` - 0 for Normal/Ins, 1 for modal layers
-  - `["layer_normal" 0/1]` - 1 for Normal, 0 otherwise
+- [ ] Layer transitions set ALL FOUR variables per mental_model.md invariants
 - [ ] Layer exits write to `/tmp/karabiner-layer` for SwiftBar
 
 ### New Layers
-- [ ] Update PANIC BUTTON rule to clear new layer variable
+- [ ] No panic update needed (panic resets all 4 variables to Normal state)
 - [ ] Add case to `karabiner-layer.100ms.sh` SwiftBar script
 - [ ] Create `layers/*.txt` file for Hammerspoon overlay
 - [ ] Update `layerFiles` map in `~/.hammerspoon/init.lua`
@@ -197,16 +203,8 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **Global shortcut rules need `in_modal` conditions.** Global rules (like Ctrl+N→escape) with no mode condition will fire BEFORE layer-specific rules that define the same shortcut, because rules are processed in file order and global rules typically come before layer definitions. Add `["in_modal" 0]` to global shortcut rules so they don't intercept shortcuts from modal layers.
 - **Bare key rules match any modifiers by default.** A rule like `[:n :escape]` matches N with ANY modifiers held (Ctrl+N, Shift+N, etc.). To match ONLY bare N (no modifiers), use `{:key :n :modi {:optional [:caps_lock]}}`. The `:optional [:caps_lock]` restricts the rule to only match with caps_lock optionally held.
 
-## State Machine (3 Variables)
+## Mode Values Reference
 
-The modal system uses THREE variables. This eliminates "illegal states" where multiple layers could theoretically be active.
-
-**Variables:**
-- `mode` - Current layer (0-27)
-- `in_modal` - Is mode >= 2? (0=no, 1=yes) - for blocking rules
-- `submode` - Overlay state within Ins mode (0-4)
-
-**Mode values:**
 | Mode | Layer | Mode | Layer |
 |------|-------|------|-------|
 | 0 | Normal | 14 | L-Cmd |
@@ -224,46 +222,7 @@ The modal system uses THREE variables. This eliminates "illegal states" where mu
 | 12 | WindowSwitcher | 26 | L-Hyper |
 | 13 | Mouse | 27 | L-Hyper-Shift |
 
-**Submode values** (overlay on mode=1 Ins):
-- 0 = None
-- 1 = shift_mirror_oneshot (Fn+] for uppercase mirrored)
-- 2 = shift_oneshot (Fn+Space for next letter capitalized)
-- 3 = rcmd_h_mode (delete chord: rcmd+H then J/K/M/,)
-- 4 = rcmd_n_mode (select chord: rcmd+N then J/K/M/,)
-
-**in_modal**: Set to 1 when mode >= 2 (modal layers), 0 when mode is 0 or 1. Used for blocking rules like `[:##a :vk_none ["in_modal" 1]]`.
-
-### Layer Transitions
-
-**→ Normal**: `["mode" 0] ["in_modal" 0] ["submode" 0]`
-**→ Ins**: `["mode" 1] ["in_modal" 0]`
-**→ Modal layer N**: `["mode" N] ["in_modal" 1]`
-
-**Checklist when adding layer transitions**:
-1. ✅ Set `mode` to the new layer number
-2. ✅ Set `in_modal` appropriately (0 for Normal/Ins, 1 for modal)
-3. ✅ Write layer name to `/tmp/karabiner-layer` for SwiftBar
-
-### Handling "Not in mode N" (Exclusion)
-
-Karabiner can only check equality (`mode == N`), not inequality (`mode != N`). Two patterns:
-
-**1. Rule ordering** - specific rules BEFORE generic rules:
-```clojure
-;; L-Cmd specific (comes first, matches mode 14)
-[:page_down [Cmd+click...] ["mode" 14]]
-;; Generic (comes after, matches when above doesn't)
-[:page_down :button1]
-```
-
-**2. Explicit positive conditions** - list modes where rule applies:
-```clojure
-;; Works from Normal and Ins only
-[{...} [...] ["mode" 0]]
-[{...} [...] ["mode" 1]]
-```
-
-**Note**: With single-mode, mutual exclusion is automatic. Can't be in mode 14 AND mode 22.
+See mental_model.md for state variables, invariants, and transition rules.
 
 ## Karabiner Rule Precedence
 
@@ -307,17 +266,6 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 4. Create `layers/*.txt` file for Hammerspoon overlay
 5. Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
-## Panic Button (Fn+HK3)
-
-**Fn+HK3** (Shift+Alt+F19) is a global emergency reset that clears ALL state and returns to Normal mode. Use it when the keyboard gets into a stuck or unexpected state.
-
-**What it does:**
-- Releases any held modifiers (like Cmd from app/window switcher)
-- Sets `mode=0`, `in_modal=0`, `submode=0`
-- Writes "norm" to `/tmp/karabiner-layer`
-
-**No maintenance needed** for new layers - the panic button simply resets the 3 variables to their Normal state.
-
 ## Grid Mode Design
 
 Grid mode displays a 3x3 grid overlay for mouse navigation. Navigate to subdivide the grid, positioning the mouse at the target location. When you click or exit, the grid closes and the mouse stays where it was positioned.
@@ -333,18 +281,6 @@ Grid mode displays a 3x3 grid overlay for mouse navigation. Navigate to subdivid
 - Shift+click: Shift+Enter
 - Cmd+click: Fn+Space
 - Cmd+Shift+click: Fn+Enter
-
-## Layer Exit Modes: Normal vs Ins
-
-When a layer action exits, decide whether to go to **Normal** or **Ins** mode:
-
-- **→ Ins mode**: Action opens a text field where user will type (address bar, search, find dialog, Spotlight)
-- **→ Normal mode**: Action doesn't require typing (tab switch, close, refresh, undo, copy/paste)
-
-**Examples that should exit to Ins:**
-- Chrome: new tab, address bar, search tabs, Cmd+K
-- Comma: find (Cmd+F), find in files
-- Nav: Spotlight (Cmd+Space)
 
 ## Kinesis Advantage 360 Layout
 

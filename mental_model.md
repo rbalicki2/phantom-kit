@@ -14,7 +14,7 @@ Conceptually, every state transition should behave as if it:
 1. Calls panic (clears ALL state—both Karabiner variables and external state)
 2. Sets the exact state we want
 
-This isn't literally implementable (shell can't set Karabiner variables), but it's the mental model. The result: transitions are self-contained and don't rely on "current state is probably X".
+This isn't literally implementable: shell commands can't set Karabiner variables, and we can't clear external state we're actively relying on (see Exception below). But it's the mental model—transitions should be as self-contained as possible and not rely on "current state is probably X".
 
 ### Centralize State in Karabiner
 
