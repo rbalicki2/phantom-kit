@@ -60,6 +60,7 @@ Four variables track all state:
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
 
 Additionally, all state transitions should clear ALL external state (see External State Awareness table). This follows the "prefer no-ops" principle—clearing state that's already clean is harmless.
+- When a state transition makes assumptions about external state (e.g., doesn't clear something because the target mode depends on it), document that assumption in a comment in the EDN file.
 
 **Exception**: Don't clear external state that the target mode depends on. For example, Grid mode relies on warpd running, so transitions within Grid mode (navigation keys) must not kill warpd. App/window switcher relies on Cmd being held, so J/K cycling must not release Cmd.
 
