@@ -527,8 +527,9 @@
    :rules [:!apple_internal
     ;; right_control alone exits layer to Normal
     [:right_control :right_control ["layer_vscode" 1] {:alone [["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}]}]
-    ;; J = Cmd+D (go to definition)
+    ;; J = Cmd+D (go to definition), Fn+J = Cmd+. (quick fix)
     [:j [:!Cd ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
+    [:f23 [:!Cperiod ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]  ;; Fn+J: Cmd+.
     ;; K = F2 (rename)
     [:k [:f2 ["layer_vscode" 0] ["in_any_layer" 0] ["layer_normal" 1] {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
     ;; L = Cmd+R (find references)
