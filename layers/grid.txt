@@ -8,7 +8,6 @@ Enter         Right-click
 Fn+Enter      Double-click
 Shift+Enter   Cmd+Shift+Click
 Up            Hover (no click)
-N             Fine movement (IJKL)
 right_ctrl    Cancel
 
 Returns to Normal layer
