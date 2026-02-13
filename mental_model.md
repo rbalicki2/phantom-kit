@@ -23,7 +23,7 @@ Four variables track all state:
 
 Every state transition in karabiner.edn MUST explicitly set ALL relevant variables to their correct values, even if we expect them to already be correct. No implicit state. This prioritizes correctness and future refactors over brevity.
 
-Example: Entering Normal should set `mode=0, in_modal=0, submode=0` even if we "know" in_modal is already 0.
+Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, mouse_from_ins=-1` even if we "know" some are already correct.
 
 ## Global Shortcuts
 
@@ -31,9 +31,9 @@ These work from ANY modal layer (mode >= 2):
 
 | Shortcut | State Change |
 |----------|--------------|
-| right_ctrl alone | mode=0, in_modal=0, submode=0 |
-| Ctrl+J | mode=1, in_modal=0, submode=0 |
-| Panic | mode=0, in_modal=0, submode=0, mouse_from_ins=0 |
+| right_ctrl alone | mode=0, in_modal=0, submode=-1, mouse_from_ins=-1 |
+| Ctrl+J | mode=1, in_modal=0, submode=0, mouse_from_ins=-1 |
+| Panic | mode=0, in_modal=0, submode=-1, mouse_from_ins=-1 |
 
 **Ctrl+N** is NOT global. It exists only in:
 - Label mode (mode=13) — exits based on mouse_from_ins
