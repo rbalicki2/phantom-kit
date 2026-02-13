@@ -1,4 +1,5 @@
 Term Layer (U from Normal, focuses iTerm)
+All shortcuts exit to Ins mode
 
 H = "git status ", Fn+H = +enter
 J = "git log ", Fn+J = +enter

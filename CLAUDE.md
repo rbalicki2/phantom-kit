@@ -445,7 +445,7 @@ Sub-layers allow pressing modifier+letter combinations easily. Press the entry k
 **Cmd sub-layer special**: page_down = Cmd+click, page_up = Cmd+right-click
 
 ### Term Layer (u from Normal, focuses iTerm)
-Git shortcuts for terminal. Uses osascript to type text.
+Git shortcuts for terminal. Uses osascript to type text. All shortcuts exit to Ins mode.
 - **H** = "git status ", **Fn+H** = + enter
 - **J** = "git log ", **Fn+J** = + enter
 - **K** = "git diff ", **Fn+K** = "git diff head" + enter, **Ctrl+K** = "gdmb" + enter
