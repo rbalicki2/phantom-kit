@@ -56,8 +56,8 @@
   ;; App launching
   :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer"
   ;; Git/terminal typing (Term layer) - sends Ctrl+C first, exits to Ins mode
-  :type-ins "osascript -e 'tell app \"System Events\" to keystroke \"c\" using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo ins > /tmp/karabiner-layer"
-  :type-enter-ins "osascript -e 'tell app \"System Events\" to keystroke \"c\" using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo ins > /tmp/karabiner-layer"
+  :type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo ins > /tmp/karabiner-layer"
+  :type-enter-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo ins > /tmp/karabiner-layer"
   ;; Chrome tab by index
   :chrome-tab "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to %s' && echo norm > /tmp/karabiner-layer"
   ;; Chrome profile switching
@@ -570,7 +570,7 @@
     [:f24 [[:type-enter-ins "git diff head"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+K: git diff head
     [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-ins "gdmb"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Ctrl+K
     [:l [[:type-ins "git commit --no-verify -m "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
-    [:!Of1 [{:shell "osascript -e 'tell app \"System Events\" to keystroke \"c\" using control down' -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\'' --no-verify\"' -e 'tell app \"System Events\" to key code 36' && echo ins > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+L
+    [:!Of1 [{:shell "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"git commit -am '\\''wip'\\'' --no-verify\"' -e 'tell app \"System Events\" to key code 36' && echo ins > /tmp/karabiner-layer"} ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+L
     [:n [[:type-ins "git reset "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
     [:!Of4 [[:type-enter-ins "grhh"] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]  ;; Fn+N
     [:m [[:type-ins "git checkout "] ["layer_term" 0] ["in_any_layer" 0] ["layer_ins" 1]] ["layer_term" 1]]
