@@ -649,6 +649,7 @@
     [:m :!TStab ["layer_inapp" 1]]   ;; Prev tab
     [:comma :!Ttab ["layer_inapp" 1]]  ;; Next tab
     [:y :!Cw ["layer_inapp" 1]]  ;; Close tab
+    [{:key :y :modi {:mandatory [:shift]}} [:!Cw :!TStab] ["layer_inapp" 1]]  ;; Shift+Y = Close + prev tab
     [:f15 :!CSt ["layer_inapp" 1]]  ;; Fn+Y = Reopen closed tab
    ]}
 
