@@ -574,9 +574,9 @@
     [:comma [:!Tc ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Ctrl+C → Ins
     [:n [:!Tr ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Ctrl+R → Ins
     [:h [:!Cc ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Copy
-    [{:key :h :modi {:mandatory [:shift]}} [:!Ca :!Cc ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Shift+H: Select all + Copy
+    [:f22 [:!Ca :!Cc ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Fn+H: Select all + Copy
     [:j [:!Cv ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Paste → Ins
-    [{:key :j :modi {:mandatory [:shift]}} [:!Ca :!Cv ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Shift+J: Select all + Paste → Ins
+    [:f23 [:!Ca :!Cv ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Fn+J: Select all + Paste → Ins
     [:k [:!Cf ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Find → Ins
     [:f24 [:!CSf ["in_modal" 0] ["mode" 1] [:layer "ins"]] ["mode" 6]]  ;; Fn+K: Find in files → Ins
     [:l [:!Cz ["in_modal" 0] ["mode" 0] [:layer "norm"]] ["mode" 6]]  ;; Undo

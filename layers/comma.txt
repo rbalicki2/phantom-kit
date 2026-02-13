@@ -1,7 +1,7 @@
 Comma Layer (comma from Normal)
 
-H = Copy, Shift+H = Select all + Copy
-J = Paste →Ins, Shift+J = Select all + Paste →Ins
+H = Copy, Fn+H = Select all + Copy
+J = Paste →Ins, Fn+J = Select all + Paste →Ins
 K = Find →Ins, Fn+K = Find in files →Ins
 L = Undo, Fn+L = Redo
 , = Ctrl+C → Ins
