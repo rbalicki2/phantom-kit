@@ -1,164 +1,91 @@
 # Phantom Kit Mental Model
 
-Concise source of truth for how the modal keyboard system behaves.
+Focus: State transitions, invariants, and behaviors that must be preserved.
 
-## Overview
+## State Variables
 
-One-handed (right hand) modal keyboard system. Three variables track state:
+Three variables track all state:
 - `mode` (0-28): Current layer
-- `in_modal` (0/1): Whether in a modal layer (mode >= 2)
-- `submode` (0-4): Overlay state within Ins mode
+- `in_modal` (0/1): 1 when mode >= 2 (modal layers)
+- `submode` (0-4): Overlay state within Ins mode only
 
-## Layer Map
+**Invariant**: `in_modal` must equal `(mode >= 2 ? 1 : 0)`. If these get out of sync, behavior breaks.
 
-| Mode | Name | Entry | Exit | Purpose |
-|------|------|-------|------|---------|
-| 0 | Normal | Default / right_ctrl from any | - | Layer selector, most keys disabled |
-| 1 | Ins | J from Normal | right_ctrl | Typing mode, all keys pass through |
-| 2 | Nav | N from Normal | right_ctrl | Open apps, Spotlight |
-| 3 | Chrome | H from Normal (Chrome focused) | right_ctrl | Chrome-specific shortcuts |
-| 4 | VSCode | H from Normal (VSCode focused) | right_ctrl | VS Code-specific shortcuts |
-| 5 | TMUX | H from Normal (iTerm focused) | right_ctrl | Tmux pane switching |
-| 6 | Comma | , from Normal | right_ctrl | Clipboard, find, save, undo |
-| 7 | L | L from Normal | right_ctrl | Symbols, modifier sub-layers |
-| 8 | Term | U from Normal (focuses iTerm) | right_ctrl | Git commands typed into terminal |
-| 9 | Admin | I from Normal | right_ctrl | Window management, screenshots |
-| 10 | InApp | Fn+HK4 from Normal/Ins | right_ctrl | In-app navigation (scroll, tabs, back/fwd) |
-| 13 | Label | M from Normal, Ctrl+M from Ins | right_ctrl / click | Mouse via label overlay |
-| 28 | Grid | Fn+M from Normal | right_ctrl / click | Mouse via 3x3 grid |
+## Global Shortcuts (Work From Any Layer)
 
-## Normal Layer (Mode 0)
+These MUST work regardless of current mode:
 
-The hub. Most keys disabled. Active keys:
-- **J** → Ins
-- **N** → Nav
-- **M** → Label mode
-- **Fn+M** → Grid mode
-- **,** → Comma
-- **L** → L layer
-- **U** → Term (focuses iTerm)
-- **H** → Chrome/VSCode/TMUX (app-dependent)
-- **I** → Admin
-- **Fn+HK4** → InApp
-- **right_ctrl** → sends Escape (stays in Normal)
+| Shortcut | Action | Notes |
+|----------|--------|-------|
+| **right_ctrl alone** | Exit to Normal | Primary escape from any modal layer |
+| **Ctrl+J** | Exit to Ins | Quick return to typing mode |
+| **Ctrl+N** | Exit to Normal + Escape | Global escape fallback |
+| **Ctrl+Y** | Toggle recording (Wispr) | Works everywhere except Admin layer |
+| **Panic (Fn+HK3)** | Full reset | Clears ALL state, kills warpd, releases modifiers |
 
-## Ins Layer (Mode 1)
+**Panic Button (Shift+Alt+F19)**: Emergency reset. Sets `mode=0`, `in_modal=0`, `submode=0`, kills warpd, dismisses Homerow, releases held modifiers. Use when keyboard gets stuck.
 
-Typing mode. All keys pass through with these additions:
-- **[** → Backspace, **]** → Delete
-- **Shift+Up/Down** → `[` / `]`
-- **Fn+Up/Down** → `{` / `}`
-- **Fn+Space** → Space + shift oneshot (next letter capitalized)
-- **Fn+]** → shift_mirror_oneshot (next mirrored letter uppercase)
-- **Fn+letter** → mirrored LHS letter (Fn+J→f, Fn+K→d, etc.)
-- **rcmd+H then J/K/M/,** → delete word/line left/right
-- **rcmd+N then J/K/M/,** → select word/line left/right
-- **rcmd+J/K** → word left/right
-- **rcmd+M/,** → line start/end
+## Layer Categories
 
-## Nav Layer (Mode 2)
+### Non-Modal (in_modal=0)
+- **Normal (0)**: Layer selector, most keys disabled
+- **Ins (1)**: Typing mode, keys pass through
 
-Open applications and locations:
-- **Y** → Spotlight (Cmd+Space) → Ins
-- **N** → Chrome Personal profile
-- **M** → Chrome Work profile
-- **H** → iTerm
-- **J** → VS Code
-- **K** → Karabiner-EventViewer
-- **L** → Signal, **Fn+L** → Messages, **Ctrl+L** → WhatsApp
-- **O** → Obsidian
-- **.** → Finder, **Fn+.** → Go to Folder, **Ctrl+.** → Go to Folder + Paste
+### Modal (in_modal=1)
+All others. Must exit via right_ctrl or action that changes mode.
 
-## Comma Layer (Mode 6)
+## State Transitions
 
-Clipboard and editing:
-- **,** → Ctrl+C (terminal interrupt)
-- **H** → Cmd+C (copy)
-- **J** → Cmd+V (paste) → Ins
-- **K** → Cmd+F (find), **Shift+K** → Cmd+Shift+F
-- **L** → Cmd+Z (undo), **Shift+L** → redo
-- **.** → Cmd+S (save)
-- **I** → Cmd+A (select all) → Ins
-- **O** → Cmd+Shift+P (command palette)
-- **P** → Cmd+P
-- **N** → Ctrl+R (terminal reverse search)
-- **Ctrl+H** → Cmd+W (close)
+### Entry to Normal (mode=0)
+- right_ctrl alone from any modal layer
+- Ctrl+N from anywhere
+- Panic button
+- Actions that explicitly exit to Normal (e.g., copy operations)
 
-## L Layer (Mode 7)
+### Entry to Ins (mode=1)
+- J from Normal
+- Ctrl+J from any modal layer
+- Actions that open text input (address bar, search, new tab, etc.)
 
-Symbols and modifier sub-layers:
-- **H** → `+`, **Shift+H** → Cmd+plus
-- **N** → `=`, **Shift+N** → Cmd+equals
-- **Y** → enter Cmd sub-layer (any letter sends Cmd+letter)
-- **U** → enter Ctrl sub-layer
-- **I** → enter Alt sub-layer
-- **Ctrl+Y/U/I** → combined modifier sub-layers
+### Entry to Modal Layers
+All from Normal unless noted:
+- **Nav (2)**: N
+- **Chrome/VSCode/TMUX (3/4/5)**: H (app-dependent)
+- **Comma (6)**: ,
+- **L (7)**: L
+- **Term (8)**: U (also focuses iTerm)
+- **Admin (9)**: I
+- **InApp (10)**: Fn+HK4 (also from Ins)
+- **Label (13)**: M from Normal, Ctrl+M from Ins
+- **Grid (28)**: Fn+M from Normal only
 
-## Term Layer (Mode 8)
+### Exit Behavior Rules
 
-Git commands (focuses iTerm, types text):
-- **H** → `git status `, **Fn+H** → + enter
-- **J** → `git log `, **Fn+J** → + enter
-- **K** → `git diff `, **Fn+K** → `git diff head` + enter
-- **L** → `git commit -m `, **Fn+L** → `git commit -am 'wip'` + enter
-- **N** → `git reset `, **Fn+N** → `grhh` + enter
-- **M** → `git checkout `, **Fn+M** → `gcmp` + enter
-- **,** → `git add -A && git stash` + enter, **Fn+,** → `git stash pop` + enter
-- **.** → `git add `, **Fn+.** → `git add -A` + enter
-- **Y** → `gh pr create` + enter
-- **I** → `git push` + enter
+**Exit to Normal**: Actions that don't require typing
+- Copy, close, window management, undo/redo
 
-## Admin Layer (Mode 9)
+**Exit to Ins**: Actions that open text input
+- Address bar, search, find, new tab/file, command palette
+- Paste (cursor in text field after)
 
-Window management and system:
-- **Space** → Maximize (BTT)
-- **Up** → Left half, **Down** → Right half
-- **Enter** → Cmd+` (switch windows)
-- **P** → Screenshot full, **Ctrl+P** → Screenshot selection
-- **Y** → Restart Whispering
-- **L** → LLM blurb paste → Ins
+**Stay in Layer**: Repeatable actions
+- Tab switching, scrolling, delete operations
 
-## InApp Layer (Mode 10)
+## Mouse Modes (Label & Grid)
 
-In-app navigation (works across apps):
-- **J/K** → Scroll down/up (hold to repeat)
-- **Fn+J/K** → End/Home
-- **U/I** → Back/Forward
-- **M/,** → Prev/Next tab
-- **Y** → Close tab, **Shift+Y** → Close + prev, **Fn+Y** → Reopen
-- **L** → Address bar (Cmd+L) → Ins
-- **O** → Open (Cmd+O) → Ins
-- **Up** → App switcher, **Down** → Window switcher
-- **HK4** → Go to Nav layer
+### Entry
+- **Label**: M from Normal (returns to Normal), Ctrl+M from Ins (returns to Ins)
+- **Grid**: Fn+M from Normal only
 
-App-specific H/N vary (Chrome: Cmd+K/Cmd+T, VSCode: Cmd+Shift+P/Cmd+N, etc.)
+`mouse_from_ins` variable tracks origin for Label mode return.
 
-## Label Mode (Mode 13)
+### Click Handling
+1. User selects target (labels or grid navigation)
+2. User presses click key (Space, Enter, etc.)
+3. **Grid**: Kill warpd first (mouse stays positioned), then Hammerspoon clicks
+4. **Label**: Hammerspoon intercepts Homerow's click, performs our click instead
 
-Mouse navigation via label overlay (Homerow):
-- Type labels to select target, then:
-- **Space** → Click
-- **Fn+Space** → Cmd+Click
-- **Shift+Space** → Shift+Click
-- **Enter** → Right-click
-- **Fn+Enter** → Double-click
-- **Shift+Enter** → Cmd+Shift+Click
-- **Up** → Hover (no click)
-
-Returns to origin layer (Normal or Ins based on entry).
-
-## Grid Mode (Mode 28)
-
-Mouse navigation via 3x3 grid (warpd):
-- **U/I/O/J/K/L/M/,/.** → Navigate grid subdivisions
-- **N** → Enter normal mode (fine IJKL movement)
-- Same click keys as Label mode
-- **right_ctrl** → Cancel (no click)
-
-Grid tool positions mouse, we handle all clicks via Hammerspoon.
-
-## Mouse Click Actions (Both Modes)
-
+### Click Actions (Both Modes)
 | Key | Action |
 |-----|--------|
 | Space | Left click |
@@ -167,24 +94,62 @@ Grid tool positions mouse, we handle all clicks via Hammerspoon.
 | Enter | Right-click |
 | Fn+Enter | Double-click |
 | Shift+Enter | Cmd+Shift+click |
-| Up | Hover (move mouse, no click) |
+| Up | Hover (position mouse, no click) |
 
-## Global Behaviors
+Hammerspoon functions: `clickLeft()`, `clickRight()`, `clickDouble()`, `clickShift()`, `clickCmd()`, `clickCmdShift()`, `labelRightClick()`, `labelDoubleClick()`, etc.
 
-- **right_ctrl alone** → Exit to Normal (from any modal layer)
-- **Ctrl+J** → Exit to Ins (from some layers)
-- **Panic button (Fn+HK3)** → Reset all state, return to Normal
-- **Page Down/Up** → Left/Right click (global)
+## Files That Must Stay In Sync
 
-## Kinesis Fn Layer
+When changing shortcuts, update ALL of these:
 
-Fn+key sends F-keys (some with Alt modifier):
-- Fn+letter → F13-F24 or Alt+F1-F12
-- Used for secondary actions in each layer
+| File | Purpose | Update When |
+|------|---------|-------------|
+| `karabiner.edn` | Source of truth for rules | Any shortcut change |
+| `mental_model.md` | State transitions & invariants | Any state-changing behavior |
+| `layers/*.txt` | Hammerspoon overlay content | Layer shortcut changes |
+| `~/.hammerspoon/init.lua` | Click handlers, overlays | Mouse/click behavior changes |
+| `warpd.conf` | Grid mode settings | Grid navigation changes |
+| `kinesis-layout1.txt` | Kinesis Fn layer mappings | F-key assignments |
+| `/tmp/karabiner-layer` | Current layer (runtime) | Layer entry/exit rules |
 
-## Files
+### Kinesis Layout
+The Kinesis Advantage 360 Fn layer maps keys to F-keys:
+- Managed via `kinesis-layout1.txt`
+- Copy to `/Volumes/ADV360/layouts/` when keyboard is in programming mode
+- `npm run kinesis` copies to all 9 layout slots
 
-- `karabiner.edn` → Goku config (source, copied to ~/.config/)
-- `~/.hammerspoon/init.lua` → Overlays, clicks, scrolling
-- `warpd.conf` → Grid mode settings
-- `layers/*.txt` → Overlay content for each layer
+Key mappings:
+- Fn+HK3 → Shift+Alt+F19 (panic)
+- Fn+HK4 → F21
+- Bare HK3 → Alt+F19
+- Bare HK4 → Alt+F20 (enters InApp)
+
+## Ins Mode Submodes
+
+Within Ins (mode=1), `submode` tracks overlays:
+- 0: Normal typing
+- 1: shift_mirror_oneshot (Fn+], next mirrored letter uppercase)
+- 2: shift_oneshot (Fn+Space, next letter capitalized)
+- 3: rcmd_h_mode (delete chord)
+- 4: rcmd_n_mode (select chord)
+
+Submodes auto-clear after one keypress.
+
+## Common Mistakes to Avoid
+
+1. **Forgetting in_modal**: When adding layer transitions, set BOTH `mode` AND `in_modal`
+2. **Wrong exit target**: Text-input actions → Ins, non-typing actions → Normal
+3. **Shell command format**: Only ONE `{:shell ...}` per rule works; combine with `&&`
+4. **Layer file mismatch**: Overlay shows wrong shortcuts if `layers/*.txt` not updated
+5. **Kinesis not copied**: Changes to kinesis-layout1.txt need `npm run kinesis`
+6. **Panic button scope**: When adding layers, panic button auto-clears via the 3 variables
+
+## Testing Checklist
+
+After changes:
+1. `npm run sync` - copies and compiles
+2. `npm run warpd` - tests warpd config
+3. `npm run hs` - reloads Hammerspoon
+4. Test: right_ctrl exits from new layer
+5. Test: Ctrl+J goes to Ins from new layer
+6. Test: Panic button resets state
