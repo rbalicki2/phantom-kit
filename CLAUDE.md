@@ -1,6 +1,6 @@
 # Karabiner/Goku Configuration Context
 
-This system is called **Overmind** (a reference to Starcraft).
+This system is called **Phantom Kit**.
 
 ## User Interaction Notes
 The user is using voice-to-text and may not fully think through requests before speaking. Claude should:

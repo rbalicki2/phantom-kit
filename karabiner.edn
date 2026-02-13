@@ -556,7 +556,7 @@
     [{:key :j :modi {:mandatory [:control]}} [["layer_vscode" 0] ["in_any_layer" 0] ["layer_ins" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_vscode" 1]]
    ]}
 
-  {:des "[Desktop] Term Layer (u from Normal to enter, focuses iTerm) - git shortcuts"
+  {:des "[Desktop] Git Layer (u from Normal to enter, focuses iTerm) - git shortcuts"
    :rules [:!apple_internal
     ;; Entry/exit
     [:u [["layer_term" 1] ["layer_normal" 0] ["in_any_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["layer_normal" 1]]
@@ -599,13 +599,13 @@
     ;; Panes 1-5: Y/U/I/O/P → !/@ /#/$/%
     [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:u [:!S2 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
-    [:i [:!S3 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:i [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
     [:o [:!S4 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:p [:!S5 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     ;; Panes 6-10: Fn+Y/U/I/O/P → ^/&/*/(/)
     [:f15 [:!S6 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f16 [:!S7 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
-    [:f17 [:!S8 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
+    [:f17 [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Fn+I: Split horizontal
     [:f18 [:!S9 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f19 [:!S0 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     ;; iTerm splits

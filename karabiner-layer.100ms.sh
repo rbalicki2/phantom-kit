@@ -30,7 +30,7 @@ case "$LAYER" in
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;
-    term) NAME="Term" ;;
+    term) NAME="Git" ;;
     mouse) NAME="Mouse" ;;
     *) NAME="Base" ;;
 esac
