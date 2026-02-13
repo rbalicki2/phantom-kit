@@ -599,18 +599,18 @@
     ;; Panes 1-5: Y/U/I/O/P → !/@ /#/$/%
     [:y [:!S1 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:u [:!S2 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
-    [:i [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
+    [:i [:!S3 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:o [:!S4 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:p [:!S5 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     ;; Panes 6-10: Fn+Y/U/I/O/P → ^/&/*/(/)
     [:f15 [:!S6 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f16 [:!S7 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
-    [:f17 [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Fn+I: Split horizontal
+    [:f17 [:!S8 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f18 [:!S9 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     [:f19 [:!S0 ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]
     ;; iTerm splits
-    [:h [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
-    [:j [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split horizontal
+    [:l [:!Cd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Split vertical
+    [:!Of1 [:!CSd ["layer_tmux" 0] ["in_any_layer" 0] ["layer_normal" 1] [:layer "norm"]] ["layer_tmux" 1]]  ;; Fn+L: Split horizontal
    ]}
 
   {:des "[Desktop] Layer H (l from Normal to enter) - deletion/selection"
