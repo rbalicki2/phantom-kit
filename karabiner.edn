@@ -312,6 +312,30 @@
    ]}
 
 
+  {:des "[Desktop] App/Window Switcher Ctrl+N/Ctrl+J exits (must come before global Ctrl+N)"
+   :rules [:!apple_internal
+    ;; Ctrl+N in app switcher = release Cmd, exit to Normal
+    [{:key :n :modi {:mandatory [:right_control]}}
+     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+      ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+      {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+    ;; Ctrl+N in window switcher = release Cmd, exit to Normal
+    [{:key :n :modi {:mandatory [:right_control]}}
+     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+      ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
+      {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+    ;; Ctrl+J in app switcher = release Cmd, exit to Ins
+    [{:key :j :modi {:mandatory [:right_control]}}
+     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+      ["layer_appswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
+      {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_appswitcher" 1]]
+    ;; Ctrl+J in window switcher = release Cmd, exit to Ins
+    [{:key :j :modi {:mandatory [:right_control]}}
+     [{:shell "osascript -e 'tell app \"System Events\" to key up command'"}
+      ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_ins" 1]
+      {:shell "echo ins > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+   ]}
+
   {:des "[Desktop] Right control+N to Escape (all layers)"
    :rules [:!apple_internal
     [{:key :n :modi {:mandatory [:right_control]}} :escape]
@@ -743,6 +767,116 @@
     [:right_control [{:shell "osascript -e 'tell app \"System Events\" to key up command' -e 'tell app \"System Events\" to key code 53'"}
                      ["layer_windowswitcher" 0] ["layer_inapp" 0] ["in_any_layer" 0] ["layer_normal" 1]
                      {:shell "echo norm > /tmp/karabiner-layer"}] ["layer_windowswitcher" 1]]
+    ;; === Disable all other keys in app switcher ===
+    [:##a :vk_none ["layer_appswitcher" 1]]
+    [:##b :vk_none ["layer_appswitcher" 1]]
+    [:##c :vk_none ["layer_appswitcher" 1]]
+    [:##d :vk_none ["layer_appswitcher" 1]]
+    [:##e :vk_none ["layer_appswitcher" 1]]
+    [:##f :vk_none ["layer_appswitcher" 1]]
+    [:##g :vk_none ["layer_appswitcher" 1]]
+    [:##h :vk_none ["layer_appswitcher" 1]]
+    [:##i :vk_none ["layer_appswitcher" 1]]
+    [:##l :vk_none ["layer_appswitcher" 1]]
+    [:##m :vk_none ["layer_appswitcher" 1]]
+    [:##n :vk_none ["layer_appswitcher" 1]]
+    [:##o :vk_none ["layer_appswitcher" 1]]
+    [:##p :vk_none ["layer_appswitcher" 1]]
+    [:##q :vk_none ["layer_appswitcher" 1]]
+    [:##r :vk_none ["layer_appswitcher" 1]]
+    [:##s :vk_none ["layer_appswitcher" 1]]
+    [:##t :vk_none ["layer_appswitcher" 1]]
+    [:##u :vk_none ["layer_appswitcher" 1]]
+    [:##v :vk_none ["layer_appswitcher" 1]]
+    [:##w :vk_none ["layer_appswitcher" 1]]
+    [:##x :vk_none ["layer_appswitcher" 1]]
+    [:##y :vk_none ["layer_appswitcher" 1]]
+    [:##z :vk_none ["layer_appswitcher" 1]]
+    [:##1 :vk_none ["layer_appswitcher" 1]]
+    [:##2 :vk_none ["layer_appswitcher" 1]]
+    [:##3 :vk_none ["layer_appswitcher" 1]]
+    [:##4 :vk_none ["layer_appswitcher" 1]]
+    [:##5 :vk_none ["layer_appswitcher" 1]]
+    [:##6 :vk_none ["layer_appswitcher" 1]]
+    [:##7 :vk_none ["layer_appswitcher" 1]]
+    [:##8 :vk_none ["layer_appswitcher" 1]]
+    [:##9 :vk_none ["layer_appswitcher" 1]]
+    [:##0 :vk_none ["layer_appswitcher" 1]]
+    [:##spacebar :vk_none ["layer_appswitcher" 1]]
+    [:##period :vk_none ["layer_appswitcher" 1]]
+    [:##comma :vk_none ["layer_appswitcher" 1]]
+    [:##semicolon :vk_none ["layer_appswitcher" 1]]
+    [:##quote :vk_none ["layer_appswitcher" 1]]
+    [:##slash :vk_none ["layer_appswitcher" 1]]
+    [:##hyphen :vk_none ["layer_appswitcher" 1]]
+    [:##equal_sign :vk_none ["layer_appswitcher" 1]]
+    [:##open_bracket :vk_none ["layer_appswitcher" 1]]
+    [:##close_bracket :vk_none ["layer_appswitcher" 1]]
+    [:##backslash :vk_none ["layer_appswitcher" 1]]
+    [:##grave_accent_and_tilde :vk_none ["layer_appswitcher" 1]]
+    [:##up_arrow :vk_none ["layer_appswitcher" 1]]
+    [:##down_arrow :vk_none ["layer_appswitcher" 1]]
+    [:##left_arrow :vk_none ["layer_appswitcher" 1]]
+    [:##right_arrow :vk_none ["layer_appswitcher" 1]]
+    [:##delete_or_backspace :vk_none ["layer_appswitcher" 1]]
+    [:##delete_forward :vk_none ["layer_appswitcher" 1]]
+    [:##tab :vk_none ["layer_appswitcher" 1]]
+    [:##escape :vk_none ["layer_appswitcher" 1]]
+    ;; === Disable all other keys in window switcher ===
+    [:##a :vk_none ["layer_windowswitcher" 1]]
+    [:##b :vk_none ["layer_windowswitcher" 1]]
+    [:##c :vk_none ["layer_windowswitcher" 1]]
+    [:##d :vk_none ["layer_windowswitcher" 1]]
+    [:##e :vk_none ["layer_windowswitcher" 1]]
+    [:##f :vk_none ["layer_windowswitcher" 1]]
+    [:##g :vk_none ["layer_windowswitcher" 1]]
+    [:##h :vk_none ["layer_windowswitcher" 1]]
+    [:##i :vk_none ["layer_windowswitcher" 1]]
+    [:##l :vk_none ["layer_windowswitcher" 1]]
+    [:##m :vk_none ["layer_windowswitcher" 1]]
+    [:##n :vk_none ["layer_windowswitcher" 1]]
+    [:##o :vk_none ["layer_windowswitcher" 1]]
+    [:##p :vk_none ["layer_windowswitcher" 1]]
+    [:##q :vk_none ["layer_windowswitcher" 1]]
+    [:##r :vk_none ["layer_windowswitcher" 1]]
+    [:##s :vk_none ["layer_windowswitcher" 1]]
+    [:##t :vk_none ["layer_windowswitcher" 1]]
+    [:##u :vk_none ["layer_windowswitcher" 1]]
+    [:##v :vk_none ["layer_windowswitcher" 1]]
+    [:##w :vk_none ["layer_windowswitcher" 1]]
+    [:##x :vk_none ["layer_windowswitcher" 1]]
+    [:##y :vk_none ["layer_windowswitcher" 1]]
+    [:##z :vk_none ["layer_windowswitcher" 1]]
+    [:##1 :vk_none ["layer_windowswitcher" 1]]
+    [:##2 :vk_none ["layer_windowswitcher" 1]]
+    [:##3 :vk_none ["layer_windowswitcher" 1]]
+    [:##4 :vk_none ["layer_windowswitcher" 1]]
+    [:##5 :vk_none ["layer_windowswitcher" 1]]
+    [:##6 :vk_none ["layer_windowswitcher" 1]]
+    [:##7 :vk_none ["layer_windowswitcher" 1]]
+    [:##8 :vk_none ["layer_windowswitcher" 1]]
+    [:##9 :vk_none ["layer_windowswitcher" 1]]
+    [:##0 :vk_none ["layer_windowswitcher" 1]]
+    [:##spacebar :vk_none ["layer_windowswitcher" 1]]
+    [:##period :vk_none ["layer_windowswitcher" 1]]
+    [:##comma :vk_none ["layer_windowswitcher" 1]]
+    [:##semicolon :vk_none ["layer_windowswitcher" 1]]
+    [:##quote :vk_none ["layer_windowswitcher" 1]]
+    [:##slash :vk_none ["layer_windowswitcher" 1]]
+    [:##hyphen :vk_none ["layer_windowswitcher" 1]]
+    [:##equal_sign :vk_none ["layer_windowswitcher" 1]]
+    [:##open_bracket :vk_none ["layer_windowswitcher" 1]]
+    [:##close_bracket :vk_none ["layer_windowswitcher" 1]]
+    [:##backslash :vk_none ["layer_windowswitcher" 1]]
+    [:##grave_accent_and_tilde :vk_none ["layer_windowswitcher" 1]]
+    [:##up_arrow :vk_none ["layer_windowswitcher" 1]]
+    [:##down_arrow :vk_none ["layer_windowswitcher" 1]]
+    [:##left_arrow :vk_none ["layer_windowswitcher" 1]]
+    [:##right_arrow :vk_none ["layer_windowswitcher" 1]]
+    [:##delete_or_backspace :vk_none ["layer_windowswitcher" 1]]
+    [:##delete_forward :vk_none ["layer_windowswitcher" 1]]
+    [:##tab :vk_none ["layer_windowswitcher" 1]]
+    [:##escape :vk_none ["layer_windowswitcher" 1]]
    ]}
 
   {:des "[Desktop] Layer H (l from Normal to enter) - deletion/selection"
