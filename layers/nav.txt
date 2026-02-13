@@ -6,8 +6,4 @@ O = Obsidian
 N = Chrome Personal, M = Chrome Work
 Y = Spotlight →Ins
 . = Finder, Fn+. = Go to Folder, Ctrl+. = Go to Folder + Paste
-Ctrl+H = Close (Cmd+W)
-Fn+J/K = Back/Forward (stays)
-Fn+M/, = Prev/Next tab (stays)
-Fn+Up/Down = App switch fwd/back (stays)
 Enter = Cmd+Enter (->Ins)
