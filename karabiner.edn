@@ -447,29 +447,29 @@
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Space = Enter (left click)
+    ;; Space = Click (left click via Homerow)
     [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Fn+Space = Cmd+Enter (Cmd+click)
-    [:!Of18 [:!Creturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:!Of18 [:!Creturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Fn+Space = Cmd+click (via Hammerspoon)
+    [:!Of18 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:!Of18 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Shift+Space = Shift+Enter (right click)
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Shift+Space = Shift+click (via Hammerspoon)
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Shift+Enter = Shift+Click (extend selection)
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Shift+Enter = Cmd+Shift+click (via Hammerspoon)
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Enter = Double-click
-    [:return_or_enter [:return_or_enter :return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:return_or_enter [:return_or_enter :return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Enter = Right-click (ctrl+click via Hammerspoon)
+    [:return_or_enter [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:return_or_enter [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Fn+Enter = Cmd+Shift+Click
-    [:!Of17 [:!CSreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
-    [:!Of17 [:!CSreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
+    ;; Fn+Enter = Double-click (via Hammerspoon)
+    [:!Of17 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
+    [:!Of17 [:vk_none ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; === PASSTHROUGH ===
     ;; Label keys for Homerow selection
@@ -509,20 +509,20 @@
     ;; Space = left click
     [:spacebar [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickLeft()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Shift+Space = right click
-    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickRight()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-
-    ;; Enter = double click
-    [:return_or_enter [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickDouble()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-
-    ;; Shift+Enter = shift+click
-    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickShift()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
-
     ;; Fn+Space = cmd+click
     [:!Of18 [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickCmd()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
-    ;; Fn+Enter = cmd+shift+click
-    [:!Of17 [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickCmdShift()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+    ;; Shift+Space = shift+click
+    [{:key :spacebar :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickShift()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Enter = right-click (ctrl+click)
+    [:return_or_enter [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickRight()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Fn+Enter = double-click
+    [:!Of17 [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickDouble()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Shift+Enter = cmd+shift+click
+    [{:key :return_or_enter :modi {:mandatory [:shift]}} [:vk_none ["in_modal" 0] ["mode" 0] {:shell "pkill warpd; /opt/homebrew/bin/hs -c 'clickCmdShift()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
 
     ;; === PASSTHROUGH ===
     ;; Grid navigation keys for warpd (H and N disabled - use Space/Enter instead)

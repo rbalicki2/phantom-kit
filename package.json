@@ -2,7 +2,7 @@
   "name": "voicemode",
   "scripts": {
     "sync": "cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku && osascript -e 'display notification \"Done syncing\" with title \"Karabiner\"'",
-    "hs": "timeout 2 /opt/homebrew/bin/hs -c 'hs.reload()' 2>/dev/null || true",
+    "hs": "/opt/homebrew/bin/hs -c 'hs.reload()' &",
     "kinesis": "test -d /Volumes/ADV360/layouts && for i in 1 2 3 4 5 6 7 8 9; do cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout${i}.txt; done && echo 'Copied to all 9 layout slots' || echo 'Kinesis drive not mounted'"
   }
 }
