@@ -69,7 +69,9 @@
       "WebFetch(domain:kinesis-ergo.com)",
       "Bash(mdfind:*)",
       "Bash(npm run:*)",
-      "Bash(lsappinfo:*)"
+      "Bash(lsappinfo:*)",
+      "Bash(diskutil:*)",
+      "Bash(perl:*)"
     ]
   }
 }

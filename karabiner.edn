@@ -423,25 +423,22 @@
     [:return_or_enter [:!Creturn_or_enter ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 2]]
    ]}
 
-  {:des "[Desktop] Mouse Mode 🐭 (M/Fn+M from Normal, Ctrl+M from Ins)"
+  {:des "[Desktop] Label Mode 🐭 (M from Normal, Ctrl+M from Ins) - Homerow"
    :rules [:!apple_internal
     ;; === ENTRY ===
-    ;; M from Normal: enter Mouse mode, set mouse_from_ins=0, trigger Homerow
-    [:m [["mode" 13] ["mouse_from_ins" 0] ["in_modal" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["mode" 0]]
-    ;; Fn+M (Alt+F5) from Normal: enter Mouse mode, set mouse_from_ins=0, start warpd grid
-    [:!Of5 [["mode" 13] ["mouse_from_ins" 0] ["in_modal" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo mouse > /tmp/karabiner-layer"}] ["mode" 0]]
-    ;; Ctrl+M from Ins: enter Mouse mode, set mouse_from_ins=1, trigger Homerow
-    [{:key :m :modi {:mandatory [:right_control]}} [["mode" 13] ["mouse_from_ins" 1] ["in_modal" 1] :!COSo {:shell "echo mouse > /tmp/karabiner-layer"}] ["mode" 1]]
+    ;; M from Normal: enter Label mode, trigger Homerow
+    [:m [["mode" 13] ["mouse_from_ins" 0] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 0]]
+    ;; Ctrl+M from Ins: enter Label mode, trigger Homerow
+    [{:key :m :modi {:mandatory [:right_control]}} [["mode" 13] ["mouse_from_ins" 1] ["in_modal" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["mode" 1]]
 
     ;; === EXIT (return to origin) ===
     ;; Uses rule ordering: mouse_from_ins=1 rules first (exit to Ins), then fallback (exit to Normal)
-    ;; All exits clear mouse_from_ins=0
 
     ;; Cancel: right_control = Escape
     [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:right_control [:escape ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Up = Hover exit (move mouse without clicking) - Hammerspoon enables hover then sends Enter
+    ;; Up = Hover exit (move mouse without clicking)
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:up_arrow [["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
@@ -449,44 +446,78 @@
     [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:spacebar [:return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Fn+Space = Cmd+Enter (Cmd+click, e.g. open link in new tab)
+    ;; Fn+Space = Cmd+Enter (Cmd+click)
     [:!Of18 [:!Creturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:!Of18 [:!Creturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Shift+Space = Shift+Enter (right click) - use :shift to match either shift key
+    ;; Shift+Space = Shift+Enter (right click)
     [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [{:key :spacebar :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Shift+Enter = Shift+Click (extend selection) - use :shift to match either shift key
-    ;; Must come before bare Enter rule
+    ;; Shift+Enter = Shift+Click (extend selection)
     [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [{:key :return_or_enter :modi {:mandatory [:shift]}} [:!Sreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Enter = Double-click (two Enter keypresses)
+    ;; Enter = Double-click
     [:return_or_enter [:return_or_enter :return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:return_or_enter [:return_or_enter :return_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
-    ;; Fn+Enter (Alt+F17) = Cmd+Shift+Click
+    ;; Fn+Enter = Cmd+Shift+Click
     [:!Of17 [:!CSreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["mouse_from_ins" 1]]
     [:!Of17 [:!CSreturn_or_enter ["mouse_from_ins" 0] ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 13]]
 
     ;; === PASSTHROUGH ===
-    ;; Label keys for Homerow selection and warpd grid
-    [:y :y ["mode" 13]]  ;; warpd grid_exit
+    ;; Label keys for Homerow selection
+    [:y :y ["mode" 13]]
     [:u :u ["mode" 13]]
     [:i :i ["mode" 13]]
     [:o :o ["mode" 13]]
     [:p :p ["mode" 13]]
-    [:h :h ["mode" 13]]  ;; warpd click
+    [:h :h ["mode" 13]]
     [:j :j ["mode" 13]]
     [:k :k ["mode" 13]]
     [:l :l ["mode" 13]]
-    [:n :n ["mode" 13]]  ;; warpd click
+    [:n :n ["mode" 13]]
     [:m :m ["mode" 13]]
     [:comma :comma ["mode" 13]]
     [:period :period ["mode" 13]]
     [:semicolon :semicolon ["mode" 13]]
     [:slash :slash ["mode" 13]]
+   ]}
+
+  {:des "[Desktop] Grid Mode 🐭🔲 (Fn+M from Normal) - warpd"
+   :rules [:!apple_internal
+    ;; === ENTRY ===
+    ;; Fn+M (Alt+F5) from Normal: enter Grid mode, start warpd grid
+    [:!Of5 [["mode" 28] ["in_modal" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}] ["mode" 0]]
+
+    ;; === EXIT ===
+    ;; Cancel: right_control = Escape, kill warpd
+    [:right_control [:escape ["in_modal" 0] ["mode" 0] {:shell "pkill -9 warpd 2>/dev/null && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Up = Hover exit (move mouse without clicking)
+    [:up_arrow [["in_modal" 0] ["mode" 0] {:shell "/opt/homebrew/bin/hs -c 'hoverAndEnter()' && echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; Y = Exit grid without click (warpd grid_exit)
+    [:y [:y ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; H = Right click (warpd), exit
+    [:h [:h ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; N = Left click (warpd), exit
+    [:n [:n ["in_modal" 0] ["mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["mode" 28]]
+
+    ;; === PASSTHROUGH ===
+    ;; Grid navigation keys for warpd
+    [:u :u ["mode" 28]]
+    [:i :i ["mode" 28]]
+    [:o :o ["mode" 28]]
+    [:j :j ["mode" 28]]
+    [:k :k ["mode" 28]]
+    [:l :l ["mode" 28]]
+    [:m :m ["mode" 28]]
+    [:comma :comma ["mode" 28]]
+    [:period :period ["mode" 28]]
    ]}
 
   {:des "[Desktop] Admin Layer ⚙️ (i from Normal)"

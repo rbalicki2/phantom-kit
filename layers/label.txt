@@ -1,6 +1,6 @@
-MOUSE - Click Mode
-M = Homerow labels, Fn+M = warpd grid
-Type labels/grid keys to select target, then:
+LABEL - Homerow Click Mode
+M from Normal, Ctrl+M from Ins
+Type labels to select target, then:
 Space         Click
 Shift+Space   Right-click
 Up            Hover (move mouse, no click)

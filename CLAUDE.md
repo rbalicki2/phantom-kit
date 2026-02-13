@@ -187,6 +187,7 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
 - **Karabiner shell commands don't have /opt/homebrew/bin in PATH.** Use full path `/opt/homebrew/bin/hs` instead of just `hs` when calling Hammerspoon CLI from Karabiner shell commands.
+- **Goku requires numeric variable values.** String values like `["mode" "norm"]` don't work - Goku requires integers like `["mode" 0]`. This is a Goku limitation, not Karabiner.
 
 ## State Machine (3 Variables)
 
