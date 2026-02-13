@@ -676,9 +676,11 @@
 
   {:des "[Desktop] In-App Nav - Stay-in-layer shortcuts"
    :rules [:!apple_internal
-    ;; Scrolling (J/K = down/up, Fn+J/K = end/home) - STAY in layer
+    ;; Scrolling (J/K = down/up, Shift+J/K = scroll wheel, Fn+J/K = end/home) - STAY in layer
     [:j :down_arrow ["mode" 10]]
     [:k :up_arrow ["mode" 10]]
+    [{:key :j :modi {:mandatory [:shift]}} {:shell "hs -c 'scroll(-5)'"} ["mode" 10]]  ;; Shift+J = Scroll down
+    [{:key :k :modi {:mandatory [:shift]}} {:shell "hs -c 'scroll(5)'"} ["mode" 10]]     ;; Shift+K = Scroll up
     [:f23 :end ["mode" 10]]  ;; Fn+J = End
     [:f24 :home ["mode" 10]]  ;; Fn+K = Home
     ;; Back/Forward (U/I) - STAY in layer
