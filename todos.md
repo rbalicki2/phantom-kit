@@ -15,6 +15,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Caffeine toggle: shortcut to prevent/allow Mac sleep
 - OSA scripts layer: shortcuts to run common AppleScripts (e.g., close VPN connection success tabs, clear notification center, dismiss dialogs)
 - USB device commands: shortcuts to check/switch input devices (e.g., ensure correct microphone is selected)
+- Auto-select correct microphone: ensure the right microphone input is always selected (e.g., on wake, on device connect)
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
 - Clean up karabiner.edn: audit which rules belong in ALL PROFILES vs DESKTOP ONLY sections
