@@ -41,9 +41,7 @@
 - **H** = iTerm, **J** = VS Code, **K** = Karabiner-EventViewer, **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp, **O** = Obsidian
 - **N** = Chrome Personal, **M** = Chrome Work
 - **Y** = Spotlight (→Ins)
-- **Ctrl+H** = Close (Cmd+W)
 - **Period** = Finder, **Fn+Period** = Go to Folder, **Ctrl+Period** = Go to Folder + Paste
-- **Fn+J/K** = Back/Forward, **Fn+M/,** = Prev/Next tab, **Fn+Up/Down** = App switch
 - **Enter** = Cmd+Enter (→Ins)
 
 ## Mouse Mode 🐭 (M/Fn+M from Normal, Ctrl+M from Ins)
@@ -93,12 +91,10 @@
 - **Shift+Y/U/I/O** = ^, &, *, ( (panes 6-9)
 
 ## Chrome Layer (H from Normal, Chrome only)
-- **H** = New tab (→Ins), **J** = Prev tab (stays), **K** = Next tab (stays), **L** = Address bar (→Ins)
-- **Fn+J** = gg (top), **Fn+K** = Shift+G (bottom)
-- **Ctrl+H** = Close tab (stays), **Ctrl+Fn+H** = Close tab + prev tab (stays)
 - **Y/U/I/O** = Tab 1/2/3/4, **Fn+Y/U/I/O** = Tab 5/6/7/8, **P** = Last tab
-- **Fn+L** = Copy URL
-- **N** = Cmd+K (→Ins), **Comma** = Search tabs (→Ins), **Period** = Refresh, **Fn+Period** = Hard refresh
+- **Fn+L** = Copy URL, **M** = Dark mode
+- **Fn+J/K** = Move tab left/right (stays)
+- **Period** = Refresh, **Fn+Period** = Hard refresh
 
 ## VS Code Layer (H from Normal, VS Code only)
 - **H** = Copy rel path, **Fn+H** = Copy full path, **Ctrl+H** = Open in Chrome
