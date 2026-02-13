@@ -1892,8 +1892,8 @@
     ;; Ins layer has no key mappings - all keys pass through by default
     ;; j from Normal enters Ins layer (in_any_layer stays 0 since Ins is passthrough)
     [:j [["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 0]]
-    ;; Y from Normal = Shift+F9 (TTS toggle) + enter Ins
-    [:y [:!Sf9 ["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 0]]
+    ;; Y from Normal = Ctrl+Alt+Shift+F17 (Wispr ptt) + enter Ins
+    [:y [:!TOSf17 ["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 0]]
     ;; 6 from Normal = F9 (TTS) + enter Ins
     [:6 [:f9 ["mode" 1] ["in_modal" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["mode" 0]]
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)

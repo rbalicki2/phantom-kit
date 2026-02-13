@@ -1,7 +1,7 @@
 NORMAL - Layer Selector
 j → Ins (typing mode)
 n → Nav layer
-m → Label Mode (Homerow), Fn+m → Grid Mode (warpd)
+m → Label Mode, Fn+m → Grid Mode
 i → Admin layer
 , → Comma layer
 l → L layer
