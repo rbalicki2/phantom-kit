@@ -1,12 +1,12 @@
 Comma Layer (comma from Normal)
 
-H = Copy
-J = Paste →Ins
+H = Copy, Shift+H = Select all + Copy
+J = Paste →Ins, Shift+J = Select all + Paste →Ins
 K = Find →Ins, Fn+K = Find in files →Ins
 L = Undo, Fn+L = Redo
 , = Ctrl+C → Ins
 N = Ctrl+R (terminal search)
-I = Select all →Ins, Shift+I = Select all + Copy
+I = Select all →Ins
 O = Cmd+Shift+P →Ins, Fn+O = Open →Ins, P = Cmd+P →Ins
 Ctrl+H = Close
 . = Save
