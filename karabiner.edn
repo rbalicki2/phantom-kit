@@ -373,10 +373,9 @@
       {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"}] ["mode" 12]]
    ]}
 
-  {:des "[Desktop] Right control+N to Escape (from Normal/Ins only)"
-   :rules [:!apple_internal
-    [{:key :n :modi {:mandatory [:right_control]}} :escape ["in_modal" 0]]
-   ]}
+  ;; NOTE: Removed global Ctrl+N→escape rule because it interferes with modal layer exits.
+  ;; When exiting Label/Grid mode with Ctrl+N, key repeat would send escape to apps.
+  ;; In Normal mode, N alone sends escape. In Ins mode, Ctrl+N isn't needed.
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:!apple_internal
