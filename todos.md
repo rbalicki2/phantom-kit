@@ -7,7 +7,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Wifi notifier
 - Browser extension: Add current page to extension override for blocking
 - Admin layer: restart Hammerspoon, reload Karabiner, clean up this layer, etc.
-- Admin layer: remove Restart Whispering shortcut (Y) - outdated, now using Wispr Flow
 - Log-Streamer sub-layer: Admin or Term layer keys to tail specific logs (system, browser console, project) into floating overlay (Cmd+up/down/plus/minus for navigation)
 - Archive Chrome tabs: shortcut to save all open tabs (to file/bookmarks) and close them
 - Deep link replacer: copy URL and view/transform it for other contexts
@@ -45,3 +44,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Caps Lock support: add a way to toggle actual caps lock (currently mapped to Control/Escape)
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
 - Reconsider dsk_in_modal_layer: review why this variable exists and if it's consistent with the overall ethos (centralize state, explicit transitions). Does it add value beyond just checking dsk_layer >= 2?
+- Consolidate mouse layers (13 Label, 28 Grid): spacebar/enter click rules are redundant between layers. Consider adding `dsk_in_mouse_layer` variable (1 when in Label or Grid, 0 otherwise) and having shared click rules with that condition instead of duplicating for each layer.
+- Add Find (Cmd+F) shortcut to In-App Nav layer

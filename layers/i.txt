@@ -4,6 +4,5 @@ Space = Maximize
 Up = Left half, Down = Right half
 Enter = Switch windows (Cmd+`)
 P = Screenshot full, Ctrl+P = Screenshot selection
-Y = Restart Whispering
 L = LLM blurb paste
 M = Move window to next screen
