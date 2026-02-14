@@ -57,3 +57,14 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 - Refactor karabiner.edn condition structure: move app conditions from block-level to per-rule, use array syntax for multiple conditions (device → layer → leaf). This enables proper DAG ordering validation.
 - Up/Down keys passthrough: allow up/down arrow keys to work in all modes, or add fallback passthrough rules for them.
+- DAG state configuration: The current state variables (dsk_layer, dsk_in_modal_layer, dsk_ins_sub_mode, dsk_return_to_layer) are flattened integers that can represent impossible combinations. Design a system to:
+  - Define valid state combinations as a discriminated enum (e.g., `Normal`, `Ins { sub_mode: SubMode }`, `Label { return_to: ReturnTo }`)
+  - Generate the flattened variable representation from the enum automatically
+  - Validate at build time that no rule references impossible state combinations
+  - Potentially use Rust's type system to make impossible states unrepresentable
+- Rust macro for Karabiner config: Explore deriving the EDN file (or directly the karabiner.json) from a Rust derive macro. Benefits:
+  - Type-safe layer definitions and transitions
+  - Compile-time validation of state invariants
+  - IDE support (autocomplete, go-to-definition for layer names)
+  - Generate both the config AND the visualization/documentation from a single source
+  - Could define layers as Rust structs with attributes for keys, transitions, conditions

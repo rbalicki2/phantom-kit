@@ -1443,7 +1443,7 @@
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
-       "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && if [ \"$(cat /tmp/karabiner-project 2>/dev/null)\" = 'pin' ]; then echo iso > /tmp/karabiner-project; else echo pin > /tmp/karabiner-project; fi && echo norm > /tmp/karabiner-layer"}]
+       "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/cycle-project.sh && echo norm > /tmp/karabiner-layer"}]
      [["dsk_layer" 6]]]]}
   {:des "[Desktop, Layer 3] Chrome Layer",
    :rules

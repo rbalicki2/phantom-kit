@@ -35,7 +35,7 @@ Be extra wary of state that lives outside Karabiner variables:
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
 | Frontmost app | macOS | Can't clear programmatically |
-| Active project (iso/pin) | /tmp/karabiner-project | Can't clear (no default) |
+| Active project (iso/pin/pk) | /tmp/karabiner-project | Can't clear (no default) |
 
 Any state transition that could leave external state dirty must clean it up explicitly. Panic mode clears all external state listed above.
 

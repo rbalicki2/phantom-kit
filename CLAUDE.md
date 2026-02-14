@@ -141,7 +141,7 @@ Destination for generated configs.
 
 ### Temp Files (runtime state, not in git)
 - `/tmp/karabiner-layer` - Current layer code (read by SwiftBar and Hammerspoon)
-- `/tmp/karabiner-project` - iso/pin mode state
+- `/tmp/karabiner-project` - iso/pin/pk mode state
 
 ### Wispr Flow (voice-to-text app)
 - `~/Library/Application Support/Wispr Flow/config.json` - Shortcuts and preferences
@@ -518,7 +518,7 @@ Hold rcmd+N then press a navigation key to select:
 - **O** = Cmd+Shift+P (command palette), **Shift+O** = Cmd+O (open)
 - **P** = Command+P
 - **Ctrl+H** = Command+W (close)
-- **M** = Toggle iso/pin mode (exits layer)
+- **M** = Cycle project mode (iso → pin → pk → iso, exits layer)
 
 ### Layer L (l from Normal)
 - **H** = plus, **Shift+H** = Cmd+plus (exits)
@@ -617,19 +617,20 @@ All layers exit to Normal (not to Ins/typing mode) by:
 - right_control+Y = Shift+F9 (toggle recording)
 - Space+Enter = Cmd+Enter
 
-## Iso/Pin Mode
-Toggle with M layer + Comma. Affects which iTerm tab the Term layer focuses:
-- **pin** = iTerm tab 1
+## Project Mode (iso/pin/pk)
+Cycle with Comma layer + M. Affects which iTerm tab the Term layer focuses:
 - **iso** = iTerm tab 2 (default)
+- **pin** = iTerm tab 1
+- **pk** = iTerm tab 3
 
-Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "iso-Nav", "pin-M").
+Stored in `/tmp/karabiner-project`. Shown in SwiftBar status as prefix (e.g., "iso-Nav", "pin-M", "pk-Ins").
 
 ## SwiftBar Status
 - Shows current layer in menu bar
-- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-project` for iso/pin mode
+- Reads from `/tmp/karabiner-layer` for layer, `/tmp/karabiner-project` for project mode
 - All layer entries/exits write to these files
 - Layers: `norm`, `ins`, `n`, `i`, `comma`, `l`, `lC`, `lTC`, `lT`, `lTO`, `lO`, `lOC`, `lCTO`, `tmux`, `chrome`, `vscode`, `term`
-- Format: `{mode}-{layer}` (e.g., "iso-Norm", "pin-Nav")
+- Format: `{project}-{layer}` (e.g., "iso-Norm", "pin-Nav", "pk-Ins")
 - Uses Menlo font
 - **Important**: When adding a new layer, update `karabiner-layer.100ms.sh` to handle the new case
 
