@@ -85,6 +85,18 @@ Karabiner uses the first matching rule, so rules must be ordered from most speci
 
 **Exception**: Global utility rules that apply everywhere (disable LHS keys, panic button, overlay, generic clicks) go first for organizational clarity. These don't check mode variables so ordering doesn't affect their behavior.
 
+### Key Unmapping Strategy
+
+Unused keys are disabled at three levels:
+
+1. **LHS keys (global)**: q,w,e,r,t,a,s,d,f,g,z,x,c,v,b and arrows are disabled globally for all Desktop layers. This is a one-handed (RHS) keyboard setup.
+
+2. **Layer 0 (Normal mode)**: Unused RHS keys are explicitly disabled. Only layer selector keys (j,n,m,i,comma,l,u,h,6,y) are active.
+
+3. **Modal layers (fallback)**: A global fallback rule at the end of karabiner.edn blocks all keys when `dsk_in_modal_layer=1`. Layer-specific rules earlier in the file define what keys DO in each layer; the fallback catches everything else.
+
+This approach means modal layers don't need explicit unmapping rules—they only define active keys, and the fallback handles the rest.
+
 ## Global Shortcuts
 
 These work from ANY modal layer (mode >= 2):
@@ -95,10 +107,7 @@ These work from ANY modal layer (mode >= 2):
 | Ctrl+J | dsk_layer=1, dsk_in_modal_layer=0, dsk_ins_sub_mode=0, dsk_return_to_layer=-1 |
 | Panic | dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1 |
 
-**Ctrl+N** is NOT global. It exists only in:
-- Label mode (dsk_layer=13) — exits based on dsk_return_to_layer
-- Grid mode (dsk_layer=28) — exits to Normal
-- App/Window switcher (modes 11, 12) — cancels and exits to Normal
+**Ctrl+N** is global and works from any modal layer (dsk_in_modal_layer=1). It sends escape and calls cleanup-external-state.sh with all flags set to reset.
 
 ## Layer Exit Behavior
 
