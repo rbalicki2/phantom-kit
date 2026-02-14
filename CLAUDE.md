@@ -195,6 +195,41 @@ Before committing changes to `karabiner.edn`, verify these common gotchas:
 - If something doesn't work, the syntax is likely wrong - don't assume the approach is correct
 - **Update the "Things I've Learned" section below** when discovering what works/doesn't work
 
+## Verifying Key Behavior with match-rules.bb
+
+When checking if a key/combo is handled correctly, use this workflow:
+
+### 1. Find what the physical key sends
+Check `kinesis-layout1.txt` for Fn+key mappings. For example:
+- Fn+comma sends `Alt+F6` (line: `{comm}>{-lalt}{f6}{+lalt}`)
+- Fn+Y sends `F15` (line: `{y}>{f15}`)
+
+### 2. Run match-rules to see what matches
+```bash
+cd karabiner-test-harness
+bb match-rules.bb ../karabiner.edn f6 --layer 0 --mod left_option  # Fn+comma in Normal
+bb match-rules.bb ../karabiner.edn f6 --layer 1 --mod left_option  # Fn+comma in Ins
+```
+
+### 3. Interpret results
+- **0 matches**: Key passes through unhandled (probably a bug - add to block list or add a rule)
+- **1+ matches**: Shows which rule fires. Check if it's correct behavior.
+- **Multiple matches**: First match is active; others are shadowed.
+
+### 4. To verify a key SHOULD be blocked
+Temporarily remove the block rule, run match-rules to confirm 0 matches, then restore it.
+
+### Example: Verifying Fn+comma behavior
+```bash
+# In Normal mode - should be blocked (layer selector, no typing)
+bb match-rules.bb ../karabiner.edn f6 --layer 0 --mod left_option
+# Result: [Global] Block all unmapped keys → :vk_none ✓
+
+# In Ins mode - should output 'c' (mirrored letter)
+bb match-rules.bb ../karabiner.edn f6 --layer 1 --mod left_option
+# Result: [Desktop, Layer 1] Function+key = Mirror → :c ✓
+```
+
 ## Things I've Learned
 Document syntax discoveries here to avoid repeating mistakes:
 
