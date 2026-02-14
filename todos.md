@@ -50,3 +50,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - App-specific layers: Chrome/VSCode/TMUX layers should only activate when their app is foregrounded (add app condition to rules blocks)
 - Prefer keyboard shortcuts over osascript: when an app is foregrounded, use direct keyboard shortcuts instead of osascript calls (e.g., Chrome "last tab" uses osascript but could use Cmd+9)
 - Consolidate exit rules: right_control alone → Normal and Ctrl+J → Ins are duplicated in every layer. Create global rules with `["dsk_in_modal_layer" 1]` condition
+- L sublayers (7-27) formatting: many dense one-liner rules need object format for from_keys (e.g., `:f15` → `{:key :f15}`)
