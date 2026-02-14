@@ -237,7 +237,7 @@
   {:des "[Desktop, Layer 0] Normal - Entry to other layers"
    :rules [:!apple_internal
 
-    ;; j from Normal enters Ins layer
+    ;; J = enter Ins
     [
       {:key :j}
       [
@@ -250,7 +250,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; Y from Normal = Ctrl+Alt+Shift+F19 (Wispr popo) + enter Ins
+    ;; Y = Ctrl+Alt+Shift+F19 (Wispr popo) + enter Ins
     [
       {:key :y}
       [
@@ -264,7 +264,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; 6 from Normal = F9 (TTS) + enter Ins
+    ;; 6 = F9 (TTS) + enter Ins
     [
       {:key :6}
       [
@@ -278,9 +278,9 @@
       ["dsk_layer" 0]
     ]
 
-    ;; Fn+hk4 (F21) = enter Nav layer from Normal
+    ;; Fn+hk4 = enter Nav
     [
-      {:key :f21}
+      {:key :f21}  ;; Fn+hk4
       [
         ["dsk_layer" 2]  ;; Nav
         ["dsk_in_modal_layer" 1]
@@ -291,26 +291,26 @@
       ["dsk_layer" 0]
     ]
 
-    ;; N from Normal = escape (stays in Normal)
+    ;; N = escape (stays in Normal)
     [{:key :n} [:escape] ["dsk_layer" 0]]
 
-    ;; M from Normal: enter Label mode, trigger Homerow
+    ;; M = enter Label mode, trigger Homerow
     [
       {:key :m}
       [
         ["dsk_layer" 13]  ;; Label
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" 0]  ;; from Normal
+        ["dsk_return_to_layer" 0]  ;; returns to Normal
         [:!COSo]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --held-modifiers reset && echo label > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
     ]
 
-    ;; Fn+M (Alt+F5) from Normal: enter Grid mode, start warpd
+    ;; Fn+M = enter Grid mode, start warpd
     [
-      {:key :!Of5}
+      {:key :f5 :modi {:mandatory [:left_option]}}  ;; Fn+M
       [
         ["dsk_layer" 28]  ;; Grid
         ["dsk_in_modal_layer" 1]
@@ -321,7 +321,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; i from Normal enters Admin layer
+    ;; I = enter Admin layer
     [
       {:key :i}
       [
@@ -334,7 +334,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; comma from Normal enters Comma layer
+    ;; Comma = enter Comma layer
     [
       {:key :comma}
       [
@@ -347,7 +347,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; l from Normal enters L layer
+    ;; L = enter L layer
     [
       {:key :l}
       [
@@ -360,7 +360,7 @@
       ["dsk_layer" 0]
     ]
 
-    ;; u from Normal enters Term layer (focuses iTerm)
+    ;; U = enter Term layer (focuses iTerm)
     [
       {:key :u}
       [
@@ -373,9 +373,9 @@
       ["dsk_layer" 0]
     ]
 
-    ;; hk4 (Alt+F20) from Normal enters In-App Nav layer
+    ;; hk4 = enter In-App Nav layer
     [
-      {:key :!Of20}
+      {:key :f20 :modi {:mandatory [:left_option]}}  ;; hk4 (Alt+F20)
       [
         ["dsk_layer" 10]  ;; InApp
         ["dsk_in_modal_layer" 1]
@@ -1440,11 +1440,11 @@
 
     ;; === EXIT ===
     [
-      :right_control
-      :right_control
+      {:key :right_control}
+      [:right_control]
       ["dsk_layer" 6]
       {:alone [
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1454,9 +1454,9 @@
     [
       {:key :j :modi {:mandatory [:right_control]}}
       [
-        ["dsk_layer" 1]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1466,12 +1466,12 @@
     ;; === TERMINAL SHORTCUTS ===
     ;; Comma = Ctrl+C → Ins
     [
-      :comma
+      {:key :comma}
       [
-        :!Tc
-        ["dsk_layer" 1]
+        [:!Tc]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1479,12 +1479,12 @@
     ]
     ;; N = Ctrl+R → Ins
     [
-      :n
+      {:key :n}
       [
-        :!Tr
-        ["dsk_layer" 1]
+        [:!Tr]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1494,10 +1494,10 @@
     ;; === CLIPBOARD ===
     ;; H = Copy → Norm
     [
-      :h
+      {:key :h}
       [
-        :!Cc
-        ["dsk_layer" 0]
+        [:!Cc]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1507,11 +1507,11 @@
     ]
     ;; Fn+H = Select all + Copy → Norm
     [
-      :f22
+      {:key :f22}
       [
-        :!Ca
-        :!Cc
-        ["dsk_layer" 0]
+        [:!Ca]
+        [:!Cc]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1521,12 +1521,12 @@
     ]
     ;; J = Paste → Ins
     [
-      :j
+      {:key :j}
       [
-        :!Cv
-        ["dsk_layer" 1]
+        [:!Cv]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1534,13 +1534,13 @@
     ]
     ;; Fn+J = Select all + Paste → Ins
     [
-      :f23
+      {:key :f23}
       [
-        :!Ca
-        :!Cv
-        ["dsk_layer" 1]
+        [:!Ca]
+        [:!Cv]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1550,12 +1550,12 @@
     ;; === FIND ===
     ;; K = Find → Ins
     [
-      :k
+      {:key :k}
       [
-        :!Cf
-        ["dsk_layer" 1]
+        [:!Cf]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1563,12 +1563,12 @@
     ]
     ;; Fn+K = Find in files → Ins
     [
-      :f24
+      {:key :f24}
       [
-        :!CSf
-        ["dsk_layer" 1]
+        [:!CSf]
+        ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
+        ["dsk_ins_sub_mode" 0]  ;; base
         ["dsk_return_to_layer" -1]
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
@@ -1732,10 +1732,10 @@
     ;; === TAB SWITCHING ===
     ;; Y = Tab 1
     [
-      :y
+      {:key :y}
       [
         [:chrome-tab "1"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1745,10 +1745,10 @@
     ]
     ;; U = Tab 2
     [
-      :u
+      {:key :u}
       [
         [:chrome-tab "2"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1758,10 +1758,10 @@
     ]
     ;; I = Tab 3
     [
-      :i
+      {:key :i}
       [
         [:chrome-tab "3"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1771,10 +1771,10 @@
     ]
     ;; O = Tab 4
     [
-      :o
+      {:key :o}
       [
         [:chrome-tab "4"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1784,10 +1784,10 @@
     ]
     ;; Fn+Y = Tab 5
     [
-      :f15
+      {:key :f15}
       [
         [:chrome-tab "5"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1797,10 +1797,10 @@
     ]
     ;; Fn+U = Tab 6
     [
-      :f16
+      {:key :f16}
       [
         [:chrome-tab "6"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1810,10 +1810,10 @@
     ]
     ;; Fn+I = Tab 7
     [
-      :f17
+      {:key :f17}
       [
         [:chrome-tab "7"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1823,10 +1823,10 @@
     ]
     ;; Fn+O = Tab 8
     [
-      :f18
+      {:key :f18}
       [
         [:chrome-tab "8"]
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1836,9 +1836,9 @@
     ]
     ;; P = Last tab
     [
-      :p
+      {:key :p}
       [
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1850,9 +1850,9 @@
     ;; === CHROME ACTIONS ===
     ;; Fn+L = Copy URL
     [
-      :!Of1
+      {:key :f1 :modi {:mandatory [:left_option]}}
       [
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1862,10 +1862,10 @@
     ]
     ;; M = Dark mode
     [
-      :m
+      {:key :m}
       [
-        :!Od
-        ["dsk_layer" 0]
+        [:!Od]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1875,16 +1875,16 @@
     ]
 
     ;; === MOVE TABS (stays in layer) ===
-    [:f23 :!TSpage_up ["dsk_layer" 3]]  ;; Fn+J: Move tab left
-    [:f24 :!TSpage_down ["dsk_layer" 3]]  ;; Fn+K: Move tab right
+    [{:key :f23} [:!TSpage_up] ["dsk_layer" 3]]  ;; Fn+J: Move tab left
+    [{:key :f24} [:!TSpage_down] ["dsk_layer" 3]]  ;; Fn+K: Move tab right
 
     ;; === REFRESH ===
     ;; Period = Refresh
     [
-      :period
+      {:key :period}
       [
-        :!Cr
-        ["dsk_layer" 0]
+        [:!Cr]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1894,10 +1894,10 @@
     ]
     ;; Fn+Period = Hard refresh
     [
-      :!Of7
+      {:key :f7 :modi {:mandatory [:left_option]}}
       [
-        :!CSr
-        ["dsk_layer" 0]
+        [:!CSr]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1941,10 +1941,10 @@
     ;; === NAVIGATION ===
     ;; J = Cmd+D (go to definition)
     [
-      :j
+      {:key :j}
       [
-        :!Cd
-        ["dsk_layer" 0]
+        [:!Cd]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1954,10 +1954,10 @@
     ]
     ;; Fn+J = Cmd+. (quick fix)
     [
-      :f23
+      {:key :f23}  ;; Fn+J
       [
-        :!Cperiod
-        ["dsk_layer" 0]
+        [:!Cperiod]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1967,10 +1967,10 @@
     ]
     ;; K = F2 (rename)
     [
-      :k
+      {:key :k}
       [
-        :f2
-        ["dsk_layer" 0]
+        [:f2]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1980,10 +1980,10 @@
     ]
     ;; L = Cmd+R (find references)
     [
-      :l
+      {:key :l}
       [
-        :!Cr
-        ["dsk_layer" 0]
+        [:!Cr]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -1995,10 +1995,10 @@
     ;; === COPY PATH ===
     ;; H = Ctrl+Cmd+E (copy relative path)
     [
-      :h
+      {:key :h}
       [
-        :!TCe
-        ["dsk_layer" 0]
+        [:!TCe]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2008,10 +2008,10 @@
     ]
     ;; Fn+H = Alt+Cmd+C (copy full path)
     [
-      :f22
+      {:key :f22}  ;; Fn+H
       [
-        :!OCc
-        ["dsk_layer" 0]
+        [:!OCc]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2023,7 +2023,7 @@
     [
       {:key :h :modi {:mandatory [:right_control]}}
       [
-        ["dsk_layer" 0]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2035,10 +2035,10 @@
     ;; === EDITOR TABS ===
     ;; I = Cmd+2
     [
-      :i
+      {:key :i}
       [
-        :!C2
-        ["dsk_layer" 0]
+        [:!C2]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2048,10 +2048,10 @@
     ]
     ;; Fn+I = Ctrl+Cmd+2 (move to next tab)
     [
-      :f17
+      {:key :f17}  ;; Fn+I
       [
-        :!TC2
-        ["dsk_layer" 0]
+        [:!TC2]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2061,10 +2061,10 @@
     ]
     ;; Fn+U = Ctrl+Cmd+1 (move to prev tab)
     [
-      :f16
+      {:key :f16}  ;; Fn+U
       [
-        :!TC1
-        ["dsk_layer" 0]
+        [:!TC1]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2076,10 +2076,10 @@
     ;; === TOGGLES ===
     ;; O = Cmd+B (sidebar toggle)
     [
-      :o
+      {:key :o}
       [
-        :!Cb
-        ["dsk_layer" 0]
+        [:!Cb]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2089,10 +2089,10 @@
     ]
     ;; P = Cmd+` (terminal toggle)
     [
-      :p
+      {:key :p}
       [
-        :!Cgrave_accent_and_tilde
-        ["dsk_layer" 0]
+        [:!Cgrave_accent_and_tilde]
+        ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
@@ -2102,8 +2102,8 @@
     ]
 
     ;; === STAY IN LAYER ===
-    [:comma :!Ob ["dsk_layer" 4]]  ;; Alt+B (next error)
-    [:period :!Ov ["dsk_layer" 4]]  ;; Alt+V (find next)
+    [{:key :comma} [:!Ob] ["dsk_layer" 4]]  ;; Alt+B (next error)
+    [{:key :period} [:!Ov] ["dsk_layer" 4]]  ;; Alt+V (find next)
    ]}
 
   ;; =====================================================================

@@ -47,3 +47,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Consolidate mouse layers (13 Label, 28 Grid): spacebar/enter click rules are redundant between layers. Consider adding `dsk_in_mouse_layer` variable (1 when in Label or Grid, 0 otherwise) and having shared click rules with that condition instead of duplicating for each layer.
 - Add Find (Cmd+F) shortcut to In-App Nav layer
 - In-App Nav layer color: make this layer a different color (red) in Hammerspoon border indicator
+- App-specific layers: Chrome/VSCode/TMUX layers should only activate when their app is foregrounded (add app condition to rules blocks)
