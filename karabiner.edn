@@ -181,46 +181,203 @@
 
   {:des "[Layer 0] Normal - Entry to other layers"
    :rules [:!apple_internal
+
     ;; j from Normal enters Ins layer
-    [:j [["dsk_layer" 1] ["dsk_in_modal_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :j
+      [
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; Y from Normal = Ctrl+Alt+Shift+F19 (Wispr popo) + enter Ins
-    [:y [:!TOSf19 ["dsk_layer" 1] ["dsk_in_modal_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :y
+      [
+        :!TOSf19
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; 6 from Normal = F9 (TTS) + enter Ins
-    [:6 [:f9 ["dsk_layer" 1] ["dsk_in_modal_layer" 0] {:shell "echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :6
+      [
+        :f9
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; Fn+hk4 (F21) = enter Nav layer from Normal
-    [:f21 [["dsk_layer" 2] ["dsk_in_modal_layer" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :f21
+      [
+        ["dsk_layer" 2]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo n > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; N from Normal = escape (stays in Normal)
     [:n :escape ["dsk_layer" 0]]
+
     ;; M from Normal: enter Label mode, trigger Homerow
-    [:m [["dsk_layer" 13] ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 1] :!COSo {:shell "echo label > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :m
+      [
+        ["dsk_layer" 13]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" 0]
+        :!COSo
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --held-modifiers reset && echo label > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; Fn+M (Alt+F5) from Normal: enter Grid mode, start warpd
-    [:!Of5 [["dsk_layer" 28] ["dsk_in_modal_layer" 1] {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :!Of5
+      [
+        ["dsk_layer" 28]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; i from Normal enters Admin layer
-    [:i [["dsk_layer" 9] ["dsk_in_modal_layer" 1] {:shell "echo i > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :i
+      [
+        ["dsk_layer" 9]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo i > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; comma from Normal enters Comma layer
-    [:comma [["dsk_layer" 6] ["dsk_in_modal_layer" 1] [:layer "comma"]] ["dsk_layer" 0]]
+    [
+      :comma
+      [
+        ["dsk_layer" 6]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo comma > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; l from Normal enters L layer
-    [:l [["dsk_layer" 7] ["dsk_in_modal_layer" 1] {:shell "echo l > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :l
+      [
+        ["dsk_layer" 7]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo l > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; u from Normal enters Term layer (focuses iTerm)
-    [:u [["dsk_layer" 8] ["dsk_in_modal_layer" 1] {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}] ["dsk_layer" 0]]
+    [
+      :u
+      [
+        ["dsk_layer" 8]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
     ;; hk4 (Alt+F20) from Normal enters In-App Nav layer
-    [:!Of20 [["dsk_layer" 10] ["dsk_in_modal_layer" 1] {:shell "echo inapp > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :!Of20
+      [
+        ["dsk_layer" 10]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo inapp > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
+
    ]}
 
   {:des "[Layer 0] Normal - App-specific H key (Chrome)"
    :rules [:!apple_internal :Chrome
-    [:h [["dsk_layer" 3] ["dsk_in_modal_layer" 1] [:layer "chrome"]] ["dsk_layer" 0]]
+    [
+      :h
+      [
+        ["dsk_layer" 3]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo chrome > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
    ]}
 
   {:des "[Layer 0] Normal - App-specific H key (VS Code)"
    :rules [:!apple_internal :VSCode
-    [:h [["dsk_layer" 4] ["dsk_in_modal_layer" 1] {:shell "echo vscode > /tmp/karabiner-layer"}] ["dsk_layer" 0]]
+    [
+      :h
+      [
+        ["dsk_layer" 4]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo vscode > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
    ]}
 
   {:des "[Layer 0] Normal - App-specific H key (iTerm/TMUX)"
    :rules [:!apple_internal :iTerm
     ;; h in Normal sends Control+A (tmux prefix) and enters tmux layer
-    [:h [:!Ta ["dsk_layer" 5] ["dsk_in_modal_layer" 1] [:layer "tmux"]] ["dsk_layer" 0]]
+    [
+      :h
+      [
+        :!Ta
+        ["dsk_layer" 5]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo tmux > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 0]
+    ]
    ]}
 
   {:des "[Layer 0] Normal - Disable unmapped RHS keys"
@@ -372,7 +529,14 @@
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
     [{:key :j :modi {:mandatory [:control]}} :vk_none ["dsk_layer" 1]]
     ;; right_control alone exits Ins to Normal
-    [:right_control :right_control ["dsk_layer" 1] {:alone [["dsk_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_ins_sub_mode" 0] {:shell "echo norm > /tmp/karabiner-layer"}]}]
+    [:right_control :right_control ["dsk_layer" 1]
+     {:alone [
+       ["dsk_layer" 0]
+       ["dsk_in_modal_layer" 0]
+       ["dsk_ins_sub_mode" -1]
+       ["dsk_return_to_layer" -1]
+       {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
+     ]}]
     ;; Fn+] (Alt+F12) = enter shift_mirror_oneshot mode
     [:!Of12 [["dsk_ins_sub_mode" 1]] ["dsk_layer" 1]]
     ;; Fn+Space (Alt+F18) = space + shift_oneshot (next letter capitalized)
@@ -541,32 +705,218 @@
   {:des "[Layer 2] Nav - Global entry (Ctrl+hk4)"
    :rules [:!apple_internal
     ;; Ctrl+hk4 enters Nav - single mode variable handles layer switching
-    [:!Of22 [["dsk_layer" 2] ["dsk_in_modal_layer" 1] [:layer "n"]]]
+    [
+      :!Of22
+      [
+        ["dsk_layer" 2]
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo n > /tmp/karabiner-layer"}
+      ]
+    ]
    ]}
 
   {:des "[Layer 2] Nav - Exit and shortcuts"
    :rules [:!apple_internal
+
     ;; right_control alone exits Nav to Normal
-    [:right_control :right_control ["dsk_layer" 2] {:alone [["dsk_in_modal_layer" 0] ["dsk_layer" 0] [:layer "norm"]]}]
-    [{:key :j :modi {:mandatory [:control]}} [["dsk_in_modal_layer" 0] ["dsk_layer" 1] [:layer "ins"]] ["dsk_layer" 2]]
-    ;; App launching
-    [:h [[:open-norm "iTerm"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:j [[:open-norm "Visual Studio Code"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:k [[:open-norm "Karabiner-EventViewer"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
+    [
+      :right_control
+      :right_control
+      ["dsk_layer" 2]
+      {:alone [
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
+      ]}
+    ]
+
+    ;; Ctrl+J exits to Ins
+    [
+      {:key :j :modi {:mandatory [:control]}}
+      [
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 2]
+    ]
+
+    ;; App launching (exits to Normal)
+    [
+      :h
+      [
+        [:open-norm "iTerm"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      :j
+      [
+        [:open-norm "Visual Studio Code"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      :k
+      [
+        [:open-norm "Karabiner-EventViewer"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+
     ;; Chrome profiles
-    [:n [[:chrome-profile "personal"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:m [[:chrome-profile "work"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:l [[:open-norm "Signal"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:!Of1 [[:open-norm "Messages"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]  ;; Fn+L
-    [{:key :l :modi {:mandatory [:right_control]}} [[:open-norm "WhatsApp"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:o [[:open-norm "Obsidian"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:y [:!Cspacebar ["dsk_in_modal_layer" 0] ["dsk_layer" 1] [:layer "ins"]] ["dsk_layer" 2]]  ;; Spotlight → Ins mode
+    [
+      :n
+      [
+        [:chrome-profile "personal"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      :m
+      [
+        [:chrome-profile "work"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+
+    ;; Messaging apps
+    [
+      :l
+      [
+        [:open-norm "Signal"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      :!Of1  ;; Fn+L
+      [
+        [:open-norm "Messages"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      {:key :l :modi {:mandatory [:right_control]}}
+      [
+        [:open-norm "WhatsApp"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+
+    ;; Other apps
+    [
+      :o
+      [
+        [:open-norm "Obsidian"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+
+    ;; Y = Spotlight → Ins mode
+    [
+      :y
+      [
+        :!Cspacebar
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 2]
+    ]
+
     ;; Finder
-    [:period [[:open-norm "Finder"] ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]
-    [:!Of7 [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"} ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]  ;; Fn+Period: Go to Folder
-    [{:key :period :modi {:mandatory [:right_control]}} [{:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"} ["dsk_in_modal_layer" 0] ["dsk_layer" 0]] ["dsk_layer" 2]]  ;; Ctrl+Period: Go to Folder + Paste
+    [
+      :period
+      [
+        [:open-norm "Finder"]
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      :!Of7  ;; Fn+Period: Go to Folder
+      [
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && echo norm > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 2]
+    ]
+    [
+      {:key :period :modi {:mandatory [:right_control]}}  ;; Ctrl+Period: Go to Folder + Paste
+      [
+        ["dsk_layer" 0]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "open -a 'Finder' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"g\" using {command down, shift down}' && sleep 0.1 && osascript -e 'tell app \"System Events\" to keystroke \"v\" using command down' -e 'tell app \"System Events\" to key code 36' && echo norm > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 2]
+    ]
+
     ;; Enter = Cmd+Enter (exits to Ins)
-    [:return_or_enter [:!Creturn_or_enter ["dsk_in_modal_layer" 0] ["dsk_layer" 1] {:shell "echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 2]]
+    [
+      :return_or_enter
+      [
+        :!Creturn_or_enter
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      ["dsk_layer" 2]
+    ]
+
    ]}
 
   ;; =====================================================================
