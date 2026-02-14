@@ -1,12 +1,15 @@
 #!/usr/bin/env bb
 
-;; Fix rule IDs to have accurate state strings based on actual conditions
+;; Fix rule IDs to have accurate state strings and descriptive names
 ;;
 ;; Usage:
 ;;   bb fix-rule-ids.bb <input-edn> <output-edn>
 ;;
-;; This script parses the EDN to understand conditions, then does string
-;; replacement on rule IDs to update the state marker.
+;; This script:
+;; 1. Parses EDN to extract actual conditions
+;; 2. Generates state string in format: dsk_layer=1:dsk_ins_sub_mode=0
+;; 3. Extracts the key mapping (from -> to)
+;; 4. Creates concise, descriptive rule IDs
 
 (require '[clojure.edn :as edn]
          '[clojure.string :as str])
@@ -50,19 +53,52 @@
       "global"
       (str/join ":" parts))))
 
+;; === Key description ===
+
+(defn format-key [from-map]
+  "Extract a readable key description from the from map"
+  (if (map? from-map)
+    (let [key-val (:key from-map)
+          pkey (:pkey from-map)
+          modi (:modi from-map)
+          mandatory (get modi :mandatory [])
+          key-name (name (or key-val pkey :unknown))]
+      (if (seq mandatory)
+        (str (str/join "+" (map name mandatory)) "+" key-name)
+        key-name))
+    (if (keyword? from-map)
+      (name from-map)
+      "?")))
+
+(defn format-action [action]
+  "Extract a readable action description"
+  (cond
+    (keyword? action) (name action)
+    (vector? action)
+    (let [first-item (first action)]
+      (cond
+        (keyword? first-item) (name first-item)
+        (map? first-item) (if-let [shell (:shell first-item)]
+                           "shell"
+                           "action")
+        :else "action"))
+    :else "action"))
+
 ;; === Build replacement map ===
 
 (defn build-replacement-map [config]
-  "Build map of rule-id -> new-state-string"
+  "Build map of old-id-pattern -> new-full-id"
   (into {}
     (for [block (:main config)
-          :let [rules-vec (:rules block)
+          :let [block-des (:des block)
+                rules-vec (:rules block)
                 block-conditions (extract-block-conditions rules-vec)
                 actual-rules (if block-conditions
                                (drop (count block-conditions) rules-vec)
                                rules-vec)]
           rule actual-rules
           :let [from (first rule)
+                action (second rule)
                 old-id (when (map? from) (:id from))]
           :when old-id
           :let [;; Extract rule number
@@ -78,21 +114,43 @@
                 submode (get-condition-value all-conds "dsk_ins_sub_mode")
                 return-to (get-condition-value all-conds "dsk_return_to_layer")
 
-                ;; Generate new state string
-                state-string (generate-state-string profile layer submode return-to)]]
-      [rule-num state-string])))
+                ;; Generate state string
+                state-string (generate-state-string profile layer submode return-to)
+
+                ;; Get key mapping description
+                key-desc (format-key from)
+                action-desc (format-action action)
+
+                ;; Build new ID: "R0051 [state] key -> action"
+                new-id (str rule-num " [" state-string "] " key-desc " -> " action-desc)]]
+      [old-id new-id])))
 
 ;; === String replacement ===
 
-(defn replace-state-markers [content replacements]
-  "Replace state markers in the file content using regex"
+(defn escape-regex [s]
+  "Escape special regex characters in a string"
+  (str/escape s {\[ "\\["
+                 \] "\\]"
+                 \( "\\("
+                 \) "\\)"
+                 \{ "\\{"
+                 \} "\\}"
+                 \. "\\."
+                 \+ "\\+"
+                 \* "\\*"
+                 \? "\\?"
+                 \^ "\\^"
+                 \$ "\\$"
+                 \| "\\|"
+                 \\ "\\\\"}))
+
+(defn replace-ids [content replacements]
+  "Replace rule IDs in the file content"
   (reduce
-   (fn [text [rule-num new-state]]
-     ;; Match: "R0051 [anything] rest"
-     ;; Replace with: "R0051 [new-state] rest"
+   (fn [text [old-id new-id]]
      (str/replace text
-                  (re-pattern (str "\"" rule-num " \\[[^\\]]*\\]"))
-                  (str "\"" rule-num " [" new-state "]")))
+                  (str ":id \"" old-id "\"")
+                  (str ":id \"" new-id "\"")))
    content
    replacements))
 
@@ -112,13 +170,15 @@
 
       ;; Show some examples
       (println "\nSample replacements:")
-      (doseq [[rule-num state] (take 5 (sort replacements))]
-        (println (str "  " rule-num " -> [" state "]")))
+      (doseq [[old-id new-id] (take 10 (sort-by first replacements))]
+        (println (str "  OLD: " old-id))
+        (println (str "  NEW: " new-id))
+        (println))
 
       ;; Read original file as string and do replacements
-      (println "\nApplying replacements...")
+      (println "Applying replacements...")
       (let [original-content (slurp input-file)
-            updated-content (replace-state-markers original-content replacements)]
+            updated-content (replace-ids original-content replacements)]
 
         (spit output-file updated-content)
         (println (str "Written to " output-file))

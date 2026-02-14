@@ -282,7 +282,35 @@
       {:shell
        "/Users/rbalicki/code/voicemode/scripts/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo tmux > /tmp/karabiner-layer"}]
      [["dsk_layer" 0]]]]}
-  {:des "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers",
+  {:des "[Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"
+ :rules
+ [:!apple_internal
+  ;; Shift+y...slash pass-through + clear submode 1
+    [{:key :y :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+y → Y (oneshot clear)"} [:!Sy ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :u :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+u → U (oneshot clear)"} [:!Su ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :i :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+i → I (oneshot clear)"} [:!Si ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :o :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+o → O (oneshot clear)"} [:!So ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :p :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+p → P (oneshot clear)"} [:!Sp ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :h :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+h → H (oneshot clear)"} [:!Sh ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :j :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+j → J (oneshot clear)"} [:!Sj ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :k :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+k → K (oneshot clear)"} [:!Sk ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :l :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+l → L (oneshot clear)"} [:!Sl ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :semicolon :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+semicolon → SEMICOLON (oneshot clear)"} [:!Ssemicolon ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :n :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+n → N (oneshot clear)"} [:!Sn ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :m :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+m → M (oneshot clear)"} [:!Sm ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :comma :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+comma → COMMA (oneshot clear)"} [:!Scomma ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :period :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+period → PERIOD (oneshot clear)"} [:!Speriod ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :slash :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+slash → SLASH (oneshot clear)"} [:!Sslash ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+
+  ;; Shift+6...0 pass-through + clear submode 1
+    [{:key :6 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+6 → 6 (oneshot clear)"} [:!S6 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :7 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+7 → 7 (oneshot clear)"} [:!S7 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :8 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+8 → 8 (oneshot clear)"} [:!S8 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :9 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+9 → 9 (oneshot clear)"} [:!S9 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :0 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+0 → 0 (oneshot clear)"} [:!S0 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+
+ ]}
+{:des "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers",
    :rules
    [:!apple_internal
     [{:key :6, :id "R0046 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] 6 → 5 (oneshot clear)"}
@@ -520,34 +548,7 @@
     [{:key :close_bracket, :id "R0090 [profile=Default:device=Desktop:dsk_layer=1] ] → Delete"}
      [:delete_forward]
      [["dsk_layer" 1]]]]}
-  {:des "[Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"
- :rules
- [:!apple_internal
-  ;; Shift+y...slash pass-through + clear submode 1
-    [{:key :y :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+y → Y (oneshot clear)"} [:!Sy ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :u :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+u → U (oneshot clear)"} [:!Su ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :i :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+i → I (oneshot clear)"} [:!Si ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :o :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+o → O (oneshot clear)"} [:!So ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :p :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+p → P (oneshot clear)"} [:!Sp ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :h :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+h → H (oneshot clear)"} [:!Sh ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :j :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+j → J (oneshot clear)"} [:!Sj ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :k :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+k → K (oneshot clear)"} [:!Sk ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :l :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+l → L (oneshot clear)"} [:!Sl ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :semicolon :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+semicolon → SEMICOLON (oneshot clear)"} [:!Ssemicolon ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :n :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+n → N (oneshot clear)"} [:!Sn ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :m :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+m → M (oneshot clear)"} [:!Sm ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :comma :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+comma → COMMA (oneshot clear)"} [:!Scomma ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :period :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+period → PERIOD (oneshot clear)"} [:!Speriod ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :slash :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+slash → SLASH (oneshot clear)"} [:!Sslash ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-
-  ;; Shift+6...0 pass-through + clear submode 1
-    [{:key :6 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+6 → 6 (oneshot clear)"} [:!S6 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :7 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+7 → 7 (oneshot clear)"} [:!S7 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :8 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+8 → 8 (oneshot clear)"} [:!S8 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :9 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+9 → 9 (oneshot clear)"} [:!S9 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-    [{:key :0 :modi {:mandatory [:shift]} :id " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+0 → 0 (oneshot clear)"} [:!S0 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
-
- ]}
+  
 {:des "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot letters",
    :rules
    [:!apple_internal
@@ -596,7 +597,8 @@
     [{:key :slash, :modi {:optional [:caps_lock]}, :id "R0105 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] slash → Z (oneshot clear)"}
      [:!Sz ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]]}
-  {:des "[Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"
+  
+{:des "[Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"
  :rules
  [:!apple_internal
   ;; Shift+y...slash pass-through + clear submode 2

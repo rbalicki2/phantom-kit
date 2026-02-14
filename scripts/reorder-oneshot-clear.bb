@@ -53,16 +53,18 @@
           clear-block-2 (extract-block content "[Desktop, Layer 1, Submode 2] Clear oneshot on modified keys")
 
           ;; Find the blocks we need to insert before
-          letters-block-1 (extract-block content "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot letters")
+          ;; For submode 1, insert before NUMBERS (which comes before letters)
+          ;; For submode 2, insert before the shift oneshot block
+          numbers-block-1 (extract-block content "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers")
           letters-block-2 (extract-block content "[Desktop, Layer 1, Submode 2] Shift oneshot (Fn+Space then letter = Shift+letter)")]
 
       (println "Found blocks:")
       (println (str "  Clear Submode 1: " (when clear-block-1 (str "lines " (:start clear-block-1) "-" (:end clear-block-1)))))
       (println (str "  Clear Submode 2: " (when clear-block-2 (str "lines " (:start clear-block-2) "-" (:end clear-block-2)))))
-      (println (str "  Letters Submode 1: " (when letters-block-1 (str "lines " (:start letters-block-1) "-" (:end letters-block-1)))))
+      (println (str "  Numbers Submode 1: " (when numbers-block-1 (str "lines " (:start numbers-block-1) "-" (:end numbers-block-1)))))
       (println (str "  Letters Submode 2: " (when letters-block-2 (str "lines " (:start letters-block-2) "-" (:end letters-block-2)))))
 
-      (if (and clear-block-1 clear-block-2 letters-block-1 letters-block-2)
+      (if (and clear-block-1 clear-block-2 numbers-block-1 letters-block-2)
         (let [;; Work backwards to preserve indices
               ;; First remove both clear blocks (later one first)
               content-after-remove-2 (str (subs content 0 (:start clear-block-2))
@@ -77,27 +79,27 @@
                                           (subs content-after-remove-2 (:end clear-block-1-adjusted)))
 
               ;; Now find insertion points in the modified content
-              letters-1-in-modified (extract-block content-after-remove-1
-                                                    "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot letters")
+              numbers-1-in-modified (extract-block content-after-remove-1
+                                                    "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers")
               letters-2-in-modified (extract-block content-after-remove-1
                                                     "[Desktop, Layer 1, Submode 2] Shift oneshot (Fn+Space then letter = Shift+letter)")]
 
-          (if (and letters-1-in-modified letters-2-in-modified)
-            (let [;; Insert clear blocks before their respective letter blocks
+          (if (and numbers-1-in-modified letters-2-in-modified)
+            (let [;; Insert clear blocks before their respective key blocks
                   ;; Do submode 2 first (it's later in the file)
                   content-with-clear-2 (str (subs content-after-remove-1 0 (:start letters-2-in-modified))
                                             (:text clear-block-2)
                                             "\n"
                                             (subs content-after-remove-1 (:start letters-2-in-modified)))
 
-                  ;; Find letters-1 again in modified content
-                  letters-1-final (extract-block content-with-clear-2
-                                                  "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot letters")
+                  ;; Find numbers-1 again in modified content
+                  numbers-1-final (extract-block content-with-clear-2
+                                                  "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers")
 
-                  content-final (str (subs content-with-clear-2 0 (:start letters-1-final))
+                  content-final (str (subs content-with-clear-2 0 (:start numbers-1-final))
                                      (:text clear-block-1)
                                      "\n"
-                                     (subs content-with-clear-2 (:start letters-1-final)))]
+                                     (subs content-with-clear-2 (:start numbers-1-final)))]
 
               (spit output-file content-final)
               (println "\nBlocks reordered successfully!")

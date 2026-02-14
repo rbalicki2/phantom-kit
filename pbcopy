@@ -1,0 +1,117 @@
+; State: Desktop > Ins
+; Parsed: {:profile "Desktop", :layer 1, :in-modal false, :submode nil, :return-to -1}
+; Mode: exact
+; Blocks: 10, Rules: 82
+
+Block: [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+  Rules: 10
+    R0051 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0052 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0053 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0054 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0055 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0056 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0057 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0058 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0059 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+    R0060 [layer:1] [Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)
+
+Block: [Desktop, Layer 1, Submode 0] Shift+up/down = square brackets
+  Rules: 2
+    R0061 [layer:1] [Desktop, Layer 1, Submode 0] Shift+up/down = square brackets
+    R0062 [layer:1] [Desktop, Layer 1, Submode 0] Shift+up/down = square brackets
+
+Block: [Desktop, Layer 1, Submode 0] Backslash = tab
+  Rules: 1
+    R0063 [layer:1] [Desktop, Layer 1, Submode 0] Backslash = tab
+
+Block: [Desktop, Layer 1, Submode 3] rcmd+H chord (delete)
+  Rules: 1
+    R0064 [layer:1] [Desktop, Layer 1, Submode 3] rcmd+H chord (delete)
+
+Block: [Desktop, Layer 1, Submode 4] rcmd+N chord (select)
+  Rules: 1
+    R0071 [layer:1] [Desktop, Layer 1, Submode 4] rcmd+N chord (select)
+
+Block: [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+  Rules: 6
+    R0078 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+    R0079 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+    R0080 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+    R0081 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+    R0082 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+    R0083 [layer:1] [Desktop, Layer 1, Submode 0] Arrow navigation with right command
+
+Block: [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+  Rules: 7
+    R0084 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0085 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0086 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0087 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0088 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0089 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+    R0090 [layer:1] [Desktop, Layer 1] Ins Layer - Submode 0 (base typing)
+
+Block: [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+  Rules: 24
+    R0121 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0147 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0148 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0149 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0150 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0151 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0152 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0153 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0154 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0155 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0156 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0157 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0158 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0159 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0160 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0161 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0162 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0163 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0164 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0165 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0166 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0167 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0168 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+    R0169 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)
+
+Block: [Desktop, Layer 1] Ins - Key pass-through
+  Rules: 29
+    R0171 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0172 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0173 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0174 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0175 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0176 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0177 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0178 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0179 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0180 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0181 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0182 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0183 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0184 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0185 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0186 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0187 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0188 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0189 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0190 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0191 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0192 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0193 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0194 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0195 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0196 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0197 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0198 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+    R0199 [layer:1] [Desktop, Layer 1] Ins - Key pass-through
+
+Block: [Desktop, Layer 10] In-App Nav Layer - Entry and Exit
+  Rules: 1
+    R0356 [layer:1] [Desktop, Layer 10] In-App Nav Layer - Entry and Exit
+

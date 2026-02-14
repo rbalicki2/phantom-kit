@@ -268,6 +268,118 @@
           earlier-rules)))
 
 ;; ============================================================================
+;; Modifier Specificity Ordering
+;; ============================================================================
+
+(defn extract-key-from-from [from-clause]
+  "Extract the key code from a from clause"
+  (cond
+    (keyword? from-clause) from-clause
+    (map? from-clause) (or (:key from-clause) (:pkey from-clause))
+    :else nil))
+
+(defn extract-modifiers-from-from [from-clause]
+  "Extract modifiers from a from clause.
+   Returns {:mandatory [...] :optional [...]} or nil if no modifiers specified"
+  (when (map? from-clause)
+    (:modi from-clause)))
+
+(defn has-mandatory-modifiers? [modi]
+  "Check if modifiers have any mandatory requirements"
+  (and modi
+       (seq (:mandatory modi))))
+
+(defn modifier-specificity [modi]
+  "Return a number representing modifier specificity.
+   Higher number = more specific = should come first.
+   - With mandatory modifiers: 2 (most specific, should match first)
+   - With optional-only (restrictive): 1 (should match after mandatory)
+   - No modifiers specified: 0 (least specific, matches anything)"
+  (cond
+    ;; Has mandatory modifiers - most specific
+    (has-mandatory-modifiers? modi) 2
+    ;; Has optional but not 'any' - somewhat restrictive
+    (and modi
+         (:optional modi)
+         (not (some #{:any} (:optional modi)))) 1
+    ;; No modifiers or optional: any - matches everything
+    :else 0))
+
+(defn devices-can-conflict? [device1 device2]
+  "Check if two device conditions can both match the same input.
+   - :any can conflict with anything
+   - :external-only and :internal-only cannot conflict with each other"
+  (or (= device1 :any)
+      (= device2 :any)
+      (= device1 device2)))
+
+(defn apps-can-conflict? [apps1 apps2]
+  "Check if two app conditions can both match the same input.
+   - :any can conflict with anything
+   - Two specific app sets conflict if they overlap"
+  (or (= apps1 :any)
+      (= apps2 :any)
+      (and (set? apps1) (set? apps2) (seq (set/intersection apps1 apps2)))))
+
+(defn is-oneshot-submode-condition? [condition]
+  "Check if condition is for oneshot submode (1 or 2)"
+  (when (and (vector? condition)
+             (= 2 (count condition))
+             (string? (first condition)))
+    (let [[var-name value] condition]
+      (and (= var-name "dsk_ins_sub_mode")
+           (or (= value 1) (= value 2))))))
+
+(defn find-modifier-ordering-issue [rule-info earlier-rules]
+  "Check if a more specific rule (with mandatory modifiers) comes after a less
+   specific rule (no mandatory modifiers) for the same key and state.
+
+   Currently only checks oneshot submode rules (1 and 2) where we know this
+   pattern caused issues. Other layers intentionally use bare+modified pairs.
+
+   This catches issues like:
+   - Bare L rule (optional: caps_lock) at position 98
+   - Shift+L rule (mandatory: shift) at position 1286
+
+   Where the less specific bare L rule would match Shift+L first."
+  (let [from (:from rule-info)
+        key-code (extract-key-from-from from)
+        modi (extract-modifiers-from-from from)
+        specificity (modifier-specificity modi)
+        condition (:condition rule-info)
+        device (:block-device rule-info)
+        apps (:block-apps rule-info)]
+    ;; Only check rules in oneshot submodes where we know this pattern is problematic
+    (when (and (= specificity 2)
+               (is-oneshot-submode-condition? condition))
+      (some (fn [earlier]
+              (let [earlier-from (:from earlier)
+                    earlier-key (extract-key-from-from earlier-from)
+                    earlier-modi (extract-modifiers-from-from earlier-from)
+                    earlier-specificity (modifier-specificity earlier-modi)
+                    earlier-device (:block-device earlier)
+                    earlier-apps (:block-apps earlier)]
+                ;; Found an issue if:
+                ;; 1. Same key
+                ;; 2. Same variable condition (same oneshot submode)
+                ;; 3. Earlier rule has lower specificity (0 or 1 vs 2)
+                ;; 4. Devices can conflict
+                ;; 5. Apps can conflict
+                (when (and (= key-code earlier-key)
+                           (< earlier-specificity specificity)
+                           (= condition (:condition earlier))
+                           (devices-can-conflict? device earlier-device)
+                           (apps-can-conflict? apps earlier-apps))
+                  {:type :modifier-ordering-issue
+                   :description (:description rule-info)
+                   :message (format "Rule with mandatory modifiers comes AFTER less specific rule for key '%s' in oneshot submode. The earlier rule may shadow this one."
+                                   (name key-code))
+                   :rule (:rule rule-info)
+                   :earlier-rule (:rule earlier)
+                   :earlier-block (:description earlier)})))
+            earlier-rules))))
+
+;; ============================================================================
 ;; Action Analysis
 ;; ============================================================================
 
@@ -359,9 +471,22 @@
                   shadowed (find-shadowed-rule current seen)]
               (recur (rest remaining)
                      (conj seen current)
-                     (if shadowed (conj issues shadowed) issues)))))]
+                     (if shadowed (conj issues shadowed) issues)))))
 
-    (concat invariant-issues action-issues shadowing-issues)))
+        ;; Check for modifier ordering issues
+        modifier-ordering-issues
+        (loop [remaining all-rules
+               seen []
+               issues []]
+          (if (empty? remaining)
+            issues
+            (let [current (first remaining)
+                  ordering-issue (find-modifier-ordering-issue current seen)]
+              (recur (rest remaining)
+                     (conj seen current)
+                     (if ordering-issue (conj issues ordering-issue) issues)))))]
+
+    (concat invariant-issues action-issues shadowing-issues modifier-ordering-issues)))
 
 ;; ============================================================================
 ;; CLI Interface

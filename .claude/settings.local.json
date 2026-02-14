@@ -38,7 +38,10 @@
       "Bash(ls:*)",
       "Bash(ln:*)",
       "Bash(/opt/homebrew/bin/hs -c 'hs.reload\\(\\)')",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(shuf)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/renamed.edn goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/described.edn goku:*)"
     ]
   }
 }
