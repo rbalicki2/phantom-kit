@@ -48,6 +48,21 @@ Invariants checked (from mental_model.md):
 2. `dsk_ins_sub_mode = -1` when `dsk_layer != 1`
 3. `dsk_return_to_layer = -1` when `dsk_layer != 13`
 
+### validate-extras.bb
+
+Additional validations not covered by validate-rules.bb.
+
+```bash
+bb validate-extras.bb ../karabiner.edn
+```
+
+Checks for:
+- **Multiple shell commands**: Rules with multiple `{:shell ...}` (only last executes)
+- **Incomplete layer transitions**: Layer changes that don't set all 4 state variables
+- **Layer code mismatches**: `/tmp/karabiner-layer` writes that don't match dsk_layer
+- **Missing overlay files**: `layers/*.txt` files that should exist for main layers
+- **Undefined app references**: App keywords used but not defined in `:applications`
+
 ## Tests
 
 Run unit tests:

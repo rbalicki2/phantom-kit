@@ -21,12 +21,19 @@ case "$LAYER" in
     comma) NAME="Comma" ;;
     l) NAME="L" ;;
     lC) NAME="L-C" ;;
-    lTC) NAME="L-TC" ;;
+    lCS) NAME="L-CS" ;;
     lT) NAME="L-T" ;;
+    lTS) NAME="L-TS" ;;
+    lTC) NAME="L-TC" ;;
+    lTCS) NAME="L-TCS" ;;
     lTO) NAME="L-TO" ;;
+    lTOS) NAME="L-TOS" ;;
     lO) NAME="L-O" ;;
+    lOS) NAME="L-OS" ;;
     lOC) NAME="L-OC" ;;
+    lOCS) NAME="L-OCS" ;;
     lCTO) NAME="L-CTO" ;;
+    lCTOS) NAME="L-CTOS" ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;
@@ -34,6 +41,8 @@ case "$LAYER" in
     label) NAME="Label" ;;
     grid) NAME="Grid" ;;
     inapp) NAME="InApp" ;;
+    appsw) NAME="AppSw" ;;
+    winsw) NAME="WinSw" ;;
     *) NAME="Base" ;;
 esac
 

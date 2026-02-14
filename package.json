@@ -1,7 +1,7 @@
 {
   "name": "voicemode",
   "scripts": {
-    "sync": "bb /Users/rbalicki/code/voicemode/bb-scripts/validate-edn.bb && bb /Users/rbalicki/code/voicemode/karabiner-test-harness/validate-rules.bb /Users/rbalicki/code/voicemode/karabiner.edn && cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku && osascript -e 'display notification \"Done syncing\" with title \"Karabiner\"'",
+    "sync": "bb /Users/rbalicki/code/voicemode/bb-scripts/validate-edn.bb && bb /Users/rbalicki/code/voicemode/karabiner-test-harness/validate-rules.bb /Users/rbalicki/code/voicemode/karabiner.edn && bb /Users/rbalicki/code/voicemode/karabiner-test-harness/validate-extras.bb /Users/rbalicki/code/voicemode/karabiner.edn && cp /Users/rbalicki/code/voicemode/karabiner.edn ~/.config/ && goku && osascript -e 'display notification \"Done syncing\" with title \"Karabiner\"'",
     "hs": "/opt/homebrew/bin/hs -c 'hs.reload()' &",
     "kinesis": "test -d /Volumes/ADV360/layouts && for i in 1 2 3 4 5 6 7 8 9; do cp kinesis-layout1.txt /Volumes/ADV360/layouts/layout${i}.txt; done && echo 'Copied to all 9 layout slots' || echo 'Kinesis drive not mounted'",
     "warpd": "/usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & sleep 0.5 && pkill warpd"
