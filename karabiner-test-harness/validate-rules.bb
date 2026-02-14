@@ -215,9 +215,38 @@
         ;; Check if all constraints in c2 are satisfied by c1
         :else (every? (fn [[k v]] (= (get c1-map k) v)) c2-map)))))
 
+(defn app-condition-covers? [earlier-apps later-apps]
+  "Check if earlier-apps covers all cases that later-apps would match.
+   Returns true if earlier rule would catch all inputs that later rule matches.
+   - :any covers everything (any app matches)
+   - A specific set only covers if later is subset of earlier"
+  (cond
+    ;; Earlier catches all apps - covers everything
+    (= earlier-apps :any) true
+    ;; Earlier is specific but later catches all - NOT covered
+    (= later-apps :any) false
+    ;; Both are sets - earlier covers later if later is subset of earlier
+    (and (set? earlier-apps) (set? later-apps))
+    (set/subset? later-apps earlier-apps)
+    ;; Fallback - no coverage
+    :else false))
+
+(defn device-condition-covers? [earlier-device later-device]
+  "Check if earlier-device covers all cases that later-device would match.
+   - :any covers everything
+   - Specific device only covers if they match"
+  (cond
+    ;; Earlier catches all devices - covers everything
+    (= earlier-device :any) true
+    ;; Earlier is specific but later catches all - NOT covered
+    (= later-device :any) false
+    ;; Both specific - must match
+    :else (= earlier-device later-device)))
+
 (defn find-shadowed-rule [rule-info earlier-rules]
   "Check if rule-info is always shadowed by an earlier rule.
-   Only considers shadowing if both rules have same device AND app conditions."
+   A rule is shadowed if an earlier rule would match ALL inputs that this rule matches.
+   This means earlier's conditions must be >= (cover) later's conditions."
   (let [rule (:rule rule-info)
         from (first rule)
         condition (:condition rule-info)
@@ -226,15 +255,10 @@
     (some (fn [earlier]
             (when (and (rules-have-same-from? rule-info earlier)
                        (condition-implies? condition (:condition earlier))
-                       ;; Only shadow if device conditions overlap
-                       (or (= device :any)
-                           (= (:block-device earlier) :any)
-                           (= device (:block-device earlier)))
-                       ;; Only shadow if app conditions overlap
-                       (or (= apps :any)
-                           (= (:block-apps earlier) :any)
-                           (and (set? apps) (set? (:block-apps earlier))
-                                (not (empty? (set/intersection apps (:block-apps earlier)))))))
+                       ;; Earlier device must cover later device
+                       (device-condition-covers? (:block-device earlier) device)
+                       ;; Earlier apps must cover later apps
+                       (app-condition-covers? (:block-apps earlier) apps))
               {:type :shadowed-rule
                :description (:description rule-info)
                :message (format "Rule is always shadowed by earlier rule in '%s'"
