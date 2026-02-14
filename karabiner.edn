@@ -560,7 +560,7 @@
   {:des "[Desktop, Layer 1] Ins Layer - Submode 0 (base typing)"
    :rules [:!apple_internal
     ;; Block Ctrl+J in Ins mode (otherwise it types a newline)
-    [{:key :j :modi {:mandatory [:control]}} :vk_none ["dsk_layer" 1]]
+    [{:key :j :modi {:mandatory [:control]}} [:vk_none] ["dsk_layer" 1]]
 
     ;; Ctrl+M enters Label mode from Ins (return_to_layer=1 so Ctrl+J returns to Ins)
     [
