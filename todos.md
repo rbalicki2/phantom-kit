@@ -2,7 +2,6 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
-- ✅ DONE: Unit test harness for Karabiner JSON (see `karabiner-test-harness/`)
 - Expand unit test coverage: add tests for all Fn+key combos in each layer, verify all layer entries/exits, test edge cases (modifier combos, app-specific rules). Run tests as part of `npm run sync`.
 - Push voicemode repo to a remote repository
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
@@ -56,6 +55,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Investigate Ctrl+Y bugs: check if Ctrl+Y behavior is correct across all layers
 - Disable Vimium Chrome extension (conflicts with keyboard layer system)
 - Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
-- Validate conditions are always arrays: even single conditions should be wrapped in an array `[["dsk_layer" 0]]` for consistency. Add check to validate-ordering.bb.
 - Refactor karabiner.edn condition structure: move app conditions from block-level to per-rule, use array syntax for multiple conditions (device → layer → leaf). This enables proper DAG ordering validation.
 - Up/Down keys passthrough: allow up/down arrow keys to work in all modes, or add fallback passthrough rules for them.
