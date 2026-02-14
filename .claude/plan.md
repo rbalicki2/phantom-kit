@@ -96,12 +96,12 @@ bb scripts/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1:submode=1" -
 ## TODO List
 
 ### Immediate (this session)
-- [ ] Fix rule IDs to use new state string format: `profile=Desktop:dsk_layer=1:dsk_ins_sub_mode=0`
+- [x] Fix rule IDs to use new state string format: `dsk_layer=1` (done via fix-rule-ids.bb)
 - [ ] Add validation: ID state string must match actual rule conditions
-- [ ] Fix mislabeled rules (e.g., "Submode 3" rules that are actually layer-1 entry points)
+- [ ] Fix mislabeled rules (e.g., "Submode 3" rules that are actually layer-1 entry points) - actually correctly labeled now, they ENTER submode, don't CHECK for it
 
 ### Short-term
-- [ ] Script to auto-regenerate all rule IDs based on actual conditions
+- [x] Script to auto-regenerate all rule IDs based on actual conditions (fix-rule-ids.bb)
 - [ ] Validate state strings during `npm run sync`
 - [ ] Update block names to accurately describe behavior (not target state)
 
@@ -118,3 +118,6 @@ bb scripts/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1:submode=1" -
 - [x] Document conceptual model (nested hashmap) in mental-model.md
 - [x] Fix oneshot clear rules to match either shift key
 - [x] Add Shift+backslash = pipe mapping
+- [x] Create fix-rule-ids.bb script
+- [x] Update all 1360 rule IDs to new format
+- [x] Update list-rules.bb parser to support both old and new formats
