@@ -66,6 +66,9 @@ if [ "$HOVER_MODE" = "reset" ]; then
     (/opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true) &
 fi
 
+# NOTE: Only use --held-modifiers reset for mouse modes (Label, Grid) which may hold
+# synthetic modifiers for clicks. Other modes should use --held-modifiers keep to avoid
+# race conditions where "key up control" cancels subsequent Ctrl+key outputs.
 if [ "$HELD_MODIFIERS" = "reset" ]; then
     (osascript -e 'tell application "System Events" to key up command' \
                -e 'tell application "System Events" to key up shift' \
