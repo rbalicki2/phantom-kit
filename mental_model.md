@@ -172,11 +172,12 @@ While in switcher:
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
-- [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
+- [x] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 - [x] Prefix all variable names with "dsk_" to make it clear they're desktop-only (dsk_layer, dsk_in_modal_layer, dsk_ins_sub_mode, dsk_return_to_layer)
 - [ ] Disable Vimium Chrome extension (conflicts with keyboard layer system)
 - [ ] Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 - [ ] Shift+M from Normal should enter Normal mode (no-op but allows Cmd+click on highlighted text via Label mode entry)
+- [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
 
 ## Potential Bugs
 

@@ -163,6 +163,14 @@
     [:page_up :button2]
    ]}
 
+  {:des "[Desktop Global] Ctrl+N = escape + cleanup (all modal layers)"
+   :rules [:!apple_internal
+    [{:key :n :modi {:mandatory [:right_control]}}
+     [:escape ["dsk_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]
+      {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}]
+     ["dsk_in_modal_layer" 1]]
+   ]}
+
   ;; =====================================================================
   ;; DESKTOP MODE-SPECIFIC - Rules organized by layer (specific to generic)
   ;; =====================================================================
@@ -520,16 +528,8 @@
    ]}
 
 
-  {:des "[Desktop] App/Window Switcher Ctrl+N/Ctrl+J exits (must come before global Ctrl+N)"
+  {:des "[Desktop] App/Window Switcher Ctrl+J exits to Ins"
    :rules [:!apple_internal
-    ;; Ctrl+N in app switcher = release Cmd, exit to Normal
-    [{:key :n :modi {:mandatory [:right_control]}}
-     [["dsk_in_modal_layer" 0] ["dsk_layer" 0]
-      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 11]]
-    ;; Ctrl+N in window switcher = release Cmd, exit to Normal
-    [{:key :n :modi {:mandatory [:right_control]}}
-     [["dsk_in_modal_layer" 0] ["dsk_layer" 0]
-      {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 12]]
     ;; Ctrl+J in app switcher = release Cmd, exit to Ins
     [{:key :j :modi {:mandatory [:right_control]}}
      [["dsk_in_modal_layer" 0] ["dsk_layer" 1]
@@ -539,10 +539,6 @@
      [["dsk_in_modal_layer" 0] ["dsk_layer" 1]
       {:shell "osascript -e 'tell app \"System Events\" to key up command' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 12]]
    ]}
-
-  ;; NOTE: Removed global Ctrl+N→escape rule because it interferes with modal layer exits.
-  ;; When exiting Label/Grid mode with Ctrl+N, key repeat would send escape to apps.
-  ;; In Normal mode, N alone sends escape. In Ins mode, Ctrl+N isn't needed.
 
   {:des "[Desktop] Right control+6 to F9 (text-to-speech)"
    :rules [:!apple_internal
@@ -607,9 +603,7 @@
     ;; Cancel: right_control exits and dismisses Homerow (sends escape to Homerow app only)
     [:right_control [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["dsk_return_to_layer" 1]]
     [:right_control [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 13]]
-    ;; Ctrl+N and Ctrl+J also exit
-    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["dsk_return_to_layer" 1]]
-    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 13]]
+    ;; Ctrl+J exits to Ins (Ctrl+N handled by global rule)
     [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 1] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo ins > /tmp/karabiner-layer"}] ["dsk_return_to_layer" 1]]
     [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["dsk_return_to_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "/opt/homebrew/bin/hs -c 'dismissHomerow()' && echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 13]]
 
@@ -669,9 +663,8 @@
     ;; (Entry from Normal is in Layer 0 section)
 
     ;; === EXIT (no click) ===
-    ;; All exits: kill warpd, set mode to Normal
+    ;; All exits: kill warpd, set mode to Normal (Ctrl+N handled by global rule)
     [:right_control [:vk_none ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 28]]
-    [{:key :n :modi {:mandatory [:right_control]}} [:vk_none ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 28]]
     [{:key :j :modi {:mandatory [:right_control]}} [:vk_none ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 28]]
     [:up_arrow [:vk_none ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "pkill warpd; echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 28]]
 
