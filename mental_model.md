@@ -40,6 +40,8 @@ Any state transition that could leave external state dirty must clean it up expl
 
 ## State Variables
 
+**Note:** These variables only apply to the Desktop profile (Kinesis keyboard). Laptop rules do not use state variables.
+
 Four variables track all state:
 
 | Variable | Range | Purpose |
@@ -161,6 +163,7 @@ While in switcher:
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
+- [ ] Prefix all variable names with "dsk_" to make it clear they're desktop-only (e.g., dsk_mode, dsk_in_modal, dsk_submode, dsk_return_to_layer)
 
 ## Potential Bugs
 

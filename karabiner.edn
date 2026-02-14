@@ -111,12 +111,12 @@
 
   {:des "Left shift to open paren when alone (laptop only)"
    :rules [:apple_internal
-    [:##left_shift :left_shift ["in_modal" 1] {:alone :!S9}]
+    [:##left_shift :left_shift nil {:alone :!S9}]
    ]}
 
   {:des "Right shift to close paren when alone (laptop only)"
    :rules [:apple_internal
-    [:##right_shift :right_shift ["in_modal" 1] {:alone :!S0}]
+    [:##right_shift :right_shift nil {:alone :!S0}]
    ]}
 
   ;; =====================================================================
