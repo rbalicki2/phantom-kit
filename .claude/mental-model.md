@@ -226,10 +226,3 @@ Shows which rules match a given key + modifiers + state, including shadowed rule
 - [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
 - [ ] Consider removing dsk_in_modal_layer variable: Add explicit pass-through rules for all keys in Ins mode (layer 1), then global key blocking can be unconditional. Exit rules would need to become per-layer instead of global. Trade-off: one less variable vs ~40+ pass-through rules in Ins.
 
-## Potential Bugs
-
-- [ ] Ctrl+J should set dsk_ins_sub_mode=0 when entering Ins (currently doesn't)
-- [ ] Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets dsk_ins_sub_mode=3/4)
-- [ ] App/Window switcher exit via right_ctrl: Does it release the held Cmd key? Ctrl+N and Enter release Cmd, but right_ctrl alone might not.
-- [ ] Scroll timer / hover mode not cleared on most exits: Only panic clears them. If you exit InApp (which has scroll) via right_ctrl, is scrollStop() called?
-- [ ] Oneshot submodes (1, 2) might not clear on non-letter keys: What if you press a number, symbol, or modifier after entering oneshot? Does it clear or persist incorrectly?
