@@ -146,68 +146,9 @@
     [{:key :n :modi {:mandatory [:right_control]}} [:escape]]
    ]}
 
-  {:des "[Desktop] right_control alone = exit to Normal (global)"
-   :rules [:!apple_internal
-    ;; === MOUSE MODES: Need --held-modifiers reset for synthetic modifiers ===
-    ;; Label mode (layer 13) - may hold modifiers for clicks
-    [
-      {:key :right_control}
-      [:right_control]
-      ["dsk_layer" 13]
-      {:alone [
-        :vk_none
-        ["dsk_layer" 0]  ;; Normal
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    ;; Grid mode (layer 28) - may hold modifiers for clicks
-    [
-      {:key :right_control}
-      [:right_control]
-      ["dsk_layer" 28]
-      {:alone [
-        :vk_none
-        ["dsk_layer" 0]  ;; Normal
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-
-    ;; === OTHER MODES: Use --held-modifiers keep to avoid race conditions ===
-    ;; Exit to Ins (when dsk_return_to_layer=1, i.e. came from Ins via Ctrl+M)
-    [
-      {:key :right_control}
-      [:right_control]
-      ["dsk_return_to_layer" 1]  ;; came from Ins
-      {:alone [
-        :vk_none
-        ["dsk_layer" 1]  ;; Ins
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers keep && echo ins > /tmp/karabiner-layer"}
-      ]}
-    ]
-    ;; Exit to Normal (global fallback - works from any layer including Ins)
-    [
-      {:key :right_control}
-      [:right_control]
-      nil  ;; no condition (global fallback)
-      {:alone [
-        :vk_none
-        ["dsk_layer" 0]  ;; Normal
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers keep && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-   ]}
+  ;; NOTE: right_control exit rules follow leaf-to-root ordering:
+  ;; - Layer-specific rules (Layer 13, 28) are in their respective layer sections
+  ;; - Global fallback rules are at the end, before the block-all section
 
   {:des "[Desktop] Ctrl+J = exit to Ins (all modal layers)"
    :rules [:!apple_internal
@@ -944,7 +885,37 @@
   {:des "[Desktop, Layer 13] Label Mode 🐭 - Homerow"
    :rules [:!apple_internal
     ;; Entry rules moved to source layers (Normal layer 0, Ins layer 1)
-    ;; Exit rules (right_control, Ctrl+J) moved to Desktop Global section (special return-to-origin)
+
+    ;; === EXIT: right_control alone ===
+    ;; Mouse modes need --held-modifiers reset for synthetic modifiers
+    ;; Return to Ins (when came from Ins via Ctrl+M)
+    [
+      {:key :right_control}
+      [:right_control]
+      ["dsk_return_to_layer" 1]  ;; came from Ins
+      {:alone [
+        :vk_none
+        ["dsk_layer" 1]  ;; Ins
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]}
+    ]
+    ;; Return to Normal (came from Normal via M)
+    [
+      {:key :right_control}
+      [:right_control]
+      ["dsk_layer" 13]
+      {:alone [
+        :vk_none
+        ["dsk_layer" 0]  ;; Normal
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
+      ]}
+    ]
 
     ;; Up = Exit without clicking (just clean up and return to origin)
     [
@@ -1154,7 +1125,23 @@
 
   {:des "[Desktop, Layer 28] Grid Mode 🐭🔲 - warpd"
    :rules [:!apple_internal
-    ;; Exit via right_control alone and Ctrl+J handled by global rules
+
+    ;; === EXIT: right_control alone ===
+    ;; Mouse modes need --held-modifiers reset for synthetic modifiers
+    ;; Grid mode always returns to Normal (only entered from Normal)
+    [
+      {:key :right_control}
+      [:right_control]
+      ["dsk_layer" 28]
+      {:alone [
+        :vk_none
+        ["dsk_layer" 0]  ;; Normal
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
+      ]}
+    ]
 
     ;; === EXIT (no click) ===
     ;; Up arrow = exit without click (unique to Grid mode)
@@ -3468,7 +3455,35 @@
    ]}
 
 
-  
+  ;; =====================================================================
+  ;; GLOBAL FALLBACK: right_control exit rules (leaf-to-root: specific rules above)
+  ;; =====================================================================
+
+  {:des "[Global Fallback] right_control alone = exit to Normal"
+   :rules [:!apple_internal
+    ;; NOTE: Layer-specific rules (Layer 13, 28) are in their respective sections.
+    ;; This fallback handles all other layers.
+    ;; Use --held-modifiers keep to avoid race conditions with Ctrl+key outputs.
+    ;;
+    ;; No rule for dsk_return_to_layer=1 here because:
+    ;; - dsk_return_to_layer is only valid in Layer 13 (per invariant)
+    ;; - Layer 13's rules handle both return-to-Ins and return-to-Normal cases
+
+    ;; Exit to Normal (global fallback - works from any layer including Ins)
+    [
+      {:key :right_control}
+      [:right_control]
+      nil  ;; no condition (global fallback)
+      {:alone [
+        :vk_none
+        ["dsk_layer" 0]  ;; Normal
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers keep && echo norm > /tmp/karabiner-layer"}
+      ]}
+    ]
+   ]}
 
   {:des "[Global] Block all unmapped keys"
    :rules [:!apple_internal

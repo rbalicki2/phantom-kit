@@ -78,15 +78,21 @@ cleanup-external-state.sh \
 
 Example: Entering Normal should set `dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
-### Rule Ordering in karabiner.edn
+### Rule Ordering: Leaf to Root
 
-Karabiner uses the first matching rule, so rules must be ordered from most specific to least specific:
+Karabiner uses the first matching rule, so rules must be ordered **leaf to root**—from most specific conditions to least specific:
 
-1. **Submode rules** (submode 1-4) — Most specific, overlay states within Ins mode
-2. **Mode-specific rules** (mode 1 Ins, mode 2 Nav, etc.) — Rules for specific layers
-3. **Fallback/generic rules** — Catch-all rules with no mode conditions
+1. **Layer-specific rules** — Rules with `["dsk_layer" N]` conditions belong in their layer sections
+2. **Variable-specific fallbacks** — Rules checking other variables (e.g., `dsk_return_to_layer`)
+3. **Global fallbacks** — Catch-all rules with `nil` or no condition, placed at the end
 
-**Exception**: Global utility rules that apply everywhere (disable LHS keys, panic button, overlay, generic clicks) go first for organizational clarity. These don't check mode variables so ordering doesn't affect their behavior.
+**Key principle**: A rule with condition X should never appear before a rule with condition X AND Y. The more specific rule (X AND Y) must come first, or it will be shadowed.
+
+**Example**: The `right_control` exit rules follow this pattern:
+- Layer 13/28 (mouse modes) have their own exit rules in their sections (need `--held-modifiers reset`)
+- Global fallback at the end catches all other layers (uses `--held-modifiers keep`)
+
+**Exception for stateless rules**: Global utility rules that don't check mode variables (panic button, overlay toggle, page_down/up clicks) can go at the top for organizational clarity since ordering doesn't affect their behavior.
 
 ### Key Unmapping Strategy
 
