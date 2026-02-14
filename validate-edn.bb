@@ -16,6 +16,7 @@
 ;; Invalid patterns:
 ;;   [["dsk_layer" 0] ...] - variable set first (causes null)
 ;;   [[key] ...] where [key] is a wrapped single key - unnecessary wrapper
+;;   [{:shell "..."} ... {:shell "..."}] - multiple shells (only LAST executes!)
 
 (require '[clojure.edn :as edn])
 
@@ -31,6 +32,11 @@
        (= 2 (count item))
        (string? (first item))))
 
+(defn is-shell-command?
+  "Check if item is a shell command {:shell \"...\"}"
+  [item]
+  (and (map? item) (contains? item :shell)))
+
 (defn is-rule?
   "Check if data looks like a Goku rule"
   [data]
@@ -43,13 +49,20 @@
   "Validate the action (to) array of a rule"
   [to-arr path]
   (when (and (vector? to-arr) (not-empty to-arr))
-    (let [first-elem (first to-arr)]
+    (let [first-elem (first to-arr)
+          shell-commands (filter is-shell-command? to-arr)]
       ;; Check if the action array starts with a variable set
       (when (is-variable-set? first-elem)
         (swap! errors conj {:path (conj path 0)
                             :issue "Action array starts with variable set (causes null)"
                             :value (pr-str first-elem)
-                            :suggestion "Prepend :vk_none to the action array"})))))
+                            :suggestion "Prepend :vk_none to the action array"}))
+      ;; Check for multiple shell commands (only LAST one executes!)
+      (when (> (count shell-commands) 1)
+        (swap! errors conj {:path path
+                            :issue (str "Multiple shell commands (" (count shell-commands) ") - only LAST executes!")
+                            :value (pr-str (vec shell-commands))
+                            :suggestion "Combine into single shell with && or ;"})))))
 
 (defn validate-rule [rule path]
   (let [to (second rule)]
@@ -79,10 +92,10 @@
 ;; Report results
 (if (empty? @errors)
   (do
-    (println "✓ All rules validated successfully - no null-causing patterns found!")
+    (println "✓ All rules validated successfully!")
     (System/exit 0))
   (do
-    (println (str "✗ Found " (count @errors) " issue(s) that will cause null in JSON:\n"))
+    (println (str "✗ Found " (count @errors) " issue(s):\n"))
     (doseq [err @errors]
       (println (str "  Path: " (:path err)))
       (println (str "  Issue: " (:issue err)))
