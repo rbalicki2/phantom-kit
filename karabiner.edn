@@ -223,37 +223,19 @@
     [:h [:!Ta ["dsk_layer" 5] ["dsk_in_modal_layer" 1] [:layer "tmux"]] ["dsk_layer" 0]]
    ]}
 
-  {:des "[Layer 0] Normal - Disable unmapped keys"
+  {:des "[Layer 0] Normal - Disable unmapped RHS keys"
    :rules [:!apple_internal
-    ;; In Normal mode, only layer selector keys should work
-    ;; Disable all other letter keys to prevent accidental typing (## catches shift variants)
-    ;; Active keys: j (Ins), n (escape), m (Label), i (Admin), comma (Comma), l (L), u (Term), h (app-specific), 6 (TTS), y (Wispr)
-    [:##a :vk_none ["dsk_layer" 0]]
-    [:##b :vk_none ["dsk_layer" 0]]
-    [:##c :vk_none ["dsk_layer" 0]]
-    [:##d :vk_none ["dsk_layer" 0]]
-    [:##e :vk_none ["dsk_layer" 0]]
-    [:##f :vk_none ["dsk_layer" 0]]
-    [:##g :vk_none ["dsk_layer" 0]]
+    ;; In Normal mode, only layer selector keys should work (LHS keys already disabled globally)
+    ;; Active RHS keys: j (Ins), n (escape), m (Label), i (Admin), comma (Comma), l (L), u (Term), h (app-specific), 6 (TTS), y (Wispr)
+    ;; Disable unused RHS keys (## catches any modifiers)
     [:##k :vk_none ["dsk_layer" 0]]
     [:##o :vk_none ["dsk_layer" 0]]
     [:##p :vk_none ["dsk_layer" 0]]
-    [:##q :vk_none ["dsk_layer" 0]]
-    [:##r :vk_none ["dsk_layer" 0]]
-    [:##s :vk_none ["dsk_layer" 0]]
-    [:##t :vk_none ["dsk_layer" 0]]
-    [:##v :vk_none ["dsk_layer" 0]]
-    [:##w :vk_none ["dsk_layer" 0]]
-    [:##x :vk_none ["dsk_layer" 0]]
-    [:##z :vk_none ["dsk_layer" 0]]
-    ;; Disable brackets
     [:##open_bracket :vk_none ["dsk_layer" 0]]
     [:##close_bracket :vk_none ["dsk_layer" 0]]
-    ;; Also disable period, semicolon, slash (not layer selectors) - ## catches shift variants
     [:##period :vk_none ["dsk_layer" 0]]
     [:##semicolon :vk_none ["dsk_layer" 0]]
     [:##slash :vk_none ["dsk_layer" 0]]
-    ;; Disable numbers 7-0, backslash, hyphen, quote (6 is TTS trigger)
     [:##quote :vk_none ["dsk_layer" 0]]
     [:##7 :vk_none ["dsk_layer" 0]]
     [:##8 :vk_none ["dsk_layer" 0]]
