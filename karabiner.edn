@@ -646,6 +646,25 @@
     [:!Of12 :!Sgrave_accent_and_tilde ["dsk_layer" 1]]  ;; Fn+] → ~ (tilde)
    ]}
 
+  {:des "[Desktop] Wispr Flow shortcut"
+   :rules [:!apple_internal
+    ;; right_control+Y → Ctrl+Alt+Shift+F19 (popo) → exit to Ins
+    ;; Global shortcut - works from any mode (nil condition)
+    ;; MUST be before Ins pass-through rules so Ctrl+Y isn't intercepted
+    [
+      {:key :y :modi {:mandatory [:right_control]}}
+      [
+        :vk_none
+        ["dsk_layer" 1]
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
+      ]
+      nil
+      {:afterup [:!TOSf19]}
+    ]
+   ]}
 
   {:des "[Desktop, Layer 1] Ins - Key pass-through"
    :rules [:!apple_internal
@@ -688,25 +707,6 @@
    :rules [:!apple_internal
     [:##delete_or_backspace :vk_none]
     [:##delete_forward :vk_none]
-   ]}
-
-  {:des "[Desktop] Wispr Flow shortcut"
-   :rules [:!apple_internal
-    ;; right_control+Y → Ctrl+Alt+Shift+F19 (popo) → exit to Ins
-    ;; Global shortcut - works from any mode (nil condition)
-    [
-      {:key :y :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      nil
-      {:afterup [:!TOSf19]}
-    ]
    ]}
 
   ;; =====================================================================
