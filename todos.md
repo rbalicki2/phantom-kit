@@ -58,3 +58,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 - Validate conditions are always arrays: even single conditions should be wrapped in an array `[["dsk_layer" 0]]` for consistency. Add check to validate-ordering.bb.
 - Refactor karabiner.edn condition structure: move app conditions from block-level to per-rule, use array syntax for multiple conditions (device → layer → leaf). This enables proper DAG ordering validation.
+- Up/Down keys passthrough: allow up/down arrow keys to work in all modes, or add fallback passthrough rules for them.
