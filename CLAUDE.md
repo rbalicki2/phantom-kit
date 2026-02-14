@@ -45,6 +45,28 @@ Claude has REPEATEDLY broken core functionality by making "simple fixes" without
 
 When in doubt, ASK before changing. A broken keyboard config is extremely frustrating to debug.
 
+## ⚠️ NEVER MANUALLY EDIT karabiner.edn
+
+**The intent is to NEVER modify karabiner.edn manually.** All modifications should be done via scripts in `karabiner-test-harness/`.
+
+**Available tools:**
+- `bb karabiner-tools.bb fix-transitions <input> [output]` - Fix incomplete layer transitions
+- `bb karabiner-tools.bb add-rule-ids <input> [output]` - Add unique IDs to all rules
+- `bb karabiner-tools.bb validate-order <input>` - Validate layer ordering (leaf-to-root)
+- `bb karabiner-tools.bb validate-ids <input>` - Validate unique rule IDs
+- `bb karabiner-tools.bb reorder <input> [output]` - Reorder rules by layer (leaf-to-root)
+- `bb karabiner-tools.bb remove-rule <input> <output> <id>` - Remove rule by ID
+- `bb normalize-edn.bb <input> [output]` - Normalize to explicit syntax
+- `bb validate-extras.bb <input>` - Additional validations (run during sync)
+- `bb validate-rules.bb <input>` - Core rule validation (run during sync)
+
+**If you need to add, modify, or remove a rule:**
+1. Create or use an existing script to do the modification
+2. Never edit the EDN file directly - write code to do it
+3. This ensures consistency, validates invariants, and maintains proper formatting
+
+**Rule IDs:** Every rule has a unique ID in format `R0001 [layer:0] block name`. Use these IDs with `remove-rule` command.
+
 ## Git Commit Policy
 When modifying any file, always check if it's in a git repository and commit changes:
 1. After editing a file, check if it's in a git repo: `git -C "$(dirname /path/to/file)" rev-parse --git-dir 2>/dev/null`
