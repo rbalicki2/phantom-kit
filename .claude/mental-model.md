@@ -221,8 +221,31 @@ bb match-rules.bb ../karabiner.edn j --layer 0 --mod right_control
 
 Shows which rules match a given key + modifiers + state, including shadowed rules.
 
+## Conceptual Model: Config as Nested Hashmap
+
+The karabiner.edn config can be conceptualized as a multi-level nested hashmap:
+
+```
+Profile → Layer → Submode → Key → [Actions]
+```
+
+More precisely:
+- **Level 1**: Profile (Desktop, Laptop)
+- **Level 2**: Layer (0=Normal, 1=Ins, 2=Nav, ...)
+- **Level 3**: Submode (only within layer 1: 0=base, 1=shift_mirror_oneshot, ...)
+- **Level 4**: Input key (including modifiers)
+- **Value**: Array of actions
+
+Rules "higher" in the tree (less specific) apply as fallbacks to all rules "below" them.
+
+**Future direction**: Treat `karabiner.edn` as a compilation target. Define the canonical structure in a higher-level format (the nested hashmap) and compile it down to Goku EDN. This would enable:
+- Better tooling for listing/querying rules by state
+- Automated validation of the hierarchical structure
+- Cleaner separation of concerns
+
 ## Mental Model Todos
 
+- [ ] Treat EDN as compilation target: Build a higher-level DSL based on the nested hashmap model, compile to Goku EDN
 - [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
 - [ ] Consider removing dsk_in_modal_layer variable: Add explicit pass-through rules for all keys in Ins mode (layer 1), then global key blocking can be unconditional. Exit rules would need to become per-layer instead of global. Trade-off: one less variable vs ~40+ pass-through rules in Ins.
 

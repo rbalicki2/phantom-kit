@@ -3,7 +3,7 @@
 ;; List rules from karabiner.edn that match a given state
 ;;
 ;; Usage:
-;;   bb list-rules.bb <edn-file> <state> [--format FORMAT]
+;;   bb list-rules.bb <edn-file> <state> [--format FORMAT] [--exact]
 ;;
 ;; State format (key=value pairs, colon-separated, DAG-validated):
 ;;   ""                                    - Global rules (no profile)
@@ -13,11 +13,17 @@
 ;;   "profile=Desktop:layer=1:submode=1"   - Layer 1, shift_mirror_oneshot
 ;;   "profile=Desktop:layer=13:return=0"   - Layer 13, return to Normal
 ;;
+;; Flags:
+;;   --exact   Only rules defined at exactly this state level (no inheritance)
+;;             Without this flag, returns all rules that WOULD APPLY at this state
+;;
 ;; Formats: edn (default), ids, summary
 ;;
 ;; Examples:
 ;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1:submode=1"
 ;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --format ids
+;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact
+;;   bb list-rules.bb src/karabiner.edn "profile=Desktop" --exact  # Only profile-level rules
 
 (require '[clojure.edn :as edn]
          '[clojure.string :as str])
@@ -132,7 +138,10 @@
       (= "Laptop" profile) (or has-laptop (not (or has-desktop has-laptop)))
       :else false)))
 
-(defn rule-matches-state? [rule block-conditions state]
+(defn rule-matches-state?
+  "Check if rule matches state. When exact? is true, only match rules at exactly
+   that state level. When false (default), match all rules that would apply."
+  [rule block-conditions state exact?]
   (let [rule-conds (extract-rule-conditions rule)
         all-conds (concat (filter vector? block-conditions) rule-conds)
         rule-layer (get-condition-value all-conds "dsk_layer")
@@ -142,27 +151,47 @@
         state-submode (:submode state)
         state-return (:return-to state)]
 
-    (and
-     ;; Layer matching
-     (cond
-       (nil? state-layer) true
-       :else (or (= rule-layer state-layer)
-                 (and (= state-layer 1) rule-submode (not= rule-submode -1) (nil? rule-layer))
-                 (and (= state-layer 13) rule-return (not= rule-return -1) (nil? rule-layer))))
+    (if exact?
+      ;; Exact matching: rule must be at exactly this state level
+      (and
+       ;; Layer must match exactly (or both nil)
+       (= rule-layer state-layer)
+       ;; Submode must match exactly (nil state-submode matches nil rule-submode)
+       (cond
+         (nil? state-submode) (or (nil? rule-submode) (= -1 state-submode))
+         (= -1 state-submode) (or (nil? rule-submode) (= -1 rule-submode))
+         :else (= rule-submode state-submode))
+       ;; Return-to must match exactly
+       (cond
+         (nil? state-return) (or (nil? rule-return) (= -1 state-return))
+         (= -1 state-return) (or (nil? rule-return) (= -1 rule-return))
+         :else (= rule-return state-return)))
 
-     ;; Submode matching
-     (cond
-       (nil? state-submode) true
-       (= -1 state-submode) true
-       :else (= rule-submode state-submode))
+      ;; Hierarchical matching: all rules that would apply at this state
+      (and
+       ;; Layer matching
+       (cond
+         (nil? state-layer) true
+         :else (or (= rule-layer state-layer)
+                   (nil? rule-layer)  ; Global rules apply
+                   (and (= state-layer 1) rule-submode (not= rule-submode -1))
+                   (and (= state-layer 13) rule-return (not= rule-return -1))))
 
-     ;; Return-to matching
-     (cond
-       (nil? state-return) true
-       (= -1 state-return) true
-       :else (= rule-return state-return)))))
+       ;; Submode matching
+       (cond
+         (nil? state-submode) true
+         (= -1 state-submode) true
+         :else (or (= rule-submode state-submode)
+                   (nil? rule-submode)))  ; Base layer rules apply
 
-(defn extract-matching-rules [config state]
+       ;; Return-to matching
+       (cond
+         (nil? state-return) true
+         (= -1 state-return) true
+         :else (or (= rule-return state-return)
+                   (nil? rule-return)))))))
+
+(defn extract-matching-rules [config state exact?]
   (for [block (:main config)
         :let [des (:des block)
               rules-vec (:rules block)
@@ -171,7 +200,7 @@
                             (drop (count block-conds) rules-vec)
                             rules-vec)]
         :when (block-matches-profile? block-conds state)
-        :let [matching (filter #(rule-matches-state? % block-conds state) actual-rules)]
+        :let [matching (filter #(rule-matches-state? % block-conds state exact?) actual-rules)]
         :when (seq matching)]
     {:des des
      :conditions block-conds
@@ -212,13 +241,33 @@
 
 ;; === Main ===
 
-(defn -main [& args]
-  (let [[file state-str & rest-args] args
-        format-arg (when (= "--format" (first rest-args)) (second rest-args))
-        output-format (or format-arg "edn")]
+(defn parse-args [args]
+  (loop [remaining args
+         result {:file nil :state nil :format "edn" :exact false}]
+    (if (empty? remaining)
+      result
+      (let [arg (first remaining)]
+        (cond
+          (= "--format" arg)
+          (recur (drop 2 remaining) (assoc result :format (second remaining)))
 
-    (when (or (nil? file) (nil? state-str))
-      (println "Usage: bb list-rules.bb <edn-file> <state> [--format FORMAT]")
+          (= "--exact" arg)
+          (recur (rest remaining) (assoc result :exact true))
+
+          (nil? (:file result))
+          (recur (rest remaining) (assoc result :file arg))
+
+          (nil? (:state result))
+          (recur (rest remaining) (assoc result :state arg))
+
+          :else
+          (recur (rest remaining) result))))))
+
+(defn -main [& args]
+  (let [{:keys [file state format exact]} (parse-args args)]
+
+    (when (or (nil? file) (nil? state))
+      (println "Usage: bb list-rules.bb <edn-file> <state> [--format FORMAT] [--exact]")
       (println "")
       (println "State format (key=value pairs, colon-separated):")
       (println "  \"\"                                    - Global rules")
@@ -226,21 +275,26 @@
       (println "  \"profile=Desktop:layer=1\"             - Ins mode")
       (println "  \"profile=Desktop:layer=1:submode=1\"   - shift_mirror_oneshot")
       (println "")
+      (println "Flags:")
+      (println "  --exact   Only rules defined at exactly this state level")
+      (println "            Without this flag, returns all rules that would apply")
+      (println "")
       (println "Formats: edn (default), ids, summary")
       (System/exit 1))
 
     (try
-      (let [state (parse-state state-str)
+      (let [parsed-state (parse-state state)
             config (edn/read-string (slurp file))
-            matches (extract-matching-rules config state)]
+            matches (extract-matching-rules config parsed-state exact)]
 
-        (println (str "; State: " (format-state state)))
-        (println (str "; Parsed: " (pr-str state)))
+        (println (str "; State: " (format-state parsed-state)))
+        (println (str "; Parsed: " (pr-str parsed-state)))
+        (println (str "; Mode: " (if exact "exact" "hierarchical")))
         (println (str "; Blocks: " (count matches)
                      ", Rules: " (reduce + (map #(count (:rules %)) matches))))
         (println)
 
-        (case output-format
+        (case format
           "ids" (format-ids matches)
           "summary" (format-summary matches)
           (format-edn matches)))

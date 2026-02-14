@@ -9,6 +9,7 @@
 ;; - Missing layer overlay files (layers/*.txt)
 ;; - Undefined application references
 ;; - Layer code mismatches (dsk_layer vs /tmp/karabiner-layer)
+;; - Left-side modifiers in Desktop profile (should use right_shift, right_control, etc.)
 ;;
 ;; Usage:
 ;;   bb validate-extras.bb <edn-file>
@@ -322,6 +323,68 @@
        :rule nil})))
 
 ;; ============================================================================
+;; Left-Side Modifier Detection (Desktop profile)
+;; ============================================================================
+
+(def left-side-modifiers
+  "Left-side modifiers that shouldn't appear in Desktop profile inputs.
+   Exception: left_option is allowed because Kinesis Fn layer sends it."
+  #{:left_shift :left_command :left_control})
+
+(def left-modifier-shorthand
+  "Goku shorthand for left modifiers (except O = left_option which Fn uses)"
+  {"S" :left_shift
+   "C" :left_command
+   "T" :left_control})
+
+(defn extract-modifiers-from-shorthand [key-keyword]
+  "Extract modifier letters from Goku shorthand like :!CSj -> [\"C\" \"S\"]"
+  (let [key-str (name key-keyword)]
+    (when (str/starts-with? key-str "!")
+      (let [mod-part (subs key-str 1)]
+        (take-while #(Character/isUpperCase %) mod-part)))))
+
+(defn has-explicit-left-modifier? [modi-map]
+  "Check if explicit :modi map contains left-side modifiers"
+  (let [mandatory (get modi-map :mandatory [])
+        optional (get modi-map :optional [])]
+    (some left-side-modifiers (concat mandatory optional))))
+
+(defn has-shorthand-left-modifier? [from-clause]
+  "Check if from uses Goku shorthand with left modifiers"
+  (let [key-val (if (map? from-clause) (:key from-clause) from-clause)]
+    (when (keyword? key-val)
+      (let [mod-chars (extract-modifiers-from-shorthand key-val)]
+        (some left-modifier-shorthand mod-chars)))))
+
+(defn is-desktop-block? [block]
+  "Check if a block targets Desktop profile"
+  (let [rules-vec (:rules block)]
+    (when (vector? rules-vec)
+      (some #(= % :Desktop) rules-vec))))
+
+(defn check-left-modifier-in-desktop [config]
+  "Check for left-side modifiers in Desktop profile rule inputs"
+  (let [desktop-blocks (filter is-desktop-block? (:main config))]
+    (for [block desktop-blocks
+          :let [des (:des block)
+                rules-vec (:rules block)
+                actual-rules (when (vector? rules-vec)
+                              (->> rules-vec
+                                   (drop-while keyword?)
+                                   (filter vector?)))]
+          rule actual-rules
+          :let [from (first rule)
+                explicit-bad (when (map? from) (has-explicit-left-modifier? (:modi from)))
+                shorthand-bad (has-shorthand-left-modifier? from)]
+          :when (or explicit-bad shorthand-bad)]
+      {:type :left-modifier-in-desktop
+       :description des
+       :message (format "Desktop rule uses left-side modifier in input. Use right_shift/right_control/right_command instead: %s"
+                       (if explicit-bad "explicit modi" "shorthand"))
+       :rule rule})))
+
+;; ============================================================================
 ;; Main Validation
 ;; ============================================================================
 
@@ -367,7 +430,11 @@
 
         ;; Check for undefined app references
         app-issues
-        (extract-app-keywords-from-blocks config)]
+        (extract-app-keywords-from-blocks config)
+
+        ;; Check for left-side modifiers in Desktop profile
+        left-mod-issues
+        (check-left-modifier-in-desktop config)]
 
     (concat bare-from-issues
             bare-to-issues
@@ -378,7 +445,8 @@
             incomplete-issues
             mismatch-issues
             overlay-issues
-            app-issues)))
+            app-issues
+            left-mod-issues)))
 
 ;; ============================================================================
 ;; CLI Interface
