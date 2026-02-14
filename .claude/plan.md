@@ -92,3 +92,29 @@ bb scripts/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact --f
 # Only rules DEFINED AT layer 1, submode 1
 bb scripts/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1:submode=1" --exact --format ids
 ```
+
+## TODO List
+
+### Immediate (this session)
+- [ ] Fix rule IDs to use new state string format: `profile=Desktop:dsk_layer=1:dsk_ins_sub_mode=0`
+- [ ] Add validation: ID state string must match actual rule conditions
+- [ ] Fix mislabeled rules (e.g., "Submode 3" rules that are actually layer-1 entry points)
+
+### Short-term
+- [ ] Script to auto-regenerate all rule IDs based on actual conditions
+- [ ] Validate state strings during `npm run sync`
+- [ ] Update block names to accurately describe behavior (not target state)
+
+### Medium-term
+- [ ] Higher-level DSL that compiles to Goku EDN
+- [ ] Auto-generate documentation from config
+- [ ] Type-safe layer definitions (possibly Rust macros)
+
+### Completed
+- [x] Add `--exact` flag to list-rules.bb
+- [x] Make `--exact` use ID state markers (not actual conditions)
+- [x] Infer layer=1 for submode-only ID markers
+- [x] Add left-modifier validation to validate-extras.bb
+- [x] Document conceptual model (nested hashmap) in mental-model.md
+- [x] Fix oneshot clear rules to match either shift key
+- [x] Add Shift+backslash = pipe mapping
