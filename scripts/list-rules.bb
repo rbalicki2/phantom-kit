@@ -109,6 +109,28 @@
 
 ;; === Rule extraction ===
 
+(defn parse-id-state-marker
+  "Extract state from rule ID marker like '[layer:1]' or '[ins_sub_mode:1]'.
+   Returns map with :layer, :submode, :return keys (nil if not present).
+   Infers layer=1 if submode is present but layer is not (submodes only exist in layer 1)."
+  [rule-id]
+  (when rule-id
+    (let [;; Match the first [...] after the rule number
+          marker (second (re-find #"R\d+\s+\[([^\]]+)\]" rule-id))]
+      (when marker
+        (let [parts (str/split marker #"\s+")
+              parsed (into {} (for [p parts
+                                    :let [[k v] (str/split p #":")
+                                          v-num (when v (parse-long v))]]
+                                [(keyword k) v-num]))
+              submode (:ins_sub_mode parsed)
+              layer (or (:layer parsed)
+                        ;; Infer layer=1 if submode is present (submodes only exist in layer 1)
+                        (when submode 1))]
+          {:layer layer
+           :submode submode
+           :return (:return_to_layer parsed)})))))
+
 (defn extract-block-conditions [rules-vec]
   (when (sequential? rules-vec)
     (vec (take-while #(or (keyword? %)
@@ -140,32 +162,32 @@
 
 (defn rule-matches-state?
   "Check if rule matches state. When exact? is true, only match rules at exactly
-   that state level. When false (default), match all rules that would apply."
+   that state level (based on rule ID marker). When false (default), match all
+   rules that would apply (based on actual conditions)."
   [rule block-conditions state exact?]
   (let [rule-conds (extract-rule-conditions rule)
         all-conds (concat (filter vector? block-conditions) rule-conds)
+        ;; For hierarchical matching, use actual conditions
         rule-layer (get-condition-value all-conds "dsk_layer")
         rule-submode (get-condition-value all-conds "dsk_ins_sub_mode")
         rule-return (get-condition-value all-conds "dsk_return_to_layer")
+        ;; For exact matching, use ID state marker
+        rule-id (when (map? (first rule)) (:id (first rule)))
+        id-state (parse-id-state-marker rule-id)
         state-layer (:layer state)
         state-submode (:submode state)
         state-return (:return-to state)]
 
     (if exact?
-      ;; Exact matching: rule must be at exactly this state level
+      ;; Exact matching: use rule ID state marker
       (and
-       ;; Layer must match exactly (or both nil)
-       (= rule-layer state-layer)
-       ;; Submode must match exactly (nil state-submode matches nil rule-submode)
-       (cond
-         (nil? state-submode) (or (nil? rule-submode) (= -1 state-submode))
-         (= -1 state-submode) (or (nil? rule-submode) (= -1 rule-submode))
-         :else (= rule-submode state-submode))
-       ;; Return-to must match exactly
-       (cond
-         (nil? state-return) (or (nil? rule-return) (= -1 state-return))
-         (= -1 state-return) (or (nil? rule-return) (= -1 rule-return))
-         :else (= rule-return state-return)))
+       ;; Layer must match exactly
+       (= (:layer id-state) state-layer)
+       ;; Submode must match exactly (nil matches nil)
+       (= (:submode id-state) state-submode)
+       ;; Return-to must match exactly (nil matches nil, but -1 in state means "any")
+       (or (= -1 state-return)
+           (= (:return id-state) state-return)))
 
       ;; Hierarchical matching: all rules that would apply at this state
       (and
