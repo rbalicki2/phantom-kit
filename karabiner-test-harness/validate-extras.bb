@@ -126,6 +126,46 @@
            :rule (:rule rule-info)})))))
 
 ;; ============================================================================
+;; Rule Structure Checks (from must be map, to must be array)
+;; ============================================================================
+
+(defn check-from-is-map [rule-info]
+  "Check that 'from' is always a map {:key ...}, never a bare keyword"
+  (let [from (:from rule-info)]
+    (when (keyword? from)
+      {:type :bare-from-key
+       :description (:description rule-info)
+       :message (format "from is bare keyword %s. Must be {:key %s} or {:key %s :modi {...}}"
+                       from from from)
+       :rule (:rule rule-info)})))
+
+(defn check-to-is-array [rule-info]
+  "Check that 'to' is always an array [...], never a bare keyword"
+  (let [to (:to rule-info)]
+    (when (keyword? to)
+      {:type :bare-to-key
+       :description (:description rule-info)
+       :message (format "to is bare keyword %s. Must be [%s] or [%s ...]"
+                       to to to)
+       :rule (:rule rule-info)})))
+
+(defn check-condition-is-array [rule-info]
+  "Check that condition (if present) is always an array, even for single conditions"
+  (let [rule (:rule rule-info)]
+    (when (>= (count rule) 3)
+      (let [condition (nth rule 2)]
+        ;; Condition should be nil, a vector of conditions, or a keyword (app)
+        ;; If it's a single variable condition like ["dsk_layer" 0], it should be wrapped
+        (when (and (vector? condition)
+                   (= 2 (count condition))
+                   (string? (first condition)))
+          {:type :unwrapped-condition
+           :description (:description rule-info)
+           :message (format "Single condition %s should be wrapped: [[%s]]"
+                           (pr-str condition) (pr-str condition))
+           :rule (:rule rule-info)})))))
+
+;; ============================================================================
 ;; Multiple Shell Commands Detection
 ;; ============================================================================
 
@@ -289,6 +329,18 @@
   "Run all extra validations"
   (let [all-rules (extract-all-rules config)
 
+        ;; Check for bare from keys (must be maps)
+        bare-from-issues
+        (keep check-from-is-map all-rules)
+
+        ;; Check for bare to keys (must be arrays)
+        bare-to-issues
+        (keep check-to-is-array all-rules)
+
+        ;; Check for unwrapped single conditions
+        unwrapped-cond-issues
+        (keep check-condition-is-array all-rules)
+
         ;; Check for action arrays starting with variable sets
         var-first-issues
         (keep check-action-starts-with-variable all-rules)
@@ -317,7 +369,10 @@
         app-issues
         (extract-app-keywords-from-blocks config)]
 
-    (concat var-first-issues
+    (concat bare-from-issues
+            bare-to-issues
+            unwrapped-cond-issues
+            var-first-issues
             nested-key-issues
             multi-shell-issues
             incomplete-issues
