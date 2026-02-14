@@ -2510,20 +2510,24 @@
     ;; === ENTRY ===
     ;; Up = Enter app switcher (hold Cmd, press Tab)
     [
-      :up_arrow
+      {:key :up_arrow}
       [
-        ["dsk_layer" 11]
-        ;; dsk_in_modal_layer stays 1 (inherited from InApp Nav)
+        ["dsk_layer" 11]  ;; AppSwitcher
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
         {:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke tab' && echo appsw > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 10]
     ]
     ;; Down = Enter window switcher (hold Cmd, press `)
     [
-      :down_arrow
+      {:key :down_arrow}
       [
-        ["dsk_layer" 12]
-        ;; dsk_in_modal_layer stays 1 (inherited from InApp Nav)
+        ["dsk_layer" 12]  ;; WindowSwitcher
+        ["dsk_in_modal_layer" 1]
+        ["dsk_ins_sub_mode" -1]
+        ["dsk_return_to_layer" -1]
         {:shell "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke \"`\"' && echo winsw > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 10]
