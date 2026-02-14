@@ -523,49 +523,49 @@
   {:des "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot letters",
    :rules
    [:!apple_internal
-    [{:key :y, :id "R0091 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] y → T (oneshot clear)"}
+    [{:key :y, :modi {:optional [:caps_lock]}, :id "R0091 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] y → T (oneshot clear)"}
      [:!St ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :u, :id "R0092 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] u → R (oneshot clear)"}
+    [{:key :u, :modi {:optional [:caps_lock]}, :id "R0092 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] u → R (oneshot clear)"}
      [:!Sr ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :i, :id "R0093 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] i → E (oneshot clear)"}
+    [{:key :i, :modi {:optional [:caps_lock]}, :id "R0093 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] i → E (oneshot clear)"}
      [:!Se ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :o, :id "R0094 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] o → W (oneshot clear)"}
+    [{:key :o, :modi {:optional [:caps_lock]}, :id "R0094 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] o → W (oneshot clear)"}
      [:!Sw ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :p, :id "R0095 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] p → Q (oneshot clear)"}
+    [{:key :p, :modi {:optional [:caps_lock]}, :id "R0095 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] p → Q (oneshot clear)"}
      [:!Sq ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :h, :id "R0096 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] h → G (oneshot clear)"}
+    [{:key :h, :modi {:optional [:caps_lock]}, :id "R0096 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] h → G (oneshot clear)"}
      [:!Sg ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :j, :id "R0097 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] j → F (oneshot clear)"}
+    [{:key :j, :modi {:optional [:caps_lock]}, :id "R0097 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] j → F (oneshot clear)"}
      [:!Sf ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :k, :id "R0098 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] k → D (oneshot clear)"}
+    [{:key :k, :modi {:optional [:caps_lock]}, :id "R0098 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] k → D (oneshot clear)"}
      [:!Sd ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :l, :id "R0099 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] l → S (oneshot clear)"}
+    [{:key :l, :modi {:optional [:caps_lock]}, :id "R0099 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] l → S (oneshot clear)"}
      [:!Ss ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :semicolon, :id "R0100 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] semicolon → A (oneshot clear)"}
+    [{:key :semicolon, :modi {:optional [:caps_lock]}, :id "R0100 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] semicolon → A (oneshot clear)"}
      [:!Sa ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :n, :id "R0101 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] n → B (oneshot clear)"}
+    [{:key :n, :modi {:optional [:caps_lock]}, :id "R0101 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] n → B (oneshot clear)"}
      [:!Sb ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :m, :id "R0102 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] m → V (oneshot clear)"}
+    [{:key :m, :modi {:optional [:caps_lock]}, :id "R0102 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] m → V (oneshot clear)"}
      [:!Sv ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :comma, :id "R0103 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] comma → C (oneshot clear)"}
+    [{:key :comma, :modi {:optional [:caps_lock]}, :id "R0103 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] comma → C (oneshot clear)"}
      [:!Sc ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :period, :id "R0104 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] period → X (oneshot clear)"}
+    [{:key :period, :modi {:optional [:caps_lock]}, :id "R0104 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] period → X (oneshot clear)"}
      [:!Sx ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]
-    [{:key :slash, :id "R0105 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] slash → Z (oneshot clear)"}
+    [{:key :slash, :modi {:optional [:caps_lock]}, :id "R0105 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] slash → Z (oneshot clear)"}
      [:!Sz ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 1]]]]}
   {:des "[Desktop, Layer 1, Submode 2] Shift oneshot (Fn+Space then letter = Shift+letter)",
