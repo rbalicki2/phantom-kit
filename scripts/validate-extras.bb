@@ -10,6 +10,7 @@
 ;; - Undefined application references
 ;; - Layer code mismatches (dsk_layer vs /tmp/karabiner-layer)
 ;; - Left-side modifiers in Desktop profile (should use right_shift, right_control, etc.)
+;; - ID state string mismatches (rule ID state should match actual conditions)
 ;;
 ;; Usage:
 ;;   bb validate-extras.bb <edn-file>
@@ -385,6 +386,95 @@
        :rule rule})))
 
 ;; ============================================================================
+;; ID State String Validation
+;; ============================================================================
+
+(defn parse-id-state-string [rule-id]
+  "Extract state values from rule ID. Returns map with :profile, :device, :layer, :submode, :return"
+  (when rule-id
+    (when-let [marker (second (re-find #"R\d+[a-z]?\s+\[([^\]]*)\]" rule-id))]
+      (if (empty? marker)
+        {:profile nil :device nil :layer nil :submode nil :return nil}
+        (let [pairs (str/split marker #":")
+              parsed (into {} (for [p pairs
+                                    :let [[k v] (str/split p #"=")]
+                                    :when (and k v)]
+                                [k v]))]
+          {:profile (get parsed "profile")
+           :device (get parsed "device")
+           :layer (when-let [l (get parsed "dsk_layer")] (parse-long l))
+           :submode (when-let [s (get parsed "dsk_ins_sub_mode")] (parse-long s))
+           :return (when-let [r (get parsed "dsk_return_to_layer")] (parse-long r))})))))
+
+(defn extract-actual-conditions [rule block-conditions]
+  "Extract actual condition values from rule and block"
+  (let [rule-conds (nth rule 2 nil)
+        rule-conds-list (when (sequential? rule-conds)
+                          (if (and (vector? (first rule-conds)) (string? (ffirst rule-conds)))
+                            rule-conds
+                            [rule-conds]))
+        all-conds (concat (filter vector? block-conditions) rule-conds-list)
+        get-val (fn [var-name]
+                  (some (fn [c]
+                          (when (and (vector? c) (string? (first c)) (= (first c) var-name))
+                            (second c)))
+                        all-conds))]
+    {:layer (get-val "dsk_layer")
+     :submode (get-val "dsk_ins_sub_mode")
+     :return (get-val "dsk_return_to_layer")}))
+
+(defn extract-block-profile-device [block-conditions]
+  "Extract profile and device from block conditions"
+  (let [is-none (some #(= % :None) block-conditions)
+        is-desktop (or (some #(= % :Desktop) block-conditions)
+                       (some #(= % :!apple_internal) block-conditions))
+        is-laptop (or (some #(= % :Laptop) block-conditions)
+                      (some #(= % :apple_internal) block-conditions))]
+    {:profile (cond is-none "None" :else "Default")
+     :device (cond is-desktop "Desktop" is-laptop "Laptop" :else nil)}))
+
+(defn check-id-matches-conditions [config]
+  "Check that each rule's ID state string matches its actual conditions"
+  (for [block (:main config)
+        :let [des (:des block)
+              rules-vec (:rules block)
+              block-conditions (when (sequential? rules-vec)
+                                (vec (take-while #(or (keyword? %)
+                                                      (and (vector? %) (not (map? (first %)))))
+                                                 rules-vec)))
+              actual-rules (when block-conditions
+                            (drop (count block-conditions) rules-vec))]
+        rule (or actual-rules rules-vec)
+        :when (vector? rule)
+        :let [from (first rule)
+              rule-id (when (map? from) (:id from))]
+        :when rule-id
+        :let [id-state (parse-id-state-string rule-id)
+              actual-conds (extract-actual-conditions rule block-conditions)
+              {:keys [profile device]} (extract-block-profile-device block-conditions)
+              ;; Compare ID state to actual
+              mismatches (cond-> []
+                           (and (:profile id-state) (not= (:profile id-state) profile))
+                           (conj (format "profile: ID=%s actual=%s" (:profile id-state) profile))
+
+                           (and (:device id-state) (not= (:device id-state) device))
+                           (conj (format "device: ID=%s actual=%s" (:device id-state) device))
+
+                           (and (:layer id-state) (not= (:layer id-state) (:layer actual-conds)))
+                           (conj (format "dsk_layer: ID=%s actual=%s" (:layer id-state) (:layer actual-conds)))
+
+                           (and (:submode id-state) (not= (:submode id-state) (:submode actual-conds)))
+                           (conj (format "dsk_ins_sub_mode: ID=%s actual=%s" (:submode id-state) (:submode actual-conds)))
+
+                           (and (:return id-state) (not= (:return id-state) (:return actual-conds)))
+                           (conj (format "dsk_return_to_layer: ID=%s actual=%s" (:return id-state) (:return actual-conds))))]
+        :when (seq mismatches)]
+    {:type :id-state-mismatch
+     :description des
+     :message (format "Rule ID state doesn't match conditions: %s" (str/join ", " mismatches))
+     :rule rule-id}))
+
+;; ============================================================================
 ;; Main Validation
 ;; ============================================================================
 
@@ -434,7 +524,11 @@
 
         ;; Check for left-side modifiers in Desktop profile
         left-mod-issues
-        (check-left-modifier-in-desktop config)]
+        (check-left-modifier-in-desktop config)
+
+        ;; Check ID state strings match actual conditions
+        id-state-issues
+        (check-id-matches-conditions config)]
 
     (concat bare-from-issues
             bare-to-issues
@@ -446,7 +540,8 @@
             mismatch-issues
             overlay-issues
             app-issues
-            left-mod-issues)))
+            left-mod-issues
+            id-state-issues)))
 
 ;; ============================================================================
 ;; CLI Interface
