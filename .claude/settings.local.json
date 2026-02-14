@@ -24,7 +24,8 @@
       "Bash(npm run sync)",
       "Bash(npm run hs)",
       "Bash(npm run kinesis)",
-      "Bash(npm run warpd)"
+      "Bash(npm run warpd)",
+      "Bash(chmod:*)"
     ]
   }
 }

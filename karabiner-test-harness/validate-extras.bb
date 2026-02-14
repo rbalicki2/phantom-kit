@@ -2,6 +2,8 @@
 ;; Additional Karabiner Rule Validations
 ;;
 ;; Checks for issues not covered by validate-rules.bb:
+;; - Action arrays starting with variable sets (causes null in JSON)
+;; - Nested key arrays like [[:key]] instead of [:key]
 ;; - Multiple shell commands in one rule (only last executes)
 ;; - Incomplete layer transitions (should set all 4 state variables)
 ;; - Missing layer overlay files (layers/*.txt)
@@ -83,6 +85,45 @@
      :rule rule
      :from (first rule)
      :to (second rule)}))
+
+;; ============================================================================
+;; Action Array Syntax Checks
+;; ============================================================================
+
+(defn is-variable-set? [item]
+  "Check if item looks like a variable set [\"name\" value]"
+  (and (vector? item)
+       (= 2 (count item))
+       (string? (first item))))
+
+(defn is-nested-key-array? [item]
+  "Check if item is a nested array containing a single keyword like [[:key]]"
+  (and (vector? item)
+       (= 1 (count item))
+       (keyword? (first item))))
+
+(defn check-action-starts-with-variable [rule-info]
+  "Check if action array starts with a variable set (causes null in generated JSON)"
+  (let [action (:to rule-info)]
+    (when (and (vector? action)
+               (not-empty action)
+               (is-variable-set? (first action)))
+      {:type :action-starts-with-variable
+       :description (:description rule-info)
+       :message "Action array starts with variable set (causes null in JSON). Prepend :vk_none."
+       :rule (:rule rule-info)})))
+
+(defn check-nested-key-arrays [rule-info]
+  "Check if action array contains nested key arrays like [[:key]]"
+  (let [action (:to rule-info)]
+    (when (vector? action)
+      (let [nested-keys (filter is-nested-key-array? action)]
+        (when (seq nested-keys)
+          {:type :nested-key-array
+           :description (:description rule-info)
+           :message (format "Action contains nested key array(s): %s. Use :key instead of [:key]."
+                           (pr-str (vec nested-keys)))
+           :rule (:rule rule-info)})))))
 
 ;; ============================================================================
 ;; Multiple Shell Commands Detection
@@ -248,6 +289,14 @@
   "Run all extra validations"
   (let [all-rules (extract-all-rules config)
 
+        ;; Check for action arrays starting with variable sets
+        var-first-issues
+        (keep check-action-starts-with-variable all-rules)
+
+        ;; Check for nested key arrays
+        nested-key-issues
+        (keep check-nested-key-arrays all-rules)
+
         ;; Check for multiple shell commands
         multi-shell-issues
         (keep check-multiple-shells all-rules)
@@ -268,7 +317,9 @@
         app-issues
         (extract-app-keywords-from-blocks config)]
 
-    (concat multi-shell-issues
+    (concat var-first-issues
+            nested-key-issues
+            multi-shell-issues
             incomplete-issues
             mismatch-issues
             overlay-issues

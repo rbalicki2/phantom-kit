@@ -50,13 +50,15 @@ Invariants checked (from mental_model.md):
 
 ### validate-extras.bb
 
-Additional validations not covered by validate-rules.bb.
+Additional validations for Goku syntax and config consistency.
 
 ```bash
 bb validate-extras.bb ../karabiner.edn
 ```
 
 Checks for:
+- **Action starts with variable**: Actions starting with `["var" val]` cause null in JSON - prepend `:vk_none`
+- **Nested key arrays**: `[[:key]]` instead of `:key` - unnecessary wrapper
 - **Multiple shell commands**: Rules with multiple `{:shell ...}` (only last executes)
 - **Incomplete layer transitions**: Layer changes that don't set all 4 state variables
 - **Layer code mismatches**: `/tmp/karabiner-layer` writes that don't match dsk_layer
