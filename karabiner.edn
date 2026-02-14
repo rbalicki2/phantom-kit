@@ -235,7 +235,7 @@
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -249,7 +249,7 @@
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -263,7 +263,7 @@
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -277,7 +277,7 @@
         ["dsk_layer" 2]  ;; Nav
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo n > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -309,7 +309,7 @@
         ["dsk_layer" 28]  ;; Grid
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "pkill -9 warpd 2>/dev/null; /usr/local/bin/warpd --grid -c /Users/rbalicki/code/voicemode/warpd.conf & echo grid > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -323,7 +323,7 @@
         ["dsk_layer" 9]  ;; Admin
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo i > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -337,7 +337,7 @@
         ["dsk_layer" 6]  ;; Comma
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo comma > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -351,7 +351,7 @@
         ["dsk_layer" 7]  ;; L
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo l > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -365,7 +365,7 @@
         ["dsk_layer" 8]  ;; Term
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/term-layer-enter.sh"}
       ]
       ["dsk_layer" 0]
@@ -379,7 +379,7 @@
         ["dsk_layer" 10]  ;; InApp
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo inapp > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -396,7 +396,7 @@
         ["dsk_layer" 3]  ;; Chrome
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo chrome > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -412,7 +412,7 @@
         ["dsk_layer" 4]  ;; VSCode
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo vscode > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -429,7 +429,7 @@
         ["dsk_layer" 5]  ;; TMUX
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; came from Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo tmux > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
