@@ -75,6 +75,16 @@ cleanup-external-state.sh \
 
 Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
+### Rule Ordering in karabiner.edn
+
+Karabiner uses the first matching rule, so rules must be ordered from most specific to least specific:
+
+1. **Submode rules** (submode 1-4) — Most specific, overlay states within Ins mode
+2. **Mode-specific rules** (mode 1 Ins, mode 2 Nav, etc.) — Rules for specific layers
+3. **Fallback/generic rules** — Catch-all rules with no mode conditions
+
+**Exception**: Global utility rules that apply everywhere (disable LHS keys, panic button, overlay, generic clicks) go first for organizational clarity. These don't check mode variables so ordering doesn't affect their behavior.
+
 ## Global Shortcuts
 
 These work from ANY modal layer (mode >= 2):

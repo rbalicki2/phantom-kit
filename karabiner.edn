@@ -120,71 +120,13 @@
    ]}
 
   ;; =====================================================================
-  ;; DESKTOP ONLY (!apple_internal)
+  ;; DESKTOP GLOBAL - Utility rules not affected by mode variables
   ;; =====================================================================
 
-  {:des "hk3 (Alt+F19) = show overlay (desktop only)"
+  {:des "[Desktop Global] Disable LHS keys and arrows"
    :rules [:!apple_internal
-    [:!Of19 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
-   ]}
-
-  {:des "Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON (desktop only)"
-   :rules [:!apple_internal
-    [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0] ["return_to_layer" 0]
-              {:shell "pkill warpd 2>/dev/null; osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop(); dismissHomerow()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
-   ]}
-
-  {:des "Fn+hk4 (F21) = enter Nav layer from Normal (desktop only)"
-   :rules [:!apple_internal
-    [:f21 [["mode" 2] ["in_modal" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["mode" 0]]
-   ]}
-
-  {:des "Shift+mirror oneshot numbers (desktop only, must come before number swap)"
-   :rules [:!apple_internal
-    [:6 [:5 ["submode" 0]] ["submode" 1]]
-    [:7 [:4 ["submode" 0]] ["submode" 1]]
-    [:8 [:3 ["submode" 0]] ["submode" 1]]
-    [:9 [:2 ["submode" 0]] ["submode" 1]]
-    [:0 [:1 ["submode" 0]] ["submode" 1]]
-   ]}
-
-  {:des "Numbers to symbols (desktop only, RHS 6-0, Ins mode)"
-   :rules [:!apple_internal
-    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["mode" 1]]
-    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["mode" 1]]
-    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["mode" 1]]
-    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["mode" 1]]
-    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["mode" 1]]
-    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["mode" 1]]
-    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["mode" 1]]
-    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["mode" 1]]
-    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["mode" 1]]
-    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["mode" 1]]
-   ]}
-
-  {:des "Shift+up/down = square brackets (desktop only, Ins mode)"
-   :rules [:!apple_internal
-    [{:key :up_arrow :modi {:mandatory [:shift]}} :open_bracket ["mode" 1]]
-    [{:key :down_arrow :modi {:mandatory [:shift]}} :close_bracket ["mode" 1]]
-   ]}
-
-  {:des "Brackets to command+bracket (desktop only, in working layers)"
-   :rules [:!apple_internal
-    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_modal" 1]]
-    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["in_modal" 1]]
-    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_modal" 1]]
-    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_modal" 1]]
-   ]}
-
-  {:des "Backslash = tab (desktop only, Ins mode)"
-   :rules [:!apple_internal
-    [:backslash :tab ["mode" 1]]
-   ]}
-
-  {:des "[Desktop] Disable LHS keys and arrows"
-   :rules [:!apple_internal
-    [:##grave_accent_and_tilde :vk_none]  ;; physical backtick
-    [:##non_us_backslash :vk_none]  ;; § key
+    [:##grave_accent_and_tilde :vk_none]
+    [:##non_us_backslash :vk_none]
     [:##left_arrow :vk_none]
     [:##right_arrow :vk_none]
     [:##q :vk_none]
@@ -204,19 +146,78 @@
     [:##b :vk_none]
    ]}
 
-  {:des "[Desktop] L-Cmd click handling (must come before generic click rules)"
+  {:des "[Desktop Global] hk3 (Alt+F19) = show overlay"
    :rules [:!apple_internal
-    ;; In L-Cmd mode: page_down/up = Cmd+click (exits to Normal)
+    [:!Of19 {:shell "/opt/homebrew/bin/hs -c 'showLayerOverlay()'"}]
+   ]}
+
+  {:des "[Desktop Global] Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON"
+   :rules [:!apple_internal
+    [:!SOf19 [["mode" 0] ["in_modal" 0] ["submode" 0] ["return_to_layer" 0]
+              {:shell "pkill warpd 2>/dev/null; osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop(); dismissHomerow()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
+   ]}
+
+  {:des "[Desktop Global] Page down/up to click/right click"
+   :rules [:!apple_internal
+    [:page_down :button1]
+    [:page_up :button2]
+   ]}
+
+  ;; =====================================================================
+  ;; DESKTOP MODE-SPECIFIC - Rules organized by mode (specific to generic)
+  ;; =====================================================================
+
+  {:des "[Desktop] L-Cmd click handling (mode 14, must come before generic click rules)"
+   :rules [:!apple_internal
     [:page_down [["mode" 0] ["in_modal" 0] {:shell "echo norm > /tmp/karabiner-layer"} {:pkey :button1 :modi [:left_command]}] ["mode" 14]]
     [:page_up [["mode" 0] ["in_modal" 0] {:shell "echo norm > /tmp/karabiner-layer"} {:pkey :button2 :modi [:left_command]}] ["mode" 14]]
    ]}
 
-  {:des "[Desktop] Page down/up to click/right click"
+  {:des "Fn+hk4 (F21) = enter Nav layer from Normal"
    :rules [:!apple_internal
-    ;; Generic click - L-Cmd handles its own (rule above)
-    ;; No ## so Cmd+PageUp can still trigger escape rule
-    [:page_down :button1]
-    [:page_up :button2]
+    [:f21 [["mode" 2] ["in_modal" 1] {:shell "echo n > /tmp/karabiner-layer"}] ["mode" 0]]
+   ]}
+
+  {:des "Shift+mirror oneshot numbers (submode 1, must come before number swap)"
+   :rules [:!apple_internal
+    [:6 [:5 ["submode" 0]] ["submode" 1]]
+    [:7 [:4 ["submode" 0]] ["submode" 1]]
+    [:8 [:3 ["submode" 0]] ["submode" 1]]
+    [:9 [:2 ["submode" 0]] ["submode" 1]]
+    [:0 [:1 ["submode" 0]] ["submode" 1]]
+   ]}
+
+  {:des "Numbers to symbols (mode 1 Ins, RHS 6-0)"
+   :rules [:!apple_internal
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["mode" 1]]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["mode" 1]]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["mode" 1]]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["mode" 1]]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["mode" 1]]
+    [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} :6 ["mode" 1]]
+    [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} :7 ["mode" 1]]
+    [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} :8 ["mode" 1]]
+    [{:key :9 :modi {:mandatory [:shift] :optional [:caps_lock]}} :9 ["mode" 1]]
+    [{:key :0 :modi {:mandatory [:shift] :optional [:caps_lock]}} :0 ["mode" 1]]
+   ]}
+
+  {:des "Shift+up/down = square brackets (mode 1 Ins)"
+   :rules [:!apple_internal
+    [{:key :up_arrow :modi {:mandatory [:shift]}} :open_bracket ["mode" 1]]
+    [{:key :down_arrow :modi {:mandatory [:shift]}} :close_bracket ["mode" 1]]
+   ]}
+
+  {:des "Brackets to command+bracket (in_modal 1)"
+   :rules [:!apple_internal
+    [{:key :open_bracket :modi {:optional [:caps_lock]}} :!Copen_bracket ["in_modal" 1]]
+    [{:key :close_bracket :modi {:optional [:caps_lock]}} :!Cclose_bracket ["in_modal" 1]]
+    [{:key :open_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :open_bracket ["in_modal" 1]]
+    [{:key :close_bracket :modi {:mandatory [:command] :optional [:caps_lock]}} :close_bracket ["in_modal" 1]]
+   ]}
+
+  {:des "Backslash = tab (mode 1 Ins)"
+   :rules [:!apple_internal
+    [:backslash :tab ["mode" 1]]
    ]}
 
   {:des "[Desktop] Right command + brackets to ctrl-tab navigation"
