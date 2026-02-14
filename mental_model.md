@@ -188,6 +188,7 @@ While in switcher:
 - [ ] Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 - [ ] Shift+M from Normal should enter Normal mode (no-op but allows Cmd+click on highlighted text via Label mode entry)
 - [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
+- [ ] Consider removing dsk_in_modal_layer variable: Add explicit pass-through rules for all keys in Ins mode (layer 1), then global key blocking can be unconditional. Exit rules would need to become per-layer instead of global. Trade-off: one less variable vs ~40+ pass-through rules in Ins.
 
 ## Potential Bugs
 
