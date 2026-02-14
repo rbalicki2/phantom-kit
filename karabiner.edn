@@ -167,12 +167,12 @@
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh 
-          --warpd reset 
-          --homerow reset 
-          --scroll-timer reset 
-          --hover-mode reset 
+        ["dsk_return_to_layer" 1]  ;; going to Ins
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh
+          --warpd reset
+          --homerow reset
+          --scroll-timer reset
+          --hover-mode reset
           --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]}
     ]
@@ -180,12 +180,13 @@
     [
       {:key :right_control}
       [:right_control]
+      nil  ;; no condition (global fallback)
       {:alone [
         :vk_none
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
+        ["dsk_return_to_layer" 0]  ;; going to Normal
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh
           --warpd reset
           --homerow reset
@@ -203,14 +204,14 @@
       {:key :j :modi {:mandatory [:right_control]}}
       [
         ["dsk_layer" 1]  ;; Ins
-        ["dsk_in_modal_layer" 0]  ;; not modal
-        ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]  ;; N/A
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh 
-          --warpd reset 
-          --homerow reset 
-          --scroll-timer reset 
-          --hover-mode reset 
+        ["dsk_in_modal_layer" 0]
+        ["dsk_ins_sub_mode" 0]
+        ["dsk_return_to_layer" 1]  ;; going to Ins
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh
+          --warpd reset
+          --homerow reset
+          --scroll-timer reset
+          --hover-mode reset
           --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
       ]
       ["dsk_in_modal_layer" 1]  ;; when modal
