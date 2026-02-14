@@ -68,3 +68,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - IDE support (autocomplete, go-to-definition for layer names)
   - Generate both the config AND the visualization/documentation from a single source
   - Could define layers as Rust structs with attributes for keys, transitions, conditions
+- Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.

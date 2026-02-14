@@ -25,7 +25,20 @@
       "Bash(npm run hs)",
       "Bash(npm run kinesis)",
       "Bash(npm run warpd)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(python3:*)",
+      "Bash(cat EOF { :profiles {:Default {:default true :sim 50 :delay 80 :alone 500 :held 70}} :main [ {:des 'Test multiple conditions' :rules [ Test 1: Array of conditions [:a :b [[dsk_layer 0] [dsk_return_to_layer 1]]] ]} ] } EOF goku /tmp/test-multi-cond.edn)",
+      "Bash(goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/test-multi-cond.edn goku:*)",
+      "Bash(cat:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/normalized.edn goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/with-ids.edn goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/reordered.edn goku:*)",
+      "Bash(brew list:*)",
+      "Bash(ls:*)",
+      "Bash(ln:*)",
+      "Bash(/opt/homebrew/bin/hs -c 'hs.reload\\(\\)')",
+      "Bash(find:*)"
     ]
   }
 }
