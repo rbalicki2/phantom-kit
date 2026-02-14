@@ -69,3 +69,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Generate both the config AND the visualization/documentation from a single source
   - Could define layers as Rust structs with attributes for keys, transitions, conditions
 - Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.
+- Rule ID state strings: Make the state string in rule IDs (e.g., `[layer:1]`) be a valid, validated state string using exact variable names: `profile=Desktop:dsk_layer=1:dsk_ins_sub_mode=0`. Validate these during npm run sync.
+- Fix misnamed "Submode 0" rules: Rules named "Submode 0" that have no `["dsk_ins_sub_mode" 0]` condition are actually catch-all rules. Either add the explicit condition or rename to indicate they're layer-wide catch-alls.
