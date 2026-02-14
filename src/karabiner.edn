@@ -370,6 +370,10 @@
    :rules
    [:!apple_internal
     [{:key :backslash, :id "R0063 [layer:1] [Desktop, Layer 1, Submode 0] Backslash = tab"} [:tab] [["dsk_layer" 1]]]]}
+  {:des "[Desktop, Layer 1] Shift+backslash = pipe",
+   :rules
+   [:!apple_internal
+    [{:key :backslash, :modi {:mandatory [:shift]}, :id "R0063b [layer:1] [Desktop, Layer 1] Shift+backslash = pipe"} [:!Sbackslash] [["dsk_layer" 1]]]]}
   {:des "[Desktop, Layer 1, Submode 3] rcmd+H chord (delete)",
    :rules
    [:!apple_internal
@@ -694,7 +698,7 @@
      [:!S1]
      [["dsk_layer" 1]]]
     [{:key :f20, :id "R0167 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)"}
-     [:!Sbackslash]
+     [:!Stab]
      [["dsk_layer" 1]]]
     [{:key :!Of9, :id "R0168 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)"}
      [:!Sopen_bracket]
