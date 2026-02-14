@@ -76,30 +76,37 @@
         conds
         [conds]))))
 
-(defn get-profile-from-block [block-conditions]
-  "Determine profile from block conditions.
-   :!apple_internal or :Desktop = Desktop profile
-   :apple_internal or :Laptop = Laptop profile
+(defn get-profile-and-device [block-conditions]
+  "Extract profile and device from block conditions.
+   Returns {:profile 'Default'|'None', :device 'Desktop'|'Laptop'|nil}
+
    :None = None profile (placeholder, never matches)
-   Neither = error (should not happen)"
-  (cond
-    (some #(= % :Desktop) block-conditions) "Desktop"
-    (some #(= % :!apple_internal) block-conditions) "Desktop"
-    (some #(= % :Laptop) block-conditions) "Laptop"
-    (some #(= % :apple_internal) block-conditions) "Laptop"
-    (some #(= % :None) block-conditions) "None"
-    :else "UNKNOWN"))
+   :!apple_internal = Desktop device (Kinesis keyboard)
+   :apple_internal = Laptop device (built-in keyboard)
+   Otherwise = Default profile, device determined by conditions"
+  (let [is-none (some #(= % :None) block-conditions)
+        is-desktop (or (some #(= % :Desktop) block-conditions)
+                       (some #(= % :!apple_internal) block-conditions))
+        is-laptop (or (some #(= % :Laptop) block-conditions)
+                      (some #(= % :apple_internal) block-conditions))]
+    {:profile (if is-none "None" "Default")
+     :device (cond
+               is-desktop "Desktop"
+               is-laptop "Laptop"
+               :else nil)}))
 
 ;; === State string generation ===
 
-(defn generate-state-string [profile layer submode return-to]
+(defn generate-state-string [profile device layer submode return-to]
+  "Generate state string in format: profile=X:device=Y:dsk_layer=Z:..."
   (let [parts (cond-> []
                 profile (conj (str "profile=" profile))
+                device (conj (str "device=" device))
                 layer (conj (str "dsk_layer=" layer))
                 (and submode (not= submode -1)) (conj (str "dsk_ins_sub_mode=" submode))
                 (and return-to (not= return-to -1)) (conj (str "dsk_return_to_layer=" return-to)))]
     (if (empty? parts)
-      ""  ;; Empty string for global rules
+      "UNKNOWN"  ;; Should not happen
       (str/join ":" parts))))
 
 ;; === Key description ===
@@ -256,14 +263,16 @@
                 rule-conds (extract-rule-conditions rule)
                 all-conds (concat (filter vector? block-conditions) rule-conds)
 
-                ;; Get actual values
-                profile (get-profile-from-block block-conditions)
+                ;; Get profile and device
+                {:keys [profile device]} (get-profile-and-device block-conditions)
+
+                ;; Get layer/submode values
                 layer (get-condition-value all-conds "dsk_layer")
                 submode (get-condition-value all-conds "dsk_ins_sub_mode")
                 return-to (get-condition-value all-conds "dsk_return_to_layer")
 
                 ;; Generate state string
-                state-string (generate-state-string profile layer submode return-to)
+                state-string (generate-state-string profile device layer submode return-to)
 
                 ;; Generate description
                 description (generate-description from action rule block-des)
