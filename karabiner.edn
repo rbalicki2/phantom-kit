@@ -270,12 +270,6 @@
   ;; HIGHER LAYER RULES (organized by layer)
   ;; =====================================================================
 
-  {:des "[Layer 14] L-Cmd click handling (regular clicks, exits to Normal)"
-   :rules [:!apple_internal
-    [:page_down [["dsk_layer" 0] ["dsk_in_modal_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"} {:pkey :button1}] ["dsk_layer" 14]]
-    [:page_up [["dsk_layer" 0] ["dsk_in_modal_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"} {:pkey :button2}] ["dsk_layer" 14]]
-   ]}
-
   ;; =====================================================================
   ;; LAYER 1: INS (typing mode)
   ;; =====================================================================
