@@ -164,6 +164,7 @@ While in switcher:
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 - [ ] Prefix all variable names with "dsk_" to make it clear they're desktop-only (e.g., dsk_mode, dsk_in_modal, dsk_submode, dsk_return_to_layer)
+- [ ] Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 
 ## Potential Bugs
 
