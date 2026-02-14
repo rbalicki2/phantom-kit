@@ -46,16 +46,16 @@ Four variables track all state:
 
 | Variable | Range | Purpose |
 |----------|-------|---------|
-| `mode` | 0-28 | Current layer |
-| `in_modal` | 0/1 | Whether in a modal layer |
-| `submode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
-| `return_to_layer` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins) |
+| `dsk_layer` | 0-28 | Current layer |
+| `dsk_in_modal_layer` | 0/1 | Whether in a modal layer |
+| `dsk_ins_sub_mode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
+| `dsk_return_to_layer` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins) |
 
 ### Invariants
 
-1. **in_modal = (mode >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
-2. **submode = -1 when mode != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
-3. **return_to_layer = -1 when mode != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
+1. **dsk_in_modal_layer = (dsk_layer >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
+2. **dsk_ins_sub_mode = -1 when dsk_layer != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
+3. **dsk_return_to_layer = -1 when dsk_layer != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
 
 ### Explicit State Transitions
 
@@ -73,7 +73,7 @@ cleanup-external-state.sh \
 
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`). App/window switcher relies on Cmd being held (`--held-modifiers keep`).
 
-Example: Entering Normal should set `mode=0, in_modal=0, submode=-1, return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
+Example: Entering Normal should set `dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
 ### Rule Ordering in karabiner.edn
 
@@ -91,39 +91,39 @@ These work from ANY modal layer (mode >= 2):
 
 | Shortcut | State Change |
 |----------|--------------|
-| right_ctrl alone | mode=0, in_modal=0, submode=-1, return_to_layer=-1 |
-| Ctrl+J | mode=1, in_modal=0, submode=0, return_to_layer=-1 |
-| Panic | mode=0, in_modal=0, submode=-1, return_to_layer=-1 |
+| right_ctrl alone | dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1 |
+| Ctrl+J | dsk_layer=1, dsk_in_modal_layer=0, dsk_ins_sub_mode=0, dsk_return_to_layer=-1 |
+| Panic | dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1 |
 
 **Ctrl+N** is NOT global. It exists only in:
-- Label mode (mode=13) — exits based on return_to_layer
-- Grid mode (mode=28) — exits to Normal
+- Label mode (dsk_layer=13) — exits based on dsk_return_to_layer
+- Grid mode (dsk_layer=28) — exits to Normal
 - App/Window switcher (modes 11, 12) — cancels and exits to Normal
 
 ## Layer Exit Behavior
 
 When an action completes, the destination depends on action type:
 
-**→ Normal (mode=0)**: Non-typing actions
+**→ Normal (dsk_layer=0)**: Non-typing actions
 - Copy, close, undo/redo, window management
-- Mouse clicks when return_to_layer=0
+- Mouse clicks when dsk_return_to_layer=0
 
-**→ Ins (mode=1)**: Text-input actions
+**→ Ins (dsk_layer=1)**: Text-input actions
 - Paste, find, address bar, new tab/file, command palette
-- Mouse clicks when return_to_layer=1
+- Mouse clicks when dsk_return_to_layer=1
 
 **Stay in layer**: Repeatable actions
 - Tab switching, scrolling, back/forward
 
 ## Mouse Modes
 
-### Label Mode (mode=13)
+### Label Mode (dsk_layer=13)
 
-Entry determines return destination via return_to_layer:
-- M from Normal → return_to_layer=0 → clicks return to Normal
-- Ctrl+M from Ins → return_to_layer=1 → clicks return to Ins
+Entry determines return destination via dsk_return_to_layer:
+- M from Normal → dsk_return_to_layer=0 → clicks return to Normal
+- Ctrl+M from Ins → dsk_return_to_layer=1 → clicks return to Ins
 
-### Grid Mode (mode=28)
+### Grid Mode (dsk_layer=28)
 
 Only entered from Normal. Always returns to Normal.
 
@@ -133,21 +133,21 @@ Both mouse modes use the same click keys (Space variants for left-click, Enter v
 
 ## Ins Mode Submodes
 
-When mode=1, submode overlays additional behavior without leaving Ins mode.
+When dsk_layer=1, submode overlays additional behavior without leaving Ins mode.
 
 ### Oneshot Submodes (1, 2)
 
-These affect the **next letter only**, then clear. Implementation: every letter key in Ins mode has rules that check submode. When submode=1 or 2, the rule outputs Shift+letter (or Shift+mirrored letter) and sets submode=0.
+These affect the **next letter only**, then clear. Implementation: every letter key in Ins mode has rules that check submode. When dsk_ins_sub_mode=1 or 2, the rule outputs Shift+letter (or Shift+mirrored letter) and sets dsk_ins_sub_mode=0.
 
-- **submode=1 (shift_mirror_oneshot)**: Fn+] triggers. Next mirrored letter outputs uppercase.
-- **submode=2 (shift_oneshot)**: Fn+Space triggers. Next letter outputs uppercase.
+- **dsk_ins_sub_mode=1 (shift_mirror_oneshot)**: Fn+] triggers. Next mirrored letter outputs uppercase.
+- **dsk_ins_sub_mode=2 (shift_oneshot)**: Fn+Space triggers. Next letter outputs uppercase.
 
 ### Chord Submodes (3, 4)
 
 These are held modes for delete/select word/line operations:
 
-- **submode=3 (rcmd_h_mode)**: Hold rcmd+H, then J/K/M/, to delete word/line
-- **submode=4 (rcmd_n_mode)**: Hold rcmd+N, then J/K/M/, to select word/line
+- **dsk_ins_sub_mode=3 (rcmd_h_mode)**: Hold rcmd+H, then J/K/M/, to delete word/line
+- **dsk_ins_sub_mode=4 (rcmd_n_mode)**: Hold rcmd+N, then J/K/M/, to select word/line
 
 **Why not separate layers?** These could be modes 29, 30, but they're tightly coupled to Ins mode—you're still typing, just with a modifier chord active. Using submode keeps them as overlays rather than full mode switches.
 
@@ -155,9 +155,9 @@ These are held modes for delete/select word/line operations:
 
 ## App/Window Switcher (modes 11, 12)
 
-Entry from InApp layer (mode=10):
-- Up → mode=11 (App switcher), holds Cmd
-- Down → mode=12 (Window switcher), holds Cmd
+Entry from InApp layer (dsk_layer=10):
+- Up → dsk_layer=11 (App switcher), holds Cmd
+- Down → dsk_layer=12 (Window switcher), holds Cmd
 
 While in switcher:
 - J/K cycles through apps/windows
@@ -166,21 +166,22 @@ While in switcher:
 
 ## Mental Model Todos
 
-- [ ] Set return_to_layer when entering Normal (0) or Ins (1) so it's always correct for Label mode
-- [ ] Implement submode=-1 when mode != 1 (confirmed: Karabiner supports negative values)
-- [ ] Implement return_to_layer=-1 when mode != 13 (confirmed: Karabiner supports negative values)
+- [ ] Set dsk_return_to_layer when entering Normal (0) or Ins (1) so it's always correct for Label mode
+- [ ] Implement dsk_ins_sub_mode=-1 when dsk_layer != 1 (confirmed: Karabiner supports negative values)
+- [ ] Implement dsk_return_to_layer=-1 when dsk_layer != 13 (confirmed: Karabiner supports negative values)
 - [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
 - [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [ ] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
-- [ ] Prefix all variable names with "dsk_" to make it clear they're desktop-only (e.g., dsk_mode, dsk_in_modal, dsk_submode, dsk_return_to_layer)
+- [x] Prefix all variable names with "dsk_" to make it clear they're desktop-only (dsk_layer, dsk_in_modal_layer, dsk_ins_sub_mode, dsk_return_to_layer)
+- [ ] Disable Vimium Chrome extension (conflicts with keyboard layer system)
 - [ ] Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
 
 ## Potential Bugs
 
-- [ ] Ctrl+J should set submode=0 when entering Ins (currently doesn't)
-- [ ] Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets submode=3/4)
+- [ ] Ctrl+J should set dsk_ins_sub_mode=0 when entering Ins (currently doesn't)
+- [ ] Cmd+H/N in Ins mode doesn't clear oneshot submode (rcmd+H/N does because it sets dsk_ins_sub_mode=3/4)
 - [ ] App/Window switcher exit via right_ctrl: Does it release the held Cmd key? Ctrl+N and Enter release Cmd, but right_ctrl alone might not.
-- [ ] Grid mode doesn't set return_to_layer=0 on entry: Works by accident since Label mode entry sets it, but violates "explicit state" principle.
+- [ ] Grid mode doesn't set dsk_return_to_layer=0 on entry: Works by accident since Label mode entry sets it, but violates "explicit state" principle.
 - [ ] Scroll timer / hover mode not cleared on most exits: Only panic clears them. If you exit InApp (which has scroll) via right_ctrl, is scrollStop() called?
 - [ ] Oneshot submodes (1, 2) might not clear on non-letter keys: What if you press a number, symbol, or modifier after entering oneshot? Does it clear or persist incorrectly?

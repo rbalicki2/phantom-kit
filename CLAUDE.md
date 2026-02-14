@@ -198,9 +198,9 @@ Document syntax discoveries here to avoid repeating mistakes:
 - **`!S` only matches LEFT shift.** To match EITHER shift key, use explicit form: `{:key :j :modi {:mandatory [:shift]}}`. The shorthand `!S` = left_shift, `!R` = right_shift specifically.
 - **Karabiner only runs ONE shell_command per rule.** If multiple `{:shell ...}` are in the `to` array, only the LAST one executes. Combine commands into a single shell string with `&&` or `;`. Example: `{:shell "warpd --grid & echo norm > /tmp/karabiner-layer"}` instead of separate `{:shell "warpd"}` and `[:layer "norm"]`.
 - **Karabiner shell commands don't have /opt/homebrew/bin in PATH.** Use full path `/opt/homebrew/bin/hs` instead of just `hs` when calling Hammerspoon CLI from Karabiner shell commands.
-- **Goku requires numeric variable values.** String values like `["mode" "norm"]` don't work - Goku requires integers like `["mode" 0]`. This is a Goku limitation, not Karabiner.
-- **Rules need a key output to work.** A rule with only variable sets and shell commands but no key output won't trigger. Use `:vk_none` as a no-op output: `[:right_control [:vk_none ["mode" 0] {:shell "..."}] ["mode" 28]]`
-- **Global shortcut rules need `in_modal` conditions.** Global rules (like Ctrl+N→escape) with no mode condition will fire BEFORE layer-specific rules that define the same shortcut, because rules are processed in file order and global rules typically come before layer definitions. Add `["in_modal" 0]` to global shortcut rules so they don't intercept shortcuts from modal layers.
+- **Goku requires numeric variable values.** String values like `["dsk_layer" "norm"]` don't work - Goku requires integers like `["dsk_layer" 0]`. This is a Goku limitation, not Karabiner.
+- **Rules need a key output to work.** A rule with only variable sets and shell commands but no key output won't trigger. Use `:vk_none` as a no-op output: `[:right_control [:vk_none ["dsk_layer" 0] {:shell "..."}] ["dsk_layer" 28]]`
+- **Global shortcut rules need `in_modal` conditions.** Global rules (like Ctrl+N→escape) with no mode condition will fire BEFORE layer-specific rules that define the same shortcut, because rules are processed in file order and global rules typically come before layer definitions. Add `["dsk_in_modal_layer" 0]` to global shortcut rules so they don't intercept shortcuts from modal layers.
 - **Bare key rules match any modifiers by default.** A rule like `[:n :escape]` matches N with ANY modifiers held (Ctrl+N, Shift+N, etc.). To match ONLY bare N (no modifiers), use `{:key :n :modi {:optional [:caps_lock]}}`. The `:optional [:caps_lock]` restricts the rule to only match with caps_lock optionally held.
 
 ## Mode Values Reference
@@ -251,12 +251,12 @@ Karabiner evaluates rules **in order** and uses the **first matching rule**. A r
 **Solution**: Rule ordering. Karabiner evaluates rules in order and uses the first match. Place in-layer rules BEFORE layer entry rules they might conflict with.
 
 **How it works**:
-- In-layer rules have condition `["mode" N]` (only match when IN that mode)
-- Layer entry rules have condition `["mode" 0]` (only match when in Normal mode)
+- In-layer rules have condition `["dsk_layer" N]` (only match when IN that mode)
+- Layer entry rules have condition `["dsk_layer" 0]` (only match when in Normal mode)
 - When rules are ordered correctly, in-layer rules match first and consume the keypress
 
 **Example**: VS Code layer has Ctrl+H. If user holds right_control while in VS Code and presses H:
-- VS Code Ctrl+H rule: `[{:key :h :modi {:mandatory [:right_control]}} [action] ["mode" 4]]`
+- VS Code Ctrl+H rule: `[{:key :h :modi {:mandatory [:right_control]}} [action] ["dsk_layer" 4]]`
 - This matches first because VS Code rules come before Normal layer rules
 
 **Checklist when adding a new layer**:
