@@ -22,7 +22,7 @@ When in doubt, ASK before changing.
 
 ### NEVER MANUALLY EDIT karabiner.edn
 
-All modifications should be done via scripts in `karabiner-test-harness/`. See that folder's README for available tools.
+All modifications should be done via scripts in `scripts/`. See `scripts/README-validators.md` for available tools.
 
 ### NEVER Remove Shortcuts Without Permission
 
