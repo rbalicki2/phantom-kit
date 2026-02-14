@@ -25,13 +25,12 @@
 
 ;; Modifiers to generate pass-through rules for
 ;; We only generate Shift rules since that's the most common case where
-;; users accidentally leave oneshot mode on. Other modifiers (Cmd, Ctrl)
-;; are less likely to be pressed accidentally during typing.
+;; users accidentally leave oneshot mode on.
 ;;
-;; Note: !S = left_shift only. For either shift, we'd need explicit form,
-;; but left_shift is sufficient for the common case.
+;; Note: !S only matches LEFT shift. To match EITHER shift, we use the
+;; explicit form {:key :x :modi {:mandatory [:shift]}}
 (def modifiers-to-clear
-  [{:short "!S" :name "Shift" :out-prefix "!S"}])
+  [{:name "Shift" :use-explicit true}])
 
 (def rule-counter (atom 0))
 
@@ -40,11 +39,15 @@
   (format "RGEN%04d" @rule-counter))
 
 (defn generate-rule [key-name modifier submode block-name]
-  "Generate a single pass-through + clear rule"
-  (let [from-key (str (:short modifier) (name key-name))
-        to-key (str (:out-prefix modifier) (name key-name))
-        rule-id (str (next-rule-id) " [ins_sub_mode:" submode "] " block-name)]
-    (str "    [{:key :" from-key " :id \"" rule-id "\"} [:" to-key " [\"dsk_ins_sub_mode\" 0]] [[\"dsk_ins_sub_mode\" " submode "]]]")))
+  "Generate a single pass-through + clear rule.
+   Uses explicit form for shift to match EITHER shift key."
+  (let [rule-id (str (next-rule-id) " [ins_sub_mode:" submode "] " block-name)
+        key-str (name key-name)]
+    ;; Use explicit form: {:key :x :modi {:mandatory [:shift]}}
+    ;; Output uses :!Sx but the actual shift held passes through
+    (str "    [{:key :" key-str " :modi {:mandatory [:shift]} :id \"" rule-id "\"} "
+         "[:!S" key-str " [\"dsk_ins_sub_mode\" 0]] "
+         "[[\"dsk_ins_sub_mode\" " submode "]]]")))
 
 (defn generate-block [submode submode-name keys modifier block-name]
   "Generate a block of rules for one modifier"
