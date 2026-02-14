@@ -3473,6 +3473,17 @@
     [:##spacebar :vk_none]
     [:##tab :vk_none]
     [:##return_or_enter :vk_none]
+    [:##escape :vk_none]
+    [:##home :vk_none]
+    [:##end :vk_none]
+    [:##page_up :vk_none]
+    [:##page_down :vk_none]
+    ;; Function keys (bare F-keys should be blocked; Fn+key combos use Alt+F-key which is handled elsewhere)
+    [:##f1 :vk_none] [:##f2 :vk_none] [:##f3 :vk_none] [:##f4 :vk_none]
+    [:##f5 :vk_none] [:##f6 :vk_none] [:##f7 :vk_none] [:##f8 :vk_none]
+    [:##f9 :vk_none] [:##f10 :vk_none] [:##f11 :vk_none] [:##f12 :vk_none]
+    [:##f13 :vk_none] [:##f14 :vk_none] [:##f15 :vk_none] [:##f16 :vk_none]
+    [:##f17 :vk_none] [:##f18 :vk_none] [:##f19 :vk_none] [:##f20 :vk_none]
    ]}
  ] ;; end :main
 
