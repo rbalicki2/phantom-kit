@@ -243,7 +243,7 @@
     [
       {:key :y}
       [
-        [:!TOSf19]
+        :!TOSf19
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -257,7 +257,7 @@
     [
       {:key :6}
       [
-        [:f9]
+        :f9
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -291,7 +291,7 @@
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" 0]  ;; returns to Normal
-        [:!COSo]
+        :!COSo
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --held-modifiers reset && echo label > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 0]
@@ -413,7 +413,7 @@
     [
       {:key :h}
       [
-        [:!Ta]
+        :!Ta
         ["dsk_layer" 5]  ;; TMUX
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
@@ -468,21 +468,21 @@
   ;; --- Submode 1: shift_mirror_oneshot (numbers must come before number swap rules) ---
   {:des "[Desktop, Layer 1, Submode 1] Shift+mirror oneshot numbers"
    :rules [:!apple_internal
-    [{:key :6} [[:5] ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
-    [{:key :7} [[:4] ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
-    [{:key :8} [[:3] ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
-    [{:key :9} [[:2] ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
-    [{:key :0} [[:1] ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
+    [{:key :6} [:5 ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
+    [{:key :7} [:4 ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
+    [{:key :8} [:3 ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
+    [{:key :9} [:2 ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
+    [{:key :0} [:1 ["dsk_ins_sub_mode" 0]] ["dsk_ins_sub_mode" 1]]
    ]}
 
   ;; --- Submode 0: base Ins rules ---
   {:des "[Desktop, Layer 1, Submode 0] Numbers to symbols (RHS 6-0)"
    :rules [:!apple_internal
-    [{:key :6 :modi {:optional [:caps_lock]}} [:!S6] ["dsk_layer" 1]]
-    [{:key :7 :modi {:optional [:caps_lock]}} [:!S7] ["dsk_layer" 1]]
-    [{:key :8 :modi {:optional [:caps_lock]}} [:!S8] ["dsk_layer" 1]]
-    [{:key :9 :modi {:optional [:caps_lock]}} [:!S9] ["dsk_layer" 1]]
-    [{:key :0 :modi {:optional [:caps_lock]}} [:!S0] ["dsk_layer" 1]]
+    [{:key :6 :modi {:optional [:caps_lock]}} :!S6 ["dsk_layer" 1]]
+    [{:key :7 :modi {:optional [:caps_lock]}} :!S7 ["dsk_layer" 1]]
+    [{:key :8 :modi {:optional [:caps_lock]}} :!S8 ["dsk_layer" 1]]
+    [{:key :9 :modi {:optional [:caps_lock]}} :!S9 ["dsk_layer" 1]]
+    [{:key :0 :modi {:optional [:caps_lock]}} :!S0 ["dsk_layer" 1]]
     [{:key :6 :modi {:mandatory [:shift] :optional [:caps_lock]}} [:6] ["dsk_layer" 1]]
     [{:key :7 :modi {:mandatory [:shift] :optional [:caps_lock]}} [:7] ["dsk_layer" 1]]
     [{:key :8 :modi {:mandatory [:shift] :optional [:caps_lock]}} [:8] ["dsk_layer" 1]]
@@ -558,7 +558,7 @@
         ["dsk_in_modal_layer" 1]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" 1]  ;; from Ins
-        [:!COSo]
+        :!COSo
         {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --held-modifiers reset && echo label > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 1]
@@ -843,7 +843,7 @@
     [
       {:key :y}
       [
-        [:!Cspacebar]
+        :!Cspacebar
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -892,7 +892,7 @@
     [
       {:key :return_or_enter}
       [
-        [:!Creturn_or_enter]
+        :!Creturn_or_enter
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1299,7 +1299,7 @@
     [
       {:key :spacebar}
       [
-        [:!CTOSg]
+        :!CTOSg
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1312,7 +1312,7 @@
     [
       {:key :up_arrow}
       [
-        [:!CTOSv]
+        :!CTOSv
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1325,7 +1325,7 @@
     [
       {:key :down_arrow}
       [
-        [:!CTOSb]
+        :!CTOSb
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1340,7 +1340,7 @@
     [
       {:key :return_or_enter}
       [
-        [:!Cgrave_accent_and_tilde]
+        :!Cgrave_accent_and_tilde
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1355,7 +1355,7 @@
     [
       {:key :p}
       [
-        [:!CS3]
+        :!CS3
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1368,7 +1368,7 @@
     [
       {:key :p :modi {:mandatory [:right_control]}}
       [
-        [:!CS4]
+        :!CS4
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1383,7 +1383,7 @@
     [
       {:key :l}
       [
-        [:!Cv]
+        :!Cv
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1445,7 +1445,7 @@
     [
       {:key :comma}
       [
-        [:!Tc]
+        :!Tc
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1458,7 +1458,7 @@
     [
       {:key :n}
       [
-        [:!Tr]
+        :!Tr
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1473,7 +1473,7 @@
     [
       {:key :h}
       [
-        [:!Cc]
+        :!Cc
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1486,8 +1486,8 @@
     [
       {:key :f22}
       [
-        [:!Ca]
-        [:!Cc]
+        :!Ca
+        :!Cc
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1500,7 +1500,7 @@
     [
       {:key :j}
       [
-        [:!Cv]
+        :!Cv
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1513,8 +1513,8 @@
     [
       {:key :f23}
       [
-        [:!Ca]
-        [:!Cv]
+        :!Ca
+        :!Cv
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1529,7 +1529,7 @@
     [
       {:key :k}
       [
-        [:!Cf]
+        :!Cf
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1542,7 +1542,7 @@
     [
       {:key :f24}
       [
-        [:!CSf]
+        :!CSf
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -1833,7 +1833,7 @@
     [
       {:key :m}
       [
-        [:!Od]
+        :!Od
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1852,7 +1852,7 @@
     [
       {:key :period}
       [
-        [:!Cr]
+        :!Cr
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1865,7 +1865,7 @@
     [
       {:key :f7 :modi {:mandatory [:left_option]}}
       [
-        [:!CSr]
+        :!CSr
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1912,7 +1912,7 @@
     [
       {:key :j}
       [
-        [:!Cd]
+        :!Cd
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1925,7 +1925,7 @@
     [
       {:key :f23}  ;; Fn+J
       [
-        [:!Cperiod]
+        :!Cperiod
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1951,7 +1951,7 @@
     [
       {:key :l}
       [
-        [:!Cr]
+        :!Cr
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1966,7 +1966,7 @@
     [
       {:key :h}
       [
-        [:!TCe]
+        :!TCe
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -1979,7 +1979,7 @@
     [
       {:key :f22}  ;; Fn+H
       [
-        [:!OCc]
+        :!OCc
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2006,7 +2006,7 @@
     [
       {:key :i}
       [
-        [:!C2]
+        :!C2
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2019,7 +2019,7 @@
     [
       {:key :f17}  ;; Fn+I
       [
-        [:!TC2]
+        :!TC2
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2032,7 +2032,7 @@
     [
       {:key :f16}  ;; Fn+U
       [
-        [:!TC1]
+        :!TC1
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2047,7 +2047,7 @@
     [
       {:key :o}
       [
-        [:!Cb]
+        :!Cb
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2060,7 +2060,7 @@
     [
       {:key :p}
       [
-        [:!Cgrave_accent_and_tilde]
+        :!Cgrave_accent_and_tilde
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2180,7 +2180,7 @@
     [
       {:key :y}
       [
-        [:!S1]
+        :!S1
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2192,7 +2192,7 @@
     [
       {:key :u}
       [
-        [:!S2]
+        :!S2
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2204,7 +2204,7 @@
     [
       {:key :i}
       [
-        [:!S3]
+        :!S3
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2216,7 +2216,7 @@
     [
       {:key :o}
       [
-        [:!S4]
+        :!S4
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2228,7 +2228,7 @@
     [
       {:key :p}
       [
-        [:!S5]
+        :!S5
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2242,7 +2242,7 @@
     [
       {:key :f15}  ;; Fn+Y
       [
-        [:!S6]
+        :!S6
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2254,7 +2254,7 @@
     [
       {:key :f16}  ;; Fn+U
       [
-        [:!S7]
+        :!S7
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2266,7 +2266,7 @@
     [
       {:key :f17}  ;; Fn+I
       [
-        [:!S8]
+        :!S8
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2278,7 +2278,7 @@
     [
       {:key :f18}  ;; Fn+O
       [
-        [:!S9]
+        :!S9
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2290,7 +2290,7 @@
     [
       {:key :f19}  ;; Fn+P
       [
-        [:!S0]
+        :!S0
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2305,7 +2305,7 @@
     [
       {:key :l}
       [
-        [:!Cd]
+        :!Cd
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2318,7 +2318,7 @@
     [
       {:key :f1 :modi {:mandatory [:left_option]}}  ;; Fn+L
       [
-        [:!CSd]
+        :!CSd
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
@@ -2391,7 +2391,7 @@
     [
       {:key :l}
       [
-        [:!Cl]
+        :!Cl
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -2404,7 +2404,7 @@
     [
       {:key :o}
       [
-        [:!Co]
+        :!Co
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
@@ -2417,7 +2417,7 @@
     [
       {:key :return_or_enter}
       [
-        [:!Creturn_or_enter]
+        :!Creturn_or_enter
         ["dsk_layer" 1]  ;; Ins
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" 0]  ;; base
