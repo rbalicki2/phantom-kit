@@ -1287,8 +1287,8 @@
     [:!Of7 [:!CSx ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 15]]
     [:!Of8 [:!CSz ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 15]]
 
-    ;; === Ctrl+Cmd sub-layer (Ctrl+Y to enter from H) ===
-    [{:key :y :modi {:mandatory [:right_control]}} [["dsk_layer" 18] {:shell "echo lTC > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
+    ;; === Ctrl+Cmd sub-layer (Fn+Y to enter from L) ===
+    [:f15 [["dsk_layer" 18] {:shell "echo lTC > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
     ;; Fn+RHS = Ctrl+Cmd+mirrored
     [:f15 [:!CTt ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 18]]
     [:f16 [:!CTr ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 18]]
@@ -1551,8 +1551,8 @@
     [:!Of7 [:!TSx ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 17]]
     [:!Of8 [:!TSz ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 17]]
 
-    ;; === Ctrl+Alt sub-layer (Ctrl+U to enter from H) ===
-    [{:key :u :modi {:mandatory [:right_control]}} [["dsk_layer" 20] {:shell "echo lTO > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
+    ;; === Ctrl+Alt sub-layer (Fn+U to enter from L) ===
+    [:f16 [["dsk_layer" 20] {:shell "echo lTO > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
     ;; Fn+RHS = Ctrl+Alt+mirrored
     [:f15 [:!TOt ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 20]]
     [:f16 [:!TOr ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 20]]
@@ -1815,8 +1815,8 @@
     [:!Of7 [:!OSx ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 23]]
     [:!Of8 [:!OSz ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 23]]
 
-    ;; === Alt+Cmd sub-layer (Ctrl+I to enter from H) ===
-    [{:key :i :modi {:mandatory [:right_control]}} [["dsk_layer" 24] {:shell "echo lOC > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
+    ;; === Alt+Cmd sub-layer (Fn+I to enter from L) ===
+    [:f17 [["dsk_layer" 24] {:shell "echo lOC > /tmp/karabiner-layer"}] ["dsk_layer" 7]]
     ;; Fn+RHS = Alt+Cmd+mirrored
     [:f15 [:!OCt ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 24]]
     [:f16 [:!OCr ["dsk_in_modal_layer" 0] ["dsk_layer" 0] {:shell "echo norm > /tmp/karabiner-layer"}] ["dsk_layer" 24]]
