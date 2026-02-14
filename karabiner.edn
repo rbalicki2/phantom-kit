@@ -153,7 +153,7 @@
 
   {:des "[Desktop] Fn+hk3 (Shift+Alt+F19) = PANIC BUTTON"
    :rules [:!apple_internal
-    [:!SOf19 [:vk_none ["dsk_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" 0]
+    [:!SOf19 [:vk_none ["dsk_layer" 0] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" 0]
               {:shell "pkill warpd 2>/dev/null; osascript -e 'tell app \"System Events\" to key up command' && /opt/homebrew/bin/hs -c 'scrollStop(); hoverModeStop(); dismissHomerow()' && echo norm > /tmp/karabiner-layer && date > /tmp/panic-button-test"}]]
    ]}
 

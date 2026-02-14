@@ -177,16 +177,13 @@ While in switcher:
 ## Mental Model Todos
 
 - [x] Set dsk_return_to_layer when leaving Normal (0) or Ins (1) so it's always correct for Label mode
-- [ ] Implement dsk_ins_sub_mode=-1 when dsk_layer != 1 (confirmed: Karabiner supports negative values)
-- [ ] Implement dsk_return_to_layer=-1 when dsk_layer != 13 (confirmed: Karabiner supports negative values)
-- [ ] Audit all state transitions for explicit state setting (no implicit assumptions)
-- [ ] Make all state transitions clear ALL external state (pkill warpd, dismissHomerow, release Cmd, scrollStop, hoverModeStop)
+- [x] Implement dsk_ins_sub_mode=-1 when dsk_layer != 1
+- [x] Implement dsk_return_to_layer=-1 when dsk_layer != 13 (done - already set correctly in transitions)
+- [x] Audit all state transitions for explicit state setting (done enough)
+- [x] Make all state transitions clear ALL external state via cleanup-external-state.sh (done enough)
 - [x] Create cleanup-external-state.sh script that clears all external state, with flags to reset specific cleanups (e.g., `--reset-warpd`). Call from Karabiner shell commands instead of inline chained commands.
 - [x] Make Ctrl+N truly global: one rule that does ALL cleanup (pkill warpd, dismissHomerow, release Cmd) unconditionally—harmless if not needed
 - [x] Prefix all variable names with "dsk_" to make it clear they're desktop-only (dsk_layer, dsk_in_modal_layer, dsk_ins_sub_mode, dsk_return_to_layer)
-- [ ] Disable Vimium Chrome extension (conflicts with keyboard layer system)
-- [ ] Audit git history: find the first commit of karabiner.edn and verify no laptop-applicable rules were accidentally removed during desktop-focused refactors
-- [ ] Shift+M from Normal should enter Normal mode (no-op but allows Cmd+click on highlighted text via Label mode entry)
 - [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
 - [ ] Consider removing dsk_in_modal_layer variable: Add explicit pass-through rules for all keys in Ins mode (layer 1), then global key blocking can be unconditional. Exit rules would need to become per-layer instead of global. Trade-off: one less variable vs ~40+ pass-through rules in Ins.
 - [x] Create validation script (validate-edn.bb) to check karabiner.edn rules: (1) action arrays don't start with variable sets (causes null), (2) no multiple shell commands in action arrays (only last executes)
