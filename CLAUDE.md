@@ -95,6 +95,19 @@ Source of truth for Karabiner config and related scripts.
 - `kinesis-keycodes.txt` - Kinesis key codes reference (from Appendix A of programming guide)
 - `Adv360-SmartSet-Direct-Programming-Guide-Version-8-8-25.pdf` - Kinesis programming reference
 
+### Test Harness (`/Users/rbalicki/code/voicemode/karabiner-test-harness/`)
+Automated validation tools that run on every `npm run sync`:
+- `validate-rules.bb` - State invariant violations and rule shadowing detection
+- `validate-extras.bb` - Goku syntax issues and config consistency checks
+- `match-rules.bb` - Interactive tool to find matching rules for a given input
+- `README.md` - Documentation for the test harness tools
+
+**Keeping validators up to date**: When discovering new patterns that cause bugs or should be enforced:
+1. Add the check to the appropriate validator (`validate-rules.bb` for state/shadowing, `validate-extras.bb` for syntax/consistency)
+2. Update the validator's header comment to document what it checks
+3. Update `karabiner-test-harness/README.md` with the new check
+4. Update `mental_model.md` if it's a new invariant or rule
+
 ### Config Repo (`~/.config/`, git repo)
 Destination for generated configs.
 - `karabiner.edn` - Copy of voicemode version (goku reads from here)

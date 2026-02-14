@@ -58,6 +58,8 @@ Four variables track all state:
 2. **dsk_ins_sub_mode = -1 when dsk_layer != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
 3. **dsk_return_to_layer = -1 when dsk_layer != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
 
+These invariants are **automatically enforced** by `validate-rules.bb` on every sync.
+
 ### Explicit State Transitions
 
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. Always set them in the same order every time. No implicit state. This prioritizes correctness and future refactors over brevity.
@@ -173,6 +175,45 @@ While in switcher:
 - J/K cycles through apps/windows
 - Enter selects and exits (releases Cmd, returns to Normal)
 - Ctrl+N exits without selecting (releases Cmd, returns to Normal)
+
+## Automated Enforcement
+
+The test harness (`karabiner-test-harness/`) runs on every `npm run sync` and blocks deployment if violations are found.
+
+### validate-rules.bb
+
+Checks state-related issues:
+
+| Check | Description |
+|-------|-------------|
+| **Invariant violations (conditions)** | Rules that check for impossible state (e.g., dsk_layer=0 AND dsk_in_modal_layer=1) |
+| **Invariant violations (actions)** | Actions that set invalid state combinations |
+| **Shadowed rules** | Rules that can never fire because an earlier rule catches all their inputs |
+
+Shadowing detection is app-aware: a Chrome-specific rule doesn't shadow a Default rule (they apply to different apps).
+
+### validate-extras.bb
+
+Checks Goku syntax and config consistency:
+
+| Check | Description |
+|-------|-------------|
+| **Action starts with variable** | `[["dsk_layer" 0] ...]` causes null in JSON. Prepend `:vk_none`. |
+| **Nested key arrays** | `[[:key]]` instead of `:key` — unnecessary wrapper |
+| **Multiple shell commands** | Only the LAST `{:shell ...}` in a rule executes. Combine with `&&`. |
+| **Incomplete layer transitions** | Layer changes should set all 4 state variables (smart about same-value transitions between L sub-layers) |
+| **Layer code mismatches** | `/tmp/karabiner-layer` writes must match the expected code for dsk_layer |
+| **Missing overlay files** | `layers/*.txt` must exist for main layers (0-9) |
+| **Undefined app references** | App keywords must be defined in `:applications` |
+
+### match-rules.bb
+
+Interactive tool (not run automatically) for debugging:
+```bash
+bb match-rules.bb ../karabiner.edn j --layer 0 --mod right_control
+```
+
+Shows which rules match a given key + modifiers + state, including shadowed rules.
 
 ## Mental Model Todos
 
