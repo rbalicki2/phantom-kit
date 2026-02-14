@@ -80,13 +80,15 @@
   "Determine profile from block conditions.
    :!apple_internal or :Desktop = Desktop profile
    :apple_internal or :Laptop = Laptop profile
-   Neither = truly global (no profile)"
+   :None = None profile (placeholder, never matches)
+   Neither = error (should not happen)"
   (cond
     (some #(= % :Desktop) block-conditions) "Desktop"
     (some #(= % :!apple_internal) block-conditions) "Desktop"
     (some #(= % :Laptop) block-conditions) "Laptop"
     (some #(= % :apple_internal) block-conditions) "Laptop"
-    :else nil))
+    (some #(= % :None) block-conditions) "None"
+    :else "UNKNOWN"))
 
 ;; === State string generation ===
 

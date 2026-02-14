@@ -19,7 +19,7 @@
   :chrome-profile "/Users/rbalicki/code/voicemode/scripts/chrome-tab.sh %s && echo norm > /tmp/karabiner-layer"},
  :main
  [{:des "[None] Placeholder",
-   :rules [:None [{:key :non_us_backslash, :id "R0001 [] non_us_backslash → non_us_backslash"} [:non_us_backslash]]]}
+   :rules [:None [{:key :non_us_backslash, :id "R0001 [profile=None] non_us_backslash → non_us_backslash"} [:non_us_backslash]]]}
   {:des "[Laptop] Caps lock to control/escape",
    :rules
    [:apple_internal
