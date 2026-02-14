@@ -2115,15 +2115,15 @@
     ;; Template already handles /tmp/karabiner-layer write
 
     ;; H = git status
-    [{:key :h} [[:type-ins "git status "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f22} [[:type-enter-ins "git status "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+H
+    [{:key :h} [:type-ins "git status " ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
+    [{:key :f22} [:type-enter-ins "git status " ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+H
     ;; J = git log
-    [{:key :j} [[:type-ins "git log "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f23} [[:type-enter-ins "git log"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+J
+    [{:key :j} [:type-ins "git log " ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
+    [{:key :f23} [:type-enter-ins "git log" ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+J
     ;; K = git diff
-    [{:key :k} [[:type-ins "git diff "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f24} [[:type-enter-ins "git diff head"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+K
-    [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-ins "gdmb"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Ctrl+K
+    [{:key :k} [:type-ins "git diff " ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
+    [{:key :f24} [:type-enter-ins "git diff head" ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+K
+    [{:key :k :modi {:mandatory [:right_control]}} [:type-enter-ins "gdmb" ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Ctrl+K
     ;; L = git commit
     [{:key :l} [[:type-ins "git commit --no-verify -m "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
     [{:key :f1 :modi {:mandatory [:left_option]}} [[:type-enter-ins "git commit -am wip --no-verify"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+L
