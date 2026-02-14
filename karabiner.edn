@@ -562,7 +562,11 @@
     [{:key :y :modi {:mandatory [:right_control]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] {:shell "echo ins > /tmp/karabiner-layer"}] nil {:afterup [:!TOSf19]}]
    ]}
 
-  {:des "[Desktop] Ctrl+hk4 (Alt+F22) enters Nav from any layer"
+  ;; =====================================================================
+  ;; LAYER 2: NAV (application launcher)
+  ;; =====================================================================
+
+  {:des "[Layer 2] Nav - Global entry (Ctrl+hk4)"
    :rules [:!apple_internal
     ;; Ctrl+hk4 enters Nav - single mode variable handles layer switching
     [:!Of22 [["dsk_layer" 2] ["dsk_in_modal_layer" 1] [:layer "n"]]]
