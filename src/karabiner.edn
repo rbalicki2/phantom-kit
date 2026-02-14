@@ -694,7 +694,7 @@
      [:!S1]
      [["dsk_layer" 1]]]
     [{:key :f20, :id "R0167 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)"}
-     [:!Stab]
+     [:!Sbackslash]
      [["dsk_layer" 1]]]
     [{:key :!Of9, :id "R0168 [layer:1] [Desktop, Layer 1] Function+key = Mirror (Submodes 0 and 1)"}
      [:!Sopen_bracket]
