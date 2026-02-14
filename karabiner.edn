@@ -19,14 +19,14 @@
    :default true
    :sim 50
    :delay 80
-   :alone 150
+   :alone 500  ;; timeout for "alone" tap detection (ms)
    :held 70
   }
   :None {
    :default false
    :sim 50
    :delay 80
-   :alone 150
+   :alone 500
    :held 70
   }
  }
