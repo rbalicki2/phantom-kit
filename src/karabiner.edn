@@ -10198,6 +10198,60 @@
        ["dsk_return_to_layer" -1]
        {:shell
         "/Users/rbalicki/code/voicemode/scripts/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers keep && echo norm > /tmp/karabiner-layer"}]}]]}
+
+{:des "[Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"
+ :rules
+ [:!apple_internal
+    [{:key :!Sy :id "RGEN0001 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sy ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Su :id "RGEN0002 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Su ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Si :id "RGEN0003 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Si ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!So :id "RGEN0004 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!So ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sp :id "RGEN0005 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sp ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sh :id "RGEN0006 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sh ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sj :id "RGEN0007 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sj ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sk :id "RGEN0008 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sk ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sl :id "RGEN0009 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sl ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Ssemicolon :id "RGEN0010 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Ssemicolon ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sn :id "RGEN0011 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sn ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sm :id "RGEN0012 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sm ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Scomma :id "RGEN0013 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Scomma ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Speriod :id "RGEN0014 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Speriod ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!Sslash :id "RGEN0015 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!Sslash ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+
+    [{:key :!S6 :id "RGEN0016 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!S6 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!S7 :id "RGEN0017 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!S7 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!S8 :id "RGEN0018 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!S8 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!S9 :id "RGEN0019 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!S9 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+    [{:key :!S0 :id "RGEN0020 [ins_sub_mode:1] [Desktop, Layer 1, Submode 1] Clear oneshot on modified keys"} [:!S0 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 1]]]
+
+ ]}
+
+{:des "[Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"
+ :rules
+ [:!apple_internal
+    [{:key :!Sy :id "RGEN0021 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sy ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Su :id "RGEN0022 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Su ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Si :id "RGEN0023 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Si ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!So :id "RGEN0024 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!So ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sp :id "RGEN0025 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sp ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sh :id "RGEN0026 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sh ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sj :id "RGEN0027 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sj ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sk :id "RGEN0028 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sk ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sl :id "RGEN0029 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sl ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Ssemicolon :id "RGEN0030 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Ssemicolon ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sn :id "RGEN0031 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sn ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sm :id "RGEN0032 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sm ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Scomma :id "RGEN0033 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Scomma ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Speriod :id "RGEN0034 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Speriod ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!Sslash :id "RGEN0035 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!Sslash ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+
+    [{:key :!S6 :id "RGEN0036 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!S6 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!S7 :id "RGEN0037 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!S7 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!S8 :id "RGEN0038 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!S8 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!S9 :id "RGEN0039 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!S9 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+    [{:key :!S0 :id "RGEN0040 [ins_sub_mode:2] [Desktop, Layer 1, Submode 2] Clear oneshot on modified keys"} [:!S0 ["dsk_ins_sub_mode" 0]] [["dsk_ins_sub_mode" 2]]]
+
+ ]}
   {:des "[Global] Block all unmapped keys",
    :rules
    [:!apple_internal
