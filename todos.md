@@ -44,3 +44,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Audit layer exit targets: verify all layers exit to correct mode (Ins for text-input actions, Normal for non-typing). Especially Comma layer paste, find, select all.
 - Caps Lock support: add a way to toggle actual caps lock (currently mapped to Control/Escape)
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
+- Reconsider dsk_in_modal_layer: review why this variable exists and if it's consistent with the overall ethos (centralize state, explicit transitions). Does it add value beyond just checking dsk_layer >= 2?

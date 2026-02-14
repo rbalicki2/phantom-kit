@@ -77,7 +77,10 @@
       "Bash(npm run warpd)",
       "Bash(lsappinfo:*)",
       "Bash(diskutil:*)",
-      "Bash(perl:*)"
+      "Bash(perl:*)",
+      "Bash(/usr/local/bin/hs:*)",
+      "Bash(/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd keep --homerow keep --scroll-timer keep --hover-mode keep --held-modifiers keep)",
+      "Bash(/Users/rbalicki/code/voicemode/cleanup-external-state.sh:*)"
     ]
   }
 }
