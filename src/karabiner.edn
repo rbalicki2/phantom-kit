@@ -571,63 +571,63 @@
   {:des "[Desktop, Layer 1, Submode 2] Shift oneshot (Fn+Space then letter = Shift+letter)",
    :rules
    [:!apple_internal
-    [{:key :y,
+    [{:key :y, :modi {:optional [:caps_lock]},
       :id "R0106 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] y → Shift+y (oneshot clear)"}
      [:!Sy ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :u,
+    [{:key :u, :modi {:optional [:caps_lock]},
       :id "R0107 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] u → Shift+u (oneshot clear)"}
      [:!Su ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :i,
+    [{:key :i, :modi {:optional [:caps_lock]},
       :id "R0108 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] i → Shift+i (oneshot clear)"}
      [:!Si ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :o,
+    [{:key :o, :modi {:optional [:caps_lock]},
       :id "R0109 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] o → Shift+o (oneshot clear)"}
      [:!So ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :p,
+    [{:key :p, :modi {:optional [:caps_lock]},
       :id "R0110 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] p → Shift+p (oneshot clear)"}
      [:!Sp ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :h,
+    [{:key :h, :modi {:optional [:caps_lock]},
       :id "R0111 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] h → Shift+h (oneshot clear)"}
      [:!Sh ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :j,
+    [{:key :j, :modi {:optional [:caps_lock]},
       :id "R0112 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] j → Shift+j (oneshot clear)"}
      [:!Sj ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :k,
+    [{:key :k, :modi {:optional [:caps_lock]},
       :id "R0113 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] k → Shift+k (oneshot clear)"}
      [:!Sk ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :l,
+    [{:key :l, :modi {:optional [:caps_lock]},
       :id "R0114 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] l → Shift+l (oneshot clear)"}
      [:!Sl ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :semicolon,
+    [{:key :semicolon, :modi {:optional [:caps_lock]},
       :id "R0115 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] semicolon → Shift+semicolon (oneshot clear)"}
      [:!Ssemicolon ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :n,
+    [{:key :n, :modi {:optional [:caps_lock]},
       :id "R0116 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] n → Shift+n (oneshot clear)"}
      [:!Sn ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :m,
+    [{:key :m, :modi {:optional [:caps_lock]},
       :id "R0117 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] m → Shift+m (oneshot clear)"}
      [:!Sm ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :comma,
+    [{:key :comma, :modi {:optional [:caps_lock]},
       :id "R0118 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] comma → Shift+comma (oneshot clear)"}
      [:!Scomma ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :period,
+    [{:key :period, :modi {:optional [:caps_lock]},
       :id "R0119 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] period → Shift+period (oneshot clear)"}
      [:!Speriod ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]
-    [{:key :slash,
+    [{:key :slash, :modi {:optional [:caps_lock]},
       :id "R0120 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] slash → Shift+slash (oneshot clear)"}
      [:!Sslash ["dsk_ins_sub_mode" 0]]
      [["dsk_ins_sub_mode" 2]]]]}

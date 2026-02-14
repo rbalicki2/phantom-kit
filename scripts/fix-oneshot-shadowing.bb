@@ -17,8 +17,10 @@
   "Add :modi {:optional [:caps_lock]} to bare key rules in submode blocks"
   ;; Match rules like: [{:key :l, :id "..."} ...]
   ;; But NOT rules that already have :modi
+  ;; Fixes both submode=1 (shift-mirror-oneshot) and submode=2 (shift-oneshot)
   (if (and (str/includes? line "{:key :")
-           (str/includes? line "dsk_ins_sub_mode=")
+           (or (str/includes? line "dsk_ins_sub_mode=1")
+               (str/includes? line "dsk_ins_sub_mode=2"))
            (not (str/includes? line ":modi"))
            ;; Only fix letter keys in oneshot blocks, not F-keys etc
            (re-find #"\{:key :([a-z]|semicolon|comma|period|slash)," line))
