@@ -110,26 +110,38 @@
 ;; === Rule extraction ===
 
 (defn parse-id-state-marker
-  "Extract state from rule ID marker like '[layer:1]' or '[ins_sub_mode:1]'.
+  "Extract state from rule ID marker. Supports both formats:
+   Old: '[layer:1]' or '[ins_sub_mode:1]' (colon-separated)
+   New: '[dsk_layer=1]' or '[profile=Desktop:dsk_layer=1]' (equals-separated)
    Returns map with :layer, :submode, :return keys (nil if not present).
-   Infers layer=1 if submode is present but layer is not (submodes only exist in layer 1)."
+   Infers layer=1 if submode is present but layer is not."
   [rule-id]
   (when rule-id
     (let [;; Match the first [...] after the rule number
-          marker (second (re-find #"R\d+\s+\[([^\]]+)\]" rule-id))]
+          marker (second (re-find #"R\d+[a-z]?\s+\[([^\]]+)\]" rule-id))]
       (when marker
-        (let [parts (str/split marker #"\s+")
-              parsed (into {} (for [p parts
-                                    :let [[k v] (str/split p #":")
-                                          v-num (when v (parse-long v))]]
-                                [(keyword k) v-num]))
-              submode (:ins_sub_mode parsed)
-              layer (or (:layer parsed)
-                        ;; Infer layer=1 if submode is present (submodes only exist in layer 1)
-                        (when submode 1))]
+        (let [;; Detect format: new uses "=" for key-value, old uses ":"
+              is-new-format (str/includes? marker "=")
+              parsed (if is-new-format
+                       ;; New format: "profile=Desktop:dsk_layer=1"
+                       (into {} (for [p (str/split marker #":")
+                                      :let [[k v] (str/split p #"=")
+                                            v-num (when v (parse-long v))]]
+                                  [(keyword k) (or v-num v)]))
+                       ;; Old format: "layer:1 ins_sub_mode:2"
+                       (into {} (for [p (str/split marker #"\s+")
+                                      :let [[k v] (str/split p #":")
+                                            v-num (when v (parse-long v))]]
+                                  [(keyword k) v-num])))
+              ;; Extract values (handle both old and new key names)
+              layer (or (:dsk_layer parsed) (:layer parsed))
+              submode (or (:dsk_ins_sub_mode parsed) (:ins_sub_mode parsed))
+              return-to (or (:dsk_return_to_layer parsed) (:return_to_layer parsed))
+              ;; Infer layer=1 if submode is present
+              layer (or layer (when submode 1))]
           {:layer layer
            :submode submode
-           :return (:return_to_layer parsed)})))))
+           :return return-to})))))
 
 (defn extract-block-conditions [rules-vec]
   (when (sequential? rules-vec)
