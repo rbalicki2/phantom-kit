@@ -48,21 +48,8 @@
  :simlayers {
  }
 
- ;; Templates reduce repetition in shell commands
- ;; Usage: [:layer "norm"] expands to {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
- :templates {
-  ;; Layer indicator (writes to /tmp/karabiner-layer for SwiftBar/Hammerspoon)
-  :layer "echo %s > /tmp/karabiner-layer"
-  ;; App launching
-  :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer"
-  ;; Git/terminal typing (Term layer) - sends Ctrl+C first, exits to Ins mode
-  :type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo ins > /tmp/karabiner-layer"
-  :type-enter-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo ins > /tmp/karabiner-layer"
-  ;; Chrome tab by index
-  :chrome-tab "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to %s' && echo norm > /tmp/karabiner-layer"
-  ;; Chrome profile switching
-  :chrome-profile "/Users/rbalicki/code/voicemode/chrome-tab.sh %s && echo norm > /tmp/karabiner-layer"
- }
+ ;; No templates - all shell commands are explicit at call sites for clarity
+ :templates {}
 
  :main [
 
@@ -735,33 +722,33 @@
     [
       {:key :h}
       [
-        [:open-norm "iTerm"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'iTerm' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
     [
       {:key :j}
       [
-        [:open-norm "Visual Studio Code"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Visual Studio Code' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
     [
       {:key :k}
       [
-        [:open-norm "Karabiner-EventViewer"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Karabiner-EventViewer' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
@@ -770,22 +757,22 @@
     [
       {:key :n}
       [
-        [:chrome-profile "personal"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/chrome-tab.sh personal && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
     [
       {:key :m}
       [
-        [:chrome-profile "work"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/chrome-tab.sh work && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
@@ -794,33 +781,33 @@
     [
       {:key :l}
       [
-        [:open-norm "Signal"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Signal' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
     [
       {:key :!Of1}  ;; Fn+L
       [
-        [:open-norm "Messages"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Messages' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
     [
       {:key :l :modi {:mandatory [:right_control]}}
       [
-        [:open-norm "WhatsApp"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'WhatsApp' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
@@ -829,11 +816,11 @@
     [
       {:key :o}
       [
-        [:open-norm "Obsidian"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Obsidian' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
@@ -856,11 +843,11 @@
     [
       {:key :period}
       [
-        [:open-norm "Finder"]
         ["dsk_layer" 0]  ;; Normal
         ["dsk_in_modal_layer" 0]
         ["dsk_ins_sub_mode" -1]
         ["dsk_return_to_layer" -1]
+        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && open -a 'Finder' && echo norm > /tmp/karabiner-layer"}
       ]
       ["dsk_layer" 2]
     ]
@@ -2109,39 +2096,37 @@
     ]
 
     ;; === GIT COMMANDS ===
-    ;; All git commands use templates that type text and exit to Ins
-    ;; Templates: :type-ins (type text), :type-enter-ins (type text + enter)
-    ;; Template already handles /tmp/karabiner-layer write
+    ;; All git commands use type-text.sh and exit to Ins
 
     ;; H = git status
-    [{:key :h} [[:type-ins "git status "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f22} [[:type-enter-ins "git status "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+H
+    [{:key :h} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git status ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f22} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git status ' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+H
     ;; J = git log
-    [{:key :j} [[:type-ins "git log "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f23} [[:type-enter-ins "git log"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+J
+    [{:key :j} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git log ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f23} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git log' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+J
     ;; K = git diff
-    [{:key :k} [[:type-ins "git diff "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f24} [[:type-enter-ins "git diff head"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+K
-    [{:key :k :modi {:mandatory [:right_control]}} [[:type-enter-ins "gdmb"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Ctrl+K
+    [{:key :k} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git diff ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f24} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git diff head' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+K
+    [{:key :k :modi {:mandatory [:right_control]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'gdmb' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Ctrl+K
     ;; L = git commit
-    [{:key :l} [[:type-ins "git commit --no-verify -m "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f1 :modi {:mandatory [:left_option]}} [[:type-enter-ins "git commit -am wip --no-verify"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+L
+    [{:key :l} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git commit --no-verify -m ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f1 :modi {:mandatory [:left_option]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git commit -am wip --no-verify' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+L
     ;; N = git reset
-    [{:key :n} [[:type-ins "git reset "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f4 :modi {:mandatory [:left_option]}} [[:type-enter-ins "grhh"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+N
+    [{:key :n} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git reset ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f4 :modi {:mandatory [:left_option]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'grhh' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+N
     ;; M = git checkout
-    [{:key :m} [[:type-ins "git checkout "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f5 :modi {:mandatory [:left_option]}} [[:type-enter-ins "gcmp --no-verify"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+M
+    [{:key :m} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git checkout ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f5 :modi {:mandatory [:left_option]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'gcmp --no-verify' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+M
     ;; Comma = git stash
-    [{:key :comma} [[:type-enter-ins "git add -A && git stash"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f6 :modi {:mandatory [:left_option]}} [[:type-enter-ins "git stash pop"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+Comma
+    [{:key :comma} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git add -A && git stash' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f6 :modi {:mandatory [:left_option]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git stash pop' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+Comma
     ;; Period = git add
-    [{:key :period} [[:type-ins "git add "] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
-    [{:key :f7 :modi {:mandatory [:left_option]}} [[:type-enter-ins "git add -A"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]  ;; Fn+Period
+    [{:key :period} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git add ' && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
+    [{:key :f7 :modi {:mandatory [:left_option]}} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git add -A' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]  ;; Fn+Period
     ;; Y = gh pr create
-    [{:key :y} [[:type-enter-ins "gh pr create"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
+    [{:key :y} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'gh pr create' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
     ;; I = git push
-    [{:key :i} [[:type-enter-ins "git push --no-verify"] ["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] ["dsk_layer" 8]]
+    [{:key :i} [["dsk_layer" 1] ["dsk_in_modal_layer" 0] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && /Users/rbalicki/code/voicemode/type-text.sh 'git push --no-verify' --enter && echo ins > /tmp/karabiner-layer"}] ["dsk_layer" 8]]
    ]}
 
   ;; =====================================================================

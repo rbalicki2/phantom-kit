@@ -2,6 +2,7 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
+- Unit test harness for Karabiner JSON: pass key + modifiers + current state variables, identify all matching rules (not just first match) to debug rule conflicts and ensure correct behavior
 - Push voicemode repo to a remote repository
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
 - Wifi notifier
