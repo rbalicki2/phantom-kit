@@ -1182,7 +1182,6 @@
 
   {:des "[Layer 28] Grid Mode 🐭🔲 - warpd"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section)
 
     ;; === EXIT (no click) ===
     ;; All exits: kill warpd, set mode to Normal (Ctrl+N handled by global rule)
@@ -1330,7 +1329,6 @@
 
   {:des "[Layer 9] Admin Layer ⚙️"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section)
 
     ;; === EXIT ===
     [
@@ -1491,7 +1489,6 @@
 
   {:des "[Layer 6] Comma Layer"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section)
 
     ;; === EXIT ===
     [
@@ -1759,8 +1756,6 @@
 
   {:des "[Layer 3] Chrome Layer"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section - Chrome app-specific)
-
     ;; === EXIT ===
     [
       :right_control
@@ -1970,8 +1965,6 @@
 
   {:des "[Layer 4] VS Code Layer"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section - VS Code app-specific)
-
     ;; === EXIT ===
     [
       :right_control
@@ -2171,7 +2164,6 @@
 
   {:des "[Layer 8] Term Layer - git shortcuts"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section)
     ;; All git commands exit to Ins mode - uses :type-ins and :type-enter-ins templates
     ;; which include the shell command to write to /tmp/karabiner-layer
 
@@ -2242,8 +2234,6 @@
 
   {:des "[Layer 5] TMUX Layer"
    :rules [:!apple_internal
-    ;; (Entry from Normal is in Layer 0 section - iTerm app-specific)
-
     ;; === EXIT ===
     [
       :right_control
