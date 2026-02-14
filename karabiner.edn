@@ -1276,32 +1276,7 @@
 
   {:des "[Desktop, Layer 9] Admin Layer ⚙️"
    :rules [:!apple_internal
-
-    ;; === EXIT ===
-    [
-      {:key :right_control}
-      [:right_control]
-      ["dsk_layer" 9]
-      {:alone [
-        ["dsk_layer" 0]  ;; Normal
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]  ;; Ins
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 9]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === WINDOW MANAGEMENT (BTT) ===
     ;; Space = Maximize
@@ -1424,32 +1399,7 @@
 
   {:des "[Desktop, Layer 6] Comma Layer"
    :rules [:!apple_internal
-
-    ;; === EXIT ===
-    [
-      {:key :right_control}
-      [:right_control]
-      ["dsk_layer" 6]
-      {:alone [
-        ["dsk_layer" 0]  ;; Normal
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]  ;; Ins
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]  ;; base
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 6]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === TERMINAL SHORTCUTS ===
     ;; Comma = Ctrl+C → Ins
@@ -1693,31 +1643,7 @@
 
   {:des "[Desktop, Layer 3] Chrome Layer"
    :rules [:!apple_internal
-    ;; === EXIT ===
-    [
-      :right_control
-      :right_control
-      ["dsk_layer" 3]
-      {:alone [
-        ["dsk_layer" 0]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 3]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === TAB SWITCHING ===
     ;; Y = Tab 1
@@ -1905,31 +1831,7 @@
 
   {:des "[Desktop, Layer 4] VS Code Layer"
    :rules [:!apple_internal
-    ;; === EXIT ===
-    [
-      :right_control
-      :right_control
-      ["dsk_layer" 4]
-      {:alone [
-        ["dsk_layer" 0]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 4]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === NAVIGATION ===
     ;; J = Cmd+D (go to definition)
@@ -2108,32 +2010,7 @@
    :rules [:!apple_internal
     ;; All git commands exit to Ins mode - uses :type-ins and :type-enter-ins templates
     ;; which include the shell command to write to /tmp/karabiner-layer
-
-    ;; === EXIT ===
-    [
-      :right_control
-      :right_control
-      ["dsk_layer" 8]
-      {:alone [
-        ["dsk_layer" 0]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 8]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === GIT COMMANDS ===
     ;; All git commands use templates that type text and exit to Ins
@@ -2177,31 +2054,7 @@
 
   {:des "[Desktop, Layer 5] TMUX Layer"
    :rules [:!apple_internal
-    ;; === EXIT ===
-    [
-      :right_control
-      :right_control
-      ["dsk_layer" 5]
-      {:alone [
-        ["dsk_layer" 0]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" -1]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo norm > /tmp/karabiner-layer"}
-      ]}
-    ]
-    [
-      {:key :j :modi {:mandatory [:right_control]}}
-      [
-        :vk_none
-        ["dsk_layer" 1]
-        ["dsk_in_modal_layer" 0]
-        ["dsk_ins_sub_mode" 0]
-        ["dsk_return_to_layer" -1]
-        {:shell "/Users/rbalicki/code/voicemode/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo ins > /tmp/karabiner-layer"}
-      ]
-      ["dsk_layer" 5]
-    ]
+    ;; Exit handled by global right_control alone and Ctrl+J rules
 
     ;; === PANES 1-5 ===
     [
