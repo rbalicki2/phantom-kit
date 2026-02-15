@@ -25,3 +25,14 @@
 - Generates section names automatically from state
 
 **For now**: Just add rules at the end, refactor later.
+
+## Unified state string for scripts
+
+**Problem**: Scripts like `match-rules.bb` have separate `--layer`, `--modal`, `--submode`, `--return-to` parameters. This is error-prone and verbose.
+
+**Solution**: Single state string parameter everywhere, validated by one shared function. Format TBD but likely similar to rule ID format: `profile=Default:device=Desktop:layer=0:modal=0:submode=-1:return=-1`
+
+**Benefits**:
+- Single source of truth for state parsing
+- Less parameter boilerplate in every script
+- Consistent validation everywhere

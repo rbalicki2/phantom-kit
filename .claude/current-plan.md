@@ -16,77 +16,59 @@ Create new layers 29+30, test they work, then remove old layers 7+14-27.
 
 ### Phase 1: Independent Setup Tasks (can do now, no dependencies)
 
-- [ ] **1.1** Add `--lmode-modifier` flag to cleanup-external-state.sh
+- [x] **1.1** Add `--lmode-modifier` flag to cleanup-external-state.sh
   - Add 5th flag for clearing `/tmp/karabiner-lmode-modifier`
   - Update from 8 args to 10 args
   - Always pass `reset` (be explicit)
 
-- [ ] **1.2** Add `--lmode-modifier` to panic-cleanup.sh
+- [x] **1.2** Add `--lmode-modifier` to panic-cleanup.sh
   - Add cleanup of `/tmp/karabiner-lmode-modifier`
 
-- [ ] **1.3** Update mental-model.md external state table
+- [x] **1.3** Update mental-model.md external state table
   - Add row for lmode-modifier file
 
-- [ ] **1.4** Create Hammerspoon function `executeLModeKey(key)`
+- [x] **1.4** Create Hammerspoon function `executeLModeKey(key)`
   - Read modifier from `/tmp/karabiner-lmode-modifier`
   - Map modifier codes to actual modifiers (C=Cmd, S=Shift, T=Ctrl, O=Alt)
   - Execute keystroke with modifiers
   - Clear the modifier file after execution
 
-- [ ] **1.5** Create layer overlay files
-  - `src/layers/l-entry.txt` - show modifier selection keys
-  - `src/layers/l-active.txt` - show available keys
+- [x] **1.5** Create layer overlay file
+  - `src/layers/lmode.txt` - shows modifier selection and key execution help
 
-- [ ] **1.6** Update SwiftBar to show new layers
-  - Add cases for layers 29 and 30
+- [x] **1.6** Update SwiftBar to show new layers
+  - Add cases for layers 29 (lentry) and 30 (lactive)
 
 ### Phase 2: Create New L-Mode (depends on Phase 1)
 
-- [ ] **2.1** Create entry point from Normal
-  - From Normal (layer 0), L key → enter L-Entry (layer 29)
+- [x] **2.1** Create entry point from Normal
+  - Updated L key rule (R0040) to enter L-Entry (layer 29)
 
-- [ ] **2.2** Create L-Entry modifier selection rules (layer 29)
-  - Y → write "C" to file, enter L-Active (30)
-  - Shift+Y → write "CS" to file, enter L-Active (30)
-  - U → write "T" to file, enter L-Active (30)
-  - Shift+U → write "TS" to file, enter L-Active (30)
-  - I → write "O" to file, enter L-Active (30)
-  - Shift+I → write "OS" to file, enter L-Active (30)
-  - H → write "CT" to file, enter L-Active (30)
-  - J → write "CO" to file, enter L-Active (30)
-  - K → write "TO" to file, enter L-Active (30)
-  - O → write "CTO" to file, enter L-Active (30)
-  - (plus Shift variants for 4-modifier combos)
+- [x] **2.2** Create L-Entry modifier selection rules (layer 29)
+  - 11 modifier selection rules (Y, U, I, O, H, J, K + Shift variants)
 
-- [ ] **2.3** Create L-Active key rules (layer 30)
-  - For each RHS key: `hs -c "executeLModeKey('h')"` → Normal
-  - Handle Fn+key for mirrored letters
-  - ~20-25 key rules total (vs 700+ currently)
+- [x] **2.3** Create L-Active key rules (layer 30)
+  - 15 letter keys + 5 number keys + 3 punctuation keys
 
-- [ ] **2.4** Create L-Active exit rules (layer 30)
-  - RCtrl alone → Normal (clear modifier file)
-  - Ctrl+J → Ins (clear modifier file)
-  - Ctrl+N → escape, Normal (clear modifier file)
+- [x] **2.4** Create L-Active exit rules (layer 30)
+  - RCtrl → Normal, Ctrl+N → escape + Normal, Ctrl+J → Ins
 
-- [ ] **2.5** Create L-Entry exit rules (layer 29)
-  - RCtrl alone → Normal
-  - Ctrl+N → escape, Normal
+- [x] **2.5** Create L-Entry exit rules (layer 29)
+  - RCtrl → Normal, Ctrl+N → escape + Normal
 
 ### Phase 3: Test New L-Mode
 
-- [ ] **3.1** Test modifier selection
-  - L → Y → verify file contains "C"
-  - L → Shift+U → verify file contains "TS"
+- [x] **3.1** Verify rules generated in karabiner.json
+  - Confirmed layer 29 and 30 rules present with correct conditions
 
-- [ ] **3.2** Test key execution
+- [ ] **3.2** Manual test: Normal → L-Entry → L-Active → Normal
   - L → Y → H should execute Cmd+H
   - L → U → J should execute Ctrl+J
-  - L → O → K should execute Cmd+Ctrl+Alt+K
+  - RCtrl should exit to Normal
 
 - [ ] **3.3** Test exit paths
-  - RCtrl exits to Normal
   - Ctrl+J exits to Ins
-  - Verify modifier file is cleared
+  - Ctrl+N sends escape and exits to Normal
 
 ### Phase 4: Remove Old L-Mode (only after Phase 3 passes)
 

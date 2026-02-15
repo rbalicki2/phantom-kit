@@ -1,0 +1,17 @@
+L-Mode (L from Normal)
+
+Select modifier, then press key:
+
+Y = Cmd          Shift+Y = Cmd+Shift
+U = Ctrl         Shift+U = Ctrl+Shift
+I = Alt          Shift+I = Alt+Shift
+H = Cmd+Ctrl     Shift+H = Cmd+Ctrl+Shift
+J = Cmd+Alt      Shift+J = Cmd+Alt+Shift
+K = Ctrl+Alt     Shift+K = Ctrl+Alt+Shift
+O = Cmd+Ctrl+Alt Shift+O = All modifiers
+
+Then press any key to execute modifier+key
+Fn+key = modifier+mirrored LHS letter
+
+RCtrl = exit to Normal
+Ctrl+J = exit to Ins

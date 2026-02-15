@@ -34,6 +34,7 @@ Be extra wary of state that lives outside Karabiner variables:
 | Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
 | Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
 | Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
+| L-mode modifier | /tmp/karabiner-lmode-modifier | `rm -f` (always reset) |
 | Frontmost app | macOS | Can't clear programmatically |
 | Active project (iso/pin/pk) | /tmp/karabiner-project | Can't clear (no default) |
 
@@ -70,7 +71,8 @@ cleanup-external-state.sh \
   --warpd reset \
   --homerow reset \
   --scroll-timer reset \
-  --hover-mode reset
+  --hover-mode reset \
+  --lmode-modifier reset
 ```
 
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`).

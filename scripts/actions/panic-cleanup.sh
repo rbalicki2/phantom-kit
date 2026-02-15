@@ -25,6 +25,9 @@
 # Stop hover mode
 (/opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true) &
 
+# Clear L-mode modifier file
+(rm -f /tmp/karabiner-lmode-modifier 2>/dev/null || true) &
+
 # Release any held modifiers (ONLY safe in panic mode)
 (osascript -e 'tell application "System Events" to key up command' \
            -e 'tell application "System Events" to key up shift' \

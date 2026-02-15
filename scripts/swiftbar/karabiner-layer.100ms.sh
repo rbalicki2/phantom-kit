@@ -34,6 +34,8 @@ case "$LAYER" in
     lOCS) NAME="L-OCS" ;;
     lCTO) NAME="L-CTO" ;;
     lCTOS) NAME="L-CTOS" ;;
+    lentry) NAME="L-Ent" ;;
+    lactive) NAME="L-Act" ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;

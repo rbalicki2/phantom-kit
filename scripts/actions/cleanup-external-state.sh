@@ -1,24 +1,25 @@
 #!/bin/bash
 # cleanup-external-state.sh
 # Clears external state for Karabiner layer transitions.
-# All 4 flags are required, in this exact order, each with "reset" or "keep".
+# All 5 flags are required, in this exact order, each with "reset" or "keep".
 #
 # Usage:
 #   cleanup-external-state.sh \
 #     --warpd reset \
 #     --homerow reset \
 #     --scroll-timer reset \
-#     --hover-mode reset
+#     --hover-mode reset \
+#     --lmode-modifier reset
 #
 # NOTE: This script intentionally does NOT reset held modifiers.
 # See panic-cleanup.sh for why, and use that script for full resets.
 
 set -e
 
-# Validate exactly 8 arguments (4 flags + 4 values)
-if [ $# -ne 8 ]; then
-    echo "Error: Expected 8 arguments (4 flags + 4 values), got $#" >&2
-    echo "Usage: cleanup-external-state.sh --warpd <reset|keep> --homerow <reset|keep> --scroll-timer <reset|keep> --hover-mode <reset|keep>" >&2
+# Validate exactly 10 arguments (5 flags + 5 values)
+if [ $# -ne 10 ]; then
+    echo "Error: Expected 10 arguments (5 flags + 5 values), got $#" >&2
+    echo "Usage: cleanup-external-state.sh --warpd <reset|keep> --homerow <reset|keep> --scroll-timer <reset|keep> --hover-mode <reset|keep> --lmode-modifier <reset|keep>" >&2
     exit 1
 fi
 
@@ -43,11 +44,13 @@ validate_flag "--warpd" "$1" "$2"
 validate_flag "--homerow" "$3" "$4"
 validate_flag "--scroll-timer" "$5" "$6"
 validate_flag "--hover-mode" "$7" "$8"
+validate_flag "--lmode-modifier" "$9" "${10}"
 
 WARPD="$2"
 HOMEROW="$4"
 SCROLL_TIMER="$6"
 HOVER_MODE="$8"
+LMODE_MODIFIER="${10}"
 
 # Execute cleanups (all run in background for non-blocking behavior)
 if [ "$WARPD" = "reset" ]; then
@@ -64,4 +67,8 @@ fi
 
 if [ "$HOVER_MODE" = "reset" ]; then
     (/opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true) &
+fi
+
+if [ "$LMODE_MODIFIER" = "reset" ]; then
+    (rm -f /tmp/karabiner-lmode-modifier 2>/dev/null || true) &
 fi
