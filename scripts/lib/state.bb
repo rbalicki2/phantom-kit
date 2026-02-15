@@ -201,9 +201,9 @@
 
 (defn validate-condition
   "Validate a condition state map (partial state from rule conditions).
-   Checks that leaf conditions (submode, return-to) have required parent (layer).
+   Checks that leaf conditions (submode, return-to, app) have required parent (layer).
    Returns nil if valid, or an error map if invalid."
-  [{:keys [layer submode return-to] :as state}]
+  [{:keys [layer submode return-to app] :as state}]
   (cond
     ;; Submode condition requires layer 1
     (and submode (not layer))
@@ -222,6 +222,15 @@
     (and return-to layer (not (return-to-layers layer)))
     {:type :return-to-wrong-layer
      :message (format "dsk_return_to_layer condition requires layer 13 or 28, got %d" layer)}
+
+    ;; App condition requires app layer (0 or 10)
+    (and app (not layer))
+    {:type :app-without-layer
+     :message "App condition requires dsk_layer condition"}
+
+    (and app layer (not (app-layers layer)))
+    {:type :app-wrong-layer
+     :message (format "App condition only valid in layers 0 or 10, got %d" layer)}
 
     ;; Also validate the state itself
     :else (validate-state state)))
@@ -252,30 +261,51 @@
 
 (defn all-valid-states
   "Returns a sequence of all valid complete states in canonical order.
-   Each state is {:profile :device :layer :submode :return-to}.
+   Each state is {:profile :device :layer :submode :return-to :app}.
 
    Canonical ordering (root to leaf):
    1. None profile (placeholder, no real state)
    2. Default + Laptop (no layer variables apply)
-   3. Default + Desktop + each layer with valid submode/return-to
+   3. Default + Desktop + each layer with valid submode/return-to/app
 
    State rules:
-   - Layer 1 (Ins): submode must be 0-4, return-to=-1
-   - Layers 13/28 (mouse): submode=-1, return-to must be 0 or 1
-   - Other layers: submode=-1, return-to=-1"
+   - Layer 1 (Ins): submode must be 0-4, return-to=-1, app=nil
+   - Layers 13/28 (mouse): submode=-1, return-to must be 0 or 1, app=nil
+   - Layers 0/10 (app layers): submode=-1, return-to=-1, app can be Chrome/VSCode/iTerm or nil
+   - Other layers: submode=-1, return-to=-1, app=nil"
   []
   (concat
     ;; 1. None profile (placeholder)
-    [{:profile "None" :device nil :layer nil :submode nil :return-to nil}]
+    [{:profile "None" :device nil :layer nil :submode nil :return-to nil :app nil}]
 
     ;; 2. Default + Laptop
-    [{:profile "Default" :device :laptop :layer nil :submode nil :return-to nil}]
+    [{:profile "Default" :device :laptop :layer nil :submode nil :return-to nil :app nil}]
 
     ;; 3. Default + Desktop + each valid layer state
-    (for [layer (sort all-layers)
-          submode (sort (if (submode-layers layer) valid-submodes #{-1}))
-          return-to (sort (if (return-to-layers layer) valid-return-to #{-1}))]
-      {:profile "Default" :device :desktop :layer layer :submode submode :return-to return-to})))
+    (mapcat
+      (fn [layer]
+        (cond
+          ;; Layer 1: submodes
+          (submode-layers layer)
+          (for [submode (sort valid-submodes)]
+            {:profile "Default" :device :desktop :layer layer :submode submode :return-to -1 :app nil})
+
+          ;; Layer 13/28: return-to
+          (return-to-layers layer)
+          (for [return-to (sort valid-return-to)]
+            {:profile "Default" :device :desktop :layer layer :submode -1 :return-to return-to :app nil})
+
+          ;; Layers 0, 10: app-specific states
+          (app-layers layer)
+          (concat
+            (for [app (sort-by name all-apps)]
+              {:profile "Default" :device :desktop :layer layer :submode -1 :return-to -1 :app app})
+            [{:profile "Default" :device :desktop :layer layer :submode -1 :return-to -1 :app nil}])
+
+          ;; Other layers
+          :else
+          [{:profile "Default" :device :desktop :layer layer :submode -1 :return-to -1 :app nil}]))
+      (sort all-layers))))
 
 (defn all-valid-conditions
   "Returns a sequence of all valid partial states (conditions) in leaf-to-root order.

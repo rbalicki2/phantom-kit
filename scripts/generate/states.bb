@@ -11,32 +11,35 @@
 
 (defn format-state [s]
   "Format a state map as a readable string"
-  (let [{:keys [profile device layer submode return-to]} s]
-    (format "profile=%-7s device=%-7s layer=%-4s submode=%-4s return-to=%-4s"
+  (let [{:keys [profile device layer submode return-to app]} s]
+    (format "profile=%-7s device=%-7s layer=%-4s submode=%-4s return-to=%-4s app=%-7s"
             (or profile "nil")
             (if device (name device) "nil")
             (if layer (str layer) "nil")
             (if submode (str submode) "nil")
-            (if return-to (str return-to) "nil"))))
+            (if return-to (str return-to) "nil")
+            (if app (name app) "nil"))))
 
 (defn state-id [s]
   "Generate a unique ID for a state (for graphviz)"
-  (let [{:keys [profile device layer submode return-to]} s]
+  (let [{:keys [profile device layer submode return-to app]} s]
     (str (or profile "none") "_"
          (if device (name device) "nil") "_"
          (or layer "nil") "_"
          (or submode "nil") "_"
-         (or return-to "nil"))))
+         (or return-to "nil") "_"
+         (if app (name app) "nil"))))
 
 (defn state-label [s]
   "Generate a human-readable label for a state"
-  (let [{:keys [profile device layer submode return-to]} s]
+  (let [{:keys [profile device layer submode return-to app]} s]
     (cond
       (= profile "None") "None\\n(placeholder)"
       (= device :laptop) "Laptop"
-      (= layer 1) (str "Ins\\nsubmode=" submode)
-      (= layer 13) (str "Label\\nreturn-to=" return-to)
-      layer (str (get state/layer-names layer (str "Layer " layer)))
+      (and (= layer 1) submode) (str "Ins\\nsubmode=" submode)
+      (and (= layer 13) return-to) (str "Label\\nreturn-to=" return-to)
+      app (str (get state/layer-names layer (str "Layer " layer)) "\\n" (name app))
+      layer (get state/layer-names layer (str "Layer " layer))
       :else "?")))
 
 (defn generate-states-txt []
