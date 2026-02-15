@@ -40,6 +40,17 @@ echo '{:des "..." :rules [...]}' | bb scripts/edit/insert-rules.bb src/karabiner
 
 See `scripts/README.md` for full documentation.
 
+### Script Design Philosophy
+
+The current scripts are overly complicated. When creating or modifying scripts, follow these principles:
+
+1. **Model the underlying primitives** - Scripts should map cleanly to what the EDN file actually contains (rules, sections, conditions)
+2. **Keep interfaces simple** - One operation per script. Avoid multi-mode scripts with many flags
+3. **Trust auto-sorting** - Don't worry about rule order in edit scripts; sorting will handle it
+4. **Prefer whole-object operations** - e.g., "replace this entire rule" rather than "modify field X of rule Y"
+
+See `todos.md` for planned simplifications.
+
 ### NEVER Remove Shortcuts Without Permission
 
 If implementing a new feature requires removing/changing an existing shortcut, STOP and ask first.

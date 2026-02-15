@@ -35,7 +35,18 @@ case "$LAYER" in
     lCTO) NAME="L-CTO" ;;
     lCTOS) NAME="L-CTOS" ;;
     lentry) NAME="L-Ent" ;;
-    lactive) NAME="L-Act" ;;
+    lactive)
+        # Show modifier code when in L-Active
+        MOD=""
+        if [ -f "/tmp/karabiner-lmode-modifier" ]; then
+            MOD=$(tr -d '[:space:]' < /tmp/karabiner-lmode-modifier)
+        fi
+        if [ -n "$MOD" ]; then
+            NAME="L-$MOD"
+        else
+            NAME="L-Act"
+        fi
+        ;;
     tmux) NAME="Tmux" ;;
     chrome) NAME="Chrm" ;;
     vscode) NAME="VSC" ;;
