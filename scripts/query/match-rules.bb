@@ -114,18 +114,25 @@
     ;; Map form
     (map? from-clause)
     (let [key-val (or (:key from-clause) (:pkey from-clause))
+          ;; Parse shorthand in key-val if present (e.g., :##page_up)
+          parsed-key (if (keyword? key-val)
+                       (parse-shorthand-key key-val)
+                       {:key key-val :mandatory #{} :optional #{}})
           modi (:modi from-clause)
+          ;; Explicit modi in map takes precedence over shorthand
           mandatory (cond
                       (map? modi) (set (map normalize-modifier (:mandatory modi)))
                       (vector? modi) (set (map normalize-modifier modi))
-                      :else #{})
+                      :else (:mandatory parsed-key))
           optional (cond
                      (map? modi) (let [opt (:optional modi)]
                                    (if (= opt [:any])
                                      :any
                                      (set (map normalize-modifier opt))))
+                     ;; If no explicit :modi but shorthand had ##, use that
+                     (nil? modi) (:optional parsed-key)
                      :else #{})]
-      {:key key-val
+      {:key (:key parsed-key)
        :mandatory mandatory
        :optional optional})
 
@@ -182,6 +189,13 @@
                 (some #(= input-app %) bundle-ids)))
             app-keywords))))
 
+(defn single-variable-condition? [x]
+  "Check if x is a single variable condition like [\"dsk_layer\" 0]"
+  (and (vector? x)
+       (= 2 (count x))
+       (string? (first x))
+       (number? (second x))))
+
 (defn match-rule-condition [rule state]
   "Check if a rule's condition matches the state.
    Rule format: [from to condition] or [from to] or [from to condition options]"
@@ -198,18 +212,24 @@
         (nil? condition)
         true
 
-        ;; Variable condition like ["dsk_layer" 0]
+        ;; Single variable condition like ["dsk_layer" 0] - ERROR, should be wrapped
+        (single-variable-condition? condition)
+        (throw (ex-info (str "Invalid condition format - should be array of arrays: " (pr-str condition))
+                        {:condition condition :rule rule}))
+
+        ;; Array of variable conditions like [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]
+        ;; ALL must match (AND logic)
         (and (vector? condition)
-             (= 2 (count condition))
-             (string? (first condition)))
-        (match-variable-condition condition state)
+             (seq condition)
+             (every? single-variable-condition? condition))
+        (every? #(match-variable-condition % state) condition)
 
         ;; App keyword condition like :Chrome
         (keyword? condition)
         true  ;; App conditions are handled at block level
 
-        ;; Unknown condition type
-        :else true))))
+        ;; Unknown condition type - be conservative, don't match
+        :else false))))
 
 ;; ============================================================================
 ;; Key Matching

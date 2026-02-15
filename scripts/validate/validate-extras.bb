@@ -20,6 +20,9 @@
             [clojure.string :as str]
             [clojure.java.io :as io]))
 
+;; Load shared state library
+(load-file (str (System/getProperty "user.dir") "/scripts/lib/state.bb"))
+
 ;; ============================================================================
 ;; Layer Code Mapping
 ;; ============================================================================
@@ -473,6 +476,32 @@
      :message (format "Rule ID state doesn't match conditions: %s" (str/join ", " mismatches))
      :rule rule-id}))
 
+(defn check-id-state-validity [config]
+  "Check that each rule's ID state string represents a valid state.
+   Uses the state library to validate (redundant with condition checks, but defense in depth)."
+  (for [block (:main config)
+        :let [des (:des block)
+              rules-vec (:rules block)
+              actual-rules (when (sequential? rules-vec)
+                            (->> rules-vec
+                                 (drop-while #(or (keyword? %)
+                                                  (and (vector? %) (not (map? (first %))))))
+                                 (filter vector?)))]
+        rule actual-rules
+        :let [from (first rule)
+              rule-id (when (map? from) (:id from))]
+        :when rule-id
+        :let [;; Parse state from ID string using state library
+              parsed (state/parse-state-string rule-id)
+              ;; Validate if we got any state variables
+              error (when (and parsed (or (:layer parsed) (:submode parsed) (:return-to parsed)))
+                      (state/validate-condition parsed))]
+        :when error]
+    {:type :invalid-id-state
+     :description des
+     :message (format "Rule ID contains invalid state: %s" (:message error))
+     :rule rule-id}))
+
 ;; ============================================================================
 ;; Left-Hand Side Key Usage Detection
 ;; ============================================================================
@@ -543,7 +572,9 @@
 (def allowed-lhs-blocks
   "Patterns matching blocks where LHS keys ARE allowed (blocking/disabling blocks)"
   [#"\[Global\] Block all unmapped keys"
-   #"\[Desktop\] Disable backspace and delete keys"])
+   #"\[Desktop\] Disable backspace and delete keys"
+   #"^Desktop \[\]$"  ;; State-based catch-all block (new naming convention)
+   ])
 
 (defn is-allowed-lhs-block? [description]
   "Check if this is a block where LHS keys are allowed (blocking/disabling)"
@@ -575,6 +606,8 @@
 
 ;; ============================================================================
 ;; Main Validation
+;; NOTE: Condition completeness (layer required for submode/return-to) is now
+;; handled by validate-rules.bb using the shared state library.
 ;; ============================================================================
 
 (defn validate-extras [config layers-dir]
@@ -629,6 +662,10 @@
         id-state-issues
         (check-id-matches-conditions config)
 
+        ;; Check ID state strings are valid states (defense in depth)
+        id-validity-issues
+        (check-id-state-validity config)
+
         ;; Check LHS keys only appear once each (blocking rules)
         lhs-key-issues
         (check-lhs-key-usage config)]
@@ -645,6 +682,7 @@
             app-issues
             left-mod-issues
             id-state-issues
+            id-validity-issues
             lhs-key-issues)))
 
 ;; ============================================================================

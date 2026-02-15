@@ -58,7 +58,9 @@
       "Bash(open:*)",
       "Bash(for:*)",
       "Bash(do)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(du:*)",
+      "Bash(GK_OPTIONAL_EDN=karabiner-test.edn /opt/homebrew/bin/goku:*)"
     ]
   }
 }

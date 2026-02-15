@@ -6,10 +6,6 @@
 ;; - Redundant rules (always shadowed by earlier rules)
 ;; - Invariant violations (rules that assume impossible state combinations)
 ;;
-;; Invariants (from mental_model.md):
-;; 1. dsk_ins_sub_mode = -1 when dsk_layer != 1
-;; 2. dsk_return_to_layer = -1 when dsk_layer != 13 (Label mode)
-;;
 ;; Usage:
 ;;   bb validate-rules.bb <edn-file>
 
@@ -18,50 +14,13 @@
             [clojure.string :as str]
             [clojure.set :as set]))
 
-;; ============================================================================
-;; State Invariants
-;; ============================================================================
+;; Load shared state library
+(load-file (str (System/getProperty "user.dir") "/scripts/lib/state.bb"))
 
-(def layer-names
-  {0 "Normal"
-   1 "Ins"
-   2 "Nav"
-   3 "Chrome"
-   4 "VSCode"
-   5 "TMUX"
-   6 "Comma"
-   7 "L (base)"
-   8 "Term"
-   9 "Admin"
-   10 "InApp"
-   11 "AppSwitcher"
-   12 "WindowSwitcher"
-   13 "Label (Mouse)"
-   28 "Grid"})
-
-
-(defn valid-submode-for-layer? [layer submode]
-  "Check if submode value is valid for the given layer.
-   Submodes only apply in Ins mode (layer 1).
-   -1 = N/A (for non-Ins modes)
-   0-4 = various submodes in Ins mode"
-  (if (= layer 1)
-    ;; In Ins mode, submode should be 0-4
-    (and (>= submode 0) (<= submode 4))
-    ;; Outside Ins mode, submode should be -1
-    (= submode -1)))
-
-(defn valid-return-to-for-layer? [layer return-to]
-  "Check if return_to_layer value is valid for the given layer.
-   Only meaningful in Label mode (layer 13).
-   -1 = N/A (for non-Label modes)
-   0 = return to Normal
-   1 = return to Ins"
-  (if (= layer 13)
-    ;; In Label mode, return-to should be 0 or 1
-    (or (= return-to 0) (= return-to 1))
-    ;; Outside Label mode, return-to should be -1
-    (= return-to -1)))
+;; Import from state library
+(def layer-names state/layer-names)
+(def valid-submode-for-layer? state/valid-submode-for-layer?)
+(def valid-return-to-for-layer? state/valid-return-to-for-layer?)
 
 ;; ============================================================================
 ;; Condition Analysis
@@ -164,6 +123,35 @@
            :message (format "Layer %d (%s) should have dsk_return_to_layer=-1, but condition has %d"
                            layer (get layer-names layer "unknown") return-to)
            :rule (:rule rule-info)})))))
+
+(defn check-condition-completeness [rule-info]
+  "Check if rule condition is a complete state.
+   Complete = device (block level) + layer + leaf (if present).
+   Uses the state library's validate-condition function."
+  (let [rule (:rule rule-info)
+        condition (when (>= (count rule) 3) (nth rule 2))
+        block-device (:block-device rule-info)]
+    (when condition
+      ;; Parse the full condition array using state library
+      (let [parsed (state/parse-condition-array condition)]
+        (when (seq parsed)
+          (cond
+            ;; Check device at block level - leaf conditions need device context
+            (and (or (:submode parsed) (:return-to parsed) (:layer parsed))
+                 (= block-device :any))
+            {:type :missing-device-condition
+             :description (:description rule-info)
+             :message "Rule has variable conditions but block has no device condition (:!apple_internal or :apple_internal)"
+             :rule rule}
+
+            ;; Check condition validity (layer required for leaf conditions)
+            :else
+            (let [error (state/validate-condition parsed)]
+              (when error
+                {:type (:type error)
+                 :description (:description rule-info)
+                 :message (:message error)
+                 :rule rule}))))))))
 
 ;; ============================================================================
 ;; Shadowing Detection
@@ -436,7 +424,8 @@
         invariant-issues
         (for [rule-info all-rules
               issue [(check-submode-invariant rule-info)
-                     (check-return-to-invariant rule-info)]
+                     (check-return-to-invariant rule-info)
+                     (check-condition-completeness rule-info)]
               :when issue]
           issue)
 

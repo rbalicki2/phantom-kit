@@ -93,3 +93,45 @@ bb match-rules.bb ../src/karabiner.edn f6 --layer 1 --mod left_option
 3. Check rule ordering in karabiner.edn
 4. Verify conditions are correctly formatted (array wrapping)
 5. Test with `npm run sync` after each change
+
+## State Space Dimensions
+
+The state space has multiple dimensions that must ALL be considered:
+
+| Dimension | Values | Where Specified |
+|-----------|--------|-----------------|
+| Profile | None, Default | Block keyword (`:None`) or implicit |
+| Device | laptop, desktop | Block keyword (`:apple_internal`, `:!apple_internal`) |
+| Layer | 0-30 | Rule condition `["dsk_layer" N]` |
+| Submode | 0-4 (layer 1 only) | Rule condition `["dsk_ins_sub_mode" N]` |
+| Return-to | 0,1 (layer 13 only) | Rule condition `["dsk_return_to_layer" N]` |
+| App | Chrome, VSCode, iTerm | Block keyword (`:Chrome`, etc.) |
+
+**Critical**: The `scripts/lib/state.bb` library is the canonical source for all state definitions.
+
+### Lesson Learned: Missing App Dimension
+
+In Feb 2025, we learned that **app conditions are a dimension of the state space** that wasn't fully modeled. The reorder-by-state.bb script initially didn't handle apps, causing app-specific rules (like `h` in VSCode) to be merged into the wrong catch-all group.
+
+**The fix**:
+1. Added `all-apps` and `app-layers` to state.bb
+2. Updated `all-condition-states-for-grouping` to include app-specific states
+3. Updated reorder script to extract and match app conditions from blocks
+
+**Takeaway**: When adding new rule types, ensure all condition dimensions are:
+1. Defined in state.bb
+2. Included in state enumeration functions
+3. Handled by the reorder script
+4. Validated by validation scripts
+
+### Lesson Learned: Ordering Patterns Conflict
+
+The config uses TWO different ordering patterns that conflict:
+
+1. **Root-to-leaf** (general first): Global rules like `page_up → button2` should apply everywhere UNLESS explicitly overridden. These must come FIRST.
+
+2. **Leaf-to-root** (specific first): App-specific rules like `h in VSCode → VSCode mode` should override the layer catch-all `h → Chrome mode`. These specific rules must come FIRST within their layer.
+
+A naive "always leaf-to-root" reordering breaks pattern #1. Rules using `##key` (any modifiers) in specific layers shadow global rules when reordered.
+
+**Current approach**: Don't auto-reorder. Manually maintain block order. The reorder-by-state.bb script is disabled until we find a smarter approach that respects both patterns.

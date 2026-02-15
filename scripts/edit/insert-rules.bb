@@ -1,25 +1,33 @@
 #!/usr/bin/env bb
 
-;; Insert EDN blocks into karabiner.edn at the right location
+;; Insert EDN blocks into karabiner.edn
 ;;
 ;; Usage:
 ;;   bb insert-rules.bb <edn-file> <output-file> <rules-file-or-stdin>
 ;;
-;; The rules will be inserted BEFORE the "[Global] Block all unmapped keys" block.
+;; The rules will be appended and then automatically reordered by state.
 ;;
 ;; Examples:
-;;   bb gen-oneshot-clear-rules.bb | bb insert-rules.bb src/karabiner.edn /tmp/new.edn -
-;;   bb insert-rules.bb src/karabiner.edn /tmp/new.edn rules.edn
+;;   echo '{:des "temp" :rules [...]}' | bb insert-rules.bb src/karabiner.edn src/karabiner.edn -
+;;   bb insert-rules.bb src/karabiner.edn src/karabiner.edn rules.edn
 
-(require '[clojure.string :as str])
+(require '[clojure.edn :as edn]
+         '[clojure.string :as str])
 
-(defn find-insert-point [lines]
-  "Find the line number to insert before (the Global Block line)"
-  (first (keep-indexed
-          (fn [idx line]
-            (when (str/includes? line "[Global] Block all unmapped keys")
-              idx))
-          lines)))
+(defn parse-rules-input [content]
+  "Parse input content - can be a single block or multiple blocks"
+  (let [trimmed (str/trim content)]
+    (if (str/starts-with? trimmed "{")
+      ;; Single block
+      [(edn/read-string trimmed)]
+      ;; Multiple blocks or raw EDN content - try to parse
+      (let [parsed (edn/read-string (str "[" trimmed "]"))]
+        (if (every? map? parsed)
+          parsed
+          ;; Might be a vector of blocks already
+          (if (and (= 1 (count parsed)) (vector? (first parsed)))
+            (first parsed)
+            parsed))))))
 
 (defn -main [& args]
   (let [[input-file output-file rules-source] args]
@@ -28,29 +36,40 @@
       (println "  Use '-' for rules-source to read from stdin")
       (System/exit 1))
 
-    (let [input-lines (str/split-lines (slurp input-file))
-          rules-content (if (= "-" rules-source)
-                         (slurp *in*)
-                         (slurp rules-source))
-          ;; Filter out comment lines from rules (Goku doesn't support ;;)
-          rules-lines (->> (str/split-lines rules-content)
-                          (remove #(str/starts-with? (str/trim %) ";;"))
-                          (str/join "\n"))
-          insert-idx (find-insert-point input-lines)]
+    (let [;; Read existing config
+          config (edn/read-string (slurp input-file))
 
-      (if (nil? insert-idx)
-        (do
-          (println "Error: Could not find '[Global] Block all unmapped keys' block")
-          (System/exit 1))
-        (let [before-lines (take insert-idx input-lines)
-              after-lines (drop insert-idx input-lines)
-              new-content (str (str/join "\n" before-lines)
-                              "\n"
-                              rules-lines
-                              "\n"
-                              (str/join "\n" after-lines))]
-          (spit output-file new-content)
-          (println (str "Inserted rules before line " (inc insert-idx)))
-          (println (str "Output written to " output-file)))))))
+          ;; Read new rules
+          rules-content (if (= "-" rules-source)
+                          (slurp *in*)
+                          (slurp rules-source))
+          ;; Filter out comment lines
+          filtered-content (->> (str/split-lines rules-content)
+                               (remove #(str/starts-with? (str/trim %) ";;"))
+                               (str/join "\n"))
+
+          new-blocks (parse-rules-input filtered-content)
+
+          ;; Append to main
+          updated-main (vec (concat (:main config) new-blocks))
+          updated-config (assoc config :main updated-main)]
+
+      ;; Write the updated config
+      (spit output-file (pr-str updated-config))
+      (println (str "Appended " (count new-blocks) " block(s) to " output-file))
+
+      ;; Now run the reorder script to put everything in the right place
+      (println "Running reorder-by-state.bb...")
+      (let [result (clojure.java.shell/sh
+                     "bb"
+                     (str (System/getProperty "user.dir") "/scripts/edit/reorder-by-state.bb")
+                     output-file
+                     output-file)]
+        (print (:out result))
+        (when (not= 0 (:exit result))
+          (print (:err result))
+          (System/exit 1)))
+
+      (println "Done!"))))
 
 (apply -main *command-line-args*)
