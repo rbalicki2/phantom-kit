@@ -28,7 +28,7 @@ Be extra wary of state that lives outside Karabiner variables:
 
 | External State | Where | Cleanup |
 |----------------|-------|---------|
-| Held modifier keys | macOS | `osascript 'key up command/shift/option/control'` |
+| Held modifier keys | macOS | `panic-cleanup.sh` only (see below) |
 | Physically depressed keys | Keyboard/macOS | Can't clear programmatically |
 | warpd process | System process | `pkill warpd` |
 | Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
@@ -64,17 +64,18 @@ These invariants are **automatically enforced** by `validate-rules.bb` on every 
 
 Every state transition in karabiner.edn MUST explicitly set ALL variables to their correct values, even if we expect them to already be correct. Always set them in the same order every time. No implicit state. This prioritizes correctness and future refactors over brevity.
 
-Additionally, all state transitions should clear ALL external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `reset` or `keep`. Flags must always appear in this exact order:
+Additionally, all state transitions should clear external state via `cleanup-external-state.sh`. The script takes an explicit flag for every piece of clearable external state, either `reset` or `keep`. Flags must always appear in this exact order:
 ```
 cleanup-external-state.sh \
   --warpd reset \
   --homerow reset \
   --scroll-timer reset \
-  --hover-mode reset \
-  --held-modifiers reset
+  --hover-mode reset
 ```
 
-**Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`). App/window switcher relies on Cmd being held (`--held-modifiers keep`).
+**Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`).
+
+**Why no held-modifiers flag?** The osascript `key up <modifier>` command clears BOTH synthetic modifier state AND interferes with Karabiner-emitted keystrokes. When run in the background during a transition, it can cancel Ctrl+key outputs that Karabiner is actively emitting (race condition). Karabiner EventViewer shows what Karabiner emits, but the system receives the `key up` canceling the keystroke. Only `panic-cleanup.sh` resets held modifiers, since panic mode does a full reset anyway.
 
 Example: Entering Normal should set `dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
@@ -89,8 +90,8 @@ Karabiner uses the first matching rule, so rules must be ordered **leaf to root*
 **Key principle**: A rule with condition X should never appear before a rule with condition X AND Y. The more specific rule (X AND Y) must come first, or it will be shadowed.
 
 **Example**: The `right_control` exit rules follow this pattern:
-- Layer 13/28 (mouse modes) have their own exit rules in their sections (need `--held-modifiers reset`)
-- Global fallback at the end catches all other layers (uses `--held-modifiers keep`)
+- Layer 13/28 (mouse modes) have their own exit rules in their sections
+- Global fallback at the end catches all other layers
 
 ### Key Blocking Strategy
 
