@@ -6,9 +6,10 @@ Track ongoing tasks and side quests. When starting a side quest, push to top. Wh
 
 ### 0. [Bug] Comma mode quick-entry + comma doesn't emit Ctrl+C to app
 **Status**: FIXED
-- Root cause: R0039 (Normal → Comma mode) used `--held-modifiers reset`, which ran `key up control` in background
-- When pressing comma twice quickly, background osascript from R0039 would release control AFTER R0279 emitted Ctrl+C
-- Fix: Changed R0039 to use `--held-modifiers keep` (Normal mode doesn't hold synthetic modifiers)
+- Root cause: osascript `key up <modifier>` interferes with Karabiner-emitted keystrokes
+- Fix: Removed `--held-modifiers` from cleanup-external-state.sh entirely
+- Created panic-cleanup.sh (the only safe place to reset modifiers)
+- Updated all 730 rules to remove --held-modifiers argument
 
 ### 0a. [Bug] Fn+Space then Fn+letter outputs lowercase instead of Shift+letter
 **Status**: FIXED
@@ -33,8 +34,8 @@ Track ongoing tasks and side quests. When starting a side quest, push to top. Wh
 - More useful than current hierarchical listing
 
 ### 0d. [Enhancement] Pretty-print karabiner.edn on modify
-**Status**: Pending
-- Always pretty-print when modifying the EDN file
+**Status**: DONE
+- Added normalize-edn.bb to sync command in package.json
 
 ### 1. [Side Quest] Make insert-rules.bb modify in place
 **Status**: Pending
