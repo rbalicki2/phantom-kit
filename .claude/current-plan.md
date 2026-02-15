@@ -5,9 +5,10 @@ Track ongoing tasks and side quests. When starting a side quest, push to top. Wh
 ## Active Stack (most recent first)
 
 ### 0. [Bug] Comma mode quick-entry + comma doesn't emit Ctrl+C to app
-**Status**: Pending
-- Karabiner EventViewer sees the Ctrl+C but frontmost app doesn't receive it
-- Happens when entering comma mode fast and hitting comma again
+**Status**: FIXED
+- Root cause: R0039 (Normal → Comma mode) used `--held-modifiers reset`, which ran `key up control` in background
+- When pressing comma twice quickly, background osascript from R0039 would release control AFTER R0279 emitted Ctrl+C
+- Fix: Changed R0039 to use `--held-modifiers keep` (Normal mode doesn't hold synthetic modifiers)
 
 ### 0a. [Bug] Fn+Space then Fn+letter outputs lowercase instead of Shift+letter
 **Status**: FIXED

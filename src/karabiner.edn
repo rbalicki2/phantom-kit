@@ -285,7 +285,7 @@
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
-       "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers reset && echo comma > /tmp/karabiner-layer"}]
+       "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --held-modifiers keep && echo comma > /tmp/karabiner-layer"}]
      [["dsk_layer" 0]]]
     [{:key :l,
       :id "R0040 [profile=Default:device=Desktop:dsk_layer=0] l → L"}
