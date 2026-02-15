@@ -22,7 +22,23 @@ When in doubt, ASK before changing.
 
 ### NEVER MANUALLY EDIT karabiner.edn
 
-All modifications should be done via scripts in `scripts/`. See `scripts/README-validators.md` for available tools.
+All modifications should be done via scripts in `scripts/`. See `scripts/README.md` for available tools.
+
+### NEVER READ karabiner.edn DIRECTLY
+
+Use scripts to query the config:
+```bash
+# List rules in a layer
+bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=9" --format summary
+
+# Find what matches a key press
+bb scripts/query/match-rules.bb src/karabiner.edn j --layer 0
+
+# Insert new rules
+echo '{:des "..." :rules [...]}' | bb scripts/edit/insert-rules.bb src/karabiner.edn src/karabiner.edn -
+```
+
+See `scripts/README.md` for full documentation.
 
 ### NEVER Remove Shortcuts Without Permission
 
@@ -77,7 +93,7 @@ Before committing karabiner.edn changes:
 - [ ] Shift matching uses explicit form to match EITHER shift
 
 When adding a new layer:
-- [ ] Add case to `scripts/karabiner-layer.100ms.sh`
+- [ ] Add case to `scripts/swiftbar/karabiner-layer.100ms.sh`
 - [ ] Create `src/layers/*.txt` file for Hammerspoon overlay
 - [ ] Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
@@ -95,9 +111,9 @@ After any keybinding changes:
 - `src/layers/*.txt` - Hammerspoon overlay content
 - `src/kinesis-layout1.txt` - Kinesis firmware layout
 
-**Scripts (`scripts/`)**:
-- `scripts/cleanup-external-state.sh` - Layer transition cleanup
-- `scripts/karabiner-layer.100ms.sh` - SwiftBar plugin
+**Scripts (`scripts/`)**: See `scripts/README.md` for full documentation.
+- `scripts/actions/` - Shell scripts called during rules
+- `scripts/swiftbar/` - SwiftBar menu bar plugins
 
 **Documentation (`.claude/`)**:
 - `CLAUDE.md` - This file (operational guide)

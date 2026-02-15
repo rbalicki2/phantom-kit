@@ -41,7 +41,17 @@
       "Bash(find:*)",
       "Bash(shuf)",
       "Bash(GOKU_EDN_CONFIG_FILE=/tmp/renamed.edn goku:*)",
-      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/described.edn goku:*)"
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/described.edn goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/fixed-ordering.edn goku:*)",
+      "Bash(wc:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/test-modifiers.edn goku:*)",
+      "Bash(GOKU_EDN_CONFIG_FILE=/tmp/test-cross-block.edn goku:*)",
+      "Bash(osascript:*)",
+      "Bash(mdls:*)",
+      "Bash(defaults read:*)",
+      "Bash(plutil:*)",
+      "Bash(/opt/homebrew/bin/hs -c 'print\\(hs.application.get\\(\"\"iTerm2\"\"\\) or hs.application.get\\(\"\"iTerm\"\"\\)\\); print\\(hs.application.get\\(\"\"org.pqrs.Karabiner-EventViewer\"\"\\)\\)')",
+      "Bash(/opt/homebrew/bin/hs:*)"
     ]
   }
 }

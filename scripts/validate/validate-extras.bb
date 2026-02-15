@@ -475,6 +475,106 @@
      :rule rule-id}))
 
 ;; ============================================================================
+;; Left-Hand Side Key Usage Detection
+;; ============================================================================
+
+(def lhs-physical-keys
+  "Physical keys on the left-hand side of Kinesis Advantage 360.
+   These should ONLY appear in blocking rules (one rule each) since this is a RHS-only setup.
+   Note: backslash is on RHS on Kinesis 360 (not LHS like standard keyboards)."
+  #{;; Top row
+    :equal_sign :1 :2 :3 :4 :5
+    ;; Second row
+    :tab :q :w :e :r :t
+    ;; Third row (home row)
+    :caps_lock :a :s :d :f :g
+    ;; Fourth row
+    :left_shift :z :x :c :v :b
+    ;; Bottom row / thumb cluster
+    :grave_accent_and_tilde
+    :left_command :left_option
+    :delete_or_backspace :delete_forward
+    :home :end
+    ;; Escape is typically LHS
+    :escape})
+
+(defn extract-base-key [from-clause]
+  "Extract the base key from a from clause, stripping ## and modifier prefixes"
+  (let [key-val (cond
+                  (keyword? from-clause) from-clause
+                  (map? from-clause) (:key from-clause)
+                  :else nil)]
+    (when (keyword? key-val)
+      (let [key-name (name key-val)
+            ;; Strip ## prefix
+            stripped (if (str/starts-with? key-name "##")
+                       (subs key-name 2)
+                       key-name)
+            ;; Strip ! modifier prefix (e.g., !CSj -> j)
+            base (if (str/starts-with? stripped "!")
+                   (let [after-bang (subs stripped 1)]
+                     ;; Find where modifiers end (uppercase) and key begins
+                     (apply str (drop-while #(Character/isUpperCase %) after-bang)))
+                   stripped)]
+        (when (not (str/blank? base))
+          (keyword base))))))
+
+(defn is-desktop-rule? [block]
+  "Check if a block targets Desktop profile (external keyboard)"
+  (let [rules-vec (:rules block)]
+    (when (vector? rules-vec)
+      (or (some #(= % :Desktop) rules-vec)
+          (some #(= % :!apple_internal) rules-vec)))))
+
+(defn extract-desktop-rules [config]
+  "Extract all rules from Desktop profile blocks with metadata"
+  (for [block (:main config)
+        :when (is-desktop-rule? block)
+        :let [des (:des block)
+              rules-vec (:rules block)
+              actual-rules (when (vector? rules-vec)
+                           (->> rules-vec
+                                (drop-while keyword?)
+                                (filter vector?)))]
+        rule actual-rules]
+    {:description des
+     :rule rule
+     :from (first rule)}))
+
+(def allowed-lhs-blocks
+  "Patterns matching blocks where LHS keys ARE allowed (blocking/disabling blocks)"
+  [#"\[Global\] Block all unmapped keys"
+   #"\[Desktop\] Disable backspace and delete keys"])
+
+(defn is-allowed-lhs-block? [description]
+  "Check if this is a block where LHS keys are allowed (blocking/disabling)"
+  (and description
+       (some #(re-find % description) allowed-lhs-blocks)))
+
+(defn check-lhs-key-usage [config]
+  "Check that LHS physical keys in Desktop profile only appear in allowed blocking blocks.
+   This is a RHS-only setup for external keyboard - LHS keys should be blocked, not bound."
+  (let [desktop-rules (extract-desktop-rules config)
+        ;; Find LHS key usages outside allowed blocks
+        violations (for [rule-info desktop-rules
+                        :let [base-key (extract-base-key (:from rule-info))
+                              description (:description rule-info)]
+                        :when (and (contains? lhs-physical-keys base-key)
+                                   (not (is-allowed-lhs-block? description)))]
+                    {:key base-key :rule-info rule-info})
+        ;; Group by key for reporting
+        by-key (group-by :key violations)]
+    ;; Report each LHS key that appears outside global block
+    (for [[key-name key-violations] by-key]
+      {:type :lhs-key-outside-global-block
+       :description "Left-hand side keys"
+       :message (format "LHS key '%s' appears in %d Desktop rules outside global block (should ONLY be in '[Global] Block all unmapped keys'). Blocks: %s"
+                       (name key-name)
+                       (count key-violations)
+                       (str/join ", " (distinct (map #(str "'" (get-in % [:rule-info :description]) "'") key-violations))))
+       :rule nil})))
+
+;; ============================================================================
 ;; Main Validation
 ;; ============================================================================
 
@@ -528,7 +628,11 @@
 
         ;; Check ID state strings match actual conditions
         id-state-issues
-        (check-id-matches-conditions config)]
+        (check-id-matches-conditions config)
+
+        ;; Check LHS keys only appear once each (blocking rules)
+        lhs-key-issues
+        (check-lhs-key-usage config)]
 
     (concat bare-from-issues
             bare-to-issues
@@ -541,7 +645,8 @@
             overlay-issues
             app-issues
             left-mod-issues
-            id-state-issues)))
+            id-state-issues
+            lhs-key-issues)))
 
 ;; ============================================================================
 ;; CLI Interface

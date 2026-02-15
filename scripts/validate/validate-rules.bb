@@ -321,61 +321,80 @@
       (= apps2 :any)
       (and (set? apps1) (set? apps2) (seq (set/intersection apps1 apps2)))))
 
-(defn is-oneshot-submode-condition? [condition]
-  "Check if condition is for oneshot submode (1 or 2)"
-  (when (and (vector? condition)
-             (= 2 (count condition))
-             (string? (first condition)))
-    (let [[var-name value] condition]
-      (and (= var-name "dsk_ins_sub_mode")
-           (or (= value 1) (= value 2))))))
+;; NOTE: Modifier ordering validation for {:optional [:caps_lock]} vs {:mandatory [:shift]}
+;; was removed after empirical testing showed no shadowing occurs between them.
+;; See .claude/karabiner-modifiers.md for test results.
+;;
+;; However, ##key (optional: any) DOES shadow everything - it's a true catch-all.
+;; We validate that catch-all rules come AFTER specific rules for the same key.
 
-(defn find-modifier-ordering-issue [rule-info earlier-rules]
-  "Check if a more specific rule (with mandatory modifiers) comes after a less
-   specific rule (no mandatory modifiers) for the same key and state.
+(defn is-catch-all-modifier? [modi]
+  "Check if modifiers are catch-all (optional: any or no restrictions).
+   ##key syntax translates to {:optional [:any]}"
+  (and modi
+       (:optional modi)
+       (some #{:any} (:optional modi))))
 
-   Currently only checks oneshot submode rules (1 and 2) where we know this
-   pattern caused issues. Other layers intentionally use bare+modified pairs.
+(defn key-has-hash-prefix? [key-code]
+  "Check if a key has ## prefix (Goku catch-all syntax)"
+  (when (keyword? key-code)
+    (str/starts-with? (name key-code) "##")))
 
-   This catches issues like:
-   - Bare L rule (optional: caps_lock) at position 98
-   - Shift+L rule (mandatory: shift) at position 1286
+(defn strip-hash-prefix [key-code]
+  "Strip ## prefix from key if present. Returns base key as keyword."
+  (if (key-has-hash-prefix? key-code)
+    (keyword (subs (name key-code) 2))
+    key-code))
 
-   Where the less specific bare L rule would match Shift+L first."
+(defn is-catch-all-from? [from-clause]
+  "Check if a from clause is a catch-all (matches any modifiers).
+   This includes:
+   - ##key syntax (keyword starting with ##)
+   - {:modi {:optional [:any]}} explicit form"
+  (cond
+    (keyword? from-clause)
+    (key-has-hash-prefix? from-clause)
+
+    (map? from-clause)
+    (or (key-has-hash-prefix? (:key from-clause))
+        (is-catch-all-modifier? (:modi from-clause)))
+
+    :else false))
+
+(defn get-base-key [from-clause]
+  "Get the base key from a from clause, stripping ## prefix if present."
+  (let [key-code (extract-key-from-from from-clause)]
+    (strip-hash-prefix key-code)))
+
+(defn find-catch-all-shadowing [rule-info earlier-rules]
+  "Check if this rule is shadowed by an earlier catch-all rule for the same key.
+   A ##key rule matches ALL modifier combinations, so any specific modifier
+   rule for the same key coming after it will never fire."
   (let [from (:from rule-info)
-        key-code (extract-key-from-from from)
-        modi (extract-modifiers-from-from from)
-        specificity (modifier-specificity modi)
+        base-key (get-base-key from)
         condition (:condition rule-info)
         device (:block-device rule-info)
         apps (:block-apps rule-info)]
-    ;; Only check rules in oneshot submodes where we know this pattern is problematic
-    (when (and (= specificity 2)
-               (is-oneshot-submode-condition? condition))
+    ;; Only check rules that are NOT themselves catch-alls
+    (when (and base-key (not (is-catch-all-from? from)))
       (some (fn [earlier]
               (let [earlier-from (:from earlier)
-                    earlier-key (extract-key-from-from earlier-from)
-                    earlier-modi (extract-modifiers-from-from earlier-from)
-                    earlier-specificity (modifier-specificity earlier-modi)
-                    earlier-device (:block-device earlier)
-                    earlier-apps (:block-apps earlier)]
-                ;; Found an issue if:
-                ;; 1. Same key
-                ;; 2. Same variable condition (same oneshot submode)
-                ;; 3. Earlier rule has lower specificity (0 or 1 vs 2)
-                ;; 4. Devices can conflict
-                ;; 5. Apps can conflict
-                (when (and (= key-code earlier-key)
-                           (< earlier-specificity specificity)
-                           (= condition (:condition earlier))
-                           (devices-can-conflict? device earlier-device)
-                           (apps-can-conflict? apps earlier-apps))
-                  {:type :modifier-ordering-issue
+                    earlier-base-key (get-base-key earlier-from)]
+                ;; Found shadowing if:
+                ;; 1. Earlier rule IS a catch-all
+                ;; 2. Same base key
+                ;; 3. Conditions can conflict
+                (when (and (is-catch-all-from? earlier-from)
+                           (= base-key earlier-base-key)
+                           (condition-implies? condition (:condition earlier))
+                           (devices-can-conflict? device (:block-device earlier))
+                           (apps-can-conflict? apps (:block-apps earlier)))
+                  {:type :catch-all-shadowing
                    :description (:description rule-info)
-                   :message (format "Rule with mandatory modifiers comes AFTER less specific rule for key '%s' in oneshot submode. The earlier rule may shadow this one."
-                                   (name key-code))
+                   :message (format "Rule is shadowed by earlier catch-all (##%s) in '%s'. Move the catch-all AFTER this rule."
+                                   (name base-key) (:description earlier))
                    :rule (:rule rule-info)
-                   :earlier-rule (:rule earlier)
+                   :shadowed-by (:rule earlier)
                    :earlier-block (:description earlier)})))
             earlier-rules))))
 
@@ -473,20 +492,20 @@
                      (conj seen current)
                      (if shadowed (conj issues shadowed) issues)))))
 
-        ;; Check for modifier ordering issues
-        modifier-ordering-issues
+        ;; Check for catch-all shadowing (##key rules must come AFTER specific rules)
+        catch-all-issues
         (loop [remaining all-rules
                seen []
                issues []]
           (if (empty? remaining)
             issues
             (let [current (first remaining)
-                  ordering-issue (find-modifier-ordering-issue current seen)]
+                  shadowed (find-catch-all-shadowing current seen)]
               (recur (rest remaining)
                      (conj seen current)
-                     (if ordering-issue (conj issues ordering-issue) issues)))))]
+                     (if shadowed (conj issues shadowed) issues)))))]
 
-    (concat invariant-issues action-issues shadowing-issues modifier-ordering-issues)))
+    (concat invariant-issues action-issues shadowing-issues catch-all-issues)))
 
 ;; ============================================================================
 ;; CLI Interface
