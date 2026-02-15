@@ -51,7 +51,11 @@
       "Bash(defaults read:*)",
       "Bash(plutil:*)",
       "Bash(/opt/homebrew/bin/hs -c 'print\\(hs.application.get\\(\"\"iTerm2\"\"\\) or hs.application.get\\(\"\"iTerm\"\"\\)\\); print\\(hs.application.get\\(\"\"org.pqrs.Karabiner-EventViewer\"\"\\)\\)')",
-      "Bash(/opt/homebrew/bin/hs:*)"
+      "Bash(/opt/homebrew/bin/hs:*)",
+      "Bash(pgrep:*)",
+      "Bash(/Users/rbalicki/code/voicemode/scripts/swiftbar/karabiner-layer.100ms.sh:*)",
+      "Bash(pkill:*)",
+      "Bash(open:*)"
     ]
   }
 }
