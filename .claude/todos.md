@@ -5,6 +5,14 @@
 ### Tilde input broken in insert mode
 Fn+Space then Fn+↓ should type tilde (~) but doesn't work in insert mode.
 
+## Features
+
+### Tampermonkey integration
+Add shortcuts for Tampermonkey functionality.
+
+### Archive tabs in Chrome
+Add shortcut to archive tabs in Chrome.
+
 ## Validation
 
 ### Validate ID state strings match actual conditions
@@ -29,16 +37,7 @@ Order doesn't matter because auto-sorting handles placement.
 echo '{:key :y :id "R3000 ..." ...full rule...}' | bb update-rule.bb src/karabiner.edn src/karabiner.edn -
 ```
 
-### Update block names to describe behavior
-Block names should describe what rules DO, not what state they check. E.g., "Enter submode 3" not "Submode 3 rules".
-
 ## Future Ideas
 
 ### Higher-level DSL
 Create a DSL that compiles to Goku EDN for easier rule authoring.
-
-### Auto-generate documentation
-Generate docs from config automatically.
-
-### Type-safe layer definitions
-Possibly use Rust macros for type-safe layer definitions.
