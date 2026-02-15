@@ -192,7 +192,7 @@
 ;; ============================================================================
 
 (def state-variables
-  #{:dsk_layer :dsk_in_modal_layer :dsk_ins_sub_mode :dsk_return_to_layer})
+  #{:dsk_layer :dsk_ins_sub_mode :dsk_return_to_layer})
 
 (defn extract-variable-sets [action]
   "Extract all variable sets from an action"
@@ -209,10 +209,9 @@
   (contains? var-sets :dsk_layer))
 
 (defn expected-values-for-layer [layer]
-  "Return expected values for dsk_in_modal_layer, dsk_ins_sub_mode, dsk_return_to_layer
+  "Return expected values for dsk_ins_sub_mode, dsk_return_to_layer
    based on the layer number and invariants."
-  {:dsk_in_modal_layer (if (>= layer 2) 1 0)
-   :dsk_ins_sub_mode -1  ;; Only 0+ in Ins mode, but we can't know submode from layer alone
+  {:dsk_ins_sub_mode -1  ;; Only 0+ in Ins mode, but we can't know submode from layer alone
    :dsk_return_to_layer -1})  ;; Only 0/1 in Label mode (13)
 
 (defn extract-source-layer [rule]

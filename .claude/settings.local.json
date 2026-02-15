@@ -55,7 +55,10 @@
       "Bash(pgrep:*)",
       "Bash(/Users/rbalicki/code/voicemode/scripts/swiftbar/karabiner-layer.100ms.sh:*)",
       "Bash(pkill:*)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(done)"
     ]
   }
 }

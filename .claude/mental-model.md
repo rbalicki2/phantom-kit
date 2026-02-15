@@ -44,20 +44,18 @@ Any state transition that could leave external state dirty must clean it up expl
 
 **Note:** These variables only apply to the Desktop profile (Kinesis keyboard). Laptop rules do not use state variables.
 
-Four variables track all state:
+Three variables track all state:
 
 | Variable | Range | Purpose |
 |----------|-------|---------|
-| `dsk_layer` | 0-28 | Current layer |
-| `dsk_in_modal_layer` | 0/1 | Whether in a modal layer |
+| `dsk_layer` | 0-30 | Current layer |
 | `dsk_ins_sub_mode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
 | `dsk_return_to_layer` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins) |
 
 ### Invariants
 
-1. **dsk_in_modal_layer = (dsk_layer >= 2 ? 1 : 0)** — Must always hold. If out of sync, behavior breaks.
-2. **dsk_ins_sub_mode = -1 when dsk_layer != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
-3. **dsk_return_to_layer = -1 when dsk_layer != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
+1. **dsk_ins_sub_mode = -1 when dsk_layer != 1** — Submodes only exist within Ins mode. Set to 0 on Ins entry.
+2. **dsk_return_to_layer = -1 when dsk_layer != 13** — Only valid in Label mode. Set to 0 or 1 on Label entry.
 
 These invariants are **automatically enforced** by `validate-rules.bb` on every sync.
 
@@ -79,7 +77,7 @@ cleanup-external-state.sh \
 
 **Why no held-modifiers flag?** The osascript `key up <modifier>` command clears BOTH synthetic modifier state AND interferes with Karabiner-emitted keystrokes. When run in the background during a transition, it can cancel Ctrl+key outputs that Karabiner is actively emitting (race condition). Karabiner EventViewer shows what Karabiner emits, but the system receives the `key up` canceling the keystroke. Only `panic-cleanup.sh` resets held modifiers, since panic mode does a full reset anyway.
 
-Example: Entering Normal should set `dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
+Example: Entering Normal should set `dsk_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
 
 ### Rule Ordering: Leaf to Root
 

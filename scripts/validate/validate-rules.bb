@@ -7,9 +7,8 @@
 ;; - Invariant violations (rules that assume impossible state combinations)
 ;;
 ;; Invariants (from mental_model.md):
-;; 1. dsk_in_modal_layer = (dsk_layer >= 2 ? 1 : 0)
-;; 2. dsk_ins_sub_mode = -1 when dsk_layer != 1
-;; 3. dsk_return_to_layer = -1 when dsk_layer != 13 (Label mode)
+;; 1. dsk_ins_sub_mode = -1 when dsk_layer != 1
+;; 2. dsk_return_to_layer = -1 when dsk_layer != 13 (Label mode)
 ;;
 ;; Usage:
 ;;   bb validate-rules.bb <edn-file>
@@ -40,13 +39,6 @@
    13 "Label (Mouse)"
    28 "Grid"})
 
-(defn modal-layer? [layer]
-  "Returns true if the layer is modal (requires dsk_in_modal_layer=1)"
-  (>= layer 2))
-
-(defn expected-modal-value [layer]
-  "Returns expected dsk_in_modal_layer value for given dsk_layer"
-  (if (modal-layer? layer) 1 0))
 
 (defn valid-submode-for-layer? [layer submode]
   "Check if submode value is valid for the given layer.
@@ -146,21 +138,6 @@
 ;; ============================================================================
 ;; Invariant Violation Detection
 ;; ============================================================================
-
-(defn check-modal-invariant [rule-info]
-  "Check if rule violates the dsk_in_modal_layer invariant"
-  (let [cond-map (extract-conditions-from-rule (:rule rule-info))]
-    (when cond-map
-      (let [layer (get cond-map :dsk_layer)
-            modal (get cond-map :dsk_in_modal_layer)]
-        (when (and layer modal)
-          (let [expected (expected-modal-value layer)]
-            (when (not= modal expected)
-              {:type :modal-invariant-violation
-               :description (:description rule-info)
-               :message (format "Layer %d (%s) expects dsk_in_modal_layer=%d, but condition has %d"
-                               layer (get layer-names layer "unknown") expected modal)
-               :rule (:rule rule-info)})))))))
 
 (defn check-submode-invariant [rule-info]
   "Check if rule violates the dsk_ins_sub_mode invariant"
@@ -419,18 +396,9 @@
         var-sets (extract-variable-sets-from-action action)]
     (when var-sets
       (let [layer (get var-sets :dsk_layer)
-            modal (get var-sets :dsk_in_modal_layer)
             submode (get var-sets :dsk_ins_sub_mode)
             return-to (get var-sets :dsk_return_to_layer)]
         (cond-> []
-          ;; Check modal invariant in action
-          (and layer modal (not= modal (expected-modal-value layer)))
-          (conj {:type :action-modal-violation
-                 :description (:description rule-info)
-                 :message (format "Action sets dsk_layer=%d but dsk_in_modal_layer=%d (expected %d)"
-                                 layer modal (expected-modal-value layer))
-                 :rule (:rule rule-info)})
-
           ;; Check submode invariant in action
           (and layer submode (not (valid-submode-for-layer? layer submode)))
           (conj {:type :action-submode-violation
@@ -467,8 +435,7 @@
         ;; Collect all issues
         invariant-issues
         (for [rule-info all-rules
-              issue [(check-modal-invariant rule-info)
-                     (check-submode-invariant rule-info)
+              issue [(check-submode-invariant rule-info)
                      (check-return-to-invariant rule-info)]
               :when issue]
           issue)

@@ -142,7 +142,6 @@
     [{:key :!SOf19, :id "R0026 [profile=Default:device=Desktop] Shift+hk3 → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -159,7 +158,7 @@
       :modi {:mandatory [:right_control]},
       :id "R0029 [profile=Default:device=Desktop] RCtrl+n → escape"}
      [:escape]]]}
-  {:des "[Desktop] Ctrl+J = exit to Ins (all modal layers)",
+  {:des "[Desktop] Ctrl+J = exit to Ins (global)",
    :rules
    [:!apple_internal
     [{:key :j,
@@ -167,19 +166,16 @@
       :id "R0030 [profile=Default:device=Desktop] RCtrl+j → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
-       "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo ins > /tmp/karabiner-layer"}]
-     [["dsk_in_modal_layer" 1]]]]}
+       "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo ins > /tmp/karabiner-layer"}]]]}
   {:des "[Desktop, Layer 0] Normal - Entry to other layers",
    :rules
    [:!apple_internal
     [{:key :j, :id "R0031 [profile=Default:device=Desktop:dsk_layer=0] j → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -189,7 +185,6 @@
       :id "R0032 [profile=Default:device=Desktop:dsk_layer=0] y → Ctrl+LOpt+Shift+f19, Ins"}
      [:!TOSf19
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -198,7 +193,6 @@
     [{:key :6, :id "R0033 [profile=Default:device=Desktop:dsk_layer=0] 6 → f9, Ins"}
      [:f9
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -207,7 +201,6 @@
     [{:key :f21, :id "R0034 [profile=Default:device=Desktop:dsk_layer=0] Fn+hk4 → Nav"}
      [:vk_none
       ["dsk_layer" 2]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -221,7 +214,6 @@
      [:vk_none
       :!COSo
       ["dsk_layer" 13]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" 0]
       {:shell
@@ -232,7 +224,6 @@
       :id "R0037 [profile=Default:device=Desktop:dsk_layer=0] LOpt+f5 → Grid"}
      [:vk_none
       ["dsk_layer" 28]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -241,7 +232,6 @@
     [{:key :i, :id "R0038 [profile=Default:device=Desktop:dsk_layer=0] i → Admin"}
      [:vk_none
       ["dsk_layer" 9]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -250,7 +240,6 @@
     [{:key :comma, :id "R0039 [profile=Default:device=Desktop:dsk_layer=0] comma → Comma"}
      [:vk_none
       ["dsk_layer" 6]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -259,7 +248,6 @@
     [{:key :l, :id "R0040 [profile=Default:device=Desktop:dsk_layer=0] l → L-Entry"}
      [:vk_none
       ["dsk_layer" 29]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -268,7 +256,6 @@
     [{:key :u, :id "R0041 [profile=Default:device=Desktop:dsk_layer=0] u → Term"}
      [:vk_none
       ["dsk_layer" 8]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-enter.sh"}]
@@ -278,7 +265,6 @@
       :id "R0042 [profile=Default:device=Desktop:dsk_layer=0] LOpt+Fn+bksl → InApp"}
      [:vk_none
       ["dsk_layer" 10]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -291,7 +277,6 @@
     [{:key :h, :id "R0043 [profile=Default:device=Desktop:dsk_layer=0] h → Chrome"}
      [:vk_none
       ["dsk_layer" 3]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -304,7 +289,6 @@
     [{:key :h, :id "R0044 [profile=Default:device=Desktop:dsk_layer=0] h → VSCode"}
      [:vk_none
       ["dsk_layer" 4]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -317,7 +301,6 @@
     [{:key :h, :id "R0045 [profile=Default:device=Desktop:dsk_layer=0] h → TMUX"}
      [:!Ta
       ["dsk_layer" 5]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -659,7 +642,6 @@
      [:vk_none
       :!COSo
       ["dsk_layer" 13]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" 1]
       {:shell
@@ -1224,7 +1206,6 @@
       :id "R0170 [profile=Default:device=Desktop] RCtrl+y → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1336,7 +1317,6 @@
     [{:key :!Of22, :id "R0202 [profile=Default:device=Desktop] Fn+hk4 → Nav"}
      [:vk_none
       ["dsk_layer" 2]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1345,90 +1325,57 @@
    :rules
    [:!apple_internal
     [{:key :h, :id "R0203 [profile=Default:device=Desktop:dsk_layer=2] h → Normal"}
-     [[:open-norm "iTerm"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "iTerm"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :j, :id "R0204 [profile=Default:device=Desktop:dsk_layer=2] j → Normal"}
      [[:open-norm "Visual Studio Code"]
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :k, :id "R0205 [profile=Default:device=Desktop:dsk_layer=2] k → Normal"}
      [[:open-norm "Karabiner-EventViewer"]
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :n, :id "R0206 [profile=Default:device=Desktop:dsk_layer=2] n → Normal"}
      [[:chrome-profile "personal"]
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :m, :id "R0207 [profile=Default:device=Desktop:dsk_layer=2] m → Normal"}
-     [[:chrome-profile "work"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:chrome-profile "work"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :l, :id "R0208 [profile=Default:device=Desktop:dsk_layer=2] l → Normal"}
-     [[:open-norm "Signal"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "Signal"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :!Of1, :id "R0209 [profile=Default:device=Desktop:dsk_layer=2] Fn+L → Normal"}
-     [[:open-norm "Messages"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "Messages"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :l,
       :modi {:mandatory [:right_control]},
       :id "R0210 [profile=Default:device=Desktop:dsk_layer=2] RCtrl+l → Normal"}
-     [[:open-norm "WhatsApp"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "WhatsApp"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :o, :id "R0211 [profile=Default:device=Desktop:dsk_layer=2] o → Normal"}
-     [[:open-norm "Obsidian"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "Obsidian"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :y, :id "R0212 [profile=Default:device=Desktop:dsk_layer=2] y → Cmd+Space, Ins"}
      [:!Cspacebar
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
        "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo ins > /tmp/karabiner-layer"}]
      [["dsk_layer" 2]]]
     [{:key :period, :id "R0213 [profile=Default:device=Desktop:dsk_layer=2] period → Normal"}
-     [[:open-norm "Finder"]
-      ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" -1]
-      ["dsk_return_to_layer" -1]]
+     [[:open-norm "Finder"] ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 2]]]
     [{:key :!Of7, :id "R0214 [profile=Default:device=Desktop:dsk_layer=2] Fn+. → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1439,7 +1386,6 @@
       :id "R0215 [profile=Default:device=Desktop:dsk_layer=2] RCtrl+period → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1449,7 +1395,6 @@
       :id "R0216 [profile=Default:device=Desktop:dsk_layer=2] Enter → Cmd+Enter, Ins"}
      [:!Creturn_or_enter
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1464,7 +1409,6 @@
      {:alone
       [:vk_none
        ["dsk_layer" 0]
-       ["dsk_in_modal_layer" 0]
        ["dsk_ins_sub_mode" -1]
        ["dsk_return_to_layer" -1]
        {:shell
@@ -1472,7 +1416,6 @@
     [{:key :up_arrow, :id "R0220 [profile=Default:device=Desktop:dsk_layer=13] ↑ → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1482,7 +1425,6 @@
       :id "R0222 [profile=Default:device=Desktop:dsk_layer=13] Space → Enter, Normal"}
      [:return_or_enter
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1491,7 +1433,6 @@
     [{:key :!Of18, :id "R0224 [profile=Default:device=Desktop:dsk_layer=13] Fn+Space → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo norm > /tmp/karabiner-layer"}]
@@ -1501,7 +1442,6 @@
       :id "R0226 [profile=Default:device=Desktop:dsk_layer=13] Shift+Space → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo norm > /tmp/karabiner-layer"}]
@@ -1511,7 +1451,6 @@
       :id "R0228 [profile=Default:device=Desktop:dsk_layer=13] Shift+Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1521,7 +1460,6 @@
       :id "R0230 [profile=Default:device=Desktop:dsk_layer=13] Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo norm > /tmp/karabiner-layer"}]
@@ -1529,7 +1467,6 @@
     [{:key :!Of17, :id "R0232 [profile=Default:device=Desktop:dsk_layer=13] Fn+Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo norm > /tmp/karabiner-layer"}]
@@ -1587,7 +1524,6 @@
      {:alone
       [:vk_none
        ["dsk_layer" 1]
-       ["dsk_in_modal_layer" 0]
        ["dsk_ins_sub_mode" 0]
        ["dsk_return_to_layer" -1]
        {:shell
@@ -1595,7 +1531,6 @@
     [{:key :up_arrow, :id "R0219 [profile=Default:device=Desktop:dsk_return_to_layer=1] ↑ → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1605,7 +1540,6 @@
       :id "R0221 [profile=Default:device=Desktop:dsk_return_to_layer=1] Space → Enter, Ins"}
      [:return_or_enter
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "echo ins > /tmp/karabiner-layer"}]
@@ -1614,7 +1548,6 @@
       :id "R0223 [profile=Default:device=Desktop:dsk_return_to_layer=1] Fn+Space → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelCmdClick()' && echo ins > /tmp/karabiner-layer"}]
@@ -1624,7 +1557,6 @@
       :id "R0225 [profile=Default:device=Desktop:dsk_return_to_layer=1] Shift+Space → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelShiftClick()' && echo ins > /tmp/karabiner-layer"}]
@@ -1634,7 +1566,6 @@
       :id "R0227 [profile=Default:device=Desktop:dsk_return_to_layer=1] Shift+Enter → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo ins > /tmp/karabiner-layer"}]
@@ -1643,7 +1574,6 @@
       :id "R0229 [profile=Default:device=Desktop:dsk_return_to_layer=1] Enter → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelRightClick()' && echo ins > /tmp/karabiner-layer"}]
@@ -1652,7 +1582,6 @@
       :id "R0231 [profile=Default:device=Desktop:dsk_return_to_layer=1] Fn+Enter → Ins"}
      [:vk_none
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo ins > /tmp/karabiner-layer"}]
@@ -1666,7 +1595,6 @@
      {:alone
       [:vk_none
        ["dsk_layer" 0]
-       ["dsk_in_modal_layer" 0]
        ["dsk_ins_sub_mode" -1]
        ["dsk_return_to_layer" -1]
        {:shell
@@ -1674,7 +1602,6 @@
     [{:key :up_arrow, :id "R0249 [profile=Default:device=Desktop:dsk_layer=28] ↑ → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1683,7 +1610,6 @@
     [{:key :spacebar, :id "R0250 [profile=Default:device=Desktop:dsk_layer=28] Space → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1692,7 +1618,6 @@
     [{:key :!Of18, :id "R0251 [profile=Default:device=Desktop:dsk_layer=28] Fn+Space → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1703,7 +1628,6 @@
       :id "R0252 [profile=Default:device=Desktop:dsk_layer=28] Shift+Space → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1713,7 +1637,6 @@
       :id "R0253 [profile=Default:device=Desktop:dsk_layer=28] Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1722,7 +1645,6 @@
     [{:key :!Of17, :id "R0254 [profile=Default:device=Desktop:dsk_layer=28] Fn+Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1733,7 +1655,6 @@
       :id "R0255 [profile=Default:device=Desktop:dsk_layer=28] Shift+Enter → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1791,7 +1712,6 @@
       :id "R0271 [profile=Default:device=Desktop:dsk_layer=9] Space → !CTOSg, Normal"}
      [:!CTOSg
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1800,7 +1720,6 @@
     [{:key :up_arrow, :id "R0272 [profile=Default:device=Desktop:dsk_layer=9] ↑ → !CTOSv, Normal"}
      [:!CTOSv
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1810,7 +1729,6 @@
       :id "R0273 [profile=Default:device=Desktop:dsk_layer=9] ↓ → !CTOSb, Normal"}
      [:!CTOSb
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1820,7 +1738,6 @@
       :id "R0274 [profile=Default:device=Desktop:dsk_layer=9] Enter → Cmd+`, Normal"}
      [:!Cgrave_accent_and_tilde
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1829,7 +1746,6 @@
     [{:key :p, :id "R0275 [profile=Default:device=Desktop:dsk_layer=9] p → Cmd+Shift+3, Normal"}
      [:!CS3
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1840,7 +1756,6 @@
       :id "R0276 [profile=Default:device=Desktop:dsk_layer=9] RCtrl+p → Cmd+Shift+4, Normal"}
      [:!CS4
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1849,7 +1764,6 @@
     [{:key :l, :id "R0277 [profile=Default:device=Desktop:dsk_layer=9] l → Cmd+v, Ins"}
      [:!Cv
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1858,7 +1772,6 @@
     [{:key :m, :id "R0278 [profile=Default:device=Desktop:dsk_layer=9] m → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1870,7 +1783,6 @@
     [{:key :comma, :id "R0279 [profile=Default:device=Desktop:dsk_layer=6] comma → Ctrl+c, Ins"}
      [:!Tc
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1879,7 +1791,6 @@
     [{:key :n, :id "R0280 [profile=Default:device=Desktop:dsk_layer=6] n → Ctrl+r, Ins"}
      [:!Tr
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1888,7 +1799,6 @@
     [{:key :h, :id "R0281 [profile=Default:device=Desktop:dsk_layer=6] h → Cmd+c, Normal"}
      [:!Cc
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1898,7 +1808,6 @@
      [:!Ca
       :!Cc
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1907,7 +1816,6 @@
     [{:key :j, :id "R0283 [profile=Default:device=Desktop:dsk_layer=6] j → Cmd+v, Ins"}
      [:!Cv
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1917,7 +1825,6 @@
      [:!Ca
       :!Cv
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1926,7 +1833,6 @@
     [{:key :k, :id "R0285 [profile=Default:device=Desktop:dsk_layer=6] k → Cmd+f, Ins"}
      [:!Cf
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1935,7 +1841,6 @@
     [{:key :f24, :id "R0286 [profile=Default:device=Desktop:dsk_layer=6] Fn+K → Cmd+Shift+f, Ins"}
      [:!CSf
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1944,7 +1849,6 @@
     [{:key :l, :id "R0287 [profile=Default:device=Desktop:dsk_layer=6] l → Cmd+z, Normal"}
      [:!Cz
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1954,7 +1858,6 @@
       :id "R0288 [profile=Default:device=Desktop:dsk_layer=6] Fn+L → Cmd+Shift+z, Normal"}
      [:!CSz
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1964,7 +1867,6 @@
       :id "R0289 [profile=Default:device=Desktop:dsk_layer=6] period → Cmd+s, Normal"}
      [:!Cs
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1973,7 +1875,6 @@
     [{:key :i, :id "R0290 [profile=Default:device=Desktop:dsk_layer=6] i → Cmd+a, Ins"}
      [:!Ca
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1982,7 +1883,6 @@
     [{:key :o, :id "R0291 [profile=Default:device=Desktop:dsk_layer=6] o → Cmd+Shift+p, Ins"}
      [:!CSp
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -1991,7 +1891,6 @@
     [{:key :f18, :id "R0292 [profile=Default:device=Desktop:dsk_layer=6] Fn+O → Cmd+o, Ins"}
      [:!Co
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2000,7 +1899,6 @@
     [{:key :p, :id "R0293 [profile=Default:device=Desktop:dsk_layer=6] p → Cmd+p, Ins"}
      [:!Cp
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2011,7 +1909,6 @@
       :id "R0294 [profile=Default:device=Desktop:dsk_layer=6] RCtrl+h → Cmd+w, Normal"}
      [:!Cw
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2020,7 +1917,6 @@
     [{:key :m, :id "R0295 [profile=Default:device=Desktop:dsk_layer=6] m → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2032,7 +1928,6 @@
     [{:key :y, :id "R0296 [profile=Default:device=Desktop:dsk_layer=3] y → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2041,7 +1936,6 @@
     [{:key :u, :id "R0297 [profile=Default:device=Desktop:dsk_layer=3] u → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2050,7 +1944,6 @@
     [{:key :i, :id "R0298 [profile=Default:device=Desktop:dsk_layer=3] i → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2059,7 +1952,6 @@
     [{:key :o, :id "R0299 [profile=Default:device=Desktop:dsk_layer=3] o → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2068,7 +1960,6 @@
     [{:key :f15, :id "R0300 [profile=Default:device=Desktop:dsk_layer=3] Fn+Y → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2077,7 +1968,6 @@
     [{:key :f16, :id "R0301 [profile=Default:device=Desktop:dsk_layer=3] Fn+U → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2086,7 +1976,6 @@
     [{:key :f17, :id "R0302 [profile=Default:device=Desktop:dsk_layer=3] Fn+I → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2095,7 +1984,6 @@
     [{:key :f18, :id "R0303 [profile=Default:device=Desktop:dsk_layer=3] Fn+O → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2104,7 +1992,6 @@
     [{:key :p, :id "R0304 [profile=Default:device=Desktop:dsk_layer=3] p → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2115,7 +2002,6 @@
       :id "R0305 [profile=Default:device=Desktop:dsk_layer=3] LOpt+f1 → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2124,7 +2010,6 @@
     [{:key :m, :id "R0306 [profile=Default:device=Desktop:dsk_layer=3] m → LOpt+d, Normal"}
      [:!Od
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2140,7 +2025,6 @@
       :id "R0309 [profile=Default:device=Desktop:dsk_layer=3] period → Cmd+r, Normal"}
      [:!Cr
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2151,7 +2035,6 @@
       :id "R0310 [profile=Default:device=Desktop:dsk_layer=3] LOpt+f7 → Cmd+Shift+r, Normal"}
      [:!CSr
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2163,7 +2046,6 @@
     [{:key :j, :id "R0311 [profile=Default:device=Desktop:dsk_layer=4] j → Cmd+d, Normal"}
      [:!Cd
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2173,7 +2055,6 @@
       :id "R0312 [profile=Default:device=Desktop:dsk_layer=4] Fn+J → Cmd+period, Normal"}
      [:!Cperiod
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2182,7 +2063,6 @@
     [{:key :k, :id "R0313 [profile=Default:device=Desktop:dsk_layer=4] k → f2, Normal"}
      [:f2
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2191,7 +2071,6 @@
     [{:key :l, :id "R0314 [profile=Default:device=Desktop:dsk_layer=4] l → Cmd+r, Normal"}
      [:!Cr
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2200,7 +2079,6 @@
     [{:key :h, :id "R0315 [profile=Default:device=Desktop:dsk_layer=4] h → Ctrl+Cmd+e, Normal"}
      [:!TCe
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2209,7 +2087,6 @@
     [{:key :f22, :id "R0316 [profile=Default:device=Desktop:dsk_layer=4] Fn+H → !OCc, Normal"}
      [:!OCc
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2220,7 +2097,6 @@
       :id "R0317 [profile=Default:device=Desktop:dsk_layer=4] RCtrl+h → Normal"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2229,7 +2105,6 @@
     [{:key :i, :id "R0318 [profile=Default:device=Desktop:dsk_layer=4] i → Cmd+2, Normal"}
      [:!C2
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2239,7 +2114,6 @@
       :id "R0319 [profile=Default:device=Desktop:dsk_layer=4] Fn+I → Ctrl+Cmd+2, Normal"}
      [:!TC2
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2249,7 +2123,6 @@
       :id "R0320 [profile=Default:device=Desktop:dsk_layer=4] Fn+U → Ctrl+Cmd+1, Normal"}
      [:!TC1
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2258,7 +2131,6 @@
     [{:key :o, :id "R0321 [profile=Default:device=Desktop:dsk_layer=4] o → Cmd+b, Normal"}
      [:!Cb
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2267,7 +2139,6 @@
     [{:key :p, :id "R0322 [profile=Default:device=Desktop:dsk_layer=4] p → Cmd+`, Normal"}
      [:!Cgrave_accent_and_tilde
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2283,68 +2154,40 @@
    :rules
    [:!apple_internal
     [{:key :h, :id "R0325 [profile=Default:device=Desktop:dsk_layer=8] h types 'git status'"}
-     [:type-ins
-      "git status "
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [:type-ins "git status " ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :f22, :id "R0326 [profile=Default:device=Desktop:dsk_layer=8] Fn+H types 'git status'"}
      [:type-enter-ins
       "git status "
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :j, :id "R0327 [profile=Default:device=Desktop:dsk_layer=8] j types 'git log'"}
-     [:type-ins
-      "git log "
-      [dsk_ins_sub_mode=2]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [:type-ins "git log " [dsk_ins_sub_mode=2] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :f23, :id "R0328 [profile=Default:device=Desktop:dsk_layer=8] Fn+J types 'git log'"}
-     [:type-enter-ins
-      "git log"
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [:type-enter-ins "git log" ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :k, :id "R0329 [profile=Default:device=Desktop:dsk_layer=8] k types 'git diff'"}
-     [:type-ins
-      "git diff "
-      [dsk_ins_sub_mode=2]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [:type-ins "git diff " [dsk_ins_sub_mode=2] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :f24,
       :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff head'"}
      [:type-enter-ins
       "git diff head"
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :k,
       :modi {:mandatory [:right_control]},
       :id "R0331 [profile=Default:device=Desktop:dsk_layer=8] RCtrl+k types 'gdmb'"}
-     [:type-enter-ins
-      "gdmb"
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [:type-enter-ins "gdmb" ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :l, :id "R0332 [profile=Default:device=Desktop:dsk_layer=8] l → Ins"}
      [[:type-ins "git commit --no-verify -m "]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
@@ -2353,30 +2196,20 @@
       :id "R0333 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f1 → Ins"}
      [[:type-enter-ins "git commit -am wip --no-verify"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :n, :id "R0334 [profile=Default:device=Desktop:dsk_layer=8] n → Ins"}
-     [[:type-ins "git reset "]
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [[:type-ins "git reset "] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :f4,
       :modi {:mandatory [:left_option]},
       :id "R0335 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f4 → Ins"}
-     [[:type-enter-ins "grhh"]
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [[:type-enter-ins "grhh"] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :m, :id "R0336 [profile=Default:device=Desktop:dsk_layer=8] m → Ins"}
      [[:type-ins "git checkout "]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
@@ -2385,14 +2218,12 @@
       :id "R0337 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f5 → Ins"}
      [[:type-enter-ins "gcmp --no-verify"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :comma, :id "R0338 [profile=Default:device=Desktop:dsk_layer=8] comma → Ins"}
      [[:type-enter-ins "git add -A && git stash"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
@@ -2401,37 +2232,29 @@
       :id "R0339 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f6 → Ins"}
      [[:type-enter-ins "git stash pop"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :period, :id "R0340 [profile=Default:device=Desktop:dsk_layer=8] period → Ins"}
-     [[:type-ins "git add "]
-      ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
-      ["dsk_ins_sub_mode" 0]
-      ["dsk_return_to_layer" -1]]
+     [[:type-ins "git add "] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :f7,
       :modi {:mandatory [:left_option]},
       :id "R0341 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f7 → Ins"}
      [[:type-enter-ins "git add -A"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :y, :id "R0342 [profile=Default:device=Desktop:dsk_layer=8] y → Ins"}
      [[:type-enter-ins "gh pr create"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]
     [{:key :i, :id "R0343 [profile=Default:device=Desktop:dsk_layer=8] i → Ins"}
      [[:type-enter-ins "git push --no-verify"]
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]]
      [["dsk_layer" 8]]]]}
@@ -2441,7 +2264,6 @@
     [{:key :y, :id "R0344 [profile=Default:device=Desktop:dsk_layer=5] y → Shift+1, Normal"}
      [:!S1
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2450,7 +2272,6 @@
     [{:key :u, :id "R0345 [profile=Default:device=Desktop:dsk_layer=5] u → Shift+2, Normal"}
      [:!S2
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2459,7 +2280,6 @@
     [{:key :i, :id "R0346 [profile=Default:device=Desktop:dsk_layer=5] i → Shift+3, Normal"}
      [:!S3
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2468,7 +2288,6 @@
     [{:key :o, :id "R0347 [profile=Default:device=Desktop:dsk_layer=5] o → Shift+4, Normal"}
      [:!S4
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2477,7 +2296,6 @@
     [{:key :p, :id "R0348 [profile=Default:device=Desktop:dsk_layer=5] p → Shift+5, Normal"}
      [:!S5
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2486,7 +2304,6 @@
     [{:key :f15, :id "R0349 [profile=Default:device=Desktop:dsk_layer=5] Fn+Y → Shift+6, Normal"}
      [:!S6
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2495,7 +2312,6 @@
     [{:key :f16, :id "R0350 [profile=Default:device=Desktop:dsk_layer=5] Fn+U → Shift+7, Normal"}
      [:!S7
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2504,7 +2320,6 @@
     [{:key :f17, :id "R0351 [profile=Default:device=Desktop:dsk_layer=5] Fn+I → Shift+8, Normal"}
      [:!S8
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2513,7 +2328,6 @@
     [{:key :f18, :id "R0352 [profile=Default:device=Desktop:dsk_layer=5] Fn+O → Shift+9, Normal"}
      [:!S9
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2522,7 +2336,6 @@
     [{:key :f19, :id "R0353 [profile=Default:device=Desktop:dsk_layer=5] Fn+P → Shift+0, Normal"}
      [:!S0
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2531,7 +2344,6 @@
     [{:key :l, :id "R0354 [profile=Default:device=Desktop:dsk_layer=5] l → Cmd+d, Normal"}
      [:!Cd
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2542,7 +2354,6 @@
       :id "R0355 [profile=Default:device=Desktop:dsk_layer=5] LOpt+f1 → Cmd+Shift+d, Normal"}
      [:!CSd
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2554,7 +2365,6 @@
     [{:key :!Of20, :id "R0357 [profile=Default:device=Desktop:dsk_layer=10] hk4 → Nav"}
      [:vk_none
       ["dsk_layer" 2]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2563,7 +2373,6 @@
     [{:key :!Of20, :id "R0356 [profile=Default:device=Desktop:dsk_layer=1] hk4 → InApp"}
      [:vk_none
       ["dsk_layer" 10]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2625,7 +2434,6 @@
     [{:key :l, :id "R0371 [profile=Default:device=Desktop:dsk_layer=10] l → Cmd+l, Ins"}
      [:!Cl
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2634,7 +2442,6 @@
     [{:key :o, :id "R0372 [profile=Default:device=Desktop:dsk_layer=10] o → Cmd+o, Ins"}
      [:!Co
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2644,7 +2451,6 @@
       :id "R0373 [profile=Default:device=Desktop:dsk_layer=10] Enter → Cmd+Enter, Ins"}
      [:!Creturn_or_enter
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2657,7 +2463,6 @@
     [{:key :h, :id "R0374 [profile=Default:device=Desktop:dsk_layer=10] h → Cmd+k, Ins"}
      [:!Ck
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2666,7 +2471,6 @@
     [{:key :f22, :id "R0375 [profile=Default:device=Desktop:dsk_layer=10] Fn+H → Cmd+Shift+a, Ins"}
      [:!CSa
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2677,7 +2481,6 @@
       :id "R0376 [profile=Default:device=Desktop:dsk_layer=10] Shift+h → Cmd+y, Normal"}
      [:!Cy
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2686,7 +2489,6 @@
     [{:key :n, :id "R0377 [profile=Default:device=Desktop:dsk_layer=10] n → Cmd+t, Ins"}
      [:!Ct
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2697,7 +2499,6 @@
       :id "R0378 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f4 → Cmd+n, Ins"}
      [:!Cn
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2710,7 +2511,6 @@
     [{:key :h, :id "R0379 [profile=Default:device=Desktop:dsk_layer=10] h → Cmd+Shift+p, Ins"}
      [:!CSp
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2719,7 +2519,6 @@
     [{:key :f22, :id "R0380 [profile=Default:device=Desktop:dsk_layer=10] Fn+H → Cmd+p, Ins"}
      [:!Cp
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2728,7 +2527,6 @@
     [{:key :n, :id "R0381 [profile=Default:device=Desktop:dsk_layer=10] n → Cmd+n, Ins"}
      [:!Cn
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2739,7 +2537,6 @@
       :id "R0382 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f4 → Cmd+Shift+n, Ins"}
      [:!CSn
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2752,7 +2549,6 @@
     [{:key :n, :id "R0383 [profile=Default:device=Desktop:dsk_layer=10] n → Cmd+d, Ins"}
      [:!Cd
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2763,7 +2559,6 @@
       :id "R0384 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f4 → Cmd+t, Ins"}
      [:!Ct
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2775,7 +2570,6 @@
     [{:key :h, :id "R0385 [profile=Default:device=Desktop:dsk_layer=10] h → Cmd+k, Ins"}
      [:!Ck
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2784,7 +2578,6 @@
     [{:key :f22, :id "R0386 [profile=Default:device=Desktop:dsk_layer=10] Fn+H → Cmd+p, Ins"}
      [:!Cp
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2793,7 +2586,6 @@
     [{:key :n, :id "R0387 [profile=Default:device=Desktop:dsk_layer=10] n → Cmd+n, Ins"}
      [:!Cn
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2804,7 +2596,6 @@
       :id "R0388 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f4 → Cmd+Shift+n, Ins"}
      [:!CSn
       ["dsk_layer" 1]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" 0]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2823,7 +2614,6 @@
       :id "R0396 [profile=Default:device=Desktop:dsk_layer=12] Enter → Enter, Normal"}
      [:return_or_enter
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2839,7 +2629,6 @@
       :id "R0393 [profile=Default:device=Desktop:dsk_layer=11] Enter → Enter, Normal"}
      [:return_or_enter
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2848,7 +2637,6 @@
     [{:key :up_arrow, :id "R0389 [profile=Default:device=Desktop:dsk_layer=10] ↑ → AppSwitcher"}
      [:vk_none
       ["dsk_layer" 11]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2858,7 +2646,6 @@
       :id "R0390 [profile=Default:device=Desktop:dsk_layer=10] ↓ → WindowSwitcher"}
      [:vk_none
       ["dsk_layer" 12]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -2873,7 +2660,6 @@
      {:alone
       [:vk_none
        ["dsk_layer" 0]
-       ["dsk_in_modal_layer" 0]
        ["dsk_ins_sub_mode" -1]
        ["dsk_return_to_layer" -1]
        {:shell
@@ -3138,7 +2924,6 @@
     [{:key :y, :id "R2900 [profile=Default:device=Desktop:dsk_layer=29] y → L-Active (Cmd)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo C > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3148,7 +2933,6 @@
       :id "R2901 [profile=Default:device=Desktop:dsk_layer=29] Shift+y → L-Active (Cmd+Shift)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo CS > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3156,7 +2940,6 @@
     [{:key :u, :id "R2902 [profile=Default:device=Desktop:dsk_layer=29] u → L-Active (Ctrl)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo T > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3166,7 +2949,6 @@
       :id "R2903 [profile=Default:device=Desktop:dsk_layer=29] Shift+u → L-Active (Ctrl+Shift)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo TS > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3174,7 +2956,6 @@
     [{:key :i, :id "R2904 [profile=Default:device=Desktop:dsk_layer=29] i → L-Active (Alt)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo O > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3184,7 +2965,6 @@
       :id "R2905 [profile=Default:device=Desktop:dsk_layer=29] Shift+i → L-Active (Alt+Shift)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo OS > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3192,7 +2972,6 @@
     [{:key :h, :id "R2906 [profile=Default:device=Desktop:dsk_layer=29] h → L-Active (Cmd+Ctrl)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo CT > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3200,7 +2979,6 @@
     [{:key :j, :id "R2907 [profile=Default:device=Desktop:dsk_layer=29] j → L-Active (Cmd+Alt)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo CO > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3208,7 +2986,6 @@
     [{:key :k, :id "R2908 [profile=Default:device=Desktop:dsk_layer=29] k → L-Active (Ctrl+Alt)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo TO > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3217,7 +2994,6 @@
       :id "R2909 [profile=Default:device=Desktop:dsk_layer=29] o → L-Active (Cmd+Ctrl+Alt)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo CTO > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3227,7 +3003,6 @@
       :id "R2910 [profile=Default:device=Desktop:dsk_layer=29] Shift+o → L-Active (All)"}
      [:vk_none
       ["dsk_layer" 30]
-      ["dsk_in_modal_layer" 1]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell "echo CTOS > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"}]
@@ -3238,7 +3013,6 @@
     [{:key :y, :id "R3000 [profile=Default:device=Desktop:dsk_layer=30] y → execute(y)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3247,7 +3021,6 @@
     [{:key :u, :id "R3001 [profile=Default:device=Desktop:dsk_layer=30] u → execute(u)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3256,7 +3029,6 @@
     [{:key :i, :id "R3002 [profile=Default:device=Desktop:dsk_layer=30] i → execute(i)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3265,7 +3037,6 @@
     [{:key :o, :id "R3003 [profile=Default:device=Desktop:dsk_layer=30] o → execute(o)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3274,7 +3045,6 @@
     [{:key :p, :id "R3004 [profile=Default:device=Desktop:dsk_layer=30] p → execute(p)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3283,7 +3053,6 @@
     [{:key :h, :id "R3005 [profile=Default:device=Desktop:dsk_layer=30] h → execute(h)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3292,7 +3061,6 @@
     [{:key :j, :id "R3006 [profile=Default:device=Desktop:dsk_layer=30] j → execute(j)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3301,7 +3069,6 @@
     [{:key :k, :id "R3007 [profile=Default:device=Desktop:dsk_layer=30] k → execute(k)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3310,7 +3077,6 @@
     [{:key :l, :id "R3008 [profile=Default:device=Desktop:dsk_layer=30] l → execute(l)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3319,7 +3085,6 @@
     [{:key :semicolon, :id "R3009 [profile=Default:device=Desktop:dsk_layer=30] ; → execute(;)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3328,7 +3093,6 @@
     [{:key :n, :id "R3010 [profile=Default:device=Desktop:dsk_layer=30] n → execute(n)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3337,7 +3101,6 @@
     [{:key :m, :id "R3011 [profile=Default:device=Desktop:dsk_layer=30] m → execute(m)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3346,7 +3109,6 @@
     [{:key :comma, :id "R3012 [profile=Default:device=Desktop:dsk_layer=30] , → execute(,)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3355,7 +3117,6 @@
     [{:key :period, :id "R3013 [profile=Default:device=Desktop:dsk_layer=30] . → execute(.)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3364,7 +3125,6 @@
     [{:key :slash, :id "R3014 [profile=Default:device=Desktop:dsk_layer=30] / → execute(/)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3373,7 +3133,6 @@
     [{:key :6, :id "R3015 [profile=Default:device=Desktop:dsk_layer=30] 6 → execute(6)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3382,7 +3141,6 @@
     [{:key :7, :id "R3016 [profile=Default:device=Desktop:dsk_layer=30] 7 → execute(7)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3391,7 +3149,6 @@
     [{:key :8, :id "R3017 [profile=Default:device=Desktop:dsk_layer=30] 8 → execute(8)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3400,7 +3157,6 @@
     [{:key :9, :id "R3018 [profile=Default:device=Desktop:dsk_layer=30] 9 → execute(9)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3409,7 +3165,6 @@
     [{:key :0, :id "R3019 [profile=Default:device=Desktop:dsk_layer=30] 0 → execute(0)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3418,7 +3173,6 @@
     [{:key :hyphen, :id "R3023 [profile=Default:device=Desktop:dsk_layer=30] - → execute(-)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3427,7 +3181,6 @@
     [{:key :open_bracket, :id "R3024 [profile=Default:device=Desktop:dsk_layer=30] [ → execute([)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3437,7 +3190,6 @@
       :id "R3025 [profile=Default:device=Desktop:dsk_layer=30] ] → execute(])"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3446,7 +3198,6 @@
     [{:key :backslash, :id "R3026 [profile=Default:device=Desktop:dsk_layer=30] \\ → execute(\\)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3455,7 +3206,6 @@
     [{:key :quote, :id "R3027 [profile=Default:device=Desktop:dsk_layer=30] ' → execute(')"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3465,7 +3215,6 @@
       :id "R3028 [profile=Default:device=Desktop:dsk_layer=30] space → execute(space)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3475,7 +3224,6 @@
       :id "R3029 [profile=Default:device=Desktop:dsk_layer=30] return → execute(return)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3484,7 +3232,6 @@
     [{:key :f15, :id "R3040 [profile=Default:device=Desktop:dsk_layer=30] Fn+y → execute(t)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3493,7 +3240,6 @@
     [{:key :f16, :id "R3041 [profile=Default:device=Desktop:dsk_layer=30] Fn+u → execute(r)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3502,7 +3248,6 @@
     [{:key :f17, :id "R3042 [profile=Default:device=Desktop:dsk_layer=30] Fn+i → execute(e)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3511,7 +3256,6 @@
     [{:key :f18, :id "R3043 [profile=Default:device=Desktop:dsk_layer=30] Fn+o → execute(w)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3520,7 +3264,6 @@
     [{:key :f19, :id "R3044 [profile=Default:device=Desktop:dsk_layer=30] Fn+p → execute(q)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3529,7 +3272,6 @@
     [{:key :f20, :id "R3045 [profile=Default:device=Desktop:dsk_layer=30] Fn+[ → execute(\\)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3538,7 +3280,6 @@
     [{:key :f22, :id "R3046 [profile=Default:device=Desktop:dsk_layer=30] Fn+h → execute(g)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3547,7 +3288,6 @@
     [{:key :f23, :id "R3047 [profile=Default:device=Desktop:dsk_layer=30] Fn+j → execute(f)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3556,7 +3296,6 @@
     [{:key :f24, :id "R3048 [profile=Default:device=Desktop:dsk_layer=30] Fn+k → execute(d)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3567,7 +3306,6 @@
       :id "R3049 [profile=Default:device=Desktop:dsk_layer=30] Fn+l → execute(s)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3578,7 +3316,6 @@
       :id "R3050 [profile=Default:device=Desktop:dsk_layer=30] Fn+; → execute(a)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3589,7 +3326,6 @@
       :id "R3051 [profile=Default:device=Desktop:dsk_layer=30] Fn+n → execute(b)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3600,7 +3336,6 @@
       :id "R3052 [profile=Default:device=Desktop:dsk_layer=30] Fn+m → execute(v)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3611,7 +3346,6 @@
       :id "R3053 [profile=Default:device=Desktop:dsk_layer=30] Fn+, → execute(c)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3622,7 +3356,6 @@
       :id "R3054 [profile=Default:device=Desktop:dsk_layer=30] Fn+. → execute(x)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell
@@ -3633,7 +3366,6 @@
       :id "R3055 [profile=Default:device=Desktop:dsk_layer=30] Fn+/ → execute(z)"}
      [:vk_none
       ["dsk_layer" 0]
-      ["dsk_in_modal_layer" 0]
       ["dsk_ins_sub_mode" -1]
       ["dsk_return_to_layer" -1]
       {:shell

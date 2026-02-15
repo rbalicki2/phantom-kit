@@ -31,11 +31,11 @@
 ;; Condition types in canonical order
 (def condition-order
   {:device 1    ;; :!apple_internal, :apple_internal
-   :layer 2     ;; dsk_layer, dsk_in_modal_layer
+   :layer 2     ;; dsk_layer
    :leaf 3})    ;; app, dsk_ins_sub_mode, dsk_return_to_layer (mutually exclusive)
 
 ;; Layer variables: base vs leaf
-(def base-layer-variables #{:dsk_layer :dsk_in_modal_layer})
+(def base-layer-variables #{:dsk_layer})
 (def leaf-layer-variables #{:dsk_ins_sub_mode :dsk_return_to_layer})
 
 ;; Device conditions
