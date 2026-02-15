@@ -92,31 +92,11 @@ Karabiner uses the first matching rule, so rules must be ordered **leaf to root*
 - Layer 13/28 (mouse modes) have their own exit rules in their sections (need `--held-modifiers reset`)
 - Global fallback at the end catches all other layers (uses `--held-modifiers keep`)
 
-**Exception for stateless rules**: Global utility rules that don't check mode variables (panic button, overlay toggle, page_down/up clicks) can go at the top for organizational clarity since ordering doesn't affect their behavior.
+### Key Blocking Strategy
 
-### Key Unmapping Strategy
+Unused keys are disabled via a global fallback rule at the end of karabiner.edn that blocks all unmapped keys. Layer-specific rules define what keys DO; the fallback catches everything else.
 
-Unused keys are disabled at three levels:
-
-1. **LHS keys (global)**: q,w,e,r,t,a,s,d,f,g,z,x,c,v,b and arrows are disabled globally for all Desktop layers. This is a one-handed (RHS) keyboard setup.
-
-2. **Layer 0 (Normal mode)**: Unused RHS keys are explicitly disabled. Only layer selector keys (j,n,m,i,comma,l,u,h,6,y) are active.
-
-3. **Modal layers (fallback)**: A global fallback rule at the end of karabiner.edn blocks all keys when `dsk_in_modal_layer=1`. Layer-specific rules earlier in the file define what keys DO in each layer; the fallback catches everything else.
-
-This approach means modal layers don't need explicit unmapping rules—they only define active keys, and the fallback handles the rest.
-
-## Global Shortcuts
-
-These work from ANY modal layer (mode >= 2):
-
-| Shortcut | State Change |
-|----------|--------------|
-| right_ctrl alone | dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1 |
-| Ctrl+J | dsk_layer=1, dsk_in_modal_layer=0, dsk_ins_sub_mode=0, dsk_return_to_layer=-1 |
-| Panic | dsk_layer=0, dsk_in_modal_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1 |
-
-**Ctrl+N** is global and works from any modal layer (dsk_in_modal_layer=1). It sends escape and calls cleanup-external-state.sh with all flags set to reset.
+LHS keys (q,w,e,r,t,a,s,d,f,g,z,x,c,v,b, backspace, delete) are enforced by validation to only appear in blocking rules - this is a one-handed (RHS) keyboard setup.
 
 ## Layer Exit Behavior
 
@@ -182,45 +162,6 @@ While in switcher:
 - Enter selects and exits (releases Cmd, returns to Normal)
 - Ctrl+N exits without selecting (releases Cmd, returns to Normal)
 
-## Automated Enforcement
-
-The test harness (`karabiner-test-harness/`) runs on every `npm run sync` and blocks deployment if violations are found.
-
-### validate-rules.bb
-
-Checks state-related issues:
-
-| Check | Description |
-|-------|-------------|
-| **Invariant violations (conditions)** | Rules that check for impossible state (e.g., dsk_layer=0 AND dsk_in_modal_layer=1) |
-| **Invariant violations (actions)** | Actions that set invalid state combinations |
-| **Shadowed rules** | Rules that can never fire because an earlier rule catches all their inputs |
-
-Shadowing detection is app-aware: a Chrome-specific rule doesn't shadow a Default rule (they apply to different apps).
-
-### validate-extras.bb
-
-Checks Goku syntax and config consistency:
-
-| Check | Description |
-|-------|-------------|
-| **Action starts with variable** | `[["dsk_layer" 0] ...]` causes null in JSON. Prepend `:vk_none`. |
-| **Nested key arrays** | `[[:key]]` instead of `:key` — unnecessary wrapper |
-| **Multiple shell commands** | Only the LAST `{:shell ...}` in a rule executes. Combine with `&&`. |
-| **Incomplete layer transitions** | Layer changes should set all 4 state variables (smart about same-value transitions between L sub-layers) |
-| **Layer code mismatches** | `/tmp/karabiner-layer` writes must match the expected code for dsk_layer |
-| **Missing overlay files** | `layers/*.txt` must exist for main layers (0-9) |
-| **Undefined app references** | App keywords must be defined in `:applications` |
-
-### match-rules.bb
-
-Interactive tool (not run automatically) for debugging:
-```bash
-bb match-rules.bb ../karabiner.edn j --layer 0 --mod right_control
-```
-
-Shows which rules match a given key + modifiers + state, including shadowed rules.
-
 ## Conceptual Model: Config as Nested Hashmap
 
 The karabiner.edn config can be conceptualized as a multi-level nested hashmap:
@@ -237,15 +178,3 @@ More precisely:
 - **Value**: Array of actions
 
 Rules "higher" in the tree (less specific) apply as fallbacks to all rules "below" them.
-
-**Future direction**: Treat `karabiner.edn` as a compilation target. Define the canonical structure in a higher-level format (the nested hashmap) and compile it down to Goku EDN. This would enable:
-- Better tooling for listing/querying rules by state
-- Automated validation of the hierarchical structure
-- Cleaner separation of concerns
-
-## Mental Model Todos
-
-- [ ] Treat EDN as compilation target: Build a higher-level DSL based on the nested hashmap model, compile to Goku EDN
-- [ ] Split submodes into "oneshot" (1, 2) and "rcmd chord" (3, 4) categories in documentation
-- [ ] Consider removing dsk_in_modal_layer variable: Add explicit pass-through rules for all keys in Ins mode (layer 1), then global key blocking can be unconditional. Exit rules would need to become per-layer instead of global. Trade-off: one less variable vs ~40+ pass-through rules in Ins.
-

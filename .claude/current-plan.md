@@ -18,7 +18,15 @@ Track ongoing tasks and side quests. When starting a side quest, push to top. Wh
 ### 0b. [Side Quest] Allow-list up/down keys globally
 **Status**: Pending
 
-### 0c. [Enhancement] list-rules.bb "match-state" mode
+### 0c. [Cleanup] Remove outdated docs
+**Status**: DONE
+- Removed "Exception for stateless rules" paragraph
+- Simplified "Key Blocking Strategy" section
+- Removed "Global Shortcuts" section (inaccurate terminology)
+- Updated script paths to new locations
+- Removed "Mental Model Todos" section
+
+### 0d. [Enhancement] list-rules.bb "match-state" mode
 **Status**: Pending
 - Add flag to show ALL rules matching a state (global + desktop + layer + submode)
 - More useful than current hierarchical listing
