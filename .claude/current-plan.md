@@ -2,11 +2,14 @@
 
 ## Active Task Stack (most recent on top)
 
-1. **Fix Shift Behavior in Insert Mode** - IN PROGRESS
-   - Shift not working with letter keys
-   - Rules have `optional: [:shift]` but output doesn't preserve shift
+1. **Fix describe-rules.bb script** - PENDING
+   - Bug: writes to files named after rule IDs (e.g., creates file "R2130") instead of displaying output
+   - Cause: likely parsing `--id` flag incorrectly as an output file path
+   - Example: `bb scripts/query/describe-rules.bb src/karabiner.edn --id R2130` creates file "R2130"
 
-2. **Order New Card** - PENDING (depends on shift fix)
+2. ~~**Fix Shift Behavior in Insert Mode**~~ - NOT BROKEN (user confirmed)
+
+3. **Order New Card** - PENDING
 
 3. **Unit Tests for set-rule.bb** - PENDING
    - Add --create/--update flag to prevent accidental overwrites
