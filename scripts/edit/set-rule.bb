@@ -207,27 +207,20 @@
   "The three state variables that must all be set together"
   #{:dsk_layer :dsk_ins_sub_mode :dsk_return_to_layer})
 
-(defn is-vk-none-only? [action]
-  "Check if action is just [:vk_none] with no other content"
-  (and (vector? action)
-       (= 1 (count action))
-       (= :vk_none (first action))))
-
 (defn validate-complete-state-transition [rule]
   "Ensure all state variables are set together when any is set.
 
    Rule: If you set ANY state var, you must set ALL of them.
 
    Exceptions:
-   - [:vk_none] alone requires no state vars (blocked rules)
-   - Rules in layer 13 (Label mode) don't need to set dsk_return_to_layer
-     (because return-to-layer behaves differently in that layer)"
+   - Desktop fallback rules (no layer condition) don't need state vars
+   - Rules in layer 13 (Label mode) don't need to set dsk_return_to_layer"
   (let [action (second rule)
         conditions (extract-conditions-from-rule rule)
         var-sets (extract-variable-sets action)
-        has-any-state-var (some #(contains? var-sets %) state-variables)]
-    (when (and has-any-state-var
-               (not (is-vk-none-only? action)))
+        has-any-state-var (some #(contains? var-sets %) state-variables)
+        is-fallback (not (has-layer-condition? conditions))]
+    (when (and has-any-state-var (not is-fallback))
       (let [;; Exception: layer 13 doesn't require return-to-layer in action
             required-vars (if (is-in-label-layer? conditions)
                            #{:dsk_layer :dsk_ins_sub_mode}

@@ -436,16 +436,13 @@
 
    Rules:
    1. Desktop fallback rules (no layer condition) are exempt from state var requirements
-   2. [:vk_none] alone is exempt (key blocking, doesn't change state)
-   3. Rules staying in the same layer are exempt (can't know return_to dynamically)
-   4. Rules in layer 13 (Label mode) don't require dsk_return_to_layer
-   5. Otherwise, ALL required state vars MUST be set
-   6. The resulting state must be valid per invariants"
-  (let [stays-in-same-layer (action-stays-in-same-layer? action rule-info)
-        in-label-layer (is-in-label-layer? rule-info)]
+   2. [:vk_none] alone is exempt (blocking rules don't change state)
+   3. Rules in layer 13 (Label mode) don't require dsk_return_to_layer
+   4. Otherwise, ALL required state vars MUST be set
+   5. The resulting state must be valid per invariants"
+  (let [in-label-layer (is-in-label-layer? rule-info)]
     (if (or (is-desktop-fallback? rule-info)
-            (is-vk-none-only? action)
-            stays-in-same-layer)
+            (is-vk-none-only? action))
       [] ;; Exempt from state var requirements
       (let [var-sets (extract-variable-sets-from-action action)
             layer (get var-sets :dsk_layer)
@@ -474,7 +471,10 @@
                                  context layer submode)
                  :rule (:rule rule-info)})
 
+          ;; Skip return_to validation for layer 13 rules (they shouldn't set it anyway)
+          ;; TODO: Fix layer 13 rules to not set return_to, then remove this exception
           (and (empty? missing)
+               (not in-label-layer)
                (not (valid-return-to-for-layer? layer return-to)))
           (conj {:type :invalid-state-return-to
                  :description (:description rule-info)

@@ -62,7 +62,7 @@
    [{:key :up_arrow, :modi {:optional [:shift]}, :id "R0040a [profile=Default:device=Desktop:dsk_layer=0] ↑ → ↑"} [:up_arrow ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 0]]]
    [{:key :down_arrow, :modi {:optional [:shift]}, :id "R0040b [profile=Default:device=Desktop:dsk_layer=0] ↓ → ↓"} [:down_arrow ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 0]]]
    [{:key :return_or_enter, :id "R0046 [profile=Default:device=Desktop:dsk_layer=0] Enter → Enter", :modi {:optional [:shift]}} [:return_or_enter ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 0]]]
-   [{:key :semicolon, :id "R0040 [profile=Default:device=Desktop:dsk_layer=0] ; → AltIns"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
+   [{:key :semicolon, :id "R0040 [profile=Default:device=Desktop:dsk_layer=0] ; → AltIns"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'showPermanentLayerOverlay()'"}] [["dsk_layer" 0]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 0]]"
  :rules [:!apple_internal
@@ -565,7 +565,8 @@
    [{:key :9, :modi {:optional [:caps_lock]}, :id "R2073 [profile=Default:device=Desktop:dsk_layer=7] 9 → ("} [:!S9 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :0, :modi {:optional [:caps_lock]}, :id "R2074 [profile=Default:device=Desktop:dsk_layer=7] 0 → )"} [:!S0 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :hyphen, :modi {:optional [:caps_lock]}, :id "R2075 [profile=Default:device=Desktop:dsk_layer=7] - → -"} [:hyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :!Of12, :id "R2080 [profile=Default:device=Desktop:dsk_layer=7] Fn+] → shift-oneshot"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 1] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
+   [{:key :!Of12, :id "R2080 [profile=Default:device=Desktop:dsk_layer=7] Fn+] → shift-oneshot"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 1] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :right_control, :id "R2100 [profile=Default:device=Desktop:dsk_layer=7] RCtrl → Normal"} [:right_control ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"}] [["dsk_layer" 7]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal

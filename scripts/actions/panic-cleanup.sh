@@ -28,6 +28,9 @@
 # Clear L-mode modifier file
 (rm -f /tmp/karabiner-lmode-modifier 2>/dev/null || true) &
 
+# Hide any persistent layer overlay
+(/opt/homebrew/bin/hs -c 'hideOverlay()' 2>/dev/null || true) &
+
 # Release any held modifiers (ONLY safe in panic mode)
 (osascript -e 'tell application "System Events" to key up command' \
            -e 'tell application "System Events" to key up shift' \
