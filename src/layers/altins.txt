@@ -1,4 +1,4 @@
-ALT-INSERT MODE (Frequency Layout)
+ALT-INSERT MODE
 
 +-----+-----+-----+-----+-----+-----+
 |  4  |  3  |  2  |  1  |  0  |     |
@@ -8,10 +8,10 @@ ALT-INSERT MODE (Frequency Layout)
 |  p  |  f  |  c  |  d  |  l  | tab |
 +-----+-----+-----+-----+-----+-----+
 |  y  |  g  |  m  |  w  |  u  |  '  |
-|  a  |  t  |  e  |  i  |  o  | esc |
+|  a  |  t  |  e  |  o  |  i  | esc |
 +-----+-----+-----+-----+-----+-----+
 |  z  |  b  |  =  |  +  |  ;  |
-|  h  |  s  |  n  |  r  |  ,  |
+|  s  |  h  |  n  |  r  |  ,  |
 +-----+-----+-----+-----+-----+
 
 Navigation: up/dn/[/] same as Ins
