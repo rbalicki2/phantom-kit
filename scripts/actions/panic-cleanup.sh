@@ -33,3 +33,9 @@
            -e 'tell application "System Events" to key up shift' \
            -e 'tell application "System Events" to key up option' \
            -e 'tell application "System Events" to key up control' 2>/dev/null || true) &
+
+# Restart SwiftBar
+(pkill -x SwiftBar; sleep 1; open -a SwiftBar 2>/dev/null || true) &
+
+# Reload Hammerspoon
+(/opt/homebrew/bin/hs -c 'hs.reload()' 2>/dev/null || true) &

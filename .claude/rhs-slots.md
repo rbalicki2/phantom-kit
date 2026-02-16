@@ -14,7 +14,7 @@
 | i        | i        | e        | I        | E        |          |          |          |          |
 | o        | o        | w        | O        | W        |          |          |          |          |
 | p        | p        | q        | P        | Q        |          |          |          |          |
-| \        | tab      | sh+tab   | \|       |          |          |          |          |          |
+| \        | tab      | sh+tab   | \|       | \\       |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | h        | h        | g        | H        | G        | del mode |          |          |          |
 | j        | j        | f        | J        | F        | wd←      | →ins     |          |          |
@@ -30,10 +30,10 @@
 | /        | /        | z        | ?        | Z        |          |          |          |          |
 | rshift   | shift    |          |          |          |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
-| up       | up       | {        | [        |          | ←        |          |          |          |
-| down     | down     | }        | ]        |          | →        |          |          |          |
-| [        | bksp     |          |          |          |          |          |          |          |
-| ]        | del      |          |          |          |          |          |          |          |
+| up       | up       | {        | [        | ~        | ←        |          |          |          |
+| down     | down     | }        | ]        | `        | →        |          |          |          |
+| [        | bksp     |          |          | +        |          |          |          |          |
+| ]        | del      |          |          | =        |          |          |          |          |
 |----------|----------|----------|----------|----------|----------|----------|----------|----------|
 | pgup     | lclick   |          |          |          |          |          |          |          |
 | pgdn     | rclick   |          |          |          |          |          |          |          |
@@ -42,7 +42,7 @@
 | rcmd     | modifier |          |          |          |          |          |          |          |
 | rctrl    | →norm    |          |          |          |          |          |          |          |
 
-## Unavailable Symbols
-These symbols currently have no RHS slot in Ins mode: backslash, backtick, tilde, plus, equals
+## Column Definitions
 
-Note: plus and equals are available via L layer (H=plus, N=equals)
+- **shift+fn**: Mirror mode (submode 1). Enter via **Fn+]**, then press key. Hardware prevents simultaneous Fn+Shift.
+- **fn**: Hold Fn on Kinesis, press key. Kinesis sends Option+F-key codes.

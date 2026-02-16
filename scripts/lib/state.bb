@@ -73,12 +73,84 @@
   #{0 10})
 
 ;; ============================================================================
+;; State Type Hierarchy
+;; ============================================================================
+;;
+;; States form a hierarchical ADT with three entry points:
+;;
+;; CompleteState (for simulation): profile → device → app → layer → leaf
+;; FilterState (for conditions):   device → app → layer → leaf
+;; TransitionState (for actions):  layer → leaf (submode, return-to)
+;;
+;; Each type is the same tree structure entered at different levels.
+;; Partial states (e.g., just profile+device) match all descendants.
+
+(def state-hierarchy
+  "The canonical hierarchy of state dimensions, root to leaf"
+  [:profile :device :app :layer :submode :return-to])
+
+(def state-type-roots
+  "Which dimension each state type must start with"
+  {:complete :profile    ;; Must have profile if anything
+   :filter :device       ;; Must have device if anything
+   :transition :layer})  ;; Must have layer if anything
+
+(defn state-type
+  "Determine the type of a state map based on which fields are present.
+   Returns :complete, :filter, :transition, or :empty."
+  [{:keys [profile device layer]}]
+  (cond
+    profile :complete
+    device :filter
+    layer :transition
+    :else :empty))
+
+(defn validate-state-hierarchy
+  "Validate that a state respects the hierarchy for its type.
+   Child fields should not appear without their parent.
+   Returns nil if valid, or error map if invalid."
+  [{:keys [profile device app layer submode return-to] :as state}]
+  (let [stype (state-type state)]
+    (cond
+      ;; Complete state: device requires profile
+      (and device (not profile) (= stype :filter))
+      nil  ;; This is a filter state, valid
+
+      (and device (not profile) (not= stype :filter))
+      {:type :hierarchy-violation
+       :message "device requires profile in complete state"}
+
+      ;; App requires device
+      (and app (not device))
+      {:type :hierarchy-violation
+       :message "app requires device"}
+
+      ;; Layer requires device
+      (and layer (not device) (not= stype :transition))
+      {:type :hierarchy-violation
+       :message "layer requires device (unless transition state)"}
+
+      ;; Submode requires layer
+      (and submode (not layer))
+      {:type :hierarchy-violation
+       :message "submode requires layer"}
+
+      ;; Return-to requires layer
+      (and return-to (not layer))
+      {:type :hierarchy-violation
+       :message "return-to requires layer"}
+
+      :else nil)))
+
+;; ============================================================================
 ;; State Parsing - From Strings
 ;; ============================================================================
 
 (defn parse-state-string
   "Parse a state string like 'profile=Default:device=Desktop:dsk_layer=13:dsk_return_to_layer=1'
-   into a state map {:profile 'Default' :device :!apple_internal :layer 13 :submode nil :return-to 1}"
+   into a state map {:profile 'Default' :device :!apple_internal :layer 13 :submode nil :return-to 1 :app nil}
+
+   Also accepts 'layer=1' shorthand for 'dsk_layer=1'."
   [s]
   (when (and s (string? s) (not (str/blank? s)))
     (let [parts (str/split s #":")
@@ -87,13 +159,57 @@
         (fn [state [k v]]
           (case k
             "profile" (assoc state :profile v)
-            "device" (assoc state :device (if (= v "Desktop") :!apple_internal :apple_internal))
-            "dsk_layer" (assoc state :layer (parse-long v))
-            "dsk_ins_sub_mode" (assoc state :submode (parse-long v))
-            "dsk_return_to_layer" (assoc state :return-to (parse-long v))
+            "device" (assoc state :device (cond
+                                            (= v "Desktop") :desktop
+                                            (= v "desktop") :desktop
+                                            (= v "Laptop") :laptop
+                                            (= v "laptop") :laptop
+                                            :else (keyword v)))
+            "app" (assoc state :app (keyword v))
+            ("dsk_layer" "layer") (assoc state :layer (parse-long v))
+            ("dsk_ins_sub_mode" "submode") (assoc state :submode (parse-long v))
+            ("dsk_return_to_layer" "return-to") (assoc state :return-to (parse-long v))
             state))
         {}
         pairs))))
+
+(defn parse-complete-state
+  "Parse a state string as a CompleteState. Validates hierarchy.
+   Returns {:state <map> :type :complete} or throws on invalid."
+  [s]
+  (let [state (parse-state-string s)
+        stype (state-type state)]
+    (when (and state (not= stype :empty))
+      (when-not (= stype :complete)
+        (throw (ex-info (str "Complete state must start with profile, got " stype " state")
+                        {:state state :type stype})))
+      (when-let [err (validate-state-hierarchy state)]
+        (throw (ex-info (:message err) {:state state :error err})))
+      {:state state :type :complete})))
+
+(defn parse-filter-state
+  "Parse a state string as a FilterState (starts with device).
+   FilterState is for rule conditions: device → app → layer → leaf.
+   Distinct from TransitionState which is variables-only."
+  [s]
+  (let [state (parse-state-string s)
+        stype (state-type state)]
+    (when (and state (not= stype :empty))
+      (when-not (= stype :filter)
+        (throw (ex-info (str "Filter state must start with device, got " stype " state")
+                        {:state state :type stype})))
+      {:state state :type :filter})))
+
+(defn parse-transition-state
+  "Parse a state string as a TransitionState (just layer variables)."
+  [s]
+  (let [state (parse-state-string s)
+        stype (state-type state)]
+    (when (and state (not= stype :empty))
+      (when-not (= stype :transition)
+        (throw (ex-info (str "Transition state must only have layer variables")
+                        {:state state :type stype})))
+      {:state state :type :transition})))
 
 ;; ============================================================================
 ;; State Parsing - From Condition Arrays
@@ -306,6 +422,22 @@
           :else
           [{:profile "Default" :device :desktop :layer layer :submode -1 :return-to -1 :app nil}]))
       (sort all-layers))))
+
+(defn state-matches-partial?
+  "Check if a complete state matches a partial state specification.
+   A partial state matches if all specified fields match."
+  [complete-state partial-state]
+  (every? (fn [[k v]]
+            (or (nil? v)  ;; nil in partial means 'any'
+                (= (get complete-state k) v)))
+          partial-state))
+
+(defn expand-partial-state
+  "Given a partial complete state, return all valid complete states that match.
+   E.g., {:profile \"Default\" :device :desktop} returns all desktop layer states.
+   E.g., {:profile \"Default\" :device :desktop :layer 1} returns all Ins submodes."
+  [partial-state]
+  (filter #(state-matches-partial? % partial-state) (all-valid-states)))
 
 (defn all-valid-conditions
   "Returns a sequence of all valid partial states (conditions) in leaf-to-root order.

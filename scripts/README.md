@@ -43,18 +43,13 @@ Analyze rule patterns and statistics.
 
 ## Edit Scripts (modify EDN)
 
-### edit/insert-rules.bb
-Insert new rule blocks before the global block.
+### edit/set-rule.bb
+Set a rule by ID (delete existing, then add). Reads rule from stdin.
 
 ```bash
-echo '{:des "New block" :rules [...]}' | bb edit/insert-rules.bb src/karabiner.edn src/karabiner.edn -
-```
-
-### edit/update-rule.bb
-Modify existing rules by selector.
-
-```bash
-bb edit/update-rule.bb src/karabiner.edn src/karabiner.edn add-to-action '["var" 1]' --id "R0123"
+cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
+[{:key :!Of9, :id "R1234 [profile=Default:device=Desktop:layer=1:submode=2]"} [:!Sgrave] [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]]
+EOFR
 ```
 
 ### edit/rename-rules.bb

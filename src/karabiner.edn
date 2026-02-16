@@ -132,14 +132,10 @@
    [{:key :f11, :id "R0146 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f11 → 1 (oneshot clear)"} [:1 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :spacebar, :modi {:optional [:any]}, :id "R1359 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Space → Space (oneshot clear)"} [:spacebar ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :return_or_enter, :modi {:optional [:any]}, :id "R1360 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Enter → Enter (oneshot clear)"} [:return_or_enter ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
-   [{:key :up_arrow, :modi {:optional [:any]}, :id "R1365 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] ↑ → ↑ (oneshot clear)"} [:up_arrow ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
-   [{:key :down_arrow, :modi {:optional [:any]}, :id "R1366 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] ↓ → ↓ (oneshot clear)"} [:down_arrow ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :left_arrow, :modi {:optional [:any]}, :id "R1367 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] ← → ← (oneshot clear)"} [:left_arrow ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :right_arrow, :modi {:optional [:any]}, :id "R1368 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] → → → (oneshot clear)"} [:right_arrow ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :page_up, :modi {:optional [:any]}, :id "R1369 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] PgUp → PgUp (oneshot clear)"} [:page_up ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :page_down, :modi {:optional [:any]}, :id "R1370 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] PgDn → PgDn (oneshot clear)"} [:page_down ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
-   [{:key :open_bracket, :modi {:optional [:any]}, :id "R1373 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] [ → [ (oneshot clear)"} [:open_bracket ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
-   [{:key :close_bracket, :modi {:optional [:any]}, :id "R1374 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] ] → ] (oneshot clear)"} [:close_bracket ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :hyphen, :modi {:optional [:any]}, :id "R1375 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] hyphen → hyphen (oneshot clear)"} [:hyphen ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :quote, :modi {:optional [:any]}, :id "R1377 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] quote → quote (oneshot clear)"} [:quote ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :backslash, :modi {:optional [:any]}, :id "R1379 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] bksl → bksl (oneshot clear)"} [:backslash ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
@@ -153,7 +149,11 @@
    [{:key :f11, :modi {:optional [:any]}, :id "R1387 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f11 → f11 (oneshot clear)"} [:f11 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :f12, :modi {:optional [:any]}, :id "R1388 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f12 → f12 (oneshot clear)"} [:f12 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
    [{:key :f13, :modi {:optional [:any]}, :id "R1389 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f13 → f13 (oneshot clear)"} [:f13 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
-   [{:key :f14, :modi {:optional [:any]}, :id "R1390 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f14 → f14 (oneshot clear)"} [:f14 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]]}
+   [{:key :f14, :modi {:optional [:any]}, :id "R1390 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] f14 → f14 (oneshot clear)"} [:f14 ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
+   [{:key :up_arrow, :modi {:optional [:any]}, :id "R1365 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=1] ↑ → ~ (oneshot clear)"} [:!Sgrave_accent_and_tilde ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
+   [{:key :down_arrow, :modi {:optional [:any]}, :id "R1366 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=1] ↓ → ` (oneshot clear)"} [:grave_accent_and_tilde ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
+   [{:key :open_bracket, :modi {:optional [:any]}, :id "R1373 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=1] [ → + (oneshot clear)"} [:!Sequal_sign ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]
+   [{:key :close_bracket, :modi {:optional [:any]}, :id "R1374 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=1] ] → = (oneshot clear)"} [:equal_sign ["dsk_ins_sub_mode" 0]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 1]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 2]]"
  :rules [:!apple_internal

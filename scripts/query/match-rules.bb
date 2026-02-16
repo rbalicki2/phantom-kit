@@ -8,6 +8,8 @@
 ;;   bb match-rules.bb <edn-file> <key> [options]
 ;;
 ;; Options:
+;;   --state STRING      Complete state string (e.g., "profile=Default:device=Desktop:layer=1")
+;;                       Partial states match all rules in subtree.
 ;;   --layer N           Set dsk_layer (default: 0)
 ;;   --modal N           Set dsk_in_modal_layer (default: 0)
 ;;   --submode N         Set dsk_ins_sub_mode (default: -1)
@@ -16,13 +18,22 @@
 ;;   --device TYPE       Set device type: apple_internal or external (default: external)
 ;;   --mod MODIFIER      Add modifier (can repeat: --mod shift --mod right_control)
 ;;
-;; Example:
+;; Examples:
 ;;   bb match-rules.bb karabiner.edn j --layer 0 --mod right_control
+;;   bb match-rules.bb karabiner.edn p --state "profile=Default:device=Desktop"
+;;   bb match-rules.bb karabiner.edn p --state "profile=Default:device=Desktop:layer=1"
 
 (ns match-rules
   (:require [clojure.edn :as edn]
             [clojure.string :as str]
             [clojure.set :as set]))
+
+;; Load state library from relative path
+(def script-dir (-> (System/getProperty "babashka.file")
+                    (java.io.File.)
+                    (.getParentFile)
+                    (.getAbsolutePath)))
+(load-file (str script-dir "/../lib/state.bb"))
 
 ;; ============================================================================
 ;; EDN Parsing
@@ -330,7 +341,8 @@
                          :dsk_ins_sub_mode -1
                          :dsk_return_to_layer -1}
                  :app nil
-                 :device :external}]
+                 :device :external
+                 :state-string nil}]  ;; New: raw state string
     (if (empty? args)
       result
       (let [[arg & rest-args] args]
@@ -346,7 +358,12 @@
                (not (str/starts-with? arg "--")))
           (recur rest-args (assoc result :key (keyword arg)))
 
-          ;; Options
+          ;; --state: complete state string (takes precedence over individual flags)
+          (= arg "--state")
+          (recur (rest rest-args)
+                 (assoc result :state-string (first rest-args)))
+
+          ;; Options (legacy, overridden by --state)
           (= arg "--layer")
           (recur (rest rest-args)
                  (assoc-in result [:state :dsk_layer] (parse-long (first rest-args))))
@@ -387,11 +404,38 @@
     (println "  Condition:" (pr-str (:condition match))))
   (println))
 
+(defn complete-state->match-state
+  "Convert a complete state from state library to match-rules internal format"
+  [{:keys [layer submode return-to]}]
+  {:dsk_layer (or layer 0)
+   :dsk_in_modal_layer 0
+   :dsk_ins_sub_mode (or submode -1)
+   :dsk_return_to_layer (or return-to -1)})
+
+(defn complete-state->device
+  "Extract device from complete state"
+  [{:keys [device]}]
+  (case device
+    :desktop :external
+    :laptop :apple_internal
+    :external))
+
+(defn format-state-for-display
+  "Format a complete state for display"
+  [{:keys [profile device layer submode return-to app]}]
+  (str (when profile (str "profile=" profile))
+       (when device (str ":device=" (name device)))
+       (when layer (str ":layer=" layer))
+       (when (and submode (not= submode -1)) (str ":submode=" submode))
+       (when (and return-to (not= return-to -1)) (str ":return-to=" return-to))
+       (when app (str ":app=" (name app)))))
+
 (defn -main [& args]
   (let [parsed (parse-args args)]
     (when (or (not (:edn-file parsed)) (not (:key parsed)))
       (println "Usage: bb match-rules.bb <edn-file> <key> [options]")
       (println "Options:")
+      (println "  --state STRING  Complete state string (e.g., \"profile=Default:device=Desktop:layer=1\")")
       (println "  --layer N       Set dsk_layer (default: 0)")
       (println "  --modal N       Set dsk_in_modal_layer (default: 0)")
       (println "  --submode N     Set dsk_ins_sub_mode (default: -1)")
@@ -402,33 +446,84 @@
       (System/exit 1))
 
     (let [config (parse-edn-file (:edn-file parsed))
-          result (find-matching-rules config
-                                      (:key parsed)
-                                      (set (:mods parsed))
-                                      (:state parsed)
-                                      (:app parsed)
-                                      (:device parsed))]
-      (println "=== Input ===")
-      (println "Key:" (:key parsed))
-      (println "Modifiers:" (or (seq (:mods parsed)) "none"))
-      (println "State:" (:state parsed))
-      (println "App:" (or (:app parsed) "any"))
-      (println "Device:" (:device parsed))
-      (println)
+          state-str (:state-string parsed)]
 
-      (println "=== Results ===")
-      (println "Total matches:" (:match-count result))
-      (println)
+      (if state-str
+        ;; New: --state provided, parse and possibly expand
+        (let [parsed-state (state/parse-state-string state-str)
+              _ (when-not parsed-state
+                  (println "Error: Invalid state string:" state-str)
+                  (System/exit 1))
+              ;; Expand partial state into all matching complete states
+              complete-states (state/expand-partial-state parsed-state)
+              _ (when (empty? complete-states)
+                  (println "Error: No valid states match:" state-str)
+                  (System/exit 1))]
 
-      (when-let [first-match (:first-match result)]
-        (println "--- First Match (ACTIVE) ---")
-        (print-match first-match))
+          (println "=== Input ===")
+          (println "Key:" (:key parsed))
+          (println "Modifiers:" (or (seq (:mods parsed)) "none"))
+          (println "State filter:" state-str)
+          (println "Matching" (count complete-states) "complete state(s)")
+          (println)
 
-      (when (> (:match-count result) 1)
-        (println "--- All Matches (including shadowed) ---")
-        (doseq [[idx match] (map-indexed vector (:all-matches result))]
-          (println (str "#" (inc idx) (if (= idx 0) " (ACTIVE)" " (SHADOWED)")))
-          (print-match match))))))
+          ;; Run matches for each complete state
+          (let [all-results
+                (for [cs complete-states
+                      :let [match-state (complete-state->match-state cs)
+                            device (complete-state->device cs)
+                            result (find-matching-rules config
+                                                        (:key parsed)
+                                                        (set (:mods parsed))
+                                                        match-state
+                                                        (:app parsed)
+                                                        device)]
+                      :when (pos? (:match-count result))]
+                  {:state cs :result result})
+
+                ;; Dedupe rules by ID (same rule may appear in multiple states)
+                unique-rules (->> all-results
+                                  (mapcat #(-> % :result :all-matches))
+                                  (group-by #(-> % :from :id))
+                                  vals
+                                  (map first))]
+
+            (println "=== Results ===")
+            (println "Unique rules matching:" (count unique-rules))
+            (println)
+
+            (doseq [[idx match] (map-indexed vector unique-rules)]
+              (println (str "#" (inc idx)))
+              (print-match match))))
+
+        ;; Legacy: individual flags
+        (let [result (find-matching-rules config
+                                          (:key parsed)
+                                          (set (:mods parsed))
+                                          (:state parsed)
+                                          (:app parsed)
+                                          (:device parsed))]
+          (println "=== Input ===")
+          (println "Key:" (:key parsed))
+          (println "Modifiers:" (or (seq (:mods parsed)) "none"))
+          (println "State:" (:state parsed))
+          (println "App:" (or (:app parsed) "any"))
+          (println "Device:" (:device parsed))
+          (println)
+
+          (println "=== Results ===")
+          (println "Total matches:" (:match-count result))
+          (println)
+
+          (when-let [first-match (:first-match result)]
+            (println "--- First Match (ACTIVE) ---")
+            (print-match first-match))
+
+          (when (> (:match-count result) 1)
+            (println "--- All Matches (including shadowed) ---")
+            (doseq [[idx match] (map-indexed vector (:all-matches result))]
+              (println (str "#" (inc idx) (if (= idx 0) " (ACTIVE)" " (SHADOWED)")))
+              (print-match match))))))))
 
 ;; ============================================================================
 ;; Library API (for use from tests)

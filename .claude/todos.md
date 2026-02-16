@@ -2,7 +2,6 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
-- Tilde input broken in insert mode: Fn+Space then Fn+↓ should type tilde (~) but doesn't work
 - Expand unit test coverage: add tests for all Fn+key combos in each layer, verify all layer entries/exits, test edge cases (modifier combos, app-specific rules). Run tests as part of `npm run sync`.
 - Push voicemode repo to a remote repository
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript

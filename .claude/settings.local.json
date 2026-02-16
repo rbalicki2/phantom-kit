@@ -60,7 +60,11 @@
       "Bash(do)",
       "Bash(done)",
       "Bash(du:*)",
-      "Bash(GK_OPTIONAL_EDN=karabiner-test.edn /opt/homebrew/bin/goku:*)"
+      "Bash(GK_OPTIONAL_EDN=karabiner-test.edn /opt/homebrew/bin/goku:*)",
+      "Bash(gh repo create:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh config set:*)",
+      "Bash(gh repo view:*)"
     ]
   }
 }

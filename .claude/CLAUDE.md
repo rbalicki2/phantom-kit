@@ -26,16 +26,51 @@ All modifications should be done via scripts in `scripts/`. See `scripts/README.
 
 ### NEVER READ karabiner.edn DIRECTLY
 
-Use scripts to query the config:
+**Strongly prefer using query/edit tools instead of reading the file.** The config is large and complex; tools provide structured access.
+
+#### Query Tools (read-only)
+
 ```bash
-# List rules in a layer
-bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=9" --format summary
-
-# Find what matches a key press
+# Find what rule matches a key press (check before adding new shortcuts)
 bb scripts/query/match-rules.bb src/karabiner.edn j --layer 0
+bb scripts/query/match-rules.bb src/karabiner.edn '!SOf21'  # Check if key is free
 
-# Insert new rules
-echo '{:des "..." :rules [...]}' | bb scripts/edit/insert-rules.bb src/karabiner.edn src/karabiner.edn -
+# Find ALL rules for a key across states (use --state with partial state)
+bb scripts/query/match-rules.bb src/karabiner.edn p --state "profile=Default:device=Desktop"
+bb scripts/query/match-rules.bb src/karabiner.edn p --state "profile=Default:device=Desktop:layer=1"
+
+# List rules in a layer/state
+bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=9" --format summary
+bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact
+
+# Get detailed info about specific rules
+bb scripts/query/describe-rules.bb src/karabiner.edn --id R0025
+
+# Analyze rule patterns and statistics
+bb scripts/query/analyze-rules.bb src/karabiner.edn
+```
+
+#### Edit Tools (modify config)
+
+```bash
+# Set a rule by ID (delete existing, then add) - reads from stdin
+cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
+[{:key :!Of9, :id "R1234 [profile=Default:device=Desktop:layer=1:submode=2]"} [:!Sgrave] [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]]
+EOFR
+
+# Remove rules by key pattern
+bb scripts/edit/remove-lhs-rules.bb src/karabiner.edn src/karabiner.edn --key '!Of19'
+
+# Batch rename rules
+bb scripts/edit/rename-rules.bb src/karabiner.edn src/karabiner.edn --pattern 'old' --replacement 'new'
+```
+
+#### Validation Tools (run automatically on sync)
+
+```bash
+bb scripts/validate/validate-rules.bb src/karabiner.edn    # Core validation
+bb scripts/validate/validate-extras.bb src/karabiner.edn   # Additional checks
+bb scripts/validate/fix-rule-ids.bb src/karabiner.edn      # Regenerate sequential IDs
 ```
 
 See `scripts/README.md` for full documentation.
@@ -63,6 +98,8 @@ The user is using voice-to-text:
 - Catch likely mistakes (e.g., "Shift+Tab" when they mean "Ctrl+Shift+Tab")
 - If something can be verified mechanically, DO IT instead of asking the user
 - Before adding a new variable, explicitly check with the user
+
+**Terminology note**: "Fn+Shift" or "Function Shift" means the oneshot Shift submode (entered via Fn+]), NOT simultaneous Fn+Shift keys. Kinesis hardware prevents simultaneous Fn+Shift. See rhs-slots.md for the shift+fn column definition.
 
 ## On Startup
 
