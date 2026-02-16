@@ -302,7 +302,6 @@
    [{:key :down_arrow, :modi {:mandatory [:right_command], :optional [:any]}, :id "R0083 [profile=Default:device=Desktop:dsk_layer=1] RCmd+↓ → →"} [:right_arrow ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :j, :modi {:mandatory [:control]}, :id "R0084 [profile=Default:device=Desktop:dsk_layer=1] Ctrl+j blocked"} [:vk_none] [["dsk_layer" 1]]]
    [{:key :m, :modi {:mandatory [:right_control]}, :id "R0085 [profile=Default:device=Desktop:dsk_layer=1] RCtrl+m → Label mode (return to Ins)"} [:vk_none :!COSo ["dsk_layer" 13] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" 1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo label > /tmp/karabiner-layer"}] [["dsk_layer" 1]]]
-   [{:key :!Of12, :id "R0086 [profile=Default:device=Desktop:dsk_layer=1] Fn+] → shift-mirror-oneshot"} [:vk_none ["dsk_ins_sub_mode" 1] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :!Of18, :id "R0087 [profile=Default:device=Desktop:dsk_layer=1] Fn+Space → shift-oneshot"} [:spacebar ["dsk_ins_sub_mode" 2] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :!Of17, :id "R0088 [profile=Default:device=Desktop:dsk_layer=1] Fn+Enter → Shift+Enter"} [:!Sreturn_or_enter ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :open_bracket, :id "R0089 [profile=Default:device=Desktop:dsk_layer=1] [ → Backspace"} [:delete_or_backspace ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
@@ -376,7 +375,8 @@
    [{:key :period, :modi {:mandatory [:shift]}, :id "R1813 [profile=Default:device=Desktop:dsk_layer=1] Shift+. → Shift+."} [:!Speriod ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :slash, :modi {:mandatory [:shift]}, :id "R1814 [profile=Default:device=Desktop:dsk_layer=1] Shift+/ → Shift+/"} [:!Sslash ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :quote, :modi {:mandatory [:shift]}, :id "R1815 [profile=Default:device=Desktop:dsk_layer=1] Shift+' → Shift+'"} [:!Squote ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
-   [{:key :hyphen, :modi {:mandatory [:shift]}, :id "R1816 [profile=Default:device=Desktop:dsk_layer=1] Shift+- → Shift+-"} [:!Shyphen ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]]}
+   [{:key :hyphen, :modi {:mandatory [:shift]}, :id "R1816 [profile=Default:device=Desktop:dsk_layer=1] Shift+- → Shift+-"} [:!Shyphen ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
+   [{:key :!Of12, :id "R0086 [profile=Default:device=Desktop:dsk_layer=1] Fn+] → shift-mirror-oneshot"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 1] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 2]]"
  :rules [:!apple_internal
