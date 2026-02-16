@@ -135,11 +135,24 @@
 
         :else nil))))
 
+(defn action-sets-state-vars? [action]
+  "Check if action sets any state variables (dsk_layer, dsk_ins_sub_mode, dsk_return_to_layer)"
+  (when (vector? action)
+    (some (fn [item]
+            (and (vector? item)
+                 (= 2 (count item))
+                 (string? (first item))
+                 (#{"dsk_layer" "dsk_ins_sub_mode" "dsk_return_to_layer"} (first item))))
+          action)))
+
 (defn validate-has-condition [rule]
-  "Validate that rule has a condition (for Desktop profile, all rules need one)"
-  (let [conditions (extract-conditions-from-rule rule)]
-    (when (empty? conditions)
-      {:error "Rule must have a condition with at least dsk_layer"})))
+  "Validate that rule has a condition if it sets state variables.
+   Rules that don't set state variables can be global (no condition)."
+  (let [conditions (extract-conditions-from-rule rule)
+        action (second rule)
+        sets-state (action-sets-state-vars? action)]
+    (when (and (empty? conditions) sets-state)
+      {:error "Rule sets state variables but has no condition. Add a condition or remove state variables."})))
 
 (defn parse-id-state-string
   "Parse state values from the bracketed portion of a rule ID.
@@ -202,17 +215,29 @@
          (into {}))))
 
 (def state-variables
-  "The state variables that must all be set in layer transitions"
+  "The three state variables that must all be set together"
   #{:dsk_layer :dsk_ins_sub_mode :dsk_return_to_layer})
 
-(defn validate-layer-transition-complete [rule]
-  "If rule sets dsk_layer, ensure all state variables are set"
+(defn is-vk-none-only? [action]
+  "Check if action is just [:vk_none] with no other content"
+  (and (vector? action)
+       (= 1 (count action))
+       (= :vk_none (first action))))
+
+(defn validate-complete-state-transition [rule]
+  "Ensure all state variables are set together when any is set.
+   Exception: [:vk_none] alone requires no state vars.
+
+   If ANY of dsk_layer, dsk_ins_sub_mode, dsk_return_to_layer is set,
+   ALL THREE must be set."
   (let [action (second rule)
-        var-sets (extract-variable-sets action)]
-    (when (contains? var-sets :dsk_layer)
-      (let [missing (set/difference state-variables (set (keys var-sets)))]
+        var-sets (extract-variable-sets action)
+        has-any-state-var (some #(contains? var-sets %) state-variables)]
+    (when (and has-any-state-var
+               (not (is-vk-none-only? action)))
+      (let [missing (clojure.set/difference state-variables (set (keys var-sets)))]
         (when (seq missing)
-          {:error (format "Layer transition must set all state variables. Missing: %s"
+          {:error (format "Action sets state vars but missing: %s. All three must be set together."
                           (str/join ", " (map name missing)))})))))
 
 (defn validate-rule [rule target-id]
@@ -220,7 +245,7 @@
   (or (validate-id-format target-id)
       (validate-has-condition rule)
       (validate-id-matches-conditions rule target-id)
-      (validate-layer-transition-complete rule)))
+      (validate-complete-state-transition rule)))
 
 (defn -main [& args]
   (let [[edn-file rule-id rule-source] args]
