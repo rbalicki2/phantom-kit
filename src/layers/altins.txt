@@ -1,19 +1,21 @@
 ALT-INSERT MODE (Frequency Layout)
 
 +-----+-----+-----+-----+-----+-----+
-|  &  |  ^  |  $  |  (  |  )  |  -  |
 |  4  |  3  |  2  |  1  |  0  |     |
+|  &  |  ^  |  $  |  (  |  )  |  -  |
 +-----+-----+-----+-----+-----+-----+
-|  p  |  f  |  c  |  d  |  l  | tab |
 |  x  |  k  |  v  |  j  |  q  | S-tb|
+|  p  |  f  |  c  |  d  |  l  | tab |
 +-----+-----+-----+-----+-----+-----+
-|  a  |  t  |  e  |  i  |  o  | esc |
 |  y  |  g  |  m  |  w  |  u  |  '  |
+|  a  |  t  |  e  |  i  |  o  | esc |
 +-----+-----+-----+-----+-----+-----+
-|  h  |  s  |  n  |  r  |  ,  |
 |  z  |  b  |  =  |  +  |  ;  |
+|  h  |  s  |  n  |  r  |  ,  |
 +-----+-----+-----+-----+-----+
 
-Up/Down/[/]/Thumbs: Same as Ins mode
-Shift+Up = [, Shift+Down = ]
+Navigation: up/dn/[/] same as Ins
+Shift+Up=[  Shift+Dn=]
+Entry: ; from Normal
 Exit: RCtrl alone
+Fn+] = shift oneshot
