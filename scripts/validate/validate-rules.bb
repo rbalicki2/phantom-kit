@@ -367,6 +367,10 @@
 ;; Action Analysis
 ;; ============================================================================
 
+(def state-variables
+  "The three state variables that must all be set together"
+  #{:dsk_layer :dsk_ins_sub_mode :dsk_return_to_layer})
+
 (defn extract-variable-sets-from-action [action]
   "Extract variable sets from an action array.
    Variable sets look like [\"dsk_layer\" 0]"
@@ -378,30 +382,116 @@
          (map (fn [[var-name value]] {(keyword var-name) value}))
          (apply merge))))
 
-(defn check-action-invariants [rule-info]
-  "Check if the action sets variables in violation of invariants"
-  (let [action (second (:rule rule-info))
-        var-sets (extract-variable-sets-from-action action)]
-    (when var-sets
-      (let [layer (get var-sets :dsk_layer)
+(defn is-vk-none-only? [action]
+  "Check if action is just [:vk_none] with no other content."
+  (and (vector? action)
+       (= 1 (count action))
+       (= :vk_none (first action))))
+
+(defn is-desktop-fallback? [rule-info]
+  "Check if this rule is a desktop fallback (no layer condition).
+   Desktop fallbacks have block descriptions like 'Desktop []' - no layer condition.
+   These rules are exempt from state variable requirements."
+  (let [desc (:description rule-info)]
+    (and desc
+         (str/starts-with? desc "Desktop ")
+         (str/ends-with? desc "[]"))))
+
+(defn get-layer-from-block-desc [desc]
+  "Extract dsk_layer value from block description like 'Desktop [[\"dsk_layer\" 13]]'"
+  (when (and desc (str/includes? desc "dsk_layer"))
+    (when-let [match (re-find #"dsk_layer\"\s+(\d+)" desc)]
+      (parse-long (second match)))))
+
+(defn action-stays-in-same-layer? [action rule-info]
+  "Check if action outputs to the same layer as the block condition.
+   Used for exempting rules that stay in their current layer."
+  (let [desc (:description rule-info)
+        block-layer (get-layer-from-block-desc desc)]
+    (when (and block-layer (vector? action))
+      (let [var-sets (extract-variable-sets-from-action action)
+            action-layer (get var-sets :dsk_layer)]
+        (= block-layer action-layer)))))
+
+(defn has-any-state-var? [var-sets]
+  "Check if any state variable is present"
+  (and var-sets
+       (some #(contains? var-sets %) state-variables)))
+
+(defn has-all-state-vars? [var-sets]
+  "Check if all three state variables are present"
+  (and var-sets
+       (every? #(contains? var-sets %) state-variables)))
+
+(defn validate-action-state [action context rule-info]
+  "Validate state variables in an action (main action, afterup, or alone).
+   Returns a list of issues (empty if valid).
+
+   Rules:
+   1. Desktop fallback rules (no layer condition) are exempt from state var requirements
+   2. [:vk_none] alone is exempt (key blocking, doesn't change state)
+   3. Rules staying in the same layer are exempt (can't know return_to dynamically)
+   4. Otherwise, ALL THREE state vars MUST be set
+   5. The resulting state must be valid per invariants"
+  (let [stays-in-same-layer (action-stays-in-same-layer? action rule-info)]
+    (if (or (is-desktop-fallback? rule-info)
+            (is-vk-none-only? action)
+            stays-in-same-layer)
+      [] ;; Exempt from state var requirements
+      (let [var-sets (extract-variable-sets-from-action action)
+            layer (get var-sets :dsk_layer)
             submode (get var-sets :dsk_ins_sub_mode)
-            return-to (get var-sets :dsk_return_to_layer)]
+            return-to (get var-sets :dsk_return_to_layer)
+            missing (clojure.set/difference state-variables (set (keys (or var-sets {}))))]
         (cond-> []
-          ;; Check submode invariant in action
-          (and layer submode (not (valid-submode-for-layer? layer submode)))
-          (conj {:type :action-submode-violation
+          ;; ALL actions (except exempted) must have all three state vars
+          (seq missing)
+          (conj {:type :incomplete-state-transition
                  :description (:description rule-info)
-                 :message (format "Action sets dsk_layer=%d but dsk_ins_sub_mode=%d (expected -1)"
-                                 layer submode)
+                 :message (format "%s missing state vars: %s"
+                                 context (str/join ", " (map name missing)))
                  :rule (:rule rule-info)})
 
-          ;; Check return-to invariant in action
-          (and layer return-to (not (valid-return-to-for-layer? layer return-to)))
-          (conj {:type :action-return-to-violation
+          ;; If all vars present, validate the state is valid
+          (and (empty? missing)
+               (not (valid-submode-for-layer? layer submode)))
+          (conj {:type :invalid-state-submode
                  :description (:description rule-info)
-                 :message (format "Action sets dsk_layer=%d but dsk_return_to_layer=%d (expected -1)"
-                                 layer return-to)
+                 :message (format "%s creates invalid state: layer=%d cannot have submode=%d"
+                                 context layer submode)
+                 :rule (:rule rule-info)})
+
+          (and (empty? missing)
+               (not (valid-return-to-for-layer? layer return-to)))
+          (conj {:type :invalid-state-return-to
+                 :description (:description rule-info)
+                 :message (format "%s creates invalid state: layer=%d cannot have return_to=%d"
+                                 context layer return-to)
                  :rule (:rule rule-info)}))))))
+
+(defn check-action-invariants [rule-info]
+  "Check state variables in main action, afterup, and alone handlers.
+   Returns a list of all issues found.
+
+   NOTE: This validation only applies to Default profile + Desktop device rules.
+   This is a bit weird/hardcoded, but other profiles/devices (Laptop, None) don't
+   use the state machine in the same way. External factors like frontmost app
+   and profile affect state validity, but we don't track those as inner nodes
+   in our state model currently."
+  ;; Only validate Desktop rules (block-device = :external-only means !apple_internal)
+  (if (not= :external-only (:block-device rule-info))
+    [] ;; Skip non-Desktop rules
+    (let [rule (:rule rule-info)
+          main-action (second rule)
+          opts (when (>= (count rule) 4) (nth rule 3))
+          afterup (when (map? opts) (:afterup opts))
+          alone (when (map? opts) (:alone opts))]
+      (concat
+        (validate-action-state main-action "Action" rule-info)
+        (when afterup
+          (validate-action-state afterup "afterup" rule-info))
+        (when alone
+          (validate-action-state alone "alone" rule-info))))))
 
 ;; ============================================================================
 ;; Main Validation

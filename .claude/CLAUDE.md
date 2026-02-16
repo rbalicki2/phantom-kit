@@ -75,6 +75,10 @@ bb scripts/validate/fix-rule-ids.bb src/karabiner.edn      # Regenerate sequenti
 
 See `scripts/README.md` for full documentation.
 
+### If Tooling Returns Surprising Results
+
+If any script returns unexpected or incorrect results, **investigate and fix the tooling** rather than working around it. The scripts are meant to be reliable; bugs should be fixed, not tolerated.
+
 ### Script Design Philosophy
 
 The current scripts are overly complicated. When creating or modifying scripts, follow these principles:
@@ -100,6 +104,10 @@ The user is using voice-to-text:
 - Before adding a new variable, explicitly check with the user
 
 **Terminology note**: "Fn+Shift" or "Function Shift" means the oneshot Shift submode (entered via Fn+]), NOT simultaneous Fn+Shift keys. Kinesis hardware prevents simultaneous Fn+Shift. See rhs-slots.md for the shift+fn column definition.
+
+## Tool Limitations
+
+**WebFetch is sandboxed**: The WebFetch tool cannot fetch external URLs due to sandbox restrictions. For Goku documentation, use the local copies in `docs/goku/` instead of fetching from GitHub.
 
 ## On Startup
 
@@ -165,6 +173,7 @@ After any keybinding changes:
 
 **Documentation (`.claude/`)**:
 - `CLAUDE.md` - This file (operational guide)
+- `current-plan.md` - **Active task stack and side quests** (update as you work)
 - `mental-model.md` - Conceptual foundation
 - `reference.md` - Shortcuts and lookup tables
 - `goku-lessons.md` - Syntax knowledge and debugging
@@ -179,6 +188,7 @@ After any keybinding changes:
 
 ## Other Files to Reference
 
+- **`current-plan.md`** - **Update this file** as you work on tasks. Track the active task stack, side quests, and progress. This maintains context across session boundaries.
 - **`mental-model.md`** - Read when: understanding state transitions, adding new layers, debugging invariant issues
 - **`reference.md`** - Read when: looking up shortcuts, mode values, Goku syntax
 - **`goku-lessons.md`** - Read when: unsure about syntax, debugging why something doesn't work

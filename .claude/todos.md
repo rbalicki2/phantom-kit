@@ -39,7 +39,9 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Dismiss all notifications: shortcut to clear macOS notification center
 - Debug logging: log layer changes, key presses, and actions to file for debugging issues
 - Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
-- Caps Lock support: add a way to toggle actual caps lock (currently mapped to Control/Escape)
+- App change layer reset: Hammerspoon detects frontmost app change → sends hidden key (e.g., F24) → Karabiner rule catches it in app-specific layers (VSCode layer 4, Chrome layer 3, etc.) and resets to Normal if frontmost app doesn't match the layer. Prevents staying stuck in wrong app layer after Cmd+Tab.
+- FIXED: Key repeat in insert mode - Goku doesn't support `:repeat true`, so we post-process karabiner.json via `scripts/edit/add-repeat.bb` (runs in `npm run sync`)
+- BUG: Enter key not passing through in Normal mode
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
 - Add Find (Cmd+F) shortcut to In-App Nav layer
 - In-App Nav layer color: make this layer a different color (red) in Hammerspoon border indicator

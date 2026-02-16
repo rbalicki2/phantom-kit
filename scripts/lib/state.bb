@@ -44,8 +44,15 @@
   #{1})
 
 (def valid-submodes
-  "Valid dsk_ins_sub_mode values when in submode-layers"
-  #{0 1 2 3 4})
+  "Valid dsk_ins_sub_mode values when in submode-layers.
+   0 = normal insert
+   1 = shift-mirror oneshot
+   2 = shift oneshot
+   3 = delete chord
+   4 = select chord
+   5 = shift-pending (caps lock double-tap detection)
+   6 = caps lock mode"
+  #{0 1 2 3 4 5 6})
 
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).
