@@ -97,6 +97,11 @@ The user is using voice-to-text:
 
 **WebFetch is sandboxed**: The WebFetch tool cannot fetch external URLs due to sandbox restrictions. For Goku documentation, use the local copies in `docs/goku/` instead of fetching from GitHub.
 
+**Hammerspoon CLI hangs**: NEVER call `/opt/homebrew/bin/hs -c '...'` directly - it hangs indefinitely. Always wrap in a timeout:
+```bash
+timeout 2 /opt/homebrew/bin/hs -c 'someFunction()' 2>/dev/null || true
+```
+
 ## On Startup
 
 Previous sessions sometimes leave things broken. Verify:
@@ -152,6 +157,35 @@ To reload Hammerspoon: `npm run hs`
 - `~/.config/karabiner.edn` - Deployed config (goku reads from here)
 - `~/.hammerspoon/init.lua` - Layer overlay config
 - `/tmp/karabiner-layer` - Current layer (runtime)
+
+## Double-Tap Key Pattern (AltIns Mode)
+
+To implement a double-tap key (e.g., comma-comma → period):
+
+1. **Add submode to state.bb**: Add a new submode value (10+) to `valid-submodes` in `scripts/lib/state.bb`
+
+2. **Modify the base rule**: Change the key's rule to enter the new submode instead of clearing to 0
+   ```bash
+   # R2014: slash → comma, enters submode 10
+   cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R2014 -
+   [{:key :slash, :modi {:optional [:caps_lock]}, :id "R2014 ..."} [:comma ["dsk_layer" 7] ["dsk_ins_sub_mode" 10] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   EOFR
+   ```
+
+3. **Add the double-tap rule**: In the new submode, output backspace + replacement + clear submode
+   ```bash
+   # R2101: slash in submode 10 → backspace + period, clears to submode 0
+   cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R2101 -
+   [{:key :slash, :modi {:optional [:caps_lock]}, :id "R2101 ..."} [:delete_or_backspace :period ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]
+   EOFR
+   ```
+
+4. **Regenerate states**: Run `bb scripts/generate/states.bb` (happens automatically on sync)
+
+**Key insight**: Other keys in AltIns already set submode to 0, so pressing any other key after the first tap clears the pending state automatically.
+
+Current double-tap implementations:
+- Submode 10: comma → period (slash key in AltIns)
 
 ## Scripts Overview
 
