@@ -315,7 +315,6 @@
    [{:key :comma, :modi {:mandatory [:right_command], :optional [:any]}, :id "R0081 [profile=Default:device=Desktop:dsk_layer=1] RCmd+comma → ?"} [{:key :right_arrow, :modi [:left_command]} ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :up_arrow, :modi {:mandatory [:right_command], :optional [:any]}, :id "R0082 [profile=Default:device=Desktop:dsk_layer=1] RCmd+↑ → ←"} [:left_arrow ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :down_arrow, :modi {:mandatory [:right_command], :optional [:any]}, :id "R0083 [profile=Default:device=Desktop:dsk_layer=1] RCmd+↓ → →"} [:right_arrow ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
-   [{:key :j, :modi {:mandatory [:control]}, :id "R0084 [profile=Default:device=Desktop:dsk_layer=1] Ctrl+j blocked"} [:vk_none] [["dsk_layer" 1]]]
    [{:key :m, :modi {:mandatory [:right_control]}, :id "R0085 [profile=Default:device=Desktop:dsk_layer=1] RCtrl+m → Label mode (return to Ins)"} [:vk_none :!COSo ["dsk_layer" 13] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" 1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo label > /tmp/karabiner-layer"}] [["dsk_layer" 1]]]
    [{:key :!Of18, :id "R0087 [profile=Default:device=Desktop:dsk_layer=1] Fn+Space → shift-oneshot"} [:spacebar ["dsk_ins_sub_mode" 2] ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :!Of17, :id "R0088 [profile=Default:device=Desktop:dsk_layer=1] Fn+Enter → Shift+Enter"} [:!Sreturn_or_enter ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
@@ -716,11 +715,11 @@
    [{:key :comma, :id "R0263 [profile=Default:device=Desktop:dsk_layer=28] comma → comma"} [:comma ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
    [{:key :period, :id "R0264 [profile=Default:device=Desktop:dsk_layer=28] period → period"} [:period ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
    [{:key :n, :id "R0265 [profile=Default:device=Desktop:dsk_layer=28] n → n"} [:n ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
-   [{:key :y, :id "R0266 [profile=Default:device=Desktop:dsk_layer=28] y blocked"} [:vk_none] [["dsk_layer" 28]]]
-   [{:key :p, :id "R0267 [profile=Default:device=Desktop:dsk_layer=28] p blocked"} [:vk_none] [["dsk_layer" 28]]]
-   [{:key :h, :id "R0268 [profile=Default:device=Desktop:dsk_layer=28] h blocked"} [:vk_none] [["dsk_layer" 28]]]
-   [{:key :semicolon, :id "R0269 [profile=Default:device=Desktop:dsk_layer=28] semicolon blocked"} [:vk_none] [["dsk_layer" 28]]]
-   [{:key :slash, :id "R0270 [profile=Default:device=Desktop:dsk_layer=28] slash blocked"} [:vk_none] [["dsk_layer" 28]]]]}
+   [{:key :y, :id "R0266 [profile=Default:device=Desktop:dsk_layer=28] y blocked"} [:vk_none ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
+   [{:key :p, :id "R0267 [profile=Default:device=Desktop:dsk_layer=28] p blocked"} [:vk_none ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
+   [{:key :h, :id "R0268 [profile=Default:device=Desktop:dsk_layer=28] h blocked"} [:vk_none ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
+   [{:key :semicolon, :id "R0269 [profile=Default:device=Desktop:dsk_layer=28] semicolon blocked"} [:vk_none ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]
+   [{:key :slash, :id "R0270 [profile=Default:device=Desktop:dsk_layer=28] slash blocked"} [:vk_none ["dsk_layer" 28] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 28]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 29]]"
  :rules [:!apple_internal

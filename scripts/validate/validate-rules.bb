@@ -436,13 +436,11 @@
 
    Rules:
    1. Desktop fallback rules (no layer condition) are exempt from state var requirements
-   2. [:vk_none] alone is exempt (blocking rules don't change state)
-   3. Rules in layer 13 (Label mode) don't require dsk_return_to_layer
-   4. Otherwise, ALL required state vars MUST be set
-   5. The resulting state must be valid per invariants"
+   2. Rules in layer 13 (Label mode) don't require dsk_return_to_layer
+   3. Otherwise, ALL required state vars MUST be set
+   4. The resulting state must be valid per invariants"
   (let [in-label-layer (is-in-label-layer? rule-info)]
-    (if (or (is-desktop-fallback? rule-info)
-            (is-vk-none-only? action))
+    (if (is-desktop-fallback? rule-info)
       [] ;; Exempt from state var requirements
       (let [var-sets (extract-variable-sets-from-action action)
             layer (get var-sets :dsk_layer)
