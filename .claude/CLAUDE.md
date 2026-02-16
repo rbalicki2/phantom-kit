@@ -119,14 +119,16 @@ If they differ, the voicemode version is source of truth. Run `npm run sync`.
 
 ## Workflow After Changes
 
+**NEVER commit partially.** Always commit ALL dirty files together. Partial commits leave the repo in an inconsistent state and make it hard to revert changes cleanly.
+
 1. Commit locally in voicemode repo
 2. Run `npm run sync` (validates, copies to ~/.config, runs goku)
 3. Commit in ~/.config repo
 
 ```bash
-git add src/karabiner.edn && git commit -m "message"
+git add -A && git commit -m "message"
 npm run sync
-cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m "message"
+cd ~/.config && git add -A && git commit -m "message"
 ```
 
 To reload Hammerspoon: `npm run hs`
