@@ -84,7 +84,8 @@
       "Bash(/opt/homebrew/bin/lua:*)",
       "Bash(cat << *)",
       "Bash(timeout:*)",
-      "Bash(diff:*)"
+      "Bash(diff:*)",
+      "Bash(npm run sync:*)"
     ]
   }
 }
