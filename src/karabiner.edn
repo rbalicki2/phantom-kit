@@ -493,13 +493,13 @@
    [{:key :h, :id "R2086 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] h → Y (oneshot mirror)"} [:!Sy ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :j, :id "R2087 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] j → G (oneshot mirror)"} [:!Sg ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :k, :id "R2088 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] k → P (oneshot mirror)"} [:!Sp ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
-   [{:key :l, :id "R2089 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] l → W (oneshot mirror)"} [:!Sw ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :semicolon, :id "R2090 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] ; → Q (oneshot mirror)"} [:!Sq ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :n, :id "R2091 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] n → X (oneshot mirror)"} [:!Sx ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :m, :id "R2092 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] m → B (oneshot mirror)"} [:!Sb ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :comma, :id "R2093 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] , → K (oneshot mirror)"} [:!Sk ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
    [{:key :period, :id "R2094 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] . → F (oneshot mirror)"} [:!Sf ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
-   [{:key :slash, :id "R2095 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] / → : (oneshot mirror)"} [:!Ssemicolon ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]]}
+   [{:key :slash, :id "R2095 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] / → : (oneshot mirror)"} [:!Ssemicolon ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]
+   [{:key :l, :id "R2089 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] l → L (oneshot mirror)"} [:!Sl ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 1]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 2]]"
  :rules [:!apple_internal
