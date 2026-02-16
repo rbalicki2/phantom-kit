@@ -140,6 +140,19 @@ The state space has multiple dimensions that must ALL be considered:
 
 **Critical**: The `scripts/lib/state.bb` library is the canonical source for all state definitions.
 
+### Lesson Learned: Submode Rules Must Be Complete
+
+When adding rules for a specific submode (like caps lock mode = sub_mode 6), ALL keys that should work in that submode need explicit rules. Otherwise, key presses fall through to the general layer rules, which typically reset the submode to 0.
+
+**Example**: Caps lock mode (sub_mode 6) initially only had rules for regular letter keys. Pressing Fn+letter fell through to layer 1's general Fn+letter rules, which output lowercase letters and set sub_mode to 0, exiting caps lock.
+
+**Solution**: Add explicit rules for every key combination that should work within the submode. For caps lock mode, we added 15 rules for Fn+letter keys (R1900-R1914) that output shifted letters and stay in sub_mode 6.
+
+**Pattern**: When creating a new submode:
+1. Identify ALL keys that should be usable in that submode
+2. Create rules for each key that explicitly set the correct submode in the output
+3. Test thoroughly - any missing rule will cause unexpected mode exit
+
 ### Lesson Learned: Missing App Dimension
 
 In Feb 2025, we learned that **app conditions are a dimension of the state space** that wasn't fully modeled. The reorder-by-state.bb script initially didn't handle apps, causing app-specific rules (like `h` in VSCode) to be merged into the wrong catch-all group.

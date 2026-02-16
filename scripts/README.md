@@ -17,14 +17,25 @@ scripts/
 └── misc/        # One-off utilities
 ```
 
+## State String Format
+
+All query scripts accept a unified state string format:
+
+```
+layer=1                              # Ins mode
+layer=1:submode=1                    # Mirror mode
+device=Desktop:layer=1               # Desktop, Ins mode
+profile=Default:device=Desktop       # Full specification
+```
+
 ## Query Scripts (read-only)
 
 ### query/list-rules.bb
 List rules that apply at a given state.
 
 ```bash
-bb query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=9" --format summary
-bb query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact
+bb query/list-rules.bb src/karabiner.edn "layer=1:submode=1" --format summary
+bb query/list-rules.bb src/karabiner.edn "layer=1" --exact
 ```
 
 ### query/match-rules.bb
@@ -32,14 +43,19 @@ Find rules matching a specific key + modifiers + state.
 
 ```bash
 bb query/match-rules.bb src/karabiner.edn j --layer 0
-bb query/match-rules.bb src/karabiner.edn y --layer 1 --mod right_control
+bb query/match-rules.bb src/karabiner.edn p --state "device=Desktop:layer=1"
 ```
 
 ### query/describe-rules.bb
-Get detailed info about specific rules.
+Generate human-readable descriptions for all rules.
 
 ### query/analyze-rules.bb
-Analyze rule patterns and statistics.
+Analyze rules for common issues (submode/return-to mismatches).
+
+```bash
+bb query/analyze-rules.bb src/karabiner.edn
+bb query/analyze-rules.bb src/karabiner.edn --state "layer=1"
+```
 
 ## Edit Scripts (modify EDN)
 

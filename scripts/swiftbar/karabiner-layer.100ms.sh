@@ -56,6 +56,7 @@ case "$LAYER" in
     inapp) NAME="InApp" ;;
     appsw) NAME="AppSw" ;;
     winsw) NAME="WinSw" ;;
+    altins) NAME="AltIns" ;;
     *) NAME="Base" ;;
 esac
 

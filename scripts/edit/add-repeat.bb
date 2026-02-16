@@ -33,11 +33,12 @@
          (not (contains? first-to "shell_command"))
          (contains? repeatable-keys (get first-to "key_code")))))
 
-(defn is-layer-1-block?
-  "Check if this rule block is for insert mode (layer 1)"
+(defn is-insert-mode-block?
+  "Check if this rule block is for insert mode (layer 1 or 7)"
   [rule]
   (let [desc (get rule "description" "")]
-    (re-find #"dsk_layer\" 1\]" desc)))
+    (or (re-find #"dsk_layer\" 1\]" desc)
+        (re-find #"dsk_layer\" 7\]" desc))))
 
 (defn enable-repeat-for-manipulator
   "Enable repeat by:
@@ -74,9 +75,9 @@
     manipulator))
 
 (defn process-rule
-  "Process a rule block, enabling repeat for layer 1 rules"
+  "Process a rule block, enabling repeat for insert mode rules (layer 1 or 7)"
   [rule]
-  (if (is-layer-1-block? rule)
+  (if (is-insert-mode-block? rule)
     (update rule "manipulators"
             (fn [manips]
               (mapv process-manipulator manips)))

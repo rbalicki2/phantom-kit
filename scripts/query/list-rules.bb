@@ -5,13 +5,13 @@
 ;; Usage:
 ;;   bb list-rules.bb <edn-file> <state> [--format FORMAT] [--exact]
 ;;
-;; State format (key=value pairs, colon-separated, DAG-validated):
-;;   ""                                    - Global rules (no profile)
-;;   "profile=Desktop"                     - Desktop profile, any layer
-;;   "profile=Desktop:layer=0"             - Desktop, layer 0 (Normal)
-;;   "profile=Desktop:layer=1"             - Desktop, layer 1 (Ins)
-;;   "profile=Desktop:layer=1:submode=1"   - Layer 1, shift_mirror_oneshot
-;;   "profile=Desktop:layer=13:return=0"   - Layer 13, return to Normal
+;; State format (same as match-rules.bb):
+;;   ""                                              - Global rules (no profile)
+;;   "device=Desktop"                                - Desktop device, any layer
+;;   "device=Desktop:layer=0"                        - Desktop, layer 0 (Normal)
+;;   "device=Desktop:layer=1"                        - Desktop, layer 1 (Ins)
+;;   "device=Desktop:layer=1:submode=1"              - Layer 1, mirror mode
+;;   "profile=Default:device=Desktop:layer=1"       - Full state specification
 ;;
 ;; Flags:
 ;;   --exact   Only rules defined at exactly this state level (no inheritance)
@@ -20,81 +20,38 @@
 ;; Formats: edn (default), ids, summary
 ;;
 ;; Examples:
-;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1:submode=1"
-;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --format ids
-;;   bb list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact
-;;   bb list-rules.bb src/karabiner.edn "profile=Desktop" --exact  # Only profile-level rules
+;;   bb list-rules.bb src/karabiner.edn "device=Desktop:layer=1:submode=1"
+;;   bb list-rules.bb src/karabiner.edn "device=Desktop:layer=1" --format ids
+;;   bb list-rules.bb src/karabiner.edn "layer=1" --exact
 
 (require '[clojure.edn :as edn]
          '[clojure.string :as str])
 
-;; === State parsing (from lib/state.bb) ===
+;; Load shared state library
+(def script-dir (-> (System/getProperty "babashka.file")
+                    (java.io.File.)
+                    (.getParentFile)
+                    (.getAbsolutePath)))
+(load-file (str script-dir "/../lib/state.bb"))
 
-(def layer-names
-  {0 "Normal" 1 "Ins" 2 "Nav" 3 "Chrome" 4 "VSCode" 5 "TMUX"
-   6 "Comma" 7 "L" 8 "Term" 9 "Admin" 10 "InApp" 11 "AppSwitcher"
-   12 "WindowSwitcher" 13 "Label" 14 "L-Cmd" 15 "L-Cmd-Shift"
-   16 "L-Ctrl" 17 "L-Ctrl-Shift" 18 "L-CtrlCmd" 19 "L-CtrlCmd-Shift"
-   20 "L-CtrlAlt" 21 "L-CtrlAlt-Shift" 22 "L-Alt" 23 "L-Alt-Shift"
-   24 "L-AltCmd" 25 "L-AltCmd-Shift" 26 "L-Hyper" 27 "L-Hyper-Shift"
-   28 "Grid"})
+;; Use layer names from state library
+(def layer-names state/layer-names)
 
 (def submode-names
-  {-1 "N/A" 0 "base" 1 "shift_mirror_oneshot" 2 "shift_oneshot"
+  {-1 "N/A" 0 "base" 1 "mirror" 2 "shift_oneshot"
    3 "rcmd_h_chord" 4 "rcmd_n_chord"})
 
 (defn parse-state
-  "Parse state string into canonical map."
+  "Parse state string using shared library, return map with :profile :layer :submode :return-to"
   [state-str]
   (if (or (nil? state-str) (empty? state-str))
     {:profile nil :layer nil :in-modal nil :submode nil :return-to nil}
-    (let [parts (str/split state-str #":")
-          params (into {} (for [p parts
-                                :let [[k v] (str/split p #"=" 2)]]
-                            [(keyword k) v]))
-          profile (:profile params)
-          layer-str (:layer params)
-          layer (when layer-str (parse-long layer-str))
-          submode-str (:submode params)
-          submode-val (when submode-str (parse-long submode-str))
-          return-str (:return params)
-          return-val (when return-str (parse-long return-str))]
-
-      ;; Validate profile
-      (when (and profile (not (#{"Desktop" "Laptop"} profile)))
-        (throw (ex-info (str "Invalid profile '" profile "'") {:profile profile})))
-
-      ;; Validate layer requires profile
-      (when (and layer-str (not profile))
-        (throw (ex-info "layer requires profile" {:layer layer-str})))
-
-      ;; Validate layer value
-      (when (and layer-str (nil? layer))
-        (throw (ex-info (str "Invalid layer '" layer-str "'") {:layer layer-str})))
-
-      (when (and layer (not (contains? layer-names layer)))
-        (throw (ex-info (str "Unknown layer " layer) {:layer layer})))
-
-      ;; DAG constraints
-      (when (and submode-val (or (nil? layer) (not= layer 1)))
-        (throw (ex-info "submode requires layer=1" {:layer layer :submode submode-val})))
-
-      (when (and return-val (or (nil? layer) (not= layer 13)))
-        (throw (ex-info "return requires layer=13" {:layer layer :return return-val})))
-
-      {:profile profile
-       :layer layer
-       :in-modal (when layer (>= layer 2))
-       :submode (cond
-                  (nil? layer) nil
-                  (not= layer 1) -1
-                  submode-val submode-val
-                  :else nil)
-       :return-to (cond
-                    (nil? layer) nil
-                    (not= layer 13) -1
-                    return-val return-val
-                    :else nil)})))
+    (let [parsed (state/parse-state-string state-str)]
+      {:profile (:profile parsed)
+       :layer (:layer parsed)
+       :in-modal (when (:layer parsed) (>= (:layer parsed) 2))
+       :submode (:submode parsed)
+       :return-to (:return-to parsed)})))
 
 (defn format-state [state]
   (if (nil? (:profile state))
@@ -303,11 +260,11 @@
     (when (or (nil? file) (nil? state))
       (println "Usage: bb list-rules.bb <edn-file> <state> [--format FORMAT] [--exact]")
       (println "")
-      (println "State format (key=value pairs, colon-separated):")
+      (println "State format (same as match-rules.bb):")
       (println "  \"\"                                    - Global rules")
-      (println "  \"profile=Desktop\"                     - Desktop profile")
-      (println "  \"profile=Desktop:layer=1\"             - Ins mode")
-      (println "  \"profile=Desktop:layer=1:submode=1\"   - shift_mirror_oneshot")
+      (println "  \"layer=1\"                             - Ins mode (any device)")
+      (println "  \"device=Desktop:layer=1\"              - Desktop, Ins mode")
+      (println "  \"device=Desktop:layer=1:submode=1\"    - Mirror mode")
       (println "")
       (println "Flags:")
       (println "  --exact   Only rules defined at exactly this state level")

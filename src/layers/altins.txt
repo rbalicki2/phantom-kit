@@ -1,21 +1,13 @@
-ALT-INSERT MODE
-
 +-----+-----+-----+-----+-----+-----+
 |  4  |  3  |  2  |  1  |  0  |     |
 |  &  |  ^  |  $  |  (  |  )  |  -  |
 +-----+-----+-----+-----+-----+-----+
-|  x  |  k  |  v  |  j  |  q  | S-tb|
-|  p  |  f  |  c  |  d  |  l  | tab |
+|  =  |  +  |  v  |  j  |  z  | S-tb|
+|  i  |  u  |  c  |  d  |  l  | tab |
 +-----+-----+-----+-----+-----+-----+
-|  y  |  g  |  m  |  w  |  u  |  '  |
-|  a  |  t  |  e  |  o  |  i  | esc |
+|  y  |  g  |  p  |  w  |  q  |  '  |
+|  a  |  t  |  e  |  o  |  m  | esc |
 +-----+-----+-----+-----+-----+-----+
-|  z  |  b  |  =  |  +  |  ;  |
+|  x  |  b  |  k  |  f  |  ;  |
 |  s  |  h  |  n  |  r  |  ,  |
 +-----+-----+-----+-----+-----+
-
-Navigation: up/dn/[/] same as Ins
-Shift+Up=[  Shift+Dn=]
-Entry: ; from Normal
-Exit: RCtrl alone
-Fn+] = shift oneshot

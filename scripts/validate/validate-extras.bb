@@ -36,7 +36,7 @@
    4 "vscode"
    5 "tmux"
    6 "comma"
-   7 "l"       ;; L base
+   7 "altins"  ;; Alt-Insert
    8 "term"
    9 "i"       ;; Admin
    10 "inapp"
@@ -638,9 +638,9 @@
         multi-shell-issues
         (keep check-multiple-shells all-rules)
 
-        ;; Check for incomplete layer transitions
-        incomplete-issues
-        (keep check-incomplete-transition all-rules)
+        ;; NOTE: incomplete-layer-transition check removed.
+        ;; validate-rules.bb now handles layer+submode together requirement.
+        ;; dsk_return_to_layer is optional.
 
         ;; Check for layer code mismatches
         mismatch-issues
@@ -676,7 +676,6 @@
             var-first-issues
             nested-key-issues
             multi-shell-issues
-            incomplete-issues
             mismatch-issues
             overlay-issues
             app-issues

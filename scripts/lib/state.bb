@@ -18,7 +18,7 @@
 
 (def all-layers
   "All valid dsk_layer values"
-  #{0 1 2 3 4 5 6 8 9 10 11 12 13 28 29 30})
+  #{0 1 2 3 4 5 6 7 8 9 10 11 12 13 28 29 30})
 
 (def layer-names
   "Human-readable names for layers"
@@ -29,6 +29,7 @@
    4 "VSCode"
    5 "TMUX"
    6 "Comma"
+   7 "AltIns"
    8 "Term"
    9 "Admin"
    10 "InApp"
@@ -41,7 +42,7 @@
 
 (def submode-layers
   "Layers where dsk_ins_sub_mode is meaningful (not -1)"
-  #{1})
+  #{1 7})
 
 (def valid-submodes
   "Valid dsk_ins_sub_mode values when in submode-layers.
@@ -51,8 +52,9 @@
    3 = delete chord
    4 = select chord
    5 = shift-pending (caps lock double-tap detection)
-   6 = caps lock mode"
-  #{0 1 2 3 4 5 6})
+   6 = caps lock mode
+   10 = double-tap comma pending (AltIns)"
+  #{0 1 2 3 4 5 6 10})
 
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).

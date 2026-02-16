@@ -1,3 +1,44 @@
+# Current Plan
+
+## Active Task Stack (most recent on top)
+
+1. **Fix Shift Behavior in Insert Mode** - IN PROGRESS
+   - Shift not working with letter keys
+   - Rules have `optional: [:shift]` but output doesn't preserve shift
+
+2. **Order New Card** - PENDING (depends on shift fix)
+
+3. **Unit Tests for set-rule.bb** - PENDING
+   - Add --create/--update flag to prevent accidental overwrites
+   - --create fails if rule ID exists
+   - --update fails if rule ID doesn't exist
+
+4. **Fix match-rules.bb to require full state** - PENDING
+   - Should require profile and device, not just layer
+   - Makes queries more explicit and avoids ambiguity
+
+3. ~~**Alt-Insert Mode (Layer 7)**~~ - COMPLETED
+   - Frequency-optimized letter layout
+   - Entry: semicolon from Normal
+   - Mirror mode via Fn+]
+
+4. ~~**Caps Lock Mode Implementation**~~ - COMPLETED
+   - Submodes 5 (shift-pending) and 6 (caps lock) added to state library
+   - R1549: submode 0 → 5 on shift press
+   - R1550: submode 5 → 6 on shift alone (caps lock enter)
+   - R1551-R1561: letter rules (stay in caps lock)
+   - R1562-R1563: semicolon/hyphen rules (stay in caps lock)
+   - R1564-R1567+: exit rules (comma, period, slash, space, arrows → submode 0)
+   - **Pending manual testing**
+
+2. ~~**Fix Validation Rules**~~ - COMPLETED side quest
+   - Updated validation to require all 3 state vars
+   - Exceptions: desktop fallbacks, `[:vk_none]` alone, same-layer rules
+   - Fixed 129 rules with missing state vars
+   - Documented in `mental-model.md`
+
+---
+
 # L-Mode Consolidation Plan
 
 ## Goal

@@ -59,3 +59,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.
 - Add --create/--update flag to set-rule.bb: Prevent accidental overwrites by requiring explicit intent. `--create` fails if rule ID exists, `--update` fails if it doesn't. Default behavior (no flag) could require confirmation or fail-safe to --update.
 - Admin layer: Fix Ctrl+P (screenshot selection) - currently broken
+- SwiftBar layer file: Audit all layer transitions to ensure they write to /tmp/karabiner-layer so SwiftBar displays the correct layer
