@@ -49,8 +49,21 @@ Three variables track all state:
 | Variable | Range | Purpose |
 |----------|-------|---------|
 | `dsk_layer` | 0-30 | Current layer |
-| `dsk_ins_sub_mode` | -1 to 4 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
+| `dsk_ins_sub_mode` | -1 to 6 | Overlay state within Ins mode (-1 = N/A, 0 = none active) |
 | `dsk_return_to_layer` | -1/0/1 | Return destination for Label mode (-1=N/A, 0=Normal, 1=Ins) |
+
+### Insert Mode Sub-modes (dsk_ins_sub_mode)
+
+| Value | Name | Purpose | Entry | Exit |
+|-------|------|---------|-------|------|
+| -1 | N/A | Not in insert mode | - | - |
+| 0 | Normal | Standard insert behavior | Enter insert mode | - |
+| 1 | Fn+Shift oneshot | Next letter outputs shifted, then returns to 0 | Fn+] or Fn+' | Any letter |
+| 2 | Shift oneshot | Next letter outputs shifted, then returns to 0 | (legacy) | Any letter |
+| 3 | Delete chord | RCmd+h hold state | Hold RCmd+h | Release RCmd+h |
+| 4 | Select chord | RCmd+n hold state | Hold RCmd+n | Release RCmd+n |
+| 5 | Shift pending | First shift tap detected, waiting for second | Tap shift alone | Any key or second shift tap |
+| 6 | Caps lock | All letters output shifted until exit | Double-tap shift | (TBD - needs exit rule) |
 
 ### Invariants
 
@@ -78,6 +91,18 @@ cleanup-external-state.sh \
 **Why no held-modifiers flag?** The osascript `key up <modifier>` command clears BOTH synthetic modifier state AND interferes with Karabiner-emitted keystrokes. When run in the background during a transition, it can cancel Ctrl+key outputs that Karabiner is actively emitting (race condition). Karabiner EventViewer shows what Karabiner emits, but the system receives the `key up` canceling the keystroke. Only `panic-cleanup.sh` resets held modifiers, since panic mode does a full reset anyway.
 
 Example: Entering Normal should set `dsk_layer=0, dsk_ins_sub_mode=-1, dsk_return_to_layer=-1` and call `cleanup-external-state.sh` with all flags set to `reset`.
+
+### State Variable Exceptions
+
+The following cases are **exempt** from the requirement to set all three state variables:
+
+1. **Desktop fallbacks** — Rules in `Desktop []` blocks (no layer condition) that apply regardless of state. These are catch-all behaviors like Page Up/Down for mouse buttons.
+
+2. **`[:vk_none]` alone** — Key-blocking rules that output nothing. These intentionally don't change state.
+
+3. **Same-layer rules** — Rules whose action outputs to the same layer as their block condition. These "stay in place" and can't always know the correct leaf state (e.g., layer 13's return_to value).
+
+All other rules must set all three state variables explicitly, and the resulting state must be valid per the invariants. This is enforced by `validate-rules.bb`.
 
 ### Rule Ordering: Leaf to Root
 
@@ -162,6 +187,51 @@ While in switcher:
 - J/K cycles through apps/windows
 - Enter selects and exits (releases Cmd, returns to Normal)
 - Ctrl+N exits without selecting (releases Cmd, returns to Normal)
+
+## Avoiding Race Conditions
+
+Race conditions are a significant source of bugs in keyboard remapping. Always prefer deterministic, event-driven behavior over timing-dependent logic.
+
+### Key Principles
+
+1. **Use `:alone` for modifier-only state changes** — When a modifier key (like Shift) should trigger a state change only when pressed alone (not with another key), use the `:alone` clause. The state change happens on key-up, after Karabiner has determined whether the key was used with another key.
+
+2. **Avoid `set_variable` in `to` for held keys** — Placing `set_variable` in the `to` array can interfere with key holding behavior. For keys that should be held (like modifiers), keep the `to` array minimal (just the key output) and use `:alone` or `to_after_key_up` for state changes.
+
+3. **Never use background shell commands that modify key state** — The osascript `key up` command can race with Karabiner's own key events. This is why `cleanup-external-state.sh` doesn't have a `--held-modifiers` flag.
+
+### Example: Caps Lock Mode Entry
+
+```clojure
+;; WRONG: set_variable in to array interferes with shift being held
+[{:key :right_shift} [:right_shift ["dsk_ins_sub_mode" 5]] ...]
+
+;; CORRECT: state change only on alone, shift passes through normally
+[{:key :right_shift} [:right_shift] ... {:alone [:vk_none ["dsk_ins_sub_mode" 5]]}]
+```
+
+## Goku Syntax Pitfalls
+
+Certain Goku syntax features have unintuitive behavior. Avoid or use with caution:
+
+### `:modi {:optional [:shift]}` Does NOT Preserve Shift
+
+When a rule has `optional: [:shift]` in the from clause and outputs a bare key:
+- The rule matches both `key` and `Shift+key`
+- But the output is just `key` — shift is NOT passed through
+- This breaks Shift+letter for uppercase in pass-through rules
+
+**Solution**: For pass-through rules where you want Shift to work naturally, either:
+1. Don't include shift in optional (let Shift+key fall through to default behavior)
+2. Create separate rules for bare and shifted variants
+
+### `:repeat true` Is Not Supported
+
+Goku 0.5.7 doesn't translate `:repeat true` to the JSON. We work around this with a post-processor (`scripts/edit/add-repeat.bb`) that runs after goku.
+
+### `set_variable` in `to` Blocks Key Repeat
+
+When `set_variable` events are in the `to` array, they block key repeat. The workaround is moving them to `to_after_key_up`, which is handled automatically by `add-repeat.bb` for insert mode keys.
 
 ## Conceptual Model: Config as Nested Hashmap
 

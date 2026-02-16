@@ -1,4 +1,4 @@
-{:profiles {:Default {:default true, :sim 50, :delay 80, :alone 500, :held 70}, :None {:default false, :sim 50, :delay 80, :alone 500, :held 70}}
+{:profiles {:Default {:default true, :sim 50, :delay 80, :alone 500, :held 1}, :None {:default false, :sim 50, :delay 80, :alone 500, :held 70}}
  :devices {:apple_internal [{:vendor_id 1452, :product_id 835, :is_keyboard true}], :trackball [{:vendor_id 10730, :product_id 258, :is_pointing_device true}], :logitech [{:vendor_id 1133, :product_id 45921, :is_keyboard true, :is_pointing_device true}]}
  :applications {:iTerm ["com.googlecode.iterm2"], :Chrome ["com.google.Chrome"], :VSCode ["com.microsoft.VSCode"]}
  :simlayers {}
@@ -65,7 +65,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 0]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R1549 [profile=Default:device=Desktop:dsk_ins_sub_mode=0] RShift → shift-pending", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 0]]]]}
+   [{:key :right_shift, :id "R1549 [profile=Default:device=Desktop:dsk_ins_sub_mode=0] RShift → shift (up→pending)"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 0]] {:held [:right_shift], :afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]], :parameters {:basic.to_if_held_down_threshold_milliseconds 1}}]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 1]]"
  :rules [:!apple_internal
@@ -256,7 +256,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 5]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R1550 [profile=Default:device=Desktop:dsk_ins_sub_mode=5] RShift alone → caps lock", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 5]] {:alone [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
+   [{:key :right_shift, :id "R1550 [profile=Default:device=Desktop:dsk_ins_sub_mode=5] RShift → shift (up→caps)", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 5]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 6]]"
  :rules [:!apple_internal
@@ -359,7 +359,8 @@
    [{:key :!Of20, :id "R0356 [profile=Default:device=Desktop:dsk_layer=1] hk4 → InApp"} [:vk_none ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo inapp > /tmp/karabiner-layer"}] [["dsk_layer" 1]]]
    [{:key :h, :modi {:mandatory [:right_command]}, :id "R0064 [profile=Default:device=Desktop:dsk_layer=1] RCmd+h (hold) → delete-chord"} [{:shell ":"} ["dsk_layer" 1] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
    [{:key :n, :modi {:mandatory [:right_command]}, :id "R0071 [profile=Default:device=Desktop:dsk_layer=1] RCmd+n (hold) → select-chord"} [{:shell ":"} ["dsk_layer" 1] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
-   [{:key :h, :id "R0176 [profile=Default:device=Desktop:dsk_layer=1] h → h (mirror)", :modi {:optional [:shift]}} [:h ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]]}
+   [{:key :h, :id "R0176 [profile=Default:device=Desktop:dsk_layer=1] h → h (mirror)", :modi {:optional [:shift]}} [:h ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
+   [{:key :j, :modi {:mandatory [:shift]}, :id "R1806 [profile=Default:device=Desktop:dsk_layer=1] Shift+j → Shift+j"} [:!Sj ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 2]]"
  :rules [:!apple_internal

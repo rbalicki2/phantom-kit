@@ -13,6 +13,37 @@ Accumulated knowledge about what works and what doesn't in Goku/Karabiner syntax
 - To match EITHER shift: `{:key :x :modi {:mandatory [:shift]}}`
 - RHS shortcuts must use `right_control`, not `left_control`
 
+### Modifier Key Interception (Critical!)
+
+**Problem**: When you create a rule that matches a modifier key (like `right_shift`) and output that same modifier in the `to` section, Karabiner sends it as a **tap** (down→up immediately), NOT as a maintained hold.
+
+**Evidence**: EventViewer shows `right_shift down` immediately followed by `right_shift up`, even while the physical key is still held. This breaks Shift+letter combinations.
+
+**What DOESN'T work**:
+- `[:right_shift ...]` in `to` - sends tap, not hold
+- `{:key :right_shift :lazy true}` - lazy doesn't help
+- Removing variable sets from `to` - still taps
+- `to_if_alone` with `right_shift` in `to` - still taps
+
+**What DOES work**: Use `to_if_held_down` for the modifier output:
+
+```clojure
+;; Double-tap shift for caps lock, hold shift for normal shift behavior
+[{:key :right_shift :id "..."}
+ [:vk_none ...]                           ; to: nothing on press
+ [["dsk_layer" 1] ["dsk_ins_sub_mode" 0]] ; condition
+ {:held [:right_shift]                    ; to_if_held_down: shift when held
+  :afterup [:vk_none ["dsk_ins_sub_mode" 5] ...]}] ; to_after_key_up: state change on release
+```
+
+**How this works**:
+1. Shift pressed → `to` fires (vk_none, no shift yet)
+2. Held past threshold (~70ms) → `to_if_held_down` fires, shift becomes active and STAYS held
+3. Shift+j while held → J (capital)
+4. Shift released → `to_after_key_up` fires, can set state (e.g., sub_mode 5 for double-tap detection)
+
+**Note on `optional: ["shift"]`**: This means "match with or without shift" but does NOT pass shift through to the output. If you have `optional: ["shift"]` and output just `:j`, you get lowercase j even when shift is held. You need explicit Shift+letter rules with `mandatory: ["shift"]` and `:!Sj` output.
+
 ### Shell Commands
 - Only ONE `{:shell ...}` per rule executes (the LAST one)
 - Combine with `&&`: `{:shell "cmd1 && cmd2"}`

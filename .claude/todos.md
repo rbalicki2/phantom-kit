@@ -40,13 +40,15 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Debug logging: log layer changes, key presses, and actions to file for debugging issues
 - Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
 - App change layer reset: Hammerspoon detects frontmost app change → sends hidden key (e.g., F24) → Karabiner rule catches it in app-specific layers (VSCode layer 4, Chrome layer 3, etc.) and resets to Normal if frontmost app doesn't match the layer. Prevents staying stuck in wrong app layer after Cmd+Tab.
-- FIXED: Key repeat in insert mode - Goku doesn't support `:repeat true`, so we post-process karabiner.json via `scripts/edit/add-repeat.bb` (runs in `npm run sync`)
-- BUG: Enter key not passing through in Normal mode
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
 - Add Find (Cmd+F) shortcut to In-App Nav layer
 - In-App Nav layer color: make this layer a different color (red) in Hammerspoon border indicator
 - Prefer keyboard shortcuts over osascript: when an app is foregrounded, use direct keyboard shortcuts instead of osascript calls (e.g., Chrome "last tab" uses osascript but could use Cmd+9)
 - Investigate Ctrl+Y bugs: check if Ctrl+Y behavior is correct across all layers
+- Review held_down threshold: currently set to 1ms globally, verify this doesn't cause issues with other to_if_held_down rules
+- Add Shift+letter rules for all letters in insert mode (currently only j has explicit Shift+j → Shift+j rule)
+- Caps lock mode (sub_mode 6): add exit mechanism and ensure Backspace/Delete don't exit caps mode
+- Caps lock mode: make command navigation keys work in caps lock mode
 - Disable Vimium Chrome extension (conflicts with keyboard layer system)
 - Rust macro for Karabiner config: Explore deriving the EDN file (or directly the karabiner.json) from a Rust derive macro. Benefits:
   - Type-safe layer definitions and transitions
@@ -55,3 +57,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Generate both the config AND the visualization/documentation from a single source
   - Could define layers as Rust structs with attributes for keys, transitions, conditions
 - Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.
+- Add --create/--update flag to set-rule.bb: Prevent accidental overwrites by requiring explicit intent. `--create` fails if rule ID exists, `--update` fails if it doesn't. Default behavior (no flag) could require confirmation or fail-safe to --update.
