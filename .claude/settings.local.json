@@ -64,7 +64,27 @@
       "Bash(gh repo create:*)",
       "Bash(gh auth:*)",
       "Bash(gh config set:*)",
-      "Bash(gh repo view:*)"
+      "Bash(gh repo view:*)",
+      "Bash(GIT_CURL_VERBOSE=1 git -C /Users/rbalicki/code/voicemode push -u origin master)",
+      "Bash(env)",
+      "Bash(gh repo sync:*)",
+      "Bash(echo \"Checking key: $key\")",
+      "Bash(jq:*)",
+      "Bash(brew info:*)",
+      "Bash(brew search:*)",
+      "Bash(brew tap:*)",
+      "Bash(/opt/homebrew/bin/goku:*)",
+      "Bash(brew upgrade:*)",
+      "Bash(brew unlink:*)",
+      "Bash(brew link:*)",
+      "Bash(launchctl:*)",
+      "Bash(echo '[{:key :!Of19, :id \"\"\"\"R0025 [profile=Default:device=Desktop] hk3 → hammerspoon\"\"\"\"} [{:shell \"\"\"\"/opt/homebrew/bin/hs -c ''''showLayerOverlay\\(\\)''''\"\"\"\"}]]')",
+      "Bash(do echo '=== Submode $i ===')",
+      "Bash(luac:*)",
+      "Bash(/opt/homebrew/bin/lua:*)",
+      "Bash(cat << *)",
+      "Bash(timeout:*)",
+      "Bash(diff:*)"
     ]
   }
 }
