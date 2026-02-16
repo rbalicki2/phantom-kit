@@ -413,6 +413,13 @@
             action-layer (get var-sets :dsk_layer)]
         (= block-layer action-layer)))))
 
+(defn is-in-label-layer? [rule-info]
+  "Check if rule is in layer 13 (Label mode).
+   Rules in layer 13 don't require dsk_return_to_layer in action."
+  (let [desc (:description rule-info)
+        block-layer (get-layer-from-block-desc desc)]
+    (= 13 block-layer)))
+
 (defn has-any-state-var? [var-sets]
   "Check if any state variable is present"
   (and var-sets
@@ -431,9 +438,11 @@
    1. Desktop fallback rules (no layer condition) are exempt from state var requirements
    2. [:vk_none] alone is exempt (key blocking, doesn't change state)
    3. Rules staying in the same layer are exempt (can't know return_to dynamically)
-   4. Otherwise, ALL THREE state vars MUST be set
-   5. The resulting state must be valid per invariants"
-  (let [stays-in-same-layer (action-stays-in-same-layer? action rule-info)]
+   4. Rules in layer 13 (Label mode) don't require dsk_return_to_layer
+   5. Otherwise, ALL required state vars MUST be set
+   6. The resulting state must be valid per invariants"
+  (let [stays-in-same-layer (action-stays-in-same-layer? action rule-info)
+        in-label-layer (is-in-label-layer? rule-info)]
     (if (or (is-desktop-fallback? rule-info)
             (is-vk-none-only? action)
             stays-in-same-layer)
@@ -442,9 +451,13 @@
             layer (get var-sets :dsk_layer)
             submode (get var-sets :dsk_ins_sub_mode)
             return-to (get var-sets :dsk_return_to_layer)
-            missing (clojure.set/difference state-variables (set (keys (or var-sets {}))))]
+            ;; Layer 13 doesn't require return-to-layer
+            required-vars (if in-label-layer
+                           #{:dsk_layer :dsk_ins_sub_mode}
+                           state-variables)
+            missing (clojure.set/difference required-vars (set (keys (or var-sets {}))))]
         (cond-> []
-          ;; ALL actions (except exempted) must have all three state vars
+          ;; ALL actions (except exempted) must have required state vars
           (seq missing)
           (conj {:type :incomplete-state-transition
                  :description (:description rule-info)

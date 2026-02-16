@@ -135,24 +135,13 @@
 
         :else nil))))
 
-(defn action-sets-state-vars? [action]
-  "Check if action sets any state variables (dsk_layer, dsk_ins_sub_mode, dsk_return_to_layer)"
-  (when (vector? action)
-    (some (fn [item]
-            (and (vector? item)
-                 (= 2 (count item))
-                 (string? (first item))
-                 (#{"dsk_layer" "dsk_ins_sub_mode" "dsk_return_to_layer"} (first item))))
-          action)))
+(defn has-layer-condition? [conditions]
+  "Check if conditions include dsk_layer"
+  (contains? conditions :dsk_layer))
 
-(defn validate-has-condition [rule]
-  "Validate that rule has a condition if it sets state variables.
-   Rules that don't set state variables can be global (no condition)."
-  (let [conditions (extract-conditions-from-rule rule)
-        action (second rule)
-        sets-state (action-sets-state-vars? action)]
-    (when (and (empty? conditions) sets-state)
-      {:error "Rule sets state variables but has no condition. Add a condition or remove state variables."})))
+(defn is-in-label-layer? [conditions]
+  "Check if rule is in layer 13 (Label mode)"
+  (= 13 (:dsk_layer conditions)))
 
 (defn parse-id-state-string
   "Parse state values from the bracketed portion of a rule ID.
@@ -226,24 +215,31 @@
 
 (defn validate-complete-state-transition [rule]
   "Ensure all state variables are set together when any is set.
-   Exception: [:vk_none] alone requires no state vars.
 
-   If ANY of dsk_layer, dsk_ins_sub_mode, dsk_return_to_layer is set,
-   ALL THREE must be set."
+   Rule: If you set ANY state var, you must set ALL of them.
+
+   Exceptions:
+   - [:vk_none] alone requires no state vars (blocked rules)
+   - Rules in layer 13 (Label mode) don't need to set dsk_return_to_layer
+     (because return-to-layer behaves differently in that layer)"
   (let [action (second rule)
+        conditions (extract-conditions-from-rule rule)
         var-sets (extract-variable-sets action)
         has-any-state-var (some #(contains? var-sets %) state-variables)]
     (when (and has-any-state-var
                (not (is-vk-none-only? action)))
-      (let [missing (clojure.set/difference state-variables (set (keys var-sets)))]
+      (let [;; Exception: layer 13 doesn't require return-to-layer in action
+            required-vars (if (is-in-label-layer? conditions)
+                           #{:dsk_layer :dsk_ins_sub_mode}
+                           #{:dsk_layer :dsk_ins_sub_mode :dsk_return_to_layer})
+            missing (clojure.set/difference required-vars (set (keys var-sets)))]
         (when (seq missing)
-          {:error (format "Action sets state vars but missing: %s. All three must be set together."
+          {:error (format "Action sets state vars but missing: %s. All required vars must be set together."
                           (str/join ", " (map name missing)))})))))
 
 (defn validate-rule [rule target-id]
   "Run all validations on a rule. Returns nil if valid, {:error msg} if not."
   (or (validate-id-format target-id)
-      (validate-has-condition rule)
       (validate-id-matches-conditions rule target-id)
       (validate-complete-state-transition rule)))
 
