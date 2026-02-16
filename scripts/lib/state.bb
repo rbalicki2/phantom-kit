@@ -53,8 +53,9 @@
    4 = select chord
    5 = shift-pending (caps lock double-tap detection)
    6 = caps lock mode
-   10 = double-tap comma pending (AltIns)"
-  #{0 1 2 3 4 5 6 10})
+   10 = double-tap comma pending (AltIns)
+   11 = double-tap semicolon pending (AltIns)"
+  #{0 1 2 3 4 5 6 10 11})
 
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).

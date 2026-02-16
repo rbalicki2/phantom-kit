@@ -19,6 +19,7 @@ digraph states {
   Default_desktop_1_5_-1_nil [label="Ins\nsubmode=5"];
   Default_desktop_1_6_-1_nil [label="Ins\nsubmode=6"];
   Default_desktop_1_10_-1_nil [label="Ins\nsubmode=10"];
+  Default_desktop_1_11_-1_nil [label="Ins\nsubmode=11"];
   Default_desktop_2_-1_-1_nil [label="Nav"];
   Default_desktop_3_-1_-1_nil [label="Chrome"];
   Default_desktop_4_-1_-1_nil [label="VSCode"];
@@ -32,6 +33,7 @@ digraph states {
   Default_desktop_7_5_-1_nil [label="AltIns"];
   Default_desktop_7_6_-1_nil [label="AltIns"];
   Default_desktop_7_10_-1_nil [label="AltIns"];
+  Default_desktop_7_11_-1_nil [label="AltIns"];
   Default_desktop_8_-1_-1_nil [label="Term"];
   Default_desktop_9_-1_-1_nil [label="Admin"];
   Default_desktop_10_-1_-1_Chrome [label="InApp\nChrome"];
@@ -61,6 +63,7 @@ digraph states {
   Default_desktop_1_0_-1 -> Default_desktop_1_5_-1_nil;
   Default_desktop_1_0_-1 -> Default_desktop_1_6_-1_nil;
   Default_desktop_1_0_-1 -> Default_desktop_1_10_-1_nil;
+  Default_desktop_1_0_-1 -> Default_desktop_1_11_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_2_-1_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_3_-1_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_4_-1_-1_nil;
@@ -74,6 +77,7 @@ digraph states {
   Default_desktop_0_-1_-1 -> Default_desktop_7_5_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_7_6_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_7_10_-1_nil;
+  Default_desktop_0_-1_-1 -> Default_desktop_7_11_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_8_-1_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_9_-1_-1_nil;
   Default_desktop_0_-1_-1 -> Default_desktop_10_-1_-1_Chrome;
