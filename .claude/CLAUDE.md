@@ -40,8 +40,8 @@ bb scripts/query/match-rules.bb src/karabiner.edn p --state "profile=Default:dev
 bb scripts/query/match-rules.bb src/karabiner.edn p --state "profile=Default:device=Desktop:layer=1"
 
 # List rules in a layer/state
-bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=9" --format summary
-bb scripts/query/list-rules.bb src/karabiner.edn "profile=Desktop:layer=1" --exact
+bb scripts/query/list-rules.bb src/karabiner.edn "profile=Default:device=Desktop:layer=9" --format summary
+bb scripts/query/list-rules.bb src/karabiner.edn "profile=Default:device=Desktop:layer=1" --exact
 
 # Get detailed info about specific rules
 bb scripts/query/describe-rules.bb src/karabiner.edn --id R0025
@@ -53,24 +53,23 @@ bb scripts/query/analyze-rules.bb src/karabiner.edn
 #### Edit Tools (modify config)
 
 ```bash
-# Set a rule by ID (delete existing, then add) - reads from stdin
+# Set a rule by ID - the primary way to add/modify rules
+# Reads the rule from stdin, places it in the correct block based on its condition
 cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
-[{:key :!Of9, :id "R1234 [profile=Default:device=Desktop:layer=1:submode=2]"} [:!Sgrave] [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]]
+[{:key :j, :id "R1234 [profile=Default:device=Desktop:dsk_layer=7] j → t"} [:t ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
 EOFR
-
-# Remove rules by key pattern
-bb scripts/edit/remove-lhs-rules.bb src/karabiner.edn src/karabiner.edn --key '!Of19'
-
-# Batch rename rules
-bb scripts/edit/rename-rules.bb src/karabiner.edn src/karabiner.edn --pattern 'old' --replacement 'new'
 ```
+
+**One-off scripts** (kept for reference, rarely used):
+- `remove-lhs-rules.bb` - Bulk remove rules by key pattern
+- `rename-rules.bb` - Batch rename rule IDs
 
 #### Validation Tools (run automatically on sync)
 
+Validation runs automatically during `npm run sync`. Manual invocation rarely needed:
 ```bash
 bb scripts/validate/validate-rules.bb src/karabiner.edn    # Core validation
 bb scripts/validate/validate-extras.bb src/karabiner.edn   # Additional checks
-bb scripts/validate/fix-rule-ids.bb src/karabiner.edn      # Regenerate sequential IDs
 ```
 
 See `scripts/README.md` for full documentation.
@@ -78,17 +77,6 @@ See `scripts/README.md` for full documentation.
 ### If Tooling Returns Surprising Results
 
 If any script returns unexpected or incorrect results, **investigate and fix the tooling** rather than working around it. The scripts are meant to be reliable; bugs should be fixed, not tolerated.
-
-### Script Design Philosophy
-
-The current scripts are overly complicated. When creating or modifying scripts, follow these principles:
-
-1. **Model the underlying primitives** - Scripts should map cleanly to what the EDN file actually contains (rules, sections, conditions)
-2. **Keep interfaces simple** - One operation per script. Avoid multi-mode scripts with many flags
-3. **Trust auto-sorting** - Don't worry about rule order in edit scripts; sorting will handle it
-4. **Prefer whole-object operations** - e.g., "replace this entire rule" rather than "modify field X of rule Y"
-
-See `todos.md` for planned simplifications.
 
 ### NEVER Remove Shortcuts Without Permission
 
@@ -138,59 +126,40 @@ cd ~/.config && git add karabiner.edn karabiner/karabiner.json && git commit -m 
 
 To reload Hammerspoon: `npm run hs`
 
-## Pre-Commit Checklist
+## When Adding a New Layer
 
-Before committing karabiner.edn changes:
-
-- [ ] **Only ONE `{:shell ...}` per rule** - combine with `&&`
-- [ ] Layer transitions set ALL FOUR variables per mental-model.md
-- [ ] Layer exits write to `/tmp/karabiner-layer` for SwiftBar
-- [ ] RHS shortcuts use `right_control` not `left_control`
-- [ ] Shift matching uses explicit form to match EITHER shift
-
-When adding a new layer:
 - [ ] Add case to `scripts/swiftbar/karabiner-layer.100ms.sh`
 - [ ] Create `src/layers/*.txt` file for Hammerspoon overlay
 - [ ] Update `layerFiles` map in `~/.hammerspoon/init.lua`
 
-## Documentation to Keep Updated
+## Key Documentation Files
 
-After any keybinding changes:
-- `mental-model.md` - State transitions and invariants
-- `reference.md` - Shortcuts and mode values
-- `src/layers/*.txt` - Hammerspoon overlay files
+**Essential reading** (in `.claude/`):
+- **`mental-model.md`** - State variables, invariants, layer behavior. Read when adding layers or debugging state issues.
+- **`reference.md`** - Layer shortcuts, mode values, Goku modifier syntax
+- **`goku-lessons.md`** - Syntax pitfalls, debugging workflow, things that don't work
+- **`rhs-slots.md`** - Complete key mapping grid for Ins mode (bare/fn/shift/shift+fn columns)
+- **`hardware.md`** - Kinesis Fn layer mappings, physical key layout
+- **`todos.md`** - Pending work and feature ideas
 
-## File Locations
+**Source files** (in `src/`):
+- `karabiner.edn` - Main Goku config (source of truth)
+- `layers/*.txt` - Hammerspoon overlay content per layer
+- `kinesis-layout1.txt` - Kinesis firmware Fn layer configuration
+- `kinesis-keycodes.txt` - Key code reference for Kinesis macros
 
-**Source (`src/`)**:
-- `src/karabiner.edn` - Main Goku config (source of truth)
-- `src/layers/*.txt` - Hammerspoon overlay content
-- `src/kinesis-layout1.txt` - Kinesis firmware layout
-
-**Scripts (`scripts/`)**: See `scripts/README.md` for full documentation.
-- `scripts/actions/` - Shell scripts called during rules
-- `scripts/swiftbar/` - SwiftBar menu bar plugins
-
-**Documentation (`.claude/`)**:
-- `CLAUDE.md` - This file (operational guide)
-- `current-plan.md` - **Active task stack and side quests** (update as you work)
-- `mental-model.md` - Conceptual foundation
-- `reference.md` - Shortcuts and lookup tables
-- `goku-lessons.md` - Syntax knowledge and debugging
-- `hardware.md` - Kinesis-specific info
-- `todos.md` - Pending tasks
-
-**External**:
+**External files**:
 - `~/.config/karabiner.edn` - Deployed config (goku reads from here)
 - `~/.hammerspoon/init.lua` - Layer overlay config
 - `/tmp/karabiner-layer` - Current layer (runtime)
-- `/tmp/karabiner-project` - Current project mode (runtime)
 
-## Other Files to Reference
+## Scripts Overview
 
-- **`current-plan.md`** - **Update this file** as you work on tasks. Track the active task stack, side quests, and progress. This maintains context across session boundaries.
-- **`mental-model.md`** - Read when: understanding state transitions, adding new layers, debugging invariant issues
-- **`reference.md`** - Read when: looking up shortcuts, mode values, Goku syntax
-- **`goku-lessons.md`** - Read when: unsure about syntax, debugging why something doesn't work
-- **`hardware.md`** - Read when: working with Kinesis Fn layer, understanding physical key layout
-- **`todos.md`** - Read when: looking for pending work or feature ideas
+See `scripts/README.md` for complete documentation.
+
+- **`scripts/query/`** - Read-only tools to inspect rules
+- **`scripts/edit/`** - Tools to modify karabiner.edn
+- **`scripts/validate/`** - Validation (runs automatically on sync)
+- **`scripts/generate/`** - Generate state graphs and valid state lists
+- **`scripts/actions/`** - Shell scripts called by rules at runtime
+- **`scripts/swiftbar/`** - SwiftBar menu bar plugins
