@@ -64,7 +64,8 @@
    [{:key :u, :id "R0041 [profile=Default:device=Desktop:dsk_layer=0] u → Term (no TMUX nav)"} [:vk_none ["dsk_layer" 8] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-enter-no-tmux.sh"}] [["dsk_layer" 0]]]
    [{:key :f16, :id "R0042 [profile=Default:device=Desktop:dsk_layer=0] Fn+u → Term + TMUX nav"} [:vk_none ["dsk_layer" 8] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-enter.sh"}] [["dsk_layer" 0]]]
    [{:key :!Of20, :id "R0046 [profile=Default:device=Desktop:dsk_layer=0] hk4 → InApp"} [:vk_none ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo inapp > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
-   [{:key :return_or_enter, :id "R0084 [profile=Default:device=Desktop:dsk_layer=0] Enter → Enter", :modi {:optional [:shift]}} [:return_or_enter ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 0]]]]}
+   [{:key :return_or_enter, :id "R0084 [profile=Default:device=Desktop:dsk_layer=0] Enter → Enter", :modi {:optional [:shift]}} [:return_or_enter ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 0]]]
+   [{:key :l, :id "R3064 [profile=Default:device=Desktop:dsk_layer=0] l → L layer"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 0]]"
  :rules [:!apple_internal
