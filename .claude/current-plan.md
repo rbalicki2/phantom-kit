@@ -19,10 +19,11 @@
 - All have `afterup` handlers to clear submode when RCmd is released
 
 **Findings:**
-- Most exit rules use `cleanup-external-state.sh` with all flags, but `--scroll-timer reset`, `--homerow reset`, and `--hover-mode reset` are **no-ops** (see script comments)
-- J/K scroll cleanup relies entirely on `afterup` - if key release isn't detected, scrolling continues
+- Most exit rules use `cleanup-external-state.sh` with all flags
+- `--homerow reset` now calls `dismissHomerow()` to clear labels on mode exit
+- `--scroll-timer reset` and `--hover-mode reset` are still no-ops (panic mode only)
+- J/K scroll cleanup relies on `afterup` - if key release isn't detected, scrolling continues
 - Chord submode cleanup relies on `afterup` - same concern
-- Full cleanup only available via panic mode (Fn+hk3)
 
 **Risk Assessment:**
 - **Low risk:** The `afterup` mechanism should fire when keys are released regardless of layer changes
