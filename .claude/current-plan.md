@@ -38,6 +38,16 @@ Created `scripts/edit/delete-rule.bb` to delete rules by ID.
 
 **Status**: Not started
 
+### 7. Make navigation keys preserve caps lock mode (submode 6)
+
+**Issue**: In both Insert (layer 1) and AltIns (layer 7), these keys should stay in caps lock mode (submode 6) instead of resetting to submode 0:
+- `[` (backspace)
+- `]` (forward delete)
+- RCmd+up (left by character)
+- RCmd+down (right by character)
+
+**Status**: Not started
+
 ## Completed Tasks
 
 ### Unit Test Infrastructure (completed 2024-02-17)
