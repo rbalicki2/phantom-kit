@@ -61,4 +61,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Admin layer: Fix Ctrl+P (screenshot selection) - currently broken
 - SwiftBar layer file: Audit all layer transitions to ensure they write to /tmp/karabiner-layer so SwiftBar displays the correct layer
 - Add query tool to search rules by output key (e.g., find all rules that output 'w')
-- Fix caps lock mode in AltIns (layer 7) - double-tap RShift entry mechanism not working
+- Add rule removal functionality to set-rule.bb (e.g., `bb scripts/edit/set-rule.bb src/karabiner.edn R1234 --delete`)

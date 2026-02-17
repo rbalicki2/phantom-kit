@@ -68,9 +68,6 @@ cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
 EOFR
 ```
 
-### edit/rename-rules.bb
-Batch rename rule IDs or descriptions.
-
 ### edit/normalize-edn.bb
 Normalize EDN formatting.
 

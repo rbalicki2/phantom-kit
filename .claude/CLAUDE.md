@@ -60,8 +60,6 @@ cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
 EOFR
 ```
 
-**One-off scripts** (kept for reference, rarely used):
-- `rename-rules.bb` - Batch rename rule IDs
 
 #### Validation Tools (run automatically on sync)
 
