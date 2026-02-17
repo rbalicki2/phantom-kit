@@ -42,7 +42,6 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - App change layer reset: Hammerspoon detects frontmost app change → sends hidden key (e.g., F24) → Karabiner rule catches it in app-specific layers (VSCode layer 4, Chrome layer 3, etc.) and resets to Normal if frontmost app doesn't match the layer. Prevents staying stuck in wrong app layer after Cmd+Tab.
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
 - Add Find (Cmd+F) shortcut to In-App Nav layer
-- In-App Nav layer color: make this layer a different color (red) in Hammerspoon border indicator
 - Prefer keyboard shortcuts over osascript: when an app is foregrounded, use direct keyboard shortcuts instead of osascript calls (e.g., Chrome "last tab" uses osascript but could use Cmd+9)
 - Investigate Ctrl+Y bugs: check if Ctrl+Y behavior is correct across all layers
 - Review held_down threshold: currently set to 1ms globally, verify this doesn't cause issues with other to_if_held_down rules
@@ -57,7 +56,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Generate both the config AND the visualization/documentation from a single source
   - Could define layers as Rust structs with attributes for keys, transitions, conditions
 - Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.
-- Add --create/--update flag to set-rule.bb: Prevent accidental overwrites by requiring explicit intent. `--create` fails if rule ID exists, `--update` fails if it doesn't. Default behavior (no flag) could require confirmation or fail-safe to --update.
+- [DONE] Add --no-clobber flag to set-rule.bb: Prevents accidental overwrites. Use when adding NEW rules.
 - Admin layer: Fix Ctrl+P (screenshot selection) - currently broken
 - SwiftBar layer file: Audit all layer transitions to ensure they write to /tmp/karabiner-layer so SwiftBar displays the correct layer
 - Add query tool to search rules by output key (e.g., find all rules that output 'w')
