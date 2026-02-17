@@ -126,9 +126,15 @@ npm run sync
 cd ~/.config && git add -A && git commit -m "message"
 ```
 
-**Important:** Write commit messages that accurately describe what changed. Don't reference old changes that were already committed.
+**Important:** Write commit messages that accurately describe what changed. Don't reference old changes that were already committed. Do NOT add Co-Authored-By lines.
 
 To reload Hammerspoon: `npm run hs`
+
+## Task Tracking
+
+Keep `.claude/current-plan.md` updated with active tasks. Remove completed tasks from the list - do not mark them as "completed this session". The file should only contain pending and in-progress work.
+
+**Task descriptions must be detailed enough for a new session with no context to complete the task.** Don't use one-line summaries. Include relevant rule IDs, key mappings, expected behavior, and what was already tried. For complex tasks, point to other documentation files.
 
 ## When Adding a New Layer
 
