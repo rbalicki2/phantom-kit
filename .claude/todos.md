@@ -64,3 +64,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Add query tool to search rules by output key (e.g., find all rules that output 'w')
 - Add rule removal functionality to set-rule.bb (e.g., `bb scripts/edit/set-rule.bb src/karabiner.edn R1234 --delete`)
 - Validation: detect submode rules that are redundant because they're fully captured by more generic mode rules. Example: if layer=7 has a rule for key X, a rule for layer=7:submode=1 with the same key X and identical output is redundant and should be flagged.
+- Consolidate validations for sync speed: validate-rules.bb and validate-extras.bb do multiple passes through rules. Could consolidate into single pass for faster sync.

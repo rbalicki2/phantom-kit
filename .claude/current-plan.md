@@ -32,13 +32,7 @@ Fixed 4 rules: R0064, R0071, R3056, R2220
 
 Created `scripts/edit/delete-rule.bb` to delete rules by ID.
 
-### 6. Consolidate validations for sync speed
-
-**Issue**: Validations do multiple passes through rules. Could consolidate into single pass for faster sync.
-
-**Status**: Not started
-
-### 7. Make navigation keys preserve caps lock mode (submode 6)
+### 6. Make navigation keys preserve caps lock mode (submode 6)
 
 **Issue**: In both Insert (layer 1) and AltIns (layer 7), these keys should stay in caps lock mode (submode 6) instead of resetting to submode 0:
 - `[` (backspace)
