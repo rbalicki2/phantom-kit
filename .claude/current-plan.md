@@ -47,13 +47,9 @@ Updated 15 unit tests to reflect the new behavior.
 Added R3064: l → L-Entry (layer 29) in Normal mode.
 Test count increased from 9380 → 9916 (+536 tests for L-Entry/L-Exec states).
 
-### 8. Update L-Exec (layer 30) keybindings to match AltIns
+### 8. Update L-Exec (layer 30) keybindings to match AltIns ✓ DONE
 
-**Issue**: L-Exec rules currently call `execute()` shell commands and return to Normal. They should output characters like AltIns and stay in L-Exec.
-
-**Keys to update**: Letters (y,u,i,o,p,h,j,k,l,;,n,m,comma,period,slash), numbers (6,7,8,9,0), tab, enter, space, up, down.
-
-**Status**: In progress - updated y,u,i,o,p so far.
+Updated all letter, number, and special key rules to output characters directly instead of calling execute().
 
 ### 9. Fix TMUX exits going to Ins instead of AltIns
 
