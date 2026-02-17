@@ -52,9 +52,12 @@ bb scripts/query/analyze-rules.bb src/karabiner.edn
 ```bash
 # Set a rule by ID - the primary way to add/modify rules
 # Reads the rule from stdin, places it in the correct block based on its condition
-cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 -
+# ALWAYS use --no-clobber when adding NEW rules to prevent accidental overwrites
+cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 - --no-clobber
 [{:key :j, :id "R1234 [profile=Default:device=Desktop:dsk_layer=7] j → t"} [:t ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
 EOFR
+
+# Omit --no-clobber only when intentionally modifying an existing rule
 ```
 
 
