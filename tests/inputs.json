@@ -1,0 +1,54 @@
+{
+  "keys": [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "f11", "f12",
+    "f13", "f14", "f15", "f16", "f17", "f18", "f19", "f20", "f21", "f22", "f23", "f24",
+    "return_or_enter", "escape", "delete_or_backspace", "delete_forward", "tab",
+    "spacebar", "hyphen", "equal_sign", "open_bracket", "close_bracket", "backslash",
+    "semicolon", "quote", "grave_accent_and_tilde", "comma", "period", "slash",
+    "up_arrow", "down_arrow", "left_arrow", "right_arrow",
+    "page_up", "page_down", "home", "end",
+    "caps_lock", "non_us_backslash"
+  ],
+  "modifiers": [
+    {},
+    {"left_shift": true},
+    {"right_shift": true},
+    {"left_command": true},
+    {"right_command": true},
+    {"left_option": true},
+    {"right_option": true},
+    {"left_control": true},
+    {"right_control": true},
+    {"left_option": true, "left_shift": true},
+    {"right_command": true, "left_shift": true},
+    {"right_command": true, "right_shift": true},
+    {"right_control": true, "left_shift": true},
+    {"right_control": true, "right_shift": true},
+    {"left_option": true, "right_shift": true}
+  ],
+  "profiles": ["Default"],
+  "devices": ["Desktop"],
+  "applications": [
+    {"name": "Chrome", "bundle_id": "com.google.Chrome"},
+    {"name": "iTerm", "bundle_id": "com.googlecode.iterm2"},
+    {"name": "VSCode", "bundle_id": "com.microsoft.VSCode"},
+    {"name": "other", "bundle_id": null}
+  ],
+  "fn_key_comments": {
+    "f13": "Fn+6",
+    "f14": "Fn+7",
+    "f15": "Fn+y",
+    "f16": "Fn+u",
+    "f17": "Fn+i",
+    "f18": "Fn+o",
+    "f19": "Fn+p",
+    "f20": "Fn+backslash (hk4)",
+    "f21": "Fn+hk4",
+    "f22": "Fn+h",
+    "f23": "Fn+j",
+    "f24": "Fn+k"
+  }
+}
