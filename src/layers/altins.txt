@@ -1,3 +1,4 @@
+ALTINS - Frequency-Optimized Layout
 +-----+-----+-----+-----+-----+-----+
 |  4  |  3  |  2  |  1  |  0  |     |
 |  &  |  ^  |  $  |  (  |  )  |  -  |
@@ -11,3 +12,22 @@
 |  x  |  b  |  k  |  f  |  ;  |
 |  s  |  h  |  n  |  r  |  ,  |
 +-----+-----+-----+-----+-----+
+
+Submodes:
+Fn+] → Mirror mode (Shift of Fn letters)
+Fn+Space → Shift oneshot (next letter capital)
+Shift+Shift → Caps lock mode (letters stay caps)
+
+Double-tap:
+,, → .  (comma-comma → period)
+;; → :  (semicolon-semicolon → colon)
+
+Navigation:
+Up/Down → Up/Down
+Shift+Up/Down → [ ]
+[ → Backspace, ] → Delete
+
+Exits:
+RCtrl → Normal
+Ctrl+N → Escape + Normal
+Ctrl+J → Ins mode
