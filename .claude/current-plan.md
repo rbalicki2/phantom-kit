@@ -44,7 +44,8 @@ Updated 15 unit tests to reflect the new behavior.
 
 ### 7. L menu not accessible from Normal mode ✓ DONE
 
-Added R3064: l → L layer (layer 7) in Normal mode.
+Added R3064: l → L-Entry (layer 29) in Normal mode.
+Test count increased from 9380 → 9916 (+536 tests for L-Entry/L-Exec states).
 
 ## Completed Tasks
 
