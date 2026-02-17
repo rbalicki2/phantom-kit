@@ -22,5 +22,6 @@ tell application "System Events"
 end tell
 EOF
 
-# Update layer indicator immediately
+# Update layer indicator and show overlay
 echo term > /tmp/karabiner-layer
+/opt/homebrew/bin/hs -c 'showLayerOverlay()' &
