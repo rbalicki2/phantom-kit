@@ -106,7 +106,45 @@ Actions when entering Term layer.
 ### swiftbar/karabiner-layer.100ms.sh
 Menu bar indicator showing current layer.
 
-## Running Tests
+## Test Scripts
+
+Snapshot testing for the Karabiner state machine. Tests verify that rules produce expected output for every reachable state. Tests run automatically as part of `npm run sync`.
+
+### test/generate-tests.bb
+Generate test files using BFS exploration from root state.
+
+```bash
+bb scripts/test/generate-tests.bb
+```
+
+Explores all reachable states and generates test files in `tests/unit/` for each unique (state, key, modifier, app) combination. Only tests RHS keys with RHS modifiers. App-specific testing only for layers that have app-conditional rules (currently layer 0).
+
+### test/run-tests.bb
+Run all tests and report failures.
+
+```bash
+npm run test                           # Run all tests (alias)
+bb scripts/test/run-tests.bb           # Run all tests
+bb scripts/test/run-tests.bb --verbose # Show all results
+bb scripts/test/run-tests.bb --fail-fast  # Stop on first failure
+bb scripts/test/run-tests.bb --state "profile=Default:device=Desktop:layer=7"  # Filter by state
+```
+
+State filter must start with `profile=`. This matches the state string format used by query tools.
+
+### Workflow
+
+Tests run as part of sync (~4s for ~9.6k tests across 36 states):
+
+1. Make changes to karabiner.edn
+2. Run `npm run sync` (validates, deploys, and tests)
+3. If tests fail:
+   - Fix the unintended change, OR
+   - Regenerate tests if change was intentional: `bb scripts/test/generate-tests.bb`
+4. Commit changes (including updated tests if regenerated)
+
+### test/match-rules-test.bb
+Unit tests for the match-rules query tool.
 
 ```bash
 bb test/match-rules-test.bb

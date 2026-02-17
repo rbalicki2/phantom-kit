@@ -1,0 +1,38 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 4,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "m",
+    "right_control" : true
+  },
+  "matched_rule" : {
+    "id" : "R2200 [profile=Default:device=Desktop:dsk_layer=7] RCtrl+m → Label mode (return to AltIns)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 13,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : 7
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "key" : "o",
+        "left_command" : true,
+        "left_option" : true,
+        "left_shift" : true
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow keep --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo label > /tmp/karabiner-layer"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCtrl + m"
+  }
+}

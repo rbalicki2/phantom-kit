@@ -1,0 +1,16 @@
+{
+  "initial_state" : {
+    "application" : "Chrome",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 10,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "open_bracket",
+    "right_command" : true,
+    "right_shift" : true
+  },
+  "matched_rule" : null
+}

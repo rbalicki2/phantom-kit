@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 3,
+    "dsk_layer" : 1,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f15"
+  },
+  "matched_rule" : {
+    "id" : "R0147 [profile=Default:device=Desktop:dsk_layer=1] Fn+Y → t",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 1,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "t"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "Fn+y"
+  }
+}

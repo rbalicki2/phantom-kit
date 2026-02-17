@@ -1,0 +1,31 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 3,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "up_arrow",
+    "right_command" : true
+  },
+  "matched_rule" : {
+    "id" : "R2236 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=3] RCmd+↑ → Backspace",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 3,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "delete_or_backspace"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + up_arrow"
+  }
+}

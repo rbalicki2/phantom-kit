@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 1,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "n"
+  },
+  "matched_rule" : {
+    "id" : "R2091 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] n → X (oneshot mirror)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "x",
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

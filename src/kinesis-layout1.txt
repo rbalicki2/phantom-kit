@@ -51,7 +51,7 @@
 {pgup}>{-lalt}{f15}{+lalt}
 {pgdn}>{-lalt}{f16}{+lalt}
 {ent}>{-lalt}{f17}{+lalt}
-{spc}>{-lalt}{f18}{+lalt}
+{spc}>{-lctl}{-lalt}{f18}{+lalt}{+lctl}
 
 <function2>
 

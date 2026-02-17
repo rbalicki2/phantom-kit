@@ -1,0 +1,29 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 1,
+    "dsk_layer" : 1,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "return_or_enter"
+  },
+  "matched_rule" : {
+    "id" : "R1360 [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Enter → Enter (oneshot clear)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_ins_sub_mode" : 0,
+        "dsk_layer" : 1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "return_or_enter"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

@@ -52,7 +52,7 @@ The Kinesis Fn key is handled at firmware level - it does NOT send any keycode. 
 - Up → Alt+F9, Down → Alt+F10, [ → Alt+F11, ] → Alt+F12
 
 ### Right Thumb Cluster
-- PageUp → Alt+F16, PageDown → Alt+F17, Enter → Alt+F18, Space → Alt+F20
+- PageUp → Alt+F15, PageDown → Alt+F16, Enter → Alt+F17, Space → Ctrl+Alt+F18
 
 ## Layout File
 

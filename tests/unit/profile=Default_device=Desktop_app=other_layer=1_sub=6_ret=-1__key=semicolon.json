@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 6,
+    "dsk_layer" : 1,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "semicolon"
+  },
+  "matched_rule" : {
+    "id" : "R1562 [profile=Default:device=Desktop:dsk_ins_sub_mode=6] ; → : (caps)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 1,
+        "dsk_ins_sub_mode" : 6,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "semicolon",
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

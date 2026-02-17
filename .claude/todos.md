@@ -2,7 +2,9 @@
 
 If work is interrupted or incomplete, document it here so future sessions can continue:
 
-- Expand unit test coverage: add tests for all Fn+key combos in each layer, verify all layer entries/exits, test edge cases (modifier combos, app-specific rules). Run tests as part of `npm run sync`.
+- [DONE] Unit test infrastructure: BFS test generator and runner, ~9.6k tests covering 36 states, integrated into `npm run sync`.
+- [DONE] Fix Kinesis firmware: HK4 (Alt+F20) and Fn+space (now Ctrl+Alt+F18) produce different keycodes. Updated `src/kinesis-layout1.txt` and `tests/inputs.json`. Need to flash keyboard with `npm run kinesis`.
+- [DONE] Parallelize BFS in test generator: Test processing within each state uses pmap, file writing uses pmap. BFS state discovery remains sequential (necessary for correctness).
 - Push voicemode repo to a remote repository
 - URL-aware Chrome shortcuts: different shortcuts based on current URL (GitHub vs Gmail vs Docs), via Tampermonkey or Hammerspoon+AppleScript
 - Wifi notifier

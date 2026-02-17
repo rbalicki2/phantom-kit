@@ -1,0 +1,29 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 3,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "page_down"
+  },
+  "matched_rule" : {
+    "id" : "R0027 [profile=Default:device=Desktop] PgDn → button1",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "button1"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

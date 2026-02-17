@@ -10,7 +10,9 @@ This is the operational guide for working with this codebase. For understanding 
 
 ### DO NOT BREAK EXISTING FUNCTIONALITY
 
-There are NO unit tests. Every change risks breaking something the user relies on.
+Unit tests run automatically on sync and catch regressions. If tests fail:
+1. Fix the unintended change, OR
+2. Regenerate tests if the change was intentional: `bb scripts/test/generate-tests.bb`
 
 **Before making ANY change:**
 1. TRACE through exactly what will happen
@@ -45,6 +47,9 @@ bb scripts/query/list-rules.bb src/karabiner.edn "profile=Default:device=Desktop
 
 # Analyze rule patterns and statistics
 bb scripts/query/analyze-rules.bb src/karabiner.edn
+
+# Get next available rule ID (for adding new rules)
+bb scripts/query/next-id.bb src/karabiner.edn
 ```
 
 #### Edit Tools (modify config)
@@ -58,6 +63,9 @@ cat << 'EOFR' | bb scripts/edit/set-rule.bb src/karabiner.edn R1234 - --no-clobb
 EOFR
 
 # Omit --no-clobber only when intentionally modifying an existing rule
+
+# Delete a rule by ID
+bb scripts/edit/delete-rule.bb src/karabiner.edn R0081
 ```
 
 
@@ -74,6 +82,20 @@ See `scripts/README.md` for full documentation.
 ### If Tooling Returns Surprising Results
 
 If any script returns unexpected or incorrect results, **investigate and fix the tooling** rather than working around it. The scripts are meant to be reliable; bugs should be fixed, not tolerated.
+
+### Preferred Workflow for Fixing Rule Issues
+
+When encountering a bug or issue with rules:
+
+1. **Add a validation** - Create or enhance a validation in `scripts/validate/` to detect the issue
+2. **Run that validation** - Execute it to surface all instances of the problem
+3. **Review the broken rules** - Let the validation output guide which rules need fixing
+4. **Fix the rules systematically** - Address each broken rule identified by the validation
+
+This workflow ensures:
+- Issues are caught automatically in future changes
+- All instances of the problem are found (not just the one that triggered investigation)
+- The fix is verified by the validation passing
 
 ### NEVER Remove Shortcuts Without Permission
 
@@ -115,6 +137,15 @@ git -C ~/.config status
 If they differ, the voicemode version is source of truth. Run `npm run sync`.
 
 ## Workflow After Changes
+
+### COMMIT EARLY AND OFTEN
+
+**This is critical.** Do NOT let changes pile up. Commit after EVERY logical change:
+- Added a new script? Commit immediately.
+- Fixed a rule? Commit immediately.
+- Updated documentation? Commit immediately.
+
+Uncommitted changes get lost, cause confusion, and make debugging harder. There is NO reason to wait.
 
 **Commit frequently and atomically.** Each commit should represent ONE logical change (a single feature, fix, or refactor). Don't batch unrelated changes together - this makes it hard to understand history and revert specific changes.
 
@@ -163,6 +194,12 @@ Keep `.claude/current-plan.md` updated with active tasks. Remove completed tasks
 - `layers/*.txt` - Hammerspoon overlay content per layer
 - `kinesis-layout1.txt` - Kinesis firmware Fn layer configuration
 - `kinesis-keycodes.txt` - Key code reference for Kinesis macros
+
+**Test files** (in `tests/`):
+- `inputs.json` - Keys, modifiers, and fixed combos to test
+- `unit/*.json` - Generated snapshot tests
+
+**IMPORTANT**: If you modify `kinesis-layout1.txt`, you MUST also update `tests/inputs.json` to reflect the new Fn key mappings. The `fixed_combos` section defines what keycodes the Kinesis Fn layer produces.
 
 **External files**:
 - `~/.config/karabiner.edn` - Deployed config (goku reads from here)

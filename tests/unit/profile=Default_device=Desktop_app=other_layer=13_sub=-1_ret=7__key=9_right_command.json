@@ -1,0 +1,15 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 13,
+    "dsk_return_to_layer" : 7,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "9",
+    "right_command" : true
+  },
+  "matched_rule" : null
+}

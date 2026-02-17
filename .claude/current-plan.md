@@ -2,48 +2,59 @@
 
 ## Active Tasks
 
-### Unit Test Infrastructure
-**Status:** In progress
+### 1. Fix test output: matched_rule fields are unexpectedly null ✓ DONE
 
-**Completed:**
-1. Added `--json` flag to `match-rules.bb` for structured JSON output
-2. Created `tests/inputs.json` with all keys, modifiers, profiles, devices, apps
-3. Created directory structure: `tests/unit/`, `scripts/test/`
-4. Documented test format in `.claude/plans/unit-tests.md`
+Fixed by passing full match object through `process-single-test` instead of just parsed output.
 
-**Next steps:**
-1. Create `scripts/test/generate-tests.bb` - BFS generator
-2. Create `scripts/test/run-tests.bb` - Test runner/validator
-3. Add test running to `npm run sync`
+### 2. Fix RCmd chord mode rules in AltIns mode (layer 7) ✓ DONE
 
-**Test format (JSON):**
-```json
-{
-  "initial_state": {
-    "application": "Chrome",
-    "device": "Desktop",
-    "dsk_ins_sub_mode": -1,
-    "dsk_layer": 0,
-    "dsk_return_to_layer": -1,
-    "profile": "Default"
-  },
-  "key": {"key": "j"},
-  "comment": "Enter AltIns mode",
-  "to": {
-    "resulting_state": {...},
-    "actions": [...]
-  },
-  "held": null,
-  "afterup": null,
-  "alone": null
-}
-```
+**Fixed:**
+- Added R3056: RCmd+h → delete-chord (submode 3) in layer 7
+- Changed R2220: RCmd+n from submode 3 → submode 4 in layer 7
+- Removed R0081: RCmd+comma in Insert mode (layer 1)
+- Removed R2196: RCmd+comma in AltIns mode (layer 7)
+- Updated alt-insert-mode.md documentation
 
-**BFS algorithm:**
-- Queue contains states (layer, submode, return_to) - not keys
-- Pop state → generate tests for ALL key/modifier/app combos
-- Queue any new resulting_states from to/held/afterup/alone
-- Track visited states to avoid duplicates
+### 3. Confirm validation exists for actions starting with character/key
+
+**Status**: Validation already exists in `validate-extras.bb`:
+- `check-action-starts-with-variable` - errors if action starts with `["var" value]`
+- `check-action-starts-with-shell` - errors if action starts with `{:shell "..."}`
+
+This effectively requires actions to start with a key code like `:vk_none`.
+
+### 4. Remove shell: pattern (outdated)
+
+**Issue**: The `{:shell "..."}` pattern in actions is outdated. Need to:
+1. Add a validation to surface all rules using shell: pattern
+2. Remove/replace shell: patterns from rules
+3. Run the validation and confirm no rules use shell:
+
+**Status**: Not started
+
+### 5. Create delete-rule.bb script ✓ DONE
+
+Created `scripts/edit/delete-rule.bb` to delete rules by ID.
+
+## Completed Tasks
+
+### Unit Test Infrastructure (completed 2024-02-17)
+
+Created comprehensive snapshot testing for the Karabiner state machine:
+
+1. `scripts/test/generate-tests.bb` - BFS test generator
+   - Explores all reachable states from root (layer=0, submode=-1, return_to=-1)
+   - Tests every key/modifier/app combination in each state
+   - Generated 12,200 tests covering 26 states
+
+2. `scripts/test/run-tests.bb` - Test runner/validator
+   - Runs all tests and compares actual output to expected
+   - Normalizes output formats for comparison
+   - Supports `--verbose`, `--fail-fast`, `--filter` options
+
+3. Integration
+   - Tests run automatically as part of `npm run sync`
+   - Tests run after validation, before deployment
 
 ## Notes
 

@@ -1,0 +1,33 @@
+{
+  "initial_state" : {
+    "application" : "VSCode",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 10,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f5",
+    "left_option" : true
+  },
+  "matched_rule" : {
+    "id" : "R0366 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f5 → !TSPgUp",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "page_up",
+        "left_control" : true,
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LOpt + f5"
+  }
+}

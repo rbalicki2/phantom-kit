@@ -1,0 +1,41 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 11,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "y",
+    "right_control" : true
+  },
+  "matched_rule" : {
+    "id" : "R0170 [profile=Default:device=Desktop] RCtrl+y → Ins",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'showPermanentLayerOverlay()'"
+      } ]
+    },
+    "held" : null,
+    "afterup" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "f19",
+        "left_control" : true,
+        "left_option" : true,
+        "left_shift" : true
+      } ]
+    },
+    "alone" : null,
+    "comment" : "RCtrl + y"
+  }
+}

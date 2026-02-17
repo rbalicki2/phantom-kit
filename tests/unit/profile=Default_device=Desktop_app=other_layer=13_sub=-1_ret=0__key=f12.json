@@ -1,0 +1,26 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 13,
+    "dsk_return_to_layer" : 0,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f12"
+  },
+  "matched_rule" : {
+    "id" : "R1350 [profile=Default:device=Desktop] f12 blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "Fn+hyphen"
+  }
+}

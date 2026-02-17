@@ -1,0 +1,31 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 11,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "j"
+  },
+  "matched_rule" : {
+    "id" : "R0391 [profile=Default:device=Desktop:dsk_layer=11] j → osascript",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 11,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "osascript -e 'tell app \"System Events\" to keystroke tab'"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

@@ -118,6 +118,21 @@
        :message "Action array starts with variable set (causes null in JSON). Prepend :vk_none."
        :rule (:rule rule-info)})))
 
+(defn is-shell-command? [item]
+  "Check if item is a shell command map {:shell ...}"
+  (and (map? item) (contains? item :shell)))
+
+(defn check-action-starts-with-shell [rule-info]
+  "Check if action array starts with a shell command (Goku silently drops these rules)"
+  (let [action (:to rule-info)]
+    (when (and (vector? action)
+               (not-empty action)
+               (is-shell-command? (first action)))
+      {:type :action-starts-with-shell
+       :description (:description rule-info)
+       :message "Action array starts with {:shell ...} (Goku silently drops this rule). Prepend :vk_none."
+       :rule (:rule rule-info)})))
+
 (defn check-nested-key-arrays [rule-info]
   "Check if action array contains nested key arrays like [[:key]]"
   (let [action (:to rule-info)]
@@ -630,6 +645,10 @@
         var-first-issues
         (keep check-action-starts-with-variable all-rules)
 
+        ;; Check for action arrays starting with shell commands (Goku drops these)
+        shell-first-issues
+        (keep check-action-starts-with-shell all-rules)
+
         ;; Check for nested key arrays
         nested-key-issues
         (keep check-nested-key-arrays all-rules)
@@ -674,6 +693,7 @@
             bare-to-issues
             unwrapped-cond-issues
             var-first-issues
+            shell-first-issues
             nested-key-issues
             multi-shell-issues
             mismatch-issues

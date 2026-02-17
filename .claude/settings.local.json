@@ -94,7 +94,8 @@
       "Bash(do echo \"=== $key \\(shift\\) ===\" bb scripts/query/match-rules.bb src/karabiner.edn \"$key\" --state \"profile=Default:device=Desktop:layer=7:submode=2\")",
       "Bash(do echo:*)",
       "Bash(defaults write:*)",
-      "Bash(do bb scripts/query/match-rules.bb src/karabiner.edn $key --state profile=Default:device=Desktop:layer=13)"
+      "Bash(do bb scripts/query/match-rules.bb src/karabiner.edn $key --state profile=Default:device=Desktop:layer=13)",
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && cat {}')"
     ]
   }
 }

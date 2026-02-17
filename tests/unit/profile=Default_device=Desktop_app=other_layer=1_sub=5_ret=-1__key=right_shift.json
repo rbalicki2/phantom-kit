@@ -1,0 +1,38 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 5,
+    "dsk_layer" : 1,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "right_shift"
+  },
+  "matched_rule" : {
+    "id" : "R1550 [profile=Default:device=Desktop:dsk_ins_sub_mode=5] RShift → shift (up→caps)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 1,
+        "dsk_ins_sub_mode" : 5,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "right_shift"
+      } ]
+    },
+    "held" : null,
+    "afterup" : {
+      "resulting_state" : {
+        "dsk_layer" : 1,
+        "dsk_ins_sub_mode" : 6,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "alone" : null
+  }
+}

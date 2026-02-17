@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "iTerm",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 10,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "i"
+  },
+  "matched_rule" : {
+    "id" : "R0363 [profile=Default:device=Desktop:dsk_layer=10] i → Cmd+]",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "close_bracket",
+        "left_command" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}
