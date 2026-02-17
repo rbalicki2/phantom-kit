@@ -510,14 +510,14 @@
    [{:key :j, :id "R2116 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] j → T (shift-oneshot)"} [:!St ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :k, :id "R2117 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] k → E (shift-oneshot)"} [:!Se ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :semicolon, :id "R2119 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] ; → M (shift-oneshot)"} [:!Sm ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
-   [{:key :n, :id "R2120 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] n → S (shift-oneshot)"} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
-   [{:key :m, :id "R2121 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] m → H (shift-oneshot)"} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :comma, :id "R2122 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] , → N (shift-oneshot)"} [:!Sn ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :period, :id "R2123 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] . → R (shift-oneshot)"} [:!Sr ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :slash, :id "R2124 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] / → < (shift-oneshot)"} [:!Scomma ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :h, :id "R2115 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] h → O (shift-oneshot)"} [:!So ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
    [{:key :l, :id "R2118 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] l → A (shift-oneshot)"} [:!Sa ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
-   [{:key :p, :id "R2114 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] p → W (shift-oneshot)"} [:!Sw ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]]}
+   [{:key :p, :id "R2114 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] p → W (shift-oneshot)"} [:!Sw ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
+   [{:key :n, :id "R2120 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] n → H (shift-oneshot)"} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]
+   [{:key :m, :id "R2121 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=2] m → S (shift-oneshot)"} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 2]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 5]]"
  :rules [:!apple_internal
@@ -532,8 +532,6 @@
    [{:key :j, :id "R2146 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] j → T (caps)", :modi {:optional [:caps_lock]}} [:!St ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :k, :id "R2147 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] k → E (caps)", :modi {:optional [:caps_lock]}} [:!Se ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :semicolon, :id "R2149 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] ; → M (caps)", :modi {:optional [:caps_lock]}} [:!Sm ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
-   [{:key :n, :id "R2150 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] n → S (caps)", :modi {:optional [:caps_lock]}} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
-   [{:key :m, :id "R2151 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] m → H (caps)", :modi {:optional [:caps_lock]}} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :comma, :id "R2152 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] , → N (caps)", :modi {:optional [:caps_lock]}} [:!Sn ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :period, :id "R2153 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] . → R (caps)", :modi {:optional [:caps_lock]}} [:!Sr ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :spacebar, :id "R2155 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] space → exit caps", :modi {:optional [:caps_lock :shift]}} [:spacebar ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
@@ -551,7 +549,9 @@
    [{:key :!Of4, :id "R2178 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] Fn+N → X (caps)"} [:!Sx ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :!Of5, :id "R2179 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] Fn+M → B (caps)"} [:!Sb ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :!Of6, :id "R2180 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] Fn+, → K (caps)"} [:!Sk ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
-   [{:key :!Of7, :id "R2181 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] Fn+. → F (caps)"} [:!Sf ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]]}
+   [{:key :!Of7, :id "R2181 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] Fn+. → F (caps)"} [:!Sf ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
+   [{:key :n, :id "R2150 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] n → H (caps)", :modi {:optional [:caps_lock]}} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
+   [{:key :m, :id "R2151 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] m → S (caps)", :modi {:optional [:caps_lock]}} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 10]]"
  :rules [:!apple_internal
@@ -604,8 +604,6 @@
    [{:key :0, :modi {:optional [:caps_lock]}, :id "R2074 [profile=Default:device=Desktop:dsk_layer=7] 0 → )"} [:!S0 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :hyphen, :modi {:optional [:caps_lock]}, :id "R2075 [profile=Default:device=Desktop:dsk_layer=7] - → -"} [:hyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :!Of12, :id "R2080 [profile=Default:device=Desktop:dsk_layer=7] Fn+] → shift-oneshot"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 1] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :n, :modi {:optional [:caps_lock]}, :id "R2010 [profile=Default:device=Desktop:dsk_layer=7] n → s"} [:s ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :m, :modi {:optional [:caps_lock]}, :id "R2011 [profile=Default:device=Desktop:dsk_layer=7] m → h"} [:h ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :y, :modi {:optional [:caps_lock]}, :id "R2000 [profile=Default:device=Desktop:dsk_layer=7] y → i"} [:i ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :u, :modi {:optional [:caps_lock]}, :id "R2001 [profile=Default:device=Desktop:dsk_layer=7] u → u"} [:u ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :semicolon, :modi {:optional [:caps_lock]}, :id "R2009 [profile=Default:device=Desktop:dsk_layer=7] ; → m"} [:m ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
@@ -620,8 +618,6 @@
    [{:key :u, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2041 [profile=Default:device=Desktop:dsk_layer=7] Shift+u → U"} [:!Su ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :l, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2048 [profile=Default:device=Desktop:dsk_layer=7] Shift+l → O"} [:!So ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :semicolon, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2049 [profile=Default:device=Desktop:dsk_layer=7] Shift+; → M"} [:!Sm ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :n, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2050 [profile=Default:device=Desktop:dsk_layer=7] Shift+n → S"} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :m, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2051 [profile=Default:device=Desktop:dsk_layer=7] Shift+m → H"} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :right_control, :id "R2100 [profile=Default:device=Desktop:dsk_layer=7] RCtrl → Normal"} [:right_control ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'hideOverlay()'"}] [["dsk_layer" 7]]]
    [{:key :!Of18, :id "R2103 [profile=Default:device=Desktop:dsk_layer=7] Fn+Space → shift-oneshot"} [:spacebar ["dsk_layer" 7] ["dsk_ins_sub_mode" 2] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :h, :modi {:optional [:caps_lock]}, :id "R2005 [profile=Default:device=Desktop:dsk_layer=7] h → o"} [:o ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
@@ -630,7 +626,11 @@
    [{:key :!Of8, :id "R2036 [profile=Default:device=Desktop:dsk_layer=7] Fn+/ → ; (enters double-tap pending)"} [:semicolon ["dsk_layer" 7] ["dsk_ins_sub_mode" 11] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :p, :modi {:optional [:caps_lock]}, :id "R2004 [profile=Default:device=Desktop:dsk_layer=7] p → w"} [:w ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :!Of1, :id "R2029 [profile=Default:device=Desktop:dsk_layer=7] Fn+L → l"} [:l ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :slash, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2054 [profile=Default:device=Desktop:dsk_layer=7] Shift+/ → !"} [:!S1 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
+   [{:key :slash, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2054 [profile=Default:device=Desktop:dsk_layer=7] Shift+/ → !"} [:!S1 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :n, :modi {:optional [:caps_lock]}, :id "R2010 [profile=Default:device=Desktop:dsk_layer=7] n → h"} [:h ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :m, :modi {:optional [:caps_lock]}, :id "R2011 [profile=Default:device=Desktop:dsk_layer=7] m → s"} [:s ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :n, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2050 [profile=Default:device=Desktop:dsk_layer=7] Shift+n → H"} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :m, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2051 [profile=Default:device=Desktop:dsk_layer=7] Shift+m → S"} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal
