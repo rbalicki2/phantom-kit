@@ -2,7 +2,10 @@
 ;; Set a rule by ID (delete existing, then add)
 ;;
 ;; Usage:
-;;   bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -]
+;;   bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber]
+;;
+;; Options:
+;;   --no-clobber  Fail if a rule with this ID already exists (prevents overwrites)
 ;;
 ;; Example:
 ;;   cat << 'EOFR' | bb set-rule.bb src/karabiner.edn R1515 -
@@ -37,6 +40,21 @@
   "Extract just the rule ID (e.g., 'R1515' from 'R1515 [profile=...]')"
   (when id-str
     (first (str/split id-str #" "))))
+
+(defn find-rule-by-id [config target-id]
+  "Find a rule with matching ID. Returns the rule or nil."
+  (let [target-prefix (extract-id-prefix target-id)]
+    (some (fn [block]
+            (let [rules (:rules block)]
+              (when (vector? rules)
+                (some (fn [item]
+                        (when (vector? item)
+                          (let [id (rule-id item)
+                                prefix (extract-id-prefix id)]
+                            (when (= prefix target-prefix)
+                              item))))
+                      rules))))
+          (:main config))))
 
 (defn remove-rule-by-id [config target-id]
   "Remove any rule with matching ID from all blocks"
@@ -237,10 +255,15 @@
       (validate-complete-state-transition rule)))
 
 (defn -main [& args]
-  (let [[edn-file rule-id rule-source] args]
-    (when (or (nil? edn-file) (nil? rule-id))
-      (println "Usage: bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -]")
+  (let [;; Parse args - check for --no-clobber anywhere in args
+        no-clobber (some #{"--no-clobber"} args)
+        ;; Remove flag from args to get positional args
+        positional-args (remove #{"--no-clobber"} args)
+        [edn-file target-id rule-source] positional-args]
+    (when (or (nil? edn-file) (nil? target-id))
+      (println "Usage: bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber]")
       (println "  Use '-' to read rule from stdin")
+      (println "  --no-clobber: fail if rule ID already exists (prevents accidental overwrites)")
       (println "Example:")
       (println "  echo '[{:key :!Of9} [:output] [[\"dsk_layer\" 1]]]' | bb set-rule.bb src/karabiner.edn R1515 -")
       (System/exit 1))
@@ -252,24 +275,32 @@
           rule (edn/read-string rule-str)
 
           ;; Validate before modifying config
-          validation-error (validate-rule rule rule-id)]
+          validation-error (validate-rule rule target-id)]
 
       (when validation-error
         (println (str "Validation error: " (:error validation-error)))
         (System/exit 1))
 
-      (let [config (edn/read-string (slurp edn-file))
-            des-pattern (infer-des-from-condition rule)
+      (let [config (edn/read-string (slurp edn-file))]
+        ;; Check for --no-clobber: fail if rule already exists
+        (when no-clobber
+          (when-let [existing-rule (find-rule-by-id config target-id)]
+            (let [existing-full-id (rule-id existing-rule)]
+              (println (str "Error: Rule " target-id " already exists (--no-clobber)"))
+              (println (str "Existing rule ID: " existing-full-id))
+              (System/exit 1))))
 
-            ;; Remove existing rule with this ID
-            config-without (remove-rule-by-id config rule-id)
+        (let [des-pattern (infer-des-from-condition rule)
 
-            ;; Add the new rule
-            config-with (add-rule-to-config config-without rule des-pattern)]
+              ;; Remove existing rule with this ID
+              config-without (remove-rule-by-id config target-id)
 
-        ;; Write back
-        (spit edn-file (pr-str config-with))
-        (println (str "Set rule " rule-id " in block: " des-pattern))))))
+              ;; Add the new rule
+              config-with (add-rule-to-config config-without rule des-pattern)]
+
+          ;; Write back
+          (spit edn-file (pr-str config-with))
+          (println (str "Set rule " target-id " in block: " des-pattern)))))))
 
 (when (= *file* (System/getProperty "babashka.file"))
   (apply -main *command-line-args*))
