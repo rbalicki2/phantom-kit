@@ -26,7 +26,8 @@
 (ns match-rules
   (:require [clojure.edn :as edn]
             [clojure.string :as str]
-            [clojure.set :as set]))
+            [clojure.set :as set]
+            [cheshire.core :as json]))
 
 ;; Load state library from relative path
 (def script-dir (-> (System/getProperty "babashka.file")
@@ -302,6 +303,69 @@
     (map (fn [r] {:des des :rule r}) actual-rules)))
 
 ;; ============================================================================
+;; Output Parsing
+;; ============================================================================
+
+(defn extract-rule-options [rule]
+  "Extract options map (held, afterup, alone, parameters) from rule.
+   Rule format: [from to condition options] where options is a map"
+  (when (>= (count rule) 4)
+    (let [fourth (nth rule 3)]
+      (when (map? fourth)
+        fourth))))
+
+(defn parse-output-key [item]
+  "Parse a key output like :j, :!Cj, :vk_none into structured form"
+  (when (keyword? item)
+    (let [parsed (parse-shorthand-key item)]
+      (merge {:key (name (:key parsed))}
+             (when (seq (:mandatory parsed))
+               (into {} (map (fn [m] [(name m) true]) (:mandatory parsed))))))))
+
+(defn parse-output-array [arr]
+  "Parse an output array into {resulting_state, actions}.
+   Output array contains: key outputs, variable sets, shell commands, etc."
+  (when (vector? arr)
+    (let [resulting-state (atom {})
+          actions (atom [])]
+      (doseq [item arr]
+        (cond
+          ;; Variable set like ["dsk_layer" 7]
+          (and (vector? item) (= 2 (count item)) (string? (first item)))
+          (let [[var-name val] item]
+            (swap! resulting-state assoc (keyword var-name) val))
+
+          ;; Shell command like {:shell "..."}
+          (and (map? item) (:shell item))
+          (swap! actions conj {:shell (:shell item)})
+
+          ;; Key output (keyword)
+          (keyword? item)
+          (when-let [parsed (parse-output-key item)]
+            (swap! actions conj parsed))
+
+          ;; Other maps (could be other options)
+          (map? item)
+          (swap! actions conj item)))
+
+      {:resulting_state @resulting-state
+       :actions @actions})))
+
+(defn parse-rule-output [rule]
+  "Parse a complete rule into structured output format.
+   Returns {:to {...} :held {...} :afterup {...} :alone {...}}
+   Each contains {:resulting_state {...} :actions [...]}"
+  (let [to-array (second rule)
+        options (extract-rule-options rule)
+        parse-output (fn [arr]
+                       (when arr
+                         (parse-output-array (if (vector? arr) arr [arr]))))]
+    {:to (parse-output to-array)
+     :held (parse-output (:held options))
+     :afterup (parse-output (:afterup options))
+     :alone (parse-output (:alone options))}))
+
+;; ============================================================================
 ;; Main Matching Logic
 ;; ============================================================================
 
@@ -322,7 +386,9 @@
            :rule rule
            :from (first rule)
            :to (second rule)
-           :condition (when (> (count rule) 2) (nth rule 2))})]
+           :condition (when (> (count rule) 2) (nth rule 2))
+           :options (extract-rule-options rule)
+           :parsed-output (parse-rule-output rule)})]
 
     {:first-match (first all-matches)
      :all-matches (vec all-matches)
@@ -342,7 +408,8 @@
                          :dsk_return_to_layer -1}
                  :app nil
                  :device :external
-                 :state-string nil}]  ;; New: raw state string
+                 :state-string nil
+                 :json false}]
     (if (empty? args)
       result
       (let [[arg & rest-args] args]
@@ -357,6 +424,10 @@
                (not (:key result))
                (not (str/starts-with? arg "--")))
           (recur rest-args (assoc result :key (keyword arg)))
+
+          ;; --json: output JSON instead of human-readable
+          (= arg "--json")
+          (recur rest-args (assoc result :json true))
 
           ;; --state: complete state string (takes precedence over individual flags)
           (= arg "--state")
@@ -404,6 +475,26 @@
     (println "  Condition:" (pr-str (:condition match))))
   (println))
 
+(defn format-json-output [match input-state input-key input-mods input-app input-device]
+  "Format a match result as JSON for test generation.
+   Returns a map ready for JSON serialization."
+  (let [parsed (:parsed-output match)
+        ;; Build the key object with modifiers as boolean flags
+        key-obj (merge {:key (name input-key)}
+                       (into {} (map (fn [m] [(name m) true]) input-mods)))]
+    {:initial_state {:application (or input-app "other")
+                     :device (name input-device)
+                     :dsk_ins_sub_mode (:dsk_ins_sub_mode input-state)
+                     :dsk_layer (:dsk_layer input-state)
+                     :dsk_return_to_layer (:dsk_return_to_layer input-state)
+                     :profile "Default"}
+     :key key-obj
+     :rule_id (-> match :from :id)
+     :to (:to parsed)
+     :held (:held parsed)
+     :afterup (:afterup parsed)
+     :alone (:alone parsed)}))
+
 (defn complete-state->match-state
   "Convert a complete state from state library to match-rules internal format"
   [{:keys [layer submode return-to]}]
@@ -440,9 +531,10 @@
       (println "  --modal N       Set dsk_in_modal_layer (default: 0)")
       (println "  --submode N     Set dsk_ins_sub_mode (default: -1)")
       (println "  --return-to N   Set dsk_return_to_layer (default: -1)")
-      (println "  --app BUNDLE    Set frontmost app")
+      (println "  --app BUNDLE    Set frontmost app (e.g., com.google.Chrome)")
       (println "  --device TYPE   Set device: apple_internal or external (default: external)")
       (println "  --mod MODIFIER  Add modifier (repeatable)")
+      (println "  --json          Output JSON for programmatic use")
       (System/exit 1))
 
     (let [config (parse-edn-file (:edn-file parsed))
@@ -503,27 +595,43 @@
                                           (:state parsed)
                                           (:app parsed)
                                           (:device parsed))]
-          (println "=== Input ===")
-          (println "Key:" (:key parsed))
-          (println "Modifiers:" (or (seq (:mods parsed)) "none"))
-          (println "State:" (:state parsed))
-          (println "App:" (or (:app parsed) "any"))
-          (println "Device:" (:device parsed))
-          (println)
+          (if (:json parsed)
+            ;; JSON output mode
+            (let [first-match (:first-match result)]
+              (if first-match
+                (println (json/generate-string
+                          (format-json-output first-match
+                                              (:state parsed)
+                                              (:key parsed)
+                                              (set (:mods parsed))
+                                              (:app parsed)
+                                              (:device parsed))
+                          {:pretty true}))
+                (println (json/generate-string {:error "no_match"} {:pretty true}))))
 
-          (println "=== Results ===")
-          (println "Total matches:" (:match-count result))
-          (println)
+            ;; Human-readable output mode
+            (do
+              (println "=== Input ===")
+              (println "Key:" (:key parsed))
+              (println "Modifiers:" (or (seq (:mods parsed)) "none"))
+              (println "State:" (:state parsed))
+              (println "App:" (or (:app parsed) "any"))
+              (println "Device:" (:device parsed))
+              (println)
 
-          (when-let [first-match (:first-match result)]
-            (println "--- First Match (ACTIVE) ---")
-            (print-match first-match))
+              (println "=== Results ===")
+              (println "Total matches:" (:match-count result))
+              (println)
 
-          (when (> (:match-count result) 1)
-            (println "--- All Matches (including shadowed) ---")
-            (doseq [[idx match] (map-indexed vector (:all-matches result))]
-              (println (str "#" (inc idx) (if (= idx 0) " (ACTIVE)" " (SHADOWED)")))
-              (print-match match))))))))
+              (when-let [first-match (:first-match result)]
+                (println "--- First Match (ACTIVE) ---")
+                (print-match first-match))
+
+              (when (> (:match-count result) 1)
+                (println "--- All Matches (including shadowed) ---")
+                (doseq [[idx match] (map-indexed vector (:all-matches result))]
+                  (println (str "#" (inc idx) (if (= idx 0) " (ACTIVE)" " (SHADOWED)")))
+                  (print-match match))))))))))
 
 ;; ============================================================================
 ;; Library API (for use from tests)
