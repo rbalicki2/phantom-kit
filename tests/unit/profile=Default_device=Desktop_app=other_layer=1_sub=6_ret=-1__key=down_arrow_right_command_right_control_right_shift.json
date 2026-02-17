@@ -14,11 +14,11 @@
     "right_command" : true
   },
   "matched_rule" : {
-    "id" : "R0083 [profile=Default:device=Desktop:dsk_layer=1] RCmd+↓ → →",
+    "id" : "R3061 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=6] RCmd+↓ → → (caps)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 1,
-        "dsk_ins_sub_mode" : 0,
+        "dsk_ins_sub_mode" : 6,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {

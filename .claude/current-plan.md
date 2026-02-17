@@ -35,10 +35,16 @@ Created `scripts/edit/delete-rule.bb` to delete rules by ID.
 ### 6. Make navigation keys preserve caps lock mode (submode 6)
 
 **Issue**: In both Insert (layer 1) and AltIns (layer 7), these keys should stay in caps lock mode (submode 6) instead of resetting to submode 0:
-- `[` (backspace)
-- `]` (forward delete)
-- RCmd+up (left by character)
-- RCmd+down (right by character)
+- `[` (backspace) - Already has R3057/R3058 ✓
+- `]` (forward delete) - Already has R3057/R3058 ✓
+- RCmd+up (left by character) - R0082 (layer 1), R2197 (layer 7) need submode 6 versions
+- RCmd+down (right by character) - R0083 (layer 1), R2198 (layer 7) need submode 6 versions
+
+**Status**: In progress
+
+### 7. L menu not accessible from Normal mode
+
+**Issue**: The L layer (for modifier combinations) is not accessible from Normal mode.
 
 **Status**: Not started
 
