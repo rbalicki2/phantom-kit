@@ -2,15 +2,31 @@
 
 ## Active Tasks
 
-### 1. Audit external state cleanup on mode exit
-**Status:** In progress
+### 1. External State Cleanup Audit - Completed
+**Status:** Completed
 
-When leaving certain modes, external state needs to be cleared. Currently need to audit:
-- J/K hold state (scrolling)
-- Cmd-M hold state (command hold)
-- Other external state that might leak between modes
+**External State Types:**
+1. **Warpd process** - Killed by `cleanup-external-state.sh --warpd reset`
+2. **Homerow labels** - Dismissed by `panic-cleanup.sh` only (Hammerspoon IPC)
+3. **Scroll timer (J/K hold)** - Stopped by `afterup` handler on J/K release (R0358, R0359)
+4. **Hover mode** - Stopped by `panic-cleanup.sh` only
+5. **L-mode modifier file** - Cleaned by `cleanup-external-state.sh --lmode-modifier reset`
+6. **Layer overlay** - Hidden when new overlay is shown, or by `panic-cleanup.sh`
 
-Rules that exit modes should call `cleanup-external-state.sh` with appropriate flags. Need to verify all mode transitions properly clean up.
+**Submode State (via afterup):**
+- Delete chord (submode 3): RCmd+h in Ins (R0064), RCmd+n in AltIns (R2220)
+- Select chord (submode 4): RCmd+n in Ins (R0071), RCmd+comma in AltIns (R2196)
+- All have `afterup` handlers to clear submode when RCmd is released
+
+**Findings:**
+- Most exit rules use `cleanup-external-state.sh` with all flags, but `--scroll-timer reset`, `--homerow reset`, and `--hover-mode reset` are **no-ops** (see script comments)
+- J/K scroll cleanup relies entirely on `afterup` - if key release isn't detected, scrolling continues
+- Chord submode cleanup relies on `afterup` - same concern
+- Full cleanup only available via panic mode (Fn+hk3)
+
+**Risk Assessment:**
+- **Low risk:** The `afterup` mechanism should fire when keys are released regardless of layer changes
+- **Mitigation:** Panic mode (Fn+hk3) is available for full state reset if needed
 
 ## Notes
 
