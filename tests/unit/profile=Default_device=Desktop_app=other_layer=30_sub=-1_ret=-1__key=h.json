@@ -11,17 +11,15 @@
     "key" : "h"
   },
   "matched_rule" : {
-    "id" : "R3005 [profile=Default:device=Desktop:dsk_layer=30] h → execute(h)",
+    "id" : "R3005 [profile=Default:device=Desktop:dsk_layer=30] h → o",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 0,
+        "dsk_layer" : 30,
         "dsk_ins_sub_mode" : -1,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "vk_none"
-      }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('h')\" && echo norm > /tmp/karabiner-layer"
+        "key" : "o"
       } ]
     },
     "held" : null,

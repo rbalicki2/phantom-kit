@@ -180,7 +180,7 @@ Keep `.claude/current-plan.md` updated with active tasks. Remove completed tasks
 
 **Essential reading** (in `.claude/`):
 - **`mental-model.md`** - State variables, invariants, layer behavior. Read when adding layers or debugging state issues.
-- **`reference.md`** - Layer shortcuts, mode values, Goku modifier syntax
+- **`reference.md`** - Layer shortcuts, mode values, Goku modifier syntax. **Keep this updated** when adding/changing layers or shortcuts.
 - **`goku-lessons.md`** - Syntax pitfalls, debugging workflow, things that don't work
 - **`rhs-slots.md`** - Complete key mapping grid for Ins mode (bare/fn/shift/shift+fn columns)
 - **`hardware.md`** - Kinesis Fn layer mappings, physical key layout

@@ -11,17 +11,16 @@
     "key" : "8"
   },
   "matched_rule" : {
-    "id" : "R3017 [profile=Default:device=Desktop:dsk_layer=30] 8 → execute(8)",
+    "id" : "R3017 [profile=Default:device=Desktop:dsk_layer=30] 8 → $",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 0,
+        "dsk_layer" : 30,
         "dsk_ins_sub_mode" : -1,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "vk_none"
-      }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('8')\" && echo norm > /tmp/karabiner-layer"
+        "key" : "4",
+        "left_shift" : true
       } ]
     },
     "held" : null,
