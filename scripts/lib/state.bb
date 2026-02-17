@@ -54,8 +54,9 @@
    5 = shift-pending (caps lock double-tap detection)
    6 = caps lock mode
    10 = double-tap comma pending (AltIns)
-   11 = double-tap semicolon pending (AltIns)"
-  #{0 1 2 3 4 5 6 10 11})
+   11 = double-tap semicolon pending (AltIns)
+   12 = double-tap bang pending (AltIns)"
+  #{0 1 2 3 4 5 6 10 11 12})
 
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).
@@ -63,8 +64,9 @@
   #{13})
 
 (def valid-return-to
-  "Valid dsk_return_to_layer values when in return-to-layers (NOT -1)"
-  #{0 1})
+  "Valid dsk_return_to_layer values when in return-to-layers (NOT -1)
+   0 = Normal, 1 = Ins, 7 = AltIns"
+  #{0 1 7})
 
 (def devices
   "Valid device conditions"

@@ -57,17 +57,9 @@ if [ "$WARPD" = "reset" ]; then
     (pkill warpd 2>/dev/null || true) &
 fi
 
-if [ "$HOMEROW" = "reset" ]; then
-    (/opt/homebrew/bin/hs -c 'dismissHomerow()' 2>/dev/null || true) &
-fi
-
-if [ "$SCROLL_TIMER" = "reset" ]; then
-    (/opt/homebrew/bin/hs -c 'scrollStop()' 2>/dev/null || true) &
-fi
-
-if [ "$HOVER_MODE" = "reset" ]; then
-    (/opt/homebrew/bin/hs -c 'hoverModeStop()' 2>/dev/null || true) &
-fi
+# NOTE: homerow, scroll-timer, and hover-mode resets moved to panic-cleanup.sh
+# to avoid crashing Hammerspoon via repeated hs -c IPC calls.
+# These flags are still accepted for backwards compatibility but are no-ops.
 
 if [ "$LMODE_MODIFIER" = "reset" ]; then
     (rm -f /tmp/karabiner-lmode-modifier 2>/dev/null || true) &

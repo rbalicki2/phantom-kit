@@ -85,7 +85,16 @@
       "Bash(cat << *)",
       "Bash(timeout:*)",
       "Bash(diff:*)",
-      "Bash(npm run sync:*)"
+      "Bash(npm run sync:*)",
+      "Bash(gtimeout:*)",
+      "Bash(killall:*)",
+      "Bash(pandoc --version)",
+      "Bash(xxd:*)",
+      "Bash(do echo \"=== $key ===\" bb scripts/query/match-rules.bb src/karabiner.edn \"$key\" --state \"profile=Default:device=Desktop:layer=7:submode=0\")",
+      "Bash(do echo \"=== $key \\(shift\\) ===\" bb scripts/query/match-rules.bb src/karabiner.edn \"$key\" --state \"profile=Default:device=Desktop:layer=7:submode=2\")",
+      "Bash(do echo:*)",
+      "Bash(defaults write:*)",
+      "Bash(do bb scripts/query/match-rules.bb src/karabiner.edn $key --state profile=Default:device=Desktop:layer=13)"
     ]
   }
 }

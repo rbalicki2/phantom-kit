@@ -43,9 +43,6 @@ bb scripts/query/match-rules.bb src/karabiner.edn p --state "profile=Default:dev
 bb scripts/query/list-rules.bb src/karabiner.edn "profile=Default:device=Desktop:layer=9" --format summary
 bb scripts/query/list-rules.bb src/karabiner.edn "profile=Default:device=Desktop:layer=1" --exact
 
-# Get detailed info about specific rules
-bb scripts/query/describe-rules.bb src/karabiner.edn --id R0025
-
 # Analyze rule patterns and statistics
 bb scripts/query/analyze-rules.bb src/karabiner.edn
 ```
@@ -145,6 +142,9 @@ To reload Hammerspoon: `npm run hs`
 - **`rhs-slots.md`** - Complete key mapping grid for Ins mode (bare/fn/shift/shift+fn columns)
 - **`hardware.md`** - Kinesis Fn layer mappings, physical key layout
 - **`todos.md`** - Pending work and feature ideas
+
+**Plan documents** (in `.claude/plans/`):
+- **`alt-insert-mode.md`** - **SOURCE OF TRUTH** for AltIns mode (layer 7) key mappings. Always consult this when fixing or adding AltIns rules.
 
 **Source files** (in `src/`):
 - `karabiner.edn` - Main Goku config (source of truth)

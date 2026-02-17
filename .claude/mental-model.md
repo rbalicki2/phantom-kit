@@ -31,9 +31,9 @@ Be extra wary of state that lives outside Karabiner variables:
 | Held modifier keys | macOS | `panic-cleanup.sh` only (see below) |
 | Physically depressed keys | Keyboard/macOS | Can't clear programmatically |
 | warpd process | System process | `pkill warpd` |
-| Homerow labels | Homerow app | `hs -c 'dismissHomerow()'` |
-| Scroll timer | Hammerspoon | `hs -c 'scrollStop()'` |
-| Hover mode tap | Hammerspoon | `hs -c 'hoverModeStop()'` |
+| Homerow labels | Homerow app | `panic-cleanup.sh` only (see below) |
+| Scroll timer | Hammerspoon | `panic-cleanup.sh` only (see below) |
+| Hover mode tap | Hammerspoon | `panic-cleanup.sh` only (see below) |
 | L-mode modifier | /tmp/karabiner-lmode-modifier | `rm -f` (always reset) |
 | Frontmost app | macOS | Can't clear programmatically |
 | Active project (iso/pin/pk) | /tmp/karabiner-project | Can't clear (no default) |
@@ -87,6 +87,8 @@ cleanup-external-state.sh \
 ```
 
 **Exception**: Use `keep` for external state the target mode depends on. For example, Grid mode relies on warpd running (`--warpd keep`).
+
+**Why are homerow/scroll-timer/hover-mode flags no-ops?** These flags are accepted for backwards compatibility but don't actually reset anything. The `hs -c` CLI command has a pointer authentication bug on Apple Silicon that causes Hammerspoon to crash (EXC_BREAKPOINT in CFMessagePort IPC). Since `cleanup-external-state.sh` runs on every layer transition, repeated `hs -c` calls would crash Hammerspoon frequently. These resets now only happen in `panic-cleanup.sh`.
 
 **Why no held-modifiers flag?** The osascript `key up <modifier>` command clears BOTH synthetic modifier state AND interferes with Karabiner-emitted keystrokes. When run in the background during a transition, it can cancel Ctrl+key outputs that Karabiner is actively emitting (race condition). Karabiner EventViewer shows what Karabiner emits, but the system receives the `key up` canceling the keystroke. Only `panic-cleanup.sh` resets held modifiers, since panic mode does a full reset anyway.
 
