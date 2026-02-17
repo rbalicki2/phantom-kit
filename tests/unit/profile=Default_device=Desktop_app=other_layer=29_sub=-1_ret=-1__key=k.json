@@ -1,0 +1,31 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 29,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "k"
+  },
+  "matched_rule" : {
+    "id" : "R2908 [profile=Default:device=Desktop:dsk_layer=29] k → L-Active (Ctrl+Alt)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 30,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "echo TO > /tmp/karabiner-lmode-modifier && echo lactive > /tmp/karabiner-layer"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

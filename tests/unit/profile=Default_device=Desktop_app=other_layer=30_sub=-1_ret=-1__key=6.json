@@ -1,0 +1,31 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 30,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "6"
+  },
+  "matched_rule" : {
+    "id" : "R3015 [profile=Default:device=Desktop:dsk_layer=30] 6 → execute(6)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('6')\" && echo norm > /tmp/karabiner-layer"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}
