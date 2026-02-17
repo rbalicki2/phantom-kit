@@ -71,9 +71,6 @@ EOFR
 ### edit/rename-rules.bb
 Batch rename rule IDs or descriptions.
 
-### edit/remove-lhs-rules.bb
-Remove LHS key rules from Desktop profile (cleanup utility).
-
 ### edit/normalize-edn.bb
 Normalize EDN formatting.
 

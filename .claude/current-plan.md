@@ -7,10 +7,6 @@
    - Cause: likely parsing `--id` flag incorrectly as an output file path
    - Example: `bb scripts/query/describe-rules.bb src/karabiner.edn --id R2130` creates file "R2130"
 
-2. **Fix remove-lhs-rules.bb script** - PENDING
-   - Bug: `--id` flag removes way more rules than intended (removed 28 rules when trying to remove 1)
-   - Example: `bb scripts/edit/remove-lhs-rules.bb src/karabiner.edn src/karabiner.edn --id R2183` removed 28 rules
-
 2. ~~**Fix Shift Behavior in Insert Mode**~~ - NOT BROKEN (user confirmed)
 
 3. **Order New Card** - PENDING

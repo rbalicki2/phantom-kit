@@ -61,7 +61,6 @@ EOFR
 ```
 
 **One-off scripts** (kept for reference, rarely used):
-- `remove-lhs-rules.bb` - Bulk remove rules by key pattern
 - `rename-rules.bb` - Batch rename rule IDs
 
 #### Validation Tools (run automatically on sync)
