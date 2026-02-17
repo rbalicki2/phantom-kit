@@ -2,34 +2,50 @@
 
 ## Active Tasks
 
-### 1. External State Cleanup Audit - Completed
-**Status:** Completed
+### Unit Test Infrastructure
+**Status:** In progress
 
-**External State Types:**
-1. **Warpd process** - Killed by `cleanup-external-state.sh --warpd reset`
-2. **Homerow labels** - Dismissed by `panic-cleanup.sh` only (Hammerspoon IPC)
-3. **Scroll timer (J/K hold)** - Stopped by `afterup` handler on J/K release (R0358, R0359)
-4. **Hover mode** - Stopped by `panic-cleanup.sh` only
-5. **L-mode modifier file** - Cleaned by `cleanup-external-state.sh --lmode-modifier reset`
-6. **Layer overlay** - Hidden when new overlay is shown, or by `panic-cleanup.sh`
+**Completed:**
+1. Added `--json` flag to `match-rules.bb` for structured JSON output
+2. Created `tests/inputs.json` with all keys, modifiers, profiles, devices, apps
+3. Created directory structure: `tests/unit/`, `scripts/test/`
+4. Documented test format in `.claude/plans/unit-tests.md`
 
-**Submode State (via afterup):**
-- Delete chord (submode 3): RCmd+h in Ins (R0064), RCmd+n in AltIns (R2220)
-- Select chord (submode 4): RCmd+n in Ins (R0071), RCmd+comma in AltIns (R2196)
-- All have `afterup` handlers to clear submode when RCmd is released
+**Next steps:**
+1. Create `scripts/test/generate-tests.bb` - BFS generator
+2. Create `scripts/test/run-tests.bb` - Test runner/validator
+3. Add test running to `npm run sync`
 
-**Findings:**
-- Most exit rules use `cleanup-external-state.sh` with all flags
-- `--homerow reset` now calls `dismissHomerow()` to clear labels on mode exit
-- `--scroll-timer reset` and `--hover-mode reset` are still no-ops (panic mode only)
-- J/K scroll cleanup relies on `afterup` - if key release isn't detected, scrolling continues
-- Chord submode cleanup relies on `afterup` - same concern
+**Test format (JSON):**
+```json
+{
+  "initial_state": {
+    "application": "Chrome",
+    "device": "Desktop",
+    "dsk_ins_sub_mode": -1,
+    "dsk_layer": 0,
+    "dsk_return_to_layer": -1,
+    "profile": "Default"
+  },
+  "key": {"key": "j"},
+  "comment": "Enter AltIns mode",
+  "to": {
+    "resulting_state": {...},
+    "actions": [...]
+  },
+  "held": null,
+  "afterup": null,
+  "alone": null
+}
+```
 
-**Risk Assessment:**
-- **Low risk:** The `afterup` mechanism should fire when keys are released regardless of layer changes
-- **Mitigation:** Panic mode (Fn+hk3) is available for full state reset if needed
+**BFS algorithm:**
+- Queue contains states (layer, submode, return_to) - not keys
+- Pop state → generate tests for ALL key/modifier/app combos
+- Queue any new resulting_states from to/held/afterup/alone
+- Track visited states to avoid duplicates
 
 ## Notes
 
-- `timeout` command not available on macOS - need gtimeout or alternative approach
-- Caps mode in AltIns: non-letter keys should fall through and exit caps, not be blocked
+- `timeout` command not available on macOS
+- App bundle IDs: com.google.Chrome, com.googlecode.iterm2, com.microsoft.VSCode
