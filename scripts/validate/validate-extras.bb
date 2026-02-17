@@ -58,8 +58,8 @@
    26 "lCTO"   ;; L-Hyper (Ctrl+Cmd+Alt)
    27 "lCTOS"  ;; L-Hyper-Shift
    28 "grid"
-   29 "lentry"  ;; L-Entry
-   30 #{"lexec" "lactive"}}) ;; L-Exec (can show as lexec or lactive)
+   29 "lentry"}) ;; L-Entry
+   ;; Layer 30 (L-Exec) not in map - rules stay in layer, don't write codes
 
 (def layer-overlay-files
   "Map of dsk_layer values to expected overlay files"
@@ -307,12 +307,9 @@
         dsk-layer (:dsk_layer var-sets)
         shell-cmd (get-shell-command action)
         written-code (extract-layer-code-from-shell shell-cmd)
-        expected-code (get layer-codes dsk-layer)
-        ;; expected-code can be a string or a set of strings
-        code-matches? (if (set? expected-code)
-                        (contains? expected-code written-code)
-                        (= written-code expected-code))]
-    (when (and dsk-layer written-code expected-code (not code-matches?))
+        expected-code (get layer-codes dsk-layer)]
+    (when (and dsk-layer written-code expected-code
+               (not= written-code expected-code))
       {:type :layer-code-mismatch
        :description (:description rule-info)
        :message (format "dsk_layer=%d expects code '%s' but writes '%s' to /tmp/karabiner-layer"

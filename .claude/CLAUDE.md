@@ -22,6 +22,10 @@ Unit tests run automatically on sync and catch regressions. If tests fail:
 
 When in doubt, ASK before changing.
 
+### STICK TO THE TASK
+
+The user provides small, focused tasks. If you find yourself doing anything not explicitly part of the task, STOP and ask whether that's intended. You have a history of creating chaos when going off the beaten path. Stay focused on exactly what was asked.
+
 ### NEVER MANUALLY EDIT karabiner.edn
 
 All modifications should be done via scripts in `scripts/`. See `scripts/README.md` for available tools.
@@ -29,6 +33,8 @@ All modifications should be done via scripts in `scripts/`. See `scripts/README.
 ### NEVER READ karabiner.edn DIRECTLY
 
 **Strongly prefer using query/edit tools instead of reading the file.** The config is large and complex; tools provide structured access.
+
+**NEVER use regex to parse karabiner.edn.** If you need to query or analyze the config in a way existing scripts don't support, write a new bb script that parses EDN properly. Regex on EDN is fragile and error-prone.
 
 #### Query Tools (read-only)
 
