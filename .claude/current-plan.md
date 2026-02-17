@@ -42,11 +42,9 @@ Added 4 new rules:
 
 Updated 15 unit tests to reflect the new behavior.
 
-### 7. L menu not accessible from Normal mode
+### 7. L menu not accessible from Normal mode ✓ DONE
 
-**Issue**: The L layer (for modifier combinations) is not accessible from Normal mode.
-
-**Status**: Not started
+Added R3064: l → L layer (layer 7) in Normal mode.
 
 ## Completed Tasks
 
