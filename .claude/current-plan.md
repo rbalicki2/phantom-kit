@@ -23,18 +23,20 @@ Fixed by passing full match object through `process-single-test` instead of just
 
 This effectively requires actions to start with a key code like `:vk_none`.
 
-### 4. Remove shell: pattern (outdated)
+### 4. Remove no-op shell: pattern ✓ DONE
 
-**Issue**: The `{:shell "..."}` pattern in actions is outdated. Need to:
-1. Add a validation to surface all rules using shell: pattern
-2. Remove/replace shell: patterns from rules
-3. Run the validation and confirm no rules use shell:
-
-**Status**: Not started
+Added validation `check-noop-shell` in validate-extras.bb to detect `{:shell ":"}` patterns.
+Fixed 4 rules: R0064, R0071, R3056, R2220
 
 ### 5. Create delete-rule.bb script ✓ DONE
 
 Created `scripts/edit/delete-rule.bb` to delete rules by ID.
+
+### 6. Consolidate validations for sync speed
+
+**Issue**: Validations do multiple passes through rules. Could consolidate into single pass for faster sync.
+
+**Status**: Not started
 
 ## Completed Tasks
 

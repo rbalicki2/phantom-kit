@@ -21,8 +21,6 @@
       },
       "actions" : [ {
         "key" : "vk_none"
-      }, {
-        "shell" : ":"
       } ]
     },
     "held" : null,

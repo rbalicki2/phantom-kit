@@ -205,6 +205,21 @@
        :message (format "Rule has %d shell commands but only the last one will execute. Combine with &&." shell-count)
        :rule (:rule rule-info)})))
 
+(defn find-noop-shell [action]
+  "Find {:shell \":\"} no-op patterns in an action"
+  (when (vector? action)
+    (filter #(and (map? %) (= (:shell %) ":")) action)))
+
+(defn check-noop-shell [rule-info]
+  "Check if rule has no-op shell commands {:shell \":\"} that should be removed"
+  (let [action (:to rule-info)
+        noop-shells (find-noop-shell action)]
+    (when (seq noop-shells)
+      {:type :noop-shell-command
+       :description (:description rule-info)
+       :message "Rule has no-op {:shell \":\"} that should be removed"
+       :rule (:rule rule-info)})))
+
 ;; ============================================================================
 ;; Incomplete Layer Transition Detection
 ;; ============================================================================
@@ -657,6 +672,10 @@
         multi-shell-issues
         (keep check-multiple-shells all-rules)
 
+        ;; Check for no-op shell commands {:shell ":"}
+        noop-shell-issues
+        (keep check-noop-shell all-rules)
+
         ;; NOTE: incomplete-layer-transition check removed.
         ;; validate-rules.bb now handles layer+submode together requirement.
         ;; dsk_return_to_layer is optional.
@@ -696,6 +715,7 @@
             shell-first-issues
             nested-key-issues
             multi-shell-issues
+            noop-shell-issues
             mismatch-issues
             overlay-issues
             app-issues

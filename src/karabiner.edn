@@ -390,8 +390,8 @@
    [{:key :quote, :modi {:mandatory [:shift]}, :id "R1815 [profile=Default:device=Desktop:dsk_layer=1] Shift+' → Shift+'"} [:!Squote ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :hyphen, :modi {:mandatory [:shift]}, :id "R1816 [profile=Default:device=Desktop:dsk_layer=1] Shift+- → Shift+-"} [:!Shyphen ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
    [{:key :!Of12, :id "R0086 [profile=Default:device=Desktop:dsk_layer=1] Fn+] → shift-mirror-oneshot"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 1] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]]]
-   [{:key :h, :modi {:mandatory [:right_command]}, :id "R0064 [profile=Default:device=Desktop:dsk_layer=1] RCmd+h (hold) → delete-chord"} [:vk_none {:shell ":"} ["dsk_layer" 1] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
-   [{:key :n, :modi {:mandatory [:right_command]}, :id "R0071 [profile=Default:device=Desktop:dsk_layer=1] RCmd+n (hold) → select-chord"} [:vk_none {:shell ":"} ["dsk_layer" 1] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]]}
+   [{:key :h, :modi {:mandatory [:right_command]}, :id "R0064 [profile=Default:device=Desktop:dsk_layer=1] RCmd+h (hold) → delete-chord"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
+   [{:key :n, :modi {:mandatory [:right_command]}, :id "R0071 [profile=Default:device=Desktop:dsk_layer=1] RCmd+n (hold) → select-chord"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 1]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 2]]"
  :rules [:!apple_internal
@@ -682,8 +682,8 @@
    [{:key :!Of5, :id "R2033 [profile=Default:device=Desktop:dsk_layer=7] Fn+M → f"} [:f ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :!Of7, :id "R2035 [profile=Default:device=Desktop:dsk_layer=7] Fn+. → b"} [:b ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :!Of11, :id "R2221 [profile=Default:device=Desktop:dsk_layer=7] Fn+[ → /"} [:slash ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :h, :modi {:mandatory [:right_command]}, :id "R3056 [profile=Default:device=Desktop:dsk_layer=7] RCmd+h (hold) → delete-chord"} [:vk_none {:shell ":"} ["dsk_layer" 7] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
-   [{:key :n, :modi {:mandatory [:right_command]}, :id "R2220 [profile=Default:device=Desktop:dsk_layer=7] RCmd+n (hold) → select-chord"} [:vk_none {:shell ":"} ["dsk_layer" 7] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]]}
+   [{:key :h, :modi {:mandatory [:right_command]}, :id "R3056 [profile=Default:device=Desktop:dsk_layer=7] RCmd+h (hold) → delete-chord"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
+   [{:key :n, :modi {:mandatory [:right_command]}, :id "R2220 [profile=Default:device=Desktop:dsk_layer=7] RCmd+n (hold) → select-chord"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal
