@@ -113,17 +113,20 @@ If they differ, the voicemode version is source of truth. Run `npm run sync`.
 
 ## Workflow After Changes
 
-**NEVER commit partially.** Always commit ALL dirty files together. Partial commits leave the repo in an inconsistent state and make it hard to revert changes cleanly.
+**Commit frequently and atomically.** Each commit should represent ONE logical change (a single feature, fix, or refactor). Don't batch unrelated changes together - this makes it hard to understand history and revert specific changes.
 
-1. Commit locally in voicemode repo
+**When committing a logical change:**
+1. Commit locally in voicemode repo (include ALL files related to that change)
 2. Run `npm run sync` (validates, copies to ~/.config, runs goku)
-3. Commit in ~/.config repo
+3. Commit in ~/.config repo with matching message
 
 ```bash
 git add -A && git commit -m "message"
 npm run sync
 cd ~/.config && git add -A && git commit -m "message"
 ```
+
+**Important:** Write commit messages that accurately describe what changed. Don't reference old changes that were already committed.
 
 To reload Hammerspoon: `npm run hs`
 
