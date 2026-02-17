@@ -639,7 +639,9 @@
    [{:key :n, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2050 [profile=Default:device=Desktop:dsk_layer=7] Shift+n → H"} [:!Sh ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :m, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2051 [profile=Default:device=Desktop:dsk_layer=7] Shift+m → S"} [:!Ss ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :backslash, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2055 [profile=Default:device=Desktop:dsk_layer=7] Shift+\\ → |"} [:!Sbackslash ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
-   [{:key :quote, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2056 [profile=Default:device=Desktop:dsk_layer=7] Shift+' → double-quote"} [:!Squote ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
+   [{:key :quote, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2056 [profile=Default:device=Desktop:dsk_layer=7] Shift+' → double-quote"} [:!Squote ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :!Of9, :id "R2057 [profile=Default:device=Desktop:dsk_layer=7] Fn+up → {"} [:!Sopen_bracket ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :!Of10, :id "R2058 [profile=Default:device=Desktop:dsk_layer=7] Fn+down → }"} [:!Sclose_bracket ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal
