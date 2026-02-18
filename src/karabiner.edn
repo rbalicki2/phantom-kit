@@ -682,9 +682,9 @@
    [{:key :h, :id "R0325 [profile=Default:device=Desktop:dsk_layer=8] h types 'git status'"} [:type-ins "git status " ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f22, :id "R0326 [profile=Default:device=Desktop:dsk_layer=8] Fn+H types 'git status'"} [:type-enter-ins "git status " ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f23, :id "R0328 [profile=Default:device=Desktop:dsk_layer=8] Fn+J types 'git log'"} [:type-enter-ins "git log" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f24, :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff head'"} [:type-enter-ins "git diff head" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :k, :modi {:mandatory [:right_control]}, :id "R0331 [profile=Default:device=Desktop:dsk_layer=8] RCtrl+k types 'gdmb'"} [:type-enter-ins "gdmb" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :u, :id "R3067 [profile=Default:device=Desktop:dsk_layer=8] u → TMUX pane 3, AltIns"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-pane3.sh"}] [["dsk_layer" 8]]]]}
+   [{:key :u, :id "R3067 [profile=Default:device=Desktop:dsk_layer=8] u → TMUX pane 3, AltIns"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-pane3.sh"}] [["dsk_layer" 8]]]
+   [{:key :f24, :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff HEAD'"} [:type-enter-ins "git diff HEAD" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 9]]"
  :rules [:!apple_internal
