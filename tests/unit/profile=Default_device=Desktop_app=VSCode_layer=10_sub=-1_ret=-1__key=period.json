@@ -11,11 +11,16 @@
     "key" : "period"
   },
   "matched_rule" : {
-    "id" : "R1324 [profile=Default:device=Desktop] period blocked",
+    "id" : "R3068 [profile=Default:device=Desktop:dsk_layer=10] period → Cmd+R (Refresh)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "r",
+        "left_command" : true
       } ]
     },
     "held" : null,

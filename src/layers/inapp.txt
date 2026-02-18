@@ -6,6 +6,7 @@ M/, = Prev/Next tab (stays)
 Y = Close tab (stays), Shift+Y = Close + prev tab, Fn+Y = Reopen closed tab
 L = Address bar / Go to line -> Ins
 O = Open -> Ins
+. = Refresh (stays), Fn+. = Super Refresh (stays)
 Enter = Cmd+Enter -> Ins
 
 Chrome: H = Cmd+K, Fn+H = Tab search, Shift+H = History

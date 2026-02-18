@@ -6,4 +6,3 @@ P = Last tab
 Fn+L = Copy URL
 M = Dark mode (Alt+D)
 Fn+J/K = Move tab left/right (stays)
-. = Refresh, Fn+. = Hard refresh
