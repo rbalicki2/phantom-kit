@@ -411,10 +411,19 @@
         first-item (when (vector? rules-vec) (first rules-vec))]
     (= first-item :!apple_internal)))
 
+(defn lhs-blocked-rule?
+  "Check if a rule ID is for a LHS blocked key (expected to be uncovered).
+   These are global blocking rules for left-hand side keys."
+  [rule-id]
+  (and (string? rule-id)
+       (str/includes? rule-id "device=Desktop]")  ;; Global Desktop block (no layer condition)
+       (str/includes? rule-id "blocked")))
+
 (defn extract-all-rule-ids
   "Extract all rule IDs from the parsed config for Desktop device only.
    Config has :main which is a vector of blocks, each with :rules.
-   Filters out Laptop (:apple_internal) and None profile rules."
+   Filters out Laptop (:apple_internal) and None profile rules.
+   Also filters out LHS blocked rules (expected to be uncovered)."
   [config]
   (let [blocks (:main config)
         ;; Only include Desktop blocks (those with :!apple_internal)
@@ -430,6 +439,8 @@
                 (when (vector? rule)
                   (get (first rule) :id))))
          (filter some?)
+         ;; Exclude LHS blocked rules - they're expected to be uncovered
+         (remove lhs-blocked-rule?)
          set)))
 
 (defn collect-matched-ids

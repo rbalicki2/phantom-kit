@@ -1,0 +1,33 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 30,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f22",
+    "left_option" : true
+  },
+  "matched_rule" : {
+    "id" : "R0202 [profile=Default:device=Desktop] Fn+hk4 → Nav",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 2,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo n > /tmp/karabiner-layer"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LOpt + Fn+h"
+  }
+}
