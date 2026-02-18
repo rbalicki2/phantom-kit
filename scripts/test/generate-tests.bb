@@ -401,6 +401,44 @@
      :states-found (count @visited)}))
 
 ;; ============================================================================
+;; Coverage Validation
+;; ============================================================================
+
+(defn extract-all-rule-ids
+  "Extract all rule IDs from the parsed config.
+   Config has :main which is a vector of blocks, each with :rules."
+  [config]
+  (let [blocks (:main config)
+        all-rules (mapcat :rules blocks)]
+    (->> all-rules
+         (map (fn [rule]
+                ;; Rules are vectors, first element is the from-map with :id
+                (when (vector? rule)
+                  (get (first rule) :id))))
+         (filter some?)
+         set)))
+
+(defn collect-matched-ids
+  "Collect all rule IDs that were matched in tests"
+  [tests]
+  (->> tests
+       (map :result)
+       (filter some?)
+       (map #(get-in % [:from :id]))
+       (filter some?)
+       set))
+
+(defn validate-coverage
+  "Validate that all rule IDs are covered by at least one test.
+   Returns nil if all covered, or a set of uncovered IDs."
+  [config tests]
+  (let [all-ids (extract-all-rule-ids config)
+        matched-ids (collect-matched-ids tests)
+        uncovered (set/difference all-ids matched-ids)]
+    (when (seq uncovered)
+      uncovered)))
+
+;; ============================================================================
 ;; Main
 ;; ============================================================================
 
@@ -440,7 +478,21 @@
         (println "States explored:" states-explored)
         (println "States discovered:" states-found)
         (println "Tests generated:" (count write-results))
-        (println "Output directory:" output-dir)))))
+        (println "Output directory:" output-dir)
+
+        ;; Validate coverage
+        (println)
+        (println "=== Coverage Validation ===")
+        (let [uncovered (validate-coverage (get-config) tests)]
+          (if uncovered
+            (do
+              (println "ERROR: The following rule IDs are not covered by any test:")
+              (doseq [id (sort uncovered)]
+                (println "  -" id))
+              (println)
+              (println "Total uncovered:" (count uncovered))
+              (System/exit 1))
+            (println "All" (count (extract-all-rule-ids (get-config))) "rule IDs are covered by tests")))))))
 
 (when (= *file* (System/getProperty "babashka.file"))
   (apply -main *command-line-args*))
