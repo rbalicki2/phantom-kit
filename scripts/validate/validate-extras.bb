@@ -556,7 +556,9 @@
     :delete_or_backspace :delete_forward
     :home :end
     ;; Escape is typically LHS
-    :escape})
+    :escape
+    ;; Arrow keys are LHS on Kinesis 360
+    :left_arrow :right_arrow})
 
 (defn extract-base-key [from-clause]
   "Extract the base key from a from clause, stripping ## and modifier prefixes"
