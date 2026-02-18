@@ -603,9 +603,7 @@
 
 (def allowed-lhs-blocks
   "Patterns matching blocks where LHS keys ARE allowed (blocking/disabling blocks)"
-  [#"\[Global\] Block all unmapped keys"
-   #"\[Desktop\] Disable backspace and delete keys"
-   #"^Desktop \[\]$"  ;; State-based catch-all block (new naming convention)
+  [#"^Desktop \[\]$"  ;; Desktop fallback block where LHS keys are blocked
    ])
 
 (defn is-allowed-lhs-block? [description]
