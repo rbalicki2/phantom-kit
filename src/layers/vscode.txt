@@ -8,6 +8,6 @@ L = Cmd+R (find references)
 I = Create 2nd tab, Fn+I = Move to next tab
 Fn+U = Move to prev tab
 O = Cmd+B (sidebar toggle)
-P = Cmd+` (terminal toggle)
+P = Ctrl+` (terminal toggle)
 , = Next error (stays)
 . = Find next (stays)

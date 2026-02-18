@@ -11,20 +11,8 @@
     "key" : "right_control"
   },
   "matched_rule" : {
-    "id" : "R1278 [profile=Default:device=Desktop] RCtrl → RCtrl",
+    "id" : "R3070 [profile=Default:device=Desktop:dsk_layer=11] RCtrl → key up Cmd, Normal",
     "to" : {
-      "resulting_state" : {
-        "dsk_layer" : 0,
-        "dsk_ins_sub_mode" : -1,
-        "dsk_return_to_layer" : -1
-      },
-      "actions" : [ {
-        "key" : "right_control"
-      } ]
-    },
-    "held" : null,
-    "afterup" : null,
-    "alone" : {
       "resulting_state" : {
         "dsk_layer" : 0,
         "dsk_ins_sub_mode" : -1,
@@ -33,8 +21,11 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
+        "shell" : "osascript -e 'tell app \"System Events\" to key up command' && /Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
-    }
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
   }
 }
