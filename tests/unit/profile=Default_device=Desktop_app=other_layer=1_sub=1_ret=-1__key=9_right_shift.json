@@ -12,7 +12,7 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+9 → 9 (oneshot clear)",
+    "id" : "R3094 [profile=Default:device=Desktop:dsk_layer=1:dsk_ins_sub_mode=1] Shift+9 → 9 (oneshot clear)",
     "to" : {
       "resulting_state" : {
         "dsk_ins_sub_mode" : 0,

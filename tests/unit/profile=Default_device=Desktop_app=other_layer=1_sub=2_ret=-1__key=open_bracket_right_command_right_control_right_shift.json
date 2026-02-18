@@ -1,0 +1,33 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 2,
+    "dsk_layer" : 1,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "open_bracket",
+    "right_control" : true,
+    "right_shift" : true,
+    "right_command" : true
+  },
+  "matched_rule" : {
+    "id" : "R1405 [profile=Default:device=Desktop:dsk_ins_sub_mode=2] [ → [ (oneshot clear)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_ins_sub_mode" : 0,
+        "dsk_layer" : 1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "open_bracket"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd+RCtrl+RShift + open_bracket"
+  }
+}
