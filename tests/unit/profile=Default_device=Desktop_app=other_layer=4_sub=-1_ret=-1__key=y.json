@@ -11,11 +11,23 @@
     "key" : "y"
   },
   "matched_rule" : {
-    "id" : "R1303 [profile=Default:device=Desktop] y blocked",
+    "id" : "R3074 [profile=Default:device=Desktop:dsk_layer=4] y → Cmd+P paste Enter, Normal",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "p",
+        "left_command" : true
+      }, {
+        "key" : "v",
+        "left_command" : true
+      }, {
+        "key" : "return_or_enter"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

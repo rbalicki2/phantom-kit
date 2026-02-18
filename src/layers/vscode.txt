@@ -9,5 +9,7 @@ I = Create 2nd tab, Fn+I = Move to next tab
 Fn+U = Move to prev tab
 O = Cmd+B (sidebar toggle)
 P = Ctrl+` (terminal toggle)
+Y = Cmd+P paste Enter (open from clipboard)
+Fn+Y = Copy + Cmd+P paste Enter (open file at cursor)
 , = Next error (stays)
 . = Find next (stays)
