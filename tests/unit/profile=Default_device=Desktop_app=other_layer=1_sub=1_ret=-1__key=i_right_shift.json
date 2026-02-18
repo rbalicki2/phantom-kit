@@ -11,5 +11,22 @@
     "key" : "i",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : " [profile=Default:device=Desktop:dsk_ins_sub_mode=1] Shift+i → I (oneshot clear)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_ins_sub_mode" : 0,
+        "dsk_layer" : 1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "i",
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + i"
+  }
 }

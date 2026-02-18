@@ -11,5 +11,23 @@
     "key" : "return_or_enter",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R0228 [profile=Default:device=Desktop:dsk_layer=13] Shift+Enter → Normal",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "/opt/homebrew/bin/hs -c 'labelCmdShiftClick()' && echo norm > /tmp/karabiner-layer"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + return_or_enter"
+  }
 }

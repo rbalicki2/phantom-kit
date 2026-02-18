@@ -76,9 +76,22 @@
     :left_option :right_option :left_shift :right_shift
     :fn :caps_lock})
 
+;; Map generic modifiers to their specific variants
+(def generic-modifier-expansions
+  {:shift #{:left_shift :right_shift}
+   :command #{:left_command :right_command}
+   :control #{:left_control :right_control}
+   :option #{:left_option :right_option}})
+
 (defn normalize-modifier [mod]
   "Convert modifier shorthand to full name"
   (get modifier-aliases mod mod))
+
+(defn expand-generic-modifier [mod]
+  "Expand a generic modifier to its specific variants.
+   E.g., :shift -> #{:left_shift :right_shift}
+   Returns a set containing the modifier(s)."
+  (get generic-modifier-expansions mod #{mod}))
 
 (defn parse-shorthand-key [k]
   "Parse Goku shorthand like :!Cj, :!TOSf19, or :##y
@@ -247,25 +260,46 @@
 ;; Key Matching
 ;; ============================================================================
 
+(defn mandatory-modifier-satisfied?
+  "Check if a mandatory modifier is satisfied by the input.
+   Handles generic modifiers like :shift matching :left_shift or :right_shift."
+  [required-mod input-set]
+  (let [expanded (expand-generic-modifier required-mod)]
+    ;; At least one of the expanded variants must be present
+    (some #(contains? input-set %) expanded)))
+
+(defn get-satisfied-mods
+  "Given a mandatory modifier that was satisfied, return which input mods satisfied it."
+  [required-mod input-set]
+  (let [expanded (expand-generic-modifier required-mod)]
+    (set/intersection expanded input-set)))
+
 (defn modifiers-match? [from-parsed input-mods]
   "Check if input modifiers satisfy the from clause requirements.
-   - All mandatory modifiers must be present
+   - All mandatory modifiers must be present (generic modifiers like :shift match :left_shift/:right_shift)
    - If optional is :any, any additional modifiers are allowed
    - If optional is a set, only those additional modifiers are allowed"
   (let [{:keys [mandatory optional]} from-parsed
         mandatory-set (set mandatory)
         input-set (set input-mods)]
     (and
-      ;; All mandatory modifiers must be present
-      (set/subset? mandatory-set input-set)
+      ;; All mandatory modifiers must be present (with generic expansion)
+      (every? #(mandatory-modifier-satisfied? % input-set) mandatory-set)
       ;; Check optional modifiers
-      (let [extra-mods (set/difference input-set mandatory-set)]
+      (let [;; Calculate which input mods were used to satisfy mandatory requirements
+            used-mods (reduce (fn [acc req-mod]
+                               (set/union acc (get-satisfied-mods req-mod input-set)))
+                             #{} mandatory-set)
+            extra-mods (set/difference input-set used-mods)]
         (cond
           ;; ## means any modifiers allowed
           (= optional :any) true
-          ;; Optional set specified - extra mods must be in optional set
+          ;; Optional set specified - extra mods must be in optional set (with generic expansion)
           (set? optional) (or (empty? extra-mods)
-                              (set/subset? extra-mods optional))
+                              (let [expanded-optional (reduce (fn [acc opt]
+                                                               (set/union acc (expand-generic-modifier opt)))
+                                                             #{} optional)]
+                                (set/subset? extra-mods expanded-optional)))
           ;; No optional specified - no extra mods allowed
           :else (empty? extra-mods))))))
 

@@ -11,5 +11,17 @@
     "key" : "l",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1290 [profile=Default:device=Desktop] l blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + l"
+  }
 }

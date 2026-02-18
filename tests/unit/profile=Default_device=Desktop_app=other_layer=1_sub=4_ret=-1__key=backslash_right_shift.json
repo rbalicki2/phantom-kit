@@ -11,5 +11,22 @@
     "key" : "backslash",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R0063b [profile=Default:device=Desktop:dsk_layer=1] Shift+bksl → Shift+bksl",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 1,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "backslash",
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + backslash"
+  }
 }

@@ -11,5 +11,17 @@
     "key" : "o",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1293 [profile=Default:device=Desktop] o blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + o"
+  }
 }

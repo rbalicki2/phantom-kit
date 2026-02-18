@@ -11,5 +11,21 @@
     "key" : "return_or_enter",
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R0084 [profile=Default:device=Desktop:dsk_layer=0] Enter → Enter",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "return_or_enter"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RShift + return_or_enter"
+  }
 }
