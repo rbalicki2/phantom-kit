@@ -44,19 +44,38 @@
   "Layers where dsk_ins_sub_mode is meaningful (not -1)"
   #{1 7})
 
-(def valid-submodes
-  "Valid dsk_ins_sub_mode values when in submode-layers.
+(def base-submodes
+  "Submodes valid for both Ins (1) and AltIns (7) layers.
    0 = normal insert
    1 = shift-mirror oneshot
    2 = shift oneshot
    3 = delete chord
    4 = select chord
    5 = shift-pending (caps lock double-tap detection)
-   6 = caps lock mode
-   10 = double-tap comma pending (AltIns)
-   11 = double-tap semicolon pending (AltIns)
-   12 = double-tap bang pending (AltIns)"
-  #{0 1 2 3 4 5 6 10 11 12})
+   6 = caps lock mode"
+  #{0 1 2 3 4 5 6})
+
+(def altins-only-submodes
+  "Submodes valid ONLY for AltIns (7), not Ins (1).
+   These are double-tap pending states.
+   10 = double-tap comma pending
+   11 = double-tap semicolon pending
+   12 = double-tap bang pending"
+  #{10 11 12})
+
+(def valid-submodes
+  "All valid dsk_ins_sub_mode values (union of base and altins-only)"
+  (clojure.set/union base-submodes altins-only-submodes))
+
+(defn valid-submodes-for-layer
+  "Get valid submodes for a specific layer.
+   Layer 1 (Ins): base submodes only
+   Layer 7 (AltIns): base + altins-only submodes"
+  [layer]
+  (case layer
+    1 base-submodes
+    7 valid-submodes
+    #{}))
 
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).
@@ -291,7 +310,7 @@
   "Check if submode value is valid for the given layer."
   [layer submode]
   (if (submode-layers layer)
-    (valid-submodes submode)
+    (contains? (valid-submodes-for-layer layer) submode)
     (= submode -1)))
 
 (defn valid-return-to-for-layer?
@@ -413,9 +432,9 @@
     (mapcat
       (fn [layer]
         (cond
-          ;; Layer 1: submodes
+          ;; Submode layers (1, 7): use layer-specific submodes
           (submode-layers layer)
-          (for [submode (sort valid-submodes)]
+          (for [submode (sort (valid-submodes-for-layer layer))]
             {:profile "Default" :device :desktop :layer layer :submode submode :return-to -1 :app nil})
 
           ;; Layer 13/28: return-to
@@ -466,7 +485,7 @@
     ;; Most specific: Desktop + layer + leaf
     (for [layer (sort all-layers)
           :when (submode-layers layer)
-          submode (sort valid-submodes)]
+          submode (sort (valid-submodes-for-layer layer))]
       {:profile "Default" :device :desktop :layer layer :submode submode :return-to nil})
 
     (for [layer (sort all-layers)
@@ -516,10 +535,10 @@
     (mapcat
       (fn [layer]
         (cond
-          ;; Layer 1: submodes 0-4, then catch-all
+          ;; Submode layers: layer-specific submodes, then catch-all
           (submode-layers layer)
           (concat
-            (for [submode (sort valid-submodes)]
+            (for [submode (sort (valid-submodes-for-layer layer))]
               {:profile "Default" :device :desktop :layer layer :submode submode :return-to nil :app nil})
             [{:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app nil}])
 

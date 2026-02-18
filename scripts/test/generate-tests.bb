@@ -373,6 +373,7 @@
         queue (atom (vec roots))
         visited (atom (set (map state-key roots)))
         all-results (atom [])
+        all-discovered (atom (set roots))  ;; Track actual state objects
         state-count (atom 0)]
 
     (while (seq @queue)
@@ -394,11 +395,48 @@
             (let [sk (state-key s)]
               (when-not (contains? @visited sk)
                 (swap! visited conj sk)
+                (swap! all-discovered conj s)
                 (swap! queue conj s)))))))
 
     {:tests (mapcat :tests @all-results)
      :states-explored @state-count
-     :states-found (count @visited)}))
+     :states-found (count @visited)
+     :discovered-states @all-discovered}))
+
+;; ============================================================================
+;; State Reachability Validation
+;; ============================================================================
+
+(defn expected-bfs-states
+  "Get all expected states that BFS should reach.
+   Returns set of state-keys that should be discovered."
+  [applications]
+  ;; Get all valid desktop states from state library
+  (->> (state/all-valid-states)
+       ;; Filter to desktop only (laptop and None don't apply to BFS)
+       (filter #(= (:device %) :desktop))
+       ;; Expand app-specific layers
+       (mapcat (fn [{:keys [layer submode return-to app] :as s}]
+                 (if (contains? layers-with-app-rules layer)
+                   ;; Expand to all app variants
+                   (map #(vector layer submode return-to (:name %)) applications)
+                   ;; Non-app layers use "other"
+                   [[layer submode return-to "other"]])))
+       set))
+
+(defn validate-state-reachability
+  "Validate that all expected states were reached by BFS.
+   Returns nil if all reached, or {:missing [...] :extra [...]}."
+  [discovered-states expected-states]
+  (let [;; Convert discovered states to comparable format (layer, submode, return-to, app)
+        discovered-set (set (map (fn [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]}]
+                                   [dsk_layer dsk_ins_sub_mode dsk_return_to_layer (or application "other")])
+                                 discovered-states))
+        missing (clojure.set/difference expected-states discovered-set)
+        extra (clojure.set/difference discovered-set expected-states)]
+    (when (or (seq missing) (seq extra))
+      {:missing (sort missing)
+       :extra (sort extra)})))
 
 ;; ============================================================================
 ;; Coverage Validation
@@ -490,7 +528,7 @@
     (println)
 
     ;; Run BFS
-    (let [{:keys [tests states-explored states-found]} (run-bfs inputs)]
+    (let [{:keys [tests states-explored states-found discovered-states]} (run-bfs inputs)]
       (println)
       (println "=== Writing Test Files (parallel) ===")
 
@@ -504,6 +542,29 @@
         (println "States discovered:" states-found)
         (println "Tests generated:" (count write-results))
         (println "Output directory:" output-dir)
+
+        ;; Validate state reachability
+        (println)
+        (println "=== State Reachability Validation ===")
+        (let [expected (expected-bfs-states (:applications inputs))
+              reachability-result (validate-state-reachability discovered-states expected)]
+          (if reachability-result
+            (do
+              (when (seq (:missing reachability-result))
+                (println "ERROR: Expected states NOT reached by BFS:")
+                (doseq [[layer submode ret app] (:missing reachability-result)]
+                  (println (format "  - layer=%d submode=%d return-to=%d app=%s"
+                                   layer submode ret app)))
+                (println "Total missing:" (count (:missing reachability-result))))
+              (when (seq (:extra reachability-result))
+                (println)
+                (println "WARNING: Unexpected states reached by BFS (not in valid-states):")
+                (doseq [[layer submode ret app] (:extra reachability-result)]
+                  (println (format "  - layer=%d submode=%d return-to=%d app=%s"
+                                   layer submode ret app)))
+                (println "Total extra:" (count (:extra reachability-result))))
+              (System/exit 1))
+            (println "All" (count expected) "expected states were reached")))
 
         ;; Validate coverage
         (println)
