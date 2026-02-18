@@ -20,7 +20,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Auto-select correct microphone: ensure the right microphone input is always selected (e.g., on wake, on device connect)
 - Cmd+Q accessible: need a way to quit applications from a layer
 - Copy paste tool: investigate clipboard manager/paste transformation tools
-- Document reserved keys: create a map of special global key bindings that are reserved (e.g., Hyper+F20 for Label mode dummy output, Ctrl+Alt+Shift+F19 for Wispr popo, etc.) so they don't get accidentally reused
+- Document reserved keys: create a map of special global key bindings that are reserved
+- Consider making up/down arrow globally reserved (not used as part of any layer) (e.g., Hyper+F20 for Label mode dummy output, Ctrl+Alt+Shift+F19 for Wispr popo, etc.) so they don't get accidentally reused
 - Verify: Shift+equals → tilde still works after shift refactor
 - Verify: Left shift alone = (, right shift alone = ) still works (laptop only)
 - Verify: Shift+command alone → square brackets still works (laptop only)
@@ -69,6 +70,10 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Auto-generate RHS slots grid: Create a script that iterates through each key+modifier combination in Ins mode, uses match-rules.bb to find which rule catches it, and interprets the output to build the rhs-slots.md table automatically. Would ensure the documentation stays in sync with the actual config.
 - [DONE] Add --no-clobber flag to set-rule.bb: Prevents accidental overwrites. Use when adding NEW rules.
 - Admin layer: Fix Ctrl+P (screenshot selection) - currently broken
+- Admin layer: Add shortcut to clear VPN connection success notification windows
+- VPN shortcuts: Add connect/disconnect shortcuts
+- Auto-switch system microphone on device connect/disconnect
+- Auto-switch Wispr Flow microphone on device connect/disconnect
 - SwiftBar layer file: Audit all layer transitions to ensure they write to /tmp/karabiner-layer so SwiftBar displays the correct layer
 - Add query tool to search rules by output key (e.g., find all rules that output 'w')
 - Add rule removal functionality to set-rule.bb (e.g., `bb scripts/edit/set-rule.bb src/karabiner.edn R1234 --delete`)

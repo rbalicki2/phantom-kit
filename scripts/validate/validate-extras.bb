@@ -642,8 +642,8 @@
 
 (def allowed-ins-exit-rules
   "Rule IDs allowed to exit to Ins mode (layer 1).
-   Only / from Normal mode should transition to Ins."
-  #{"R0060"})
+   / and ; from Normal mode should transition to Ins."
+  #{"R0060" "R0040"})
 
 (defn extract-rule-id-prefix [id-str]
   "Extract just the rule ID (e.g., 'R1515' from 'R1515 [profile=...]')"
