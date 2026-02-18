@@ -25,7 +25,7 @@
         "key" : "v",
         "left_command" : true
       }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'showPermanentLayerOverlay()'"
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer "
       } ]
     },
     "held" : null,

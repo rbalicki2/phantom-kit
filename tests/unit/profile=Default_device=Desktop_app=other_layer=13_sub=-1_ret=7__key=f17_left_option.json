@@ -22,7 +22,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo altins > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'showPermanentLayerOverlay()'"
+        "shell" : "/opt/homebrew/bin/hs -c 'labelDoubleClick()' && echo altins > /tmp/karabiner-layer "
       } ]
     },
     "held" : null,

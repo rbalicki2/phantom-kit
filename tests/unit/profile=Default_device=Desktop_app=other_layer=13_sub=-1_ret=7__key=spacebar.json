@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "return_or_enter"
       }, {
-        "shell" : "echo altins > /tmp/karabiner-layer && /opt/homebrew/bin/hs -c 'showPermanentLayerOverlay()'"
+        "shell" : "echo altins > /tmp/karabiner-layer "
       } ]
     },
     "held" : null,
