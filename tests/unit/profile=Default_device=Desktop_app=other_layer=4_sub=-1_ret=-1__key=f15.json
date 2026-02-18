@@ -19,18 +19,9 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "c",
-        "left_command" : true
+        "key" : "vk_none"
       }, {
-        "key" : "p",
-        "left_command" : true
-      }, {
-        "key" : "v",
-        "left_command" : true
-      }, {
-        "key" : "return_or_enter"
-      }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
+        "shell" : "osascript -e 'tell app \"System Events\"' -e 'keystroke \"c\" using command down' -e 'delay 0.05' -e 'keystroke \"p\" using command down' -e 'delay 0.1' -e 'keystroke \"v\" using command down' -e 'delay 0.05' -e 'key code 36' -e 'end tell' && /Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

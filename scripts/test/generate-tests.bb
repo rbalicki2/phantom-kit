@@ -404,12 +404,26 @@
 ;; Coverage Validation
 ;; ============================================================================
 
+(defn desktop-block?
+  "Check if a block is for Desktop device (has :!apple_internal marker)"
+  [block]
+  (let [rules-vec (:rules block)
+        first-item (when (vector? rules-vec) (first rules-vec))]
+    (= first-item :!apple_internal)))
+
 (defn extract-all-rule-ids
-  "Extract all rule IDs from the parsed config.
-   Config has :main which is a vector of blocks, each with :rules."
+  "Extract all rule IDs from the parsed config for Desktop device only.
+   Config has :main which is a vector of blocks, each with :rules.
+   Filters out Laptop (:apple_internal) and None profile rules."
   [config]
   (let [blocks (:main config)
-        all-rules (mapcat :rules blocks)]
+        ;; Only include Desktop blocks (those with :!apple_internal)
+        desktop-blocks (filter desktop-block? blocks)
+        all-rules (mapcat (fn [block]
+                           ;; Skip the :!apple_internal marker and app keywords
+                           (->> (:rules block)
+                                (filter vector?)))
+                          desktop-blocks)]
     (->> all-rules
          (map (fn [rule]
                 ;; Rules are vectors, first element is the from-map with :id
