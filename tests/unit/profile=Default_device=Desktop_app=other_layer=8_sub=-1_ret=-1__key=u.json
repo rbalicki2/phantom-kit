@@ -11,11 +11,17 @@
     "key" : "u"
   },
   "matched_rule" : {
-    "id" : "R1299 [profile=Default:device=Desktop] u blocked",
+    "id" : "R3067 [profile=Default:device=Desktop:dsk_layer=8] u → TMUX pane 3, AltIns",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
         "key" : "vk_none"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-pane3.sh"
       } ]
     },
     "held" : null,
