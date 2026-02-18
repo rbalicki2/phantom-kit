@@ -4,17 +4,17 @@ J/K = Scroll down/up (hold to repeat), Fn+J/K = End/Home
 U/I = Back/Forward (stays)
 M/, = Prev/Next tab (stays)
 Y = Close tab (stays), Shift+Y = Close + prev tab, Fn+Y = Reopen closed tab
-L = Address bar / Go to line (Cmd+L) -> Ins
-O = Open (Cmd+O) -> Ins
+L = Address bar / Go to line -> Ins
+O = Open -> Ins
 Enter = Cmd+Enter -> Ins
 
-Chrome: H = Cmd+K, Fn+H = Tab search (Cmd+Shift+A), Shift+H = History
-Chrome: N = New tab (Cmd+T), Fn+N = New window (Cmd+N)
+Chrome: H = Cmd+K, Fn+H = Tab search, Shift+H = History
+Chrome: N = New tab, Fn+N = New window
 
-VS Code: H = Command palette (Cmd+Shift+P), Fn+H = Quick open (Cmd+P)
-VS Code: N = New file (Cmd+N), Fn+N = New window (Cmd+Shift+N)
+VS Code: H = Command palette, Fn+H = Quick open
+VS Code: N = New file, Fn+N = New window
 
-iTerm: N = Split pane (Cmd+D), Fn+N = New tab (Cmd+T)
+iTerm: N = Split pane, Fn+N = New tab
 
 Default: H = Cmd+K, Fn+H = Cmd+P, N = Cmd+N, Fn+N = Cmd+Shift+N
 
