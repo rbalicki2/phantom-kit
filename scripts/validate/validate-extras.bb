@@ -635,6 +635,68 @@
        :rule nil})))
 
 ;; ============================================================================
+;; Ins Mode Exit Validation
+;; ============================================================================
+
+(def allowed-ins-exit-rules
+  "Rule IDs allowed to exit to Ins mode (layer 1).
+   Only / from Normal mode should transition to Ins."
+  #{"R0060"})
+
+(defn extract-rule-id-prefix [id-str]
+  "Extract just the rule ID (e.g., 'R1515' from 'R1515 [profile=...]')"
+  (when id-str
+    (first (str/split id-str #" "))))
+
+(defn extracts-layer-from-action [action]
+  "Extract the dsk_layer value from an action array if present"
+  (when (vector? action)
+    (some (fn [item]
+            (when (and (vector? item)
+                       (= 2 (count item))
+                       (= "dsk_layer" (first item)))
+              (second item)))
+          action)))
+
+(defn extract-source-layer [rule-info]
+  "Extract the source layer from a rule's condition"
+  (let [rule (:rule rule-info)]
+    (when (and (vector? rule) (>= (count rule) 3))
+      (let [condition (nth rule 2)]
+        (some (fn [item]
+                (when (and (vector? item)
+                           (= 2 (count item))
+                           (= "dsk_layer" (first item)))
+                  (second item)))
+              (if (and (vector? condition) (every? vector? condition))
+                condition
+                [condition]))))))
+
+(defn check-ins-mode-exits [config]
+  "Check that only allowed rules ENTER Ins mode (layer 1) from outside.
+   Rules already in layer 1 that stay in layer 1 are fine.
+   Only transitions from other layers to layer 1 should be flagged."
+  (let [desktop-rules (extract-desktop-rules config)
+        violations (for [rule-info desktop-rules
+                        :let [rule (:rule rule-info)
+                              action (when (vector? rule) (second rule))
+                              target-layer (extracts-layer-from-action action)
+                              source-layer (extract-source-layer rule-info)
+                              rule-id (extract-rule-id-prefix (get-in rule [0 :id]))]
+                        ;; Only flag if entering layer 1 from a different layer
+                        :when (and (= 1 target-layer)
+                                   (not= 1 source-layer)
+                                   (not (contains? allowed-ins-exit-rules rule-id)))]
+                    rule-info)]
+    (for [v violations]
+      {:type :unauthorized-ins-exit
+       :description (:description v)
+       :message (format "Rule enters Ins (layer 1) from layer %s but only %s are allowed. Use AltIns (layer 7) instead."
+                       (extract-source-layer v)
+                       (str/join ", " allowed-ins-exit-rules))
+       :rule (:rule v)})))
+
+;; ============================================================================
 ;; Main Validation
 ;; NOTE: Condition completeness (layer required for submode/return-to) is now
 ;; handled by validate-rules.bb using the shared state library.
@@ -706,7 +768,11 @@
 
         ;; Check LHS keys only appear once each (blocking rules)
         lhs-key-issues
-        (check-lhs-key-usage config)]
+        (check-lhs-key-usage config)
+
+        ;; Check no unauthorized exits to Ins mode (layer 1)
+        ins-exit-issues
+        (check-ins-mode-exits config)]
 
     (concat bare-from-issues
             bare-to-issues
@@ -722,7 +788,8 @@
             left-mod-issues
             id-state-issues
             id-validity-issues
-            lhs-key-issues)))
+            lhs-key-issues
+            ins-exit-issues)))
 
 ;; ============================================================================
 ;; CLI Interface

@@ -695,13 +695,8 @@
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal
-   [{:key :h, :id "R0325 [profile=Default:device=Desktop:dsk_layer=8] h types 'git status'"} [:type-ins "git status " ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f22, :id "R0326 [profile=Default:device=Desktop:dsk_layer=8] Fn+H types 'git status'"} [:type-enter-ins "git status " ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :j, :id "R0327 [profile=Default:device=Desktop:dsk_layer=8] j types 'git log'"} [:type-ins "git log " [dsk_ins_sub_mode=2] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] ["dsk_layer" 8] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f23, :id "R0328 [profile=Default:device=Desktop:dsk_layer=8] Fn+J types 'git log'"} [:type-enter-ins "git log" ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :k, :id "R0329 [profile=Default:device=Desktop:dsk_layer=8] k types 'git diff'"} [:type-ins "git diff " [dsk_ins_sub_mode=2] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] ["dsk_layer" 8] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f24, :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff head'"} [:type-enter-ins "git diff head" ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :k, :modi {:mandatory [:right_control]}, :id "R0331 [profile=Default:device=Desktop:dsk_layer=8] RCtrl+k types 'gdmb'"} [:type-enter-ins "gdmb" ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :l, :id "R0332 [profile=Default:device=Desktop:dsk_layer=8] l → Ins"} [[:type-ins "git commit --no-verify -m "] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f1, :modi {:mandatory [:left_option]}, :id "R0333 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f1 → Ins"} [[:type-enter-ins "git commit -am wip --no-verify"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :n, :id "R0334 [profile=Default:device=Desktop:dsk_layer=8] n → Ins"} [[:type-ins "git reset "] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
@@ -713,7 +708,12 @@
    [{:key :period, :id "R0340 [profile=Default:device=Desktop:dsk_layer=8] period → Ins"} [[:type-ins "git add "] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f7, :modi {:mandatory [:left_option]}, :id "R0341 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f7 → Ins"} [[:type-enter-ins "git add -A"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :y, :id "R0342 [profile=Default:device=Desktop:dsk_layer=8] y → Ins"} [[:type-enter-ins "gh pr create"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :i, :id "R0343 [profile=Default:device=Desktop:dsk_layer=8] i → Ins"} [[:type-enter-ins "git push --no-verify"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]]}
+   [{:key :i, :id "R0343 [profile=Default:device=Desktop:dsk_layer=8] i → Ins"} [[:type-enter-ins "git push --no-verify"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :h, :id "R0325 [profile=Default:device=Desktop:dsk_layer=8] h types 'git status'"} [:type-ins "git status " ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :f22, :id "R0326 [profile=Default:device=Desktop:dsk_layer=8] Fn+H types 'git status'"} [:type-enter-ins "git status " ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :f23, :id "R0328 [profile=Default:device=Desktop:dsk_layer=8] Fn+J types 'git log'"} [:type-enter-ins "git log" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :f24, :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff head'"} [:type-enter-ins "git diff head" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :k, :modi {:mandatory [:right_control]}, :id "R0331 [profile=Default:device=Desktop:dsk_layer=8] RCtrl+k types 'gdmb'"} [:type-enter-ins "gdmb" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 9]]"
  :rules [:!apple_internal
