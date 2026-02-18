@@ -43,7 +43,16 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
 - App change layer reset: Hammerspoon detects frontmost app change → sends hidden key (e.g., F24) → Karabiner rule catches it in app-specific layers (VSCode layer 4, Chrome layer 3, etc.) and resets to Normal if frontmost app doesn't match the layer. Prevents staying stuck in wrong app layer after Cmd+Tab.
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
-- Add Find (Cmd+F) shortcut to In-App Nav layer
+- In-App layer shortcuts to consider adding:
+  - Find (Cmd+F) - universal search
+  - Save (Cmd+S)
+  - Undo/Redo (Cmd+Z / Cmd+Shift+Z)
+  - Close window (Cmd+W)
+  - Zoom in/out (Cmd+Plus/Minus)
+  - Full screen toggle (Cmd+Ctrl+F)
+  - Preferences (Cmd+Comma)
+  - Print (Cmd+P)
+  - Find next/prev (Cmd+G / Cmd+Shift+G)
 - Prefer keyboard shortcuts over osascript: when an app is foregrounded, use direct keyboard shortcuts instead of osascript calls (e.g., Chrome "last tab" uses osascript but could use Cmd+9)
 - Investigate Ctrl+Y bugs: check if Ctrl+Y behavior is correct across all layers
 - Review held_down threshold: currently set to 1ms globally, verify this doesn't cause issues with other to_if_held_down rules
