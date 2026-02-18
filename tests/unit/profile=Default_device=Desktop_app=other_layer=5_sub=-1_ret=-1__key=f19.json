@@ -11,10 +11,10 @@
     "key" : "f19"
   },
   "matched_rule" : {
-    "id" : "R0353 [profile=Default:device=Desktop:dsk_layer=5] Fn+P → Shift+0, Ins",
+    "id" : "R0353 [profile=Default:device=Desktop:dsk_layer=5] Fn+P → Shift+0, AltIns",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 1,
+        "dsk_layer" : 7,
         "dsk_ins_sub_mode" : 0,
         "dsk_return_to_layer" : -1
       },
@@ -22,7 +22,7 @@
         "key" : "0",
         "left_shift" : true
       }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo ins > /tmp/karabiner-layer"
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
