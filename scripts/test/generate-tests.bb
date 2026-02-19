@@ -439,6 +439,36 @@
        :extra (sort extra)})))
 
 ;; ============================================================================
+;; Pass-Through Validation (No Unmatched Keys)
+;; ============================================================================
+
+(defn is-cross-product-key?
+  "Check if this is a regular RHS key (from keys array, not fixed_combos)"
+  [key-name inputs]
+  (contains? (set (:keys inputs)) key-name))
+
+(defn validate-no-passthrough
+  "Validate that all cross-product key+modifier combos are matched by a rule.
+   Returns nil if all matched, or a list of unmatched combos."
+  [tests inputs]
+  (let [;; Only check cross-product keys (not fixed_combos like F-keys)
+        cross-product-keys (set (:keys inputs))
+        ;; Find tests where no rule matched AND it's a cross-product key
+        unmatched (->> tests
+                       (filter (fn [{:keys [key result]}]
+                                 (and (contains? cross-product-keys (:key key))
+                                      (nil? result))))
+                       (map (fn [{:keys [state key]}]
+                              {:layer (:dsk_layer state)
+                               :submode (:dsk_ins_sub_mode state)
+                               :return-to (:dsk_return_to_layer state)
+                               :app (:application state)
+                               :key (:key key)
+                               :modifiers (dissoc key :key)})))]
+    (when (seq unmatched)
+      unmatched)))
+
+;; ============================================================================
 ;; Coverage Validation
 ;; ============================================================================
 
@@ -527,24 +557,21 @@
     (get-config)
     (println)
 
-    ;; Run BFS
+    ;; Run BFS (generates tests in memory, does NOT write yet)
     (let [{:keys [tests states-explored states-found discovered-states]} (run-bfs inputs)]
       (println)
-      (println "=== Writing Test Files (parallel) ===")
+      (println "=== Summary ===")
+      (println "States explored:" states-explored)
+      (println "States discovered:" states-found)
+      (println "Tests to generate:" (count tests))
+      (println)
 
-      ;; Write each test in parallel
-      (let [write-results (doall (pmap (fn [{:keys [state key result]}]
-                                         (write-test-file state key result))
-                                       tests))]
-        (println)
-        (println "=== Summary ===")
-        (println "States explored:" states-explored)
-        (println "States discovered:" states-found)
-        (println "Tests generated:" (count write-results))
-        (println "Output directory:" output-dir)
+      ;; ========================================
+      ;; Run ALL validations BEFORE writing tests
+      ;; ========================================
+      (let [validation-errors (atom [])]
 
         ;; Validate state reachability
-        (println)
         (println "=== State Reachability Validation ===")
         (let [expected (expected-bfs-states (:applications inputs))
               reachability-result (validate-state-reachability discovered-states expected)]
@@ -555,19 +582,37 @@
                 (doseq [[layer submode ret app] (:missing reachability-result)]
                   (println (format "  - layer=%d submode=%d return-to=%d app=%s"
                                    layer submode ret app)))
-                (println "Total missing:" (count (:missing reachability-result))))
+                (println "Total missing:" (count (:missing reachability-result)))
+                (swap! validation-errors conj :state-reachability))
               (when (seq (:extra reachability-result))
                 (println)
                 (println "WARNING: Unexpected states reached by BFS (not in valid-states):")
                 (doseq [[layer submode ret app] (:extra reachability-result)]
                   (println (format "  - layer=%d submode=%d return-to=%d app=%s"
                                    layer submode ret app)))
-                (println "Total extra:" (count (:extra reachability-result))))
-              (System/exit 1))
-            (println "All" (count expected) "expected states were reached")))
+                (println "Total extra:" (count (:extra reachability-result)))))
+            (println "✓ All" (count expected) "expected states were reached")))
+        (println)
+
+        ;; Validate no pass-through (all cross-product keys matched)
+        (println "=== Pass-Through Validation ===")
+        (let [unmatched (validate-no-passthrough tests inputs)]
+          (if unmatched
+            (do
+              (println "ERROR: The following key+modifier combos have NO matching rule (pass-through):")
+              (doseq [{:keys [layer submode return-to app key modifiers]} (sort-by (juxt :layer :key) unmatched)]
+                (let [mod-str (if (empty? modifiers)
+                               "bare"
+                               (str/join "+" (sort (map name (keys modifiers)))))]
+                  (println (format "  - layer=%d sub=%d key=%s mods=%s"
+                                   layer submode key mod-str))))
+              (println)
+              (println "Total pass-through:" (count unmatched))
+              (swap! validation-errors conj :pass-through))
+            (println "✓ All cross-product key+modifier combos are matched by rules")))
+        (println)
 
         ;; Validate coverage
-        (println)
         (println "=== Coverage Validation ===")
         (let [uncovered (validate-coverage (get-config) tests)]
           (if uncovered
@@ -577,8 +622,26 @@
                 (println "  -" id))
               (println)
               (println "Total uncovered:" (count uncovered))
-              (System/exit 1))
-            (println "All" (count (extract-all-rule-ids (get-config))) "rule IDs are covered by tests")))))))
+              (swap! validation-errors conj :coverage))
+            (println "✓ All" (count (extract-all-rule-ids (get-config))) "rule IDs are covered by tests")))
+        (println)
+
+        ;; Check if any validations failed
+        (if (seq @validation-errors)
+          (do
+            (println "=== VALIDATION FAILED ===")
+            (println "Errors:" (str/join ", " (map name @validation-errors)))
+            (println)
+            (println "Tests NOT written. Fix the issues above first.")
+            (System/exit 1))
+          ;; All validations passed - write tests
+          (do
+            (println "=== Writing Test Files (parallel) ===")
+            (let [write-results (doall (pmap (fn [{:keys [state key result]}]
+                                               (write-test-file state key result))
+                                             tests))]
+              (println "Tests generated:" (count write-results))
+              (println "Output directory:" output-dir))))))))
 
 (when (= *file* (System/getProperty "babashka.file"))
   (apply -main *command-line-args*))
