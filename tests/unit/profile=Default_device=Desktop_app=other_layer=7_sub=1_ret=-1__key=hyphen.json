@@ -11,7 +11,7 @@
     "key" : "hyphen"
   },
   "matched_rule" : {
-    "id" : "R2075 [profile=Default:device=Desktop:dsk_layer=7] - → -",
+    "id" : "R3124 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=1] - → _",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,7 +19,8 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "hyphen"
+        "key" : "hyphen",
+        "left_shift" : true
       } ]
     },
     "held" : null,
