@@ -72,8 +72,52 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Admin layer: Fix Ctrl+P (screenshot selection) - currently broken
 - Admin layer: Add shortcut to clear VPN connection success notification windows
 - VPN shortcuts: Add connect/disconnect shortcuts
-- Auto-switch system microphone on device connect/disconnect
-- Auto-switch Wispr Flow microphone on device connect/disconnect
+- Auto-switch system microphone on device connect/disconnect (see plan below)
+- Auto-switch Wispr Flow microphone on device connect/disconnect (see plan below)
+
+## Microphone Automation Plan
+
+### Phase 1: System Microphone (SwitchAudioSource)
+
+**Requirements:**
+- Shure MV7 is highest priority - if connected, always use it as system mic
+- If MacBook is in clamshell mode, NEVER use built-in mic (fall back to Bose or other)
+- Manual toggle shortcut to switch between built-in mic and Bose headphones (when Mac open, Shure not connected)
+
+**Implementation:**
+1. Install: `brew install switchaudio-osx`
+2. Commands:
+   - `SwitchAudioSource -c -t input` - get current input device
+   - `SwitchAudioSource -a -t input` - list all input devices
+   - `SwitchAudioSource -s "Shure MV7" -t input` - set input device
+3. Detect clamshell mode: `ioreg -r -k AppleClamshellState -d 4 | grep AppleClamshellState`
+4. Create script: `scripts/actions/select-microphone.sh`
+   - Auto-select: Shure if connected, else Bose if clamshell, else last manual choice
+   - Manual toggle: cycle between built-in and Bose (only when applicable)
+5. Add Karabiner shortcut in Admin layer to trigger manual toggle
+6. Auto-trigger via LaunchAgent or Hammerspoon on wake/device connect
+
+### Phase 2: Wispr Flow Microphone
+
+**Challenge:** Wispr Flow uses SHA-256 hashed device IDs (Chromium MediaDevices API)
+
+**Get device ID mapping:**
+1. Open Wispr Flow
+2. Press Cmd+Option+I (DevTools)
+3. Run in console:
+   ```javascript
+   navigator.mediaDevices.enumerateDevices().then(devices => {
+     console.log(devices.filter(d => d.kind === 'audioinput').map(d => ({ label: d.label, id: d.deviceId })));
+   });
+   ```
+4. Save mapping to a config file
+
+**Implementation:**
+1. Config file: `~/.config/mic-device-ids.json` with label→hash mapping
+2. Script: `scripts/actions/select-wispr-mic.sh`
+   - Update `~/Library/Application Support/Wispr Flow/config.json` field `prefs.user.overrideAudioDeviceId`
+   - Restart Wispr Flow: `pkill "Wispr Flow" && open -a "Wispr Flow"`
+3. Coordinate with system mic script so both stay in sync
 - SwiftBar layer file: Audit all layer transitions to ensure they write to /tmp/karabiner-layer so SwiftBar displays the correct layer
 - Add query tool to search rules by output key (e.g., find all rules that output 'w')
 - Add rule removal functionality to set-rule.bb (e.g., `bb scripts/edit/set-rule.bb src/karabiner.edn R1234 --delete`)
