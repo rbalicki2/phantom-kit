@@ -11,5 +11,22 @@
     "key" : "comma",
     "right_command" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R3119 [profile=Default:device=Desktop:dsk_layer=7] RCmd+comma → Cmd+Right",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "right_arrow",
+        "modi" : [ "left_command" ]
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + comma"
+  }
 }

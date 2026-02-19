@@ -661,7 +661,8 @@
    [{:key :!Of11, :id "R2221 [profile=Default:device=Desktop:dsk_layer=7] Fn+[ → /"} [:slash ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :h, :modi {:mandatory [:right_command]}, :id "R3056 [profile=Default:device=Desktop:dsk_layer=7] RCmd+h (hold) → delete-chord"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 3] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
    [{:key :n, :modi {:mandatory [:right_command]}, :id "R2220 [profile=Default:device=Desktop:dsk_layer=7] RCmd+n (hold) → select-chord"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 4] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]]}]
-   [{:key :!TOf18, :id "R2103 [profile=Default:device=Desktop:dsk_layer=7] Fn+Space → shift-oneshot"} [:spacebar ["dsk_layer" 7] ["dsk_ins_sub_mode" 2] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
+   [{:key :!TOf18, :id "R2103 [profile=Default:device=Desktop:dsk_layer=7] Fn+Space → shift-oneshot"} [:spacebar ["dsk_layer" 7] ["dsk_ins_sub_mode" 2] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :comma, :modi {:mandatory [:right_command], :optional [:any]}, :id "R3119 [profile=Default:device=Desktop:dsk_layer=7] RCmd+comma → Cmd+Right"} [{:key :right_arrow, :modi [:left_command]} ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 8]]"
  :rules [:!apple_internal
