@@ -95,12 +95,14 @@ When encountering a bug or issue with rules:
 
 1. **Add a validation** - Create or enhance a validation in `scripts/validate/` to detect the issue
 2. **Run that validation** - Execute it to surface all instances of the problem
-3. **Review the broken rules** - Let the validation output guide which rules need fixing
-4. **Fix the rules systematically** - Address each broken rule identified by the validation
+3. **STOP and show the user the violations** - Before fixing anything, present the list of violations to the user so they can verify it matches their expectations. This is critical for catching misunderstandings early.
+4. **Review the broken rules** - Let the validation output guide which rules need fixing
+5. **Fix the rules systematically** - Address each broken rule identified by the validation
 
 This workflow ensures:
 - Issues are caught automatically in future changes
 - All instances of the problem are found (not just the one that triggered investigation)
+- The user can verify the validation matches their intent before changes are made
 - The fix is verified by the validation passing
 
 ### NEVER Remove Shortcuts Without Permission
