@@ -57,7 +57,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Find next/prev (Cmd+G / Cmd+Shift+G)
 - Prefer keyboard shortcuts over osascript: when an app is foregrounded, use direct keyboard shortcuts instead of osascript calls (e.g., Chrome "last tab" uses osascript but could use Cmd+9)
 - Investigate Ctrl+Y bugs: check if Ctrl+Y behavior is correct across all layers
-- Review held_down threshold: currently set to 1ms globally, verify this doesn't cause issues with other to_if_held_down rules
+- Number shifting for laptop mode: restore number shifting behavior for laptop keyboard
 - Add Shift+letter rules for all letters in insert mode (currently only j has explicit Shift+j → Shift+j rule)
 - Caps lock mode (sub_mode 6): add exit mechanism and ensure Backspace/Delete don't exit caps mode
 - Caps lock mode: make command navigation keys work in caps lock mode
