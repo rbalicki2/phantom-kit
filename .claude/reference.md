@@ -56,7 +56,7 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 ### Admin Layer (i from Normal)
 - **Space** = Maximize, **Up** = Left half, **Down** = Right half
 - **Enter** = Switch windows (Cmd+`)
-- **P** = Screenshot full, **Ctrl+P** = Screenshot selection
+- **P** = Screenshot full, **Fn+P** = Screenshot selection
 - **L** = LLM blurb paste (→Ins), **M** = Move to next screen
 - **Comma** = Toggle/select microphone
 
