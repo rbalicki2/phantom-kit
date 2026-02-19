@@ -44,6 +44,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Test harness VM: set up a VM for safely testing Karabiner/Hammerspoon changes without breaking main system
 - App change layer reset: Hammerspoon detects frontmost app change → sends hidden key (e.g., F24) → Karabiner rule catches it in app-specific layers (VSCode layer 4, Chrome layer 3, etc.) and resets to Normal if frontmost app doesn't match the layer. Prevents staying stuck in wrong app layer after Cmd+Tab.
 - Fuck Slack command: shortcut to quit/mute/dismiss Slack
+- InApp mode: Re-enable AppSwitcher/WindowSwitcher entry with different keys (removed up/down because they conflict with navigation in permission dialogs). AppSwitcher (layer 11) and WindowSwitcher (layer 12) modes still exist, just need new entry keys from InApp mode.
 - In-App layer shortcuts to consider adding:
   - Find (Cmd+F) - universal search
   - Save (Cmd+S)

@@ -11,17 +11,15 @@
     "key" : "down_arrow"
   },
   "matched_rule" : {
-    "id" : "R0390 [profile=Default:device=Desktop:dsk_layer=10] ↓ → WindowSwitcher",
+    "id" : "R3118 [profile=Default:device=Desktop:dsk_layer=10] ↓ → ↓",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 12,
+        "dsk_layer" : 10,
         "dsk_ins_sub_mode" : -1,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "vk_none"
-      }, {
-        "shell" : "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke \"`\"' && echo winsw > /tmp/karabiner-layer"
+        "key" : "down_arrow"
       } ]
     },
     "held" : null,
