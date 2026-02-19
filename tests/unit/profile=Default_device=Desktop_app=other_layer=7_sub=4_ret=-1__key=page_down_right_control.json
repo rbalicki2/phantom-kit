@@ -11,5 +11,17 @@
     "key" : "page_down",
     "right_control" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1338 [profile=Default:device=Desktop] PgDn blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCtrl + page_down"
+  }
 }

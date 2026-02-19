@@ -442,17 +442,22 @@
 ;; Pass-Through Validation (No Unmatched Keys)
 ;; ============================================================================
 
+(def modifier-keys
+  "Keys that are modifiers themselves and shouldn't be required to have blocker rules"
+  #{"right_command" "right_control" "right_shift" "left_command" "left_control" "left_shift" "left_option" "right_option"})
+
 (defn is-cross-product-key?
-  "Check if this is a regular RHS key (from keys array, not fixed_combos)"
+  "Check if this is a regular RHS key (from keys array, not fixed_combos, not modifier keys)"
   [key-name inputs]
-  (contains? (set (:keys inputs)) key-name))
+  (and (contains? (set (:keys inputs)) key-name)
+       (not (contains? modifier-keys key-name))))
 
 (defn validate-no-passthrough
   "Validate that all cross-product key+modifier combos are matched by a rule.
    Returns nil if all matched, or a list of unmatched combos."
   [tests inputs]
-  (let [;; Only check cross-product keys (not fixed_combos like F-keys)
-        cross-product-keys (set (:keys inputs))
+  (let [;; Only check cross-product keys (not fixed_combos like F-keys, not modifier keys)
+        cross-product-keys (set (remove modifier-keys (:keys inputs)))
         ;; Find tests where no rule matched AND it's a cross-product key
         unmatched (->> tests
                        (filter (fn [{:keys [key result]}]
@@ -636,6 +641,17 @@
             (System/exit 1))
           ;; All validations passed - write tests
           (do
+            ;; Clear output directory first to remove stale tests
+            (println "=== Clearing Output Directory ===")
+            (let [dir (java.io.File. output-dir)
+                  files (.listFiles dir)]
+              (when files
+                (doseq [f files]
+                  (when (.isFile f)
+                    (.delete f))))
+              (println "Cleared" (count (filter #(.isFile %) (or files []))) "existing files"))
+            (println)
+
             (println "=== Writing Test Files (parallel) ===")
             (let [write-results (doall (pmap (fn [{:keys [state key result]}]
                                                (write-test-file state key result))

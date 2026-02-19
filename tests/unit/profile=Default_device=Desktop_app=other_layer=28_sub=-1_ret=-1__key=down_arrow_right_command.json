@@ -11,5 +11,17 @@
     "key" : "down_arrow",
     "right_command" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1330 [profile=Default:device=Desktop] ↓ blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + down_arrow"
+  }
 }

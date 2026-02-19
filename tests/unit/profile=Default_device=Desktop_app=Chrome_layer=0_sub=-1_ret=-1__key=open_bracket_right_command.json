@@ -11,5 +11,17 @@
     "key" : "open_bracket",
     "right_command" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1318 [profile=Default:device=Desktop] [ blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + open_bracket"
+  }
 }

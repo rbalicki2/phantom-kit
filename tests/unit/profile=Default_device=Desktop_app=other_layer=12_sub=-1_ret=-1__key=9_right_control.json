@@ -11,5 +11,17 @@
     "key" : "9",
     "right_control" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1313 [profile=Default:device=Desktop] 9 blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCtrl + 9"
+  }
 }

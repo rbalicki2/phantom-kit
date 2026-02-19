@@ -11,5 +11,17 @@
     "key" : "page_up",
     "right_command" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1337 [profile=Default:device=Desktop] PgUp blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + page_up"
+  }
 }

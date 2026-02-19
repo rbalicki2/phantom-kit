@@ -12,5 +12,17 @@
     "right_command" : true,
     "right_shift" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1291 [profile=Default:device=Desktop] m blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd+RShift + m"
+  }
 }

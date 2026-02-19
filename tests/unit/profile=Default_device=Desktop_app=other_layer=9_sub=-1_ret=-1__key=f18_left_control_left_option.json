@@ -12,5 +12,17 @@
     "left_option" : true,
     "left_control" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1356 [profile=Default:device=Desktop] Fn+O blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LCtrl+LOpt + Fn+o"
+  }
 }

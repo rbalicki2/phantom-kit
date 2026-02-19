@@ -124,3 +124,8 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Add rule removal functionality to set-rule.bb (e.g., `bb scripts/edit/set-rule.bb src/karabiner.edn R1234 --delete`)
 - Validation: detect submode rules that are redundant because they're fully captured by more generic mode rules. Example: if layer=7 has a rule for key X, a rule for layer=7:submode=1 with the same key X and identical output is redundant and should be flagged.
 - Consolidate validations for sync speed: validate-rules.bb and validate-extras.bb do multiple passes through rules. Could consolidate into single pass for faster sync.
+- Return-to-layer for InApp Nav mode: Add mechanism to return to previous layer from InApp mode (layer 10)
+- Sub-mode for Mouse mode: Add sub-mode support for Mouse mode (Grid mode, layer 28)
+- Entry to Mouse mode from InApp Nav: Add shortcut in InApp mode (layer 10) to enter Mouse/Grid mode (layer 28)
+- Canonical key ordering: Consider other places where key-order.bb could be used (e.g., documentation generation, rule listing output)
+- SwiftBar Claude feedback indicator: Add separate SwiftBar plugin to show when any Claude session is waiting for user feedback. Should work across local and remote dev servers. Current overlay is transient; need persistent indicator.

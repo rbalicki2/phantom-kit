@@ -17,8 +17,9 @@
             [clojure.string :as str]
             [clojure.pprint :as pp]))
 
-;; Load state library
+;; Load libraries
 (load-file (str (System/getProperty "user.dir") "/scripts/lib/state.bb"))
+(load-file (str (System/getProperty "user.dir") "/scripts/lib/key-order.bb"))
 
 ;; ============================================================================
 ;; Rule Extraction
@@ -69,6 +70,58 @@
      :block-des (:des block)}))
 
 ;; ============================================================================
+;; Key Parsing (for sorting by specificity)
+;; ============================================================================
+
+;; Goku modifier prefixes - each character represents a mandatory modifier
+(def modifier-chars
+  "Set of modifier prefix characters in Goku syntax"
+  #{\C \S \T \O \Q \E \R \W \F \A})
+
+(defn parse-key-string
+  "Parse a key string like :!Of19 or :f19 into {:bare 'f19' :mods ['O']}.
+   Returns bare key and list of mandatory modifier chars."
+  [key-val]
+  (let [key-str (if (keyword? key-val) (name key-val) (str key-val))]
+    (if-let [[_ mods bare] (re-matches #"!([A-Z]+)(.+)" key-str)]
+      {:bare bare
+       :mods (vec (filter modifier-chars mods))}
+      ;; No modifier prefix, or ## prefix (optional)
+      {:bare (if (clojure.string/starts-with? key-str "##")
+               (subs key-str 2)
+               key-str)
+       :mods []})))
+
+(defn modifier-sort-key
+  "Create a canonical sort key for modifiers.
+   More modifiers = lower number (sorts first).
+   Then alphabetical by modifier chars for stability."
+  [mods]
+  (let [count-key (- 100 (count mods))  ;; More mods = lower number
+        alpha-key (apply str (sort mods))]
+    [count-key alpha-key]))
+
+(defn rule-sort-key
+  "Create sort key for a rule: [bare-key-position modifier-sort-key].
+   Rules are sorted by bare keycode position (for correct shadowing behavior),
+   then by specificity (most mandatory mods first).
+
+   This ensures that !Of19 (specific: requires opt) comes before f19 with
+   {:optional [:any]} (catches all), since both involve the f19 keycode."
+  [rule]
+  (when (vector? rule)
+    (let [key-val (get-in rule [0 :key])
+          {:keys [bare mods]} (parse-key-string key-val)
+          ;; Use bare key position so overlapping rules are grouped correctly
+          position (lib.key-order/get-key-position bare)]
+      [position (modifier-sort-key mods)])))
+
+(defn sort-rules-by-specificity
+  "Sort rules within a group by bare key, then by specificity (most mods first)."
+  [rules]
+  (sort-by rule-sort-key rules))
+
+;; ============================================================================
 ;; State Matching
 ;; ============================================================================
 
@@ -100,7 +153,8 @@
 ;; ============================================================================
 
 (defn group-rules-by-state
-  "Group rules by their matching grouping state."
+  "Group rules by their matching grouping state.
+   Within each group, sort by bare key then specificity (most mandatory mods first)."
   [rules all-grouping-states]
   (let [grouped (group-by #(find-grouping-state (:state %) all-grouping-states) rules)]
     ;; Return in order of grouping states
@@ -108,7 +162,7 @@
           :let [rules-for-state (get grouped gs [])]
           :when (seq rules-for-state)]
       {:state gs
-       :rules (map :rule rules-for-state)})))
+       :rules (sort-rules-by-specificity (map :rule rules-for-state))})))
 
 (defn state-to-block
   "Convert a grouped state to an EDN block."

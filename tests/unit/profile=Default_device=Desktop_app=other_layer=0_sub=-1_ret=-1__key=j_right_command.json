@@ -11,5 +11,17 @@
     "key" : "j",
     "right_command" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1288 [profile=Default:device=Desktop] j blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd + j"
+  }
 }

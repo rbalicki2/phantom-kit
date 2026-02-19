@@ -11,5 +11,17 @@
     "key" : "f11",
     "left_option" : true
   },
-  "matched_rule" : null
+  "matched_rule" : {
+    "id" : "R1349 [profile=Default:device=Desktop] f11 blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LOpt + Fn+0"
+  }
 }
