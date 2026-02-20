@@ -11,11 +11,17 @@
     "key" : "h"
   },
   "matched_rule" : {
-    "id" : "R1286 [profile=Default:device=Desktop] h blocked",
+    "id" : "R3131 [profile=Default:device=Desktop:dsk_layer=9] h → Hard restart Hammerspoon",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
         "key" : "vk_none"
+      }, {
+        "shell" : "echo norm > /tmp/karabiner-layer && /Users/rbalicki/code/voicemode/scripts/actions/hammerspoon-hard-restart.sh"
       } ]
     },
     "held" : null,
