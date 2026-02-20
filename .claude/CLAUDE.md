@@ -120,7 +120,7 @@ The user is using voice-to-text:
 
 **Terminology note**: "Fn+Shift" or "Function Shift" means the oneshot Shift submode (entered via Fn+]), NOT simultaneous Fn+Shift keys. Kinesis hardware prevents simultaneous Fn+Shift. See rhs-slots.md for the shift+fn column definition.
 
-**Key notation**: When discussing keys, always specify BOTH the physical key and the AltIns output, formatted as `physical/altins`. For example: "h/o" means physical key h which outputs 'o' in AltIns mode. This helps the user who thinks in terms of what they type (AltIns output) while the config uses physical keys. Reference `plans/alt-insert-mode.md` for the full mapping table.
+**Key notation**: When discussing keys in conversation, always specify BOTH the physical key and the AltIns output, formatted as `physical/altins`. For example: "h/o" means physical key h which outputs 'o' in AltIns mode. This helps the user who thinks in terms of what they type (AltIns output) while the config uses physical keys. Reference `plans/alt-insert-mode.md` for the full mapping table. Note: Layer overlay files (`src/layers/*.txt`) show only AltIns keys since they're for quick reference while typing.
 
 ## Tool Limitations
 
