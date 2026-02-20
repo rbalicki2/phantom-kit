@@ -11,11 +11,15 @@
     "key" : "j"
   },
   "matched_rule" : {
-    "id" : "R1288 [profile=Default:device=Desktop] j blocked",
+    "id" : "R3129 [profile=Default:device=Desktop:dsk_layer=10] j → j (pass-through for scroll eventtap)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "j"
       } ]
     },
     "held" : null,
