@@ -2,7 +2,7 @@
  :devices {:apple_internal [{:vendor_id 1452, :product_id 835, :is_keyboard true}], :trackball [{:vendor_id 10730, :product_id 258, :is_pointing_device true}], :logitech [{:vendor_id 1133, :product_id 45921, :is_keyboard true, :is_pointing_device true}]}
  :applications {:iTerm ["com.googlecode.iterm2"], :Chrome ["com.google.Chrome"], :VSCode ["com.microsoft.VSCode"]}
  :simlayers {}
- :templates {:layer "echo %s > /tmp/karabiner-layer", :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer", :type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer", :type-enter-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo altins > /tmp/karabiner-layer", :chrome-tab "osascript -e 'tell application \"Google Chrome\" to set active tab index of front window to %s' && echo norm > /tmp/karabiner-layer", :chrome-profile "/Users/rbalicki/code/voicemode/scripts/actions/chrome-tab.sh %s && echo norm > /tmp/karabiner-layer"}
+ :templates {:layer "echo %s > /tmp/karabiner-layer", :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer", :type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer", :type-enter-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo altins > /tmp/karabiner-layer", :chrome-profile "/opt/homebrew/bin/hs -c 'focusChromeProfile(\"%s\")' 2>/dev/null; echo norm > /tmp/karabiner-layer"}
  :main
  [{:des "None"
  :rules [:None
@@ -530,6 +530,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 6]]"
  :rules [:!apple_internal
+   [{:key :hyphen, :modi {:optional [:caps_lock]}, :id "R3128 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] - → _ (caps)"} [:!Shyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :y, :id "R2140 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] y → U (caps)", :modi {:optional [:caps_lock]}} [:!Su ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :u, :id "R2141 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] u → I (caps)", :modi {:optional [:caps_lock]}} [:!Si ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
    [{:key :i, :id "R2142 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=6] i → C (caps)", :modi {:optional [:caps_lock]}} [:!Sc ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 6]]]
@@ -587,6 +588,7 @@
    [{:key :0, :modi {:optional [:caps_lock]}, :id "R2074 [profile=Default:device=Desktop:dsk_layer=7] 0 → )"} [:!S0 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :0, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2208 [profile=Default:device=Desktop:dsk_layer=7] Shift+0 → 5"} [:5 ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :hyphen, :modi {:optional [:caps_lock]}, :id "R2075 [profile=Default:device=Desktop:dsk_layer=7] - → -"} [:hyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :hyphen, :modi {:mandatory [:shift]}, :id "R3126 [profile=Default:device=Desktop:dsk_layer=7] Shift+- → _"} [:!Shyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :y, :modi {:optional [:caps_lock]}, :id "R2000 [profile=Default:device=Desktop:dsk_layer=7] y → u"} [:u ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :y, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2040 [profile=Default:device=Desktop:dsk_layer=7] Shift+y → U"} [:!Su ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :u, :modi {:optional [:caps_lock]}, :id "R2001 [profile=Default:device=Desktop:dsk_layer=7] u → i"} [:i ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
