@@ -97,7 +97,10 @@
       "Bash(do bb scripts/query/match-rules.bb src/karabiner.edn $key --state profile=Default:device=Desktop:layer=13)",
       "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && cat {}')",
       "Bash(system_profiler SPAudioDataType)",
-      "Bash(brew install switchaudio-osx)"
+      "Bash(brew install switchaudio-osx)",
+      "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --help)",
+      "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --list-system-variables)",
+      "Bash(log show --predicate 'subsystem == \"\"\"\"org.hammerspoon.Hammerspoon\"\"\"\"' --last 2m)"
     ]
   }
 }

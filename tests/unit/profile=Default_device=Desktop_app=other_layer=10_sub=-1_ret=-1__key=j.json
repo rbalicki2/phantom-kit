@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "echo scroll_down > /tmp/karabiner-command"
+        "shell" : "touch /tmp/hs-scroll-down"
       } ]
     },
     "held" : null,
@@ -34,7 +34,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "echo scroll_stop > /tmp/karabiner-command"
+        "shell" : "rm -f /tmp/hs-scroll-down"
       } ]
     },
     "alone" : null

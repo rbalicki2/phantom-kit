@@ -1,13 +1,13 @@
-Git Layer (U from Normal, focuses iTerm)
+Git Layer (c from Normal, focuses iTerm)
 All shortcuts exit to Ins mode
 
-H = "git status ", Fn+H = +enter
-J = "git log ", Fn+J = +enter
-K = "git diff ", Fn+K = "git diff head"+enter, Ctrl+K = "gdmb"+enter
-L = "git commit --no-verify -m ", Fn+L = "git commit -am 'wip' --no-verify"+enter
-N = "git reset ", Fn+N = "grhh"+enter
-M = "git checkout ", Fn+M = "gcmp"+enter
-, = "git add -A && git stash"+enter, Fn+, = "git stash pop"+enter
-. = "git add ", Fn+. = "git add -A"+enter
-Y = "gh pr create"+enter
-I = "git push --no-verify"+enter
+o = "git status ", y = +enter
+t = "git log ", g = +enter
+e = "git diff ", p = "git diff head"+enter, Ctrl+e = "gdmb"+enter
+a = "git commit --no-verify -m ", l = "git commit -am 'wip' --no-verify"+enter
+h = "git reset ", x = "grhh"+enter
+s = "git checkout ", f = "gcmp"+enter
+n = "git add -A && git stash"+enter, k = "git stash pop"+enter
+r = "git add ", b = "git add -A"+enter
+u = "gh pr create"+enter
+c = "git push --no-verify"+enter
