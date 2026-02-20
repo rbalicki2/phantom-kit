@@ -1,26 +1,25 @@
 In-App Nav (hk4 from Normal or Ins)
+Keys shown as: physical/AltIns
 
-J/K = Scroll down/up (hold to repeat), Fn+J/K = End/Home
-U/I = Back/Forward (stays)
-M/, = Prev/Next tab (stays)
-Y = Close tab (stays), Shift+Y = Close + prev tab, Fn+Y = Reopen closed tab
-L = Address bar / Go to line -> Ins
-O = Open -> Ins
-. = Refresh (stays), Fn+. = Super Refresh (stays)
+j/t, k/e = Scroll down/up (hold), Fn = End/Home
+u/i, i/c = Back/Forward (stays)
+m/s, ,/n = Prev/Next tab (stays)
+y/u = Close tab, Shift = +prev tab, Fn = Reopen
+l/a = Address bar / Go to line -> Ins
+o/d = Open -> Ins
+./r = Refresh (stays), Fn = Super Refresh
 Enter = Cmd+Enter -> Ins
 
-Chrome: H = Cmd+K, Fn+H = Tab search, Shift+H = History
-Chrome: N = New tab, Fn+N = New window
+Chrome: h/o = Cmd+K, Fn = Tab search, Shift = History
+Chrome: n/h = New tab, Fn = New window
 
-VS Code: H = Command palette, Fn+H = Quick open
-VS Code: N = New file, Fn+N = New window
+VS Code: h/o = Command palette, Fn = Quick open
+VS Code: n/h = New file, Fn = New window
 
-iTerm: N = Split pane, Fn+N = New tab
+iTerm: n/h = Split pane, Fn = New tab
 
-Default: H = Cmd+K, Fn+H = Cmd+P, N = Cmd+N, Fn+N = Cmd+Shift+N
+Default: h/o = Cmd+K, Fn = Cmd+P
+Default: n/h = Cmd+N, Fn = Cmd+Shift+N
 
-Up = App switcher (J/K to cycle, Enter to select)
-Down = Window switcher (J/K to cycle, Enter to select)
-
-right_control = Exit to Normal, Ctrl+J = Exit to Ins
+right_control = Exit to Normal
 HK4 = Go to Nav layer
