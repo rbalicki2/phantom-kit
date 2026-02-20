@@ -1,10 +1,10 @@
 NORMAL - Layer Selector
-j → Ins (typing mode)
-n → Nav layer
-m → Label Mode, Fn+m → Grid Mode
-i → Admin layer
-, → Comma layer
-l → L layer
-u → Term layer
-h → Chrome/VSCode/TMUX (app-specific)
+t → Ins (typing mode)
+h → Nav layer
+s → Label Mode, Fn → Grid Mode
+c → Admin layer
+n → Comma layer
+a → L layer
+i → Term layer
+o → Chrome/VSCode/TMUX (app-specific)
 right_ctrl → send escape

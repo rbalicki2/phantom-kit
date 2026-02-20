@@ -1,6 +1,6 @@
 GRID MODE
-Fn+M from Normal
-Navigate grid (u,i,o,j,k,l,m,comma,period), then:
+Fn+s from Normal
+Navigate grid (i,c,d,t,e,a,s,n,r), then:
 Space         Click
 Fn+Space      Cmd+Click
 Shift+Space   Shift+Click
@@ -8,7 +8,7 @@ Enter         Right-click
 Fn+Enter      Double-click
 Shift+Enter   Cmd+Shift+Click
 Up            Hover (no click)
-N             Normal mode (fine IJKL)
+h             Normal mode (fine cta)
 right_ctrl    Cancel
 
 Returns to Normal layer

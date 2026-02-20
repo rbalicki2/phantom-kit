@@ -1,5 +1,5 @@
 LABEL MODE
-M from Normal, Ctrl+M from Ins
+s from Normal, Ctrl+s from Ins
 Type labels to select target, then:
 Space         Click
 Fn+Space      Cmd+Click

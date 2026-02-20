@@ -1,8 +1,8 @@
-Chrome Layer (H from Normal, Chrome only)
+Chrome Layer (o from Normal, Chrome only)
 
-Y/U/I/O = Tab 1/2/3/4
-Fn+Y/U/I/O = Tab 5/6/7/8
-P = Last tab
-Fn+L = Copy URL
-M = Dark mode (Alt+D)
-Fn+J/K = Move tab left/right (stays)
+u/i/c/d = Tab 1/2/3/4
+Fn = Tab 5/6/7/8
+w = Last tab
+Fn+a = Copy URL
+s = Dark mode (Alt+D)
+Fn+t/e = Move tab left/right (stays)

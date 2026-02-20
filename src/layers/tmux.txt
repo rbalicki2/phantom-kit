@@ -1,6 +1,6 @@
-Tmux Layer (H from Normal, iTerm only)
+Tmux Layer (o from Normal, iTerm only)
 
 Sends Ctrl+A (tmux prefix) on entry
 
-Y/U/I/O/P = Tabs 1-5, Fn+Y/U/I/O/P = Tabs 6-10
-L = Split vertical (Cmd+D), Fn+L = Split horizontal
+u/i/c/d/w = Tabs 1-5, Fn = Tabs 6-10
+a = Split vertical (Cmd+D), Fn = Split horizontal

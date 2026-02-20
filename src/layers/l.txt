@@ -1,13 +1,13 @@
-L Layer (l from Normal)
+L Layer (a from Normal)
 
-H = plus, Fn+H = Cmd+plus
-N = equals, Fn+N = Cmd+equals
-Ctrl+H = Close (Cmd+W)
+o = plus, Fn = Cmd+plus
+h = equals, Fn = Cmd+equals
+Ctrl+o = Close (Cmd+W)
 Enter = Cmd+Enter
 
 Sub-layers (press, then a-z sends modifier+letter):
-Y = Cmd, Ctrl+Y = Ctrl+Cmd
-U = Ctrl, Ctrl+U = Ctrl+Alt
-I = Alt, Ctrl+I = Alt+Cmd
-O = Cmd+Ctrl+Alt
+u = Cmd, Ctrl = Ctrl+Cmd
+i = Ctrl, Ctrl = Ctrl+Alt
+c = Alt, Ctrl = Alt+Cmd
+d = Cmd+Ctrl+Alt
 Fn+key = modifier+mirrored LHS letter

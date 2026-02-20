@@ -1,15 +1,15 @@
-VS Code Layer (right_control+J, VS Code only)
+VS Code Layer (right_control+t, VS Code only)
 
-H = Copy relative path, Fn+H = Copy full path
-Ctrl+H = Copy rel path + open in Chrome (cc/isof)
-J = Cmd+D (go to definition), Fn+J = Cmd+. (quick fix)
-K = F2 (rename)
-L = Cmd+R (find references)
-I = Create 2nd tab, Fn+I = Move to next tab
-Fn+U = Move to prev tab
-O = Cmd+B (sidebar toggle)
-P = Ctrl+` (terminal toggle)
-Y = Cmd+P paste Enter (open from clipboard)
-Fn+Y = Copy + Cmd+P paste Enter (open file at cursor)
-, = Next error (stays)
-. = Find next (stays)
+o = Copy relative path, Fn = Copy full path
+Ctrl+o = Copy rel path + open in Chrome (cc/isof)
+t = Cmd+D (go to definition), Fn = Cmd+. (quick fix)
+e = F2 (rename)
+a = Cmd+R (find references)
+c = Create 2nd tab, Fn = Move to next tab
+Fn+i = Move to prev tab
+d = Cmd+B (sidebar toggle)
+w = Ctrl+` (terminal toggle)
+u = Cmd+P paste Enter (open from clipboard)
+Fn+u = Copy + Cmd+P paste Enter (open file at cursor)
+n = Next error (stays)
+r = Find next (stays)
