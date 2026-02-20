@@ -1,25 +1,24 @@
 In-App Nav (hk4 from Normal or Ins)
-Keys shown as: physical/AltIns
 
-j/t, k/e = Scroll down/up (hold), Fn = End/Home
-u/i, i/c = Back/Forward (stays)
-m/s, ,/n = Prev/Next tab (stays)
-y/u = Close tab, Shift = +prev tab, Fn = Reopen
-l/a = Address bar / Go to line -> Ins
-o/d = Open -> Ins
-./r = Refresh (stays), Fn = Super Refresh
+t/e = Scroll down/up (hold), Fn = End/Home
+i/c = Back/Forward (stays)
+s/n = Prev/Next tab (stays)
+u = Close tab, Shift = +prev tab, Fn = Reopen
+a = Address bar / Go to line -> Ins
+d = Open -> Ins
+r = Refresh (stays), Fn = Super Refresh
 Enter = Cmd+Enter -> Ins
 
-Chrome: h/o = Cmd+K, Fn = Tab search, Shift = History
-Chrome: n/h = New tab, Fn = New window
+Chrome: o = Cmd+K, Fn = Tab search, Shift = History
+Chrome: h = New tab, Fn = New window
 
-VS Code: h/o = Command palette, Fn = Quick open
-VS Code: n/h = New file, Fn = New window
+VS Code: o = Command palette, Fn = Quick open
+VS Code: h = New file, Fn = New window
 
-iTerm: n/h = Split pane, Fn = New tab
+iTerm: h = Split pane, Fn = New tab
 
-Default: h/o = Cmd+K, Fn = Cmd+P
-Default: n/h = Cmd+N, Fn = Cmd+Shift+N
+Default: o = Cmd+K, Fn = Cmd+P
+Default: h = Cmd+N, Fn = Cmd+Shift+N
 
 right_control = Exit to Normal
 HK4 = Go to Nav layer

@@ -1,10 +1,9 @@
-Admin Layer (i from Normal)
-Keys shown as: physical/AltIns
+Admin Layer (c from Normal)
 
 Space = Maximize
 Up = Left half, Down = Right half
 Enter = Switch windows (Cmd+`)
-p/w = Screenshot full, Ctrl+p = Screenshot selection
-l/a = LLM blurb paste
-m/s = Move window to next screen
-h/o = Hard restart Hammerspoon
+w = Screenshot full, Ctrl = Screenshot selection
+a = LLM blurb paste
+s = Move window to next screen
+o = Hard restart Hammerspoon
