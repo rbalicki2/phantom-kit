@@ -57,16 +57,19 @@ if [ "$WARPD" = "reset" ]; then
     (pkill warpd 2>/dev/null || true) &
 fi
 
+# Build command list and write once (avoid race conditions from parallel writes)
+COMMANDS=""
 if [ "$HOMEROW" = "reset" ]; then
-    (echo "dismiss_homerow" > /tmp/karabiner-command) &
+    COMMANDS="${COMMANDS}dismiss_homerow\n"
 fi
-
 if [ "$SCROLL_TIMER" = "reset" ]; then
-    (echo "scroll_stop" > /tmp/karabiner-command) &
+    COMMANDS="${COMMANDS}scroll_stop\n"
 fi
-
 if [ "$HOVER_MODE" = "reset" ]; then
-    (echo "hover_mode_stop" > /tmp/karabiner-command) &
+    COMMANDS="${COMMANDS}hover_mode_stop\n"
+fi
+if [ -n "$COMMANDS" ]; then
+    printf "$COMMANDS" >> /tmp/karabiner-command
 fi
 
 # All resets now use command file instead of hs -c to avoid IPC crashes
