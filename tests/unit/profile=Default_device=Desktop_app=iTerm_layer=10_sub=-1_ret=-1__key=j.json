@@ -11,7 +11,7 @@
     "key" : "j"
   },
   "matched_rule" : {
-    "id" : "R3129 [profile=Default:device=Desktop:dsk_layer=10] j → j (pass-through for scroll eventtap)",
+    "id" : "R3129 [profile=Default:device=Desktop:dsk_layer=10] j → scroll down",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 10,
@@ -19,11 +19,24 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "j"
+        "key" : "vk_none"
+      }, {
+        "shell" : "echo scroll_down > /tmp/karabiner-command"
       } ]
     },
     "held" : null,
-    "afterup" : null,
+    "afterup" : {
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "echo scroll_stop > /tmp/karabiner-command"
+      } ]
+    },
     "alone" : null
   }
 }
