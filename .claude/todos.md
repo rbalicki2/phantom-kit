@@ -129,3 +129,4 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Entry to Mouse mode from InApp Nav: Add shortcut in InApp mode (layer 10) to enter Mouse/Grid mode (layer 28)
 - Canonical key ordering: Consider other places where key-order.bb could be used (e.g., documentation generation, rule listing output)
 - SwiftBar Claude feedback indicator: Add separate SwiftBar plugin to show when any Claude session is waiting for user feedback. Should work across local and remote dev servers. Current overlay is transient; need persistent indicator.
+- Extend file-based command system: The scroll mode fix (eventtap-based) could be extended to other `hs -c` calls in the codebase. Currently ~26 `hs -c` calls remain in karabiner.edn templates. Low priority since these are not in hot paths like scrolling was.

@@ -11,32 +11,15 @@
     "key" : "k"
   },
   "matched_rule" : {
-    "id" : "R0359 [profile=Default:device=Desktop:dsk_layer=10] k → hammerspoon",
+    "id" : "R1289 [profile=Default:device=Desktop] k blocked",
     "to" : {
-      "resulting_state" : {
-        "dsk_layer" : 10,
-        "dsk_ins_sub_mode" : -1,
-        "dsk_return_to_layer" : -1
-      },
+      "resulting_state" : { },
       "actions" : [ {
         "key" : "vk_none"
-      }, {
-        "shell" : "/opt/homebrew/bin/hs -c 'scrollStart(30)'"
       } ]
     },
     "held" : null,
-    "afterup" : {
-      "resulting_state" : {
-        "dsk_layer" : 10,
-        "dsk_ins_sub_mode" : -1,
-        "dsk_return_to_layer" : -1
-      },
-      "actions" : [ {
-        "key" : "vk_none"
-      }, {
-        "shell" : "/opt/homebrew/bin/hs -c 'scrollStop()'"
-      } ]
-    },
+    "afterup" : null,
     "alone" : null
   }
 }
