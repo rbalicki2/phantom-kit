@@ -132,3 +132,5 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Extend file-based command system: InApp scroll now uses command file (/tmp/karabiner-command) instead of hs -c. Could extend to other hs -c calls. Currently ~26 calls remain in templates. Low priority since these are not in hot paths.
 - Hammerspoon robustness: Consider adding more pcall wrappers, syntax validation on config reload, or exploring typed alternatives (Fennel, etc.)
 - Grid mode broken: Shows a 2x2 grid instead of the expected grid. Something may have been misconfigured. Investigate warpd or Hammerspoon grid mode setup.
+- Admin mode: Fn+backslash (F20) causes weird/broken state. Investigate what rule matches and what state it leaves.
+- Switcher mode: switcher_cmd_down/up disabled because they post raw modifier events that interfere with Wispr Flow. Need alternative approach for holding cmd during app switching (layers 10-12).
