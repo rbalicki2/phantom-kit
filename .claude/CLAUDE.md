@@ -138,6 +138,17 @@ The user is using voice-to-text:
 timeout 2 /opt/homebrew/bin/hs -c 'someFunction()' 2>/dev/null || true
 ```
 
+**Hammerspoon is usually the culprit**: When keyboard shortcuts mysteriously stop working, ALWAYS suspect Hammerspoon first. It has complex state, side effects, and `hs.ipc` can interfere with system keyboard handling. Common symptoms:
+- Shortcuts work when Hammerspoon is not running, fail when it's running
+- Intermittent failures that seem timing-related
+- Keys being "swallowed" or not reaching applications
+
+Debug steps:
+1. Quit Hammerspoon and test if the issue persists
+2. Check if `hs.ipc` is interfering (comment it out temporarily)
+3. Check if poll timers or eventtaps are causing issues
+4. Look for `hs -c` calls in Karabiner rules that might hang
+
 ## On Startup
 
 Previous sessions sometimes leave things broken. Verify:

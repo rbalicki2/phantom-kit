@@ -100,7 +100,8 @@
       "Bash(brew install switchaudio-osx)",
       "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --help)",
       "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --list-system-variables)",
-      "Bash(log show --predicate 'subsystem == \"\"\"\"org.hammerspoon.Hammerspoon\"\"\"\"' --last 2m)"
+      "Bash(log show --predicate 'subsystem == \"\"\"\"org.hammerspoon.Hammerspoon\"\"\"\"' --last 2m)",
+      "Bash(/opt/homebrew/bin/luac:*)"
     ]
   }
 }

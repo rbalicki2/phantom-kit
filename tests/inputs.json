@@ -49,6 +49,7 @@
     {"key": "f16", "modifiers": {"left_option": true}, "comment": "Fn+page_down"},
     {"key": "f17", "modifiers": {"left_option": true}, "comment": "Fn+enter"},
     {"key": "f18", "modifiers": {"left_option": true, "left_control": true}, "comment": "Fn+space"},
+    {"key": "f18", "modifiers": {"left_shift": true, "left_option": true, "left_control": true}, "comment": "Wispr popo"},
     {"key": "f19", "modifiers": {"left_option": true}, "comment": "HK3"},
     {"key": "f20", "modifiers": {"left_option": true}, "comment": "HK4"},
     {"key": "f19", "modifiers": {"left_option": true, "left_shift": true}, "comment": "Fn+HK3"},
