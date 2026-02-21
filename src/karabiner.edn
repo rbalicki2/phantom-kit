@@ -591,6 +591,7 @@
    [{:key :hyphen, :modi {:mandatory [:shift]}, :id "R3126 [profile=Default:device=Desktop:dsk_layer=7] Shift+- → _"} [:!Shyphen ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :y, :modi {:optional [:caps_lock]}, :id "R2000 [profile=Default:device=Desktop:dsk_layer=7] y → u"} [:u ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :y, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2040 [profile=Default:device=Desktop:dsk_layer=7] Shift+y → U"} [:!Su ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
+   [{:key :y, :modi {:mandatory [:left_control]}, :id "R3132 [profile=Default:device=Desktop:dsk_layer=7] Ctrl+y passthrough"} [:!Ty ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :u, :modi {:optional [:caps_lock]}, :id "R2001 [profile=Default:device=Desktop:dsk_layer=7] u → i"} [:i ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :u, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R2041 [profile=Default:device=Desktop:dsk_layer=7] Shift+u → I"} [:!Si ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
    [{:key :i, :modi {:optional [:caps_lock]}, :id "R2002 [profile=Default:device=Desktop:dsk_layer=7] i → c"} [:c ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7]]]
