@@ -12,15 +12,15 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : "R0183 [profile=Default:device=Desktop:dsk_layer=1] ' → '",
+    "id" : "R0183 [profile=Default:device=Desktop:dsk_layer=1] ' → AltIns + Escape",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 1,
+        "dsk_layer" : 7,
         "dsk_ins_sub_mode" : 0,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "quote"
+        "key" : "escape"
       } ]
     },
     "held" : null,

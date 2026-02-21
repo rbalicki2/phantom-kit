@@ -7,4 +7,5 @@ n → Comma layer
 a → L layer
 i → Term layer
 o → Chrome/VSCode/TMUX (app-specific)
+' → AltIns + Escape
 right_ctrl → send escape
