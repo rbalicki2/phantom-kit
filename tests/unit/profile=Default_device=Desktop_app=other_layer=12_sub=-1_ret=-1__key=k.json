@@ -11,7 +11,7 @@
     "key" : "k"
   },
   "matched_rule" : {
-    "id" : "R0395 [profile=Default:device=Desktop:dsk_layer=12] k → osascript",
+    "id" : "R0395 [profile=Default:device=Desktop:dsk_layer=12] k → prev window",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 12,
@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "osascript -e 'tell app \"System Events\" to keystroke \"`\" using shift down'"
+        "shell" : "echo switcher_prev_window >> /tmp/karabiner-command"
       } ]
     },
     "held" : null,

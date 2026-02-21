@@ -22,7 +22,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke \"`\"' && echo winsw > /tmp/karabiner-layer"
+        "shell" : "echo switcher_cmd_down >> /tmp/karabiner-command && echo switcher_next_window >> /tmp/karabiner-command && echo winsw > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

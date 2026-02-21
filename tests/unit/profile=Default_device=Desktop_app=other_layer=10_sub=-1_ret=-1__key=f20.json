@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "osascript -e 'tell app \"System Events\" to key down command' -e 'tell app \"System Events\" to keystroke tab' && echo appsw > /tmp/karabiner-layer"
+        "shell" : "echo switcher_cmd_down >> /tmp/karabiner-command && echo switcher_next_app >> /tmp/karabiner-command && echo appsw > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

@@ -11,7 +11,7 @@
     "key" : "j"
   },
   "matched_rule" : {
-    "id" : "R0394 [profile=Default:device=Desktop:dsk_layer=12] j → osascript",
+    "id" : "R0394 [profile=Default:device=Desktop:dsk_layer=12] j → next window",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 12,
@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "osascript -e 'tell app \"System Events\" to keystroke \"`\"'"
+        "shell" : "echo switcher_next_window >> /tmp/karabiner-command"
       } ]
     },
     "held" : null,
