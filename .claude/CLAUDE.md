@@ -14,6 +14,13 @@ Unit tests run automatically on sync and catch regressions. If tests fail:
 1. Fix the unintended change, OR
 2. Regenerate tests if the change was intentional: `bb scripts/test/generate-tests.bb`
 
+**CRITICAL: Review every snapshot test change.** When regenerating tests, you MUST review what changed. The test diff shows exactly what behavior changed - don't blindly regenerate. For each changed test file:
+- Understand WHY the behavior changed
+- Verify it matches the user's intent
+- Watch for unintended side effects (e.g., a modifier passthrough that suddenly gets blocked)
+
+Exception: During massive refactors that intentionally change hundreds of rules, a full review isn't practical. But for normal changes, every test diff matters.
+
 **Before making ANY change:**
 1. TRACE through exactly what will happen
 2. Consider ALL places the affected keys/variables are used
