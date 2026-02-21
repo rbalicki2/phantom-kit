@@ -68,6 +68,8 @@ fi
 if [ "$HOVER_MODE" = "reset" ]; then
     COMMANDS="${COMMANDS}hover_mode_stop\n"
 fi
+# Always release any stuck Cmd key (from switcher mode)
+COMMANDS="${COMMANDS}switcher_cmd_up\n"
 if [ -n "$COMMANDS" ]; then
     printf "$COMMANDS" >> /tmp/karabiner-command
 fi
