@@ -101,7 +101,9 @@
       "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --help)",
       "Bash('/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --list-system-variables)",
       "Bash(log show --predicate 'subsystem == \"\"\"\"org.hammerspoon.Hammerspoon\"\"\"\"' --last 2m)",
-      "Bash(/opt/homebrew/bin/luac:*)"
+      "Bash(/opt/homebrew/bin/luac:*)",
+      "Bash(sqlite3 \"/Users/rbalicki/Library/Application Support/Wispr Flow/flow.sqlite\" \".tables\")",
+      "Bash(strings \"/Users/rbalicki/Library/Application Support/Wispr Flow/Local Storage/leveldb/\"* 2>/dev/null)"
     ]
   }
 }
