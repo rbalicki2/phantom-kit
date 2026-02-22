@@ -11,7 +11,7 @@
     "key" : "right_control"
   },
   "matched_rule" : {
-    "id" : "R1278 [profile=Default:device=Desktop] RCtrl blocked",
+    "id" : "R1278 [profile=Default:device=Desktop] RCtrl → Normal",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -20,6 +20,8 @@
       },
       "actions" : [ {
         "key" : "vk_none"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
