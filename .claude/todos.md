@@ -134,3 +134,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Grid mode broken: Shows a 2x2 grid instead of the expected grid. Something may have been misconfigured. Investigate warpd or Hammerspoon grid mode setup.
 - Admin mode: Fn+backslash (F20) causes weird/broken state. Investigate what rule matches and what state it leaves.
 - Switcher mode: switcher_cmd_down/up disabled because they post raw modifier events that interfere with Wispr Flow. Need alternative approach for holding cmd during app switching (layers 10-12).
+- InApp Nav Mode numbers: Add Cmd+0 through Cmd+9 for direct tab switching (0-9 keys → Cmd+0 through Cmd+9)
+- Number key ordering: Numbers are reversed from natural order in some layer - investigate and fix
+- Consolidate tab navigation into InApp Nav Mode: Move tab changing shortcuts from Tmux Mode (layer 5) and Chrome Mode (layer 3) into InApp Nav Mode (layer 10) for consistency
+- Zoom in/out in InApp Mode: Add Cmd+Plus/Cmd+Minus zoom shortcuts to InApp Nav Mode (layer 10) - these are universal across most apps
