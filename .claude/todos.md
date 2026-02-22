@@ -138,3 +138,10 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Number key ordering: Numbers are reversed from natural order in some layer - investigate and fix
 - Consolidate tab navigation into InApp Nav Mode: Move tab changing shortcuts from Tmux Mode (layer 5) and Chrome Mode (layer 3) into InApp Nav Mode (layer 10) for consistency
 - Zoom in/out in InApp Mode: Add Cmd+Plus/Cmd+Minus zoom shortcuts to InApp Nav Mode (layer 10) - these are universal across most apps
+- Hammerspoon reliability audit: Hammerspoon is a persistent source of problems (stuck borders, broken shortcuts, hanging hs -c calls). Audit for:
+  - All hs -c calls that might hang (wrap in timeout)
+  - Border state getting out of sync with layer state
+  - Event tap interference with keyboard handling
+  - hs.ipc side effects
+  - Poll timers causing issues
+  Consider reducing Hammerspoon's role or adding defensive code (pcall wrappers, state validation on reload)
