@@ -11,7 +11,7 @@
     "key" : "right_control"
   },
   "matched_rule" : {
-    "id" : "R3071 [profile=Default:device=Desktop:dsk_layer=12] RCtrl → key up Cmd, Normal",
+    "id" : "R3071 [profile=Default:device=Desktop:dsk_layer=12] RCtrl → Normal",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "echo switcher_cmd_up >> /tmp/karabiner-command && /Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
