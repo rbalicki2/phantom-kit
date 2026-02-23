@@ -139,6 +139,10 @@ If work is interrupted or incomplete, document it here so future sessions can co
 - Consolidate tab navigation into InApp Nav Mode: Move tab changing shortcuts from Tmux Mode (layer 5) and Chrome Mode (layer 3) into InApp Nav Mode (layer 10) for consistency
 - Zoom in/out in InApp Mode: Add Cmd+Plus/Cmd+Minus zoom shortcuts to InApp Nav Mode (layer 10) - these are universal across most apps
 - [DONE] Hammerspoon reliability refactor: Modular architecture implemented with state.lua (single source of truth), deps.lua (DI for testing), ui.lua, commands.lua, tests.lua. Key improvements: centralized state, validation, pcall everywhere, proper cleanup on reload.
+- End Dictation mode for Wispr Flow: Need a shortcut to stop dictating and foreground a configurable terminal/tmux pane. Unsolved problems:
+  - How to store/read the target config (file? environment var? Hammerspoon global?)
+  - How to target a specific tmux pane (by name? by index? by some marker?)
+  - Should this be a Karabiner rule or a Hammerspoon command?
 - Hammerspoon remaining work:
   - Add more unit tests (edge cases, error conditions)
   - Consider reducing hs.ipc usage (known to cause hangs)
