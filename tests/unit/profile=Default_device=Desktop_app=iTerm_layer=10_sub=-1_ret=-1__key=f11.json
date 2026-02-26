@@ -11,7 +11,7 @@
     "key" : "f11"
   },
   "matched_rule" : {
-    "id" : "R3157 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+0 → Ctrl+A 0 (pane 0)",
+    "id" : "R3157 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+0 → Ctrl+A ' 10 Enter (window 10)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 10,
@@ -22,7 +22,13 @@
         "key" : "a",
         "left_control" : true
       }, {
+        "key" : "quote"
+      }, {
+        "key" : "1"
+      }, {
         "key" : "0"
+      }, {
+        "key" : "return_or_enter"
       } ]
     },
     "held" : null,

@@ -718,7 +718,7 @@
    [{:key :f8, :id "R3154 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+7 → Ctrl+A 7 (pane 7)"} [:!Ta :7 ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 10]]]
    [{:key :f9, :id "R3155 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+8 → Ctrl+A 8 (pane 8)"} [:!Ta :8 ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 10]]]
    [{:key :f10, :id "R3156 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+9 → Ctrl+A 9 (pane 9)"} [:!Ta :9 ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 10]]]
-   [{:key :f11, :id "R3157 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+0 → Ctrl+A 0 (pane 0)"} [:!Ta :0 ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 10]]]
+   [{:key :f11, :id "R3157 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+0 → Ctrl+A ' 10 Enter (window 10)"} [:!Ta :quote :1 :0 :return_or_enter ["dsk_layer" 10] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] [["dsk_layer" 10]]]
    [{:key :f4, :modi {:mandatory [:left_option]}, :id "R0384 [profile=Default:device=Desktop:dsk_layer=10] LOpt+f4 → Cmd+t, Ins"} [:!Ct ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer "}] [["dsk_layer" 10]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 10]]"
