@@ -11,18 +11,11 @@
     "key" : "u"
   },
   "matched_rule" : {
-    "id" : "R0297 [profile=Default:device=Desktop:dsk_layer=3] u → Cmd+2, Normal",
+    "id" : "R1299 [profile=Default:device=Desktop] u blocked",
     "to" : {
-      "resulting_state" : {
-        "dsk_layer" : 0,
-        "dsk_ins_sub_mode" : -1,
-        "dsk_return_to_layer" : -1
-      },
+      "resulting_state" : { },
       "actions" : [ {
-        "key" : "2",
-        "left_command" : true
-      }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
+        "key" : "vk_none"
       } ]
     },
     "held" : null,

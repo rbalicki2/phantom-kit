@@ -11,18 +11,11 @@
     "key" : "f16"
   },
   "matched_rule" : {
-    "id" : "R0350 [profile=Default:device=Desktop:dsk_layer=5] Fn+U → Shift+7, AltIns",
+    "id" : "R1354 [profile=Default:device=Desktop] Fn+U blocked",
     "to" : {
-      "resulting_state" : {
-        "dsk_layer" : 7,
-        "dsk_ins_sub_mode" : 0,
-        "dsk_return_to_layer" : -1
-      },
+      "resulting_state" : { },
       "actions" : [ {
-        "key" : "7",
-        "left_shift" : true
-      }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"
+        "key" : "vk_none"
       } ]
     },
     "held" : null,

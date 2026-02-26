@@ -11,18 +11,11 @@
     "key" : "i"
   },
   "matched_rule" : {
-    "id" : "R0346 [profile=Default:device=Desktop:dsk_layer=5] i → Shift+3, AltIns",
+    "id" : "R1287 [profile=Default:device=Desktop] i blocked",
     "to" : {
-      "resulting_state" : {
-        "dsk_layer" : 7,
-        "dsk_ins_sub_mode" : 0,
-        "dsk_return_to_layer" : -1
-      },
+      "resulting_state" : { },
       "actions" : [ {
-        "key" : "3",
-        "left_shift" : true
-      }, {
-        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"
+        "key" : "vk_none"
       } ]
     },
     "held" : null,
