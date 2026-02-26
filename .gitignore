@@ -1,1 +1,4 @@
+# Old plans folder (deprecated)
 .claude/plans/
+# current-plan.md is a working file
+.claude/current-plan.md

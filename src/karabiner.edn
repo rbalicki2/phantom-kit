@@ -694,8 +694,8 @@
    [{:key :f24, :id "R0330 [profile=Default:device=Desktop:dsk_layer=8] Fn+K types 'git diff HEAD'"} [:type-enter-ins "git diff HEAD" ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f1, :modi {:mandatory [:left_option]}, :id "R0333 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f1 → Ins"} [[:type-enter-ins "git commit -am wip --no-verify"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
    [{:key :f4, :modi {:mandatory [:left_option]}, :id "R0335 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f4 → Ins"} [[:type-enter-ins "grhh"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f5, :modi {:mandatory [:left_option]}, :id "R0337 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f5 → Ins"} [[:type-enter-ins "gcmp --no-verify"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
-   [{:key :f6, :modi {:mandatory [:left_option]}, :id "R0339 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f6 → Ins"} [[:type-enter-ins "git stash pop"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]]}
+   [{:key :f6, :modi {:mandatory [:left_option]}, :id "R0339 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f6 → Ins"} [[:type-enter-ins "git stash pop"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]
+   [{:key :f5, :modi {:mandatory [:left_option]}, :id "R0337 [profile=Default:device=Desktop:dsk_layer=8] LOpt+f5 → Ins"} [[:type-enter-ins "gcmp"] ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 8]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 9]]"
  :rules [:!apple_internal

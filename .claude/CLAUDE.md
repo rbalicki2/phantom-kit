@@ -192,11 +192,35 @@ cd ~/.config && git add -A && git commit -m "message"
 
 To reload Hammerspoon: `npm run hs`
 
-## Task Tracking
+## Task Tracking & Refactors
 
-Keep `.claude/current-plan.md` updated with active tasks. Remove completed tasks from the list - do not mark them as "completed this session". The file should only contain pending and in-progress work.
+### Folder Structure
 
-**Task descriptions must be detailed enough for a new session with no context to complete the task.** Don't use one-line summaries. Include relevant rule IDs, key mappings, expected behavior, and what was already tried. For complex tasks, point to other documentation files.
+```
+.claude/refactor/
+├── pending/           # Active work
+│   ├── todos.md       # General todo list
+│   └── *.md           # Detailed plans for specific refactors
+└── past/              # Completed refactors (for reference)
+    └── *.md           # Archived plans
+```
+
+### Workflow
+
+1. **New refactor**: Create a detailed plan in `.claude/refactor/pending/`
+2. **Implementation**: Follow the plan step by step, verify at each stage
+3. **Completion**: Move the plan to `.claude/refactor/past/`
+
+### Plan Requirements
+
+Plans must include:
+- **Goal**: What we're trying to achieve
+- **Current state**: Relevant existing rules/behavior
+- **Implementation steps**: Exact commands to run
+- **Verification**: How to check each stage worked
+- **Expected test changes**: What should change vs. what would be surprising
+
+**Task descriptions must be detailed enough for a new session with no context to complete the task.** Include relevant rule IDs, key mappings, expected behavior, and what was already tried.
 
 ## When Adding a New Layer
 
