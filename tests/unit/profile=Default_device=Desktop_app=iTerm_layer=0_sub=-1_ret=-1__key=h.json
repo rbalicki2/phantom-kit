@@ -19,8 +19,7 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "a",
-        "left_control" : true
+        "key" : "vk_none"
       }, {
         "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo tmux > /tmp/karabiner-layer"
       } ]
