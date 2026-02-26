@@ -12,11 +12,24 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : "R1313 [profile=Default:device=Desktop] 9 blocked",
+    "id" : "R3164 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Shift+9 → window 14",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "a",
+        "left_control" : true
+      }, {
+        "key" : "quote"
+      }, {
+        "key" : "1"
+      }, {
+        "key" : "4"
+      }, {
+        "key" : "return_or_enter"
       } ]
     },
     "held" : null,
