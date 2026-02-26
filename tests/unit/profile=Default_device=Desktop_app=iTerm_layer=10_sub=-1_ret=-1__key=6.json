@@ -11,11 +11,18 @@
     "key" : "6"
   },
   "matched_rule" : {
-    "id" : "R1310 [profile=Default:device=Desktop] 6 blocked",
+    "id" : "R3148 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] 6 → Ctrl+A 1 (pane 1)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "a",
+        "left_control" : true
+      }, {
+        "key" : "1"
       } ]
     },
     "held" : null,

@@ -11,11 +11,16 @@
     "key" : "f9"
   },
   "matched_rule" : {
-    "id" : "R1347 [profile=Default:device=Desktop] f9 blocked",
+    "id" : "R3145 [profile=Default:device=Desktop:dsk_layer=10] Fn+8 → Cmd+8 (tab 8)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "8",
+        "left_command" : true
       } ]
     },
     "held" : null,

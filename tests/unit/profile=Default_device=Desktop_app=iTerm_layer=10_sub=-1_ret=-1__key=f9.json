@@ -11,11 +11,18 @@
     "key" : "f9"
   },
   "matched_rule" : {
-    "id" : "R1347 [profile=Default:device=Desktop] f9 blocked",
+    "id" : "R3155 [profile=Default:device=Desktop:dsk_layer=10:app=iTerm] Fn+8 → Ctrl+A 8 (pane 8)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "a",
+        "left_control" : true
+      }, {
+        "key" : "8"
       } ]
     },
     "held" : null,

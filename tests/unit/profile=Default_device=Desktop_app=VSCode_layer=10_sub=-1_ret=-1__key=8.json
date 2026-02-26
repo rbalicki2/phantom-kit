@@ -11,11 +11,16 @@
     "key" : "8"
   },
   "matched_rule" : {
-    "id" : "R1312 [profile=Default:device=Desktop] 8 blocked",
+    "id" : "R3140 [profile=Default:device=Desktop:dsk_layer=10] 8 → Cmd+3 (tab 3)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "3",
+        "left_command" : true
       } ]
     },
     "held" : null,

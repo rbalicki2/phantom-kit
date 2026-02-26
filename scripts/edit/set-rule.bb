@@ -2,14 +2,20 @@
 ;; Set a rule by ID (delete existing, then add)
 ;;
 ;; Usage:
-;;   bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber]
+;;   bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber] [--app <app>]
 ;;
 ;; Options:
 ;;   --no-clobber  Fail if a rule with this ID already exists (prevents overwrites)
+;;   --app <app>   Place rule in app-specific block (e.g., --app iTerm, --app Chrome)
 ;;
 ;; Example:
 ;;   cat << 'EOFR' | bb set-rule.bb src/karabiner.edn R1515 -
 ;;   [{:key :!Of9, :id "R1515 [profile=Default:device=Desktop:layer=1:submode=2]"} [:!Sgrave] [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]]
+;;   EOFR
+;;
+;;   # Add rule to iTerm-specific block:
+;;   cat << 'EOFR' | bb set-rule.bb src/karabiner.edn R1516 - --app iTerm
+;;   [{:key :6, :id "R1516 [...]"} [:!S1] [["dsk_layer" 10]]]
 ;;   EOFR
 ;;
 ;; Validates:
@@ -101,22 +107,26 @@
       (update config :main conj {:des des-pattern
                                  :rules [:!apple_internal rule]}))))
 
-(defn infer-des-from-condition [rule]
-  "Infer the :des pattern from a rule's condition"
+(defn infer-des-from-condition [rule app]
+  "Infer the :des pattern from a rule's condition and optional app"
   (when (vector? rule)
-    (let [condition (when (> (count rule) 2) (nth rule 2))]
-      (cond
-        ;; Array of conditions like [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]
-        (and (vector? condition) (every? vector? condition))
-        (str "Desktop " (pr-str condition))
+    (let [condition (when (> (count rule) 2) (nth rule 2))
+          base-des (cond
+                     ;; Array of conditions like [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]
+                     (and (vector? condition) (every? vector? condition))
+                     (str "Desktop " (pr-str condition))
 
-        ;; Single condition (shouldn't happen but handle it)
-        (vector? condition)
-        (str "Desktop " (pr-str [condition]))
+                     ;; Single condition (shouldn't happen but handle it)
+                     (vector? condition)
+                     (str "Desktop " (pr-str [condition]))
 
-        ;; No condition - global block
-        :else
-        "Desktop []"))))
+                     ;; No condition - global block
+                     :else
+                     "Desktop []")]
+      ;; Append app name if specified
+      (if app
+        (str base-des " " app)
+        base-des))))
 
 ;; ============================================================================
 ;; Validation Functions
@@ -254,16 +264,32 @@
       (validate-id-matches-conditions rule target-id)
       (validate-complete-state-transition rule)))
 
+(defn parse-app-flag [args]
+  "Extract --app value from args. Returns [app-value remaining-args]"
+  (loop [remaining args
+         result []]
+    (if (empty? remaining)
+      [nil (vec result)]
+      (let [[first-arg & rest-args] remaining]
+        (if (= first-arg "--app")
+          (if (seq rest-args)
+            [(first rest-args) (vec (concat result (rest rest-args)))]
+            [nil (vec result)])
+          (recur rest-args (conj result first-arg)))))))
+
 (defn -main [& args]
   (let [;; Parse args - check for --no-clobber anywhere in args
         no-clobber (some #{"--no-clobber"} args)
-        ;; Remove flag from args to get positional args
-        positional-args (remove #{"--no-clobber"} args)
+        ;; Remove --no-clobber flag from args
+        args-without-clobber (remove #{"--no-clobber"} args)
+        ;; Parse --app flag
+        [app-name positional-args] (parse-app-flag args-without-clobber)
         [edn-file target-id rule-source] positional-args]
     (when (or (nil? edn-file) (nil? target-id))
-      (println "Usage: bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber]")
+      (println "Usage: bb set-rule.bb <edn-file> <rule-id> [<rule-file> | -] [--no-clobber] [--app <app>]")
       (println "  Use '-' to read rule from stdin")
       (println "  --no-clobber: fail if rule ID already exists (prevents accidental overwrites)")
+      (println "  --app <app>: place rule in app-specific block (e.g., iTerm, Chrome)")
       (println "Example:")
       (println "  echo '[{:key :!Of9} [:output] [[\"dsk_layer\" 1]]]' | bb set-rule.bb src/karabiner.edn R1515 -")
       (System/exit 1))
@@ -290,7 +316,7 @@
               (println (str "Existing rule ID: " existing-full-id))
               (System/exit 1))))
 
-        (let [des-pattern (infer-des-from-condition rule)
+        (let [des-pattern (infer-des-from-condition rule app-name)
 
               ;; Remove existing rule with this ID
               config-without (remove-rule-by-id config target-id)
