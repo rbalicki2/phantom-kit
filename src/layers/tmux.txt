@@ -1,5 +1,8 @@
 Tmux Layer (h from Normal, iTerm only)
-
-j = Prev window (Ctrl+A p)
-k = Next window (Ctrl+A n)
-l = Split vertical (Cmd+D)
++-----+-----------------------------+
+| key |           action            |
++-----+-----------------------------+
+|  t  | Prev window (Ctrl+A p)      |
+|  e  | Next window (Ctrl+A n)      |
+|  a  | Split vertical (Cmd+D)      |
++-----+-----------------------------+
