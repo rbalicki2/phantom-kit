@@ -1,293 +1,507 @@
-# Hammerspoon Reliability Improvement Plan
+# Hammerspoon Reliability Refactor
+
+## Goal
+
+Replace unreliable `hs.ipc` with Unix domain sockets and add type-safe message passing using discriminated unions (ADTs).
 
 ## Current Problems
 
-1. **Frequent crashes/freezes** - "Hammerspoon dies like 20 times a day"
-2. **Stale overlay** - When entering git mode, shows previous layer's overlay instead of current
-3. **First character cut off in git mode** - Related to timing between focus and typing
+1. **Frequent crashes/freezes** - `hs.ipc` hangs, blocking Karabiner shell commands
+2. **Stringly-typed commands** - No validation, typos silently fail
+3. **Scattered state** - Hard to reason about what states are valid
 
-## Architecture Overview
+## Architecture
 
-### Current Module Structure
+### Communication: Unix Domain Sockets
 
 ```
-~/.hammerspoon/
-├── init.lua        # Entry point, global function exports
-├── state.lua       # State management (layer, overlay, scroll, hover)
-├── deps.lua        # Dependency injection wrapper for HS APIs
-├── commands.lua    # Command handlers (scroll, click, etc.)
-├── ui.lua          # Visual elements (borders, overlays)
-└── tests.lua       # Unit tests
+Karabiner Rule → Shell Command → Socket → Hammerspoon
+                 echo '{"t":"scroll","stop":true}' | nc -U /tmp/hs.sock
 ```
 
-### State Flow
+**Why sockets over files:**
+- Instant delivery (no polling delay)
+- No file cleanup needed
+- Proper message queueing
+- Connection-oriented (know if Hammerspoon is alive)
 
-1. **Karabiner** writes to `/tmp/karabiner-layer` (e.g., "term", "norm", "ins")
-2. **Poll timer** (every 100ms) reads the file and compares to current state
-3. **State change** triggers UI updates (border color, brief overlay)
+**Why sockets over hs.ipc:**
+- Simple protocol (JSON over Unix socket)
+- Shell-native (`nc` or `socat`)
+- No IPC module complexity/instability
 
-### Key Components
+### Type Safety: Discriminated Unions in Lua
 
-#### Poll Timer (init.lua:64-79)
+Lua lacks native ADTs, but we can encode them as tables with a discriminant field and strict validation.
+
+#### Message Schema
+
+All messages are JSON objects with a `t` (type) field as discriminant:
+
+```typescript
+// TypeScript notation for documentation
+type Message =
+  | { t: "scroll", action: "start", dir: "up" | "down" }
+  | { t: "scroll", action: "stop" }
+  | { t: "click", variant: "left" | "right" | "double" | "shift" | "cmd" | "cmd_shift" }
+  | { t: "label_click", variant: "right" | "double" | "shift" | "cmd" | "cmd_shift" }
+  | { t: "overlay", action: "show", mode: "layer" | "permanent" }
+  | { t: "overlay", action: "hide" }
+  | { t: "overlay", action: "toggle" }
+  | { t: "hover", action: "start" | "stop" | "enter" }
+  | { t: "homerow", action: "dismiss" }
+  | { t: "lmode", key: string }
+  | { t: "window", action: "next_screen" | "arrange_debug" }
+  | { t: "chrome", action: "tab", index: number }
+  | { t: "chrome", action: "last_tab" }
+  | { t: "chrome", action: "focus_profile", profile: "personal" | "work" }
+  | { t: "switcher", action: "next_app" | "prev_app" | "next_window" | "prev_window" }
+  | { t: "system", action: "reload" }
+```
+
+#### Lua Validation Module
+
 ```lua
-local pollTimer = deps.doEvery(0.1, function()
-    -- Check for layer changes
-    local newLayer = commands.readLayerFromFile()
-    if newLayer and newLayer ~= "" then
-        local currentLayer = state.getCurrentLayer()
-        if newLayer ~= currentLayer then
-            state.setLayer(newLayer)
-        end
+-- schema.lua: Message validation with exhaustive pattern matching
+
+local M = {}
+
+-- Enum definitions (closed sets of valid values)
+M.ScrollDir = { up = "up", down = "down" }
+M.ClickVariant = { left = "left", right = "right", double = "double", shift = "shift", cmd = "cmd", cmd_shift = "cmd_shift" }
+M.LabelClickVariant = { right = "right", double = "double", shift = "shift", cmd = "cmd", cmd_shift = "cmd_shift" }
+M.OverlayMode = { layer = "layer", permanent = "permanent" }
+M.OverlayAction = { show = "show", hide = "hide", toggle = "toggle" }
+M.HoverAction = { start = "start", stop = "stop", enter = "enter" }
+M.WindowAction = { next_screen = "next_screen", arrange_debug = "arrange_debug" }
+M.ChromeProfile = { personal = "personal", work = "work" }
+M.SwitcherAction = { next_app = "next_app", prev_app = "prev_app", next_window = "next_window", prev_window = "prev_window" }
+
+-- Helper: assert value is in enum
+local function assertEnum(value, enum, name)
+    if not enum[value] then
+        local valid = {}
+        for k in pairs(enum) do table.insert(valid, k) end
+        error(string.format("Invalid %s: %q. Valid: %s", name, tostring(value), table.concat(valid, ", ")))
     end
-    -- Check scroll flags
-    commands.checkScrollFlags()
-    -- Process command file
-    commands.processCommandFile()
-end)
-```
+    return value
+end
 
-#### hs.ipc (init.lua:15)
-```lua
-require("hs.ipc")
-```
-This is required for Karabiner's `hs -c 'function()'` calls to work.
+-- Helper: assert field exists and has type
+local function assertField(msg, field, expectedType)
+    local value = msg[field]
+    if value == nil then
+        error(string.format("Missing required field: %s", field))
+    end
+    if type(value) ~= expectedType then
+        error(string.format("Field %s must be %s, got %s", field, expectedType, type(value)))
+    end
+    return value
+end
 
-## Root Cause Analysis
+-- Validate and normalize a message (returns validated copy or throws)
+function M.validate(msg)
+    if type(msg) ~= "table" then
+        error("Message must be a table, got " .. type(msg))
+    end
 
-### Problem 1: Frequent Crashes
+    local t = assertField(msg, "t", "string")
 
-**Likely causes:**
-- `hs.ipc` instability - known to cause hangs
-- Timer callbacks throwing errors and not being caught properly
-- Canvas objects not being cleaned up (memory leaks)
-- JXA/AppleScript calls blocking the main thread
+    -- Exhaustive match on message type
+    if t == "scroll" then
+        local action = assertField(msg, "action", "string")
+        if action == "start" then
+            return { t = "scroll", action = "start", dir = assertEnum(msg.dir, M.ScrollDir, "dir") }
+        elseif action == "stop" then
+            return { t = "scroll", action = "stop" }
+        else
+            error("scroll action must be 'start' or 'stop', got: " .. action)
+        end
 
-**Evidence:**
-- CLAUDE.md explicitly warns: "Note: hs.ipc can cause issues - if you experience hangs, try commenting this out"
-- Scripts call `hs -c '...'` which uses hs.ipc
+    elseif t == "click" then
+        return { t = "click", variant = assertEnum(assertField(msg, "variant", "string"), M.ClickVariant, "variant") }
 
-### Problem 2: Stale Overlay
+    elseif t == "label_click" then
+        return { t = "label_click", variant = assertEnum(assertField(msg, "variant", "string"), M.LabelClickVariant, "variant") }
 
-**Root cause:** 100ms poll interval is too slow. When entering git mode:
-1. Karabiner rule writes "term" to `/tmp/karabiner-layer`
-2. User immediately presses a git command key
-3. The type-ins template executes before poll timer reads the new layer
-4. Overlay shows old layer because state hasn't updated yet
+    elseif t == "overlay" then
+        local action = assertField(msg, "action", "string")
+        if action == "show" then
+            return { t = "overlay", action = "show", mode = assertEnum(assertField(msg, "mode", "string"), M.OverlayMode, "mode") }
+        elseif action == "hide" then
+            return { t = "overlay", action = "hide" }
+        elseif action == "toggle" then
+            return { t = "overlay", action = "toggle" }
+        else
+            error("overlay action must be 'show', 'hide', or 'toggle', got: " .. action)
+        end
 
-### Problem 3: First Character Cut Off
+    elseif t == "hover" then
+        return { t = "hover", action = assertEnum(assertField(msg, "action", "string"), M.HoverAction, "action") }
 
-**Root cause:** The templates type characters immediately without waiting for focus:
-```
-:type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer"
-```
+    elseif t == "homerow" then
+        local action = assertField(msg, "action", "string")
+        if action ~= "dismiss" then
+            error("homerow action must be 'dismiss', got: " .. action)
+        end
+        return { t = "homerow", action = "dismiss" }
 
-When iTerm isn't fully focused, the first keystroke is lost.
+    elseif t == "lmode" then
+        local key = assertField(msg, "key", "string")
+        if #key ~= 1 then
+            error("lmode key must be single character, got: " .. key)
+        end
+        return { t = "lmode", key = key }
 
-## Improvement Plan
+    elseif t == "window" then
+        return { t = "window", action = assertEnum(assertField(msg, "action", "string"), M.WindowAction, "action") }
 
-### Phase 1: Reduce hs.ipc Dependency (Priority: HIGH)
+    elseif t == "chrome" then
+        local action = assertField(msg, "action", "string")
+        if action == "tab" then
+            local index = assertField(msg, "index", "number")
+            if index < 1 or index ~= math.floor(index) then
+                error("chrome tab index must be positive integer, got: " .. index)
+            end
+            return { t = "chrome", action = "tab", index = index }
+        elseif action == "last_tab" then
+            return { t = "chrome", action = "last_tab" }
+        elseif action == "focus_profile" then
+            return { t = "chrome", action = "focus_profile", profile = assertEnum(assertField(msg, "profile", "string"), M.ChromeProfile, "profile") }
+        else
+            error("chrome action must be 'tab', 'last_tab', or 'focus_profile', got: " .. action)
+        end
 
-**Goal:** Minimize `hs -c` calls to reduce crash surface area.
+    elseif t == "switcher" then
+        return { t = "switcher", action = assertEnum(assertField(msg, "action", "string"), M.SwitcherAction, "action") }
 
-**Current state:**
-```bash
-# Multiple scripts call hs -c directly
-/opt/homebrew/bin/hs -c 'showLayerOverlay()' &
-```
+    elseif t == "system" then
+        local action = assertField(msg, "action", "string")
+        if action ~= "reload" then
+            error("system action must be 'reload', got: " .. action)
+        end
+        return { t = "system", action = "reload" }
 
-**After:**
-Use file-based communication instead of hs.ipc for non-critical functions.
-
-```lua
--- commands.lua: Add file-based command processing
-local function processCommandFile()
-    local content = deps.readFile("/tmp/hammerspoon-command")
-    if not content or content == "" then return end
-    deps.removeFile("/tmp/hammerspoon-command")
-
-    -- Process commands: "showLayerOverlay", "hideOverlay", etc.
-    for cmd in content:gmatch("[^\n]+") do
-        executeCommand(cmd)
+    else
+        error("Unknown message type: " .. t)
     end
 end
+
+return M
 ```
 
-**Shell script change:**
-```bash
-# Before (hs.ipc, can hang)
-/opt/homebrew/bin/hs -c 'showLayerOverlay()' &
+#### Dispatch Module
 
-# After (file-based, reliable)
-echo "showLayerOverlay" >> /tmp/hammerspoon-command
-```
-
-### Phase 2: Faster Layer Detection (Priority: HIGH)
-
-**Goal:** Reduce overlay staleness by using hs.pathwatcher instead of polling.
-
-**Current state:**
 ```lua
--- 100ms poll timer
-local pollTimer = deps.doEvery(0.1, function()
-    local newLayer = commands.readLayerFromFile()
-    ...
-end)
-```
+-- dispatch.lua: Execute validated messages (pure pattern match)
 
-**After:**
-```lua
--- React instantly to file changes
-local layerWatcher = hs.pathwatcher.new("/tmp/karabiner-layer", function(paths, flags)
-    local newLayer = commands.readLayerFromFile()
-    if newLayer and newLayer ~= "" and newLayer ~= state.getCurrentLayer() then
-        state.setLayer(newLayer)
+local commands = require("commands")
+local state = require("state")
+
+local M = {}
+
+-- Dispatch a validated message to its handler
+-- This function assumes msg has already been validated by schema.validate()
+function M.dispatch(msg)
+    local t = msg.t
+
+    if t == "scroll" then
+        if msg.action == "start" then
+            commands.startScroll(msg.dir)
+        else
+            commands.stopScroll()
+        end
+
+    elseif t == "click" then
+        local handlers = {
+            left = commands.clickLeft,
+            right = commands.clickRight,
+            double = commands.clickDouble,
+            shift = commands.clickShift,
+            cmd = commands.clickCmd,
+            cmd_shift = commands.clickCmdShift,
+        }
+        handlers[msg.variant]()
+
+    elseif t == "label_click" then
+        local handlers = {
+            right = commands.labelRightClick,
+            double = commands.labelDoubleClick,
+            shift = commands.labelShiftClick,
+            cmd = commands.labelCmdClick,
+            cmd_shift = commands.labelCmdShiftClick,
+        }
+        handlers[msg.variant]()
+
+    elseif t == "overlay" then
+        if msg.action == "show" then
+            state.setOverlay(msg.mode)
+        elseif msg.action == "hide" then
+            state.setOverlay(nil)
+        else -- toggle
+            if state.getOverlayType() then
+                state.setOverlay(nil)
+            else
+                state.setOverlay("layer")
+            end
+        end
+
+    elseif t == "hover" then
+        if msg.action == "start" then
+            commands.startHoverMode()
+        elseif msg.action == "stop" then
+            commands.stopHoverMode()
+        else -- enter
+            commands.hoverAndEnter()
+        end
+
+    elseif t == "homerow" then
+        commands.dismissHomerow()
+
+    elseif t == "lmode" then
+        commands.executeLModeKey(msg.key)
+
+    elseif t == "window" then
+        if msg.action == "next_screen" then
+            commands.moveToNextScreen()
+        else
+            commands.arrangeDebugWindows()
+        end
+
+    elseif t == "chrome" then
+        if msg.action == "tab" then
+            commands.chromeTab(msg.index)
+        elseif msg.action == "last_tab" then
+            commands.chromeLastTab()
+        else
+            commands.focusChromeProfile(msg.profile)
+        end
+
+    elseif t == "switcher" then
+        local deps = require("deps")
+        local handlers = {
+            next_app = function() deps.keyStroke({}, "tab", 0) end,
+            prev_app = function() deps.keyStroke({"shift"}, "tab", 0) end,
+            next_window = function() deps.keyStroke({}, "`", 0) end,
+            prev_window = function() deps.keyStroke({"shift"}, "`", 0) end,
+        }
+        handlers[msg.action]()
+
+    elseif t == "system" then
+        if hs then hs.reload() end
     end
-end):start()
+end
 
--- Keep poll timer for scroll/command processing, but less frequent
-local pollTimer = deps.doEvery(0.2, function()
-    commands.checkScrollFlags()
-    commands.processCommandFile()
-end)
+return M
 ```
 
-### Phase 3: Improved Logging (Priority: MEDIUM)
-
-**Goal:** Make logs always available for debugging crashes.
-
-**Current state:** Logs only visible in Hammerspoon console.
-
-**After:**
+### Socket Server
 
 ```lua
--- Add to init.lua
-local logFile = io.open("/tmp/hammerspoon.log", "a")
+-- socket.lua: Unix domain socket server
+
+local json = require("hs.json")
+local schema = require("schema")
+local dispatch = require("dispatch")
+
+local M = {}
+
+local SOCKET_PATH = "/tmp/hs.sock"
+local server = nil
 
 local function log(level, msg)
-    local timestamp = os.date("%Y-%m-%d %H:%M:%S")
-    local line = string.format("[%s] [%s] %s\n", timestamp, level, msg)
-
-    -- Write to file
-    if logFile then
-        logFile:write(line)
-        logFile:flush()  -- Ensure it's written even if crash
-    end
-
-    -- Also print to console
-    print(line)
+    local timestamp = os.date("%H:%M:%S")
+    print(string.format("[%s] [socket] [%s] %s", timestamp, level, msg))
 end
 
--- Wrapper for crash-safe logging
-local function safeLog(level, msg)
-    pcall(function()
-        log(level, msg)
+local function handleMessage(data)
+    -- Parse JSON
+    local ok, msg = pcall(json.decode, data)
+    if not ok then
+        log("ERROR", "Invalid JSON: " .. tostring(msg))
+        return
+    end
+
+    -- Validate against schema
+    local ok2, validated = pcall(schema.validate, msg)
+    if not ok2 then
+        log("ERROR", "Validation failed: " .. tostring(validated))
+        return
+    end
+
+    -- Dispatch to handler
+    local ok3, err = pcall(dispatch.dispatch, validated)
+    if not ok3 then
+        log("ERROR", "Dispatch failed: " .. tostring(err))
+        return
+    end
+
+    log("INFO", "Handled: " .. data:gsub("%s+", " "))
+end
+
+function M.start()
+    -- Remove stale socket file
+    os.remove(SOCKET_PATH)
+
+    server = hs.socket.server.new(function(data)
+        -- Handle each line as a separate message (for nc compatibility)
+        for line in data:gmatch("[^\r\n]+") do
+            if line ~= "" then
+                handleMessage(line)
+            end
+        end
     end)
-end
 
--- Use throughout code
-safeLog("INFO", "[init] Initializing Hammerspoon...")
-safeLog("WARN", "[state] Unknown layer code: " .. tostring(layer))
-safeLog("ERROR", "[deps] Timer callback error: " .. tostring(err))
-```
-
-**Log rotation:**
-```lua
--- Add to init()
-local function rotateLogs()
-    local stat = hs.fs.attributes("/tmp/hammerspoon.log")
-    if stat and stat.size > 1000000 then  -- 1MB
-        os.rename("/tmp/hammerspoon.log", "/tmp/hammerspoon.log.old")
-        logFile = io.open("/tmp/hammerspoon.log", "a")
+    if server then
+        server:listen(SOCKET_PATH)
+        log("INFO", "Listening on " .. SOCKET_PATH)
+    else
+        log("ERROR", "Failed to create socket server")
     end
 end
+
+function M.stop()
+    if server then
+        server:disconnect()
+        server = nil
+    end
+    os.remove(SOCKET_PATH)
+end
+
+return M
 ```
 
-**Usage:**
+### Shell Helper
+
+Create a shell function for sending messages:
+
 ```bash
-# Watch logs in real-time
-tail -f /tmp/hammerspoon.log
+# scripts/lib/hs-send.sh
+# Usage: hs_send '{"t":"scroll","action":"stop"}'
 
-# Check recent logs after freeze
-tail -100 /tmp/hammerspoon.log
+hs_send() {
+    echo "$1" | nc -U /tmp/hs.sock 2>/dev/null || true
+}
 ```
 
-### Phase 4: Add Delay to Templates (Priority: MEDIUM)
+Or inline in Karabiner rules:
 
-**Goal:** Fix first character cut-off in git mode.
-
-**Current state:**
-```
-:type-ins "osascript -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer"
+```bash
+echo '{"t":"overlay","action":"toggle"}' | nc -U /tmp/hs.sock
 ```
 
-**After:**
+## Migration Plan
+
+### Phase 1: Add Socket Server (Non-Breaking)
+
+1. Create `schema.lua`, `dispatch.lua`, `socket.lua`
+2. Add `socket.start()` to `init.lua`
+3. Test with manual `nc` commands
+4. Keep all existing `hs -c` calls working
+
+**Verification:**
+```bash
+# Test socket is listening
+echo '{"t":"overlay","action":"toggle"}' | nc -U /tmp/hs.sock
+
+# Check Hammerspoon console for logs
 ```
-:type-ins "osascript -e 'delay 0.03' -e 'tell app \"System Events\" to key code 8 using control down' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer"
+
+### Phase 2: Migrate High-Frequency Commands
+
+Replace `hs -c` calls that happen often (overlay, scroll):
+
+| Old | New |
+|-----|-----|
+| `hs -c 'toggleLayerOverlay()'` | `echo '{"t":"overlay","action":"toggle"}' \| nc -U /tmp/hs.sock` |
+| `hs -c 'showLayerOverlay()'` | `echo '{"t":"overlay","action":"show","mode":"layer"}' \| nc -U /tmp/hs.sock` |
+| `hs -c 'hideOverlay()'` | `echo '{"t":"overlay","action":"hide"}' \| nc -U /tmp/hs.sock` |
+| `hs -c 'scrollStop()'` | `echo '{"t":"scroll","action":"stop"}' \| nc -U /tmp/hs.sock` |
+
+### Phase 3: Migrate Click Commands
+
+```bash
+# Old
+hs -c 'labelRightClick()'
+
+# New
+echo '{"t":"label_click","variant":"right"}' | nc -U /tmp/hs.sock
 ```
 
-The 30ms delay allows iTerm to fully receive focus before keystrokes are sent.
+### Phase 4: Migrate L-Mode
 
-### Phase 5: Watchdog Timer (Priority: LOW)
+```bash
+# Old
+hs -c "executeLModeKey('a')"
 
-**Goal:** Auto-recover from frozen state.
+# New
+echo '{"t":"lmode","key":"a"}' | nc -U /tmp/hs.sock
+```
+
+### Phase 5: Remove hs.ipc
+
+Once all commands are migrated:
+
+1. Remove `require("hs.ipc")` from init.lua
+2. Remove global function exports
+3. Remove file-based command processing (superseded by socket)
+
+## State Machine Refactor (Future)
+
+The current state management in `state.lua` could also benefit from ADT treatment:
 
 ```lua
--- Add to init.lua
-local lastHeartbeat = os.time()
+-- Current: scattered variables
+local currentLayer = "norm"
+local overlayType = nil
+local scrollDirection = nil
 
--- Update heartbeat in poll timer
-local pollTimer = deps.doEvery(0.2, function()
-    lastHeartbeat = os.time()
-    -- ... existing code ...
-end)
-
--- Watchdog that checks if poll timer is alive
-local watchdog = deps.doEvery(5, function()
-    if os.time() - lastHeartbeat > 3 then
-        safeLog("ERROR", "Poll timer appears stuck, reloading...")
-        hs.reload()
-    end
-end)
+-- Better: single state ADT
+local State = {
+    layer = "norm",  -- LayerName enum
+    overlay = nil,   -- nil | {type: "layer"} | {type: "permanent"}
+    scroll = nil,    -- nil | {dir: "up" | "down", timer: Timer}
+    hover = nil,     -- nil | {tap: EventTap, timer: Timer}
+}
 ```
 
-## Implementation Order
+This ensures:
+- Can't have scroll timer without direction
+- Can't have hover tap without timeout timer
+- Layer is always a valid layer name
 
-1. **Phase 3: Logging** - Do this first so we can debug future issues
-2. **Phase 1: Reduce hs.ipc** - Eliminate crash source
-3. **Phase 2: Pathwatcher** - Fix stale overlay
-4. **Phase 4: Template delay** - Fix first character cut-off
-5. **Phase 5: Watchdog** - Safety net
+## Files to Create/Modify
 
-## Verification
+**New files:**
+- `~/.hammerspoon/schema.lua` - Message validation
+- `~/.hammerspoon/dispatch.lua` - Message dispatch
+- `~/.hammerspoon/socket.lua` - Socket server
 
-After each phase, test:
+**Modify:**
+- `~/.hammerspoon/init.lua` - Start socket server, eventually remove hs.ipc
+- `src/karabiner.edn` - Replace `hs -c` with socket sends
+- `scripts/actions/*.sh` - Replace `hs -c` with socket sends
 
-1. **Stability test:** Use keyboard normally for 1 hour, count crashes
-2. **Layer switch test:** Enter git mode 10 times, verify overlay shows immediately
-3. **Typing test:** In git mode, type commands 10 times, count cut-off characters
-
-## Files to Modify
-
-- `~/.hammerspoon/init.lua` - Main changes
-- `~/.hammerspoon/commands.lua` - Add command file processing
-- `/Users/rbalicki/code/voicemode/src/karabiner.edn` - Update templates
-- `/Users/rbalicki/code/voicemode/scripts/actions/*.sh` - Replace hs -c calls
-
-## Quick Debug Commands
+## Testing
 
 ```bash
-# Check if Hammerspoon is running
-pgrep -x Hammerspoon
+# Test each message type
+echo '{"t":"scroll","action":"start","dir":"down"}' | nc -U /tmp/hs.sock
+echo '{"t":"scroll","action":"stop"}' | nc -U /tmp/hs.sock
+echo '{"t":"click","variant":"left"}' | nc -U /tmp/hs.sock
+echo '{"t":"overlay","action":"toggle"}' | nc -U /tmp/hs.sock
 
-# Check recent logs (after implementing Phase 3)
-tail -50 /tmp/hammerspoon.log
-
-# Check current layer
-cat /tmp/karabiner-layer
-
-# Test hs.ipc is working
-timeout 2 /opt/homebrew/bin/hs -c 'return "ok"' && echo "IPC working" || echo "IPC hung!"
-
-# Force reload Hammerspoon
-timeout 2 /opt/homebrew/bin/hs -c 'hs.reload()' || killall Hammerspoon && open -a Hammerspoon
+# Test validation errors (should log but not crash)
+echo '{"t":"scroll"}' | nc -U /tmp/hs.sock  # missing action
+echo '{"t":"scroll","action":"start"}' | nc -U /tmp/hs.sock  # missing dir
+echo '{"t":"unknown"}' | nc -U /tmp/hs.sock  # unknown type
+echo 'not json' | nc -U /tmp/hs.sock  # parse error
 ```
+
+## Benefits
+
+1. **No more freezes** - Socket is simple, no IPC complexity
+2. **Type safety** - Invalid messages caught immediately with clear errors
+3. **Exhaustive matching** - Adding new message type requires updating all switches
+4. **Debuggable** - Every message logged with timestamp
+5. **Testable** - Schema validation is pure functions, easy to unit test
