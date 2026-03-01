@@ -197,7 +197,7 @@ To reload Hammerspoon: `npm run hs`
 ### Folder Structure
 
 ```
-.claude/refactor/
+refactors/
 ├── pending/           # Active work
 │   ├── todos.md       # General todo list
 │   └── *.md           # Detailed plans for specific refactors
@@ -207,9 +207,9 @@ To reload Hammerspoon: `npm run hs`
 
 ### Workflow
 
-1. **New refactor**: Create a detailed plan in `.claude/refactor/pending/`
+1. **New refactor**: Create a detailed plan in `refactors/pending/`
 2. **Implementation**: Follow the plan step by step, verify at each stage
-3. **Completion**: Move the plan to `.claude/refactor/past/`
+3. **Completion**: Move the plan to `refactors/past/`
 
 ### Plan Requirements
 
