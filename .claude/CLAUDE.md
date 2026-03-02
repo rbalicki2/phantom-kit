@@ -318,7 +318,7 @@ Example task JSON for `/tmp/cmd-task.json`:
 
 Then submit:
 ```bash
-./target/debug/agent_pool submit_task --pool cmd --notify file --file /tmp/cmd-task.json
+/Users/rbalicki/code/gsd/target/debug/agent_pool submit_task --pool cmd --notify file --file /tmp/cmd-task.json
 ```
 
 **DO NOT use --data** - it requires approval for every command.
@@ -352,7 +352,7 @@ Then submit:
 - Always use `--notify file` (sandbox blocks sockets)
 - Always use `--file` not `--data` (avoids approval prompts)
 - Always include `2>&1` to capture stderr
-- Binary is at `./target/debug/agent_pool`
+- Binary is at `/Users/rbalicki/code/gsd/target/debug/agent_pool`
 
 ### Timeouts for Long-Running Commands
 
