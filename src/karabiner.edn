@@ -20,7 +20,7 @@
    [{:key :9, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0021 [profile=Default:device=Laptop] Shift+9 → 9"} [:9 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :0, :modi {:optional [:caps_lock]}, :id "R0012 [profile=Default:device=Laptop] 0 → Shift+0"} [:!S0 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :0, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0022 [profile=Default:device=Laptop] Shift+0 → 0"} [:0 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
-   [{:key :right_shift, :id "R0024 [profile=Default:device=Laptop] RShift → RShift", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:alone :!S0}]
+   [{:key :right_shift, :id "R0024 [profile=Default:device=Laptop] RShift → RShift", :modi {:optional [:shift]}} [:vk_none ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:held [:right_shift], :alone :!S0}]
    [{:key :1, :modi {:optional [:caps_lock]}, :id "R0003 [profile=Default:device=Laptop] 1 → Shift+1"} [:!S1 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :1, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0013 [profile=Default:device=Laptop] Shift+1 → 1"} [:1 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :2, :modi {:optional [:caps_lock]}, :id "R0004 [profile=Default:device=Laptop] 2 → Shift+2"} [:!S2 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
@@ -32,7 +32,7 @@
    [{:key :5, :modi {:optional [:caps_lock]}, :id "R0007 [profile=Default:device=Laptop] 5 → Shift+5"} [:!S5 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :5, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0017 [profile=Default:device=Laptop] Shift+5 → 5"} [:5 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :caps_lock, :id "R0002 [profile=Default:device=Laptop] caps_lock → LCtrl", :modi {:optional [:shift]}} [:left_control ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:alone :escape}]
-   [{:key :left_shift, :id "R0023 [profile=Default:device=Laptop] LShift → LShift", :modi {:optional [:shift]}} [:left_shift ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:alone :!S9}]]}
+   [{:key :left_shift, :id "R0023 [profile=Default:device=Laptop] LShift → LShift", :modi {:optional [:shift]}} [:vk_none ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:held [:left_shift], :alone :!S9}]]}
 
  {:des "Desktop [[\"dsk_layer\" 0]] Chrome"
  :rules [:!apple_internal :Chrome
