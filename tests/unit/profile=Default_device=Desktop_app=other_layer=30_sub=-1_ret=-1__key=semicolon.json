@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('m')\" && echo norm > /tmp/karabiner-layer"
+        "shell" : "echo lmode_exec:m > /tmp/karabiner-command && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
