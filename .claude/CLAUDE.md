@@ -318,7 +318,7 @@ Example task JSON for `/tmp/cmd-task.json`:
 
 Then submit:
 ```bash
-/Users/rbalicki/code/gsd/target/debug/agent_pool submit_task --pool cmd --notify file --file /tmp/cmd-task.json
+./target/debug/agent_pool submit_task --pool cmd --notify file --file /tmp/cmd-task.json
 ```
 
 **DO NOT use --data** - it requires approval for every command.
@@ -328,22 +328,22 @@ Then submit:
 
 **Git push:**
 ```json
-{"kind": "Task", "task": {"instructions": "Push", "data": {"cmd": "cd /Users/rbalicki/code/voicemode && git push 2>&1"}}}
+{"kind": "Task", "task": {"instructions": "Push", "data": {"cmd": "git push 2>&1"}}}
 ```
 
 **Force push:**
 ```json
-{"kind": "Task", "task": {"instructions": "Force push", "data": {"cmd": "cd /Users/rbalicki/code/voicemode && git push --force 2>&1"}}}
+{"kind": "Task", "task": {"instructions": "Force push", "data": {"cmd": "git push --force 2>&1"}}}
 ```
 
 **Check GitHub Actions:**
 ```json
-{"kind": "Task", "task": {"instructions": "List CI", "data": {"cmd": "cd /Users/rbalicki/code/voicemode && gh run list --limit 5 2>&1"}}}
+{"kind": "Task", "task": {"instructions": "List CI", "data": {"cmd": "gh run list --limit 5 2>&1"}}}
 ```
 
 **View specific CI run:**
 ```json
-{"kind": "Task", "task": {"instructions": "View CI", "data": {"cmd": "cd /Users/rbalicki/code/voicemode && gh run view RUN_ID 2>&1"}}}
+{"kind": "Task", "task": {"instructions": "View CI", "data": {"cmd": "gh run view RUN_ID 2>&1"}}}
 ```
 
 ### Important Notes
@@ -352,8 +352,7 @@ Then submit:
 - Always use `--notify file` (sandbox blocks sockets)
 - Always use `--file` not `--data` (avoids approval prompts)
 - Always include `2>&1` to capture stderr
-- Always `cd /Users/rbalicki/code/voicemode` first (agent runs from gsd)
-- Binary is at `/Users/rbalicki/code/gsd/target/debug/agent_pool`
+- Binary is at `./target/debug/agent_pool`
 
 ### Timeouts for Long-Running Commands
 
