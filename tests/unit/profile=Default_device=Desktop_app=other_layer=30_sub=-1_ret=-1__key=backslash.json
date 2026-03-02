@@ -11,15 +11,17 @@
     "key" : "backslash"
   },
   "matched_rule" : {
-    "id" : "R3026 [profile=Default:device=Desktop:dsk_layer=30] \\ → tab",
+    "id" : "R3026 [profile=Default:device=Desktop:dsk_layer=30] \\ → execute(tab)",
     "to" : {
       "resulting_state" : {
-        "dsk_layer" : 30,
+        "dsk_layer" : 0,
         "dsk_ins_sub_mode" : -1,
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "tab"
+        "key" : "vk_none"
+      }, {
+        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('tab')\" && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
