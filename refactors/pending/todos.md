@@ -147,3 +147,12 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Add more unit tests (edge cases, error conditions)
   - Consider reducing hs.ipc usage (known to cause hangs)
   - Monitor for any remaining stuck state issues
+- Laptop keyboard can change layers (should be blocked): Goku limitation where combining device and app conditions in `:rules [:!apple_internal :Chrome` only applies the app condition, not the device exclusion. Result: 29 Desktop rules (Chrome/VSCode/iTerm app-specific) fire on Laptop keyboard.
+  - **Root cause**: Rules like `h → Chrome layer` in Chrome app have `frontmost_application_if` but NO `device_unless` condition
+  - **Evidence**: `jq '.profiles[0].complex_modifications.rules[] | select(.description | contains("Chrome")) | .manipulators[0].conditions'` shows only app condition, no device
+  - **Contrast**: Non-app-specific Desktop rules (`:rules [:!apple_internal`) correctly have `device_unless`
+  - **Fix options**:
+    1. Post-process karabiner.json to inject `device_unless` into rules with `frontmost_application_if` but no device condition
+    2. Add catch-all Laptop rule that resets layer to 0 for any unhandled key
+    3. Restructure edn so app-specific rules are in separate blocks with explicit device conditions
+  - **Recommended**: Option 1 (post-process) - add script in sync pipeline after goku runs
