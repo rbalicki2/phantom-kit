@@ -12,11 +12,15 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : "R1333 [profile=Default:device=Desktop] Enter blocked",
+    "id" : "R3168 [profile=Default:device=Desktop:dsk_layer=3] Enter → Enter",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 3,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "return_or_enter"
       } ]
     },
     "held" : null,
