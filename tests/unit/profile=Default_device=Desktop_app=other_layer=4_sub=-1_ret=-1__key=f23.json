@@ -11,7 +11,7 @@
     "key" : "f23"
   },
   "matched_rule" : {
-    "id" : "R0312 [profile=Default:device=Desktop:dsk_layer=4] Fn+J → Cmd+period, Normal",
+    "id" : "R0312 [profile=Default:device=Desktop:dsk_layer=4] Fn+J → Shift+Cmd+D (go to def in new tab), Normal",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -19,8 +19,9 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "period",
-        "left_command" : true
+        "key" : "d",
+        "left_command" : true,
+        "left_shift" : true
       }, {
         "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
       } ]
