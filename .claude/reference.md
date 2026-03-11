@@ -78,6 +78,11 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 - **L** = "git commit -m ", **N** = "git reset ", **M** = "git checkout "
 - Fn variants add enter, Ctrl variants run aliases
 
+### InApp Layer (from Normal, app-dependent entry)
+- **P** = Zoom in (Cmd+=), **Fn+P** = Zoom out (Cmd+-)
+- **U** = Back (Cmd+[), **I** = Forward (Cmd+])
+- **J** = Scroll down, **K** = Scroll up
+
 ### App-Specific (h from Normal)
 **Chrome**: Y/U/I/O = Tabs 1-4, P = Last tab, Period = Refresh
 **VSCode**: H = Copy path, J = Go to def, K = Rename, L = Find refs, Fn+J = Go to def in new tab, Fn+K = Quick fix
