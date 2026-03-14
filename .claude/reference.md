@@ -86,7 +86,7 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 ### App-Specific (h from Normal)
 **Chrome**: Y/U/I/O = Tabs 1-4, P = Last tab, Period = Refresh
 **VSCode**: H = Copy path, J = Go to def, K = Rename, L = Find refs, Fn+J = Go to def in new tab, Fn+K = Quick fix
-**TMUX**: Y/U/I/O/P = Panes 1-5
+**TMUX**: J = Prev window, K = Next window, L = Split pane (→Ins), Y = Kill window, N = New window
 
 ## Goku Modifier Legend
 

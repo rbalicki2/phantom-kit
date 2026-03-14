@@ -11,11 +11,18 @@
     "key" : "n"
   },
   "matched_rule" : {
-    "id" : "R1292 [profile=Default:device=Desktop] n blocked",
+    "id" : "R3187 [profile=Default:device=Desktop:dsk_layer=5] n → Ctrl+A c (new window)",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 5,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "a",
+        "left_control" : true
+      }, {
+        "key" : "c"
       } ]
     },
     "held" : null,
