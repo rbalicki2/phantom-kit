@@ -76,6 +76,7 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 ### Term Layer (u from Normal, focuses iTerm)
 - **H** = "git status ", **J** = "git log ", **K** = "git diff "
 - **L** = "git commit -m ", **N** = "git reset ", **M** = "git checkout "
+- **I** = "git push --no-verify" + enter, **Fn+I** = "git push -f" + enter
 - Fn variants add enter, Ctrl variants run aliases
 
 ### InApp Layer (from Normal, app-dependent entry)

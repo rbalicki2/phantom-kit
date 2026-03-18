@@ -11,11 +11,15 @@
     "key" : "f17"
   },
   "matched_rule" : {
-    "id" : "R1355 [profile=Default:device=Desktop] Fn+I blocked",
+    "id" : "R3188 [profile=Default:device=Desktop:dsk_layer=8] Fn+I types 'git push -f'",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "type-enter-ins"
       } ]
     },
     "held" : null,
