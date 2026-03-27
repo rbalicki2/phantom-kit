@@ -951,7 +951,7 @@
    [{:key :k, :id "R1289 [profile=Default:device=Desktop] k blocked", :modi {:optional [:any]}} [:vk_none]]
    [{:key :l, :id "R1290 [profile=Default:device=Desktop] l blocked", :modi {:optional [:any]}} [:vk_none]]
    [{:key :semicolon, :id "R1321 [profile=Default:device=Desktop] semicolon blocked", :modi {:optional [:any]}} [:vk_none]]
-   [{:key :quote, :id "R1322 [profile=Default:device=Desktop] ' blocked", :modi {:optional [:any]}} [:vk_none]]
+   [{:key :quote, :id "R1322 [profile=Default:device=Desktop] ' → AltIns + Esc", :modi {:optional [:any]}} [:escape ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"}]]
    [{:key :n, :modi {:mandatory [:right_control]}, :id "R0029 [profile=Default:device=Desktop] RCtrl+n → escape"} [:escape ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :n, :id "R1292 [profile=Default:device=Desktop] n blocked", :modi {:optional [:any]}} [:vk_none]]
    [{:key :m, :id "R1291 [profile=Default:device=Desktop] m blocked", :modi {:optional [:any]}} [:vk_none]]

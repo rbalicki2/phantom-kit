@@ -12,11 +12,17 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : "R1322 [profile=Default:device=Desktop] ' blocked",
+    "id" : "R1322 [profile=Default:device=Desktop] ' → AltIns + Esc",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "escape"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

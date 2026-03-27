@@ -304,25 +304,9 @@ The user runs a command pool named `cmd` (lowercase) with agents that execute sh
 
 ### How to Submit Commands
 
-**ALWAYS use the file method** to avoid approval prompts:
-
-1. Use the **Write tool** to create `/tmp/cmd-task.json` with the task JSON
-2. Run the submit command via Bash
-
-**IMPORTANT: Use the Write tool, NOT echo/Bash** - the Write tool is pre-approved and won't require user confirmation.
-
-Example task JSON for `/tmp/cmd-task.json`:
-```json
-{"kind": "Task", "task": {"instructions": "description", "data": {"cmd": "YOUR_COMMAND 2>&1"}}}
-```
-
-Then submit:
 ```bash
-./target/debug/agent_pool submit_task --pool cmd --notify file --file /tmp/cmd-task.json
+/Users/rbalicki/code/gsd/target/debug/troupe submit_task --pool cmd --notify file --data '{"kind": "Task", "task": {"instructions": "description", "data": {"cmd": "YOUR_COMMAND 2>&1"}}}'
 ```
-
-**DO NOT use --data** - it requires approval for every command.
-**DO NOT use echo to create task files** - use the Write tool instead.
 
 ### Common Commands
 
@@ -352,7 +336,7 @@ Then submit:
 - Always use `--notify file` (sandbox blocks sockets)
 - Always use `--file` not `--data` (avoids approval prompts)
 - Always include `2>&1` to capture stderr
-- Binary is at `./target/debug/agent_pool`
+- Binary is at `/Users/rbalicki/code/gsd/target/debug/troupe`
 
 ### Timeouts for Long-Running Commands
 
