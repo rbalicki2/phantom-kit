@@ -107,22 +107,30 @@
       (update config :main conj {:des des-pattern
                                  :rules [:!apple_internal rule]}))))
 
+(defn infer-device-from-id [rule]
+  "Extract device name from rule ID state string. Returns 'Laptop', 'Desktop', etc."
+  (let [from (first rule)
+        rule-id (when (map? from) (:id from))]
+    (when rule-id
+      (second (re-find #"device=(\w+)" rule-id)))))
+
 (defn infer-des-from-condition [rule app]
   "Infer the :des pattern from a rule's condition and optional app"
   (when (vector? rule)
     (let [condition (when (> (count rule) 2) (nth rule 2))
+          device (or (infer-device-from-id rule) "Desktop")
           base-des (cond
                      ;; Array of conditions like [["dsk_layer" 1] ["dsk_ins_sub_mode" 2]]
                      (and (vector? condition) (every? vector? condition))
-                     (str "Desktop " (pr-str condition))
+                     (str device " " (pr-str condition))
 
                      ;; Single condition (shouldn't happen but handle it)
                      (vector? condition)
-                     (str "Desktop " (pr-str [condition]))
+                     (str device " " (pr-str [condition]))
 
                      ;; No condition - global block
                      :else
-                     "Desktop []")]
+                     (str device " []"))]
       ;; Append app name if specified
       (if app
         (str base-des " " app)
