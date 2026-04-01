@@ -11,11 +11,17 @@
     "key" : "f16"
   },
   "matched_rule" : {
-    "id" : "R1354 [profile=Default:device=Desktop] Fn+U blocked",
+    "id" : "R3190 [profile=Default:device=Desktop:dsk_layer=10] Fn+U → Cmd+Shift+w",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 10,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "w",
+        "left_command" : true,
+        "left_shift" : true
       } ]
     },
     "held" : null,
