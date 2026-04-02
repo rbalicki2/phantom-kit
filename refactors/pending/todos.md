@@ -147,7 +147,7 @@ If work is interrupted or incomplete, document it here so future sessions can co
   - Add more unit tests (edge cases, error conditions)
   - Consider reducing hs.ipc usage (known to cause hangs)
   - Monitor for any remaining stuck state issues
-- AltIns `]` key remap: Make bare `]` trigger shift-oneshot (Fn+Shift) in AltIns mode (layer 7), since currently it requires Fn+] which is awkward. Move forward delete to Shift+Delete instead. Currently: `]` → Delete (R2065), Fn+] → shift-oneshot (R2080). Proposed: `]` → shift-oneshot, Shift+Delete → forward delete.
+- AltIns `]` key as held shift: Make bare `]` act as a shift modifier while held in AltIns mode (layer 7) — not oneshot, but active for as long as `]` is held down. Move forward delete to Shift+Backspace instead. Currently: `]` → Delete (R2065), Fn+] → shift-oneshot (R2080). Proposed: `]` held → shift (like Fn+Shift but without Fn), Shift+Backspace → forward delete. Fn+] can remain as oneshot shift.
 - Laptop keyboard can change layers (should be blocked): Goku limitation where combining device and app conditions in `:rules [:!apple_internal :Chrome` only applies the app condition, not the device exclusion. Result: 29 Desktop rules (Chrome/VSCode/iTerm app-specific) fire on Laptop keyboard.
   - **Root cause**: Rules like `h → Chrome layer` in Chrome app have `frontmost_application_if` but NO `device_unless` condition
   - **Evidence**: `jq '.profiles[0].complex_modifications.rules[] | select(.description | contains("Chrome")) | .manipulators[0].conditions'` shows only app condition, no device
