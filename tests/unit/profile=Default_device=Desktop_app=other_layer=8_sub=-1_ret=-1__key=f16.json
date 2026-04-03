@@ -11,12 +11,14 @@
     "key" : "f16"
   },
   "matched_rule" : {
-    "id" : "R1354 [profile=Default:device=Desktop] Fn+U blocked",
+    "id" : "R3191 [profile=Default:device=Desktop:dsk_layer=8] Fn+U → gh pr create --base",
     "to" : {
-      "resulting_state" : { },
-      "actions" : [ {
-        "key" : "vk_none"
-      } ]
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ ]
     },
     "held" : null,
     "afterup" : null,
