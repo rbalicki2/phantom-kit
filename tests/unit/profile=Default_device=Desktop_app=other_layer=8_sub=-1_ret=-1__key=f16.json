@@ -11,14 +11,18 @@
     "key" : "f16"
   },
   "matched_rule" : {
-    "id" : "R3191 [profile=Default:device=Desktop:dsk_layer=8] Fn+U → gh pr create --base",
+    "id" : "R3191 [profile=Default:device=Desktop:dsk_layer=8] Fn+U → gh pr create --base <auto>",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
         "dsk_ins_sub_mode" : 0,
         "dsk_return_to_layer" : -1
       },
-      "actions" : [ ]
+      "actions" : [ {
+        "key" : "vk_none"
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/gh-pr-create-base.sh"
+      } ]
     },
     "held" : null,
     "afterup" : null,
