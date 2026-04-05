@@ -6,6 +6,13 @@ This is the operational guide for working with this codebase. For understanding 
 
 **Phantom Kit** is a Karabiner/Goku configuration for a one-handed (RHS only) keyboard setup on a Kinesis Advantage 360. It implements a vim-like modal layer system.
 
+## NEVER Use Plan Mode
+
+**NEVER use EnterPlanMode. No exceptions.** Plan mode wastes time and blocks execution. Instead:
+- For non-trivial work, write a plan in `refactors/pending/` and follow the process in `refactors/process.md`
+- For small tasks, just do them directly
+- Plans go in `refactors/pending/*.md`, NOT in `.claude/plans/`
+
 ## Critical Warnings
 
 ### DO NOT BREAK EXISTING FUNCTIONALITY
