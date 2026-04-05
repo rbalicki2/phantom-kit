@@ -11,7 +11,7 @@
     "key" : "close_bracket"
   },
   "matched_rule" : {
-    "id" : "R2065 [profile=Default:device=Desktop:dsk_layer=7] ] → Delete",
+    "id" : "R2065 [profile=Default:device=Desktop:dsk_layer=7] ] → shift-fn (alone→oneshot, held→right_option)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,11 +19,25 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "delete_forward"
+        "key" : "vk_none"
       } ]
     },
-    "held" : null,
+    "held" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "right_option"
+      } ]
+    },
     "afterup" : null,
-    "alone" : null
+    "alone" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    }
   }
 }

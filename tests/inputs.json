@@ -67,7 +67,8 @@
     {"key": "f3", "modifiers": {}, "comment": "bare f3"},
     {"key": "f10", "modifiers": {}, "comment": "bare f10"},
     {"key": "f11", "modifiers": {}, "comment": "bare f11"},
-    {"key": "f12", "modifiers": {}, "comment": "bare f12"}
+    {"key": "f12", "modifiers": {}, "comment": "bare f12"},
+    {"key": "k", "modifiers": {"right_option": true}, "comment": "ROption+k (] held + k)"}
   ],
   "profiles": ["Default"],
   "devices": ["Desktop"],
