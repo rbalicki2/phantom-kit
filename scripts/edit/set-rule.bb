@@ -85,8 +85,9 @@
   (let [blocks (:main config)]
     (first (filter #(= (:des %) des-pattern) blocks))))
 
-(defn add-rule-to-config [config rule des-pattern]
-  "Add a rule to the appropriate block (creates block if needed)"
+(defn add-rule-to-config [config rule des-pattern app]
+  "Add a rule to the appropriate block (creates block if needed).
+   app is an optional app name string (e.g., \"Chrome\") for app-specific blocks."
   (let [existing-block (find-or-create-block config des-pattern)]
     (if existing-block
       ;; Add to existing block
@@ -103,9 +104,12 @@
                                       (vec (concat keywords actual-rules [rule])))))
                           block))
                       blocks)))
-      ;; Create new block
-      (update config :main conj {:des des-pattern
-                                 :rules [:!apple_internal rule]}))))
+      ;; Create new block - include app keyword if specified
+      (let [block-keywords (if app
+                             [:!apple_internal (keyword app)]
+                             [:!apple_internal])]
+        (update config :main conj {:des des-pattern
+                                   :rules (vec (concat block-keywords [rule]))})))))
 
 (defn infer-device-from-id [rule]
   "Extract device name from rule ID state string. Returns 'Laptop', 'Desktop', etc."
@@ -330,7 +334,7 @@
               config-without (remove-rule-by-id config target-id)
 
               ;; Add the new rule
-              config-with (add-rule-to-config config-without rule des-pattern)]
+              config-with (add-rule-to-config config-without rule des-pattern app-name)]
 
           ;; Write back
           (spit edn-file (pr-str config-with))

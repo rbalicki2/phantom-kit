@@ -37,11 +37,15 @@
 
  {:des "Desktop [[\"dsk_layer\" 0]] Chrome"
  :rules [:!apple_internal :Chrome
-   [{:key :h, :id "R0043 [profile=Default:device=Desktop:dsk_layer=0] h → Chrome"} [:vk_none ["dsk_layer" 3] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo chrome > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
+   [{:key :j, :id "R0043 [profile=Default:device=Desktop:dsk_layer=0] j → Chrome"} [:vk_none ["dsk_layer" 3] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo chrome > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 0]] VSCode"
  :rules [:!apple_internal :VSCode
-   [{:key :h, :id "R0044 [profile=Default:device=Desktop:dsk_layer=0] h → VSCode"} [:vk_none ["dsk_layer" 4] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo vscode > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
+   [{:key :j, :id "R0044 [profile=Default:device=Desktop:dsk_layer=0] j → VSCode"} [:vk_none ["dsk_layer" 4] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo vscode > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
+
+ {:des "Desktop [[\"dsk_layer\" 0]] iTerm"
+ :rules [:!apple_internal :iTerm
+   [{:key :j, :id "R0045 [profile=Default:device=Desktop:dsk_layer=0] j → TMUX"} [:vk_none ["dsk_layer" 5] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo tmux > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 0]]"
  :rules [:!apple_internal
@@ -50,7 +54,6 @@
    [{:key :u, :id "R0041 [profile=Default:device=Desktop:dsk_layer=0] u → Term (no TMUX nav)"} [:vk_none ["dsk_layer" 8] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/term-layer-enter-no-tmux.sh"}] [["dsk_layer" 0]]]
    [{:key :i, :id "R0038 [profile=Default:device=Desktop:dsk_layer=0] i → Admin"} [:vk_none ["dsk_layer" 9] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo i > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
    [{:key :h, :id "R0031 [profile=Default:device=Desktop:dsk_layer=0] h → Ins"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer "}] [["dsk_layer" 0]]]
-   [{:key :j, :id "R0045 [profile=Default:device=Desktop:dsk_layer=0] j → TMUX"} [:vk_none ["dsk_layer" 5] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo tmux > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
    [{:key :l, :id "R3064 [profile=Default:device=Desktop:dsk_layer=0] l → L-Entry"} [:vk_none ["dsk_layer" 29] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo lentry > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
    [{:key :semicolon, :id "R0040 [profile=Default:device=Desktop:dsk_layer=0] ; → Ins"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo ins > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
    [{:key :quote, :id "R3136 [profile=Default:device=Desktop:dsk_layer=0] ' → AltIns + Esc"} [:escape ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1] {:shell "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer"}] [["dsk_layer" 0]]]
