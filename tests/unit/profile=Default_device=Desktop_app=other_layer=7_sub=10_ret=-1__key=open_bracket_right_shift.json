@@ -12,11 +12,15 @@
     "right_shift" : true
   },
   "matched_rule" : {
-    "id" : "R1318 [profile=Default:device=Desktop] [ blocked",
+    "id" : "R3216 [profile=Default:device=Desktop:dsk_layer=7] Shift+[ → forward delete",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "delete_forward"
       } ]
     },
     "held" : null,

@@ -1,0 +1,27 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 29,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "l",
+    "right_option" : true
+  },
+  "matched_rule" : {
+    "id" : "R1290 [profile=Default:device=Desktop] l blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "ROpt + l"
+  }
+}

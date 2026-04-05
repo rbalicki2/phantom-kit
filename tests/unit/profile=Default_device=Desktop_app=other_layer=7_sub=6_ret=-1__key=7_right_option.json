@@ -1,0 +1,31 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_ins_sub_mode" : 6,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "7",
+    "right_option" : true
+  },
+  "matched_rule" : {
+    "id" : "R3195 [profile=Default:device=Desktop:dsk_layer=7] !E7 → grave (shift+fn held)",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "grave_accent_and_tilde"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "ROpt + 7"
+  }
+}
