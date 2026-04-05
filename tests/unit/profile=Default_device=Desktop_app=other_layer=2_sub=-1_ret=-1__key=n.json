@@ -11,14 +11,16 @@
     "key" : "n"
   },
   "matched_rule" : {
-    "id" : "R0206 [profile=Default:device=Desktop:dsk_layer=2] n → Normal",
+    "id" : "R0206 [profile=Default:device=Desktop:dsk_layer=2] n → Escape",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
         "dsk_ins_sub_mode" : -1,
         "dsk_return_to_layer" : -1
       },
-      "actions" : [ ]
+      "actions" : [ {
+        "key" : "escape"
+      } ]
     },
     "held" : null,
     "afterup" : null,

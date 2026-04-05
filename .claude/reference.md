@@ -49,7 +49,7 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 ### Nav Layer (n from Normal)
 - **Y** = Spotlight (→Ins), **Enter** = Cmd+Enter (→Ins)
 - **H** = iTerm, **J** = VS Code, **K** = Karabiner-EventViewer
-- **N** = Chrome Personal, **M** = Chrome Work
+- **N** = Escape (→Normal), **M** = Chrome Personal, **Comma** = Chrome Work
 - **L** = Signal, **Fn+L** = Messages, **Ctrl+L** = WhatsApp
 - **O** = Obsidian, **Period** = Finder
 
