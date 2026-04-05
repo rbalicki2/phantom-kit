@@ -37,10 +37,11 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 - **j** = Chrome/VSCode/TMUX (app-specific)
 - **right_control** = Send escape (stays in Normal)
 
-### Ins Layer (j from Normal)
+### Ins Layer (h from Normal)
 - All keys type normally
 - **right_control** = Return to Normal
-- **[** = Backspace, **]** = Delete
+- **[** = Backspace, **Shift+[** = Forward Delete
+- **]** tap = Function Shift oneshot (next key outputs shift+fn), **]** hold = continuous shift+fn
 - **Shift+Up/Down** = `[` `]`, **Fn+Up/Down** = `{` `}`
 - **Fn+Space** = Space + shift oneshot
 - **Fn+letter** = Mirrored LHS letter (lowercase)
