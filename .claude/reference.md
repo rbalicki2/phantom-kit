@@ -32,9 +32,9 @@ Quick lookup tables for shortcuts, mode values, and syntax.
 ## Layer Shortcuts
 
 ### Normal Layer (default)
-- **j** = Enter Ins, **n** = Nav, **m** = Label Mode, **i** = Admin
+- **h** = Enter Ins, **n** = Nav, **m** = Label Mode, **i** = Admin
 - **comma** = Comma layer, **l** = L layer, **u** = Term layer
-- **h** = Chrome/VSCode/TMUX (app-specific)
+- **j** = Chrome/VSCode/TMUX (app-specific)
 - **right_control** = Send escape (stays in Normal)
 
 ### Ins Layer (j from Normal)
