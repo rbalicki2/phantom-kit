@@ -11,7 +11,7 @@
     "key" : "i"
   },
   "matched_rule" : {
-    "id" : "R0318 [profile=Default:device=Desktop:dsk_layer=4] i → Cmd+2, Normal",
+    "id" : "R0318 [profile=Default:device=Desktop:dsk_layer=4] i → Cmd+period (Quick Fix), Normal",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -19,7 +19,7 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "2",
+        "key" : "period",
         "left_command" : true
       }, {
         "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo norm > /tmp/karabiner-layer"
