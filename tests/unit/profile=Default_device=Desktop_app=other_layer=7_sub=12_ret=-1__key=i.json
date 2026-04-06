@@ -11,7 +11,7 @@
     "key" : "i"
   },
   "matched_rule" : {
-    "id" : "R2002 [profile=Default:device=Desktop:dsk_layer=7] i → c",
+    "id" : "R2002 [profile=Default:device=Desktop:dsk_layer=7] i → Cmd+period (Quick Fix)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,7 +19,8 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "c"
+        "key" : "period",
+        "left_command" : true
       } ]
     },
     "held" : null,
