@@ -23,7 +23,8 @@
       } ]
     },
     "held" : null,
-    "afterup" : {
+    "afterup" : null,
+    "alone" : {
       "resulting_state" : {
         "dsk_layer" : 1,
         "dsk_ins_sub_mode" : 6,
@@ -32,7 +33,6 @@
       "actions" : [ {
         "key" : "vk_none"
       } ]
-    },
-    "alone" : null
+    }
   }
 }

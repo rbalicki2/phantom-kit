@@ -71,7 +71,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 0]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R1549 [profile=Default:device=Desktop:dsk_ins_sub_mode=0] RShift → shift (up→pending)"} [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 0]] {:held [:right_shift], :afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]], :parameters {:basic.to_if_held_down_threshold_milliseconds 1}}]]}
+   [{:key :right_shift, :id "R1549 [profile=Default:device=Desktop:dsk_ins_sub_mode=0] RShift → shift (up→pending)"} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 0]] {:alone [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 1]]"
  :rules [:!apple_internal
@@ -254,7 +254,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 5]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R1550 [profile=Default:device=Desktop:dsk_ins_sub_mode=5] RShift → shift (up→caps)", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 5]] {:afterup [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
+   [{:key :right_shift, :id "R1550 [profile=Default:device=Desktop:dsk_ins_sub_mode=5] RShift → shift (up→caps)", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 1] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 1] ["dsk_ins_sub_mode" 5]] {:alone [:vk_none ["dsk_layer" 1] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 1] [\"dsk_ins_sub_mode\" 6]]"
  :rules [:!apple_internal
@@ -461,7 +461,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 0]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R2130 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=0] RShift → shift (up→pending)"} [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 0]] {:held [:right_shift], :afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]], :parameters {:basic.to_if_held_down_threshold_milliseconds 1}}]]}
+   [{:key :right_shift, :id "R2130 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=0] RShift → shift (up→pending)"} [:right_shift ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 0]] {:alone [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 1]]"
  :rules [:!apple_internal
@@ -529,7 +529,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 5]]"
  :rules [:!apple_internal
-   [{:key :right_shift, :id "R2131 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=5] RShift → shift (up→caps)", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 7] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 5]] {:afterup [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
+   [{:key :right_shift, :id "R2131 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=5] RShift → shift (up→caps)", :modi {:optional [:shift]}} [:right_shift ["dsk_layer" 7] ["dsk_ins_sub_mode" 5] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 5]] {:alone [:vk_none ["dsk_layer" 7] ["dsk_ins_sub_mode" 6] ["dsk_return_to_layer" -1]]}]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 6]]"
  :rules [:!apple_internal
