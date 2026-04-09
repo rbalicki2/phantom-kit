@@ -19,12 +19,16 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : {
+      "resulting_state" : { },
+      "actions" : [ {
         "key" : "right_shift"
       } ]
     },
-    "held" : null,
-    "afterup" : null,
-    "alone" : {
+    "afterup" : {
       "resulting_state" : {
         "dsk_layer" : 7,
         "dsk_ins_sub_mode" : 6,
@@ -33,6 +37,7 @@
       "actions" : [ {
         "key" : "vk_none"
       } ]
-    }
+    },
+    "alone" : null
   }
 }
