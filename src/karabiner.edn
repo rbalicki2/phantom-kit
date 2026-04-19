@@ -20,6 +20,8 @@
    [{:key :9, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0021 [profile=Default:device=Laptop] Shift+9 → 9"} [:9 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :0, :modi {:optional [:caps_lock]}, :id "R0012 [profile=Default:device=Laptop] 0 → Shift+0"} [:!S0 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :0, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0022 [profile=Default:device=Laptop] Shift+0 → 0"} [:0 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
+   [{:key :backslash, :modi {:optional [:caps_lock]}, :id "R3217 [profile=Default:device=Laptop] \\ → Shift+\\"} [:!Sbackslash ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
+   [{:key :backslash, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R3218 [profile=Default:device=Laptop] Shift+\\ → \\"} [:backslash ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :right_shift, :id "R0024 [profile=Default:device=Laptop] RShift → RShift", :modi {:optional [:shift]}} [:vk_none ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:held [:right_shift], :alone :!S0}]
    [{:key :1, :modi {:optional [:caps_lock]}, :id "R0003 [profile=Default:device=Laptop] 1 → Shift+1"} [:!S1 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :1, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R0013 [profile=Default:device=Laptop] Shift+1 → 1"} [:1 ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
