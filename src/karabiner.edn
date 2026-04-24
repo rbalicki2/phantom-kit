@@ -1,5 +1,5 @@
 {:profiles {:Default {:default true, :sim 50, :delay 80, :alone 500, :held 1}, :None {:default false, :sim 50, :delay 80, :alone 500, :held 70}}
- :devices {:apple_internal [{:vendor_id 1452, :product_id 835, :is_keyboard true}], :trackball [{:vendor_id 10730, :product_id 258, :is_pointing_device true}], :logitech [{:vendor_id 1133, :product_id 45921, :is_keyboard true, :is_pointing_device true}]}
+ :devices {:apple_internal [{:vendor_id 1452, :product_id 835, :is_keyboard true}], :trackball [{:vendor_id 10730, :product_id 258, :is_pointing_device true}], :logitech [{:vendor_id 1133, :product_id 45921, :is_keyboard true, :is_pointing_device true}], :clicker [{:vendor_id 3469, :product_id 5398}]}
  :applications {:iTerm ["com.googlecode.iterm2"], :Chrome ["com.google.Chrome"], :VSCode ["com.microsoft.VSCode"]}
  :simlayers {}
  :templates {:layer "echo %s > /tmp/karabiner-layer", :open-norm "open -a '%s' && echo norm > /tmp/karabiner-layer", :type-ins "osascript -e 'delay 0.03' -e 'tell app \"System Events\" to key code 8 using control down' -e 'delay 0.05' -e 'tell app \"System Events\" to keystroke \"%s\"' && echo altins > /tmp/karabiner-layer", :type-enter-ins "osascript -e 'delay 0.03' -e 'tell app \"System Events\" to key code 8 using control down' -e 'delay 0.05' -e 'tell app \"System Events\" to keystroke \"%s\"' -e 'tell app \"System Events\" to key code 36' && echo altins > /tmp/karabiner-layer", :chrome-profile "/opt/homebrew/bin/hs -c 'focusChromeProfile(\"%s\")' 2>/dev/null; echo norm > /tmp/karabiner-layer"}
@@ -7,6 +7,11 @@
  [{:des "None"
  :rules [:None
    [{:key :non_us_backslash, :id "R0001 [profile=None] ISO-bksl → ISO-bksl"} [:non_us_backslash ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]]}
+
+ {:des "Default []"
+ :rules [
+   [{:pkey :button1, :id "R3223 [] button1 → right_arrow"} [:right_arrow]]
+   [{:pkey :button2, :id "R3224 [] button2 → left_arrow"} [:left_arrow]]]}
 
  {:des "Laptop []"
  :rules [:apple_internal
