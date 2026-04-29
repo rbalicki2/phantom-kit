@@ -1,13 +1,15 @@
-In-App Nav (hk4 from Normal or Ins)
+In-App Nav (hk3 from Normal or Ins)
 
 t/e = Scroll down/up (hold), Fn = End/Home
-i/c = Back/Forward (stays)
+i/c = Back/Forward, Fn+i = Close window
 s/n = Prev/Next tab (stays)
 u = Close tab, Shift = +prev tab, Fn = Reopen
 a = Address bar / Go to line -> Ins
 d = Open -> Ins
 r = Refresh (stays), Fn = Super Refresh
+w = Zoom in, Fn+w = Zoom out
 Enter = Cmd+Enter -> Ins
+6-0 = Tab 1-5, Fn = Tab 6-9/last
 
 Chrome: o = Cmd+K, Fn = Tab search, Shift = History
 Chrome: h = New tab, Fn = New window
@@ -16,9 +18,9 @@ VS Code: o = Command palette, Fn = Quick open
 VS Code: h = New file, Fn = New window
 
 iTerm: h = Split pane, Fn = New tab
+iTerm: 6-0 = Pane 1-5, Fn = Pane 6-9
 
 Default: o = Cmd+K, Fn = Cmd+P
 Default: h = Cmd+N, Fn = Cmd+Shift+N
 
-right_control = Exit to Normal
-HK4 = Go to Nav layer
+HK3 = Nav layer
