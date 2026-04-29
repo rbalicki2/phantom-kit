@@ -11,7 +11,7 @@
     "key" : "k"
   },
   "matched_rule" : {
-    "id" : "R2007 [profile=Default:device=Desktop:dsk_layer=7] k → e",
+    "id" : "R3225 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] k → cut (comma-mode)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,7 +19,10 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "e"
+        "key" : "delete_or_backspace"
+      }, {
+        "key" : "x",
+        "left_command" : true
       } ]
     },
     "held" : null,
