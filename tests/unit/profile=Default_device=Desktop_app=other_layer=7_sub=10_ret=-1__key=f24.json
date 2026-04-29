@@ -11,7 +11,7 @@
     "key" : "f24"
   },
   "matched_rule" : {
-    "id" : "R3226 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] Fn+K → select-all+cut (comma-mode)",
+    "id" : "R2028 [profile=Default:device=Desktop:dsk_layer=7] Fn+K → p",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,13 +19,7 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "delete_or_backspace"
-      }, {
-        "key" : "a",
-        "left_command" : true
-      }, {
-        "key" : "x",
-        "left_command" : true
+        "key" : "p"
       } ]
     },
     "held" : null,

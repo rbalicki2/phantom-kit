@@ -11,7 +11,7 @@
     "key" : "m"
   },
   "matched_rule" : {
-    "id" : "R3227 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] m → find (comma-mode)",
+    "id" : "R2011 [profile=Default:device=Desktop:dsk_layer=7] m → s",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 7,
@@ -19,10 +19,7 @@
         "dsk_return_to_layer" : -1
       },
       "actions" : [ {
-        "key" : "delete_or_backspace"
-      }, {
-        "key" : "f",
-        "left_command" : true
+        "key" : "s"
       } ]
     },
     "held" : null,

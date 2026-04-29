@@ -579,11 +579,7 @@
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 10]]"
  :rules [:!apple_internal
-   [{:key :k, :modi {:optional [:caps_lock]}, :id "R3225 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] k → cut (comma-mode)"} [:delete_or_backspace :!Cx ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]
-   [{:key :m, :modi {:optional [:caps_lock]}, :id "R3227 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] m → find (comma-mode)"} [:delete_or_backspace :!Cf ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]
-   [{:key :slash, :modi {:optional [:caps_lock]}, :id "R2160 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] / → . (double-tap)"} [:delete_or_backspace :period ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]
-   [{:key :f24, :id "R3226 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] Fn+K → select-all+cut (comma-mode)"} [:delete_or_backspace :!Ca :!Cx ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]
-   [{:key :!Of5, :id "R3228 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] Fn+M → find-in-files (comma-mode)"} [:delete_or_backspace :!CSf ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]]}
+   [{:key :slash, :modi {:optional [:caps_lock]}, :id "R2160 [profile=Default:device=Desktop:dsk_layer=7:dsk_ins_sub_mode=10] / → . (double-tap)"} [:delete_or_backspace :period ["dsk_layer" 7] ["dsk_ins_sub_mode" 0] ["dsk_return_to_layer" -1]] [["dsk_layer" 7] ["dsk_ins_sub_mode" 10]]]]}
 
  {:des "Desktop [[\"dsk_layer\" 7] [\"dsk_ins_sub_mode\" 11]]"
  :rules [:!apple_internal
