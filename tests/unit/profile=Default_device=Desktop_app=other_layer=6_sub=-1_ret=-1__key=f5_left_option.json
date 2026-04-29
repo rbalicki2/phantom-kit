@@ -12,11 +12,19 @@
     "left_option" : true
   },
   "matched_rule" : {
-    "id" : "R1343 [profile=Default:device=Desktop] f5 blocked",
+    "id" : "R3225 [profile=Default:device=Desktop:dsk_layer=6] Fn+M → Cmd+Shift+f, Ins",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "f",
+        "left_command" : true,
+        "left_shift" : true
+      }, {
+        "shell" : "/Users/rbalicki/code/voicemode/scripts/actions/cleanup-external-state.sh --warpd reset --homerow reset --scroll-timer reset --hover-mode reset --lmode-modifier reset && echo altins > /tmp/karabiner-layer "
       } ]
     },
     "held" : null,

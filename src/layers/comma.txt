@@ -2,7 +2,7 @@ Comma Layer (n from Normal)
 
 o = Copy, Fn = Select all + Copy
 t = Paste → Ins, Fn = Select all + Paste → Ins
-e = Find → Ins, Fn = Find in files → Ins
+e = Cut, Fn = Select all + Cut
 a = Undo, Fn = Redo
 n = Ctrl+C → Ins
 h = Ctrl+R (terminal search)
@@ -10,4 +10,4 @@ c = Select all → Ins
 d = Cmd+Shift+P → Ins, Fn = Open → Ins, w = Cmd+P → Ins
 Ctrl+o = Close
 r = Save
-s = Toggle iso/pin mode
+s = Find → Ins, Fn = Find in files → Ins
