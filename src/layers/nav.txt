@@ -1,9 +1,10 @@
-Nav Layer (hk4 from Normal)
+Nav Layer (n from Normal)
 
 o = iTerm, t = VS Code, e = Karabiner-EventViewer
 a = Signal, Fn = Messages, Ctrl = WhatsApp
 d = Obsidian
-h = Chrome Personal, s = Chrome Work
+s = Chrome Personal, n = Chrome Work
+h = Escape (→Normal)
 u = Spotlight → Ins
 r = Finder, Fn = Go to Folder, Ctrl = Go to Folder + Paste
 Enter = Cmd+Enter → Ins
