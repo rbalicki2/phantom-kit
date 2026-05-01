@@ -11,7 +11,7 @@
     "key" : "f19"
   },
   "matched_rule" : {
-    "id" : "R3044 [profile=Default:device=Desktop:dsk_layer=30] Fn+p → execute(q)",
+    "id" : "R3044 [profile=Default:device=Desktop:dsk_layer=30] Fn+p → execute(z)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('q')\" && echo norm > /tmp/karabiner-layer"
+        "shell" : "echo lmode_exec:z > /tmp/karabiner-command && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

@@ -12,7 +12,7 @@
     "left_option" : true
   },
   "matched_rule" : {
-    "id" : "R3050 [profile=Default:device=Desktop:dsk_layer=30] Fn+; → execute(a)",
+    "id" : "R3050 [profile=Default:device=Desktop:dsk_layer=30] Fn+; → execute(q)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -22,7 +22,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('a')\" && echo norm > /tmp/karabiner-layer"
+        "shell" : "echo lmode_exec:q > /tmp/karabiner-command && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,

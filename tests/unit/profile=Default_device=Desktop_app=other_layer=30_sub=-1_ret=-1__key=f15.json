@@ -11,7 +11,7 @@
     "key" : "f15"
   },
   "matched_rule" : {
-    "id" : "R3040 [profile=Default:device=Desktop:dsk_layer=30] Fn+y → execute(t)",
+    "id" : "R3040 [profile=Default:device=Desktop:dsk_layer=30] Fn+y → execute(=)",
     "to" : {
       "resulting_state" : {
         "dsk_layer" : 0,
@@ -21,7 +21,7 @@
       "actions" : [ {
         "key" : "vk_none"
       }, {
-        "shell" : "/opt/homebrew/bin/hs -c \"executeLModeKey('t')\" && echo norm > /tmp/karabiner-layer"
+        "shell" : "echo 'lmode_exec:=' > /tmp/karabiner-command && echo norm > /tmp/karabiner-layer"
       } ]
     },
     "held" : null,
