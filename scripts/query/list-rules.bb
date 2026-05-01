@@ -42,12 +42,13 @@
    3 "rcmd_h_chord" 4 "rcmd_n_chord"})
 
 (defn parse-state
-  "Parse state string using shared library, return map with :profile :layer :submode :return-to"
+  "Parse state string using shared library, return map with :profile :device :layer :submode :return-to"
   [state-str]
   (if (or (nil? state-str) (empty? state-str))
-    {:profile nil :layer nil :in-modal nil :submode nil :return-to nil}
+    {:profile nil :device nil :layer nil :in-modal nil :submode nil :return-to nil}
     (let [parsed (state/parse-state-string state-str)]
       {:profile (:profile parsed)
+       :device (:device parsed)
        :layer (:layer parsed)
        :in-modal (when (:layer parsed) (>= (:layer parsed) 2))
        :submode (:submode parsed)
@@ -120,13 +121,35 @@
         [conds]))))
 
 (defn block-matches-profile? [block-conditions state]
-  (let [has-desktop (some #(= % :Desktop) block-conditions)
-        has-laptop (some #(= % :Laptop) block-conditions)
-        profile (:profile state)]
+  (let [;; :Desktop or :!apple_internal both mean "external keyboard only"
+        has-desktop (some #(or (= % :Desktop) (= % :!apple_internal)) block-conditions)
+        ;; :Laptop or :apple_internal both mean "internal keyboard only"
+        has-laptop (some #(or (= % :Laptop) (= % :apple_internal)) block-conditions)
+        ;; Use device from state (parsed from "device=Desktop" in state string)
+        ;; Fall back to profile for backwards compat with old state strings
+        device (:device state)
+        profile (:profile state)
+        is-desktop (or (= device :desktop)
+                       (= "Desktop" profile))
+        is-laptop (or (= device :laptop)
+                      (= "Laptop" profile))]
     (cond
-      (nil? profile) (and (not has-desktop) (not has-laptop))
-      (= "Desktop" profile) (or has-desktop (not (or has-desktop has-laptop)))
-      (= "Laptop" profile) (or has-laptop (not (or has-desktop has-laptop)))
+      ;; No device/profile specified: match only blocks without device conditions
+      (and (not is-desktop) (not is-laptop) (nil? profile))
+      (and (not has-desktop) (not has-laptop))
+
+      ;; Desktop device: match blocks with desktop condition OR blocks without device restriction
+      is-desktop
+      (or has-desktop (not (or has-desktop has-laptop)))
+
+      ;; Laptop device: match blocks with laptop condition OR blocks without device restriction
+      is-laptop
+      (or has-laptop (not (or has-desktop has-laptop)))
+
+      ;; Profile specified but no device: match blocks without device restriction
+      profile
+      (not (or has-desktop has-laptop))
+
       :else false)))
 
 (defn rule-matches-state?
