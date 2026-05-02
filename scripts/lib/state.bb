@@ -552,15 +552,22 @@
     (mapcat
       (fn [layer]
         (cond
-          ;; Submode layers: 2H mode first (if applicable), then submodes, then catch-all
+          ;; Submode layers: 2H+submode combos first, then 2H catch-all, then submodes, then layer catch-all
           (submode-layers layer)
           (concat
-            ;; 2H mode blocks (most specific - before submodes)
+            ;; Most specific: 2H mode + specific submode
             (when (two-hand-layers layer)
-              (for [two-hand (sort (disj valid-2h-modes 0))]  ;; Only non-zero (active) states get their own block
+              (for [two-hand (sort (disj valid-2h-modes 0))
+                    submode (sort (valid-submodes-for-layer layer))]
+                {:profile "Default" :device :desktop :layer layer :two-hand two-hand :submode submode :return-to nil :app nil}))
+            ;; 2H mode catch-all (no submode specified)
+            (when (two-hand-layers layer)
+              (for [two-hand (sort (disj valid-2h-modes 0))]
                 {:profile "Default" :device :desktop :layer layer :two-hand two-hand :submode nil :return-to nil :app nil}))
+            ;; Regular submodes (no 2H)
             (for [submode (sort (valid-submodes-for-layer layer))]
               {:profile "Default" :device :desktop :layer layer :two-hand nil :submode submode :return-to nil :app nil})
+            ;; Layer catch-all
             [{:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app nil}])
 
           ;; Layer 13: return-to 0, 1, then catch-all

@@ -104,7 +104,8 @@
       "Bash(/opt/homebrew/bin/luac:*)",
       "Bash(sqlite3 \"/Users/rbalicki/Library/Application Support/Wispr Flow/flow.sqlite\" \".tables\")",
       "Bash(strings \"/Users/rbalicki/Library/Application Support/Wispr Flow/Local Storage/leveldb/\"* 2>/dev/null)",
-      "Bash(log show --predicate 'process == \"Hammerspoon\"' --style compact --last 2m 2>/dev/null | tail -30 || echo \"No logs found\")"
+      "Bash(log show --predicate 'process == \"Hammerspoon\"' --style compact --last 2m 2>/dev/null | tail -30 || echo \"No logs found\")",
+      "WebFetch(domain:kinesis-ergo.com)"
     ]
   },
   "spinnerTipsEnabled": false,

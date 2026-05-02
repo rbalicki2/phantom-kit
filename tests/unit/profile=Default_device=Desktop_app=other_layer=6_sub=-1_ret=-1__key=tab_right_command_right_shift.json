@@ -1,0 +1,29 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 0,
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 6,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "tab",
+    "right_command" : true,
+    "right_shift" : true
+  },
+  "matched_rule" : {
+    "id" : "R1332 [profile=Default:device=Desktop] tab blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd+RShift + tab"
+  }
+}
