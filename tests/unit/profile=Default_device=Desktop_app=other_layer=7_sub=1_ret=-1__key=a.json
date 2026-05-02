@@ -1,0 +1,26 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 0,
+    "dsk_ins_sub_mode" : 1,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "a"
+  },
+  "matched_rule" : {
+    "id" : "R1279 [profile=Default:device=Desktop] a blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}

@@ -5,7 +5,9 @@
     "return_or_enter", "spacebar", "page_up", "page_down",
     "right_control", "right_command", "right_shift",
     "backslash", "semicolon", "quote", "comma", "period", "slash", "hyphen",
-    "open_bracket", "close_bracket", "up_arrow", "down_arrow"
+    "open_bracket", "close_bracket", "up_arrow", "down_arrow",
+    "q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v", "b",
+    "1", "2", "3", "4", "5"
   ],
   "modifiers": [
     {},

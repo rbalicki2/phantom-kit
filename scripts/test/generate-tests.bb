@@ -507,11 +507,6 @@
        (str/includes? rule-id "device=Desktop]")  ;; Global Desktop block (no layer condition)
        (str/includes? rule-id "blocked")))
 
-(defn lhs-2h-rule?
-  "Check if a rule ID is a 2H mode LHS rule (expected to be uncovered since LHS keys aren't in test inputs)."
-  [rule-id]
-  (and (string? rule-id)
-       (str/includes? rule-id "dsk_2h_mode=1")))
 
 (defn extract-all-rule-ids
   "Extract all rule IDs from the parsed config for Desktop device only.
@@ -535,8 +530,6 @@
          (filter some?)
          ;; Exclude LHS blocked rules - they're expected to be uncovered
          (remove lhs-blocked-rule?)
-         ;; Exclude 2H mode LHS rules - LHS keys aren't in test inputs
-         (remove lhs-2h-rule?)
          set)))
 
 (defn collect-matched-ids

@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "iTerm",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 0,
+    "dsk_ins_sub_mode" : -1,
+    "dsk_layer" : 10,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "b",
+    "right_control" : true,
+    "right_shift" : true,
+    "right_command" : true
+  },
+  "matched_rule" : {
+    "id" : "R1280 [profile=Default:device=Desktop] b blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd+RCtrl+RShift + b"
+  }
+}

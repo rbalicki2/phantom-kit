@@ -1,0 +1,28 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 3,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "w",
+    "right_control" : true
+  },
+  "matched_rule" : {
+    "id" : "R1301 [profile=Default:device=Desktop] w blocked",
+    "to" : {
+      "resulting_state" : { },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCtrl + w"
+  }
+}

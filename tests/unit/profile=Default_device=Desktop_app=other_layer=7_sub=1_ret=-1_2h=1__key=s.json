@@ -1,0 +1,30 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 1,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "s"
+  },
+  "matched_rule" : {
+    "id" : "R3233 [profile=Default:device=Desktop:dsk_layer=7:dsk_2h_mode=1] s → l",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "l"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null
+  }
+}
