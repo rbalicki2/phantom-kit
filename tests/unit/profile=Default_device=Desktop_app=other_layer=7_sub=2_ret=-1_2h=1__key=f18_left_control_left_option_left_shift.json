@@ -1,0 +1,37 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 2,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f18",
+    "left_shift" : true,
+    "left_option" : true,
+    "left_control" : true
+  },
+  "matched_rule" : {
+    "id" : "R3135 [profile=Default:device=Desktop:dsk_layer=7] Wispr popo passthrough",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "f18",
+        "left_control" : true,
+        "left_option" : true,
+        "left_shift" : true
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LCtrl+LOpt+LShift + Fn+o"
+  }
+}

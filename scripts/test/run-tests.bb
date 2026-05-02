@@ -93,11 +93,12 @@
 (defn run-match
   "Run match-rules for a test case and return parsed output"
   [{:keys [initial_state key]}]
-  (let [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]} initial_state
+  (let [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode application]} initial_state
         internal-state {:dsk_layer dsk_layer
                         :dsk_in_modal_layer 0
                         :dsk_ins_sub_mode dsk_ins_sub_mode
-                        :dsk_return_to_layer dsk_return_to_layer}
+                        :dsk_return_to_layer dsk_return_to_layer
+                        :dsk_2h_mode (or dsk_2h_mode 0)}
         key-name (keyword (:key key))
         mod-set (->> (dissoc key :key)
                      keys

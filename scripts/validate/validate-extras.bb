@@ -28,7 +28,8 @@
 ;; ============================================================================
 
 (def layer-codes
-  "Map of dsk_layer values to expected /tmp/karabiner-layer codes"
+  "Map of dsk_layer values to expected /tmp/karabiner-layer codes.
+   Values can be a string (single valid code) or a set (multiple valid codes)."
   {0 "norm"
    1 "ins"
    2 "n"       ;; Nav
@@ -36,7 +37,7 @@
    4 "vscode"
    5 "tmux"
    6 "comma"
-   7 "altins"  ;; Alt-Insert
+   7 #{"altins" "2h"}  ;; Alt-Insert or 2H mode
    8 "term"
    9 "i"       ;; Admin
    10 "inapp"
@@ -307,13 +308,16 @@
         dsk-layer (:dsk_layer var-sets)
         shell-cmd (get-shell-command action)
         written-code (extract-layer-code-from-shell shell-cmd)
-        expected-code (get layer-codes dsk-layer)]
-    (when (and dsk-layer written-code expected-code
-               (not= written-code expected-code))
+        expected (get layer-codes dsk-layer)
+        matches? (cond
+                   (nil? expected) true
+                   (set? expected) (contains? expected written-code)
+                   :else (= written-code expected))]
+    (when (and dsk-layer written-code expected (not matches?))
       {:type :layer-code-mismatch
        :description (:description rule-info)
        :message (format "dsk_layer=%d expects code '%s' but writes '%s' to /tmp/karabiner-layer"
-                       dsk-layer expected-code written-code)
+                       dsk-layer (str expected) written-code)
        :rule (:rule rule-info)})))
 
 ;; ============================================================================
@@ -606,6 +610,7 @@
 (def allowed-lhs-blocks
   "Patterns matching blocks where LHS keys ARE allowed (blocking/disabling blocks)"
   [#"^Desktop \[\]$"  ;; Desktop fallback block where LHS keys are blocked
+   #"dsk_2h_mode"     ;; 2H mode blocks where LHS keys type characters
    ])
 
 (defn is-allowed-lhs-block? [description]

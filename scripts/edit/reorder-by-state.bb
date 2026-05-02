@@ -136,6 +136,8 @@
     (= (:device rule-state) (:device grouping-state))
     ;; Layer must match
     (= (:layer rule-state) (:layer grouping-state))
+    ;; Two-hand must match
+    (= (:two-hand rule-state) (:two-hand grouping-state))
     ;; Submode must match (nil in grouping = catch-all, matches any rule with that layer but no submode condition)
     (= (:submode rule-state) (:submode grouping-state))
     ;; Return-to must match

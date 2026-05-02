@@ -1,0 +1,17 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 3,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f21",
+    "left_option" : true,
+    "left_shift" : true
+  },
+  "matched_rule" : null
+}

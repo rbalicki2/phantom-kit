@@ -77,6 +77,15 @@
     7 valid-submodes
     #{}))
 
+(def two-hand-layers
+  "Layers where dsk_2h_mode is meaningful.
+   Only AltIns (7) uses 2H mode (0=off, 1=on)."
+  #{7})
+
+(def valid-2h-modes
+  "Valid dsk_2h_mode values: 0 (off) or 1 (on)"
+  #{0 1})
+
 (def return-to-layers
   "Layers where dsk_return_to_layer MUST be 0 or 1 (not -1).
    Only Label mode (13) - Grid mode (28) always returns to Normal so doesn't use return-to."
@@ -118,7 +127,7 @@
 
 (def state-hierarchy
   "The canonical hierarchy of state dimensions, root to leaf"
-  [:profile :device :app :layer :submode :return-to])
+  [:profile :device :app :layer :two-hand :submode :return-to])
 
 (def state-type-roots
   "Which dimension each state type must start with"
@@ -200,6 +209,7 @@
             ("dsk_layer" "layer") (assoc state :layer (parse-long v))
             ("dsk_ins_sub_mode" "submode") (assoc state :submode (parse-long v))
             ("dsk_return_to_layer" "return-to") (assoc state :return-to (parse-long v))
+            ("dsk_2h_mode" "two-hand") (assoc state :two-hand (parse-long v))
             state))
         {}
         pairs))))
@@ -259,6 +269,7 @@
               "dsk_layer" (assoc state :layer value)
               "dsk_ins_sub_mode" (assoc state :submode value)
               "dsk_return_to_layer" (assoc state :return-to value)
+              "dsk_2h_mode" (assoc state :two-hand value)
               state))
           state))
       {}
@@ -297,6 +308,7 @@
               "dsk_layer" (assoc state :layer value)
               "dsk_ins_sub_mode" (assoc state :submode value)
               "dsk_return_to_layer" (assoc state :return-to value)
+              "dsk_2h_mode" (assoc state :two-hand value)
               state))
           state))
       {}
@@ -433,9 +445,14 @@
       (fn [layer]
         (cond
           ;; Submode layers (1, 7): use layer-specific submodes
+          ;; For layers with 2H mode, also generate all submode combos with 2H=1
           (submode-layers layer)
-          (for [submode (sort (valid-submodes-for-layer layer))]
-            {:profile "Default" :device :desktop :layer layer :submode submode :return-to -1 :app nil})
+          (concat
+            (for [submode (sort (valid-submodes-for-layer layer))]
+              {:profile "Default" :device :desktop :layer layer :submode submode :return-to -1 :app nil})
+            (when (two-hand-layers layer)
+              (for [submode (sort (valid-submodes-for-layer layer))]
+                {:profile "Default" :device :desktop :layer layer :submode submode :return-to -1 :app nil :two-hand 1})))
 
           ;; Layer 13/28: return-to
           (return-to-layers layer)
@@ -535,30 +552,34 @@
     (mapcat
       (fn [layer]
         (cond
-          ;; Submode layers: layer-specific submodes, then catch-all
+          ;; Submode layers: 2H mode first (if applicable), then submodes, then catch-all
           (submode-layers layer)
           (concat
+            ;; 2H mode blocks (most specific - before submodes)
+            (when (two-hand-layers layer)
+              (for [two-hand (sort (disj valid-2h-modes 0))]  ;; Only non-zero (active) states get their own block
+                {:profile "Default" :device :desktop :layer layer :two-hand two-hand :submode nil :return-to nil :app nil}))
             (for [submode (sort (valid-submodes-for-layer layer))]
-              {:profile "Default" :device :desktop :layer layer :submode submode :return-to nil :app nil})
-            [{:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app nil}])
+              {:profile "Default" :device :desktop :layer layer :two-hand nil :submode submode :return-to nil :app nil})
+            [{:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app nil}])
 
           ;; Layer 13: return-to 0, 1, then catch-all
           (return-to-layers layer)
           (concat
             (for [return-to (sort valid-return-to)]
-              {:profile "Default" :device :desktop :layer layer :submode nil :return-to return-to :app nil})
-            [{:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app nil}])
+              {:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to return-to :app nil})
+            [{:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app nil}])
 
           ;; Layers 0, 10: app-specific rules first, then catch-all
           (app-layers layer)
           (concat
             (for [app (sort-by name all-apps)]
-              {:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app app})
-            [{:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app nil}])
+              {:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app app})
+            [{:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app nil}])
 
           ;; Other layers: just the layer
           :else
-          [{:profile "Default" :device :desktop :layer layer :submode nil :return-to nil :app nil}]))
+          [{:profile "Default" :device :desktop :layer layer :two-hand nil :submode nil :return-to nil :app nil}]))
       (sort all-layers))
 
     ;; 5. Default + Desktop catch-all (no layer)
@@ -567,7 +588,7 @@
 (defn condition-state-to-des
   "Convert a condition state to a :des string for rule blocks.
    Format: 'Profile:Device [conditions]' or just 'Profile' for None."
-  [{:keys [profile device layer submode return-to app]}]
+  [{:keys [profile device layer two-hand submode return-to app]}]
   (let [prefix (cond
                  (= profile "None") "None"
                  (nil? device) "Default"
@@ -575,6 +596,7 @@
                  :else "Desktop")
         conditions (cond-> []
                      layer (conj ["dsk_layer" layer])
+                     two-hand (conj ["dsk_2h_mode" two-hand])
                      submode (conj ["dsk_ins_sub_mode" submode])
                      return-to (conj ["dsk_return_to_layer" return-to]))
         ;; Add app suffix if present
@@ -601,11 +623,13 @@
    The rule condition is the partial state from the rule's condition array.
    Returns true if the rule belongs to this state (most specific match)."
   [rule-cond state]
-  (let [{:keys [layer submode return-to]} rule-cond
+  (let [{:keys [layer two-hand submode return-to]} rule-cond
         state-layer (:layer state)
+        state-two-hand (:two-hand state)
         state-submode (:submode state)
         state-return-to (:return-to state)]
     ;; Exact match on all specified fields
     (and (= layer state-layer)
+         (= two-hand state-two-hand)
          (= submode state-submode)
          (= return-to state-return-to))))

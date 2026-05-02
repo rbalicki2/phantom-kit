@@ -1,0 +1,32 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 0,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "f12",
+    "left_option" : true
+  },
+  "matched_rule" : {
+    "id" : "R2080 [profile=Default:device=Desktop:dsk_layer=7] Fn+] → shift-oneshot",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 1,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "vk_none"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "LOpt + Fn+hyphen"
+  }
+}

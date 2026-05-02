@@ -87,25 +87,28 @@
 
 (defn make-initial-state
   "Create an initial state map for testing"
-  [layer submode return-to app]
+  [layer submode return-to app & {:keys [two-hand] :or {two-hand 0}}]
   {:dsk_layer layer
    :dsk_ins_sub_mode submode
    :dsk_return_to_layer return-to
+   :dsk_2h_mode two-hand
    :application app})
 
 (defn state-key
   "Create a unique key for a state (for visited tracking).
-   Includes app for layers that have app-specific rules."
-  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]}]
+   Includes app for layers that have app-specific rules.
+   Includes dsk_2h_mode for layers that support it."
+  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode application]}]
   (if (contains? layers-with-app-rules dsk_layer)
-    [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]
-    [dsk_layer dsk_ins_sub_mode dsk_return_to_layer]))
+    [dsk_layer dsk_ins_sub_mode dsk_return_to_layer (or dsk_2h_mode 0) application]
+    [dsk_layer dsk_ins_sub_mode dsk_return_to_layer (or dsk_2h_mode 0)]))
 
 (defn format-initial-state
   "Format initial state for JSON output (canonical key order)"
-  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]}]
+  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode application]}]
   {:application (or application "other")
    :device "Desktop"
+   :dsk_2h_mode (or dsk_2h_mode 0)
    :dsk_ins_sub_mode dsk_ins_sub_mode
    :dsk_layer dsk_layer
    :dsk_return_to_layer dsk_return_to_layer
@@ -134,11 +137,13 @@
 (defn test-filename
   "Generate test filename from initial state and key"
   [initial-state key-obj]
-  (let [{:keys [profile device application dsk_layer dsk_ins_sub_mode dsk_return_to_layer]}
+  (let [{:keys [profile device application dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode]}
         (format-initial-state initial-state)
-        key-part (format-key-for-filename key-obj)]
-    (format "profile=%s_device=%s_app=%s_layer=%d_sub=%d_ret=%d__key=%s.json"
-            profile device application dsk_layer dsk_ins_sub_mode dsk_return_to_layer key-part)))
+        key-part (format-key-for-filename key-obj)
+        two-hand-part (when (= dsk_2h_mode 1) "_2h=1")]
+    (format "profile=%s_device=%s_app=%s_layer=%d_sub=%d_ret=%d%s__key=%s.json"
+            profile device application dsk_layer dsk_ins_sub_mode dsk_return_to_layer
+            (or two-hand-part "") key-part)))
 
 ;; ============================================================================
 ;; Rule Matching (in-process)
@@ -147,11 +152,12 @@
 (defn do-match-rules
   "Match rules using in-process library call"
   [state key-name mods app-bundle-id]
-  (let [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer]} state
+  (let [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode]} state
         internal-state {:dsk_layer dsk_layer
                         :dsk_in_modal_layer 0
                         :dsk_ins_sub_mode dsk_ins_sub_mode
-                        :dsk_return_to_layer dsk_return_to_layer}
+                        :dsk_return_to_layer dsk_return_to_layer
+                        :dsk_2h_mode (or dsk_2h_mode 0)}
         mod-set (set (map keyword (keys mods)))
         result (match-rules/find-matching-rules (get-config)
                                                  (keyword key-name)
@@ -171,11 +177,13 @@
   (when-let [rs (:resulting_state output-section)]
     (let [layer (get rs :dsk_layer)
           submode (get rs :dsk_ins_sub_mode)
-          return-to (get rs :dsk_return_to_layer)]
-      (when (or layer submode return-to)
+          return-to (get rs :dsk_return_to_layer)
+          two-hand (get rs :dsk_2h_mode)]
+      (when (or layer submode return-to (some? two-hand))
         {:dsk_layer layer
          :dsk_ins_sub_mode submode
-         :dsk_return_to_layer return-to}))))
+         :dsk_return_to_layer return-to
+         :dsk_2h_mode two-hand}))))
 
 (defn merge-resulting-state
   "Merge resulting state with current state (only set fields override)"
@@ -183,7 +191,8 @@
   (merge current
          (when (:dsk_layer resulting) {:dsk_layer (:dsk_layer resulting)})
          (when (:dsk_ins_sub_mode resulting) {:dsk_ins_sub_mode (:dsk_ins_sub_mode resulting)})
-         (when (:dsk_return_to_layer resulting) {:dsk_return_to_layer (:dsk_return_to_layer resulting)})))
+         (when (:dsk_return_to_layer resulting) {:dsk_return_to_layer (:dsk_return_to_layer resulting)})
+         (when (some? (:dsk_2h_mode resulting)) {:dsk_2h_mode (:dsk_2h_mode resulting)})))
 
 (defn collect-new-states
   "Collect all new states from a match result"
@@ -271,11 +280,15 @@
 
 (defn valid-state?
   "Check if a state is valid according to our state invariants"
-  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer]}]
+  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode]}]
   (let [validation (state/validate-state {:layer dsk_layer
                                           :submode dsk_ins_sub_mode
                                           :return-to dsk_return_to_layer})]
-    (nil? validation)))
+    (and (nil? validation)
+         ;; dsk_2h_mode must be 0 or 1 for layer 7, 0 for everything else
+         (if (contains? state/two-hand-layers dsk_layer)
+           (contains? state/valid-2h-modes (or dsk_2h_mode 0))
+           (or (nil? dsk_2h_mode) (= dsk_2h_mode 0))))))
 
 (defn process-single-test
   "Process a single key/modifier/app combination. Returns {:test ... :new-states ...}"
@@ -346,13 +359,16 @@
 
 (defn format-state-str
   "Format state for display, including app for layers that care"
-  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]}]
-  (let [layer-name (get layer-names dsk_layer (str "L" dsk_layer))]
+  [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer dsk_2h_mode application]}]
+  (let [layer-name (get layer-names dsk_layer (str "L" dsk_layer))
+        two-hand-suffix (when (and (= dsk_2h_mode 1)) " 2H")]
     (if (contains? layers-with-app-rules dsk_layer)
-      (format "%s (layer=%d) sub=%d ret=%d app=%s"
-              layer-name dsk_layer dsk_ins_sub_mode dsk_return_to_layer (or application "other"))
-      (format "%s (layer=%d) sub=%d ret=%d"
-              layer-name dsk_layer dsk_ins_sub_mode dsk_return_to_layer))))
+      (format "%s (layer=%d) sub=%d ret=%d%s app=%s"
+              layer-name dsk_layer dsk_ins_sub_mode dsk_return_to_layer
+              (or two-hand-suffix "") (or application "other"))
+      (format "%s (layer=%d) sub=%d ret=%d%s"
+              layer-name dsk_layer dsk_ins_sub_mode dsk_return_to_layer
+              (or two-hand-suffix "")))))
 
 (defn run-bfs
   "Run BFS exploration with parallel test generation.
@@ -415,23 +431,22 @@
   (->> (state/all-valid-states)
        ;; Filter to desktop only (laptop and None don't apply to BFS)
        (filter #(= (:device %) :desktop))
-       ;; Expand app-specific layers
-       (mapcat (fn [{:keys [layer submode return-to app] :as s}]
-                 (if (contains? layers-with-app-rules layer)
-                   ;; Expand to all app variants
-                   (map #(vector layer submode return-to (:name %)) applications)
-                   ;; Non-app layers use "other"
-                   [[layer submode return-to "other"]])))
+       ;; Expand app-specific layers to all app variants, match state-key format
+       (mapcat (fn [{:keys [layer submode return-to app two-hand] :as s}]
+                 (let [two-hand-val (or two-hand 0)]
+                   (if (contains? layers-with-app-rules layer)
+                     ;; App layers: [layer sub ret 2h app] for each app
+                     (map #(vector layer submode return-to two-hand-val (:name %)) applications)
+                     ;; Non-app layers: [layer sub ret 2h] (no app in key)
+                     [[layer submode return-to two-hand-val]]))))
        set))
 
 (defn validate-state-reachability
   "Validate that all expected states were reached by BFS.
    Returns nil if all reached, or {:missing [...] :extra [...]}."
   [discovered-states expected-states]
-  (let [;; Convert discovered states to comparable format (layer, submode, return-to, app)
-        discovered-set (set (map (fn [{:keys [dsk_layer dsk_ins_sub_mode dsk_return_to_layer application]}]
-                                   [dsk_layer dsk_ins_sub_mode dsk_return_to_layer (or application "other")])
-                                 discovered-states))
+  (let [;; Convert discovered states using state-key (same format as expected)
+        discovered-set (set (map state-key discovered-states))
         missing (clojure.set/difference expected-states discovered-set)
         extra (clojure.set/difference discovered-set expected-states)]
     (when (or (seq missing) (seq extra))
@@ -492,6 +507,12 @@
        (str/includes? rule-id "device=Desktop]")  ;; Global Desktop block (no layer condition)
        (str/includes? rule-id "blocked")))
 
+(defn lhs-2h-rule?
+  "Check if a rule ID is a 2H mode LHS rule (expected to be uncovered since LHS keys aren't in test inputs)."
+  [rule-id]
+  (and (string? rule-id)
+       (str/includes? rule-id "dsk_2h_mode=1")))
+
 (defn extract-all-rule-ids
   "Extract all rule IDs from the parsed config for Desktop device only.
    Config has :main which is a vector of blocks, each with :rules.
@@ -514,6 +535,8 @@
          (filter some?)
          ;; Exclude LHS blocked rules - they're expected to be uncovered
          (remove lhs-blocked-rule?)
+         ;; Exclude 2H mode LHS rules - LHS keys aren't in test inputs
+         (remove lhs-2h-rule?)
          set)))
 
 (defn collect-matched-ids

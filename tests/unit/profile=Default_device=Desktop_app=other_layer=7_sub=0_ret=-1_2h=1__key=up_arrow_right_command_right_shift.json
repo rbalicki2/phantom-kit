@@ -1,0 +1,33 @@
+{
+  "initial_state" : {
+    "application" : "other",
+    "device" : "Desktop",
+    "dsk_2h_mode" : 1,
+    "dsk_ins_sub_mode" : 0,
+    "dsk_layer" : 7,
+    "dsk_return_to_layer" : -1,
+    "profile" : "Default"
+  },
+  "key" : {
+    "key" : "up_arrow",
+    "right_command" : true,
+    "right_shift" : true
+  },
+  "matched_rule" : {
+    "id" : "R2197 [profile=Default:device=Desktop:dsk_layer=7] RCmd+up → Left",
+    "to" : {
+      "resulting_state" : {
+        "dsk_layer" : 7,
+        "dsk_ins_sub_mode" : 0,
+        "dsk_return_to_layer" : -1
+      },
+      "actions" : [ {
+        "key" : "left_arrow"
+      } ]
+    },
+    "held" : null,
+    "afterup" : null,
+    "alone" : null,
+    "comment" : "RCmd+RShift + up_arrow"
+  }
+}
