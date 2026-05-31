@@ -12,11 +12,15 @@
     "key" : "spacebar"
   },
   "matched_rule" : {
-    "id" : "R1331 [profile=Default:device=Desktop] Space blocked",
+    "id" : "R3276 [profile=Default:device=Desktop:dsk_layer=0] Space → Space",
     "to" : {
-      "resulting_state" : { },
+      "resulting_state" : {
+        "dsk_layer" : 0,
+        "dsk_ins_sub_mode" : -1,
+        "dsk_return_to_layer" : -1
+      },
       "actions" : [ {
-        "key" : "vk_none"
+        "key" : "spacebar"
       } ]
     },
     "held" : null,
