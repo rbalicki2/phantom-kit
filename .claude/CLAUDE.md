@@ -6,6 +6,21 @@ This is the operational guide for working with this codebase. For understanding 
 
 **Phantom Kit** is a Karabiner/Goku configuration for a one-handed (RHS only) keyboard setup on a Kinesis Advantage 360. It implements a vim-like modal layer system.
 
+## tmuxp Dev Configs (iso / pin)
+
+You are also responsible for editing the **iso** and **pin** tmuxp configs:
+
+- `~/.tmuxp/iso-dev.yaml` — the **iso** config
+- `~/.tmuxp/pin-dev.yaml` — the **pin** config
+
+These live in `~/.tmuxp/`, which is its own git repo (separate from voicemode).
+
+**Conventions:**
+- **Agent panes** run `cco`, which is the alias `ai-sandbox claude --model us.anthropic.claude-opus-4-8 --dangerously-skip-permissions`. `ai-sandbox` ends in `exec sandbox-exec … bash "$@"`, so any trailing args pass straight through to `claude` — e.g. `cco --resume` resumes the most recent session in that pane's `start_directory`. No change to `cco` or `ai-sandbox` is needed to forward flags.
+- **Bare `--resume`** (no session ID) resumes the latest session for that directory. If a directory has never had a Claude session, `cco --resume` may error or prompt — only add it to dirs with prior sessions, or use bare `cco` for the first run. (`pin-dev.yaml` pins explicit session UUIDs via `--resume <uuid>` for precise resume.)
+- Keep the **same number of windows/panes** when repurposing — rename and replace `shell_command` contents rather than deleting windows. To stop an agent without removing its window, set its pane to `echo shell`.
+- When adding a new layer, see "When Adding a New Layer" below; these tmuxp edits are unrelated to Karabiner rules and do not require sync or test regeneration.
+
 ## NEVER Use Plan Mode
 
 **NEVER use EnterPlanMode. No exceptions.** Plan mode wastes time and blocks execution. Instead:
@@ -305,52 +320,6 @@ See `scripts/README.md` for complete documentation.
 - **`scripts/actions/`** - Shell scripts called by rules at runtime
 - **`scripts/swiftbar/`** - SwiftBar menu bar plugins
 
-## Command Pool for Sandbox Escape
+## Network Operations Are Sandboxed
 
-The user runs a command pool named `cmd` (lowercase) with agents that execute shell commands outside the sandbox. Use this for any network operations, git push, gh CLI, etc.
-
-### How to Submit Commands
-
-```bash
-/Users/rbalicki/code/gsd/target/debug/troupe submit_task --pool cmd --notify file --data '{"kind": "Task", "task": {"instructions": "description", "data": {"cmd": "YOUR_COMMAND 2>&1"}}}'
-```
-
-### Common Commands
-
-**Git push:**
-```json
-{"kind": "Task", "task": {"instructions": "Push", "data": {"cmd": "git push 2>&1"}}}
-```
-
-**Force push:**
-```json
-{"kind": "Task", "task": {"instructions": "Force push", "data": {"cmd": "git push --force 2>&1"}}}
-```
-
-**Check GitHub Actions:**
-```json
-{"kind": "Task", "task": {"instructions": "List CI", "data": {"cmd": "gh run list --limit 5 2>&1"}}}
-```
-
-**View specific CI run:**
-```json
-{"kind": "Task", "task": {"instructions": "View CI", "data": {"cmd": "gh run view RUN_ID 2>&1"}}}
-```
-
-### Important Notes
-
-- Pool name is `cmd` (lowercase)
-- Always use `--notify file` (sandbox blocks sockets)
-- Always use `--file` not `--data` (avoids approval prompts)
-- Always include `2>&1` to capture stderr
-- Binary is at `/Users/rbalicki/code/gsd/target/debug/troupe`
-
-### Timeouts for Long-Running Commands
-
-The command agent will be evicted if a task runs too long. Use manual timeout:
-
-```bash
-(YOUR_COMMAND 2>&1) & pid=$!; (sleep 300; kill $pid 2>/dev/null) & sleep_pid=$!; wait $pid; kill $sleep_pid 2>/dev/null
-```
-
-**Prefer polling over watching** to avoid long-running commands.
+The sandbox blocks network commands (anything touching `gironde`, `ssh`, `git push`, `gh`, etc.). When you need one of these, write a self-contained script and have the user run it via `! <command>` in the prompt, so its output lands back in the session. Don't try to work around the sandbox directly.
