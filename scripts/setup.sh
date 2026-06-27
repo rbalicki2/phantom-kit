@@ -1,50 +1,56 @@
 #!/usr/bin/env bash
 # One-time setup for a fresh clone of voicemode (Phantom Kit).
 #
-# Establishes the symlink that makes voicemode the source of truth for the
-# Karabiner config:
+# Makes voicemode the source of truth for both configs it owns, by symlinking the
+# real locations to the checked-in copies:
 #
 #     ~/.config/karabiner/karabiner.json  ->  <repo>/generated/karabiner.json
+#     ~/.hammerspoon/<file>.lua           ->  <repo>/hammerspoon/<file>.lua
 #
 # generated/karabiner.json is checked into the repo (already has the Default and
-# None profiles goku needs to merge into), so this works immediately after clone
-# without bootstrapping goku. Any existing real karabiner.json is backed up first.
+# None profiles goku needs to merge into), so it works immediately after clone
+# without bootstrapping goku. Any existing real files are backed up first.
 #
-# Idempotent: re-running when the symlink is already correct is a no-op. After
-# this, `npm run sync` regenerates generated/karabiner.json in place and re-links
-# if needed (see scripts/edit/relink-karabiner-json.bb).
+# Idempotent: re-running when a symlink is already correct is a no-op. After this,
+# `npm run sync` regenerates generated/karabiner.json in place and re-links it if
+# needed (see scripts/edit/relink-karabiner-json.bb).
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-REPO_JSON="$REPO/generated/karabiner.json"
-CFG_DIR="$HOME/.config/karabiner"
-DEPLOYED="$CFG_DIR/karabiner.json"
 
-[ -f "$REPO_JSON" ] || { echo "error: $REPO_JSON missing — is this a complete clone?" >&2; exit 1; }
+# Symlink $2 -> $1 (target -> real), backing up anything already at $2.
+link() {
+  local target="$1" real="$2"
+  [ -e "$target" ] || { echo "error: $target missing — incomplete clone?" >&2; return 1; }
+  if [ -L "$real" ] && [ "$(readlink "$real")" = "$target" ]; then
+    echo "already linked: $real -> $target"
+    return 0
+  fi
+  mkdir -p "$(dirname "$real")"
+  if [ -e "$real" ] || [ -L "$real" ]; then
+    local bak="$real.pre-voicemode.$(date +%Y%m%d-%H%M%S)"
+    mv "$real" "$bak"
+    echo "backed up existing $(basename "$real") -> $bak"
+  fi
+  ln -s "$target" "$real"
+  echo "linked: $real -> $target"
+}
 
-mkdir -p "$CFG_DIR"
-
-# Also seed the EDN source goku reads, so `npm run sync` works right away.
+echo "== Karabiner =="
+# Seed the EDN source goku reads, so `npm run sync` works right away.
 if [ -f "$REPO/src/karabiner.edn" ]; then
   cp "$REPO/src/karabiner.edn" "$HOME/.config/karabiner.edn"
   echo "copied src/karabiner.edn -> ~/.config/karabiner.edn"
 fi
+link "$REPO/generated/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
 
-# Already linked correctly?
-if [ -L "$DEPLOYED" ] && [ "$(readlink "$DEPLOYED")" = "$REPO_JSON" ]; then
-  echo "already linked: $DEPLOYED -> $REPO_JSON"
-  exit 0
-fi
-
-# Back up an existing real file (or wrong symlink) before replacing it.
-if [ -e "$DEPLOYED" ] || [ -L "$DEPLOYED" ]; then
-  ts="$(date +%Y%m%d-%H%M%S)"
-  bak="$DEPLOYED.pre-voicemode.$ts"
-  mv "$DEPLOYED" "$bak"
-  echo "backed up existing karabiner.json -> $bak"
-fi
-
-ln -s "$REPO_JSON" "$DEPLOYED"
-echo "linked: $DEPLOYED -> $REPO_JSON"
 echo
-echo "Done. Run 'npm run sync' to regenerate, and select your Karabiner profile (kl/kd)."
+echo "== Hammerspoon =="
+for f in "$REPO"/hammerspoon/*.lua; do
+  [ -e "$f" ] || { echo "no hammerspoon/*.lua in repo — skipping"; break; }
+  link "$f" "$HOME/.hammerspoon/$(basename "$f")"
+done
+
+echo
+echo "Done. Run 'npm run sync' to regenerate Karabiner, select your profile (kl/kd),"
+echo "and reload Hammerspoon (npm run hs)."
