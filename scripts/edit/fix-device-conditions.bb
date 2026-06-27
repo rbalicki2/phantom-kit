@@ -13,13 +13,19 @@
 
 (def karabiner-json-path (str (System/getenv "HOME") "/.config/karabiner/karabiner.json"))
 
-;; The device condition that should be on all app-specific rules
-;; Matches the :apple_internal device defined in karabiner.edn
+;; The device condition that should be on all app-specific rules.
+;; Must mirror the :apple_internal device list in src/karabiner.edn. The list is
+;; OR'd by Karabiner: matches the old MacBook's USB keyboard (vendor/product) OR
+;; any built-in keyboard. Newer MacBooks expose the built-in keyboard over FIFO
+;; with NO vendor_id/product_id, so is_built_in_keyboard is the only identifier
+;; that matches them — without it, app-specific :!apple_internal rules swallow
+;; keys on the built-in keyboard and nothing is emitted.
 (def apple-internal-device-unless
   {"type" "device_unless"
    "identifiers" [{"vendor_id" 1452
                    "product_id" 835
-                   "is_keyboard" true}]})
+                   "is_keyboard" true}
+                  {"is_built_in_keyboard" true}]})
 
 (defn has-device-condition?
   "Check if a manipulator has any device_if or device_unless condition"
