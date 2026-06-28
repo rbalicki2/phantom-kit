@@ -11,9 +11,10 @@
 # None profiles goku needs to merge into), so it works immediately after clone
 # without bootstrapping goku. Any existing real files are backed up first.
 #
-# Idempotent: re-running when a symlink is already correct is a no-op. After this,
-# `npm run sync` regenerates generated/karabiner.json in place and re-links it if
-# needed (see scripts/edit/relink-karabiner-json.bb).
+# Idempotent: re-running when a symlink is already correct is a no-op. After
+# linking, this restarts Hammerspoon and runs `npm run sync` to regenerate
+# generated/karabiner.json from src and reload Karabiner, so the deployed config
+# matches the source you pulled rather than a stale committed copy.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -52,13 +53,19 @@ for f in "$REPO"/hammerspoon/*.lua; do
 done
 
 echo
-echo "== Hammerspoon reload =="
-# Start the app if it isn't running (npm run hs only reloads a LIVE instance via
-# hs.ipc), then reload its config so the symlinked files take effect.
-open -a Hammerspoon 2>/dev/null || true
+echo "== Hammerspoon (re)start =="
+# Quit and reopen so a fresh copy of the symlinked lua is loaded. npm run hs only
+# reloads a LIVE instance via hs.ipc, so it can't start a dead app.
+osascript -e 'tell application "Hammerspoon" to quit' 2>/dev/null || true
 sleep 1
-npm --prefix "$REPO" run hs >/dev/null 2>&1 && echo "reloaded Hammerspoon (npm run hs)" \
-  || echo "could not reload Hammerspoon — run 'npm run hs' manually"
+open -a Hammerspoon 2>/dev/null || true
 
 echo
-echo "Done. Run 'npm run sync' to regenerate Karabiner and select your profile (kl/kd)."
+echo "== Karabiner sync =="
+# Regenerate generated/karabiner.json from src (don't trust the committed copy to
+# be current) and reload Karabiner. This is what makes the deployed rules match
+# the source you just pulled.
+npm --prefix "$REPO" run sync
+
+echo
+echo "Done."
