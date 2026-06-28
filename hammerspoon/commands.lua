@@ -183,10 +183,6 @@ function M.executeCommand(cmd)
         switcher_prev_window = function()
             deps.keyStroke({"shift"}, "`", 0)
         end,
-        window_maximize = M.windowMaximize,
-        window_left_half = M.windowLeftHalf,
-        window_right_half = M.windowRightHalf,
-        window_bottom_half = M.windowBottomHalf,
     }
 
     local handler = handlers[cmd]

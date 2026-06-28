@@ -528,7 +528,7 @@
           "to" : [ {
             "key_code" : "vk_none"
           }, {
-            "shell_command" : "echo window_maximize >> /tmp/karabiner-command"
+            "shell_command" : "/opt/homebrew/bin/hs -c 'windowMaximize()'"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -551,7 +551,7 @@
           "to" : [ {
             "key_code" : "vk_none"
           }, {
-            "shell_command" : "echo window_bottom_half >> /tmp/karabiner-command"
+            "shell_command" : "/opt/homebrew/bin/hs -c 'windowBottomHalf()'"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -1199,7 +1199,7 @@
           "to" : [ {
             "key_code" : "vk_none"
           }, {
-            "shell_command" : "echo window_left_half >> /tmp/karabiner-command"
+            "shell_command" : "/opt/homebrew/bin/hs -c 'windowLeftHalf()'"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -1222,7 +1222,7 @@
           "to" : [ {
             "key_code" : "vk_none"
           }, {
-            "shell_command" : "echo window_right_half >> /tmp/karabiner-command"
+            "shell_command" : "/opt/homebrew/bin/hs -c 'windowRightHalf()'"
           } ],
           "conditions" : [ {
             "identifiers" : [ {

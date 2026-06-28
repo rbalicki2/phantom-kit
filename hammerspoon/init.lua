@@ -184,6 +184,12 @@ function focusChromeProfile(profile)
     return commands.focusChromeProfile(profile)
 end
 
+-- Window tiling, called directly by Karabiner via `hs -c 'windowLeftHalf()'`.
+function windowMaximize()   return commands.windowMaximize() end
+function windowLeftHalf()   return commands.windowLeftHalf() end
+function windowRightHalf()  return commands.windowRightHalf() end
+function windowBottomHalf() return commands.windowBottomHalf() end
+
 function switcherNextApp()
     deps.keyStroke({}, "tab", 0)
 end
