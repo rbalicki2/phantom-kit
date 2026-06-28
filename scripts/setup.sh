@@ -12,9 +12,8 @@
 # without bootstrapping goku. Any existing real files are backed up first.
 #
 # Idempotent: re-running when a symlink is already correct is a no-op. After
-# linking, this restarts Hammerspoon and runs `npm run sync` to regenerate
-# generated/karabiner.json from src and reload Karabiner, so the deployed config
-# matches the source you pulled rather than a stale committed copy.
+# linking, this restarts Hammerspoon and reloads Karabiner so the symlinked,
+# already-committed configs take effect. No bb/goku needed on a fresh machine.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -61,11 +60,10 @@ sleep 1
 open -a Hammerspoon 2>/dev/null || true
 
 echo
-echo "== Karabiner sync =="
-# Regenerate generated/karabiner.json from src (don't trust the committed copy to
-# be current) and reload Karabiner. This is what makes the deployed rules match
-# the source you just pulled.
-npm --prefix "$REPO" run sync
+echo "== Karabiner reload =="
+# The symlink already deploys the committed generated/karabiner.json, so no regen
+# (no bb/goku) is needed on a fresh machine. Just force Karabiner to re-read it.
+bash "$REPO/scripts/actions/reload-karabiner.sh"
 
 echo
 echo "Done."
