@@ -521,6 +521,29 @@
         }, {
           "from" : {
             "modifiers" : {
+              "mandatory" : [ "fn", "shift" ]
+            },
+            "key_code" : "up_arrow"
+          },
+          "to" : [ {
+            "key_code" : "vk_none"
+          }, {
+            "shell_command" : "echo window_maximize >> /tmp/karabiner-command"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 1452,
+              "product_id" : 835,
+              "is_keyboard" : true
+            }, {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "modifiers" : {
               "optional" : [ "caps_lock" ]
             },
             "key_code" : "open_bracket"
@@ -1131,6 +1154,52 @@
           "to" : [ {
             "key_code" : "f19",
             "modifiers" : [ "left_control", "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 1452,
+              "product_id" : 835,
+              "is_keyboard" : true
+            }, {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "modifiers" : {
+              "mandatory" : [ "fn", "shift" ]
+            },
+            "key_code" : "left_arrow"
+          },
+          "to" : [ {
+            "key_code" : "vk_none"
+          }, {
+            "shell_command" : "echo window_left_half >> /tmp/karabiner-command"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 1452,
+              "product_id" : 835,
+              "is_keyboard" : true
+            }, {
+              "is_built_in_keyboard" : true
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "modifiers" : {
+              "mandatory" : [ "fn", "shift" ]
+            },
+            "key_code" : "right_arrow"
+          },
+          "to" : [ {
+            "key_code" : "vk_none"
+          }, {
+            "shell_command" : "echo window_right_half >> /tmp/karabiner-command"
           } ],
           "conditions" : [ {
             "identifiers" : [ {

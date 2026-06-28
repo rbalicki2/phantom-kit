@@ -234,12 +234,10 @@ hs.hotkey.bind({"cmd", "ctrl", "alt"}, "O", function()
     ]])
 end)
 
--- BTT replacement: window tiling on the built-in keyboard.
--- Fn+arrow on a MacBook emits: Up->PageUp, Left->Home, Right->End. So
--- Fn+Shift+Up = Shift+PageUp, Fn+Shift+Left = Shift+Home, Fn+Shift+Right = Shift+End.
-hs.hotkey.bind({"shift"}, "pageup", commands.windowMaximize)
-hs.hotkey.bind({"shift"}, "home",   commands.windowLeftHalf)
-hs.hotkey.bind({"shift"}, "end",    commands.windowRightHalf)
+-- BTT replacement: window tiling. The keys are caught by Karabiner on the
+-- built-in keyboard (Fn+Shift+Up/Left/Right) -- fn-flagged arrows can't be bound
+-- via hs.hotkey here -- which writes window_maximize/left_half/right_half to
+-- /tmp/karabiner-command; the handlers live in commands.lua.
 
 -- Run cleanup before reload
 hs.shutdownCallback = cleanup
