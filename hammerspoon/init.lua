@@ -245,8 +245,9 @@ hs.shutdownCallback = cleanup
 -- Run initialization
 init()
 
--- DEBUG MARKER: confirms this exact init.lua is the one Hammerspoon loaded.
--- If you reload HS and DON'T see this, HS is running a different/old file.
+-- Marker: confirms this exact init.lua is the one Hammerspoon loaded (kept until
+-- verified on the new machine). If you reload HS and DON'T see this, HS is
+-- running a different/old file.
 hs.alert.show("HAMMERSPOON LOADED — window tiling build", 4)
 
 -- Show alert

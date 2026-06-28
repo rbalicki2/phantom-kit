@@ -355,10 +355,9 @@ end
 -- Resize the focused window to a unit rect of its screen (BTT-style tiling).
 -- rect is {x, y, w, h} in 0..1 screen fractions.
 local function moveFocusedToUnit(rect, label)
-    hs.alert.show("win: " .. (label or "?"))  -- visible: confirms the handler ran
     pcall(function()
         local win = hs.window.focusedWindow()
-        if not win then hs.alert.show("win: NO focused window"); return end
+        if not win then return end
         local f = win:screen():frame()
         win:setFrame({
             x = f.x + f.w * rect[1],
