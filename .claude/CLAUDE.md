@@ -11,6 +11,12 @@ This is the operational guide for working with this codebase. For understanding 
 - Strictly professional. No humor, no jokes, no wit, none.
 - If you're about to ask me something, first check whether you can answer it yourself. If so, do that.
 
+## How to solve problems
+- Break problems down and solve incrementally. Change one thing, verify it, then move to the next. Do not stack multiple unverified changes.
+- When debugging, isolate the failing layer before changing anything. Identify which stage of a pipeline is broken (does the file get written, does the handler run, does the API call return) with a targeted check, then fix that stage. Do not guess at fixes across multiple layers at once.
+- Before reaching for a complex mechanism, check whether a simpler existing pattern already does the job. Copy the pattern that fits, not the first one you see.
+- State the single most informative diagnostic and get its result before theorizing about causes.
+
 ## Don't sound like an LLM
 Detection is cumulative: many weak tells stacking up. Avoid the stack.
 - No "delve/underscore/showcase/leverage/foster/harness." No "tapestry/landscape/realm/ecosystem/cornerstone/testament."

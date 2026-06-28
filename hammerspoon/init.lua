@@ -185,10 +185,9 @@ function focusChromeProfile(profile)
 end
 
 -- Window tiling, called directly by Karabiner via `hs -c 'windowLeftHalf()'`.
-function windowMaximize()   return commands.windowMaximize() end
-function windowLeftHalf()   return commands.windowLeftHalf() end
-function windowRightHalf()  return commands.windowRightHalf() end
-function windowBottomHalf() return commands.windowBottomHalf() end
+function windowMaximize()  return commands.windowMaximize() end
+function windowLeftHalf()  return commands.windowLeftHalf() end
+function windowRightHalf() return commands.windowRightHalf() end
 
 function switcherNextApp()
     deps.keyStroke({}, "tab", 0)
@@ -250,11 +249,6 @@ hs.shutdownCallback = cleanup
 
 -- Run initialization
 init()
-
--- Marker: confirms this exact init.lua is the one Hammerspoon loaded (kept until
--- verified on the new machine). If you reload HS and DON'T see this, HS is
--- running a different/old file.
-hs.alert.show("HAMMERSPOON LOADED — window tiling build", 4)
 
 -- Show alert
 hs.alert.show("Hammerspoon loaded")
