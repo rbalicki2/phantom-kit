@@ -186,6 +186,7 @@ function M.executeCommand(cmd)
         window_maximize = M.windowMaximize,
         window_left_half = M.windowLeftHalf,
         window_right_half = M.windowRightHalf,
+        window_bottom_half = M.windowBottomHalf,
     }
 
     local handler = handlers[cmd]
@@ -368,9 +369,10 @@ local function moveFocusedToUnit(rect, label)
     end)
 end
 
-function M.windowMaximize()  moveFocusedToUnit({0, 0, 1,   1}, "max") end
-function M.windowLeftHalf()  moveFocusedToUnit({0, 0, 0.5, 1}, "left") end
-function M.windowRightHalf() moveFocusedToUnit({0.5, 0, 0.5, 1}, "right") end
+function M.windowMaximize()   moveFocusedToUnit({0, 0, 1,   1},   "max") end
+function M.windowLeftHalf()   moveFocusedToUnit({0, 0, 0.5, 1},   "left") end
+function M.windowRightHalf()  moveFocusedToUnit({0.5, 0, 0.5, 1}, "right") end
+function M.windowBottomHalf() moveFocusedToUnit({0, 0.5, 1, 0.5}, "bottom") end
 
 function M.arrangeDebugWindows()
     local ok, err = pcall(function()

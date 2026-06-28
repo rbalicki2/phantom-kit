@@ -29,6 +29,7 @@
    [{:key :backslash, :modi {:mandatory [:shift], :optional [:caps_lock]}, :id "R3218 [profile=Default:device=Laptop] Shift+\\ → \\"} [:backslash ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :right_shift, :id "R0024 [profile=Default:device=Laptop] RShift → RShift", :modi {:optional [:shift]}} [:vk_none ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]] nil {:held [:right_shift], :alone :!S0}]
    [{:key :up_arrow, :modi {:mandatory [:fn :shift]}, :id "R3277 [profile=Default:device=Laptop] Fn+Shift+↑ → maximize window"} [:vk_none {:shell "echo window_maximize >> /tmp/karabiner-command"}] []]
+   [{:key :down_arrow, :modi {:mandatory [:fn :shift]}, :id "R3280 [profile=Default:device=Laptop] Fn+Shift+↓ → bottom half"} [:vk_none {:shell "echo window_bottom_half >> /tmp/karabiner-command"}] []]
    [{:key :open_bracket, :modi {:optional [:caps_lock]}, :id "R3219 [profile=Default:device=Laptop] [ → Cmd+["} [:!Copen_bracket ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :open_bracket, :modi {:mandatory [:command], :optional [:caps_lock]}, :id "R3220 [profile=Default:device=Laptop] Cmd+[ → ["} [:open_bracket ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
    [{:key :close_bracket, :modi {:optional [:caps_lock]}, :id "R3221 [profile=Default:device=Laptop] ] → Cmd+]"} [:!Cclose_bracket ["dsk_layer" 0] ["dsk_ins_sub_mode" -1] ["dsk_return_to_layer" -1]]]
