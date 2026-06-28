@@ -52,5 +52,17 @@ for f in "$REPO"/hammerspoon/*.lua; do
 done
 
 echo
-echo "Done. Run 'npm run sync' to regenerate Karabiner, select your profile (kl/kd),"
-echo "and reload Hammerspoon (npm run hs)."
+echo "== Hammerspoon reload =="
+# Start the app if it isn't running, then reload its config so the symlinked
+# files take effect. `hs -c` only works once the app is up and hs.ipc loaded.
+open -a Hammerspoon 2>/dev/null || true
+sleep 1
+if [ -x /opt/homebrew/bin/hs ]; then
+  /opt/homebrew/bin/hs -c 'hs.reload()' >/dev/null 2>&1 || true
+  echo "reloaded Hammerspoon"
+else
+  echo "hs CLI not found — reload Hammerspoon manually"
+fi
+
+echo
+echo "Done. Run 'npm run sync' to regenerate Karabiner and select your profile (kl/kd)."
