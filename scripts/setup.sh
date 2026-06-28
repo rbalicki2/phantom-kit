@@ -53,16 +53,12 @@ done
 
 echo
 echo "== Hammerspoon reload =="
-# Start the app if it isn't running, then reload its config so the symlinked
-# files take effect. `hs -c` only works once the app is up and hs.ipc loaded.
+# Start the app if it isn't running (npm run hs only reloads a LIVE instance via
+# hs.ipc), then reload its config so the symlinked files take effect.
 open -a Hammerspoon 2>/dev/null || true
 sleep 1
-if [ -x /opt/homebrew/bin/hs ]; then
-  /opt/homebrew/bin/hs -c 'hs.reload()' >/dev/null 2>&1 || true
-  echo "reloaded Hammerspoon"
-else
-  echo "hs CLI not found — reload Hammerspoon manually"
-fi
+npm --prefix "$REPO" run hs >/dev/null 2>&1 && echo "reloaded Hammerspoon (npm run hs)" \
+  || echo "could not reload Hammerspoon — run 'npm run hs' manually"
 
 echo
 echo "Done. Run 'npm run sync' to regenerate Karabiner and select your profile (kl/kd)."
